@@ -30,14 +30,14 @@ namespace Gtk {
       int plot_height;
       sigc::signal<void, double, double, double, double > _signal_select_region;
       sigc::signal<void> _signal_changed;
-      sigc::signal<void> _signal_data_added;
+      sigc::signal<void, Plot2DData *> _signal_data_added;
       sigc::signal<void> _signal_data_removed;
       void plot_data_modified();
       Plot2D();
     protected:
       virtual void on_select_region(double xmin, double xmax, double ymin, double ymax);
       virtual void on_changed();
-      virtual void on_data_added();
+      virtual void on_data_added(Plot2DData *);
       virtual void on_data_removed();
     public:
       Plot2D(const Plot2DData &data, const Glib::ustring &axis_title_x = "X-axis", const Glib::ustring &axis_title_y = "Y-axis", const Glib::ustring &plot_title = "");
@@ -73,7 +73,7 @@ namespace Gtk {
       sigc::signal<void> signal_changed() {
         return _signal_changed;
       }
-      sigc::signal<void> signal_data_added() {
+      sigc::signal<void, Plot2DData *> signal_data_added() {
         return _signal_data_added;
       }
       sigc::signal<void> signal_data_removed() {

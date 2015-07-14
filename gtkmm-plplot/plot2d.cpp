@@ -21,7 +21,7 @@ Plot2D::Plot2D(
   this->signal_data_added().connect(sigc::mem_fun(*this, &Plot2D::on_data_added));
   this->signal_data_removed().connect(sigc::mem_fun(*this, &Plot2D::on_data_removed));
   plot_data[0]->signal_changed().connect([this](){_signal_changed.emit();});
-  _signal_data_added.emit();
+  _signal_data_added.emit(plot_data.back());
 }
 
 Plot2D::Plot2D(const Plot2D &_source) :
@@ -44,7 +44,7 @@ Plot2D::Plot2D(const Plot2D &_source) :
     iter->signal_changed().connect([this](){_signal_changed.emit();});
   }
   if (!plot_data.empty())
-    _signal_data_added.emit();
+    _signal_data_added.emit(plot_data.back());
 }
 
 Plot2D::~Plot2D() {
@@ -65,7 +65,7 @@ void Plot2D::on_changed() {
   //it is designed to be overridden by a derived class
 }
 
-void Plot2D::on_data_added() {
+void Plot2D::on_data_added(Plot2DData *added_data) {
   plot_data_modified();
 }
 
@@ -98,7 +98,9 @@ void Plot2D::plot_data_modified() {
 
 void Plot2D::add_data(const Plot2DData &data) {
   plot_data.push_back(new Plot2DData(data));
-  _signal_data_added.emit();
+  plot_data.back()->signal_changed().connect([this](){_signal_changed.emit();});
+
+  _signal_data_added.emit(plot_data.back());
 }
 
 void Plot2D::set_axis_logarithmic_x(bool _log10) {
@@ -185,8 +187,10 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
   pls->lab(axis_title_x.c_str(), axis_title_y.c_str(), plot_title.c_str());
 
   for (auto &iter : plot_data) {
-    pls->col0(iter->color);
-    pls->line(iter->x.size(), &iter->x[0], &iter->y[0]);
+    if (iter->shown) {
+      pls->col0(iter->color);
+      pls->line(iter->x.size(), &iter->x[0], &iter->y[0]);
+    }
   }
   convert_plplot_to_cairo_coordinates(plotted_range_x[0], plotted_range_y[0],
                                       cairo_range_x[0], cairo_range_y[0]);

@@ -15,6 +15,7 @@ namespace Gtk {
       std::vector<PLFLT> x;
       std::vector<PLFLT> y;
       Color color;
+      bool shown;
       sigc::signal<void> _signal_changed;
       Plot2DData();
     protected:
@@ -34,6 +35,9 @@ namespace Gtk {
       virtual ~Plot2DData() {}
       void set_color(Color color);
       Color get_color();
+      void show();
+      void hide();
+      bool is_showing() const;
       sigc::signal<void> signal_changed() {
         return _signal_changed;
       }
