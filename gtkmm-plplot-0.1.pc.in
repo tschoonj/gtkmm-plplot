@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@/gtkmm-plplot-0.1
+
+Name: Gtkmm-PLplot 
+Description: a scientific plotting widget collection for Gtkmm 
+Version: @VERSION@
+Requires: gtkmm-3.0 > 3.0.0 @PLPLOT_CXX@
+Conflicts:
+Libs: -L${libdir} -lgtkmm-plplot-0.1
+Cflags: -I${includedir} 

@@ -61,15 +61,14 @@ AM_CONDITIONAL([OS_WINDOWS_32],[test x$OS_WINDOWS_32 = x1])
 AC_SUBST(OS_WINDOWS_64)
 AM_CONDITIONAL([OS_WINDOWS_64],[test x$OS_WINDOWS_64 = x1])
 
-#look for xraylib
 #initialize pkg-config
-PKG_PROG_PKG_CONFIG
+PKG_PROG_PKG_CONFIG([0.27])
 
 
 #search for xraylib and other modules
 PKG_CHECK_MODULES([gtkmm],gtkmm-3.0 >= 3.12.0)
-PKG_CHECK_MODULES([plplotcxx], [plplot-c++], ,
- [PKG_CHECK_MODULES([plplotcxx], [plplotd-c++])])
+PKG_CHECK_MODULES([plplotcxx], [plplot-c++], AC_SUBST([PLPLOT_CXX], [plplot-c++]),
+ [PKG_CHECK_MODULES([plplotcxx], [plplotd-c++], AC_SUBST([PLPLOT_CXX], [plplotd-c++]))])
 
 #check for the extcairo device
 result=
@@ -95,10 +94,15 @@ AC_LANG_POP
 CFLAGS="$ac_save_CFLAGS"
 
 
+PKG_INSTALLDIR
 
 
-
-AC_CONFIG_FILES([Makefile gtkmm-plplot/Makefile tests/Makefile])
+AC_CONFIG_FILES([
+Makefile
+gtkmm-plplot/Makefile
+tests/Makefile
+gtkmm-plplot-0.1.pc
+])
 AC_CONFIG_HEADERS([config.h])
 
 
