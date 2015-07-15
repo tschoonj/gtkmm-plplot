@@ -2,6 +2,12 @@
 #include "gtkmm-plplot/exception.h"
 #include <iostream>
 
+#define PLPLOT_LIN_LIN 0
+#define PLPLOT_LIN_LOG 20
+#define PLPLOT_LOG_LIN 10
+#define PLPLOT_LOG_LOG 30
+
+
 using namespace Gtk::PLplot;
 
 Plot2D::Plot2D(
@@ -176,16 +182,46 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
   pls->cmd(PLESC_DEVINIT, cr->cobj());
   pls->col0(0);
 
+  int plplot_axis_style;
+
+  if (log10_x && log10_y)
+    plplot_axis_style = PLPLOT_LIN_LIN;
+  else if (log10_x)
+    plplot_axis_style = PLPLOT_LOG_LIN;
+  else if (log10_y)
+    plplot_axis_style = PLPLOT_LIN_LOG;
+  else
+    plplot_axis_style = PLPLOT_LOG_LOG;
+
   pls->env(plotted_range_x[0], plotted_range_x[1],
            plotted_range_y[0], plotted_range_y[1],
-           0, 0);
+           0, plplot_axis_style);
 
   pls->lab(axis_title_x.c_str(), axis_title_y.c_str(), plot_title.c_str());
 
   for (auto &iter : plot_data) {
     if (iter->shown) {
       pls->col0(iter->color);
-      pls->line(iter->x.size(), &iter->x[0], &iter->y[0]);
+
+      //now let's see if we are dealing with logarithmic axes
+      PLFLT *x = &iter->x[0], *y = &iter->y[0];
+      std::vector<PLFLT> x_vc, y_vc;
+
+      if (log10_x) {
+        std::valarray<PLFLT> x_va(x, iter->x.size());
+        x_va = log10(x_va);
+        x_vc.assign(std::begin(x_va), std::end(x_va));
+        x = &x_vc[0];
+      }
+
+      if (log10_y) {
+        std::valarray<PLFLT> y_va(x, iter->y.size());
+        y_va = log10(y_va);
+        y_vc.assign(std::begin(y_va), std::end(y_va));
+        y = &y_vc[0];
+      }
+
+      pls->line(iter->x.size(), x, y);
     }
   }
   convert_plplot_to_cairo_coordinates(plotted_range_x[0], plotted_range_y[0],
@@ -222,6 +258,22 @@ void Plot2D::set_region(double xmin, double xmax, double ymin, double ymax) {
     //this condition avoids the warning message...
     return;
   }
+
+  std::cout << "Entering set_region" << std::endl;
+  std::cout << "xmin: " << xmin << std::endl;
+  std::cout << "xmax: " << xmax << std::endl;
+  std::cout << "ymin: " << ymin << std::endl;
+  std::cout << "ymax: " << ymax << std::endl;
+
+  if (log10_x) {
+    xmin = log10(xmin);
+    xmax = log10(xmax);
+  }
+  if (log10_y) {
+    ymin = log10(ymin);
+    ymax = log10(ymax);
+  }
+
   if (xmin >= xmax || ymin >= ymax ||
       xmin < plot_data_range_x[0] ||
       xmax > plot_data_range_x[1] ||

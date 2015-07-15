@@ -162,6 +162,17 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
 
   this->get_window()->invalidate(true);
 
+  if (plots[selected_plot]->log10_x) {
+    start_plplot_def[0] = pow(10.0, start_plplot_def[0]);
+    end_plplot_def[0] = pow(10.0, end_plplot_def[0]);
+  }
+
+  if (plots[selected_plot]->log10_y) {
+    start_plplot_def[1] = pow(10.0, start_plplot_def[1]);
+    end_plplot_def[1] = pow(10.0, end_plplot_def[1]);
+  }
+
+
   plots[selected_plot]->_signal_select_region.emit(start_plplot_def[0], end_plplot_def[0], start_plplot_def[1], end_plplot_def[1]);
 
   return true;
