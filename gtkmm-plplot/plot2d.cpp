@@ -1,5 +1,6 @@
 #include "gtkmm-plplot/plot2d.h"
 #include "gtkmm-plplot/exception.h"
+#include <iostream>
 
 using namespace Gtk::PLplot;
 
@@ -14,14 +15,13 @@ Plot2D::Plot2D(
   axis_title_y(_axis_title_y),
   plot_title(_plot_title),
   pls(nullptr) {
-  plot_data.push_back(new Plot2DData(_data));
+
   //connect our default signal handlers
   this->signal_select_region().connect(sigc::mem_fun(*this, &Plot2D::on_select_region));
   this->signal_changed().connect(sigc::mem_fun(*this, &Plot2D::on_changed));
   this->signal_data_added().connect(sigc::mem_fun(*this, &Plot2D::on_data_added));
   this->signal_data_removed().connect(sigc::mem_fun(*this, &Plot2D::on_data_removed));
-  plot_data[0]->signal_changed().connect([this](){_signal_changed.emit();});
-  _signal_data_added.emit(plot_data.back());
+  add_data(_data);
 }
 
 Plot2D::Plot2D(const Plot2D &_source) :
@@ -38,13 +38,8 @@ Plot2D::Plot2D(const Plot2D &_source) :
   this->signal_data_removed().connect(sigc::mem_fun(*this, &Plot2D::on_data_removed));
 
   for (auto &iter : _source.plot_data) {
-    plot_data.push_back(new Plot2DData(*iter));
+    add_data(*iter);
   }
-  for (auto &iter : plot_data) {
-    iter->signal_changed().connect([this](){_signal_changed.emit();});
-  }
-  if (!plot_data.empty())
-    _signal_data_added.emit(plot_data.back());
 }
 
 Plot2D::~Plot2D() {
@@ -97,10 +92,11 @@ void Plot2D::plot_data_modified() {
 }
 
 void Plot2D::add_data(const Plot2DData &data) {
-  plot_data.push_back(new Plot2DData(data));
-  plot_data.back()->signal_changed().connect([this](){_signal_changed.emit();});
+  Plot2DData *data_copy = new Plot2DData(data);
+  plot_data.push_back(data_copy);
+  data_copy->signal_changed().connect([this](){_signal_changed.emit();});
 
-  _signal_data_added.emit(plot_data.back());
+  _signal_data_added.emit(data_copy);
 }
 
 void Plot2D::set_axis_logarithmic_x(bool _log10) {
