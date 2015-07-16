@@ -22,7 +22,8 @@ Canvas::Canvas(const Plot2D &plot) :
 
   plots[0]->signal_select_region().connect(sigc::mem_fun(*plots[0],
              &Plot2D::set_region));
-  plots[0]->signal_changed().connect([this](){this->get_window()->invalidate(true);});
+  plots[0]->signal_changed().connect([this](){_signal_changed.emit();});
+  signal_changed().connect(sigc::mem_fun(*this, &Canvas::on_changed));
 }
 
 Canvas::~Canvas() {
@@ -34,8 +35,9 @@ Canvas::~Canvas() {
 }
 
 void Canvas::on_changed() {
-  //do nothing
-  //this should do the call to invalidate, which should be triggered from the methods through a signal emission!
+  //this catches all signal_changed emissions recursively from the Plot2D and Plot2DData classes
+  //so this is the method that ensures things get redrawn when one of the parameters is changed.
+  this->get_window()->invalidate(true);
 }
 
 bool Canvas::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
@@ -107,7 +109,7 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
       }
       selecting = true;
       selected_plot = plot;
-      this->get_window()->invalidate(true);
+      _signal_changed.emit();
       return false;
     }
   }
@@ -177,7 +179,7 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
   end_plplot_def[0] = MIN(MAX(start_plplot[0], end_plplot[0]), plots[selected_plot]->plot_data_range_x[1]);
   end_plplot_def[1] = MIN(MAX(start_plplot[1], end_plplot[1]), plots[selected_plot]->plot_data_range_y[1]);
 
-  this->get_window()->invalidate(true);
+  _signal_changed.emit();
 
   if (plots[selected_plot]->log10_x) {
     start_plplot_def[0] = pow(10.0, start_plplot_def[0]);
@@ -223,7 +225,7 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
     end_cairo[1] = MAX(end_cairo[1], plots[selected_plot]->cairo_range_y[0]);
   }
 
-  this->get_window()->invalidate(true);
+  _signal_changed.emit();
 
   return true;
 }
@@ -240,5 +242,5 @@ Gdk::RGBA Canvas::get_background_color() {
 }
 void Canvas::set_background_color(Gdk::RGBA _background_color) {
   background_color = _background_color;
-  this->get_window()->invalidate(true);
+  _signal_changed.emit();
 }
