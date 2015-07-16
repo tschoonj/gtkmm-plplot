@@ -213,6 +213,7 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
   for (auto &iter : plot_data) {
     if (iter->shown) {
       pls->col0(iter->color);
+      pls->lsty(iter->line_style);
 
       //now let's see if we are dealing with logarithmic axes
       PLFLT *x = &iter->x[0], *y = &iter->y[0];

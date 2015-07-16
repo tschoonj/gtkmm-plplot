@@ -7,7 +7,8 @@ gtkmm_plplotinclude_HEADERS = \
                               exception.h \
                               plot2ddata.h \
                               plot2d.h \
-                              utils.h
+                              utils.h \
+                              linestyle.h
 
 libgtkmm_plplot_0_1_la_SOURCES = $(gtkmm_plplotinclude_HEADERS) \
                                  plot2ddata.cpp \

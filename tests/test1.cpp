@@ -13,15 +13,20 @@ namespace Test1 {
   private:
     Gtk::PLplot::Canvas canvas;
     Gtk::Grid grid;
+    Gtk::Label label1;
+    Gtk::Label label2;
     Gtk::ComboBoxText color_combo1;
     Gtk::ComboBoxText color_combo2;
+    Gtk::ComboBoxText linestyle_combo1;
+    Gtk::ComboBoxText linestyle_combo2;
     Gtk::Switch show_radio1;
     Gtk::Switch show_radio2;
   public:
     Window(std::valarray<PLFLT> &x, std::valarray<PLFLT> &y,
       std::string x_title = "X-axis", std::string y_title = "Y-axis",
       std::string plot_title = "", Gtk::PLplot::Color color = Gtk::PLplot::Color::RED) :
-      canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::Plot2DData(x, y, color), x_title, y_title, plot_title)) {
+      canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::Plot2DData(x, y, color), x_title, y_title, plot_title)),
+      label1("Plot 1"), label2("Plot 2") {
 
       //let's make this more interesting by adding more data
       std::valarray<PLFLT> x_va(1000), y_va(1000);
@@ -100,27 +105,57 @@ namespace Test1 {
       color_combo2.append("salmon");
       color_combo2.append("white");
 
+      linestyle_combo1.append("continuous");
+      linestyle_combo1.append("short dash short gap");
+      linestyle_combo1.append("long dash long gap");
+      linestyle_combo1.append("long dash short gap");
+      linestyle_combo1.append("long dash short gap short dash short gap");
+      linestyle_combo1.append("long dash short gap long dash short gap");
+      linestyle_combo2.append("continuous");
+      linestyle_combo2.append("short dash short gap");
+      linestyle_combo2.append("long dash long gap");
+      linestyle_combo2.append("long dash short gap");
+      linestyle_combo2.append("long dash short gap short dash short gap");
+      linestyle_combo2.append("long dash short gap long dash short gap");
+
       color_combo1.set_hexpand(false);
       color_combo2.set_hexpand(false);
+      linestyle_combo1.set_halign(Gtk::ALIGN_START);
+      linestyle_combo2.set_halign(Gtk::ALIGN_START);
       show_radio1.set_hexpand(false);
       show_radio2.set_hexpand(false);
+      label1.set_hexpand(true);
+      label2.set_hexpand(true);
+      linestyle_combo1.set_hexpand(true);
+      linestyle_combo2.set_hexpand(true);
+      label1.set_halign(Gtk::ALIGN_END);
+      label2.set_halign(Gtk::ALIGN_END);
 
       grid.set_column_homogeneous(false);
       grid.set_column_spacing(5);
+      grid.set_row_spacing(5);
 
       color_combo1.set_active(canvas.get_plot(0)->get_data(0)->get_color());
       color_combo2.set_active(canvas.get_plot(0)->get_data(1)->get_color());
 
+      linestyle_combo1.set_active(canvas.get_plot(0)->get_data(0)->get_line_style()-1);
+      linestyle_combo2.set_active(canvas.get_plot(0)->get_data(1)->get_line_style()-1);
+
       color_combo1.signal_changed().connect([this](){canvas.get_plot(0)->get_data(0)->set_color(static_cast<Gtk::PLplot::Color>(color_combo1.get_active_row_number()));});
       color_combo2.signal_changed().connect([this](){canvas.get_plot(0)->get_data(1)->set_color(static_cast<Gtk::PLplot::Color>(color_combo2.get_active_row_number()));});
 
-      grid.attach(*Gtk::manage(new Gtk::Label("Plot1")), 0, 0, 1, 1);
+      linestyle_combo1.signal_changed().connect([this](){canvas.get_plot(0)->get_data(0)->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo1.get_active_row_number()+1));});
+      linestyle_combo2.signal_changed().connect([this](){canvas.get_plot(0)->get_data(1)->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo2.get_active_row_number()+1));});
+
+      grid.attach(label1, 0, 0, 1, 1);
       grid.attach(show_radio1, 1, 0, 1, 1);
       grid.attach(color_combo1, 2, 0, 1, 1);
-      grid.attach(*Gtk::manage(new Gtk::Label("Plot2")), 0, 1, 1, 1);
+      grid.attach(linestyle_combo1, 3, 0, 1, 1);
+      grid.attach(label2, 0, 1, 1, 1);
       grid.attach(show_radio2, 1, 1, 1, 1);
       grid.attach(color_combo2, 2, 1, 1, 1);
-      grid.attach(canvas, 0, 2, 3, 1);
+      grid.attach(linestyle_combo2, 3, 1, 1, 1);
+      grid.attach(canvas, 0, 2, 4, 1);
 
       add(grid);
       set_border_width(10);
