@@ -9,6 +9,8 @@
 #include <plstream.h>
 #include <glibmm/ustring.h>
 
+#define PLOT2DDATA_DEFAULT_LINE_WIDTH 1.0
+
 namespace Gtk {
   namespace PLplot {
     class Plot2DData : public sigc::trackable {
@@ -17,6 +19,7 @@ namespace Gtk {
       std::vector<PLFLT> y;
       Color color;
       LineStyle line_style;
+      double line_width;
       bool shown;
       sigc::signal<void> _signal_changed;
       Plot2DData();
@@ -26,23 +29,29 @@ namespace Gtk {
       Plot2DData(const std::vector<PLFLT> &x,
                  const std::vector<PLFLT> &y,
                  Color color = RED,
-                 LineStyle line_style = CONTINUOUS);
+                 LineStyle line_style = CONTINUOUS,
+                 double line_width = PLOT2DDATA_DEFAULT_LINE_WIDTH);
       Plot2DData(const std::valarray<PLFLT> &x,
                  const std::valarray<PLFLT> &y,
                  Color color = RED,
-                 LineStyle line_style = CONTINUOUS);
+                 LineStyle line_style = CONTINUOUS,
+                 double line_width = PLOT2DDATA_DEFAULT_LINE_WIDTH);
       Plot2DData(const std::vector<PLFLT> &y,
                  Color color = RED,
-                 LineStyle line_style = CONTINUOUS);
+                 LineStyle line_style = CONTINUOUS,
+                 double line_width = PLOT2DDATA_DEFAULT_LINE_WIDTH);
       Plot2DData(const std::valarray<PLFLT> &y,
                  Color color = RED,
-                 LineStyle line_style = CONTINUOUS);
+                 LineStyle line_style = CONTINUOUS,
+                 double line_width = PLOT2DDATA_DEFAULT_LINE_WIDTH);
       Plot2DData(const Plot2DData &data);
       virtual ~Plot2DData() {}
       void set_color(Color color);
       Color get_color();
       void set_line_style(LineStyle line_style);
       LineStyle get_line_style();
+      void set_line_width(double line_width);
+      double get_line_width();
       void show();
       void hide();
       bool is_showing() const;

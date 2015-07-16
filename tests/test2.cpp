@@ -98,7 +98,6 @@ int main(int argc, char *argv[]) {
   //open our test file
   std::ifstream fs;
   fs.exceptions(std::ifstream::failbit | std::ifstream::badbit | std::ifstream::eofbit);
-  std::cout << "our file: " << TEST_CSV << std::endl;
   try {
 	   fs.open(TEST_CSV);
   }
@@ -106,8 +105,6 @@ int main(int argc, char *argv[]) {
     std::cerr << "Error opening file " << TEST_CSV << " -> " << e.what() << std::endl;
     return 1;
   }
-  std::cout << "our file: " << TEST_CSV << std::endl;
-
 
   std::vector<PLFLT> x;
   std::vector<PLFLT> y1, y2, y3, y4;
@@ -138,8 +135,6 @@ int main(int argc, char *argv[]) {
       return 1;
     }
   }
-
-  std::cout << "File parsed" << std::endl;
 
   //ensure our y-values are greater than 1!
   //the x-values are already...
