@@ -1,6 +1,9 @@
 #include "gtkmm-plplot/canvas.h"
 #include "gtkmm-plplot/exception.h"
 
+#include <valarray>
+#include <cmath>
+
 using namespace Gtk::PLplot;
 
 Canvas::Canvas(const Plot2D &plot) :
@@ -80,11 +83,17 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
       start_cairo[1] >= plots[plot]->cairo_range_y[0] &&
       start_cairo[1] <= plots[plot]->cairo_range_y[1]) {
       if (event->type == GDK_2BUTTON_PRESS) {
+        std::valarray<double> plot_data_range_x = {plots[plot]->plot_data_range_x[0], plots[plot]->plot_data_range_x[1]};
+        std::valarray<double> plot_data_range_y = {plots[plot]->plot_data_range_y[0], plots[plot]->plot_data_range_y[1]};
+        if (plots[plot]->log10_x)
+          plot_data_range_x = std::pow(10.0, plot_data_range_x);
+        if (plots[plot]->log10_y)
+          plot_data_range_y = std::pow(10.0, plot_data_range_y);
         plots[plot]->set_region(
-          plots[plot]->plot_data_range_x[0],
-          plots[plot]->plot_data_range_x[1],
-          plots[plot]->plot_data_range_y[0],
-          plots[plot]->plot_data_range_y[1]
+          plot_data_range_x[0],
+          plot_data_range_x[1],
+          plot_data_range_y[0],
+          plot_data_range_y[1]
         );
         return false;
       }
@@ -124,7 +133,7 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
   }
 
   if (end_cairo[1] > start_cairo[1]) {
-    end_cairo[1] = MIN(end_cairo[1], plots[selected_plot]->cairo_range_y[1]);
+    end_cairo[1] = MIN(end_cairo[1], plots[selected_plot]->cairo_range_y[1] - 1E-10);
   }
   else if (end_cairo[1] < start_cairo[1]) {
     end_cairo[1] = MAX(end_cairo[1], plots[selected_plot]->cairo_range_y[0]);

@@ -73,9 +73,11 @@ namespace Gtk {
       sigc::signal<void> signal_changed() {
         return _signal_changed;
       }
+
       sigc::signal<void, Plot2DData *> signal_data_added() {
         return _signal_data_added;
       }
+      
       sigc::signal<void> signal_data_removed() {
         return _signal_data_removed;
       }

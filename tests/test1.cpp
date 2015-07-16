@@ -133,16 +133,7 @@ namespace Test1 {
 
 int main(int argc, char **argv) {
 	Glib::set_application_name("gtkmm-plplot-test1");
-#if defined(G_OS_WIN32)
-  //windows requires a bit more work. This example sets the PLPLOT_LIB environment variable
-  //to ensure the PLplot data files are found at runtime
-	gchar *installation_dir = g_win32_get_package_installation_directory_of_module(NULL);
-	std::string path_to_plplot(Glib::build_filename(installation_dir, "Share", "plplot"));
-	std::cout << "path to plplot: " << path_to_plplot << std::endl;
-	Glib::setenv("PLPLOT_LIB", path_to_plplot, true);
-	g_free(installation_dir);
-#endif
-	Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.plplot");
+	Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test1");
 
   //valarrays are underestimated IMHO
   std::valarray<PLFLT> x_va(1000), y_va(1000);

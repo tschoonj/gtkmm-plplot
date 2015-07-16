@@ -90,6 +90,15 @@ void Plot2D::plot_data_modified() {
   plot_data_range_y[0] = *std::min_element(min_y.begin(), min_y.end());
   plot_data_range_y[1] = *std::max_element(max_y.begin(), max_y.end());
 
+  if (log10_x) {
+    plot_data_range_x[0] = log10(plot_data_range_x[0]);
+    plot_data_range_x[1] = log10(plot_data_range_x[1]);
+  }
+  if (log10_y) {
+    plot_data_range_y[0] = log10(plot_data_range_y[0]);
+    plot_data_range_y[1] = log10(plot_data_range_y[1]);
+  }
+
   plotted_range_x[0] = plot_data_range_x[0];
   plotted_range_x[1] = plot_data_range_x[1];
   plotted_range_y[0] = plot_data_range_y[0];
@@ -115,6 +124,7 @@ void Plot2D::set_axis_logarithmic_x(bool _log10) {
     }
   }
   log10_x = _log10;
+  plot_data_modified();
   _signal_changed.emit();
 }
 
@@ -128,6 +138,7 @@ void Plot2D::set_axis_logarithmic_y(bool _log10) {
     }
   }
   log10_y = _log10;
+  plot_data_modified();
   _signal_changed.emit();
 }
 
@@ -185,13 +196,13 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
   int plplot_axis_style;
 
   if (log10_x && log10_y)
-    plplot_axis_style = PLPLOT_LIN_LIN;
+    plplot_axis_style = PLPLOT_LOG_LOG;
   else if (log10_x)
     plplot_axis_style = PLPLOT_LOG_LIN;
   else if (log10_y)
     plplot_axis_style = PLPLOT_LIN_LOG;
   else
-    plplot_axis_style = PLPLOT_LOG_LOG;
+    plplot_axis_style = PLPLOT_LIN_LIN;
 
   pls->env(plotted_range_x[0], plotted_range_x[1],
            plotted_range_y[0], plotted_range_y[1],
@@ -215,7 +226,7 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
       }
 
       if (log10_y) {
-        std::valarray<PLFLT> y_va(x, iter->y.size());
+        std::valarray<PLFLT> y_va(y, iter->y.size());
         y_va = log10(y_va);
         y_vc.assign(std::begin(y_va), std::end(y_va));
         y = &y_vc[0];
@@ -259,12 +270,6 @@ void Plot2D::set_region(double xmin, double xmax, double ymin, double ymax) {
     return;
   }
 
-  std::cout << "Entering set_region" << std::endl;
-  std::cout << "xmin: " << xmin << std::endl;
-  std::cout << "xmax: " << xmax << std::endl;
-  std::cout << "ymin: " << ymin << std::endl;
-  std::cout << "ymax: " << ymax << std::endl;
-
   if (log10_x) {
     xmin = log10(xmin);
     xmax = log10(xmax);
@@ -279,7 +284,7 @@ void Plot2D::set_region(double xmin, double xmax, double ymin, double ymax) {
       xmax > plot_data_range_x[1] ||
       ymin < plot_data_range_y[0] ||
       ymax > plot_data_range_y[1]) {
-    throw Exception("Gtk::PLplot::Plot2D::set_region(): Invalid arguments");
+    throw Exception("Gtk::PLplot::Plot2D::set_region -> Invalid arguments");
   }
   plotted_range_x[0] = xmin;
   plotted_range_x[1] = xmax;

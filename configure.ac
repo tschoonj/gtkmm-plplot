@@ -65,7 +65,7 @@ AM_CONDITIONAL([OS_WINDOWS_64],[test x$OS_WINDOWS_64 = x1])
 PKG_PROG_PKG_CONFIG([0.27])
 
 
-#search for xraylib and other modules
+#search for our dependencies
 PKG_CHECK_MODULES([gtkmm],gtkmm-3.0 >= 3.12.0)
 PKG_CHECK_MODULES([plplotcxx], [plplot-c++], AC_SUBST([PLPLOT_CXX], [plplot-c++]),
  [PKG_CHECK_MODULES([plplotcxx], [plplotd-c++], AC_SUBST([PLPLOT_CXX], [plplotd-c++]))])
