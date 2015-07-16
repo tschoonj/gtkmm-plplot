@@ -1,6 +1,8 @@
 #include "gtkmm-plplot/plot2d.h"
 #include "gtkmm-plplot/exception.h"
 #include <iostream>
+#include <gdkmm/rgba.h>
+#include <gdkmm/general.h>
 
 #define PLPLOT_LIN_LIN 0
 #define PLPLOT_LIN_LOG 20

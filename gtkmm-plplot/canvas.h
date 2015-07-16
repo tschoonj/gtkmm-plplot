@@ -5,6 +5,7 @@
 #include "gtkmm-plplot/plot2d.h"
 #include <vector>
 #include <plstream.h>
+#include <gdkmm/rgba.h>
 
 namespace Gtk {
   namespace PLplot {
@@ -22,6 +23,7 @@ namespace Gtk {
       double y_pl_range[2];
       double x_cr_range[2];
       double y_cr_range[2];
+      Gdk::RGBA background_color;
       Canvas();
     protected:
       virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
@@ -37,6 +39,8 @@ namespace Gtk {
         return _signal_changed;
       }
       Plot2D *get_plot(unsigned int);
+      Gdk::RGBA get_background_color();
+      void set_background_color(Gdk::RGBA);
     };
   }
 }

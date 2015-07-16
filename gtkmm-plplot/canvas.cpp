@@ -3,6 +3,7 @@
 
 #include <valarray>
 #include <cmath>
+#include <gdkmm/general.h>
 
 using namespace Gtk::PLplot;
 
@@ -12,7 +13,8 @@ Canvas::Canvas(const Plot2D &plot) :
   end_event{-1.0, -1.0},
   end_cairo{-1.0, -1.0},
   selecting(false),
-  selected_plot(0) {
+  selected_plot(0),
+  background_color("white") {
   plots.push_back(new Plot2D(plot));
   add_events(Gdk::POINTER_MOTION_MASK |
              Gdk::BUTTON_PRESS_MASK |
@@ -33,12 +35,18 @@ Canvas::~Canvas() {
 
 void Canvas::on_changed() {
   //do nothing
+  //this should do the call to invalidate, which should be triggered from the methods through a signal emission!
 }
 
 bool Canvas::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
   Gtk::Allocation allocation = get_allocation();
   const int width = allocation.get_width();
   const int height = allocation.get_height();
+
+  //start by drawing the background
+  cr->rectangle(0.0, 0.0, width, height);
+  Gdk::Cairo::set_source_rgba(cr, background_color);
+  cr->fill();
 
   for (std::vector<Plot2D*>::iterator iter = plots.begin() ;
     iter != plots.end() ;
@@ -225,4 +233,12 @@ Plot2D *Canvas::get_plot(unsigned int index) {
     return plots[index];
   }
   throw Exception("Gtk::PLplot::Canvas::get_plot -> Invalid index");
+}
+
+Gdk::RGBA Canvas::get_background_color() {
+  return background_color;
+}
+void Canvas::set_background_color(Gdk::RGBA _background_color) {
+  background_color = _background_color;
+  this->get_window()->invalidate(true);
 }
