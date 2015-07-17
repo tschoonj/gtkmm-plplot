@@ -7,23 +7,33 @@
 
 using namespace Gtk::PLplot;
 
-Canvas::Canvas(const Plot2D &plot) :
+Canvas::Canvas(const Plot2D &plot, Gdk::RGBA _background_color) :
+  Canvas(_background_color) {
+
+  add_plot(plot);
+}
+
+Canvas::Canvas(Gdk::RGBA _background_color) :
   start_event{-1.0, -1.0},
   start_cairo{-1.0, -1.0},
   end_event{-1.0, -1.0},
   end_cairo{-1.0, -1.0},
   selecting(false),
   selected_plot(0),
-  background_color("white") {
-  plots.push_back(new Plot2D(plot));
+  background_color(_background_color) {
+
   add_events(Gdk::POINTER_MOTION_MASK |
              Gdk::BUTTON_PRESS_MASK |
              Gdk::BUTTON_RELEASE_MASK);
-
-  plots[0]->signal_select_region().connect(sigc::mem_fun(*plots[0],
-             &Plot2D::set_region));
-  plots[0]->signal_changed().connect([this](){_signal_changed.emit();});
   signal_changed().connect(sigc::mem_fun(*this, &Canvas::on_changed));
+}
+
+void Canvas::add_plot(const Plot2D &plot) {
+  plots.push_back(new Plot2D(plot));
+  plots.back()->signal_select_region().connect(sigc::mem_fun(*plots.back(),
+             &Plot2D::set_region));
+  plots.back()->signal_changed().connect([this](){_signal_changed.emit();});
+  _signal_changed.emit();
 }
 
 Canvas::~Canvas() {
@@ -37,7 +47,7 @@ Canvas::~Canvas() {
 void Canvas::on_changed() {
   //this catches all signal_changed emissions recursively from the Plot2D and Plot2DData classes
   //so this is the method that ensures things get redrawn when one of the parameters is changed.
-  this->get_window()->invalidate(true);
+  this->queue_draw();
 }
 
 bool Canvas::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {

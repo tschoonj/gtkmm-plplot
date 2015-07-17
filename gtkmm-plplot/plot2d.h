@@ -28,6 +28,7 @@ namespace Gtk {
       double cairo_range_y[2];
       int plot_width;
       int plot_height;
+      bool shown;
       sigc::signal<void, double, double, double, double > _signal_select_region;
       sigc::signal<void> _signal_changed;
       sigc::signal<void, Plot2DData *> _signal_data_added;
@@ -64,11 +65,15 @@ namespace Gtk {
         double x_pl, double y_pl,
         double &x_cr, double &y_cr);
 
+      void set_region(double xmin, double xmax, double ymin, double ymax);
+      
+      void show();
+      void hide();
+      bool is_showing() const;
+
       sigc::signal<void, double, double, double, double > signal_select_region() {
         return _signal_select_region;
       }
-
-      void set_region(double xmin, double xmax, double ymin, double ymax);
 
       sigc::signal<void> signal_changed() {
         return _signal_changed;
@@ -77,7 +82,7 @@ namespace Gtk {
       sigc::signal<void, Plot2DData *> signal_data_added() {
         return _signal_data_added;
       }
-      
+
       sigc::signal<void> signal_data_removed() {
         return _signal_data_removed;
       }

@@ -124,6 +124,9 @@ namespace Test1 {
       color_combo1.set_rgba(canvas.get_plot(0)->get_data(0)->get_color());
       color_combo2.set_rgba(canvas.get_plot(0)->get_data(1)->get_color());
 
+      color_combo1.set_use_alpha(true);
+      color_combo2.set_use_alpha(true);
+
       linestyle_combo1.set_active(canvas.get_plot(0)->get_data(0)->get_line_style()-1);
       linestyle_combo2.set_active(canvas.get_plot(0)->get_data(1)->get_line_style()-1);
 

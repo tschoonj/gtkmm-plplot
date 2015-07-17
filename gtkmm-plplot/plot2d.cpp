@@ -22,7 +22,8 @@ Plot2D::Plot2D(
   axis_title_x(_axis_title_x),
   axis_title_y(_axis_title_y),
   plot_title(_plot_title),
-  pls(nullptr) {
+  pls(nullptr),
+  shown(true) {
 
   //connect our default signal handlers
   this->signal_select_region().connect(sigc::mem_fun(*this, &Plot2D::on_select_region));
@@ -38,7 +39,8 @@ Plot2D::Plot2D(const Plot2D &_source) :
   axis_title_x(_source.axis_title_x),
   axis_title_y(_source.axis_title_y),
   plot_title(_source.plot_title),
-  pls(nullptr) {
+  pls(nullptr),
+  shown(true) {
 
   this->signal_select_region().connect(sigc::mem_fun(*this, &Plot2D::on_select_region));
   this->signal_changed().connect(sigc::mem_fun(*this, &Plot2D::on_changed));
@@ -66,6 +68,20 @@ void Plot2D::on_select_region(double xmin, double xmax, double ymin, double ymax
 void Plot2D::on_changed() {
   //this function does nothing
   //it is designed to be overridden by a derived class
+}
+
+void Plot2D::show() {
+  shown = true;
+  _signal_changed.emit();
+}
+
+void Plot2D::hide() {
+  shown = false;
+  _signal_changed.emit();
+}
+
+bool Plot2D::is_showing() const {
+  return shown;
 }
 
 void Plot2D::on_data_added(Plot2DData *added_data) {

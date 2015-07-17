@@ -24,7 +24,6 @@ namespace Gtk {
       double x_cr_range[2];
       double y_cr_range[2];
       Gdk::RGBA background_color;
-      Canvas();
     protected:
       virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
       virtual bool on_button_press_event(GdkEventButton *event);
@@ -32,9 +31,10 @@ namespace Gtk {
       virtual bool on_motion_notify_event (GdkEventMotion *event);
       virtual void on_changed();
     public:
-      Canvas(const Plot2D &plot);
+      Canvas(Gdk::RGBA background_color = Gdk::RGBA("White"));
+      Canvas(const Plot2D &plot, Gdk::RGBA background_color = Gdk::RGBA("White"));
       virtual ~Canvas();
-      //void add_plot(const Plot2D &plot);
+      void add_plot(const Plot2D &plot);
       sigc::signal<void> signal_changed() {
         return _signal_changed;
       }

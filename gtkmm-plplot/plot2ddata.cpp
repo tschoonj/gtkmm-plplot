@@ -12,8 +12,18 @@ Plot2DData::Plot2DData(
   double _line_width) :
   x(_x), y(_y), color(_color), line_style(_line_style),
   line_width(_line_width), shown(true) {
+
+   //ensure both arrays have the same size
   if (x.size() != y.size()) {
     throw Exception("Gtk::PLplot::Plot2DData::Plot2DData -> data arrays x and y must have the same size!");
+  }
+  //ensure there are at least two elements in the arrays
+  if (x.size() < 2) {
+    throw Exception("Gtk::PLplot::Plot2DData::Plot2DData -> data arrays x and y must have at least two elements");
+  }
+  //ensure the X-values are not all the same
+  if (std::count(x.begin(), x.end(), x[0]) == x.size()) {
+    throw Exception("Gtk::PLplot::Plot2DData::Plot2DData -> data array x must have at least two different elements");
   }
   this->signal_changed().connect(sigc::mem_fun(*this,
              &Plot2DData::on_changed));
