@@ -12,19 +12,29 @@ namespace Test3 {
   private:
     Gtk::PLplot::Canvas canvas;
     Gtk::Grid grid;
-    Gtk::Button add_data;
-    sigc::connection handler;
-    void add_data_clicked() {
-      handler.block();
+    Gtk::Button add_plot;
+    Gtk::Button remove_plot;
+    Gtk::Button show_plot;
+    Gtk::Button hide_plot;
+    Gtk::PLplot::Plot2D *plot;
+
+    void add_plot_clicked() {
+      add_plot.set_sensitive(false);
+
       std::valarray<PLFLT> x_va(1000), y_va(1000);
       for (unsigned int i = 0 ; i < 1000 ; i++) {
         x_va[i] = 4*M_PI*i/999;
       }
       y_va = sin(x_va);
-      canvas.add_plot(Gtk::PLplot::Plot2D(Gtk::PLplot::Plot2DData(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0)));
+      plot = canvas.add_plot(Gtk::PLplot::Plot2D(Gtk::PLplot::Plot2DData(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0)));
+
+      remove_plot.set_sensitive(true);
+      show_plot.set_sensitive(false);
+      hide_plot.set_sensitive(true);
     }
   public:
-    Window() : canvas(), add_data("Add data") {
+    Window() : canvas(), add_plot("Add"), remove_plot("Remove"),
+      show_plot("Show"), hide_plot("Hide") {
       set_default_size(720, 580);
       Gdk::Geometry geometry;
       geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
@@ -32,16 +42,48 @@ namespace Test3 {
       set_title("Gtkmm-PLplot test3");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
-      add_data.set_hexpand(false);
-      add_data.set_vexpand(false);
-      add_data.set_halign(Gtk::ALIGN_CENTER);
-      add_data.set_valign(Gtk::ALIGN_CENTER);
+      add_plot.set_hexpand(true);
+      add_plot.set_vexpand(false);
+      add_plot.set_halign(Gtk::ALIGN_END);
+      remove_plot.set_hexpand(false);
+      remove_plot.set_vexpand(false);
+      show_plot.set_hexpand(false);
+      show_plot.set_vexpand(false);
+      hide_plot.set_hexpand(true);
+      hide_plot.set_vexpand(false);
+      hide_plot.set_halign(Gtk::ALIGN_START);
 
-      handler = add_data.signal_clicked().connect(sigc::mem_fun(*this, &Window::add_data_clicked));
+      remove_plot.set_sensitive(false);
+      show_plot.set_sensitive(false);
+      hide_plot.set_sensitive(false);
 
-      grid.attach(add_data, 0, 0, 1, 1);
-      grid.attach(canvas, 0, 1, 1, 1);
+      add_plot.signal_clicked().connect(sigc::mem_fun(*this, &Window::add_plot_clicked));
+      remove_plot.signal_clicked().connect([this](){
+        canvas.remove_plot(plot);
+        add_plot.set_sensitive(true);
+        remove_plot.set_sensitive(false);
+        show_plot.set_sensitive(false);
+        hide_plot.set_sensitive(false);
+      });
+      show_plot.signal_clicked().connect([this](){
+        plot->show();
+        show_plot.set_sensitive(false);
+        hide_plot.set_sensitive(true);
+      });
+      hide_plot.signal_clicked().connect([this](){
+        plot->hide();
+        show_plot.set_sensitive(true);
+        hide_plot.set_sensitive(false);
+      });
+
+      grid.attach(add_plot, 0, 0, 1, 1);
+      grid.attach(remove_plot, 1, 0, 1, 1);
+      grid.attach(show_plot, 2, 0, 1, 1);
+      grid.attach(hide_plot, 3, 0, 1, 1);
+      grid.attach(canvas, 0, 1, 4, 1);
       grid.set_row_spacing(5);
+      grid.set_column_spacing(5);
+      grid.set_column_homogeneous(false);
 
 
       add(grid);

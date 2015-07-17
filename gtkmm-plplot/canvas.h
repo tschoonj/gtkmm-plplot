@@ -34,11 +34,13 @@ namespace Gtk {
       Canvas(Gdk::RGBA background_color = Gdk::RGBA("White"));
       Canvas(const Plot2D &plot, Gdk::RGBA background_color = Gdk::RGBA("White"));
       virtual ~Canvas();
-      void add_plot(const Plot2D &plot);
+      Plot2D *add_plot(const Plot2D &plot);
+      void remove_plot(unsigned int plot_index);
+      void remove_plot(Plot2D *plot);
       sigc::signal<void> signal_changed() {
         return _signal_changed;
       }
-      Plot2D *get_plot(unsigned int);
+      Plot2D *get_plot(unsigned int plot_index);
       Gdk::RGBA get_background_color();
       void set_background_color(Gdk::RGBA);
     };

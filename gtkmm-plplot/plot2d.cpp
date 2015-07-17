@@ -121,7 +121,7 @@ void Plot2D::plot_data_modified() {
   plotted_range_x[1] = plot_data_range_x[1];
   plotted_range_y[0] = plot_data_range_y[0];
   plotted_range_y[1] = plot_data_range_y[1];
-  //_signal_changed.emit();
+  _signal_changed.emit();
 }
 
 void Plot2D::add_data(const Plot2DData &data) {
@@ -196,6 +196,8 @@ Glib::ustring Plot2D::get_plot_title() {
 }
 
 void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) {
+  if (!shown)
+    return;
   plot_width = width;
   plot_height= height;
   if (pls)

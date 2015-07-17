@@ -28,12 +28,13 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
   signal_changed().connect(sigc::mem_fun(*this, &Canvas::on_changed));
 }
 
-void Canvas::add_plot(const Plot2D &plot) {
+Plot2D *Canvas::add_plot(const Plot2D &plot) {
   plots.push_back(new Plot2D(plot));
   plots.back()->signal_select_region().connect(sigc::mem_fun(*plots.back(),
              &Plot2D::set_region));
   plots.back()->signal_changed().connect([this](){_signal_changed.emit();});
   _signal_changed.emit();
+  return plots.back();
 }
 
 Canvas::~Canvas() {
@@ -101,7 +102,8 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
     if (start_cairo[0] >= plots[plot]->cairo_range_x[0] &&
       start_cairo[0] <= plots[plot]->cairo_range_x[1] &&
       start_cairo[1] >= plots[plot]->cairo_range_y[0] &&
-      start_cairo[1] <= plots[plot]->cairo_range_y[1]) {
+      start_cairo[1] <= plots[plot]->cairo_range_y[1] &&
+      plots[plot]->is_showing()) {
       if (event->type == GDK_2BUTTON_PRESS) {
         std::valarray<double> plot_data_range_x = {plots[plot]->plot_data_range_x[0], plots[plot]->plot_data_range_x[1]};
         std::valarray<double> plot_data_range_y = {plots[plot]->plot_data_range_y[0], plots[plot]->plot_data_range_y[1]};
@@ -250,7 +252,28 @@ Plot2D *Canvas::get_plot(unsigned int index) {
 Gdk::RGBA Canvas::get_background_color() {
   return background_color;
 }
+
 void Canvas::set_background_color(Gdk::RGBA _background_color) {
   background_color = _background_color;
+  _signal_changed.emit();
+}
+
+void Canvas::remove_plot(unsigned int index) {
+  if (index >= plots.size())
+    throw Exception("Gtk::PLplot::Canvas::remove_plot -> Invalid index");
+
+  plots.erase(plots.begin() + index);
+  _signal_changed.emit();
+}
+
+void Canvas::remove_plot(Plot2D *plot) {
+  if (plots.empty())
+    throw Exception("Gtk::PLplot::Canvas::remove_plot -> No plots on canvas");
+
+  auto iter = std::find(plots.begin(), plots.end(), plot);
+  if (iter == plots.end())
+    throw Exception("Gtk::PLplot::Canvas::remove_plot -> No match for input");
+
+  plots.erase(iter);
   _signal_changed.emit();
 }
