@@ -1,5 +1,4 @@
 #include "gtkmm-plplot/canvas.h"
-#include "gtkmm-plplot/color.h"
 #include <gtkmm/application.h>
 #include <glibmm/miscutils.h>
 #include <gtkmm/window.h>
@@ -30,15 +29,15 @@ namespace Test2 {
            std::string x_title,
            std::string y_title,
            std::string plot_title) :
-           canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::Plot2DData(x, y1, Gtk::PLplot::Color::RED), x_title, y_title, plot_title)),
+           canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::Plot2DData(x, y1, Gdk::RGBA("red")), x_title, y_title, plot_title)),
            x_label("X-axis logarithmic"),
            y_label("Y-axis logarithmic") {
 
 
         Gtk::PLplot::Plot2D *plot = canvas.get_plot(0);
-        plot->add_data(Gtk::PLplot::Plot2DData(x, y2, Gtk::PLplot::Color::BLUE));
-        plot->add_data(Gtk::PLplot::Plot2DData(x, y3, Gtk::PLplot::Color::BLUEVIOLET));
-        plot->add_data(Gtk::PLplot::Plot2DData(x, y4, Gtk::PLplot::Color::GREEN));
+        plot->add_data(Gtk::PLplot::Plot2DData(x, y2, Gdk::RGBA("blue")));
+        plot->add_data(Gtk::PLplot::Plot2DData(x, y3, Gdk::RGBA("Blue Violet")));
+        plot->add_data(Gtk::PLplot::Plot2DData(x, y4, Gdk::RGBA("Green")));
 
         set_default_size(720, 580);
         Gdk::Geometry geometry;

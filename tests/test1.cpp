@@ -8,6 +8,7 @@
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/grid.h>
 #include <gtkmm/spinbutton.h>
+#include <gtkmm/colorbutton.h>
 
 namespace Test1 {
   class Window : public Gtk::Window {
@@ -16,8 +17,8 @@ namespace Test1 {
     Gtk::Grid grid;
     Gtk::Label label1;
     Gtk::Label label2;
-    Gtk::ComboBoxText color_combo1;
-    Gtk::ComboBoxText color_combo2;
+    Gtk::ColorButton color_combo1;
+    Gtk::ColorButton color_combo2;
     Gtk::ComboBoxText linestyle_combo1;
     Gtk::ComboBoxText linestyle_combo2;
     Gtk::Switch show_radio1;
@@ -30,7 +31,7 @@ namespace Test1 {
   public:
     Window(std::valarray<PLFLT> &x, std::valarray<PLFLT> &y,
       std::string x_title = "X-axis", std::string y_title = "Y-axis",
-      std::string plot_title = "", Gtk::PLplot::Color color = Gtk::PLplot::Color::RED) :
+      std::string plot_title = "", Gdk::RGBA color = Gdk::RGBA("red")) :
       canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::Plot2DData(x, y, color), x_title, y_title, plot_title)),
       label1("Plot 1"), label2("Plot 2"),
       linewidth_adj1(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
@@ -45,7 +46,7 @@ namespace Test1 {
       }
       y_va = 2*cos(x_va)-1;
       Gtk::PLplot::Plot2D *plot = canvas.get_plot(0);
-      plot->add_data(Gtk::PLplot::Plot2DData(x_va, y_va, Gtk::PLplot::Color::BLUE, Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0));
+      plot->add_data(Gtk::PLplot::Plot2DData(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0));
 
 
       set_default_size(720, 580);
@@ -80,40 +81,6 @@ namespace Test1 {
 
         }
       });
-
-      //too lazy too make a class for this...
-      color_combo1.append("black");
-      color_combo1.append("red");
-      color_combo1.append("yellow");
-      color_combo1.append("green");
-      color_combo1.append("aquamarine");
-      color_combo1.append("pink");
-      color_combo1.append("wheat");
-      color_combo1.append("grey");
-      color_combo1.append("brown");
-      color_combo1.append("blue");
-      color_combo1.append("blueviolet");
-      color_combo1.append("cyan");
-      color_combo1.append("turquoise");
-      color_combo1.append("magenta");
-      color_combo1.append("salmon");
-      color_combo1.append("white");
-      color_combo2.append("black");
-      color_combo2.append("red");
-      color_combo2.append("yellow");
-      color_combo2.append("green");
-      color_combo2.append("aquamarine");
-      color_combo2.append("pink");
-      color_combo2.append("wheat");
-      color_combo2.append("grey");
-      color_combo2.append("brown");
-      color_combo2.append("blue");
-      color_combo2.append("blueviolet");
-      color_combo2.append("cyan");
-      color_combo2.append("turquoise");
-      color_combo2.append("magenta");
-      color_combo2.append("salmon");
-      color_combo2.append("white");
 
       linestyle_combo1.append("continuous");
       linestyle_combo1.append("short dash short gap");
@@ -154,14 +121,14 @@ namespace Test1 {
       grid.set_column_spacing(5);
       grid.set_row_spacing(5);
 
-      color_combo1.set_active(canvas.get_plot(0)->get_data(0)->get_color());
-      color_combo2.set_active(canvas.get_plot(0)->get_data(1)->get_color());
+      color_combo1.set_rgba(canvas.get_plot(0)->get_data(0)->get_color());
+      color_combo2.set_rgba(canvas.get_plot(0)->get_data(1)->get_color());
 
       linestyle_combo1.set_active(canvas.get_plot(0)->get_data(0)->get_line_style()-1);
       linestyle_combo2.set_active(canvas.get_plot(0)->get_data(1)->get_line_style()-1);
 
-      color_combo1.signal_changed().connect([this](){canvas.get_plot(0)->get_data(0)->set_color(static_cast<Gtk::PLplot::Color>(color_combo1.get_active_row_number()));});
-      color_combo2.signal_changed().connect([this](){canvas.get_plot(0)->get_data(1)->set_color(static_cast<Gtk::PLplot::Color>(color_combo2.get_active_row_number()));});
+      color_combo1.signal_color_set().connect([this](){canvas.get_plot(0)->get_data(0)->set_color(color_combo1.get_rgba());});
+      color_combo2.signal_color_set().connect([this](){canvas.get_plot(0)->get_data(1)->set_color(color_combo2.get_rgba());});
 
       linestyle_combo1.signal_changed().connect([this](){canvas.get_plot(0)->get_data(0)->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo1.get_active_row_number()+1));});
       linestyle_combo2.signal_changed().connect([this](){canvas.get_plot(0)->get_data(1)->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo2.get_active_row_number()+1));});

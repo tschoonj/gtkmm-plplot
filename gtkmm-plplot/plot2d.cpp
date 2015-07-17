@@ -213,31 +213,7 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
   pls->lab(axis_title_x.c_str(), axis_title_y.c_str(), plot_title.c_str());
 
   for (auto &iter : plot_data) {
-    if (iter->shown) {
-      pls->col0(iter->color);
-      pls->lsty(iter->line_style);
-      pls->width(iter->line_width);
-
-      //now let's see if we are dealing with logarithmic axes
-      PLFLT *x = &iter->x[0], *y = &iter->y[0];
-      std::vector<PLFLT> x_vc, y_vc;
-
-      if (log10_x) {
-        std::valarray<PLFLT> x_va(x, iter->x.size());
-        x_va = log10(x_va);
-        x_vc.assign(std::begin(x_va), std::end(x_va));
-        x = &x_vc[0];
-      }
-
-      if (log10_y) {
-        std::valarray<PLFLT> y_va(y, iter->y.size());
-        y_va = log10(y_va);
-        y_vc.assign(std::begin(y_va), std::end(y_va));
-        y = &y_vc[0];
-      }
-
-      pls->line(iter->x.size(), x, y);
-    }
+    iter->draw_plot_data(cr, pls, log10_x, log10_y);
   }
   convert_plplot_to_cairo_coordinates(plotted_range_x[0], plotted_range_y[0],
                                       cairo_range_x[0], cairo_range_y[0]);

@@ -3,7 +3,6 @@ gtkmm_plplotincludedir = ${includedir}/gtkmm-plplot-0.1/gtkmm-plplot
 
 gtkmm_plplotinclude_HEADERS = \
                               canvas.h \
-                              color.h \
                               exception.h \
                               plot2ddata.h \
                               plot2d.h \

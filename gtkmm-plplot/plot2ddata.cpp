@@ -7,7 +7,7 @@ using namespace Gtk::PLplot;
 Plot2DData::Plot2DData(
   const std::vector<PLFLT> &_x,
   const std::vector<PLFLT> &_y,
-  Color _color,
+  Gdk::RGBA _color,
   LineStyle _line_style,
   double _line_width) :
   x(_x), y(_y), color(_color), line_style(_line_style),
@@ -22,7 +22,7 @@ Plot2DData::Plot2DData(
 Plot2DData::Plot2DData(
   const std::valarray<PLFLT> &_x,
   const std::valarray<PLFLT> &_y,
-  Color _color,
+  Gdk::RGBA _color,
   LineStyle _line_style,
   double _line_width) :
   Plot2DData(std::vector<PLFLT>(std::begin(_x), std::end(_x)),
@@ -31,14 +31,14 @@ Plot2DData::Plot2DData(
 
 Plot2DData::Plot2DData(
   const std::vector<PLFLT> &_y,
-  Color _color,
+  Gdk::RGBA _color,
   LineStyle _line_style,
   double _line_width) :
   Plot2DData(indgen(_y.size()), _y, _color, _line_style, _line_width) {}
 
 Plot2DData::Plot2DData(
   const std::valarray<PLFLT> &_y,
-  Color _color, LineStyle _line_style,
+  Gdk::RGBA _color, LineStyle _line_style,
   double _line_width) :
   Plot2DData(std::vector<PLFLT>(indgen(_y.size())),
   std::vector<PLFLT>(std::begin(_y), std::end(_y)),
@@ -49,12 +49,12 @@ Plot2DData::Plot2DData(const Plot2DData &_data) :
     shown = _data.shown;
   }
 
-void Plot2DData::set_color(Color _color) {
+void Plot2DData::set_color(Gdk::RGBA _color) {
   color = _color;
   _signal_changed.emit();
 }
 
-Color Plot2DData::get_color() {
+Gdk::RGBA Plot2DData::get_color() {
   return color;
 }
 
@@ -92,4 +92,40 @@ void Plot2DData::hide() {
 
 bool Plot2DData::is_showing() const {
   return shown;
+}
+
+void Plot2DData::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls, bool log10_x, bool log10_y) {
+  if (!shown)
+    return;
+
+  //get the color from col0a and store it
+  PLINT red_u_old, green_u_old, blue_u_old;
+  PLFLT alpha_old;
+  pls->gcol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
+  pls->scol0a(5, color.get_red_u()/256, color.get_green_u()/256, color.get_blue_u()/256, color.get_alpha());
+  pls->col0(5);
+  pls->lsty(line_style);
+  pls->width(line_width);
+
+  //now let's see if we are dealing with logarithmic axes
+  PLFLT *x_pl = &x[0], *y_pl = &y[0];
+  std::vector<PLFLT> x_vc, y_vc;
+
+  if (log10_x) {
+    std::valarray<PLFLT> x_va(x_pl, x.size());
+    x_va = log10(x_va);
+    x_vc.assign(std::begin(x_va), std::end(x_va));
+    x_pl = &x_vc[0];
+  }
+
+  if (log10_y) {
+    std::valarray<PLFLT> y_va(y_pl, y.size());
+    y_va = log10(y_va);
+    y_vc.assign(std::begin(y_va), std::end(y_va));
+    y_pl = &y_vc[0];
+  }
+  pls->line(x.size(), x_pl, y_pl);
+
+  //restore color
+  pls->scol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
 }
