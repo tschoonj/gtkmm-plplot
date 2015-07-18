@@ -24,7 +24,8 @@ namespace Gtk {
       double line_width;
       bool shown;
       sigc::signal<void> _signal_changed;
-      Plot2DData();
+      Plot2DData() = delete;
+      Plot2DData &operator=(const Plot2DData &) = delete;
     protected:
       virtual void on_changed();
     public:

@@ -34,7 +34,8 @@ namespace Gtk {
       sigc::signal<void, Plot2DData *> _signal_data_added;
       sigc::signal<void> _signal_data_removed;
       void plot_data_modified();
-      Plot2D();
+      Plot2D() = delete;
+      Plot2D &operator=(const Plot2D &) = delete;
     protected:
       virtual void on_select_region(double xmin, double xmax, double ymin, double ymax);
       virtual void on_changed();
@@ -66,7 +67,7 @@ namespace Gtk {
         double &x_cr, double &y_cr);
 
       void set_region(double xmin, double xmax, double ymin, double ymax);
-      
+
       void show();
       void hide();
       bool is_showing() const;

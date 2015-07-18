@@ -24,6 +24,8 @@ namespace Gtk {
       double x_cr_range[2];
       double y_cr_range[2];
       Gdk::RGBA background_color;
+      Canvas(const Canvas &) = delete;
+      Canvas &operator=(const Canvas &) = delete;
     protected:
       virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
       virtual bool on_button_press_event(GdkEventButton *event);
