@@ -1,6 +1,14 @@
 if ENABLE_DOCUMENTATION
 
-doxyfile.stamp:
+doxyfile_deps = $(top_srcdir)/gtkmm-plplot/canvas.h \
+								$(top_srcdir)/gtkmm-plplot/exception.h \
+								$(top_srcdir)/gtkmm-plplot/plot2d.h \
+								$(top_srcdir)/gtkmm-plplot/plot2ddata.h \
+								$(top_srcdir)/gtkmm-plplot/linestyle.h \
+								$(top_srcdir)/gtkmm-plplot/utils.h
+
+
+doxyfile.stamp: $(doxyfile_deps) Doxyfile
 	$(DOXYGEN) Doxyfile
 	echo Timestamp > doxyfile.stamp
 

@@ -1,7 +1,7 @@
 #ifndef GTKMMPLPLOTPLOT2D_H
 #define GTKMMPLPLOTPLOT2D_H
 
-#include "gtkmm-plplot/plot2ddata.h"
+#include <gtkmm-plplot/plot2ddata.h>
 #include <sigc++/sigc++.h>
 #include <vector>
 #include <plstream.h>

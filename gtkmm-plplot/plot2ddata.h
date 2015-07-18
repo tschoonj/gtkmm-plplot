@@ -4,7 +4,7 @@
 #include <sigc++/sigc++.h>
 #include <vector>
 #include <valarray>
-#include "gtkmm-plplot/linestyle.h"
+#include <gtkmm-plplot/linestyle.h>
 #include <plstream.h>
 #include <glibmm/ustring.h>
 #include <cairomm/cairomm.h>

@@ -1,6 +1,6 @@
-#include "gtkmm-plplot/plot2ddata.h"
-#include "gtkmm-plplot/exception.h"
-#include "gtkmm-plplot/utils.h"
+#include <gtkmm-plplot/plot2ddata.h>
+#include <gtkmm-plplot/exception.h>
+#include <gtkmm-plplot/utils.h>
 
 using namespace Gtk::PLplot;
 

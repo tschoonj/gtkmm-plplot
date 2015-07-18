@@ -1,6 +1,5 @@
-#include "gtkmm-plplot/canvas.h"
-#include "gtkmm-plplot/exception.h"
-
+#include <gtkmm-plplot/canvas.h>
+#include <gtkmm-plplot/exception.h>
 #include <valarray>
 #include <cmath>
 #include <gdkmm/general.h>

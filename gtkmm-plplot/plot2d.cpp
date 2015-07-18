@@ -1,5 +1,5 @@
-#include "gtkmm-plplot/plot2d.h"
-#include "gtkmm-plplot/exception.h"
+#include <gtkmm-plplot/plot2d.h>
+#include <gtkmm-plplot/exception.h>
 #include <iostream>
 #include <gdkmm/rgba.h>
 #include <gdkmm/general.h>
