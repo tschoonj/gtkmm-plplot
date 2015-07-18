@@ -96,12 +96,30 @@ CFLAGS="$ac_save_CFLAGS"
 
 PKG_INSTALLDIR
 
+#AC_CHECK_PROGS([DOXYGEN], [doxygen])
+#if test -z "$DOXYGEN";
+#   then AC_MSG_WARN([Doxygen not found - continuing without Doxygen support])
+#fi
+#AM_CONDITIONAL([HAVE_DOXYGEN],
+#[test -n "$DOXYGEN"])AM_COND_IF([HAVE_DOXYGEN], [AC_CONFIG_FILES([docs/Doxyfile])])
+
+MM_ARG_ENABLE_DOCUMENTATION
+MM_ARG_WITH_TAGFILE_DOC([libstdc++.tag], [mm-common-libstdc++])
+MM_ARG_WITH_TAGFILE_DOC([libsigc++-2.0.tag], [sigc++-2.0])
+MM_ARG_WITH_TAGFILE_DOC([glibmm-2.4.tag], [glibmm-2.4])
+MM_ARG_WITH_TAGFILE_DOC([cairomm-1.0.tag], [cairomm-1.0])
+MM_ARG_WITH_TAGFILE_DOC([pangomm-1.4.tag], [pangomm-1.4])
+MM_ARG_WITH_TAGFILE_DOC([atkmm-1.6.tag], [atkmm-1.6])
+MM_ARG_WITH_TAGFILE_DOC([gtkmm-3.0.tag], [gtkmm-3.0])
+
 
 AC_CONFIG_FILES([
 Makefile
 gtkmm-plplot/Makefile
 tests/Makefile
 gtkmm-plplot-0.1.pc
+docs/Makefile
+docs/Doxyfile
 ])
 AC_CONFIG_HEADERS([config.h])
 
