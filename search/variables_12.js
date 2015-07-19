@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['radix',['radix',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00533.html#af69d3e469fe6b7e0de143494703ab04a',1,'std::__numeric_limits_base']]],
+  ['random_5fshuffle_5fminimal_5fn',['random_shuffle_minimal_n',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#a5726332beba72b016508f1c641978265',1,'__gnu_parallel::_Settings']]],
+  ['range_5fout_5fof_5forder',['RANGE_OUT_OF_ORDER',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html#a0f1ec693485b5b6c8148045e6ffa3aeea60be85b0936be94757b938442ac9deda',1,'Glib::RegexError']]],
+  ['read',['READ',['http://library.gnome.org/devel/glibmm/unstable/group__Spawn.html#ggafb7753661f7b0607951aa8881380ed1bacd931b684a2f0cce9ca4a0d75e947984',1,'Glib::SpawnError::READ()'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1RecentManagerError.html#a502e47feef0f40a1a779f0425536da63a68c7a3814a4ae88364ac90e006c81e1a',1,'Gtk::RecentManagerError::READ()']]],
+  ['read_5fonly',['READ_ONLY',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a0d6db56df9bc1ff1591c6fe97186aede',1,'Gio::Error']]],
+  ['readonly_5ffilesystem',['READONLY_FILESYSTEM',['http://library.gnome.org/devel/glibmm/unstable/group__FileUtils.html#gga0bdb855c813c7d07a424009706fc8f0babeea9fce53d4885b4051984276f15a8b',1,'Glib::FileError']]],
+  ['red',['red',['http://www.cairographics.org/documentation/cairomm/reference/structCairo_1_1ColorStop.html#adbdcec948c42c467bdbfb9aa61427356',1,'Cairo::ColorStop']]],
+  ['redo',['REDO',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a68d58ed40936a79bcef345042edbc15c',1,'Gtk::Stock']]],
+  ['refresh',['REFRESH',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#abac78ea7c63985cd60ed68bd3eb2ff0d',1,'Gtk::Stock']]],
+  ['region_5foverlap_5fin',['REGION_OVERLAP_IN',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#adcdefbdb596418377c360914ccee4abaa566be43517d236c5547295ce50fe0870',1,'Cairo']]],
+  ['region_5foverlap_5fout',['REGION_OVERLAP_OUT',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#adcdefbdb596418377c360914ccee4abaa8f4ea05838aace48418bb07bc985a228',1,'Cairo']]],
+  ['region_5foverlap_5fpart',['REGION_OVERLAP_PART',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#adcdefbdb596418377c360914ccee4abaa0085211792a91f8ac32fa6c3c205f863',1,'Cairo']]],
+  ['remove',['REMOVE',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#af854bbf7f288d271a85ca8da98a6df2e',1,'Gtk::Stock']]],
+  ['rep_5f',['rep_',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1slot__base.html#aa482f7dfc73c6950abde0fd51b3125b5',1,'sigc::slot_base']]],
+  ['replace',['REPLACE',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html#a0f1ec693485b5b6c8148045e6ffa3aeeaae03b8944dce79aa18f7d74d3ad23066',1,'Glib::RegexError']]],
+  ['replace_5fminimal_5fn',['replace_minimal_n',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#a524589fca5b42e749dd5d5c2561fdacd',1,'__gnu_parallel::_Settings']]],
+  ['resolution',['RESOLUTION',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1PrintSettings_1_1Keys.html#a8c65a2e69251bd673258df8b60feddc8',1,'Gtk::PrintSettings::Keys']]],
+  ['ret_5fvalue_5f',['ret_value_',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1bind__return__functor.html#aa7b8287c19d98cec75a7e64a9464772e',1,'sigc::bind_return_functor']]],
+  ['reverse',['REVERSE',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1PrintSettings_1_1Keys.html#a8da8d47ac1d93764c89e77edfeb16078',1,'Gtk::PrintSettings::Keys']]],
+  ['revert_5fto_5fsaved',['REVERT_TO_SAVED',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a96499352c8388b884626234b5cedb4c2',1,'Gtk::Stock']]],
+  ['right',['right',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#a13753798f5c9da6f9372429c53039767',1,'std::basic_fstream']]],
+  ['round_5fstyle',['round_style',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00533.html#ae94127c8af226c7ebe44e9b39b80813b',1,'std::__numeric_limits_base']]]
+];
