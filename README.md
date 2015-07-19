@@ -21,5 +21,9 @@ Currently this library is under heavy development but it should already be usefu
 
 Development occurs mostly on a Mac but I will ensure it also runs properly on Windows and Linux...
 
+## Documentation
+
+I have generated documentation with Doxygen. Have a look at http://tschoonj.github.io/gtkmm-plplot.
+
 
 Tom Schoonjans

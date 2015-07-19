@@ -21,3 +21,4 @@ build2
 .DS_Store
 *.app
 *.zip
+gh-pages
