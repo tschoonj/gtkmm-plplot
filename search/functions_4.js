@@ -141,6 +141,7 @@ var searchData=
   ['draw_5flayout',['draw_layout',['http://library.gnome.org/devel/pangomm/unstable/classPango_1_1Renderer.html#a54819e67fc6ee2a111889412f0ff6106',1,'Pango::Renderer']]],
   ['draw_5flayout_5fline',['draw_layout_line',['http://library.gnome.org/devel/pangomm/unstable/classPango_1_1Renderer.html#a201270274aacb8b2c5305da6752d2469',1,'Pango::Renderer']]],
   ['draw_5fpage_5ffinish',['draw_page_finish',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1PrintOperation.html#a5d4cdc767c49064f1b58474b49206af7',1,'Gtk::PrintOperation']]],
+  ['draw_5fplot',['draw_plot',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a472f0959f49538d5bec8564e759df5b4',1,'Gtk::PLplot::Plot2D']]],
   ['draw_5frectangle',['draw_rectangle',['http://library.gnome.org/devel/pangomm/unstable/classPango_1_1Renderer.html#ab52a92011268f7dbd9d004632f5098c0',1,'Pango::Renderer']]],
   ['draw_5ftrapezoid',['draw_trapezoid',['http://library.gnome.org/devel/pangomm/unstable/classPango_1_1Renderer.html#a6350b687c6f747ef858a0e3bf939eb86',1,'Pango::Renderer']]],
   ['draw_5fvalue_5fvfunc',['draw_value_vfunc',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Scale.html#a1a8610694ad2ff3e2123951af8a7ad55',1,'Gtk::Scale']]],

@@ -66,6 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
       <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -90,11 +91,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_gtk_1_1_p_lplot_1_1_exception-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Gtk::PLplot::Exception Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Gtkmm-PLplot's exception handler class.  
+ <a href="class_gtk_1_1_p_lplot_1_1_exception.html#details">More...</a></p>
+
+<p><code>#include &lt;gtkmm-plplot/exception.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Gtk::PLplot::Exception:</div>
 <div class="dyncontent">
@@ -105,20 +112,121 @@ Inheritance diagram for Gtk::PLplot::Exception:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab0a01faa8d5a669f2748f185a6b20020"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0a01faa8d5a669f2748f185a6b20020"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Exception</b> (const <a class="elRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01681.html#ga32db3d9898c44d3b3a578b560f7758cc">std::string</a> &amp;s)</td></tr>
+<tr class="memitem:ab0a01faa8d5a669f2748f185a6b20020"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_exception.html#ab0a01faa8d5a669f2748f185a6b20020">Exception</a> (const <a class="elRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01681.html#ga32db3d9898c44d3b3a578b560f7758cc">std::string</a> &amp;s)</td></tr>
 <tr class="separator:ab0a01faa8d5a669f2748f185a6b20020"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9e56a01487b604b93c063cf7f4427ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9e56a01487b604b93c063cf7f4427ec"></a>
-virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><b>what</b> () const   throw ()</td></tr>
+<tr class="memitem:a483b21c3e531cda4af88df29bc05474c"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_exception.html#a483b21c3e531cda4af88df29bc05474c">~Exception</a> ()  throw ()</td></tr>
+<tr class="separator:a483b21c3e531cda4af88df29bc05474c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9e56a01487b604b93c063cf7f4427ec"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_exception.html#ab9e56a01487b604b93c063cf7f4427ec">what</a> () const   throw ()</td></tr>
 <tr class="separator:ab9e56a01487b604b93c063cf7f4427ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a34f7ffb9ba96195d6084cfa88d9080d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34f7ffb9ba96195d6084cfa88d9080d3"></a>
+<a class="elRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01681.html#ga32db3d9898c44d3b3a578b560f7758cc">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_exception.html#a34f7ffb9ba96195d6084cfa88d9080d3">Message</a></td></tr>
+<tr class="memdesc:a34f7ffb9ba96195d6084cfa88d9080d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The exception message. <br /></td></tr>
+<tr class="separator:a34f7ffb9ba96195d6084cfa88d9080d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/schoon/github/gtkmm-plplot/gtkmm-plplot/exception.h</li>
-</ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Gtkmm-PLplot's exception handler class. </p>
+<p>Gtkmm-PLplot has its own exception class: all methods that can throw exceptions, will always throw exceptions of this type. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ab0a01faa8d5a669f2748f185a6b20020"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Gtk::PLplot::Exception::Exception </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01681.html#ga32db3d9898c44d3b3a578b560f7758cc">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Constructor</p>
+<p>Creates a new Gtkmm-PLplot exception. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the exception message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a483b21c3e531cda4af88df29bc05474c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Gtk::PLplot::Exception::~Exception </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td align="right">throw </td><td>(</td><td colspan="2"></td>
+        </tr>
+        <tr>
+          <td align="right"></td><td>)</td><td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>destructor </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ab9e56a01487b604b93c063cf7f4427ec"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const char* Gtk::PLplot::Exception::what </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+        <tr>
+          <td align="right">throw </td><td>(</td><td colspan="2"></td>
+        </tr>
+        <tr>
+          <td align="right"></td><td>)</td><td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the exception message</p>
+<p>To be used in a catch block </p><dl class="section return"><dt>Returns</dt><dd>the exception message </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 10:32:08 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 20 2015 17:38:08 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

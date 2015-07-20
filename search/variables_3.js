@@ -2,6 +2,8 @@ var searchData=
 [
   ['c',['c',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00897.html#a33f73620226c2827824851c0c935b28b',1,'std::queue']]],
   ['cache_5fline_5fsize',['cache_line_size',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#a2918b2f3f97a4fbbcfe990e73ace805b',1,'__gnu_parallel::_Settings']]],
+  ['cairo_5frange_5fx',['cairo_range_x',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a78ae42711c585f6978c1ed821ea437c5',1,'Gtk::PLplot::Plot2D']]],
+  ['cairo_5frange_5fy',['cairo_range_y',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a91e903aa9ff9491cd1bc9dce82a3c2e3',1,'Gtk::PLplot::Plot2D']]],
   ['cancel',['CANCEL',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#acfe70802a49b2fb4b6ea17285eb4356e',1,'Gtk::Stock']]],
   ['cancelled',['CANCELLED',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a708f6079268ad1a626c248ace401b899',1,'Gio::Error']]],
   ['cannot_5finfer_5ftype',['CANNOT_INFER_TYPE',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1VariantParseError.html#a217aafad01bee506a1b699a7e138314eabd0392b3c64cbae6db02fd059656f2b3',1,'Glib::VariantParseError']]],

@@ -13,5 +13,7 @@ var searchData=
   ['line_5fjoin_5fmiter',['LINE_JOIN_MITER',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#adbc632404edaa736e01c12122239de73aa63cde0bfd47a1d5a80f2db93b0de823',1,'Cairo']]],
   ['line_5fjoin_5fround',['LINE_JOIN_ROUND',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#adbc632404edaa736e01c12122239de73ab4e1dd72513958e037306b1fddab6440',1,'Cairo']]],
   ['list_5f',['list_',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1slot__list.html#a2c5b3ecf068ec93cdc34a4ae8d48313c',1,'sigc::slot_list']]],
+  ['log10_5fx',['log10_x',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a1fbb15b9a156664472ba82b58b427c8c',1,'Gtk::PLplot::Plot2D']]],
+  ['log10_5fy',['log10_y',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a283aec73ba986b6c76a8765f4cfd2f03',1,'Gtk::PLplot::Plot2D']]],
   ['loop',['LOOP',['http://library.gnome.org/devel/glibmm/unstable/group__Spawn.html#ggafb7753661f7b0607951aa8881380ed1bac5af5b15ce99489e861a89f7a8964322',1,'Glib::SpawnError']]]
 ];

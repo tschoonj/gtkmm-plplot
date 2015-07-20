@@ -67,5 +67,9 @@ var searchData=
   ['_5fm_5ftemporary',['_M_temporary',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00156.html#abee24a2790b37147ee79b73dc22d6054',1,'__gnu_parallel::_PMWMSSortingData']]],
   ['_5fm_5fuse_5fpointer',['_M_use_pointer',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00148.html#ae896521258e61f2158af412742d7276b',1,'__gnu_parallel::_LoserTreeTraits']]],
   ['_5fm_5fversion',['_M_version',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00086.html#ad07568d7660eb8b85493b548d10c637a',1,'__gnu_debug::_Safe_iterator::_M_version()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00090.html#af796b1fd115ea27cd078eeb7e4909bd5',1,'__gnu_debug::_Safe_sequence::_M_version()']]],
-  ['_5fm_5fw',['_M_w',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00547.html#a935cf17f91719fcd39d284151064f170',1,'std::_Base_bitset::_M_w()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00929.html#abc7e61e9d07120ebbc6fa2e351fc3af6',1,'std::tr2::__dynamic_bitset_base::_M_w()']]]
+  ['_5fm_5fw',['_M_w',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00547.html#a935cf17f91719fcd39d284151064f170',1,'std::_Base_bitset::_M_w()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00929.html#abc7e61e9d07120ebbc6fa2e351fc3af6',1,'std::tr2::__dynamic_bitset_base::_M_w()']]],
+  ['_5fsignal_5fchanged',['_signal_changed',['../class_gtk_1_1_p_lplot_1_1_canvas.html#a10071c0b9a772301656c7607b9a9de04',1,'Gtk::PLplot::Canvas::_signal_changed()'],['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a7dca2b74aba5b40d5f41bac00331f011',1,'Gtk::PLplot::Plot2D::_signal_changed()']]],
+  ['_5fsignal_5fdata_5fadded',['_signal_data_added',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a2e7f6dd9feeea070a1d187cc0bb63021',1,'Gtk::PLplot::Plot2D']]],
+  ['_5fsignal_5fdata_5fremoved',['_signal_data_removed',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#aed3800fe185dffb4600b2782d5ba1299',1,'Gtk::PLplot::Plot2D']]],
+  ['_5fsignal_5fselect_5fregion',['_signal_select_region',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#add1f30e622f20af129cc59f3d5eaf45c',1,'Gtk::PLplot::Plot2D']]]
 ];
