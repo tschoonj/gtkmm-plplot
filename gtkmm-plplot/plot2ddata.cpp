@@ -131,7 +131,10 @@ void Plot2DData::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstrea
   pls->gcol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
   pls->scol0a(5, color.get_red_u()/256, color.get_green_u()/256, color.get_blue_u()/256, color.get_alpha());
   pls->col0(5);
-  pls->lsty(line_style);
+  //need to add methods for symbol plotting
+  if (line_style != LineStyle::NONE) {
+    pls->lsty(line_style);
+  }
   pls->width(line_width);
 
   //now let's see if we are dealing with logarithmic axes

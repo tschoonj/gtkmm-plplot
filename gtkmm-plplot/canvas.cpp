@@ -208,6 +208,7 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
   end_plplot_def[0] = MIN(MAX(start_plplot[0], end_plplot[0]), plots[selected_plot]->plot_data_range_x[1]);
   end_plplot_def[1] = MIN(MAX(start_plplot[1], end_plplot[1]), plots[selected_plot]->plot_data_range_y[1]);
 
+  //this is necessary to get rid of the box on the plot, even if the signal_select_region is not caught by the plot
   _signal_changed.emit();
 
   if (plots[selected_plot]->log10_x) {

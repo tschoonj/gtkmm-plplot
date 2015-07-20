@@ -51,6 +51,7 @@
  *
  *  \page installation_instructions Installation instructions
  *  \brief How to install Gtkmm-PLplot on your system
+ *
  *  \section requirements Requirements
  *  Gtkmm-PLplot can only be installed provided the following dependencies are
  *  present on your system:
@@ -72,6 +73,7 @@
  *
  *  \page usage Usage
  *  \brief Getting started with Gtkmm-PLplot
+ *
  *  Include the Gtkmm-PLplot header:
  *  \code
  *  #include <gtkmm-plplot.h>
@@ -95,6 +97,7 @@
  *
  *  \page examples Examples
  *  \brief Code examples that demonstrate the capabilities of Gtkmm-PLplot
+ *
  *  \section example1 Example 1: Plot data properties and zooming
  *  \include test1.cpp
  *  \section example2 Example 2: Logarithmic axes
