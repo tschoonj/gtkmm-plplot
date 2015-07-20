@@ -47,8 +47,6 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
 
 Plot2D *Canvas::add_plot(const Plot2D &plot) {
   plots.push_back(new Plot2D(plot));
-  plots.back()->signal_select_region().connect(sigc::mem_fun(*plots.back(),
-             &Plot2D::set_region));
   plots.back()->signal_changed().connect([this](){_signal_changed.emit();});
   _signal_changed.emit();
   return plots.back();

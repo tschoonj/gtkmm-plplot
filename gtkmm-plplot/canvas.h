@@ -62,7 +62,7 @@ namespace Gtk {
       Canvas(const Canvas &) = delete; ///< no copy constructor
       Canvas &operator=(const Canvas &) = delete; ///< no move assignment operator
     protected:
-      /** This is a default handler for the signal signal_draw().
+      /** This is a default handler for signal_draw().
        *
        * When deriving from Canvas and if overriding this method, you may still want to call it to ensure proper drawing of the plots provided by Gtkmm-PLplot
        * \param cr The cairo context to draw to.
@@ -70,7 +70,7 @@ namespace Gtk {
        */
       virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
 
-      /** This is a default handler for the signal signal_button_press_event().
+      /** This is a default handler for signal_button_press_event().
        *
        * This method tracks the button press event that may lead to a selection box being dragged, as well as the double press event that will bring a previously zoomed-in range back to its default view.
        * When deriving from Canvas and if overriding this method, you may still want to call it to ensure that the selection box will still be drawn.
@@ -79,7 +79,7 @@ namespace Gtk {
        */
       virtual bool on_button_press_event(GdkEventButton *event);
 
-      /** This is a default handler for the signal signal_button_release_event().
+      /** This is a default handler for signal_button_release_event().
        *
        * This method tracks the button release event that leads to a selection box being completed and thus deleted, which is then followed by signal_select_region being emitted by the plot that had the selection box.
        * When deriving from Canvas and if overriding this method, you may still want to call it to ensure that the selection box will still be drawn.
@@ -88,7 +88,7 @@ namespace Gtk {
        */
       virtual bool on_button_release_event(GdkEventButton *event);
 
-      /** This is a default handler for the signal signal_motion_notify_event().
+      /** This is a default handler for signal_motion_notify_event().
        *
        * This method tracks the mouse movement event that leads to a selection box being drawn within the plot box.
        * When deriving from Canvas and if overriding this method, you may still want to call it to ensure that the selection box will still be drawn.
@@ -97,7 +97,7 @@ namespace Gtk {
        */
       virtual bool on_motion_notify_event (GdkEventMotion *event);
 
-      /** This is a default handler for the signal signal_changed().
+      /** This is a default handler for signal_changed().
        *
        * This signal is emitted whenever any of the canvas properties changes, or any of the properties of the plots contained therein.
        * This default handler does one thing only: asking for a redraw of the complete canvas.
@@ -145,8 +145,9 @@ namespace Gtk {
        */
       void remove_plot(Plot2D *plot);
 
-      /** Signal emitted whenever any of the canvas properties or any of the plot properties has changed.
+      /** signal_changed is emitted whenever any of the canvas properties or any of the plot properties has changed.
        *
+       * See default handler on_changed
        * \exception Gtk::PLplot::Exception
        * \return signal
        */

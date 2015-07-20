@@ -78,8 +78,7 @@ Plot2D::~Plot2D() {
 }
 
 void Plot2D::on_select_region(double xmin, double xmax, double ymin, double ymax) {
-  //this function does nothing
-  //it is designed to be overridden by a derived class
+  set_region(xmin, xmax, ymin, ymax);
 }
 
 void Plot2D::on_changed() {
@@ -212,6 +211,8 @@ Glib::ustring Plot2D::get_plot_title() {
   return plot_title;
 }
 
+//it's possible I can get the width and height also from the Cairo context throught its surface
+//problem is that this only works for image surfaces, not for PDF etc :-(
 void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) {
   if (!shown)
     return;

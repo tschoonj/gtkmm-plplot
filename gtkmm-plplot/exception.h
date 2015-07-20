@@ -23,15 +23,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace Gtk {
   namespace PLplot {
+    /** \class Exception exception.h <gtkmm-plplot/exception.h>
+     *  \brief Gtkmm-PLplot's exception handler class.
+     *
+     *  Gtkmm-PLplot has its own exception class: all methods that can throw exceptions, will always throw exceptions of this type.
+     */
     class Exception: public std::exception {
     private:
-      std::string Message;
+      std::string Message; ///< The exception message
     public:
-      // constructors
-      //explicit Exception(const char *ch) : Message(ch) {}
+      /** Constructor
+       *
+       * Creates a new Gtkmm-PLplot exception.
+       * \param s the exception message
+       */
       explicit Exception(const std::string &s) : Message(s) {}
+
+      /** destructor
+       */
       virtual ~Exception() throw() {};
       // throw method
+      /** Get the exception message
+       *
+       *  To be used in a catch block
+       *  \return the exception message
+       */
       virtual const char* what() const throw() {
         return Message.c_str();
       }
