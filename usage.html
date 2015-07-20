@@ -81,10 +81,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Usage </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"></div></div><!-- contents -->
+<div class="textblock"><p>Getting started with Gtkmm-PLplot Include the Gtkmm-PLplot header:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;gtkmm-plplot.h&gt;</span></div>
+</div><!-- fragment --><p> This includes every header installed by Gtkmm-PLplot, so can slow down compilation, but suffices for this simple example. Assuming that your program source file is <code>program.cc</code>, compile it with: </p><div class="fragment"><div class="line">g++ program.cc -o program  `pkg-config --cflags --libs gtkmm-plplot-0.1`</div>
+</div><!-- fragment --><p> Alternatively, if using autoconf, use the following in <code>configure.ac:</code> </p><div class="fragment"><div class="line">PKG_CHECK_MODULES([GTKMMPLPLOT], [gtkmm-plplot-0.1])</div>
+</div><!-- fragment --><p> Then use the generated <code>GTKMMPLPLOT_CFLAGS</code> and <code>GTKMMPLPLOT_LIBS</code> variables in the project <code>Makefile.am</code> files. For example: </p><div class="fragment"><div class="line">program_CPPFLAGS = $(GTKMMPLPLOT_CFLAGS)</div>
+<div class="line">program_LDADD = $(GTKMMPLPLOT_LIBS)</div>
+</div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 19 2015 11:50:17 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 20 2015 10:32:08 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
