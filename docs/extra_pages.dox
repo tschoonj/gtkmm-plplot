@@ -50,10 +50,51 @@
  *  \author Tom Schoonjans
  *
  *  \page installation_instructions Installation instructions
+ *  \brief How to install Gtkmm-PLplot on your system
+ *  \section requirements Requirements
+ *  Gtkmm-PLplot can only be installed provided the following dependencies are
+ *  present on your system:
+ *  - Gtkmm (3.x) and its (long list) of dependencies
+ *  - PLplot, including its C++ bindings. This package is currently being developed against PLplot 5.11.0,
+ *    but we will make sure it also runs with older versions.
+ *  - A C++ compiler with full support of the C++11 standard plus GNU extensions. Compilers known to do the job are recent versions of GCC and clang.
+ *
+ *  \section downloading Downloading the software
+ *
+ *  No releases have been made so far, so you will have to clone the Github repository.
+ *  Make sure you have the above mentioned dependencies installed, as well as the GNU autotools (autoconf, automake and libtool) and pkg-config
+ *  - git clone git@github.com:tschoonj/gtkmm-plplot.git
+ *  - cd gtkmm-plplot
+ *  - autoreconf -i
+ *  - ./configure
+ *  - make
+ *  - make install
  *
  *  \page usage Usage
+ *  \brief Getting started with Gtkmm-PLplot
+ *  Include the Gtkmm-PLplot header:
+ *  \code
+ *  #include <gtkmm-plplot.h>
+ *  \endcode
+ *  This includes every header installed by Gtkmm-PLplot, so can slow down
+ *  compilation, but suffices for this simple example. Assuming that your
+ *  program source file is @c program.cc, compile it with:
+ *  \code
+ *  g++ program.cc -o program  `pkg-config --cflags --libs gtkmm-plplot-0.1`
+ *  \endcode
+ *  Alternatively, if using autoconf, use the following in @c configure.ac:
+ *  \code
+ *  PKG_CHECK_MODULES([GTKMMPLPLOT], [gtkmm-plplot-0.1])
+ *  \endcode
+ *  Then use the generated \c GTKMMPLPLOT_CFLAGS and \c GTKMMPLPLOT_LIBS variables in
+ *  the project \c Makefile.am files. For example:
+ *  \code
+ *  program_CPPFLAGS = $(GTKMMPLPLOT_CFLAGS)
+ *  program_LDADD = $(GTKMMPLPLOT_LIBS)
+ *  \endcode
  *
  *  \page examples Examples
+ *  \brief Code examples that demonstrate the capabilities of Gtkmm-PLplot
  *  \section example1 Example 1: Plot data properties and zooming
  *  \include test1.cpp
  *  \section example2 Example 2: Logarithmic axes

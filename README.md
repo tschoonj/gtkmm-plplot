@@ -4,6 +4,8 @@ Gtkmm-PLplot is a (currently very) simple plotting library that brings the power
 
 Currently this library is under heavy development but it should already be useful for simple two-dimensional graphs. The API should not be considered to be stable at all and will be changed without warning...
 
+Gtkmm-PLplot is licensed under the GPLv3.
+
 ## Features
 
 * Create plots using two std::vector or std::valarray instances

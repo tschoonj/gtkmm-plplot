@@ -8,7 +8,7 @@ doxyfile_deps = $(top_srcdir)/gtkmm-plplot/canvas.h \
 								$(top_srcdir)/gtkmm-plplot/utils.h
 
 
-doxyfile.stamp: $(doxyfile_deps) Doxyfile
+doxyfile.stamp: $(doxyfile_deps) Doxyfile extra_pages.dox
 	$(DOXYGEN) Doxyfile
 	echo Timestamp > doxyfile.stamp
 
@@ -37,3 +37,4 @@ clean-local:
 uninstall-local:
 	rm -rf $(DESTDIR)$(gtkmm_plplot_docdir)
 endif
+EXTRA_DIST = extra_pages.dox

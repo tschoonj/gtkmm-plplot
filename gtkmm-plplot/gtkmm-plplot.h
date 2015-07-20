@@ -15,22 +15,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GTKMMPLPLOTLINESTYLE_H
-#define GTKMMPLPLOTLINESTYLE_H
+#ifndef GTKMM_PLPLOT_H
+#define GTKMM_PLPLOT_H
 
-namespace Gtk {
-  namespace PLplot {
-    enum LineStyle {
-      NONE = 0,
-      CONTINUOUS,
-      SHORT_DASH_SHORT_GAP,
-      LONG_DASH_LONG_GAP,
-      LONG_DASH_SHORT_GAP,
-      LONG_DASH_SHORT_GAP_SHORT_DASH_SHORT_GAP,
-      LONG_DASH_SHORT_GAP_LONG_DASH_SHORT_GAP,
-      SHORT_DASH_SHORT_GAP_MEDIUM_DASH_MEDIUM_GAP_LONG_DASH_LONG_GAP,
-      SHORT_DASH_SHORT_GAP_MEDIUM_DASH_SHORT_GAP_LONG_DASH_SHORT_GAP
-    };
-  }
-}
+#include <gtkmm-plplot/canvas.h>
+#include <gtkmm-plplot/exception.h>
+#include <gtkmm-plplot/linestyle.h>
+#include <gtkmm-plplot/plot2d.h>
+#include <gtkmm-plplot/plot2ddata.h>
+#include <gtkmm-plplot/utils.h>
+
+
 #endif

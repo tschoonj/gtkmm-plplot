@@ -1,5 +1,6 @@
 lib_LTLIBRARIES = libgtkmm-plplot-0.1.la
 gtkmm_plplotincludedir = ${includedir}/gtkmm-plplot-0.1/gtkmm-plplot
+gtkmm_plplotbaseincludedir = ${includedir}/gtkmm-plplot-0.1/gtkmm-plplot
 
 gtkmm_plplotinclude_HEADERS = \
                               canvas.h \
@@ -9,7 +10,10 @@ gtkmm_plplotinclude_HEADERS = \
                               utils.h \
                               linestyle.h
 
+gtkmm_plplotbaseinclude_HEADERS = gtkmm-plplot.h
+
 libgtkmm_plplot_0_1_la_SOURCES = $(gtkmm_plplotinclude_HEADERS) \
+                                 $(gtkmm_plplotbaseinclude_HEADERS) \
                                  plot2ddata.cpp \
                                  plot2d.cpp \
                                  canvas.cpp
