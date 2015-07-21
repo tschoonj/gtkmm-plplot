@@ -41,8 +41,8 @@ namespace Gtk {
     class Plot2D : public sigc::trackable {
     private:
       std::vector<Plot2DData *> plot_data; ///< vector that contains pointers to the Plot2DData datasets
-      bool log10_x; ///< \c true means logarithmic axis, \c false means linear
-      bool log10_y; ///< \c true means logarithmic axis, \c false means linear
+      bool log10_x; ///< \c true means X-axis logarithmic axis, \c false means linear
+      bool log10_y; ///< \c true means Y-axis logarithmic axis, \c false means linear
       Glib::ustring axis_title_x; ///< X-axis title
       Glib::ustring axis_title_y; ///< Y-axis title
       Glib::ustring plot_title;   ///< Plot title
@@ -82,7 +82,7 @@ namespace Gtk {
       /** This is a default handler for signal_changed()
        *
        * This signal is emitted whenever any of the plot properties, or the properties of the Plot2DData datasets therein, is changed.
-       * Currently it does nothing but the signal will get caught by Canvas, and will eventuall trigger a redrawing of the entire widget.
+       * Currently it does nothing but the signal will get caught by Canvas, and will eventually trigger a redrawing of the entire widget.
        */
       virtual void on_changed();
 
@@ -141,7 +141,7 @@ namespace Gtk {
 
       /** Method to draw the plot with all of its datasets
        *
-       * This method is virtual inheriting classes to implement their own method with the same signature.
+       * This method is virtual allowing inheriting classes to implement their own method with the same signature.
        * \param cr the cairo context to draw to.
        * \param width the width of the Canvas widget
        * \param height the height of the Canvas widget
