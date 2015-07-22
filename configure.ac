@@ -119,6 +119,7 @@ gtkmm-plplot/Makefile
 tests/Makefile
 gtkmm-plplot-0.1.pc
 docs/Makefile
+docs/images/Makefile
 docs/Doxyfile
 ])
 AC_CONFIG_HEADERS([config.h])

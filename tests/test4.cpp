@@ -93,9 +93,13 @@ namespace Test4 {
       //let's override the background color of the second plot and hide it to make the surprise complete!!
       canvas.get_plot(1)->set_background_color(Gdk::RGBA("Yellow Green"));
       canvas.get_plot(1)->hide();
+      //also let's disable the region selection, for no reason whatsoever!
       canvas.get_plot(1)->set_region_selectable(false);
       //let's override the default region of this plot, this is NOT influenced by set_region_selectable()!!!
       canvas.get_plot(1)->set_region(-10, 10, -10, 10);
+
+      //lets'give the third plot a nice opaque background color
+      canvas.get_plot(2)->set_background_color(Gdk::RGBA("White"));
 
       grid.attach(checkbutton1, 0, 0, 1, 1);
       grid.attach(checkbutton2, 1, 0, 1, 1);

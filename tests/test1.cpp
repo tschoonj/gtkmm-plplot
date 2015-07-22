@@ -158,7 +158,6 @@ namespace Test1 {
 
       linewidth_spin1.signal_value_changed().connect([this](){canvas.get_plot(0)->get_data(0)->set_line_width(linewidth_spin1.get_value());});
       linewidth_spin2.signal_value_changed().connect([this](){canvas.get_plot(0)->get_data(1)->set_line_width(linewidth_spin2.get_value());});
-      //linewidth_adj1->signal_value_changed().connect([this](){});
 
       grid.attach(label1, 0, 0, 1, 1);
       grid.attach(show_radio1, 1, 0, 1, 1);
@@ -182,8 +181,8 @@ namespace Test1 {
 
 
 int main(int argc, char **argv) {
-	Glib::set_application_name("gtkmm-plplot-test1");
-	Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test1");
+  Glib::set_application_name("gtkmm-plplot-test1");
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test1");
 
   //valarrays are underestimated IMHO
   std::valarray<PLFLT> x_va(1000), y_va(1000);

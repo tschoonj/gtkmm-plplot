@@ -36,7 +36,7 @@
  *  a couple of days later I decided to start this project after it was clear that it could be useful to myself and my colleages.
  *
  *  I think that the approach followed by Gtkmm-PLplot has the following advantages:
- *  - Depends on a mature toolkit (PLplot) to the bulk of the work. No need for me to write the low-level plotting routines.
+ *  - Depends on a mature toolkit (PLplot) to do the bulk of the work. No need for me to write the low-level plotting routines.
  *  - Relies on Cairo for rendering, which looks like it will remain the GTK+ workhorse for a long time to come. This means low maintenance.
  *  - PLplot itself has a lot of useful features, but suffers (IMHO) from its obscure, often acronym based hard to remember API. Gtkmm-PLplot hides this API
  *    and offers an interface that should be familiar to anyone with GTK+/Gtkmm experience.
@@ -50,7 +50,6 @@
  *  \author Tom Schoonjans
  *
  *  \page installation_instructions Installation instructions
- *  \brief How to install Gtkmm-PLplot on your system
  *
  *  \section requirements Requirements
  *  Gtkmm-PLplot can only be installed provided the following dependencies are
@@ -72,7 +71,6 @@
  *  - make install
  *
  *  \page usage Usage
- *  \brief Getting started with Gtkmm-PLplot
  *
  *  Include the Gtkmm-PLplot header:
  *  \code
@@ -96,12 +94,23 @@
  *  \endcode
  *
  *  \page examples Examples
- *  \brief Code examples that demonstrate the capabilities of Gtkmm-PLplot
+ *
+ *  This page contains the code of the tests I have included to demonstrate the
+ *  capabilities of Gtkmm-PLplot. The code should be quite straightforward and contains
+ *  some commenting where useful. Every testcase is followed by a screenshot of the corresponding running program.
+ *
+ *  \tableofcontents
  *
  *  \section example1 Example 1: Plot data properties and zooming
  *  \include test1.cpp
+ *  \image html test1.png "Example 1"
  *  \section example2 Example 2: Logarithmic axes
  *  \include test2.cpp
+ *  \image html test2.png "Example 2"
  *  \section example3 Example 3: Adding, removing, showing and hiding plots
  *  \include test3.cpp
+ *  \image html test3.png "Example 3"
+ *  \section example4 Example 4: Displaying multiple plots on a single canvas
+ *  \include test4.cpp
+ *  \image html test4.png "Example 4"
  */
