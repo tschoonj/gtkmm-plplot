@@ -53,17 +53,30 @@ namespace Gtk {
       double plotted_range_y[2]; ///< the current range shown on the plot for the X-axis
       double cairo_range_x[2]; ///< the current range shown on the plot for the X-axis in Cairo coordinates
       double cairo_range_y[2]; ///< the current range shown on the plot for the X-axis in Cairo coordinates
+      int canvas_width; ///< the width of the canvas in Cairo units
+      int canvas_height; ///< the height of the canvas in Cairo units
+      int plot_offset_x; ///< the offset of the plot with respect to the top left corner of the canvas, measured along the horizontal (X-) axis in Cairo units
+      int plot_offset_y; ///< the offset of the plot with respect to the top left corner of the canvas, measured along the vertical (Y-) axis in Cairo units
       int plot_width; ///< the current width of the plot in Cairo units
       int plot_height; ///< the current height of the plot in Cairo units
       bool shown; ///< \c true means the plot is currently visible, \c false means it is not plotted
-      sigc::signal<void, double, double, double, double > _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event
+      Gdk::RGBA background_color; ///< \c the currently used background color of the plot (default = fully transparent white, meaning that the background will be determined by the canvas)
+      double plot_width_norm; ///< the normalized plot width, calculated relative to the canvas width
+      double plot_height_norm; ///< the normalized plot height, calculated relative to the canvas height
+      double plot_offset_horizontal_norm; ///< the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
+      double plot_offset_vertical_norm; ///< the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
+      bool region_selectable; ///< \c true indicates that a region on the plot can be selected by dragging a box with the mouse button pressed in when showing, or if double mouse button pressed event zooms out, \c false means not possible. The default is \c true
+      sigc::signal<void, double, double, double, double > _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event()
       sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the plot parameters, or any of the contained Plot2DData datasets is changed.
       sigc::signal<void, Plot2DData *> _signal_data_added; ///< signal emitted whenever a new Plot2DData dataset is added to the plot
       sigc::signal<void> _signal_data_removed; ///< signal emitted whenever data is removed from the plot.
       void plot_data_modified(); ///< a private function that will update the \c _range variables when datasets are added, modified or removed.
       void convert_plplot_to_cairo_coordinates(
         double x_pl, double y_pl,
-        double &x_cr, double &y_cr); ///< method to update cairo range coordinates after draw, which is necessary after Canvas widget resizing.
+        double &x_cr, double &y_cr); ///< method to calculate the Cairo coordinates corresponding to PLplot coordinates, mostly used after draw, which is necessary after Canvas widget resizing.
+      void convert_cairo_to_plplot_coordinates(
+        double x_cr, double y_cr,
+        double &x_pl, double &y_pl); ///< method to calculate the PLplot coordinates corresponding to Cairo coordinates, mostly used after draw, which is necessary after Canvas widget resizing.
       Plot2D() = delete; ///< no default constructor
       Plot2D &operator=(const Plot2D &) = delete; ///< no copy constructor
     protected:
@@ -104,12 +117,24 @@ namespace Gtk {
       /** Constructor
        *
        * This class provides a single constructor, which takes an existing Plot2DData dataset to construct a plot.
+       * Optionally, the constructor takes additional arguments to set the axes and plot titles, as well as normalized coordinates that will determine the position and dimensions of the plot within the canvas. The default corresponds to the plot taking up the full c
        * \param data a Plot2DData object containing a plot dataset
        * \param axis_title_x X-axis title
        * \param axis_title_y Y-axis title
        * \param plot_title plot title
+       * \param plot_width_norm the normalized plot width, calculated relative to the canvas width
+       * \param plot_height_norm the normalized plot height, calculated relative to the canvas height
+       * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
+       * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
        */
-      Plot2D(const Plot2DData &data, const Glib::ustring &axis_title_x = "X-axis", const Glib::ustring &axis_title_y = "Y-axis", const Glib::ustring &plot_title = "");
+      Plot2D(const Plot2DData &data,
+             const Glib::ustring &axis_title_x = "X-axis",
+             const Glib::ustring &axis_title_y = "Y-axis",
+             const Glib::ustring &plot_title = "",
+             const double plot_width_norm = 1.0,
+             const double plot_height_norm = 1.0,
+             const double plot_offset_horizontal_norm = 0.0,
+             const double plot_offset_vertical_norm = 0.0);
 
       /** Copy constructor
        *
@@ -242,6 +267,30 @@ namespace Gtk {
        * \return \c true if the plot is visible, \c false if not
        */
       bool is_showing() const;
+
+      /** Get the plot background color
+       *
+       * \return The currently selected plot background color.
+       */
+      Gdk::RGBA get_background_color();
+
+      /** Set the background color
+       *
+       * \param color Set a new plot background color.
+       */
+      void set_background_color(Gdk::RGBA color);
+
+      /** Get whether regions can be selected on the plot by dragging the mouse while the button is clicked in.
+       *
+       * \return \c true if a region is selectable in the plot, \c false if not
+       */
+      bool get_region_selectable();
+
+      /** Sets whether regions can be selected on the plot by dragging the mouse while the button is clicked in.
+       *
+       * \param selectable pass \c true if a region has to be selectable, \c false if not
+       */
+      void set_region_selectable(bool selectable = true);
 
       /** signal_select_region is emitted whenever a selection box is dragged across a plot
        *

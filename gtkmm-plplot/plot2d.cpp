@@ -33,14 +33,26 @@ Plot2D::Plot2D(
   const Plot2DData &_data,
   const Glib::ustring &_axis_title_x,
   const Glib::ustring &_axis_title_y,
-  const Glib::ustring &_plot_title) :
+  const Glib::ustring &_plot_title,
+  const double _plot_width_norm,
+  const double _plot_height_norm,
+  const double _plot_offset_horizontal_norm,
+  const double _plot_offset_vertical_norm) :
   log10_x(false),
   log10_y(false),
   axis_title_x(_axis_title_x),
   axis_title_y(_axis_title_y),
   plot_title(_plot_title),
   pls(nullptr),
-  shown(true) {
+  shown(true),
+  background_color("Black"),
+  plot_width_norm(_plot_width_norm),
+  plot_height_norm(_plot_height_norm),
+  plot_offset_horizontal_norm(_plot_offset_horizontal_norm),
+  plot_offset_vertical_norm(_plot_offset_vertical_norm),
+  region_selectable(true) {
+
+  background_color.set_alpha(0.0);
 
   //connect our default signal handlers
   this->signal_select_region().connect(sigc::mem_fun(*this, &Plot2D::on_select_region));
@@ -57,7 +69,13 @@ Plot2D::Plot2D(const Plot2D &_source) :
   axis_title_y(_source.axis_title_y),
   plot_title(_source.plot_title),
   pls(nullptr),
-  shown(true) {
+  shown(true),
+  background_color(_source.background_color),
+  plot_width_norm(_source.plot_width_norm),
+  plot_height_norm(_source.plot_height_norm),
+  plot_offset_horizontal_norm(_source.plot_offset_horizontal_norm),
+  plot_offset_vertical_norm(_source.plot_offset_vertical_norm),
+  region_selectable(_source.region_selectable) {
 
   this->signal_select_region().connect(sigc::mem_fun(*this, &Plot2D::on_select_region));
   this->signal_changed().connect(sigc::mem_fun(*this, &Plot2D::on_changed));
@@ -216,14 +234,25 @@ Glib::ustring Plot2D::get_plot_title() {
 void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) {
   if (!shown)
     return;
-  plot_width = width;
-  plot_height= height;
+
+  canvas_width = width;
+  canvas_height = height;
+  plot_width = width * plot_width_norm;
+  plot_height= height * plot_height_norm;
+  plot_offset_x = width * plot_offset_horizontal_norm;
+  plot_offset_y = height * plot_offset_vertical_norm;
+
   if (pls)
     delete pls;
   pls = new plstream;
 
   pls->sdev("extcairo");
-  pls->spage(0.0, 0.0, plot_width , plot_height, 0, 0);
+  pls->spage(0.0, 0.0, plot_width , plot_height, plot_offset_x, plot_offset_y);
+  Gdk::Cairo::set_source_rgba(cr, background_color);
+  cr->rectangle(plot_offset_x, plot_offset_y, plot_width, plot_height);
+  cr->fill();
+  cr->save();
+  cr->translate(plot_offset_x, plot_offset_y);
   pls->init();
 
   //Gdk::RGBA color = get_style_context()->get_color();
@@ -251,6 +280,8 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
   for (auto &iter : plot_data) {
     iter->draw_plot_data(cr, pls, log10_x, log10_y);
   }
+  cr->restore();
+
   convert_plplot_to_cairo_coordinates(plotted_range_x[0], plotted_range_y[0],
                                       cairo_range_x[0], cairo_range_y[0]);
   convert_plplot_to_cairo_coordinates(plotted_range_x[1], plotted_range_y[1],
@@ -269,13 +300,32 @@ void Plot2D::convert_plplot_to_cairo_coordinates(
     pls->gvpd(nxmin, nxmax, nymin, nymax);
     pls->gvpw(wxmin, wxmax, wymin, wymax);
 
-    double xmin = plot_width * nxmin;
-    double xmax = plot_width * nxmax;
-    double ymin = plot_height * nymin;
-    double ymax = plot_height * nymax;
+    double xmin = plot_width * nxmin + plot_offset_x;
+    double xmax = plot_width * nxmax + plot_offset_x;
+    double ymin = plot_height * (nymin - 1.0) + canvas_height - plot_offset_y;
+    double ymax = plot_height * (nymax - 1.0) + canvas_height - plot_offset_y;
 
     x_cr = xmin + ((xmax - xmin) * ((x_pl - wxmin) / (wxmax - wxmin)));
     y_cr = ymin + ((ymax - ymin) * ((y_pl - wymin) / (wymax - wymin)));
+}
+
+void Plot2D::convert_cairo_to_plplot_coordinates(
+  double x_cr, double y_cr,
+  double &x_pl, double &y_pl) {
+
+    double nxmin, nxmax, nymin, nymax;
+    double wxmin, wxmax, wymin, wymax;
+
+    pls->gvpd(nxmin, nxmax, nymin, nymax);
+    pls->gvpw(wxmin, wxmax, wymin, wymax);
+
+    double xmin = plot_width * nxmin + plot_offset_x;
+    double xmax = plot_width * nxmax + plot_offset_x;
+    double ymin = plot_height * (nymin - 1.0) + canvas_height - plot_offset_y;
+    double ymax = plot_height * (nymax - 1.0) + canvas_height - plot_offset_y;
+
+    x_pl = wxmin + ((x_cr - xmin) * (wxmax - wxmin) / (xmax - xmin));
+    y_pl = wymin + ((y_cr - ymin) * (wymax - wymin) / (ymax - ymin));
 }
 
 void Plot2D::set_region(double xmin, double xmax, double ymin, double ymax) {
@@ -295,11 +345,11 @@ void Plot2D::set_region(double xmin, double xmax, double ymin, double ymax) {
     ymax = log10(ymax);
   }
 
-  if (xmin >= xmax || ymin >= ymax ||
+  if (xmin >= xmax || ymin >= ymax /*||
       xmin < plot_data_range_x[0] ||
       xmax > plot_data_range_x[1] ||
       ymin < plot_data_range_y[0] ||
-      ymax > plot_data_range_y[1]) {
+      ymax > plot_data_range_y[1]*/) {
     throw Exception("Gtk::PLplot::Plot2D::set_region -> Invalid arguments");
   }
   plotted_range_x[0] = xmin;
@@ -315,4 +365,21 @@ Plot2DData *Plot2D::get_data(unsigned int index) {
     return plot_data[index];
   }
   throw Exception("Gtk::PLplot::Plot2D::get_data -> Invalid index");
+}
+
+Gdk::RGBA Plot2D::get_background_color() {
+  return background_color;
+}
+
+void Plot2D::set_background_color(Gdk::RGBA _background_color) {
+  background_color = _background_color;
+  _signal_changed.emit();
+}
+
+bool Plot2D::get_region_selectable() {
+  return region_selectable;
+}
+
+void Plot2D::set_region_selectable(bool _region_selectable) {
+  region_selectable = _region_selectable;
 }

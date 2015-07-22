@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GTKMMPLPLOTUTILS_H
 
 #include <vector>
+#include <valarray>
 #include <plstream.h>
 
 namespace Gtk {
@@ -29,6 +30,17 @@ namespace Gtk {
      */
     std::vector<PLFLT> indgen(unsigned int n) {
       std::vector<PLFLT> rv(n);
+      for (unsigned int i = 0 ; i < n ; i++)
+        rv[i] = (PLFLT) i;
+      return rv;
+    }
+
+    /** Returns a valarray of doubles with each element set to the value of its subscript.
+     *
+     * \param n the length of the valarray
+     */
+    std::valarray<PLFLT> indgen_va(unsigned int n) {
+      std::valarray<PLFLT> rv(n);
       for (unsigned int i = 0 ; i < n ; i++)
         rv[i] = (PLFLT) i;
       return rv;

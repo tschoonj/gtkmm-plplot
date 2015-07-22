@@ -58,7 +58,7 @@ namespace Gtk {
       double end_cairo[2]; ///< cairo coordinates of the position where a \c button_release_event was generated
       bool selecting; ///< set to true if the user is currently dragging a selection box
       unsigned int selected_plot; ///< \c plots index of the currently selected plot
-      Gdk::RGBA background_color; ///< our currently used background color for the canvas
+      Gdk::RGBA background_color; ///< the currently used background color of the canvas (default = opaque White)
       Canvas(const Canvas &) = delete; ///< no copy constructor
       Canvas &operator=(const Canvas &) = delete; ///< no move assignment operator
     protected:
@@ -68,7 +68,7 @@ namespace Gtk {
        * \param cr The cairo context to draw to.
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        */
-      virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
+      virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
 
       /** This is a default handler for signal_button_press_event().
        *
@@ -77,7 +77,7 @@ namespace Gtk {
        * \param event The Gdk::EventButton which triggered this signal.
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        */
-      virtual bool on_button_press_event(GdkEventButton *event);
+      virtual bool on_button_press_event(GdkEventButton *event) override;
 
       /** This is a default handler for signal_button_release_event().
        *
@@ -86,7 +86,7 @@ namespace Gtk {
        * \param event The Gdk::EventButton which triggered this signal.
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        */
-      virtual bool on_button_release_event(GdkEventButton *event);
+      virtual bool on_button_release_event(GdkEventButton *event) override;
 
       /** This is a default handler for signal_motion_notify_event().
        *
@@ -95,7 +95,7 @@ namespace Gtk {
        * \param event The Gdk::EventButton which triggered this signal.
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        */
-      virtual bool on_motion_notify_event (GdkEventMotion *event);
+      virtual bool on_motion_notify_event (GdkEventMotion *event) override;
 
       /** This is a default handler for signal_changed().
        *
@@ -135,6 +135,7 @@ namespace Gtk {
       /** Remove a single plot from the canvas
        *
        * \param plot_index index of the plot in the \c plots vector
+       * \exception Gtk::PLplot::Exception
        */
       void remove_plot(unsigned int plot_index);
 
@@ -147,7 +148,7 @@ namespace Gtk {
 
       /** signal_changed is emitted whenever any of the canvas properties or any of the plot properties has changed.
        *
-       * See default handler on_changed
+       * See default handler on_changed()
        * \exception Gtk::PLplot::Exception
        * \return signal
        */
@@ -158,13 +159,13 @@ namespace Gtk {
       /** Get a pointer to a plot included in the canvas
        *
        * \param plot_index index of the plot in the \c plots vector
+       * \exception Gtk::PLplot::Exception
        * \return a pointer to the Plot in the \c plots vector.
        */
       Plot2D *get_plot(unsigned int plot_index);
 
       /** Get the background color
        *
-       * \exception Gtk::PLplot::Exception
        * \return The currently selected background color.
        */
       Gdk::RGBA get_background_color();
