@@ -27,7 +27,7 @@ var searchData=
   ['set_5fsymmetric_5fdifference_5fminimal_5fn',['set_symmetric_difference_minimal_n',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#abf47bf2bbef9261d3d10b59558ddbdf2',1,'__gnu_parallel::_Settings']]],
   ['set_5funion_5fminimal_5fn',['set_union_minimal_n',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#ab42faf337cfe7b64edfb7e61c6dadd08',1,'__gnu_parallel::_Settings']]],
   ['showbase',['showbase',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#a69acbf246475f065d6648303e452fd4d',1,'std::basic_fstream']]],
-  ['shown',['shown',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#ac59616708d99b08fe280dbbdb73db6bb',1,'Gtk::PLplot::Plot2D']]],
+  ['shown',['shown',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#ac59616708d99b08fe280dbbdb73db6bb',1,'Gtk::PLplot::Plot2D::shown()'],['../class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a58dce4d940209332a09b070371150595',1,'Gtk::PLplot::Plot2DData::shown()']]],
   ['showpoint',['showpoint',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#a4c79db16d6509208744e2b698a2d107f',1,'std::basic_fstream']]],
   ['showpos',['showpos',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#acf2cdf1f2ebd7914d39e25c1f071bbc4',1,'std::basic_fstream']]],
   ['signal_5fkey_5fsnooper_5f',['signal_key_snooper_',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Main.html#a97582880bbb0ac12e957861a7ed165a3',1,'Gtk::Main']]],

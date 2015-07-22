@@ -559,7 +559,7 @@ var searchData=
   ['_5fscanner',['_Scanner',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00527.html',1,'std::__detail']]],
   ['_5fsequenceindex',['_SequenceIndex',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01609.html#a1cbb61a4863a306daa23823d89f9bef1',1,'__gnu_parallel']]],
   ['_5fsettings',['_Settings',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html',1,'__gnu_parallel']]],
-  ['_5fsignal_5fchanged',['_signal_changed',['../class_gtk_1_1_p_lplot_1_1_canvas.html#a10071c0b9a772301656c7607b9a9de04',1,'Gtk::PLplot::Canvas::_signal_changed()'],['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a7dca2b74aba5b40d5f41bac00331f011',1,'Gtk::PLplot::Plot2D::_signal_changed()']]],
+  ['_5fsignal_5fchanged',['_signal_changed',['../class_gtk_1_1_p_lplot_1_1_canvas.html#a10071c0b9a772301656c7607b9a9de04',1,'Gtk::PLplot::Canvas::_signal_changed()'],['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a7dca2b74aba5b40d5f41bac00331f011',1,'Gtk::PLplot::Plot2D::_signal_changed()'],['../class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a48c6961571d6e2752f4a791d9eb14cfb',1,'Gtk::PLplot::Plot2DData::_signal_changed()']]],
   ['_5fsignal_5fdata_5fadded',['_signal_data_added',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a2e7f6dd9feeea070a1d187cc0bb63021',1,'Gtk::PLplot::Plot2D']]],
   ['_5fsignal_5fdata_5fremoved',['_signal_data_removed',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#aed3800fe185dffb4600b2782d5ba1299',1,'Gtk::PLplot::Plot2D']]],
   ['_5fsignal_5fselect_5fregion',['_signal_select_region',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#add1f30e622f20af129cc59f3d5eaf45c',1,'Gtk::PLplot::Plot2D']]],

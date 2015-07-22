@@ -12,6 +12,8 @@ var searchData=
   ['line_5fjoin_5fbevel',['LINE_JOIN_BEVEL',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#adbc632404edaa736e01c12122239de73a63352551259f61a5e379589315a30de9',1,'Cairo']]],
   ['line_5fjoin_5fmiter',['LINE_JOIN_MITER',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#adbc632404edaa736e01c12122239de73aa63cde0bfd47a1d5a80f2db93b0de823',1,'Cairo']]],
   ['line_5fjoin_5fround',['LINE_JOIN_ROUND',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#adbc632404edaa736e01c12122239de73ab4e1dd72513958e037306b1fddab6440',1,'Cairo']]],
+  ['line_5fstyle',['line_style',['../class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a249b1f2c880d7efecb201415446034ae',1,'Gtk::PLplot::Plot2DData']]],
+  ['line_5fwidth',['line_width',['../class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a3619c664dbf8ce8f0370e8f486f023a4',1,'Gtk::PLplot::Plot2DData']]],
   ['list_5f',['list_',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1slot__list.html#a2c5b3ecf068ec93cdc34a4ae8d48313c',1,'sigc::slot_list']]],
   ['log10_5fx',['log10_x',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a1fbb15b9a156664472ba82b58b427c8c',1,'Gtk::PLplot::Plot2D']]],
   ['log10_5fy',['log10_y',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a283aec73ba986b6c76a8765f4cfd2f03',1,'Gtk::PLplot::Plot2D']]],

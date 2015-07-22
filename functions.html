@@ -15,6 +15,7 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_hack.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -39,8 +40,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="index.html"><span>Home</span></a></li>
+      <li><a href="installation_instructions.html"><span>Installation&#160;instructions</span></a></li>
+      <li><a href="usage.html"><span>Usage</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li>
@@ -94,6 +97,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
       <li><a href="#index_w"><span>w</span></a></li>
+      <li><a href="#index_x"><span>x</span></a></li>
+      <li><a href="#index_y"><span>y</span></a></li>
       <li class="current"><a href="#index_~"><span>~</span></a></li>
     </ul>
   </div>
@@ -119,6 +124,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>_signal_changed
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a10071c0b9a772301656c7607b9a9de04">Gtk::PLplot::Canvas</a>
 , <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a7dca2b74aba5b40d5f41bac00331f011">Gtk::PLplot::Plot2D</a>
+, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a48c6961571d6e2752f4a791d9eb14cfb">Gtk::PLplot::Plot2DData</a>
 </li>
 <li>_signal_data_added
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a2e7f6dd9feeea070a1d187cc0bb63021">Gtk::PLplot::Plot2D</a>
@@ -151,6 +157,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_b"></a>- b -</h3><ul>
 <li>background_color
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#ae374cd6224cd32a15ae4b6dec961c008">Gtk::PLplot::Canvas</a>
+, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a6025dfac0d8005f05252a1ee532ccc6c">Gtk::PLplot::Plot2D</a>
 </li>
 </ul>
 
@@ -163,7 +170,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a91e903aa9ff9491cd1bc9dce82a3c2e3">Gtk::PLplot::Plot2D</a>
 </li>
 <li>Canvas()
-: <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#af4c3ca35394cab1e3157e15a613cf5e4">Gtk::PLplot::Canvas</a>
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a3dbd060c5658975a51d506646a49ffee">Gtk::PLplot::Canvas</a>
+</li>
+<li>canvas_height
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#ad75a862b7bdc69a48e1684764a248eaf">Gtk::PLplot::Plot2D</a>
+</li>
+<li>canvas_width
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a9452e20ba046981da8c3b7d266d8612d">Gtk::PLplot::Plot2D</a>
+</li>
+<li>color
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a7d7723c6b3fe518c3d2e19dfc58a29cf">Gtk::PLplot::Plot2DData</a>
+</li>
+<li>convert_cairo_to_plplot_coordinates()
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#ae9d26352e840fc3a2bf2176334759d70">Gtk::PLplot::Plot2D</a>
 </li>
 <li>convert_plplot_to_cairo_coordinates()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#aec4e4347d6a429426d620b274a5d8faf">Gtk::PLplot::Plot2D</a>
@@ -174,6 +193,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
 <li>draw_plot()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a472f0959f49538d5bec8564e759df5b4">Gtk::PLplot::Plot2D</a>
+</li>
+<li>draw_plot_data()
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a96ec9b636f676c4418be949bf8c1c97e">Gtk::PLplot::Plot2DData</a>
 </li>
 </ul>
 
@@ -206,9 +228,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>get_background_color()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a485d62895c17ba3d8488d913e2cba86b">Gtk::PLplot::Canvas</a>
+, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#abf2c582ec0e0f53e76c64f5f2377b3c2">Gtk::PLplot::Plot2D</a>
+</li>
+<li>get_color()
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#aed763d5dd51390cdd18d0c623b4c63ed">Gtk::PLplot::Plot2DData</a>
 </li>
 <li>get_data()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a26ecb725e9543a62befd89ed4aa1e1df">Gtk::PLplot::Plot2D</a>
+</li>
+<li>get_line_style()
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#ad764cd9f0c9632a8b3efca28c125e897">Gtk::PLplot::Plot2DData</a>
+</li>
+<li>get_line_width()
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a3ff1d916c207b3044b0108d6f12e5776">Gtk::PLplot::Plot2DData</a>
 </li>
 <li>get_plot()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a8bc3f90484493624ba611d08bbed9a2c">Gtk::PLplot::Canvas</a>
@@ -216,12 +248,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>get_plot_title()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a0a55baf9bc9cba96d4bb65c3da645dbb">Gtk::PLplot::Plot2D</a>
 </li>
+<li>get_region_selectable()
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#abbd6132e4470711465d7e7e4a5fcbd95">Gtk::PLplot::Plot2D</a>
+</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
 <li>hide()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a5c184deef64b0f644abe5bbc4d4b5800">Gtk::PLplot::Plot2D</a>
+, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#af9d610972661ad170e61775bc677436d">Gtk::PLplot::Plot2DData</a>
 </li>
 </ul>
 
@@ -229,11 +265,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
 <li>is_showing()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#af2737650ea27f70f0d7b4558b975376a">Gtk::PLplot::Plot2D</a>
+, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#aa9a5028a730899f40d74aa04363ff573">Gtk::PLplot::Plot2DData</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
+<li>line_style
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a249b1f2c880d7efecb201415446034ae">Gtk::PLplot::Plot2DData</a>
+</li>
+<li>line_width
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a3619c664dbf8ce8f0370e8f486f023a4">Gtk::PLplot::Plot2DData</a>
+</li>
 <li>log10_x
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a1fbb15b9a156664472ba82b58b427c8c">Gtk::PLplot::Plot2D</a>
 </li>
@@ -252,14 +295,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
 <li>on_button_press_event()
-: <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a71c8d7376e4633e4220a025c69879ac1">Gtk::PLplot::Canvas</a>
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#adf857172b2f5b44752e03b8b714e4fd4">Gtk::PLplot::Canvas</a>
 </li>
 <li>on_button_release_event()
-: <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a509d6f4679bf090d4e1f39ed30fd51db">Gtk::PLplot::Canvas</a>
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a9001283127e6684685e823e03e267490">Gtk::PLplot::Canvas</a>
 </li>
 <li>on_changed()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a2d48ca76999d7e8db4d4596bfc2adce7">Gtk::PLplot::Canvas</a>
 , <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a294379e79063a19ebdfed37f9958905c">Gtk::PLplot::Plot2D</a>
+, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a25edc304bfe2cdb6d1acb59671732ca1">Gtk::PLplot::Plot2DData</a>
 </li>
 <li>on_data_added()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a51269fedf80d0f678b9fd8d258fad24f">Gtk::PLplot::Plot2D</a>
@@ -268,10 +312,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a0303813ba3760d04296e33bddc942c20">Gtk::PLplot::Plot2D</a>
 </li>
 <li>on_draw()
-: <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a15781cfe8032d1462268a7a195030c2b">Gtk::PLplot::Canvas</a>
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#ab5dc0dfe39a9151955c8dbfe0dd38192">Gtk::PLplot::Canvas</a>
 </li>
 <li>on_motion_notify_event()
-: <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a8448d7a961d2213654e43aee6fc809fd">Gtk::PLplot::Canvas</a>
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a041ff57f1ca95b4d2469f24a1455ed02">Gtk::PLplot::Canvas</a>
 </li>
 <li>on_select_region()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a503bd9d1ee6f93b0d6cb8817ba113492">Gtk::PLplot::Plot2D</a>
@@ -279,6 +323,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>operator=()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a25cf1b4b9ec7eb176299206f5a1345e2">Gtk::PLplot::Canvas</a>
 , <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#ac3f306af10f969c8ecc067b08965462b">Gtk::PLplot::Plot2D</a>
+, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a17eb02447e0cacac6e0283439534e71d">Gtk::PLplot::Plot2DData</a>
 </li>
 </ul>
 
@@ -286,6 +331,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
 <li>Plot2D()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a4472e7718776d4048b9525dc61dec884">Gtk::PLplot::Plot2D</a>
+</li>
+<li>Plot2DData()
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a6da49685a6ddad584c40d3373f6faeb9">Gtk::PLplot::Plot2DData</a>
 </li>
 <li>plot_data
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a93d74b8081b98766adcb90fe90ab1019">Gtk::PLplot::Plot2D</a>
@@ -302,11 +350,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>plot_height
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a1f16dcaa0633697c48b6b9c4b8a0638b">Gtk::PLplot::Plot2D</a>
 </li>
+<li>plot_height_norm
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#aad61edfea29a61cfa7b7ae4a70751304">Gtk::PLplot::Plot2D</a>
+</li>
+<li>plot_offset_horizontal_norm
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#aee2af2d93ea532e04d742563c23fa0bc">Gtk::PLplot::Plot2D</a>
+</li>
+<li>plot_offset_vertical_norm
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a1abe2e84089fa8e68d32eb3e9367074c">Gtk::PLplot::Plot2D</a>
+</li>
+<li>plot_offset_x
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#aabb4f5845f22eb70dc9d90bf03fc67c7">Gtk::PLplot::Plot2D</a>
+</li>
+<li>plot_offset_y
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a8928deda56a416af3a04fa6e617ae394">Gtk::PLplot::Plot2D</a>
+</li>
 <li>plot_title
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a74c8d867b929dd0001e8c96a8aac7f5a">Gtk::PLplot::Plot2D</a>
 </li>
 <li>plot_width
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#af8e09c3d275f43303097745abfec1b4f">Gtk::PLplot::Plot2D</a>
+</li>
+<li>plot_width_norm
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a998ab50caad68fb51b64850d1263fdce">Gtk::PLplot::Plot2D</a>
 </li>
 <li>plots
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#ab2bb01a24fa02399ca607f98f5547318">Gtk::PLplot::Canvas</a>
@@ -324,8 +390,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>region_selectable
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a002c65bc0df2f8fbd319923c1ba498e9">Gtk::PLplot::Plot2D</a>
+</li>
 <li>remove_plot()
-: <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a2e5f8134961b16f4005d70b62189a113">Gtk::PLplot::Canvas</a>
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a71aacf28008453c16040c6de59e225a3">Gtk::PLplot::Canvas</a>
 </li>
 </ul>
 
@@ -351,6 +420,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>set_background_color()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#ac98f230afcbf099226f88ea9f0ce4507">Gtk::PLplot::Canvas</a>
+, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a7de1d1539784fd1990eb8995ad1d8acd">Gtk::PLplot::Plot2D</a>
+</li>
+<li>set_color()
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a0feeb2036191a415ed6ff47f91366327">Gtk::PLplot::Plot2DData</a>
+</li>
+<li>set_line_style()
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a537b7d3c38f31de50a0d5c046bb0aa66">Gtk::PLplot::Plot2DData</a>
+</li>
+<li>set_line_width()
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a301c3810046fff221be991a4011b8e69">Gtk::PLplot::Plot2DData</a>
 </li>
 <li>set_plot_title()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a45d0ce7dc72c71c6ec01b436c3621728">Gtk::PLplot::Plot2D</a>
@@ -358,15 +437,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>set_region()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#aebb3f1eadfc927366841759c2b2d5624">Gtk::PLplot::Plot2D</a>
 </li>
+<li>set_region_selectable()
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#ac93e384fd60b52e55bfa0fecafcd7037">Gtk::PLplot::Plot2D</a>
+</li>
 <li>show()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a471f27c5f37c81206a4670aae50f1260">Gtk::PLplot::Plot2D</a>
+, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a5aa3adf0be2d759fc5d8c818daf3c3cd">Gtk::PLplot::Plot2DData</a>
 </li>
 <li>shown
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#ac59616708d99b08fe280dbbdb73db6bb">Gtk::PLplot::Plot2D</a>
+, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a58dce4d940209332a09b070371150595">Gtk::PLplot::Plot2DData</a>
 </li>
 <li>signal_changed()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a1609cd22cc23dac91ace5b955ea0f5c9">Gtk::PLplot::Canvas</a>
 , <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#af11ac750dcc20d5a35a530020c76eae7">Gtk::PLplot::Plot2D</a>
+, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#adfbfa5d85411e38eb68c170617697a11">Gtk::PLplot::Plot2DData</a>
 </li>
 <li>signal_data_added()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a98c8ce34ebfbceddf0bfb3fb2a98277d">Gtk::PLplot::Plot2D</a>
@@ -393,6 +478,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 
 
+<h3><a class="anchor" id="index_x"></a>- x -</h3><ul>
+<li>x
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a265876a0740ebf02b4bdc4b5283d6bbd">Gtk::PLplot::Plot2DData</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_y"></a>- y -</h3><ul>
+<li>y
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a35c755bc48d51c2312b627f192275527">Gtk::PLplot::Plot2DData</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_~"></a>- ~ -</h3><ul>
 <li>~Canvas()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#a237c4549ad2e27c729cd1f71e89f0fd9">Gtk::PLplot::Canvas</a>
@@ -403,11 +502,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>~Plot2D()
 : <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a2b67fe1d06d5fab7ed0bd74e5bb9b296">Gtk::PLplot::Plot2D</a>
 </li>
+<li>~Plot2DData()
+: <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#afcd70e1a31b1ec8650e2fd12f160118a">Gtk::PLplot::Plot2DData</a>
+</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 17:38:08 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 22 2015 17:16:39 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

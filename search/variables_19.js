@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['zoom_5f100',['ZOOM_100',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#aff46e9e3f4bcc45cbb57d3ac55170b75',1,'Gtk::Stock']]],
-  ['zoom_5ffit',['ZOOM_FIT',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a942e4e7feaba227dcee3b4cf8ceeebbb',1,'Gtk::Stock']]],
-  ['zoom_5fin',['ZOOM_IN',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a85312d896ddc087dbabe1bab1aaaa400',1,'Gtk::Stock']]],
-  ['zoom_5fout',['ZOOM_OUT',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a4bf2288b2486111f962e0f9f711a93f9',1,'Gtk::Stock']]]
+  ['y',['y',['../class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a35c755bc48d51c2312b627f192275527',1,'Gtk::PLplot::Plot2DData']]],
+  ['year',['YEAR',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#gac803072d86bbc2ce1f7d558c94f41ae1a9f9e923dc13c924a74987cf00250674e',1,'Glib::Date']]],
+  ['yes',['YES',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#acf80d9c8e5271cf1e449060c44d714da',1,'Gtk::Stock']]]
 ];

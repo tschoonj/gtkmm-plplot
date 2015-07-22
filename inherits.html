@@ -15,6 +15,7 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_hack.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -39,8 +40,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="index.html"><span>Home</span></a></li>
+      <li><a href="installation_instructions.html"><span>Installation&#160;instructions</span></a></li>
+      <li><a href="usage.html"><span>Usage</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li>
@@ -94,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><table border="0" cellspacing="10" cellpadding="0">
 <tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#sigc_1_1trackable"/>
 <map name="sigc_1_1trackable" id="sigc_1_1trackable">
-<area shape="rect" id="node2" doxygen="/usr/local/Cellar/gtkmm3/3.16.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Widget.html" title="Gtk::Widget" alt="" coords="675,55,766,80"/><area shape="rect" id="node3" doxygen="/usr/local/Cellar/gtkmm3/3.16.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1DrawingArea.html" title="Gtk::DrawingArea" alt="" coords="814,55,941,80"/><area shape="rect" id="node4" href="class_gtk_1_1_p_lplot_1_1_canvas.html" title="Principal plotting widget. " alt="" coords="989,55,1129,80"/><area shape="rect" id="node5" doxygen="/usr/local/Cellar/libsigc++/2.4.1/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag:http://library.gnome.org/devel/libsigc++/unstable" href="http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="5,128,112,153"/><area shape="rect" id="node6" doxygen="/usr/local/Cellar/glibmm/2.44.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag:http://library.gnome.org/devel/glibmm/unstable/" href="http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1ObjectBase.html" title="Glib::ObjectBase" alt="" coords="181,79,302,104"/><area shape="rect" id="node11" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots " alt="" coords="174,128,309,153"/><area shape="rect" id="node12" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html" title="Gtk::PLplot::Plot2DData" alt="" coords="160,177,323,203"/><area shape="rect" id="node7" doxygen="/usr/local/Cellar/glibmm/2.44.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag:http://library.gnome.org/devel/glibmm/unstable/" href="http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Interface.html" title="Glib::Interface" alt="" coords="371,55,475,80"/><area shape="rect" id="node9" doxygen="/usr/local/Cellar/glibmm/2.44.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag:http://library.gnome.org/devel/glibmm/unstable/" href="http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Object.html" title="Glib::Object" alt="" coords="377,104,468,129"/><area shape="rect" id="node8" doxygen="/usr/local/Cellar/gtkmm3/3.16.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Buildable.html" title="Gtk::Buildable" alt="" coords="523,55,627,80"/><area shape="rect" id="node10" doxygen="/usr/local/Cellar/gtkmm3/3.16.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Object.html" title="Gtk::Object" alt="" coords="531,104,619,129"/></map>
+<area shape="rect" id="node2" doxygen="/usr/local/Cellar/gtkmm3/3.16.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Widget.html" title="Gtk::Widget" alt="" coords="675,55,766,80"/><area shape="rect" id="node3" doxygen="/usr/local/Cellar/gtkmm3/3.16.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1DrawingArea.html" title="Gtk::DrawingArea" alt="" coords="814,55,941,80"/><area shape="rect" id="node4" href="class_gtk_1_1_p_lplot_1_1_canvas.html" title="Principal plotting widget. " alt="" coords="989,55,1129,80"/><area shape="rect" id="node5" doxygen="/usr/local/Cellar/libsigc++/2.4.1/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag:http://library.gnome.org/devel/libsigc++/unstable" href="http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="5,128,112,153"/><area shape="rect" id="node6" doxygen="/usr/local/Cellar/glibmm/2.44.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag:http://library.gnome.org/devel/glibmm/unstable/" href="http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1ObjectBase.html" title="Glib::ObjectBase" alt="" coords="181,79,302,104"/><area shape="rect" id="node11" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots " alt="" coords="174,128,309,153"/><area shape="rect" id="node12" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html" title="a class that will hold a single dataset and its properties for a Plot2D plot " alt="" coords="160,177,323,203"/><area shape="rect" id="node7" doxygen="/usr/local/Cellar/glibmm/2.44.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag:http://library.gnome.org/devel/glibmm/unstable/" href="http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Interface.html" title="Glib::Interface" alt="" coords="371,55,475,80"/><area shape="rect" id="node9" doxygen="/usr/local/Cellar/glibmm/2.44.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag:http://library.gnome.org/devel/glibmm/unstable/" href="http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Object.html" title="Glib::Object" alt="" coords="377,104,468,129"/><area shape="rect" id="node8" doxygen="/usr/local/Cellar/gtkmm3/3.16.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Buildable.html" title="Gtk::Buildable" alt="" coords="523,55,627,80"/><area shape="rect" id="node10" doxygen="/usr/local/Cellar/gtkmm3/3.16.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Object.html" title="Gtk::Object" alt="" coords="531,104,619,129"/></map>
 </td></tr>
 <tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#std_1_1exception"/>
 <map name="std_1_1exception" id="std_1_1exception">
@@ -104,7 +107,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 17:38:08 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 22 2015 17:16:39 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

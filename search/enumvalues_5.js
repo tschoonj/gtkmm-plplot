@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['max_5fcount',['max_count',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00363.html#a1cfd8f76e90bcb83de1965772bf57265a7c66d09f76b308caa4430f2f04575835',1,'__gnu_pbds::lu_counter_policy']]]
+  ['future_5falready_5fretrieved',['future_already_retrieved',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01646.html#ga61938f7ac25df97b5362109e61bb46a6a829037befd349f04ff71ddea385bdb9a',1,'future_already_retrieved()(Global Namespace)'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01646.html#ga61938f7ac25df97b5362109e61bb46a6a829037befd349f04ff71ddea385bdb9a',1,'std::future_already_retrieved()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01646.html#ga61938f7ac25df97b5362109e61bb46a6a829037befd349f04ff71ddea385bdb9a',1,'future_already_retrieved()(Global Namespace)']]]
 ];

@@ -15,6 +15,7 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen_hack.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -39,8 +40,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li class="current"><a href="index.html"><span>Home</span></a></li>
+      <li><a href="installation_instructions.html"><span>Installation&#160;instructions</span></a></li>
+      <li><a href="usage.html"><span>Usage</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li>
@@ -87,7 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Despite the lack of attention by the other developers of GtkExtra, I found myself still in need of a scientific plotting widget for GTK+3, so I decided to find a different solution. Since I certainly do not have the skill (or time for that matter) to write an entire class of GTK+ widgets for scientific plotting, I had to find a different approach. The idea that eventually culminated into this project was the following: first I rediscovered the <a href="http://plplot.sourceforge.net">PLplot</a> library, which I had used many years ago to produce simple plots from within command-line programs. I went through their (excellent) documentation and discovered that they had introduced support for a <a class="elRef" doxygen="/usr/local/Cellar/cairomm/1.11.2_1/share/doc/cairomm-1.0/reference/cairomm-1.0.tag:http://www.cairographics.org/documentation/cairomm/reference/" href="http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html">Cairo</a> plotting driver, along with an <code>extcairo</code> device that allowed PLplot to draw onto a <a class="elRef" doxygen="/usr/local/Cellar/cairomm/1.11.2_1/share/doc/cairomm-1.0/reference/cairomm-1.0.tag:http://www.cairographics.org/documentation/cairomm/reference/" href="http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html">Cairo</a> context. An example is included in the source where they demonstrate this feature by plotting onto a <a class="elRef" doxygen="/usr/local/Cellar/cairomm/1.11.2_1/share/doc/cairomm-1.0/reference/cairomm-1.0.tag:http://www.cairographics.org/documentation/cairomm/reference/" href="http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html">Cairo</a> context connected to a PostScript surface. Based on this example I wrote my own Gtkmm widget that inherits from <code>Gtkmm::DrawingArea</code> with a custom <code>on_draw</code> method as explained in the <a href="https://developer.gnome.org/gtk3/stable/GtkDrawingArea.html">GTK+</a> and <a href="https://developer.gnome.org/gtkmm/stable/classGtk_1_1DrawingArea.html">Gtkmm</a> manuals. With surprisingly little work, I managed to produce a nice looking plot.</p>
 <p>I followed up with a blogpost <a href="http://tschoonj.github.io/blog/2015/07/05/embedding-plplot-in-gtk-drawingareas/">about this</a> and a couple of days later I decided to start this project after it was clear that it could be useful to myself and my colleages.</p>
 <p>I think that the approach followed by Gtkmm-PLplot has the following advantages:</p><ul>
-<li>Depends on a mature toolkit (PLplot) to the bulk of the work. No need for me to write the low-level plotting routines.</li>
+<li>Depends on a mature toolkit (PLplot) to do the bulk of the work. No need for me to write the low-level plotting routines.</li>
 <li>Relies on <a class="elRef" doxygen="/usr/local/Cellar/cairomm/1.11.2_1/share/doc/cairomm-1.0/reference/cairomm-1.0.tag:http://www.cairographics.org/documentation/cairomm/reference/" href="http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html">Cairo</a> for rendering, which looks like it will remain the GTK+ workhorse for a long time to come. This means low maintenance.</li>
 <li>PLplot itself has a lot of useful features, but suffers (IMHO) from its obscure, often acronym based hard to remember API. Gtkmm-PLplot hides this API and offers an interface that should be familiar to anyone with GTK+/Gtkmm experience.</li>
 </ul>
@@ -96,7 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 20 2015 17:38:08 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 22 2015 17:16:39 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -5,10 +5,10 @@ var indexSectionsWithContent =
   2: "_acgps",
   3: "abcdefghiklmnopqrstuvwxz",
   4: "_abcdefghijklmnopqrstuvwxyz~",
-  5: "_abcdefghijklmnopqrstuvwyz",
+  5: "_abcdefghijklmnopqrstuvwxyz",
   6: "_abcdefghiklmnoprstuvwy",
   7: "_abcdefghijklmnoprstuvwz",
-  8: "abdefmnoprst",
+  8: "abcdeflmnoprst",
   9: "abcghmopruv",
   10: "abcdefghilmnprstuvw",
   11: "eiu"
