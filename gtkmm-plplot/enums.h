@@ -15,8 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GTKMMPLPLOTLINESTYLE_H
-#define GTKMMPLPLOTLINESTYLE_H
+#ifndef GTKMMPLPLOTENUMS_H
+#define GTKMMPLPLOTENUMS_H
 
 namespace Gtk {
   namespace PLplot {
@@ -25,7 +25,7 @@ namespace Gtk {
      * To be used in combination with Plot2DData constructors and the Plot2DData::set_line_style() and Plot2DData::get_line_style() methods.
      */
     enum LineStyle {
-      NONE = 0, ///< No line will be plotted
+      NONE = 0, ///< no line will be plotted
       CONTINUOUS, ///< a continuous, uninterrupted line will be drawn
       SHORT_DASH_SHORT_GAP, ///< a line consisting of alternating short dashes and short gaps
       LONG_DASH_LONG_GAP, ///<  a line consisting of alternating long dashes and long gaps
@@ -34,6 +34,19 @@ namespace Gtk {
       LONG_DASH_SHORT_GAP_LONG_DASH_SHORT_GAP, ///< a line consisting of repeating sequences of a long dash, a short gap, a long dash and a short gap
       SHORT_DASH_SHORT_GAP_MEDIUM_DASH_MEDIUM_GAP_LONG_DASH_LONG_GAP, ///< a line consisting of repeating sequences of a short dash, short gap, medium dash, medium gap, long dash and a long gap
       SHORT_DASH_SHORT_GAP_MEDIUM_DASH_SHORT_GAP_LONG_DASH_SHORT_GAP ///< a line consisting of repeating sequences of a short dash, short gap, medium dash, short gap, long dash and a short gap
+    };
+
+    /** Controls the appearance of the box around the plot
+     *
+     * To be used in combination with Plot2D::set_box_style() and Plot2D::get_box_style()
+     */
+    enum BoxStyle {
+      NO_BOX_NO_TICKS_NO_LABELS_NO_AXES = -2, ///< draw no box, no tick marks, no numeric tick labels, no axes
+      BOX_ONLY = -1, ///< draw box only
+      BOX_TICKS_TICK_LABELS = 0, ///< draw box, ticks, and numeric tick labels. This is the default
+      BOX_TICKS_TICK_LABELS_MAIN_AXES = 1, ///< also draw coordinate axes at x=0 and y=0
+      BOX_TICKS_TICK_LABELS_MAIN_AXES_MAJOR_TICK_GRID = 2, ///< also draw a grid at major tick positions in both coordinates
+      BOX_TICKS_TICK_LABELS_MAIN_AXES_MAJOR_MINOR_TICK_GRID = 3, ///< also draw a grid at minor tick positions in both coordinates
     };
   }
 }

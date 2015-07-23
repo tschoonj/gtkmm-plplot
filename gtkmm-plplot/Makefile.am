@@ -8,7 +8,7 @@ gtkmm_plplotinclude_HEADERS = \
                               plot2ddata.h \
                               plot2d.h \
                               utils.h \
-                              linestyle.h
+                              enums.h
 
 gtkmm_plplotbaseinclude_HEADERS = gtkmm-plplot.h
 

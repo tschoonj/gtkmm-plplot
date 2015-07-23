@@ -50,7 +50,10 @@ Plot2D::Plot2D(
   plot_height_norm(_plot_height_norm),
   plot_offset_horizontal_norm(_plot_offset_horizontal_norm),
   plot_offset_vertical_norm(_plot_offset_vertical_norm),
-  region_selectable(true) {
+  region_selectable(true),
+  axes_color("Black"),
+  titles_color("Black"),
+  box_style(BOX_TICKS_TICK_LABELS) {
 
   background_color.set_alpha(0.0);
 
@@ -75,7 +78,10 @@ Plot2D::Plot2D(const Plot2D &_source) :
   plot_height_norm(_source.plot_height_norm),
   plot_offset_horizontal_norm(_source.plot_offset_horizontal_norm),
   plot_offset_vertical_norm(_source.plot_offset_vertical_norm),
-  region_selectable(_source.region_selectable) {
+  region_selectable(_source.region_selectable),
+  axes_color(_source.axes_color),
+  titles_color(_source.titles_color),
+  box_style(_source.box_style) {
 
   this->signal_select_region().connect(sigc::mem_fun(*this, &Plot2D::on_select_region));
   this->signal_changed().connect(sigc::mem_fun(*this, &Plot2D::on_changed));
@@ -228,7 +234,16 @@ Glib::ustring Plot2D::get_plot_title() {
   return plot_title;
 }
 
-//it's possible I can get the width and height also from the Cairo context throught its surface
+void Plot2D::set_box_style(BoxStyle _box_style) {
+  box_style = _box_style;
+  _signal_changed.emit();
+}
+
+BoxStyle Plot2D::get_box_style() {
+  return box_style;
+}
+
+//it's possible I can get the width and height also from the Cairo context through its surface
 //problem is that this only works for image surfaces, not for PDF etc :-(
 void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) {
   if (!shown)
@@ -254,27 +269,47 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
   cr->translate(plot_offset_x, plot_offset_y);
   pls->init();
 
-  //Gdk::RGBA color = get_style_context()->get_color();
-  //Gdk::Cairo::set_source_rgba(cr, color);
   pls->cmd(PLESC_DEVINIT, cr->cobj());
-  pls->col0(0);
 
   int plplot_axis_style;
 
-  if (log10_x && log10_y)
-    plplot_axis_style = PLPLOT_LOG_LOG;
-  else if (log10_x)
-    plplot_axis_style = PLPLOT_LOG_LIN;
-  else if (log10_y)
-    plplot_axis_style = PLPLOT_LIN_LOG;
-  else
-    plplot_axis_style = PLPLOT_LIN_LIN;
+  plplot_axis_style = box_style;
 
+  if (box_style >= 0 ) {
+    if (log10_x && log10_y)
+      plplot_axis_style += PLPLOT_LOG_LOG;
+    else if (log10_x)
+      plplot_axis_style += PLPLOT_LOG_LIN;
+    else if (log10_y)
+      plplot_axis_style += PLPLOT_LIN_LOG;
+    else
+      plplot_axis_style += PLPLOT_LIN_LIN;
+  }
+
+  //set the axes color
+  PLINT red_u_old, green_u_old, blue_u_old;
+  PLFLT alpha_old;
+
+  pls->gcol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
+  pls->scol0a(5, axes_color.get_red_u()/256, axes_color.get_green_u()/256, axes_color.get_blue_u()/256, axes_color.get_alpha());
+  pls->col0(5);
+
+  //plot the box with its axes
   pls->env(plotted_range_x[0], plotted_range_x[1],
            plotted_range_y[0], plotted_range_y[1],
            0, plplot_axis_style);
+  //restore color
+  pls->scol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
+
+  //set the label color
+  pls->gcol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
+  pls->scol0a(5, titles_color.get_red_u()/256, titles_color.get_green_u()/256, titles_color.get_blue_u()/256, titles_color.get_alpha());
+  pls->col0(5);
 
   pls->lab(axis_title_x.c_str(), axis_title_y.c_str(), plot_title.c_str());
+
+  //restore color
+  pls->scol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
 
   for (auto &iter : plot_data) {
     iter->draw_plot_data(cr, pls, log10_x, log10_y);
@@ -372,6 +407,24 @@ Gdk::RGBA Plot2D::get_background_color() {
 
 void Plot2D::set_background_color(Gdk::RGBA _background_color) {
   background_color = _background_color;
+  _signal_changed.emit();
+}
+
+Gdk::RGBA Plot2D::get_axes_color() {
+  return axes_color;
+}
+
+void Plot2D::set_axes_color(Gdk::RGBA _axes_color) {
+  axes_color = _axes_color;
+  _signal_changed.emit();
+}
+
+Gdk::RGBA Plot2D::get_titles_color() {
+  return titles_color;
+}
+
+void Plot2D::set_titles_color(Gdk::RGBA _titles_color) {
+  titles_color = _titles_color;
   _signal_changed.emit();
 }
 

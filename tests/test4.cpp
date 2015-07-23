@@ -97,6 +97,10 @@ namespace Test4 {
       canvas.get_plot(1)->set_region_selectable(false);
       //let's override the default region of this plot, this is NOT influenced by set_region_selectable()!!!
       canvas.get_plot(1)->set_region(-10, 10, -10, 10);
+      //we can also change some other colors
+      canvas.get_plot(1)->set_axes_color(Gdk::RGBA("Blue"));
+      canvas.get_plot(1)->set_titles_color(Gdk::RGBA("Purple"));
+      canvas.get_plot(1)->set_box_style(Gtk::PLplot::BOX_TICKS_TICK_LABELS_MAIN_AXES_MAJOR_MINOR_TICK_GRID);
 
       //lets'give the third plot a nice opaque background color
       canvas.get_plot(2)->set_background_color(Gdk::RGBA("White"));

@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GTKMMPLPLOTPLOT2D_H
 
 #include <gtkmm-plplot/plot2ddata.h>
+#include <gtkmm-plplot/enums.h>
 #include <sigc++/sigc++.h>
 #include <vector>
 #include <plstream.h>
@@ -60,16 +61,21 @@ namespace Gtk {
       int plot_width; ///< the current width of the plot in Cairo units
       int plot_height; ///< the current height of the plot in Cairo units
       bool shown; ///< \c true means the plot is currently visible, \c false means it is not plotted
-      Gdk::RGBA background_color; ///< \c the currently used background color of the plot (default = fully transparent white, meaning that the background will be determined by the canvas)
+      Gdk::RGBA background_color; ///< the currently used background color of the plot (default = fully transparent white, meaning that the background will be determined by the canvas)
       double plot_width_norm; ///< the normalized plot width, calculated relative to the canvas width
       double plot_height_norm; ///< the normalized plot height, calculated relative to the canvas height
       double plot_offset_horizontal_norm; ///< the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
       double plot_offset_vertical_norm; ///< the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
       bool region_selectable; ///< \c true indicates that a region on the plot can be selected by dragging a box with the mouse button pressed in when showing, or if double mouse button pressed event zooms out, \c false means not possible. The default is \c true
+      Gdk::RGBA axes_color; ///< the currently used color to draw the axes, the box and gridlines. Default is opaque black
+      Gdk::RGBA titles_color; ///< the currently used color to draw the axes and plot titles. Default is opaque black
+      BoxStyle box_style; ///< the currently used box style to draw the box, axes and grid
+
       sigc::signal<void, double, double, double, double > _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event()
       sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the plot parameters, or any of the contained Plot2DData datasets is changed.
       sigc::signal<void, Plot2DData *> _signal_data_added; ///< signal emitted whenever a new Plot2DData dataset is added to the plot
       sigc::signal<void> _signal_data_removed; ///< signal emitted whenever data is removed from the plot.
+
       void plot_data_modified(); ///< a private function that will update the \c _range variables when datasets are added, modified or removed.
       void convert_plplot_to_cairo_coordinates(
         double x_pl, double y_pl,
@@ -240,6 +246,18 @@ namespace Gtk {
        */
       Glib::ustring get_plot_title();
 
+      /** Set the box style
+       *
+       * \param style the new box style (default is BOX_TICKS_TICK_LABELS)
+       */
+      void set_box_style(BoxStyle style = BOX_TICKS_TICK_LABELS);
+
+      /** Get the box style
+       *
+       * \return the currently selected box style
+       */
+      BoxStyle get_box_style();
+
       /** Changes the visible plotted region
        *
        * Sets the axes range of the plotted box to the supplied parameters.
@@ -279,6 +297,30 @@ namespace Gtk {
        * \param color Set a new plot background color.
        */
       void set_background_color(Gdk::RGBA color);
+
+      /** Get the color to draw the axes, the box and gridlines
+       *
+       * \return The currently selected axes color.
+       */
+      Gdk::RGBA get_axes_color();
+
+      /** Set the color to draw the axes, the box and gridlines
+       *
+       * \param color Set a new axes color.
+       */
+      void set_axes_color(Gdk::RGBA color);
+
+      /** Get the color to draw the plot and axes titles
+       *
+       * \return The currently selected plot and axes color.
+       */
+      Gdk::RGBA get_titles_color();
+
+      /** Set the color to draw the plot and axes titles
+       *
+       * \param color Set a new titles color.
+       */
+      void set_titles_color(Gdk::RGBA color);
 
       /** Get whether regions can be selected on the plot by dragging the mouse while the button is clicked in.
        *

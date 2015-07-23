@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <sigc++/sigc++.h>
 #include <vector>
 #include <valarray>
-#include <gtkmm-plplot/linestyle.h>
+#include <gtkmm-plplot/enums.h>
 #include <plstream.h>
 #include <glibmm/ustring.h>
 #include <cairomm/cairomm.h>

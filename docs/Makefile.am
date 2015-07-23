@@ -6,7 +6,7 @@ doxyfile_deps = $(top_srcdir)/gtkmm-plplot/canvas.h \
 								$(top_srcdir)/gtkmm-plplot/exception.h \
 								$(top_srcdir)/gtkmm-plplot/plot2d.h \
 								$(top_srcdir)/gtkmm-plplot/plot2ddata.h \
-								$(top_srcdir)/gtkmm-plplot/linestyle.h \
+								$(top_srcdir)/gtkmm-plplot/enums.h \
 								$(top_srcdir)/gtkmm-plplot/utils.h
 
 
