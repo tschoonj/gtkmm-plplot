@@ -145,6 +145,9 @@ namespace Test5 {
       linewidth_spin.set_vexpand(false);
       linewidth_spin.set_halign(Gtk::ALIGN_START);
       linewidth_spin.set_valign(Gtk::ALIGN_CENTER);
+      linewidth_spin.set_wrap(true);
+      linewidth_spin.set_snap_to_ticks(true);
+      linewidth_spin.set_numeric(true);
       symbol_scale_factor_spin.set_hexpand(true);
       symbol_scale_factor_spin.set_vexpand(false);
       symbol_scale_factor_spin.set_halign(Gtk::ALIGN_START);
