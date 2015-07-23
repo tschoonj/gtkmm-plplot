@@ -51,6 +51,9 @@ namespace Gtk {
       LineStyle line_style; ///< The linestyle that will be used for this dataset in the plot
       double line_width; ///< The line width of the dataset. Default is 1.0
       bool shown; ///< \c true means the plot is currently visible, \c false means it is not plotted
+      Glib::ustring symbol; ///< If not an empty string, the symbol will be plotted at each of the data points from \c x and \c y.
+      Gdk::RGBA symbol_color; ///< The color the symbol will be plotted in
+      double symbol_scale_factor; ///< Scale factor that will determine the size of the symbols. Default is 1.
       sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the dataset parameters is changed.
       Plot2DData() = delete; ///< no default constructor
       Plot2DData &operator=(const Plot2DData &) = delete; ///< no copy constructor
@@ -170,6 +173,54 @@ namespace Gtk {
        * \return the current dataset line width
        */
       double get_line_width();
+
+      /** Set the plot symbol
+       *
+       * It is possible to plot a symbol (string) at the datapoints,
+       * either replacing (if \c line_style is NONE) or complementing the line connecting the points.
+       * The symbol will be sent 'as-is' to PLplot, meaning that it supports the
+       * many escape-sequences that PLplot provides. For more information, the reader is referred to
+       * the PLplot manual, section 3.8.4 Escape sequences in text.
+       * If the plot symbol is no longer desired, disable it by passing an emptry string.
+       * \param symbol the symbol to be used for plotting
+       */
+      void set_symbol(Glib::ustring symbol);
+
+      /** Get the plot symbol
+       *
+       * See set_symbol() for more information
+       * \return the symbol currently to be used for plotting
+       */
+      Glib::ustring get_symbol();
+
+      /** Set the plot symbol color
+       *
+       * See set_symbol() for more information about plotting symbols
+       * \param color the color that will used for plotting the symbols
+       */
+      void set_symbol_color(Gdk::RGBA color);
+
+      /** Get the plot symbol color
+       *
+       * See set_symbol() for more information about plotting symbols
+       * \return the color that is currently used for plotting symbols
+       */
+      Gdk::RGBA get_symbol_color();
+
+      /** Set the plot symbol height scale factor
+       *
+       * See set_symbol() for more information about plotting symbols
+       * \param scale_factor the scale factor that will used to determine the height of the plotting symbols.
+       */
+      void set_symbol_height_scale_factor(double scale_factor = 1.0);
+
+      /** Get the plot symbol height scale factor
+       *
+       * See set_symbol() for more information about plotting symbols
+       * \return the current scale factor that will used to determine the height of the plotting symbols.
+       * \exception Gtk::PLplot::Exception
+       */
+      double get_symbol_height_scale_factor();
 
       /** Make the dataset visible in the plot
        *

@@ -28,7 +28,9 @@ Plot2DData::Plot2DData(
   LineStyle _line_style,
   double _line_width) :
   x(_x), y(_y), color(_color), line_style(_line_style),
-  line_width(_line_width), shown(true) {
+  line_width(_line_width), shown(true),
+  symbol(""), symbol_color(Gdk::RGBA("Red")),
+  symbol_scale_factor(1.0) {
 
    //ensure both arrays have the same size
   if (x.size() != y.size()) {
@@ -74,7 +76,10 @@ Plot2DData::Plot2DData(
 Plot2DData::Plot2DData(const Plot2DData &_data) :
   Plot2DData(_data.x, _data.y, _data.color, _data.line_style, _data.line_width) {
     shown = _data.shown;
-  }
+    symbol = _data.symbol;
+    symbol_color = _data.symbol_color;
+    symbol_scale_factor = _data.symbol_scale_factor;
+}
 
 void Plot2DData::set_color(Gdk::RGBA _color) {
   color = _color;
@@ -103,6 +108,36 @@ double Plot2DData::get_line_width() {
   return line_width;
 }
 
+void Plot2DData::set_symbol(Glib::ustring _symbol) {
+  symbol = _symbol;
+  _signal_changed.emit();
+}
+
+Glib::ustring Plot2DData::get_symbol() {
+  return symbol;
+}
+
+void Plot2DData::set_symbol_color(Gdk::RGBA _color) {
+  symbol_color = _color;
+  _signal_changed.emit();
+}
+
+Gdk::RGBA Plot2DData::get_symbol_color() {
+  return symbol_color;
+}
+
+void Plot2DData::set_symbol_height_scale_factor(double _scale_factor) {
+  if (_scale_factor <= 0.0) {
+    throw Exception("Plot2DData::set_symbol_height_scale_factor -> scale factor must be strictly positive");
+  }
+  symbol_scale_factor = _scale_factor;
+  _signal_changed.emit();
+}
+
+double Plot2DData::get_symbol_height_scale_factor() {
+  return symbol_scale_factor;
+}
+
 void Plot2DData::on_changed() {
   //do nothing
 }
@@ -125,18 +160,6 @@ void Plot2DData::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstrea
   if (!shown)
     return;
 
-  //get the color from col0a and store it
-  PLINT red_u_old, green_u_old, blue_u_old;
-  PLFLT alpha_old;
-  pls->gcol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
-  pls->scol0a(5, color.get_red_u()/256, color.get_green_u()/256, color.get_blue_u()/256, color.get_alpha());
-  pls->col0(5);
-  //need to add methods for symbol plotting
-  if (line_style != LineStyle::NONE) {
-    pls->lsty(line_style);
-  }
-  pls->width(line_width);
-
   //now let's see if we are dealing with logarithmic axes
   PLFLT *x_pl = &x[0], *y_pl = &y[0];
   std::vector<PLFLT> x_vc, y_vc;
@@ -154,8 +177,31 @@ void Plot2DData::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstrea
     y_vc.assign(std::begin(y_va), std::end(y_va));
     y_pl = &y_vc[0];
   }
-  pls->line(x.size(), x_pl, y_pl);
 
-  //restore color
-  pls->scol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
+  PLINT red_u_old, green_u_old, blue_u_old;
+  PLFLT alpha_old;
+
+  // plot the line if requested
+  if (line_style != LineStyle::NONE) {
+    pls->gcol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
+    pls->scol0a(5, color.get_red_u()/256, color.get_green_u()/256, color.get_blue_u()/256, color.get_alpha());
+    pls->col0(5);
+    pls->lsty(line_style);
+    pls->width(line_width);
+    pls->line(x.size(), x_pl, y_pl);
+    //restore color
+    pls->scol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
+  }
+
+  // plot the symbols if requested
+  if (!symbol.empty()) {
+    pls->gcol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
+    pls->scol0a(5, symbol_color.get_red_u()/256, symbol_color.get_green_u()/256, symbol_color.get_blue_u()/256, symbol_color.get_alpha());
+    pls->col0(5);
+    pls->schr(0, symbol_scale_factor);
+    pls->string(x.size(), x_pl, y_pl, symbol.c_str());
+    //restore color
+    pls->scol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
+  }
+
 }
