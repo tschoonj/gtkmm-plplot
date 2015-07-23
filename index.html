@@ -93,13 +93,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Depends on a mature toolkit (PLplot) to do the bulk of the work. No need for me to write the low-level plotting routines.</li>
 <li>Relies on <a class="elRef" doxygen="/usr/local/Cellar/cairomm/1.11.2_1/share/doc/cairomm-1.0/reference/cairomm-1.0.tag:http://www.cairographics.org/documentation/cairomm/reference/" href="http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html">Cairo</a> for rendering, which looks like it will remain the GTK+ workhorse for a long time to come. This means low maintenance.</li>
 <li>PLplot itself has a lot of useful features, but suffers (IMHO) from its obscure, often acronym based hard to remember API. Gtkmm-PLplot hides this API and offers an interface that should be familiar to anyone with GTK+/Gtkmm experience.</li>
+<li>One of the things that bothers me about GtkExtra is that every time you change a plot or canvas property, you are responsible for calling drawing routines to ensure the widget is updated accordingly. Gtkmm-PLplot does this for you: a property is updated, everything is redrawn immediately. This is done by relying heavily on <a href="http://libsigc.sourceforge.net">libsigc++</a>'s signalling</li>
 </ul>
-<p>There may be people wondering why I didn't write this in plain C using GTK+ instead of Gtkmm. I acknowledge that this project would benefit from this as it makes the API easily available in other languages through GObject introspection. However, writing GTK+ widgets is a real pain (remember: nobody is maintaining those other plotting widgets...), while writing in C++ produces nice, streamlined and compact code. It's also just a lot more fun to do, and that's very important to me :-)</p>
+<p>There may be people wondering why I didn't write this in plain C using GTK+ instead of Gtkmm. I acknowledge that this project would benefit from this as it makes the API easily available in other languages through GObject introspection. However, writing GTK+ widgets is a real pain (remember: nobody is maintaining those other plotting widgets...), while writing in C++ produces nice, streamlined and compact code, especially when using the C++11 features. It's also just a lot more fun to do, and that's very important to me :-)</p>
 <p>That's it! Enjoy using Gtkmm-PLplot and let me know if you run into bugs... </p><dl class="section author"><dt>Author</dt><dd>Tom Schoonjans </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 22 2015 17:16:39 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 23 2015 17:59:49 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

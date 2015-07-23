@@ -29,6 +29,7 @@ var searchData=
   ['ate',['ate',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#ad22225874e26210dfe11263279587e75',1,'std::basic_fstream']]],
   ['august',['AUGUST',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#ga9781abc52ad49766808898743e44031fa0f91e886e724ba8b2b78c4c109608806',1,'Glib::Date']]],
   ['auth_5ffailed',['AUTH_FAILED',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Error.html#acd2c910ef29b6be121c1fde3cfa8f2caa38bca965d996fac1b057fbdd9343c117',1,'Gio::DBus::Error']]],
+  ['axes_5fcolor',['axes_color',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a56820e32b6a2816bc8721cef975de401',1,'Gtk::PLplot::Plot2D']]],
   ['axis_5ftitle_5fx',['axis_title_x',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#aeedbe904badd51fa1a54aa369c6505de',1,'Gtk::PLplot::Plot2D']]],
   ['axis_5ftitle_5fy',['axis_title_y',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#ae3a67558cb79be9d4ee2238fc71a4dc9',1,'Gtk::PLplot::Plot2D']]]
 ];

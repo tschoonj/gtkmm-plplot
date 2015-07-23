@@ -134,6 +134,17 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:af906a181e6250225210ce29c07f58636"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac57ff669ab5a910c38ec29c4d90bf699"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_gtk_1_1_p_lplot.html#ac57ff669ab5a910c38ec29c4d90bf699">BoxStyle</a> { <br />
+&#160;&#160;<a class="el" href="namespace_gtk_1_1_p_lplot.html#ac57ff669ab5a910c38ec29c4d90bf699a6a96b4bcd3f9861886d382bf92d6975a">NO_BOX_NO_TICKS_NO_LABELS_NO_AXES</a> = -2, 
+<a class="el" href="namespace_gtk_1_1_p_lplot.html#ac57ff669ab5a910c38ec29c4d90bf699a9bc7fa8b4b6bc1ebf149f9d1084718a6">BOX_ONLY</a> = -1, 
+<a class="el" href="namespace_gtk_1_1_p_lplot.html#ac57ff669ab5a910c38ec29c4d90bf699af21740a8f3a077a23ade2a429335ea2d">BOX_TICKS_TICK_LABELS</a> = 0, 
+<a class="el" href="namespace_gtk_1_1_p_lplot.html#ac57ff669ab5a910c38ec29c4d90bf699af492dcab7b4f141d0ae976bf7af367da">BOX_TICKS_TICK_LABELS_MAIN_AXES</a> = 1, 
+<br />
+&#160;&#160;<a class="el" href="namespace_gtk_1_1_p_lplot.html#ac57ff669ab5a910c38ec29c4d90bf699a4f22258dc995d626f331873b5ea76def">BOX_TICKS_TICK_LABELS_MAIN_AXES_MAJOR_TICK_GRID</a> = 2, 
+<a class="el" href="namespace_gtk_1_1_p_lplot.html#ac57ff669ab5a910c38ec29c4d90bf699a157f1a25c306a07c66f78b695eb59a1d">BOX_TICKS_TICK_LABELS_MAIN_AXES_MAJOR_MINOR_TICK_GRID</a> = 3
+<br />
+ }</td></tr>
+<tr class="separator:ac57ff669ab5a910c38ec29c4d90bf699"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -146,6 +157,40 @@ Functions</h2></td></tr>
 <div class="textblock"><p>The namespace provided by Gtkmm-PLplot. </p>
 <p>Gtkmm-PLplot provides only one namespace, which is used to contain all of its classes. As it name shows, the namespace name was chosen on purpose to make it clear that it acts as an extension of the Gtkmm provided <code><a class="elRef" doxygen="/usr/local/Cellar/gtkmm3/3.16.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk.html">Gtk</a></code> namespace. When including Gtkmm-PLplot in your code, you will have to prefix the class names with our namespace, or alternatively, include <code>using namespace <a class="el" href="namespace_gtk_1_1_p_lplot.html" title="The namespace provided by Gtkmm-PLplot. ">Gtk::PLplot</a>;</code> in your file. </p>
 </div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="ac57ff669ab5a910c38ec29c4d90bf699"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespace_gtk_1_1_p_lplot.html#ac57ff669ab5a910c38ec29c4d90bf699">Gtk::PLplot::BoxStyle</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Controls the appearance of the box around the plot</p>
+<p>To be used in combination with <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#afdadc5b0910c1489ac0baa62749b1c85">Plot2D::set_box_style()</a> and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a61e247e1d24d357691497250e66c0488">Plot2D::get_box_style()</a> </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ac57ff669ab5a910c38ec29c4d90bf699a6a96b4bcd3f9861886d382bf92d6975a"></a>NO_BOX_NO_TICKS_NO_LABELS_NO_AXES&#160;</td><td class="fielddoc">
+<p>draw no box, no tick marks, no numeric tick labels, no axes </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ac57ff669ab5a910c38ec29c4d90bf699a9bc7fa8b4b6bc1ebf149f9d1084718a6"></a>BOX_ONLY&#160;</td><td class="fielddoc">
+<p>draw box only </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ac57ff669ab5a910c38ec29c4d90bf699af21740a8f3a077a23ade2a429335ea2d"></a>BOX_TICKS_TICK_LABELS&#160;</td><td class="fielddoc">
+<p>draw box, ticks, and numeric tick labels. This is the default </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ac57ff669ab5a910c38ec29c4d90bf699af492dcab7b4f141d0ae976bf7af367da"></a>BOX_TICKS_TICK_LABELS_MAIN_AXES&#160;</td><td class="fielddoc">
+<p>also draw coordinate axes at x=0 and y=0 </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ac57ff669ab5a910c38ec29c4d90bf699a4f22258dc995d626f331873b5ea76def"></a>BOX_TICKS_TICK_LABELS_MAIN_AXES_MAJOR_TICK_GRID&#160;</td><td class="fielddoc">
+<p>also draw a grid at major tick positions in both coordinates </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ac57ff669ab5a910c38ec29c4d90bf699a157f1a25c306a07c66f78b695eb59a1d"></a>BOX_TICKS_TICK_LABELS_MAIN_AXES_MAJOR_MINOR_TICK_GRID&#160;</td><td class="fielddoc">
+<p>also draw a grid at minor tick positions in both coordinates </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a class="anchor" id="af906a181e6250225210ce29c07f58636"></a>
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +204,7 @@ Functions</h2></td></tr>
 <p>To be used in combination with <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html" title="a class that will hold a single dataset and its properties for a Plot2D plot ">Plot2DData</a> constructors and the <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a537b7d3c38f31de50a0d5c046bb0aa66">Plot2DData::set_line_style()</a> and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#ad764cd9f0c9632a8b3efca28c125e897">Plot2DData::get_line_style()</a> methods. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="af906a181e6250225210ce29c07f58636a994e64946a56bd759d28ca090b5e68ae"></a>NONE&#160;</td><td class="fielddoc">
-<p>No line will be plotted. </p>
+<p>no line will be plotted </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="af906a181e6250225210ce29c07f58636ada519a9ef4e88b0474a528b995122190"></a>CONTINUOUS&#160;</td><td class="fielddoc">
 <p>a continuous, uninterrupted line will be drawn </p>
@@ -239,7 +284,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 22 2015 17:16:39 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 23 2015 17:59:49 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

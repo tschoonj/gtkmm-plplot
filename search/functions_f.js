@@ -65,6 +65,7 @@ var searchData=
   ['on_5fcustom_5fitem_5factivated',['on_custom_item_activated',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1AppChooserButton.html#a220a33581bd1526468629c0b0fe16ffb',1,'Gtk::AppChooserButton']]],
   ['on_5fcustom_5fwidget_5fapply',['on_custom_widget_apply',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1PrintOperation.html#a35ea1d661f300aa9393d319a762863f2',1,'Gtk::PrintOperation']]],
   ['on_5fdata_5fadded',['on_data_added',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a51269fedf80d0f678b9fd8d258fad24f',1,'Gtk::PLplot::Plot2D']]],
+  ['on_5fdata_5fmodified',['on_data_modified',['../class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a3e3876715240d514605ed563a681cfe9',1,'Gtk::PLplot::Plot2DData']]],
   ['on_5fdata_5fremoved',['on_data_removed',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a0303813ba3760d04296e33bddc942c20',1,'Gtk::PLplot::Plot2D']]],
   ['on_5fday_5fselected',['on_day_selected',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Calendar.html#acfc9a50eca9659bc0869d35e74b9bb7a',1,'Gtk::Calendar']]],
   ['on_5fday_5fselected_5fdouble_5fclick',['on_day_selected_double_click',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Calendar.html#a2b365af88044c0d062b8d2c662c96e16',1,'Gtk::Calendar']]],
