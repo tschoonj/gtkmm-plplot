@@ -162,6 +162,7 @@ void Plot2D::add_data(const Plot2DData &data) {
   Plot2DData *data_copy = new Plot2DData(data);
   plot_data.push_back(data_copy);
   data_copy->signal_changed().connect([this](){_signal_changed.emit();});
+  data_copy->signal_data_modified().connect([this](){plot_data_modified();});
 
   _signal_data_added.emit(data_copy);
 }
@@ -177,7 +178,6 @@ void Plot2D::set_axis_logarithmic_x(bool _log10) {
   }
   log10_x = _log10;
   plot_data_modified();
-  _signal_changed.emit();
 }
 
 void Plot2D::set_axis_logarithmic_y(bool _log10) {
@@ -191,7 +191,6 @@ void Plot2D::set_axis_logarithmic_y(bool _log10) {
   }
   log10_y = _log10;
   plot_data_modified();
-  _signal_changed.emit();
 }
 
 bool Plot2D::get_axis_logarithmic_x() {

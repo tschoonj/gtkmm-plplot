@@ -46,6 +46,8 @@ Plot2DData::Plot2DData(
   }
   this->signal_changed().connect(sigc::mem_fun(*this,
              &Plot2DData::on_changed));
+  this->signal_data_modified().connect(sigc::mem_fun(*this,
+             &Plot2DData::on_data_modified));
 }
 
 Plot2DData::Plot2DData(
@@ -138,7 +140,21 @@ double Plot2DData::get_symbol_height_scale_factor() {
   return symbol_scale_factor;
 }
 
+void Plot2DData::add_datapoint(PLFLT _x, PLFLT _y) {
+  x.push_back(_x);
+  y.push_back(_y);
+  _signal_data_modified.emit();
+}
+
+void Plot2DData::add_datapoint(std::pair<PLFLT, PLFLT> _xy_pair) {
+  add_datapoint(_xy_pair.first, _xy_pair.second);
+}
+
 void Plot2DData::on_changed() {
+  //do nothing
+}
+
+void Plot2DData::on_data_modified() {
   //do nothing
 }
 

@@ -115,4 +115,7 @@
  *  \section example4 Example 4: Displaying multiple plots on a single canvas
  *  \include test4.cpp
  *  \image html test4.png "Example 4"
+ *  \section example5 Example 5: Mixing plot lines and symbols plus adding datapoints
+ *  \include test5.cpp
+ *  \image html test5.png "Example 5"
  */

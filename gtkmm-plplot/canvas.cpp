@@ -54,10 +54,8 @@ Plot2D *Canvas::add_plot(const Plot2D &plot) {
 }
 
 Canvas::~Canvas() {
-  for (std::vector<Plot2D*>::iterator iter = plots.begin() ;
-    iter != plots.end() ;
-    ++iter) {
-      delete *iter;
+  for (auto &iter : plots) {
+    delete iter;
   }
 }
 
@@ -77,11 +75,10 @@ bool Canvas::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
   Gdk::Cairo::set_source_rgba(cr, background_color);
   cr->fill();
 
-  for (std::vector<Plot2D*>::iterator iter = plots.begin() ;
-    iter != plots.end() ;
-    ++iter) {
-      (*iter)->draw_plot(cr, width, height);
+  for (auto &iter : plots) {
+      iter->draw_plot(cr, width, height);
   }
+
   if (selecting &&
     start_cairo[0] >= 0.0 &&
     start_cairo[1] >= 0.0 &&

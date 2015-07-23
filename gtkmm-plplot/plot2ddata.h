@@ -54,7 +54,8 @@ namespace Gtk {
       Glib::ustring symbol; ///< If not an empty string, the symbol will be plotted at each of the data points from \c x and \c y.
       Gdk::RGBA symbol_color; ///< The color the symbol will be plotted in
       double symbol_scale_factor; ///< Scale factor that will determine the size of the symbols. Default is 1.
-      sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the dataset parameters is changed.
+      sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the dataset proprties is changed.
+      sigc::signal<void> _signal_data_modified; ///< signal that gets emitted whenever the X- and Y-datasets have been modified.
       Plot2DData() = delete; ///< no default constructor
       Plot2DData &operator=(const Plot2DData &) = delete; ///< no copy constructor
     protected:
@@ -64,6 +65,13 @@ namespace Gtk {
        * Currently it does nothing but the signal will get caught by Plot2D, and will eventually trigger a redrawing of the entire widget.
        */
       virtual void on_changed();
+
+      /** This is a default handler for signal_data_modified()
+       *
+       * This signal is emitted whenever any of the dataset proprties is changed.
+       * Currently it does nothing but the signal will get caught by Plot2D, and will eventually trigger a redrawing of the entire widget, taking into account the new dataset.
+       */
+      virtual void on_data_modified();
     public:
       /** Constructor
        *
@@ -222,6 +230,23 @@ namespace Gtk {
        */
       double get_symbol_height_scale_factor();
 
+      /** Add a single datapoint, consisting of an \c xval and \c yval value, to the dataset
+       *
+       * This datapoint will be added at the end of the std::vector's \c x and \c y.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param xval an X-value
+       * \param yval an Y-value
+       */
+      void add_datapoint(PLFLT xval, PLFLT yval);
+
+      /** Add a single datapoint, consisting of a std::pair with an X and Y value, to the dataset
+       *
+       * This datapoint will be added at the end of the std::vector's \c x and \c y.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param xy_pair a std::pair containing both an X- and a Y- value
+       */
+      void add_datapoint(std::pair<PLFLT, PLFLT> xy_pair);
+
       /** Make the dataset visible in the plot
        *
        */
@@ -246,13 +271,21 @@ namespace Gtk {
         return _signal_changed;
       }
 
+      /** signal_data_modified is emitted whenever the X- and Y- arrays are modified.
+       *
+       * See default handler on_data_modified()
+       */
+      sigc::signal<void> signal_data_modified() {
+        return _signal_data_modified;
+      }
+
       /** Method to draw the dataset
        *
        * This method is virtual allowing inheriting classes to implement their own method with the same signature.
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
-       * \param log10_x ///< \c true means logarithmic X- axis, \c false means linear
-       * \param log10_y ///< \c true means logarithmic y- axis, \c false means linear
+       * \param log10_x \c true means logarithmic X- axis, \c false means linear
+       * \param log10_y \c true means logarithmic y- axis, \c false means linear
        */
       virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls, bool log10_x, bool log10_y);
       friend class Plot2D;

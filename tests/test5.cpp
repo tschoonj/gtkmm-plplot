@@ -43,6 +43,7 @@ namespace Test5 {
     Glib::RefPtr<Gtk::Adjustment> symbol_scale_factor_adj;
     Gtk::SpinButton linewidth_spin;
     Gtk::SpinButton symbol_scale_factor_spin;
+    Gtk::Button add_data_button;
   public:
     Window(std::valarray<PLFLT> &x, std::valarray<PLFLT> &y,
       std::string x_title = "X-axis", std::string y_title = "Y-axis",
@@ -52,7 +53,8 @@ namespace Test5 {
       linewidth_adj(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       symbol_scale_factor_adj(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       linewidth_spin(linewidth_adj, 0.1, 1.0),
-      symbol_scale_factor_spin(symbol_scale_factor_adj, 0.1, 1.0) {
+      symbol_scale_factor_spin(symbol_scale_factor_adj, 0.1, 1.0),
+      add_data_button("Add datapoint") {
 
       // general window and canvas settings
       set_default_size(720, 580);
@@ -156,6 +158,19 @@ namespace Test5 {
 
       grid.attach(linewidth_spin, 3, 0, 1, 1);
       grid.attach(symbol_scale_factor_spin, 3, 1, 1, 1);
+
+      //the add datapoint button
+      add_data_button.set_hexpand(false);
+      add_data_button.set_vexpand(false);
+      add_data_button.set_valign(Gtk::ALIGN_CENTER);
+      add_data_button.set_halign(Gtk::ALIGN_CENTER);
+      grid.attach(add_data_button, 0, 3, 4, 1);
+      add_data_button.signal_clicked().connect([this](){
+        //this lambda has a static variable that will keep our ever incrementing X-value
+        static PLFLT new_x = 11;
+        canvas.get_plot(0)->get_data(0)->add_datapoint(new_x, sqrt(new_x));
+        new_x += 1.0;
+      });
 
       //finishing up
       grid.attach(canvas, 0, 2, 4, 1);
