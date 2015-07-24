@@ -95,6 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
@@ -213,6 +214,13 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a51269fedf80d0f678b9fd8d258fad24f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0303813ba3760d04296e33bddc942c20"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a0303813ba3760d04296e33bddc942c20">on_data_removed</a> ()</td></tr>
 <tr class="separator:a0303813ba3760d04296e33bddc942c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
+Static Protected Member Functions</h2></td></tr>
+<tr class="memitem:ae7a0f36a3f1b3f2976e2213f33075e5f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#ae7a0f36a3f1b3f2976e2213f33075e5f">coordinate_transform_world_to_plplot</a> (PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object)</td></tr>
+<tr class="separator:ae7a0f36a3f1b3f2976e2213f33075e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf6cc0d48cc7cb8c1c5e0b12f5a3f80b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#acf6cc0d48cc7cb8c1c5e0b12f5a3f80b">coordinate_transform_plplot_to_world</a> (PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object)</td></tr>
+<tr class="separator:acf6cc0d48cc7cb8c1c5e0b12f5a3f80b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -534,6 +542,132 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html" title="a class that will hold a single dataset and its properties for a Plot2D plot ">Plot2DData</a> in the <code>plot_data</code> vector. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acf6cc0d48cc7cb8c1c5e0b12f5a3f80b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Plot2D::coordinate_transform_plplot_to_world </td>
+          <td>(</td>
+          <td class="paramtype">PLFLT&#160;</td>
+          <td class="paramname"><em>x_old</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PLFLT&#160;</td>
+          <td class="paramname"><em>y_old</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PLFLT *&#160;</td>
+          <td class="paramname"><em>x_new</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PLFLT *&#160;</td>
+          <td class="paramname"><em>y_new</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PLPointer&#160;</td>
+          <td class="paramname"><em>object</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This static method takes care of coordinate transformations when using non-linear axes</p>
+<p>When a plot has logarithmic axes or polar plot style, <a class="el" href="namespace_gtk_1_1_p_lplot.html" title="The namespace provided by Gtkmm-PLplot. ">PLplot</a> requires the user to transform the dataset into the linear cartesian coordinate system which it uses internally. The reason that this is static method is due to <a class="el" href="namespace_gtk_1_1_p_lplot.html" title="The namespace provided by Gtkmm-PLplot. ">PLplot</a> expecting a C function... </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_old</td><td>the <code>x</code> <a class="el" href="namespace_gtk_1_1_p_lplot.html" title="The namespace provided by Gtkmm-PLplot. ">PLplot</a> coordinate to be transformed </td></tr>
+    <tr><td class="paramname">y_old</td><td>the <code>y</code> <a class="el" href="namespace_gtk_1_1_p_lplot.html" title="The namespace provided by Gtkmm-PLplot. ">PLplot</a> coordinate to be transformed </td></tr>
+    <tr><td class="paramname">x_new</td><td>the new <code>x</code> world coordinate </td></tr>
+    <tr><td class="paramname">y_new</td><td>the new <code>y</code> world coordinate </td></tr>
+    <tr><td class="paramname">object</td><td>the object we are dealing with </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae7a0f36a3f1b3f2976e2213f33075e5f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Plot2D::coordinate_transform_world_to_plplot </td>
+          <td>(</td>
+          <td class="paramtype">PLFLT&#160;</td>
+          <td class="paramname"><em>x_old</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PLFLT&#160;</td>
+          <td class="paramname"><em>y_old</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PLFLT *&#160;</td>
+          <td class="paramname"><em>x_new</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PLFLT *&#160;</td>
+          <td class="paramname"><em>y_new</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PLPointer&#160;</td>
+          <td class="paramname"><em>object</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This static method takes care of coordinate transformations when using non-linear axes</p>
+<p>When a plot has logarithmic axes or polar plot style, <a class="el" href="namespace_gtk_1_1_p_lplot.html" title="The namespace provided by Gtkmm-PLplot. ">PLplot</a> requires the user to transform the dataset into the linear cartesian coordinate system which it uses internally. The reason that this is static method is due to <a class="el" href="namespace_gtk_1_1_p_lplot.html" title="The namespace provided by Gtkmm-PLplot. ">PLplot</a> expecting a C function... </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_old</td><td>the <code>x</code> world coordinate to be transformed </td></tr>
+    <tr><td class="paramname">y_old</td><td>the <code>y</code> world coordinate to be transformed </td></tr>
+    <tr><td class="paramname">x_new</td><td>the new <code>x</code> <a class="el" href="namespace_gtk_1_1_p_lplot.html" title="The namespace provided by Gtkmm-PLplot. ">PLplot</a> coordinate </td></tr>
+    <tr><td class="paramname">y_new</td><td>the new <code>y</code> <a class="el" href="namespace_gtk_1_1_p_lplot.html" title="The namespace provided by Gtkmm-PLplot. ">PLplot</a> coordinate </td></tr>
+    <tr><td class="paramname">object</td><td>the object we are dealing with </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1377,7 +1511,7 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 23 2015 17:59:49 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 24 2015 16:57:40 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
