@@ -182,25 +182,17 @@ void Plot2DData::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstrea
 
   // plot the line if requested
   if (line_style != LineStyle::NONE) {
-    pls->gcol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
-    pls->scol0a(5, color.get_red_u()/256, color.get_green_u()/256, color.get_blue_u()/256, color.get_alpha());
-    pls->col0(5);
+    change_plstream_color(pls, color);
     pls->lsty(line_style);
     pls->width(line_width);
     pls->line(x.size(), x_pl, y_pl);
-    //restore color
-    pls->scol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
   }
 
   // plot the symbols if requested
   if (!symbol.empty()) {
-    pls->gcol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
-    pls->scol0a(5, symbol_color.get_red_u()/256, symbol_color.get_green_u()/256, symbol_color.get_blue_u()/256, symbol_color.get_alpha());
-    pls->col0(5);
+    change_plstream_color(pls, symbol_color);
     pls->schr(0, symbol_scale_factor);
     pls->string(x.size(), x_pl, y_pl, symbol.c_str());
-    //restore color
-    pls->scol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
   }
 
 }

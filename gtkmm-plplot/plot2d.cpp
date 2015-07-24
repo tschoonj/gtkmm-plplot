@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot/plot2d.h>
 #include <gtkmm-plplot/exception.h>
+#include <gtkmm-plplot/utils.h>
 #include <iostream>
 #include <gdkmm/rgba.h>
 #include <gdkmm/general.h>
@@ -315,30 +316,17 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
       plplot_axis_style += PLPLOT_LIN_LIN;
   }
 
-  //set the axes color
-  PLINT red_u_old, green_u_old, blue_u_old;
-  PLFLT alpha_old;
-
-  pls->gcol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
-  pls->scol0a(5, axes_color.get_red_u()/256, axes_color.get_green_u()/256, axes_color.get_blue_u()/256, axes_color.get_alpha());
-  pls->col0(5);
+  change_plstream_color(pls, axes_color);
 
   //plot the box with its axes
   pls->env(plotted_range_x[0], plotted_range_x[1],
            plotted_range_y[0], plotted_range_y[1],
            0, plplot_axis_style);
-  //restore color
-  pls->scol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
 
   //set the label color
-  pls->gcol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
-  pls->scol0a(5, titles_color.get_red_u()/256, titles_color.get_green_u()/256, titles_color.get_blue_u()/256, titles_color.get_alpha());
-  pls->col0(5);
+  change_plstream_color(pls, titles_color);
 
   pls->lab(axis_title_x.c_str(), axis_title_y.c_str(), plot_title.c_str());
-
-  //restore color
-  pls->scol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
 
   //hook up the coordinate transform
   pls->stransform(&Plot2D::coordinate_transform_world_to_plplot, this);

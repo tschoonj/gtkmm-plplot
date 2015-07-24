@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include <valarray>
 #include <plstream.h>
+#include <gdkmm/rgba.h>
 
 namespace Gtk {
   namespace PLplot {
@@ -28,24 +29,22 @@ namespace Gtk {
      *
      * \param n the length of the vector
      */
-    std::vector<PLFLT> indgen(unsigned int n) {
-      std::vector<PLFLT> rv(n);
-      for (unsigned int i = 0 ; i < n ; i++)
-        rv[i] = (PLFLT) i;
-      return rv;
-    }
+    std::vector<PLFLT> indgen(unsigned int n);
 
     /** Returns a valarray of doubles with each element set to the value of its subscript.
      *
      * \param n the length of the valarray
      */
-    std::valarray<PLFLT> indgen_va(unsigned int n) {
-      std::valarray<PLFLT> rv(n);
-      for (unsigned int i = 0 ; i < n ; i++)
-        rv[i] = (PLFLT) i;
-      return rv;
-    }
-  }
+    std::valarray<PLFLT> indgen_va(unsigned int n);
+
+    /** Changes the current color of the plstream
+     *
+     * Convenience function that allows me to change PLplot's colormap
+     * \param pls a pointer to a plstream object
+     * \param color the new color
+     */
+     void change_plstream_color(plstream *pls, Gdk::RGBA color);
+   }
 }
 
 

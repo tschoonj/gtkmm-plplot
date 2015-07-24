@@ -8,6 +8,7 @@ gtkmm_plplotinclude_HEADERS = \
                               plot2ddata.h \
                               plot2d.h \
                               utils.h \
+                              utils.cpp \
                               enums.h
 
 gtkmm_plplotbaseinclude_HEADERS = gtkmm-plplot.h
