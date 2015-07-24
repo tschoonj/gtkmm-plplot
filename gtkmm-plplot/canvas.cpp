@@ -119,12 +119,22 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
       plots[plot]->is_showing() &&
       plots[plot]->get_region_selectable()) {
       if (event->type == GDK_2BUTTON_PRESS) {
-        std::valarray<double> plot_data_range_x = {plots[plot]->plot_data_range_x[0], plots[plot]->plot_data_range_x[1]};
-        std::valarray<double> plot_data_range_y = {plots[plot]->plot_data_range_y[0], plots[plot]->plot_data_range_y[1]};
-        if (plots[plot]->log10_x)
-          plot_data_range_x = std::pow(10.0, plot_data_range_x);
-        if (plots[plot]->log10_y)
-          plot_data_range_y = std::pow(10.0, plot_data_range_y);
+        double plot_data_range_x[2];
+        double plot_data_range_y[2];
+        Plot2D::coordinate_transform_plplot_to_world(
+          plots[plot]->plot_data_range_x[0],
+          plots[plot]->plot_data_range_y[0],
+          &plot_data_range_x[0],
+          &plot_data_range_y[0],
+          plots[plot]
+        );
+        Plot2D::coordinate_transform_plplot_to_world(
+          plots[plot]->plot_data_range_x[1],
+          plots[plot]->plot_data_range_y[1],
+          &plot_data_range_x[1],
+          &plot_data_range_y[1],
+          plots[plot]
+        );
         plots[plot]->set_region(
           plot_data_range_x[0],
           plot_data_range_x[1],
@@ -217,16 +227,21 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
   //this is necessary to get rid of the box on the plot, even if the signal_select_region is not caught by the plot
   _signal_changed.emit();
 
-  if (plots[selected_plot]->log10_x) {
-    start_plplot_def[0] = pow(10.0, start_plplot_def[0]);
-    end_plplot_def[0] = pow(10.0, end_plplot_def[0]);
-  }
+  Plot2D::coordinate_transform_plplot_to_world(
+    start_plplot_def[0],
+    start_plplot_def[1],
+    &start_plplot_def[0],
+    &start_plplot_def[1],
+    plots[selected_plot]
+  );
 
-  if (plots[selected_plot]->log10_y) {
-    start_plplot_def[1] = pow(10.0, start_plplot_def[1]);
-    end_plplot_def[1] = pow(10.0, end_plplot_def[1]);
-  }
-
+  Plot2D::coordinate_transform_plplot_to_world(
+    end_plplot_def[0],
+    end_plplot_def[1],
+    &end_plplot_def[0],
+    &end_plplot_def[1],
+    plots[selected_plot]
+  );
 
   plots[selected_plot]->_signal_select_region.emit(start_plplot_def[0], end_plplot_def[0], start_plplot_def[1], end_plplot_def[1]);
 

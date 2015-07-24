@@ -125,13 +125,26 @@ namespace Gtk {
        * When a plot has logarithmic axes or polar plot style, PLplot requires the user
        * to transform the dataset into the linear cartesian coordinate system which it uses internally.
        * The reason that this is static method is due to PLplot expecting a C function...
-       * \param x_old the \c x coordinate to be transformed
-       * \param y_old the \c y coordinate to be transformed
-       * \param x_new the new \c x coordinate
-       * \param y_new the new \c y coordinate
+       * \param x_old the \c x world coordinate to be transformed
+       * \param y_old the \c y world coordinate to be transformed
+       * \param x_new the new \c x PLplot coordinate
+       * \param y_new the new \c y PLplot coordinate
        * \param object the object we are dealing with
        */
-      static void coordinate_transform(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object);
+      static void coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object);
+
+      /** This static method takes care of coordinate transformations when using non-linear axes
+       *
+       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
+       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
+       * The reason that this is static method is due to PLplot expecting a C function...
+       * \param x_old the \c x PLplot coordinate to be transformed
+       * \param y_old the \c y PLplot coordinate to be transformed
+       * \param x_new the new \c x world coordinate
+       * \param y_new the new \c y world coordinate
+       * \param object the object we are dealing with
+       */
+      static void coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object);
     public:
       /** Constructor
        *

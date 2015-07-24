@@ -243,7 +243,7 @@ BoxStyle Plot2D::get_box_style() {
   return box_style;
 }
 
-void Plot2D::coordinate_transform(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object) {
+void Plot2D::coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object) {
   Plot2D *plot2d = static_cast<Plot2D*>(object);
 
   //let's start with giving the new ones the old values, in case no transformation is necessary
@@ -255,6 +255,20 @@ void Plot2D::coordinate_transform(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT 
 
   if (plot2d->log10_y)
     *y_new = log10(y_old);
+}
+
+void Plot2D::coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object) {
+  Plot2D *plot2d = static_cast<Plot2D*>(object);
+
+  //let's start with giving the new ones the old values, in case no transformation is necessary
+  *x_new = x_old;
+  *y_new = y_old;
+
+  if (plot2d->log10_x)
+    *x_new = pow(10.0, x_old);
+
+  if (plot2d->log10_y)
+    *y_new = pow(10.0, y_old);
 }
 
 
@@ -327,7 +341,7 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
   pls->scol0a(5, red_u_old, green_u_old, blue_u_old, alpha_old);
 
   //hook up the coordinate transform
-  pls->stransform(&Plot2D::coordinate_transform, this);
+  pls->stransform(&Plot2D::coordinate_transform_world_to_plplot, this);
 
   for (auto &iter : plot_data) {
     iter->draw_plot_data(cr, pls);
