@@ -284,10 +284,8 @@ namespace Gtk {
        * This method is virtual allowing inheriting classes to implement their own method with the same signature.
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
-       * \param log10_x \c true means logarithmic X- axis, \c false means linear
-       * \param log10_y \c true means logarithmic y- axis, \c false means linear
        */
-      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls, bool log10_x, bool log10_y);
+      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls);
       friend class Plot2D;
     };
   }

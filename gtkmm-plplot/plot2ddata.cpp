@@ -172,28 +172,11 @@ bool Plot2DData::is_showing() const {
   return shown;
 }
 
-void Plot2DData::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls, bool log10_x, bool log10_y) {
+void Plot2DData::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) {
   if (!shown)
     return;
 
-  //now let's see if we are dealing with logarithmic axes
   PLFLT *x_pl = &x[0], *y_pl = &y[0];
-  std::vector<PLFLT> x_vc, y_vc;
-
-  if (log10_x) {
-    std::valarray<PLFLT> x_va(x_pl, x.size());
-    x_va = log10(x_va);
-    x_vc.assign(std::begin(x_va), std::end(x_va));
-    x_pl = &x_vc[0];
-  }
-
-  if (log10_y) {
-    std::valarray<PLFLT> y_va(y_pl, y.size());
-    y_va = log10(y_va);
-    y_vc.assign(std::begin(y_va), std::end(y_va));
-    y_pl = &y_vc[0];
-  }
-
   PLINT red_u_old, green_u_old, blue_u_old;
   PLFLT alpha_old;
 

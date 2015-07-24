@@ -119,6 +119,19 @@ namespace Gtk {
        * It will call the private method plot_data_modified, which will update \c *_range_* properties, and emit signal_changed.
        */
       virtual void on_data_removed();
+
+      /** This static method takes care of coordinate transformations when using non-linear axes
+       *
+       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
+       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
+       * The reason that this is static method is due to PLplot expecting a C function...
+       * \param x_old the \c x coordinate to be transformed
+       * \param y_old the \c y coordinate to be transformed
+       * \param x_new the new \c x coordinate
+       * \param y_new the new \c y coordinate
+       * \param object the object we are dealing with
+       */
+      static void coordinate_transform(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object);
     public:
       /** Constructor
        *
