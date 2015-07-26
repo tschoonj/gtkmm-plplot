@@ -34,6 +34,8 @@ http://cairographics.org/releases/cairo-1.14.2.tar.xz
 http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-0.9.41.tar.bz2
 https://download.gnome.org/sources/pango/1.36/pango-1.36.8.tar.xz
 https://download.gnome.org/sources/gdk-pixbuf/2.30/gdk-pixbuf-2.30.8.tar.xz
+https://download.gnome.org/sources/at-spi2-core/2.16/at-spi2-core-2.16.0.tar.xz
+https://download.gnome.org/sources/at-spi2-atk/2.16/at-spi2-atk-2.16.0.tar.xz
 https://download.gnome.org/sources/gtk+/3.14/gtk+-3.14.15.tar.xz
 https://download.gnome.org/sources/libsigc++/2.4/libsigc++-2.4.1.tar.xz
 http://cairographics.org/releases/cairomm-1.11.2.tar.gz
