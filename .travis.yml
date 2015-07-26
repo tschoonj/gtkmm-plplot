@@ -5,12 +5,11 @@ compiler:
   - clang
 
 before_install:
-  - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get update && sudo apt-get install -y libgtkmm-3.0-dev mm-common libplplot-c++10 libplplot-dev plplot11-driver-cairo ; fi
+  - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get update && sudo apt-get install -y libgtkmm-3.0-dev mm-common libplplot-c++10 libplplot-dev plplot11-driver-cairo autoconf automake libtool doxygen ; fi
   - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install gtkmm3 plplot mm-common && brew link --force gtkmm3 plplot mm-common ; fi
 
 script:
-  - autoreconf -fi
-  - ./configure && make
+  - autoreconf -fi && ./configure && make
 
 branches:
   only:
