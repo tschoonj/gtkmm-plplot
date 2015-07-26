@@ -8,9 +8,9 @@ before_install:
   - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install gtkmm3 plplot mm-common && brew link --force gtkmm3 plplot mm-common ; fi
 
 install:
-  - wget https://downloads.sourceforge.net/project/plplot/plplot/5.10.0%20Source/plplot-5.10.0.tar.gz
-  - tar xfz plplot-5.10.0.tar.gz
-  - cd plplot-5.10.0
+  - wget https://downloads.sourceforge.net/project/plplot/plplot/5.11.0%20Source/plplot-5.11.0.tar.gz
+  - tar xfz plplot-5.11.0.tar.gz
+  - cd plplot-5.11.0
   - mkdir our_build
   - cd our_build
   - cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..
