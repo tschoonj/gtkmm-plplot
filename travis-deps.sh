@@ -18,7 +18,7 @@ function install_dep() {
 	wget $1 || exit 1
 	tar $TAR_OPTION $FILENAME || exit 1
 	cd $FILENAME_NOEXT
-	./configure || exit 1
+	./configure LDFLAGS="-Wl,-rpath -Wl,/usr/local/lib" || exit 1
 	make || exit 1
 	sudo make install || exit 1
 	cd ..
