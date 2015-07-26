@@ -9,7 +9,7 @@ function install_dep() {
 	  xz)
 	  	TAR_OPTION="xfJ"
 		;;
-	  bz)
+	  bz2)
 	  	TAR_OPTION="xfj"
 		;;
 	esac
@@ -34,6 +34,12 @@ http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-0.9.41.tar.bz2
 https://download.gnome.org/sources/pango/1.36/pango-1.36.8.tar.xz
 https://download.gnome.org/sources/gdk-pixbuf/2.30/gdk-pixbuf-2.30.8.tar.xz
 https://download.gnome.org/sources/gtk+/3.14/gtk+-3.14.15.tar.xz
+https://download.gnome.org/sources/libsigc++/2.4/libsigc++-2.4.1.tar.xz
+http://cairographics.org/releases/cairomm-1.11.2.tar.gz
+https://download.gnome.org/sources/glibmm/2.44/glibmm-2.44.0.tar.xz
+https://download.gnome.org/sources/pangomm/2.36/pangomm-2.36.0.tar.xz
+https://download.gnome.org/sources/atkmm/2.22/atkmm-2.22.7.tar.xz
+https://download.gnome.org/sources/gtkmm/3.16/gtkmm-3.16.0.tar.xz
 "
 
 for dep in $deps ; do
