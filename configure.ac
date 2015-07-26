@@ -4,7 +4,7 @@ AC_CONFIG_SRCDIR([gtkmm-plplot/plot2ddata.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_CANONICAL_HOST
-AC_CONFIG_MACRO_DIRS([m4])
+AC_CONFIG_MACRO_DIR([m4])
 
 
 #m4_pattern_allow([AS_TR_SH])
