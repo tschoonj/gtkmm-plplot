@@ -16,6 +16,7 @@ install:
   - cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..
   - make
   - sudo make install
+  - cd ../..
 
 script:
   - autoreconf -fi && ./configure && make
