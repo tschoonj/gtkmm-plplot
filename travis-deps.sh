@@ -1,7 +1,6 @@
 function install_dep() {
 	FILENAME="${1##*/}"
 	EXTENSION="${1##*.}"
-	echo "extension: $EXTENSION"
 	TAR_OPTION=
 	case $EXTENSION in
 	  gz)
