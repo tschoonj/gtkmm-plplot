@@ -26,6 +26,7 @@ function install_dep() {
 
 
 deps="
+http://fontconfig.org/release/fontconfig-2.11.1.tar.bz2
 https://download.gnome.org/sources/glib/2.44/glib-2.44.1.tar.xz
 https://download.gnome.org/sources/atk/2.16/atk-2.16.0.tar.xz
 http://cairographics.org/releases/pixman-0.32.6.tar.gz
