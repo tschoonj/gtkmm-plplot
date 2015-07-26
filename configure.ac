@@ -93,9 +93,6 @@ fi
 AC_LANG_POP
 CFLAGS="$ac_save_CFLAGS"
 
-
-PKG_INSTALLDIR
-
 #AC_CHECK_PROGS([DOXYGEN], [doxygen])
 #if test -z "$DOXYGEN";
 #   then AC_MSG_WARN([Doxygen not found - continuing without Doxygen support])
