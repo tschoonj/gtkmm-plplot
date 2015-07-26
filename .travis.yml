@@ -9,11 +9,11 @@ before_install:
 
 install:
   - wget https://downloads.sourceforge.net/project/plplot/plplot/5.10.0%20Source/plplot-5.10.0.tar.gz
-  - tar xvfz plplot-5.10.0.tar.gz
+  - tar xfz plplot-5.10.0.tar.gz
   - cd plplot-5.10.0
   - mkdir our_build
   - cd our_build
-  - cmake -DCMAKE_INSTALL_PREFIX ..
+  - cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..
   - make
   - sudo make install
 
