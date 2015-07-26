@@ -39,7 +39,7 @@ http://cairographics.org/releases/cairomm-1.11.2.tar.gz
 https://download.gnome.org/sources/glibmm/2.44/glibmm-2.44.0.tar.xz
 https://download.gnome.org/sources/pangomm/2.36/pangomm-2.36.0.tar.xz
 https://download.gnome.org/sources/atkmm/2.22/atkmm-2.22.7.tar.xz
-https://download.gnome.org/sources/gtkmm/3.16/gtkmm-3.16.0.tar.xz
+https://download.gnome.org/sources/gtkmm/3.14/gtkmm-3.14.0.tar.xz
 "
 
 for dep in $deps ; do
