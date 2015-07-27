@@ -10,7 +10,7 @@ env:
     - LD_RUN_PATH=/usr/local/lib
  
 before_install:
-  - if [ $TRAVIS_OS_NAME == linux ]; ./travis-before-install-linux.sh ; fi
+  - if [ $TRAVIS_OS_NAME == linux ]; then ./travis-before-install-linux.sh ; fi
   - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install gtkmm3 plplot mm-common && brew link --force gtkmm3 plplot mm-common ; fi
 
 install:
