@@ -19,7 +19,7 @@ function install_dep() {
 	tar $TAR_OPTION $FILENAME || exit 1
 	cd $FILENAME_NOEXT
 	./configure LDFLAGS="-Wl,-rpath -Wl,/usr/local/lib" || exit 1
-	make -j4 || exit 1
+	make || exit 1
 	sudo make install || exit 1
 	cd ..
 }
