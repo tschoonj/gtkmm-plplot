@@ -9,8 +9,9 @@ sudo apt-get install -y libffi-dev mm-common autoconf automake libtool doxygen p
 
 
 if [ $CXX == "g++" ] ; then
-	sudo apt-get install -y g++-4.9 || exit 1
+	sudo apt-get install -y gcc-4.9 g++-4.9 || exit 1
 	sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50 || exit 1
+	sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 50 || exit 1
 elif [ $CXX == "clang++" ] ; then
 	sudo apt-get install -y clang || exit 1
 fi
