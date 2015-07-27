@@ -189,7 +189,7 @@ int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test5");
   Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test5");
 
-  std::valarray<PLFLT> x_va = Gtk::PLplot::indgen_va(10)+1, y_va = sqrt(x_va);
+  std::valarray<PLFLT> x_va = Gtk::PLplot::indgen_va(10)+double(1.0), y_va = sqrt(x_va);
 
   Test5::Window window(x_va, y_va);
 
