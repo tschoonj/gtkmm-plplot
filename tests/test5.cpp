@@ -15,8 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <gtkmm-plplot/canvas.h>
-#include <gtkmm-plplot/utils.h>
+#include <gtkmm-plplot/gtkmm-plplot.h>
 #include <gtkmm/application.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
@@ -48,7 +47,7 @@ namespace Test5 {
     Window(std::valarray<PLFLT> &x, std::valarray<PLFLT> &y,
       std::string x_title = "X-axis", std::string y_title = "Y-axis",
       std::string plot_title = "y = sqrt(x)", Gdk::RGBA color = Gdk::RGBA("Blue")) :
-      canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::Plot2DData(x, y, color), x_title, y_title, plot_title)),
+      canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x, y, color), x_title, y_title, plot_title)),
       line_label("Line"), symbol_label("Symbols"),
       linewidth_adj(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       symbol_scale_factor_adj(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
@@ -85,8 +84,9 @@ namespace Test5 {
       grid.attach(symbol_label, 0, 1, 1, 1);
 
       //the color buttons
-      line_color.set_rgba(canvas.get_plot(0)->get_data(0)->get_color());
-      symbol_color.set_rgba(canvas.get_plot(0)->get_data(0)->get_symbol_color());
+      auto plot_data = dynamic_cast<Gtk::PLplot::PlotData2D *>(canvas.get_plot(0)->get_data(0));
+      line_color.set_rgba(plot_data->get_color());
+      symbol_color.set_rgba(plot_data->get_symbol_color());
       line_color.set_use_alpha(true);
       symbol_color.set_use_alpha(true);
       line_color.set_hexpand(false);
@@ -98,8 +98,8 @@ namespace Test5 {
       symbol_color.set_halign(Gtk::ALIGN_CENTER);
       symbol_color.set_valign(Gtk::ALIGN_CENTER);
 
-      line_color.signal_color_set().connect([this](){canvas.get_plot(0)->get_data(0)->set_color(line_color.get_rgba());});
-      symbol_color.signal_color_set().connect([this](){canvas.get_plot(0)->get_data(0)->set_symbol_color(symbol_color.get_rgba());});
+      line_color.signal_color_set().connect([this, plot_data](){plot_data->set_color(line_color.get_rgba());});
+      symbol_color.signal_color_set().connect([this, plot_data](){plot_data->set_symbol_color(symbol_color.get_rgba());});
 
       grid.attach(line_color, 1, 0, 1, 1);
       grid.attach(symbol_color, 1, 1, 1, 1);
@@ -113,8 +113,8 @@ namespace Test5 {
       linestyle_combo.append("long dash short gap short dash short gap");
       linestyle_combo.append("long dash short gap long dash short gap");
 
-      linestyle_combo.set_active(canvas.get_plot(0)->get_data(0)->get_line_style());
-      linestyle_combo.signal_changed().connect([this](){canvas.get_plot(0)->get_data(0)->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo.get_active_row_number()));});
+      linestyle_combo.set_active(plot_data->get_line_style());
+      linestyle_combo.signal_changed().connect([this, plot_data](){plot_data->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo.get_active_row_number()));});
 
       linestyle_combo.set_hexpand(false);
       linestyle_combo.set_vexpand(false);
@@ -124,16 +124,16 @@ namespace Test5 {
       grid.attach(linestyle_combo, 2, 0, 1, 1);
 
       //the symbol
-      canvas.get_plot(0)->get_data(0)->set_symbol("x");
-      symbol_entry.set_text(canvas.get_plot(0)->get_data(0)->get_symbol());
+      plot_data->set_symbol("√");
+      symbol_entry.set_text(plot_data->get_symbol());
 
       symbol_entry.set_hexpand(false);
       symbol_entry.set_vexpand(false);
       symbol_entry.set_halign(Gtk::ALIGN_FILL);
       symbol_entry.set_valign(Gtk::ALIGN_CENTER);
 
-      symbol_entry.signal_changed().connect([this](){
-        canvas.get_plot(0)->get_data(0)->set_symbol(
+      symbol_entry.signal_changed().connect([this, plot_data](){
+        plot_data->set_symbol(
           symbol_entry.get_text()
         );
       });
@@ -153,11 +153,11 @@ namespace Test5 {
       symbol_scale_factor_spin.set_halign(Gtk::ALIGN_START);
       symbol_scale_factor_spin.set_valign(Gtk::ALIGN_CENTER);
 
-      linewidth_spin.set_value(canvas.get_plot(0)->get_data(0)->get_line_width());
-      symbol_scale_factor_spin.set_value(canvas.get_plot(0)->get_data(0)->get_symbol_height_scale_factor());
+      linewidth_spin.set_value(plot_data->get_line_width());
+      symbol_scale_factor_spin.set_value(plot_data->get_symbol_height_scale_factor());
 
-      linewidth_spin.signal_value_changed().connect([this](){canvas.get_plot(0)->get_data(0)->set_line_width(linewidth_spin.get_value());});
-      symbol_scale_factor_spin.signal_value_changed().connect([this](){canvas.get_plot(0)->get_data(0)->set_symbol_height_scale_factor(symbol_scale_factor_spin.get_value());});
+      linewidth_spin.signal_value_changed().connect([this, plot_data](){plot_data->set_line_width(linewidth_spin.get_value());});
+      symbol_scale_factor_spin.signal_value_changed().connect([this, plot_data](){plot_data->set_symbol_height_scale_factor(symbol_scale_factor_spin.get_value());});
 
       grid.attach(linewidth_spin, 3, 0, 1, 1);
       grid.attach(symbol_scale_factor_spin, 3, 1, 1, 1);
@@ -168,10 +168,10 @@ namespace Test5 {
       add_data_button.set_valign(Gtk::ALIGN_CENTER);
       add_data_button.set_halign(Gtk::ALIGN_CENTER);
       grid.attach(add_data_button, 0, 3, 4, 1);
-      add_data_button.signal_clicked().connect([this](){
+      add_data_button.signal_clicked().connect([this, plot_data](){
         //this lambda has a static variable that will keep our ever incrementing X-value
         static PLFLT new_x = 11;
-        canvas.get_plot(0)->get_data(0)->add_datapoint(new_x, sqrt(new_x));
+        plot_data->add_datapoint(new_x, sqrt(new_x));
         new_x += 1.0;
       });
 

@@ -51,64 +51,6 @@ namespace Gtk {
       Plot2D() = delete; ///< no default constructor
       Plot2D &operator=(const Plot2D &) = delete; ///< no copy constructor
     protected:
-      /** This is a default handler for signal_select_region()
-       *
-       * This function passes the plot (data) coordinates of the selection box to set_region, in order to set the plotted range corresponding to the selection box.
-       * If this behavior is not desired, derive the class and implement your own on_select_region method.
-       * \param xmin left X-coordinate
-       * \param xmax right X-coordinate
-       * \param ymin lower Y-coordinate
-       * \param ymax upper Y-coordinate
-       * \exception Gtk::PLplot::Exception
-       */
-      virtual void on_select_region(double xmin, double xmax, double ymin, double ymax);
-
-      /** This is a default handler for signal_changed()
-       *
-       * This signal is emitted whenever any of the plot properties, or the properties of the Plot2DData datasets therein, is changed.
-       * Currently it does nothing but the signal will get caught by Canvas, and will eventually trigger a redrawing of the entire widget.
-       */
-      virtual void on_changed();
-
-      /** This is a default handler for signal_data_added()
-       *
-       * This signal is emitted whenever a new Plot2DData dataset is added to the plot.
-       * It will call the private method plot_data_modified, which will update \c *_range_* properties, and emit signal_changed.
-       * \param new_data a pointer to the newly added Plot2DData dataset, after it has been added to the \c plot_data vector.
-       */
-      virtual void on_data_added(PlotDataAbstract *new_data);
-
-      /** This is a default handler for signal_data_removed()
-       *
-       * This signal is emitted whenever a Plot2DData dataset is removed from the plot.
-       * It will call the private method plot_data_modified, which will update \c *_range_* properties, and emit signal_changed.
-       */
-      virtual void on_data_removed();
-
-      /** This method takes care of coordinate transformations when using non-linear axes
-       *
-       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
-       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
-       * This method is a wrapper around the static function with the same name.
-       * \param x_old the \c x world coordinate to be transformed
-       * \param y_old the \c y world coordinate to be transformed
-       * \param x_new the new \c x PLplot coordinate
-       * \param y_new the new \c y PLplot coordinate
-       */
-      void coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new);
-
-      /** This method takes care of coordinate transformations when using non-linear axes
-       *
-       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
-       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
-       * This method is a wrapper around the static function with the same name.
-       * \param x_old the \c x PLplot coordinate to be transformed
-       * \param y_old the \c y PLplot coordinate to be transformed
-       * \param x_new the new \c x world coordinate
-       * \param y_new the new \c y world coordinate
-       */
-      void coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new);
-
       /** This static method takes care of coordinate transformations when using non-linear axes
        *
        * When a plot has logarithmic axes or polar plot style, PLplot requires the user
@@ -134,12 +76,13 @@ namespace Gtk {
        * \param object the object we are dealing with
        */
       static void coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object);
+
     public:
       /** Constructor
        *
-       * This class provides a single constructor, which takes an existing Plot2DData dataset to construct a plot.
+       * This class provides a single constructor, which takes an existing PlotData2D dataset to construct a plot.
        * Optionally, the constructor takes additional arguments to set the axes and plot titles, as well as normalized coordinates that will determine the position and dimensions of the plot within the canvas. The default corresponds to the plot taking up the full c
-       * \param data a Plot2DData object containing a plot dataset
+       * \param data a PlotData2D object containing a plot dataset
        * \param axis_title_x X-axis title
        * \param axis_title_y Y-axis title
        * \param plot_title plot title
@@ -148,7 +91,7 @@ namespace Gtk {
        * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
        * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
        */
-      Plot2D(const Plot2DData &data,
+      Plot2D(const PlotData2D &data,
              const Glib::ustring &axis_title_x = "X-axis",
              const Glib::ustring &axis_title_y = "Y-axis",
              const Glib::ustring &plot_title = "",
@@ -168,12 +111,14 @@ namespace Gtk {
        */
       virtual ~Plot2D();
 
-      /** Add a single Plot2DData dataset to the plot
+      /** Add a single PlotData2D dataset to the plot
        *
+       * The dataset must be a PlotData2D instance: this will be verified and an exception will be thrown if the type is incorrect.
        * \param data dataset to be added to the plot
-       * \return a pointer to the Plot2DData in the \c plot_data vector.
+       * \return a pointer to the PlotData2D in the \c plot_data vector.
+       * \exception Gtk::PLplot::Exception
        */
-      void add_data(const PlotData2D &data);
+      virtual PlotDataAbstract *add_data(const PlotDataAbstract &data) override;
 
       /** Method to draw the plot with all of its datasets
        *
@@ -183,7 +128,7 @@ namespace Gtk {
        * \param height the height of the Canvas widget
        */
       //void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, plstream *_pls, int width, int height);
-      virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height);
+      virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
 
       /** Sets the scaling of the X-axis to logarithmic
        *
@@ -215,6 +160,49 @@ namespace Gtk {
        */
       bool get_axis_logarithmic_y();
 
+      /** This method takes care of coordinate transformations when using non-linear axes
+       *
+       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
+       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
+       * This method is a wrapper around the static function with the same name.
+       * \param x_old the \c x world coordinate to be transformed
+       * \param y_old the \c y world coordinate to be transformed
+       * \param x_new the new \c x PLplot coordinate
+       * \param y_new the new \c y PLplot coordinate
+       */
+      virtual void coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) override;
+
+      /** This method takes care of coordinate transformations when using non-linear axes
+       *
+       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
+       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
+       * This method is a wrapper around the static function with the same name.
+       * \param x_old the \c x PLplot coordinate to be transformed
+       * \param y_old the \c y PLplot coordinate to be transformed
+       * \param x_new the new \c x world coordinate
+       * \param y_new the new \c y world coordinate
+       */
+      virtual void coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) override;
+
+      /** Changes the visible plotted region
+       *
+       * Sets the axes range of the plotted box to the supplied parameters.
+       * Throws an exception when the coordinates are outside of \c plot_data_range_x and \c plot_data_range_y.
+       * \param xmin left X-coordinate
+       * \param xmax right X-coordinate
+       * \param ymin lower Y-coordinate
+       * \param ymax upper Y-coordinate
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void set_region(double xmin, double xmax, double ymin, double ymax) override;
+
+      /** Freshly allocate a clone of the instance
+       *
+       * This very important method allows Canvas::add_plot() to add new plots to its internal array.
+       * Since the canvas keeps its own copies of the plots, every PlotAbstract derived class needs to provide
+       * an implementation of this method, to ensure a proper copy can be provided.
+       */
+      virtual PlotAbstract *clone() const;
 
       friend class Canvas;
     };

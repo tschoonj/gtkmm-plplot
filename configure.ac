@@ -1,6 +1,6 @@
 AC_INIT([gtkmm-plplot],[0.1],[tom.schoonjans@me.com],,[https://github.com/tschoonj/gtkmm-plplot])
 AC_PREREQ([2.60])
-AC_CONFIG_SRCDIR([gtkmm-plplot/plot2ddata.cpp])
+AC_CONFIG_SRCDIR([gtkmm-plplot/canvas.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_CANONICAL_HOST

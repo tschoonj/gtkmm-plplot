@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace Gtk::PLplot;
 
 Plot2D::Plot2D(
-  const Plot2DData &_data,
+  const PlotData2D &_data,
   const Glib::ustring &_axis_title_x,
   const Glib::ustring &_axis_title_y,
   const Glib::ustring &_plot_title,
@@ -60,42 +60,7 @@ Plot2D::Plot2D(const Plot2D &_source) :
 }
 
 Plot2D::~Plot2D() {
-  for (auto &iter : plot_data) {
-    delete iter;
-  }
-  if (pls)
-    delete pls;
-}
 
-void Plot2D::on_select_region(double xmin, double xmax, double ymin, double ymax) {
-  set_region(xmin, xmax, ymin, ymax);
-}
-
-void Plot2D::on_changed() {
-  //this function does nothing
-  //it is designed to be overridden by a derived class
-}
-
-void Plot2D::show() {
-  shown = true;
-  _signal_changed.emit();
-}
-
-void Plot2D::hide() {
-  shown = false;
-  _signal_changed.emit();
-}
-
-bool Plot2D::is_showing() const {
-  return shown;
-}
-
-void Plot2D::on_data_added(Plot2DData *added_data) {
-  plot_data_modified();
-}
-
-void Plot2D::on_data_removed() {
-  plot_data_modified();
 }
 
 void Plot2D::plot_data_modified() {
@@ -104,10 +69,11 @@ void Plot2D::plot_data_modified() {
   std::vector<PLFLT> max_x, max_y;
 
   for (auto &iter : plot_data) {
-    min_x.push_back(*std::min_element(iter->x.begin(), iter->x.end()));
-    max_x.push_back(*std::max_element(iter->x.begin(), iter->x.end()));
-    min_y.push_back(*std::min_element(iter->y.begin(), iter->y.end()));
-    max_y.push_back(*std::max_element(iter->y.begin(), iter->y.end()));
+    auto iter2 = dynamic_cast<PlotData2D*>(iter);
+    min_x.push_back(*std::min_element(iter2->x.begin(), iter2->x.end()));
+    max_x.push_back(*std::max_element(iter2->x.begin(), iter2->x.end()));
+    min_y.push_back(*std::min_element(iter2->y.begin(), iter2->y.end()));
+    max_y.push_back(*std::max_element(iter2->y.begin(), iter2->y.end()));
   }
   plot_data_range_x[0] = *std::min_element(min_x.begin(), min_x.end());
   plot_data_range_x[1] = *std::max_element(max_x.begin(), max_x.end());
@@ -130,20 +96,29 @@ void Plot2D::plot_data_modified() {
   _signal_changed.emit();
 }
 
-void Plot2D::add_data(const Plot2DData &data) {
-  Plot2DData *data_copy = new Plot2DData(data);
+PlotDataAbstract *Plot2D::add_data(const PlotDataAbstract &data) {
+  try {
+    //ensure our data is PlotData2D
+    const PlotData2D &ref = dynamic_cast<const PlotData2D &>(data);
+  }
+  catch (std::bad_cast &e) {
+    throw Exception("Gtk::PLplot::Plot2D::add_data -> data must be of PlotData2D type!");
+  }
+  PlotDataAbstract *data_copy = new PlotData2D(static_cast<const PlotData2D &>(data));
   plot_data.push_back(data_copy);
   data_copy->signal_changed().connect([this](){_signal_changed.emit();});
   data_copy->signal_data_modified().connect([this](){plot_data_modified();});
 
   _signal_data_added.emit(data_copy);
+  return data_copy;
 }
 
 void Plot2D::set_axis_logarithmic_x(bool _log10) {
   //need to check that all values are positive!
   if (_log10) {
     for (auto &iter : plot_data) {
-      if (std::count_if(iter->x.begin(), iter->x.end(), std::bind2nd(std::less_equal<PLFLT>(), double(0.0))) > 0) {
+      auto iter2 = dynamic_cast<PlotData2D*>(iter);
+      if (std::count_if(iter2->x.begin(), iter2->x.end(), std::bind2nd(std::less_equal<PLFLT>(), double(0.0))) > 0) {
         throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_x -> plot X-values must be strictly positive");
       }
     }
@@ -156,7 +131,8 @@ void Plot2D::set_axis_logarithmic_y(bool _log10) {
   //need to check that all values are positive!
   if (_log10) {
     for (auto &iter : plot_data) {
-      if (std::count_if(iter->y.begin(), iter->y.end(), std::bind2nd(std::less_equal<PLFLT>(), double(0.0))) > 0) {
+      auto iter2 = dynamic_cast<PlotData2D*>(iter);
+      if (std::count_if(iter2->y.begin(), iter2->y.end(), std::bind2nd(std::less_equal<PLFLT>(), double(0.0))) > 0) {
         throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_y -> plot Y-values must be strictly positive");
       }
     }
@@ -173,42 +149,6 @@ bool Plot2D::get_axis_logarithmic_y() {
   return log10_y;
 }
 
-void Plot2D::set_axis_title_x(Glib::ustring &title) {
-  axis_title_x = title;
-  _signal_changed.emit();
-}
-
-void Plot2D::set_axis_title_y(Glib::ustring &title) {
-  axis_title_y = title;
-  _signal_changed.emit();
-}
-
-Glib::ustring Plot2D::get_axis_title_x() {
-  return axis_title_x;
-}
-
-Glib::ustring Plot2D::get_axis_title_y() {
-  return axis_title_y;
-}
-
-void Plot2D::set_plot_title(Glib::ustring &title) {
-  plot_title = title;
-  _signal_changed.emit();
-}
-
-Glib::ustring Plot2D::get_plot_title() {
-  return plot_title;
-}
-
-void Plot2D::set_box_style(BoxStyle _box_style) {
-  box_style = _box_style;
-  _signal_changed.emit();
-}
-
-BoxStyle Plot2D::get_box_style() {
-  return box_style;
-}
-
 void Plot2D::coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object) {
   Plot2D *plot2d = static_cast<Plot2D*>(object);
 
@@ -223,6 +163,10 @@ void Plot2D::coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFL
     *y_new = log10(y_old);
 }
 
+void Plot2D::coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) {
+    coordinate_transform_world_to_plplot(x_old, y_old, &x_new, &y_new, this);
+}
+
 void Plot2D::coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object) {
   Plot2D *plot2d = static_cast<Plot2D*>(object);
 
@@ -235,6 +179,10 @@ void Plot2D::coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFL
 
   if (plot2d->log10_y)
     *y_new = pow(10.0, y_old);
+}
+
+void Plot2D::coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) {
+    coordinate_transform_plplot_to_world(x_old, y_old, &x_new, &y_new, this);
 }
 
 
@@ -379,44 +327,10 @@ void Plot2D::set_region(double xmin, double xmax, double ymin, double ymax) {
   _signal_changed.emit();
 }
 
-Plot2DData *Plot2D::get_data(unsigned int index) {
-  if (index < plot_data.size()) {
-    return plot_data[index];
+PlotAbstract *Plot2D::clone() const {
+  PlotAbstract *my_clone = new Plot2D(*this);
+  if( typeid(*this) != typeid(*my_clone) ) {
+    throw Exception("Gtk::PLplot::Plot2D::clone -> Classes that derive from PlotAbstract must implement clone!");
   }
-  throw Exception("Gtk::PLplot::Plot2D::get_data -> Invalid index");
-}
-
-Gdk::RGBA Plot2D::get_background_color() {
-  return background_color;
-}
-
-void Plot2D::set_background_color(Gdk::RGBA _background_color) {
-  background_color = _background_color;
-  _signal_changed.emit();
-}
-
-Gdk::RGBA Plot2D::get_axes_color() {
-  return axes_color;
-}
-
-void Plot2D::set_axes_color(Gdk::RGBA _axes_color) {
-  axes_color = _axes_color;
-  _signal_changed.emit();
-}
-
-Gdk::RGBA Plot2D::get_titles_color() {
-  return titles_color;
-}
-
-void Plot2D::set_titles_color(Gdk::RGBA _titles_color) {
-  titles_color = _titles_color;
-  _signal_changed.emit();
-}
-
-bool Plot2D::get_region_selectable() {
-  return region_selectable;
-}
-
-void Plot2D::set_region_selectable(bool _region_selectable) {
-  region_selectable = _region_selectable;
+  return my_clone;
 }

@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "gtkmm-plplot/canvas.h"
+#include <gtkmm-plplot/gtkmm-plplot.h>
 #include <gtkmm/application.h>
 #include <glibmm/miscutils.h>
 #include <gtkmm/window.h>
@@ -46,15 +46,15 @@ namespace Test2 {
            std::string x_title,
            std::string y_title,
            std::string plot_title) :
-           canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::Plot2DData(x, y1, Gdk::RGBA("red")), x_title, y_title, plot_title)),
+           canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x, y1, Gdk::RGBA("red")), x_title, y_title, plot_title)),
            x_label("X-axis logarithmic"),
            y_label("Y-axis logarithmic") {
 
 
-        Gtk::PLplot::Plot2D *plot = canvas.get_plot(0);
-        plot->add_data(Gtk::PLplot::Plot2DData(x, y2, Gdk::RGBA("blue")));
-        plot->add_data(Gtk::PLplot::Plot2DData(x, y3, Gdk::RGBA("Blue Violet")));
-        plot->add_data(Gtk::PLplot::Plot2DData(x, y4, Gdk::RGBA("Green")));
+        Gtk::PLplot::Plot2D *plot = dynamic_cast<Gtk::PLplot::Plot2D *>(canvas.get_plot(0));
+        plot->add_data(Gtk::PLplot::PlotData2D(x, y2, Gdk::RGBA("blue")));
+        plot->add_data(Gtk::PLplot::PlotData2D(x, y3, Gdk::RGBA("Blue Violet")));
+        plot->add_data(Gtk::PLplot::PlotData2D(x, y4, Gdk::RGBA("Green")));
 
         set_default_size(720, 580);
         Gdk::Geometry geometry;
@@ -66,20 +66,20 @@ namespace Test2 {
 
         x_switch.set_active(plot->get_axis_logarithmic_x());
         y_switch.set_active(plot->get_axis_logarithmic_y());
-        x_switch.property_active().signal_changed().connect([this](){
+        x_switch.property_active().signal_changed().connect([this, plot](){
           if (x_switch.get_active()) {
-            canvas.get_plot(0)->set_axis_logarithmic_x(true);
+            plot->set_axis_logarithmic_x(true);
           }
           else {
-            canvas.get_plot(0)->set_axis_logarithmic_x(false);
+            plot->set_axis_logarithmic_x(false);
           }
         });
-        y_switch.property_active().signal_changed().connect([this](){
+        y_switch.property_active().signal_changed().connect([this, plot](){
           if (y_switch.get_active()) {
-            canvas.get_plot(0)->set_axis_logarithmic_y(true);
+            plot->set_axis_logarithmic_y(true);
           }
           else {
-            canvas.get_plot(0)->set_axis_logarithmic_y(false);
+            plot->set_axis_logarithmic_y(false);
           }
         });
         x_label.set_hexpand(false);

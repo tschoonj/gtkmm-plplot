@@ -15,24 +15,21 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GTKMMPLPLOTPLOT2DDATA_H
-#define GTKMMPLPLOTPLOT2DDATA_H
+#ifndef GTKMMPLPLOT_PLOTDATA_2D_H
+#define GTKMMPLPLOT_PLOTDATA_2D_H
 
-#include <sigc++/sigc++.h>
 #include <vector>
 #include <valarray>
 #include <gtkmm-plplot/enums.h>
-#include <plstream.h>
 #include <glibmm/ustring.h>
-#include <cairomm/cairomm.h>
+#include <gtkmm-plplot/plotdataabstract.h>
 #include <gdkmm/rgba.h>
 
-
-#define PLOT2DDATA_DEFAULT_LINE_WIDTH 1.0
+#define PLOTDATA2D_DEFAULT_LINE_WIDTH 1.0
 
 namespace Gtk {
   namespace PLplot {
-    /** \class Plot2DData plot2ddata.h <gtkmm-plplot/plot2ddata.h>
+    /** \class PlotData2D plotdata2d.h <gtkmm-plplot/plotdata2d.h>
      *  \brief a class that will hold a single dataset and its properties for a Plot2D plot
      *
      *  Instances of this class contain a single dataset for a Plot2D two-dimensional plot,
@@ -43,35 +40,18 @@ namespace Gtk {
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.
      */
-    class Plot2DData : public sigc::trackable {
+    class PlotData2D : public PlotDataAbstract {
     private:
       std::vector<PLFLT> x; ///< The X-values of the dataset
       std::vector<PLFLT> y; ///< The Y-values of the dataset
       Gdk::RGBA color; ///< The color the dataset will be drawn in
       LineStyle line_style; ///< The linestyle that will be used for this dataset in the plot
       double line_width; ///< The line width of the dataset. Default is 1.0
-      bool shown; ///< \c true means the plot is currently visible, \c false means it is not plotted
       Glib::ustring symbol; ///< If not an empty string, the symbol will be plotted at each of the data points from \c x and \c y.
       Gdk::RGBA symbol_color; ///< The color the symbol will be plotted in
       double symbol_scale_factor; ///< Scale factor that will determine the size of the symbols. Default is 1.
-      sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the dataset proprties is changed.
-      sigc::signal<void> _signal_data_modified; ///< signal that gets emitted whenever the X- and Y-datasets have been modified.
-      Plot2DData() = delete; ///< no default constructor
-      Plot2DData &operator=(const Plot2DData &) = delete; ///< no copy constructor
-    protected:
-      /** This is a default handler for signal_changed()
-       *
-       * This signal is emitted whenever any of the dataset properties is changed.
-       * Currently it does nothing but the signal will get caught by Plot2D, and will eventually trigger a redrawing of the entire widget.
-       */
-      virtual void on_changed();
-
-      /** This is a default handler for signal_data_modified()
-       *
-       * This signal is emitted whenever any of the dataset proprties is changed.
-       * Currently it does nothing but the signal will get caught by Plot2D, and will eventually trigger a redrawing of the entire widget, taking into account the new dataset.
-       */
-      virtual void on_data_modified();
+      PlotData2D() = delete; ///< no default constructor
+      PlotData2D &operator=(const PlotData2D &) = delete; ///< no copy constructor
     public:
       /** Constructor
        *
@@ -83,11 +63,11 @@ namespace Gtk {
        * \param line_style the line style, default is CONTINUOUS
        * \param line_width the line width, default is 1.0
        */
-      Plot2DData(const std::vector<PLFLT> &x,
+      PlotData2D(const std::vector<PLFLT> &x,
                  const std::vector<PLFLT> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
-                 double line_width = PLOT2DDATA_DEFAULT_LINE_WIDTH);
+                 double line_width = PLOTDATA2D_DEFAULT_LINE_WIDTH);
 
       /** Constructor
        *
@@ -99,11 +79,11 @@ namespace Gtk {
        * \param line_style the line style, default is CONTINUOUS
        * \param line_width the line width, default is 1.0
        */
-      Plot2DData(const std::valarray<PLFLT> &x,
+      PlotData2D(const std::valarray<PLFLT> &x,
                  const std::valarray<PLFLT> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
-                 double line_width = PLOT2DDATA_DEFAULT_LINE_WIDTH);
+                 double line_width = PLOTDATA2D_DEFAULT_LINE_WIDTH);
 
       /** Constructor
        *
@@ -115,10 +95,10 @@ namespace Gtk {
        * \param line_style the line style, default is CONTINUOUS
        * \param line_width the line width, default is 1.0
        */
-      Plot2DData(const std::vector<PLFLT> &y,
+      PlotData2D(const std::vector<PLFLT> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
-                 double line_width = PLOT2DDATA_DEFAULT_LINE_WIDTH);
+                 double line_width = PLOTDATA2D_DEFAULT_LINE_WIDTH);
 
       /** Constructor
        *
@@ -130,21 +110,21 @@ namespace Gtk {
        * \param line_style the line style, default is CONTINUOUS
        * \param line_width the line width, default is 1.0
        */
-      Plot2DData(const std::valarray<PLFLT> &y,
+      PlotData2D(const std::valarray<PLFLT> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
-                 double line_width = PLOT2DDATA_DEFAULT_LINE_WIDTH);
+                 double line_width = PLOTDATA2D_DEFAULT_LINE_WIDTH);
 
       /** Copy constructor
        *
        * \param data dataset to be copied
        */
-      Plot2DData(const Plot2DData &data);
+      PlotData2D(const PlotData2D &data);
 
       /** Destructor
        *
        */
-      virtual ~Plot2DData() {}
+      virtual ~PlotData2D();
 
       /** Changes the color of the dataset
        *
@@ -247,37 +227,6 @@ namespace Gtk {
        */
       void add_datapoint(std::pair<PLFLT, PLFLT> xy_pair);
 
-      /** Make the dataset visible in the plot
-       *
-       */
-      void show();
-
-      /** Hide the dataset in the plot
-       *
-       */
-      void hide();
-
-      /** Returns whether or not the dataset is showing in the plot
-       *
-       * \return \c true if the dataset is visible, \c false if not
-       */
-      bool is_showing() const;
-
-      /** signal_changed is emitted whenever any of the dataset properties has changed.
-       *
-       * See default handler on_changed()
-       */
-      sigc::signal<void> signal_changed() {
-        return _signal_changed;
-      }
-
-      /** signal_data_modified is emitted whenever the X- and Y- arrays are modified.
-       *
-       * See default handler on_data_modified()
-       */
-      sigc::signal<void> signal_data_modified() {
-        return _signal_data_modified;
-      }
 
       /** Method to draw the dataset
        *
@@ -285,7 +234,8 @@ namespace Gtk {
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
        */
-      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls);
+      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+
       friend class Plot2D;
     };
   }

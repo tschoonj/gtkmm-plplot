@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "gtkmm-plplot/canvas.h"
+#include "gtkmm-plplot/gtkmm-plplot.h"
 #include <gtkmm/application.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
@@ -49,7 +49,7 @@ namespace Test1 {
     Window(std::valarray<PLFLT> &x, std::valarray<PLFLT> &y,
       std::string x_title = "X-axis", std::string y_title = "Y-axis",
       std::string plot_title = "", Gdk::RGBA color = Gdk::RGBA("red")) :
-      canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::Plot2DData(x, y, color), x_title, y_title, plot_title)),
+      canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x, y, color), x_title, y_title, plot_title)),
       label1("Plot 1"), label2("Plot 2"),
       linewidth_adj1(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       linewidth_adj2(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
@@ -62,8 +62,10 @@ namespace Test1 {
         x_va[i] = 8*M_PI*i/999;
       }
       y_va = 2*cos(x_va)-1;
-      Gtk::PLplot::Plot2D *plot = canvas.get_plot(0);
-      plot->add_data(Gtk::PLplot::Plot2DData(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0));
+
+      auto plot = dynamic_cast<Gtk::PLplot::Plot2D *>(canvas.get_plot(0));
+
+      plot->add_data(Gtk::PLplot::PlotData2D(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0));
 
 
       set_default_size(720, 580);
@@ -138,26 +140,29 @@ namespace Test1 {
       grid.set_column_spacing(5);
       grid.set_row_spacing(5);
 
-      color_combo1.set_rgba(canvas.get_plot(0)->get_data(0)->get_color());
-      color_combo2.set_rgba(canvas.get_plot(0)->get_data(1)->get_color());
+      auto plot_data1 = dynamic_cast<Gtk::PLplot::PlotData2D *>(canvas.get_plot(0)->get_data(0));
+      auto plot_data2 = dynamic_cast<Gtk::PLplot::PlotData2D *>(canvas.get_plot(0)->get_data(1));
+
+      color_combo1.set_rgba(plot_data1->get_color());
+      color_combo2.set_rgba(plot_data2->get_color());
 
       color_combo1.set_use_alpha(true);
       color_combo2.set_use_alpha(true);
 
-      linestyle_combo1.set_active(canvas.get_plot(0)->get_data(0)->get_line_style()-1);
-      linestyle_combo2.set_active(canvas.get_plot(0)->get_data(1)->get_line_style()-1);
+      linestyle_combo1.set_active(plot_data1->get_line_style()-1);
+      linestyle_combo2.set_active(plot_data2->get_line_style()-1);
 
-      color_combo1.signal_color_set().connect([this](){canvas.get_plot(0)->get_data(0)->set_color(color_combo1.get_rgba());});
-      color_combo2.signal_color_set().connect([this](){canvas.get_plot(0)->get_data(1)->set_color(color_combo2.get_rgba());});
+      color_combo1.signal_color_set().connect([this, plot_data1](){plot_data1->set_color(color_combo1.get_rgba());});
+      color_combo2.signal_color_set().connect([this, plot_data2](){plot_data2->set_color(color_combo2.get_rgba());});
 
-      linestyle_combo1.signal_changed().connect([this](){canvas.get_plot(0)->get_data(0)->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo1.get_active_row_number()+1));});
-      linestyle_combo2.signal_changed().connect([this](){canvas.get_plot(0)->get_data(1)->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo2.get_active_row_number()+1));});
+      linestyle_combo1.signal_changed().connect([this, plot_data1](){plot_data1->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo1.get_active_row_number()+1));});
+      linestyle_combo2.signal_changed().connect([this, plot_data2](){plot_data2->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo2.get_active_row_number()+1));});
 
-      linewidth_spin1.set_value(canvas.get_plot(0)->get_data(0)->get_line_width());
-      linewidth_spin2.set_value(canvas.get_plot(0)->get_data(1)->get_line_width());
+      linewidth_spin1.set_value(plot_data1->get_line_width());
+      linewidth_spin2.set_value(plot_data2->get_line_width());
 
-      linewidth_spin1.signal_value_changed().connect([this](){canvas.get_plot(0)->get_data(0)->set_line_width(linewidth_spin1.get_value());});
-      linewidth_spin2.signal_value_changed().connect([this](){canvas.get_plot(0)->get_data(1)->set_line_width(linewidth_spin2.get_value());});
+      linewidth_spin1.signal_value_changed().connect([this, plot_data1](){plot_data1->set_line_width(linewidth_spin1.get_value());});
+      linewidth_spin2.signal_value_changed().connect([this, plot_data2](){plot_data2->set_line_width(linewidth_spin2.get_value());});
 
       grid.attach(label1, 0, 0, 1, 1);
       grid.attach(show_radio1, 1, 0, 1, 1);

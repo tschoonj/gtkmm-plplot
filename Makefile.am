@@ -1,5 +1,5 @@
-SUBDIRS = gtkmm-plplot tests docs
-
+#SUBDIRS = gtkmm-plplot tests docs
+SUBDIRS = gtkmm-plplot tests
 ACLOCAL_AMFLAGS = -I m4
 
 pkgconfigdir=$(libdir)/pkgconfig

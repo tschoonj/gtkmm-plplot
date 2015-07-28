@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "gtkmm-plplot/canvas.h"
+#include "gtkmm-plplot/gtkmm-plplot.h"
 #include <gtkmm/application.h>
 #include <glibmm/miscutils.h>
 #include <gtkmm/window.h>
@@ -43,7 +43,7 @@ namespace Test3 {
         x_va[i] = 4*M_PI*i/999;
       }
       y_va = sin(x_va);
-      plot = canvas.add_plot(Gtk::PLplot::Plot2D(Gtk::PLplot::Plot2DData(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0)));
+      plot = dynamic_cast<Gtk::PLplot::Plot2D *>(canvas.add_plot(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0))));
 
       remove_plot.set_sensitive(true);
       show_plot.set_sensitive(false);

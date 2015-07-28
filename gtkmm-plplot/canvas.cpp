@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #include <gtkmm-plplot/canvas.h>
+#include <gtkmm-plplot/plotabstract.h>
 #include <gtkmm-plplot/exception.h>
 #include <valarray>
 #include <cmath>
@@ -49,10 +50,7 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
 
 PlotAbstract *Canvas::add_plot(const PlotAbstract &plot) {
   //now some bad C++ code. I bet there is some cool trick that avoid this typeid stuff
-  if (typeid(plot).name() == "Plot2D")
-    plots.push_back(new Plot2D(plot));
-  else
-    throw Exception("Gtk::PLplot::Canvas::add_plot -> Unknown Plot type detected");
+  plots.push_back(plot.clone());
   plots.back()->signal_changed().connect([this](){_signal_changed.emit();});
   _signal_changed.emit();
   return plots.back();
@@ -103,7 +101,6 @@ bool Canvas::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
 
 bool Canvas::on_button_press_event(GdkEventButton *event) {
   Gtk::Allocation allocation = get_allocation();
-  const int width = allocation.get_width();
   const int height = allocation.get_height();
 
   start_event[0] = event->x;
@@ -130,13 +127,13 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
           plots[plot]->plot_data_range_x[0],
           plots[plot]->plot_data_range_y[0],
           plot_data_range_x[0],
-          plot_data_range_y[0],
+          plot_data_range_y[0]
         );
         plots[plot]->coordinate_transform_plplot_to_world(
           plots[plot]->plot_data_range_x[1],
           plots[plot]->plot_data_range_y[1],
           plot_data_range_x[1],
-          plot_data_range_y[1],
+          plot_data_range_y[1]
         );
         plots[plot]->set_region(
           plot_data_range_x[0],
@@ -164,7 +161,6 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
     return true;
 
   Gtk::Allocation allocation = get_allocation();
-  const int width = allocation.get_width();
   const int height = allocation.get_height();
 
   end_event[0] = event->x;
@@ -199,18 +195,11 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
   //emit signal!
   //prepare plplot coordinates
   //inspired by https://www.mail-archive.com/plplot-devel@lists.sourceforge.net/msg03079.html
-  //double start_cairo_norm[2] = {start_cairo[0]/width, start_cairo[1]/height};
-  //double end_cairo_norm[2] = {end_cairo[0]/width, end_cairo[1]/height};
 
   double start_plplot[2];
   double end_plplot[2];
-  int index;
 
   //get the plot coordinates corresponding to the cairo coordinates
-  //plots[selected_plot]->pls->calc_world(start_cairo_norm[0], start_cairo_norm[1],
-  //                start_plplot[0], start_plplot[1], index);
-  //plots[selected_plot]->pls->calc_world(end_cairo_norm[0], end_cairo_norm[1],
-  //                end_plplot[0], end_plplot[1], index);
   plots[selected_plot]->convert_cairo_to_plplot_coordinates(start_cairo[0], start_cairo[1],
                   start_plplot[0], start_plplot[1]);
   plots[selected_plot]->convert_cairo_to_plplot_coordinates(end_cairo[0], end_cairo[1],
@@ -234,14 +223,14 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
     start_plplot_def[0],
     start_plplot_def[1],
     start_plplot_def[0],
-    start_plplot_def[1],
+    start_plplot_def[1]
   );
 
   plots[selected_plot]->coordinate_transform_plplot_to_world(
     end_plplot_def[0],
     end_plplot_def[1],
     end_plplot_def[0],
-    end_plplot_def[1],
+    end_plplot_def[1]
   );
 
   plots[selected_plot]->_signal_select_region.emit(start_plplot_def[0], end_plplot_def[0], start_plplot_def[1], end_plplot_def[1]);
@@ -254,7 +243,6 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
     return true;
 
   Gtk::Allocation allocation = get_allocation();
-  const int width = allocation.get_width();
   const int height = allocation.get_height();
 
   end_event[0] = event->x;

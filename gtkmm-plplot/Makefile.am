@@ -16,10 +16,10 @@ gtkmm_plplotbaseinclude_HEADERS = gtkmm-plplot.h
 
 libgtkmm_plplot_0_1_la_SOURCES = $(gtkmm_plplotinclude_HEADERS) \
                                  $(gtkmm_plplotbaseinclude_HEADERS) \
-                                 plotdata2d.cpp \
                                  plotdataabstract.cpp \
-                                 plot2d.cpp \
+                                 plotdata2d.cpp \
                                  plotabstract.cpp \
+                                 plot2d.cpp \
                                  utils.cpp \
                                  canvas.cpp
 
