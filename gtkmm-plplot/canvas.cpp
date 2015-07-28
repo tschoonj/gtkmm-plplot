@@ -22,10 +22,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 #include <gdkmm/general.h>
 #include <iostream>
+#include <typeinfo>
 
 using namespace Gtk::PLplot;
 
-Canvas::Canvas(const Plot2D &plot, Gdk::RGBA _background_color) :
+Canvas::Canvas(const PlotAbstract &plot, Gdk::RGBA _background_color) :
   Canvas(_background_color) {
 
   add_plot(plot);
@@ -46,8 +47,12 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
   signal_changed().connect(sigc::mem_fun(*this, &Canvas::on_changed));
 }
 
-Plot2D *Canvas::add_plot(const Plot2D &plot) {
-  plots.push_back(new Plot2D(plot));
+PlotAbstract *Canvas::add_plot(const PlotAbstract &plot) {
+  //now some bad C++ code. I bet there is some cool trick that avoid this typeid stuff
+  if (typeid(plot).name() == "Plot2D")
+    plots.push_back(new Plot2D(plot));
+  else
+    throw Exception("Gtk::PLplot::Canvas::add_plot -> Unknown Plot type detected");
   plots.back()->signal_changed().connect([this](){_signal_changed.emit();});
   _signal_changed.emit();
   return plots.back();
@@ -60,7 +65,7 @@ Canvas::~Canvas() {
 }
 
 void Canvas::on_changed() {
-  //this catches all signal_changed emissions recursively from the Plot2D and Plot2DData classes
+  //this catches all signal_changed emissions recursively from the PlotAbstract and PlotDataAbstract classes
   //so this is the method that ensures things get redrawn when one of the parameters is changed.
   this->queue_draw();
 }
@@ -121,19 +126,17 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
       if (event->type == GDK_2BUTTON_PRESS) {
         double plot_data_range_x[2];
         double plot_data_range_y[2];
-        Plot2D::coordinate_transform_plplot_to_world(
+        plots[plot]->coordinate_transform_plplot_to_world(
           plots[plot]->plot_data_range_x[0],
           plots[plot]->plot_data_range_y[0],
-          &plot_data_range_x[0],
-          &plot_data_range_y[0],
-          plots[plot]
+          plot_data_range_x[0],
+          plot_data_range_y[0],
         );
-        Plot2D::coordinate_transform_plplot_to_world(
+        plots[plot]->coordinate_transform_plplot_to_world(
           plots[plot]->plot_data_range_x[1],
           plots[plot]->plot_data_range_y[1],
-          &plot_data_range_x[1],
-          &plot_data_range_y[1],
-          plots[plot]
+          plot_data_range_x[1],
+          plot_data_range_y[1],
         );
         plots[plot]->set_region(
           plot_data_range_x[0],
@@ -227,20 +230,18 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
   //this is necessary to get rid of the box on the plot, even if the signal_select_region is not caught by the plot
   _signal_changed.emit();
 
-  Plot2D::coordinate_transform_plplot_to_world(
+  plots[selected_plot]->coordinate_transform_plplot_to_world(
     start_plplot_def[0],
     start_plplot_def[1],
-    &start_plplot_def[0],
-    &start_plplot_def[1],
-    plots[selected_plot]
+    start_plplot_def[0],
+    start_plplot_def[1],
   );
 
-  Plot2D::coordinate_transform_plplot_to_world(
+  plots[selected_plot]->coordinate_transform_plplot_to_world(
     end_plplot_def[0],
     end_plplot_def[1],
-    &end_plplot_def[0],
-    &end_plplot_def[1],
-    plots[selected_plot]
+    end_plplot_def[0],
+    end_plplot_def[1],
   );
 
   plots[selected_plot]->_signal_select_region.emit(start_plplot_def[0], end_plplot_def[0], start_plplot_def[1], end_plplot_def[1]);
@@ -281,7 +282,7 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
   return true;
 }
 
-Plot2D *Canvas::get_plot(unsigned int index) {
+PlotAbstract *Canvas::get_plot(unsigned int index) {
   if (index < plots.size()) {
     return plots[index];
   }
@@ -308,7 +309,7 @@ void Canvas::remove_plot(unsigned int index) {
   _signal_changed.emit();
 }
 
-void Canvas::remove_plot(Plot2D *plot) {
+void Canvas::remove_plot(PlotAbstract *plot) {
   if (plots.empty())
     throw Exception("Gtk::PLplot::Canvas::remove_plot -> No plots on canvas");
 

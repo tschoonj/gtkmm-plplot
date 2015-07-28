@@ -39,55 +39,20 @@ Plot2D::Plot2D(
   const double _plot_height_norm,
   const double _plot_offset_horizontal_norm,
   const double _plot_offset_vertical_norm) :
+  PlotAbstract(_axis_title_x, _axis_title_y, _plot_title,
+  _plot_width_norm, _plot_height_norm,
+  _plot_offset_horizontal_norm,
+  _plot_offset_vertical_norm),
   log10_x(false),
-  log10_y(false),
-  axis_title_x(_axis_title_x),
-  axis_title_y(_axis_title_y),
-  plot_title(_plot_title),
-  pls(nullptr),
-  shown(true),
-  background_color("Black"),
-  plot_width_norm(_plot_width_norm),
-  plot_height_norm(_plot_height_norm),
-  plot_offset_horizontal_norm(_plot_offset_horizontal_norm),
-  plot_offset_vertical_norm(_plot_offset_vertical_norm),
-  region_selectable(true),
-  axes_color("Black"),
-  titles_color("Black"),
-  box_style(BOX_TICKS_TICK_LABELS) {
+  log10_y(false) {
 
-  background_color.set_alpha(0.0);
-
-  //connect our default signal handlers
-  this->signal_select_region().connect(sigc::mem_fun(*this, &Plot2D::on_select_region));
-  this->signal_changed().connect(sigc::mem_fun(*this, &Plot2D::on_changed));
-  this->signal_data_added().connect(sigc::mem_fun(*this, &Plot2D::on_data_added));
-  this->signal_data_removed().connect(sigc::mem_fun(*this, &Plot2D::on_data_removed));
   add_data(_data);
 }
 
 Plot2D::Plot2D(const Plot2D &_source) :
+  PlotAbstract(_source),
   log10_x(_source.log10_x),
-  log10_y(_source.log10_y),
-  axis_title_x(_source.axis_title_x),
-  axis_title_y(_source.axis_title_y),
-  plot_title(_source.plot_title),
-  pls(nullptr),
-  shown(true),
-  background_color(_source.background_color),
-  plot_width_norm(_source.plot_width_norm),
-  plot_height_norm(_source.plot_height_norm),
-  plot_offset_horizontal_norm(_source.plot_offset_horizontal_norm),
-  plot_offset_vertical_norm(_source.plot_offset_vertical_norm),
-  region_selectable(_source.region_selectable),
-  axes_color(_source.axes_color),
-  titles_color(_source.titles_color),
-  box_style(_source.box_style) {
-
-  this->signal_select_region().connect(sigc::mem_fun(*this, &Plot2D::on_select_region));
-  this->signal_changed().connect(sigc::mem_fun(*this, &Plot2D::on_changed));
-  this->signal_data_added().connect(sigc::mem_fun(*this, &Plot2D::on_data_added));
-  this->signal_data_removed().connect(sigc::mem_fun(*this, &Plot2D::on_data_removed));
+  log10_y(_source.log10_y) {
 
   for (auto &iter : _source.plot_data) {
     add_data(*iter);
