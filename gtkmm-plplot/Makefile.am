@@ -9,6 +9,7 @@ gtkmm_plplotinclude_HEADERS = \
                               plotdata2d.h \
                               plotdataabstract.h \
                               plot2d.h \
+                              plotpolar.h \
                               utils.h \
                               enums.h
 
@@ -21,7 +22,8 @@ libgtkmm_plplot_0_1_la_SOURCES = $(gtkmm_plplotinclude_HEADERS) \
                                  plotabstract.cpp \
                                  plot2d.cpp \
                                  utils.cpp \
-                                 canvas.cpp
+                                 canvas.cpp \
+                                 plotpolar.cpp
 
 libgtkmm_plplot_0_1_la_CPPFLAGS = $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS) -I$(top_srcdir)
 libgtkmm_plplot_0_1_la_LIBADD = $(gtkmm_LIBS) $(plplotcxx_LIBS)

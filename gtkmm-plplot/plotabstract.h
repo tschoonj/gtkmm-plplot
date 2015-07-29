@@ -66,7 +66,6 @@ namespace Gtk {
       bool region_selectable; ///< \c true indicates that a region on the plot can be selected by dragging a box with the mouse button pressed in when showing, or if double mouse button pressed event zooms out, \c false means not possible. The default is \c true
       Gdk::RGBA axes_color; ///< the currently used color to draw the axes, the box and gridlines. Default is opaque black
       Gdk::RGBA titles_color; ///< the currently used color to draw the axes and plot titles. Default is opaque black
-      BoxStyle box_style; ///< the currently used box style to draw the box, axes and grid
 
 
       sigc::signal<void, double, double, double, double > _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event()
@@ -75,12 +74,12 @@ namespace Gtk {
       sigc::signal<void> _signal_data_removed; ///< signal emitted whenever data is removed from the plot.
 
       virtual void plot_data_modified() = 0; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
-      virtual void convert_plplot_to_cairo_coordinates(
+      void convert_plplot_to_cairo_coordinates(
         double x_pl, double y_pl,
-        double &x_cr, double &y_cr) = 0; ///< method to calculate the Cairo coordinates corresponding to PLplot coordinates, mostly used after draw, which is necessary after Canvas widget resizing.
-      virtual void convert_cairo_to_plplot_coordinates(
+        double &x_cr, double &y_cr); ///< method to calculate the Cairo coordinates corresponding to PLplot coordinates, mostly used after draw, which is necessary after Canvas widget resizing.
+      void convert_cairo_to_plplot_coordinates(
         double x_cr, double y_cr,
-        double &x_pl, double &y_pl) = 0; ///< method to calculate the PLplot coordinates corresponding to Cairo coordinates, mostly used after draw, which is necessary after Canvas widget resizing.
+        double &x_pl, double &y_pl); ///< method to calculate the PLplot coordinates corresponding to Cairo coordinates, mostly used after draw, which is necessary after Canvas widget resizing.
 
       /** This is a default handler for signal_select_region()
        *
@@ -208,18 +207,6 @@ namespace Gtk {
        * \return the current plot title
        */
       Glib::ustring get_plot_title();
-
-      /** Set the box style
-       *
-       * \param style the new box style (default is BOX_TICKS_TICK_LABELS)
-       */
-      void set_box_style(BoxStyle style = BOX_TICKS_TICK_LABELS);
-
-      /** Get the box style
-       *
-       * \return the currently selected box style
-       */
-      BoxStyle get_box_style();
 
       /** Changes the visible plotted region
        *

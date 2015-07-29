@@ -5,9 +5,12 @@ if ENABLE_DOCUMENTATION
 doxyfile_deps = $(top_srcdir)/gtkmm-plplot/canvas.h \
 								$(top_srcdir)/gtkmm-plplot/exception.h \
 								$(top_srcdir)/gtkmm-plplot/plot2d.h \
-								$(top_srcdir)/gtkmm-plplot/plot2ddata.h \
+								$(top_srcdir)/gtkmm-plplot/plotdata2d.h \
 								$(top_srcdir)/gtkmm-plplot/enums.h \
-								$(top_srcdir)/gtkmm-plplot/utils.h
+								$(top_srcdir)/gtkmm-plplot/plotabstract.h \
+								$(top_srcdir)/gtkmm-plplot/plotdataabstract.h \
+								$(top_srcdir)/gtkmm-plplot/utils.h \
+								$(top_srcdir)/gtkmm-plplot/plotpolar.h
 
 
 doxyfile.stamp: $(doxyfile_deps) Doxyfile extra_pages.dox doxygen_hack.css DoxygenLayout.xml

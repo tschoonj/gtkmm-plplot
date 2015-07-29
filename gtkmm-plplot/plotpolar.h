@@ -15,36 +15,32 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GTKMM_PLPLOT_PLOT2D_H
-#define GTKMM_PLPLOT_PLOT2D_H
+#ifndef GTKMM_PLPLOT_PLOTPOLAR_H
+#define GTKMM_PLPLOT_PLOTPOLAR_H
 
 #include <gtkmm-plplot/plotabstract.h>
 #include <gtkmm-plplot/plotdata2d.h>
-#include <gtkmm-plplot/enums.h>
-
 
 namespace Gtk {
   namespace PLplot {
-    /** \class Plot2D plot2d.h <gtkmm-plplot/plot2d.h>
-     *  \brief a class for two-dimensional plots
+    /** \class PlotPolar plotpolar.h <gtkmm-plplot/plotpolar.h>
+     *  \brief a class for polar plots
      *
-     *  A class for conventional two-dimensional plots. Construction requires
+     *  A class for polar plots. Construction requires
      *  one PlotData2D dataset, meaning it is not possible to generate an empty plot.
      *  Afterwards, other datasets may be added using the add_data method.
-     *  Several properties may be set such as the axes and plot titles, type of scaling (linear or logarithmic).
+     *  The \c x and \c y class variables of PlotData2D will when used with this class be interpreted
+     *  to correspond to the radial coordinate (usually denoted as \c r) and the angular coordinate (usually denoted as \c θ), respectively.
+     *  Several properties may be set such as the axes and plot titles.
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.
      */
-    class Plot2D : public PlotAbstract {
+    class PlotPolar : public PlotAbstract {
     private:
-      bool log10_x; ///< \c true means X-axis logarithmic axis, \c false means linear
-      bool log10_y; ///< \c true means Y-axis logarithmic axis, \c false means linear
-      BoxStyle box_style; ///< the currently used box style to draw the box, axes and grid
-
-
+      PLFLT max_r; ///< the maximum radial coordinate in the datasets
       virtual void plot_data_modified(); ///< a private method that will update the \c _range variables when datasets are added, modified or removed.
-      Plot2D() = delete; ///< no default constructor
-      Plot2D &operator=(const Plot2D &) = delete; ///< no copy constructor
+      PlotPolar() = delete; ///< no default constructor
+      PlotPolar &operator=(const PlotPolar &) = delete; ///< no copy constructor
     protected:
       /** This static method takes care of coordinate transformations when using non-linear axes
        *
@@ -86,25 +82,25 @@ namespace Gtk {
        * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
        * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
        */
-      Plot2D(const PlotData2D &data,
-             const Glib::ustring &axis_title_x = "X-axis",
-             const Glib::ustring &axis_title_y = "Y-axis",
-             const Glib::ustring &plot_title = "",
-             const double plot_width_norm = 1.0,
-             const double plot_height_norm = 1.0,
-             const double plot_offset_horizontal_norm = 0.0,
-             const double plot_offset_vertical_norm = 0.0);
+      PlotPolar(const PlotData2D &data,
+                const Glib::ustring &axis_title_x = "",
+                const Glib::ustring &axis_title_y = "",
+                const Glib::ustring &plot_title = "",
+                const double plot_width_norm = 1.0,
+                const double plot_height_norm = 1.0,
+                const double plot_offset_horizontal_norm = 0.0,
+                const double plot_offset_vertical_norm = 0.0);
 
       /** Copy constructor
        *
        * \param plot plot to be copied
        */
-      Plot2D(const Plot2D &plot);
+      PlotPolar(const PlotPolar &plot);
 
       /** Destructor
        *
        */
-      virtual ~Plot2D();
+      virtual ~PlotPolar();
 
       /** Add a single PlotData2D dataset to the plot
        *
@@ -124,49 +120,6 @@ namespace Gtk {
        */
       //void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, plstream *_pls, int width, int height);
       virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
-
-      /** Set the box style
-       *
-       * \param style the new box style (default is BOX_TICKS_TICK_LABELS)
-       */
-      void set_box_style(BoxStyle style = BOX_TICKS_TICK_LABELS);
-
-      /** Get the box style
-       *
-       * \return the currently selected box style
-       */
-      BoxStyle get_box_style();
-
-
-      /** Sets the scaling of the X-axis to logarithmic
-       *
-       * Before calling this method, the (default) scaling is linear.
-       * The function will check if the X-values allow for a logarithmic axis. If not, an exception will be thrown.
-       * \param log10 \c true sets scaling to logarithmic, \c false to linear.
-       * \exception Gtk::PLplot::Exception
-       */
-      void set_axis_logarithmic_x(bool log10 = true);
-
-      /** Sets the scaling of the Y-axis to logarithmic
-       *
-       * Before calling this method, the (default) scaling is linear.
-       * The function will check if the Y-values allow for a logarithmic axis. If not, an exception will be thrown.
-       * \param log10 \c true sets scaling to logarithmic, \c false to linear.
-       * \exception Gtk::PLplot::Exception
-       */
-      void set_axis_logarithmic_y(bool log10 = true);
-
-      /** Get the current scaling of the X-axis
-       *
-       * \return \c true indicates logarithmic scaling, \c false linear scaling.
-       */
-      bool get_axis_logarithmic_x();
-
-      /** Get the current scaling of the Y-axis
-       *
-       * \return \c true indicates logarithmic scaling, \c false linear scaling.
-       */
-      bool get_axis_logarithmic_y();
 
       /** This method takes care of coordinate transformations when using non-linear axes
        *
@@ -216,4 +169,5 @@ namespace Gtk {
     };
   }
 }
+
 #endif

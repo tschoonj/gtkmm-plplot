@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <vector>
 #include <valarray>
-#include <gtkmm-plplot/enums.h>
 #include <glibmm/ustring.h>
 #include <gtkmm-plplot/plotdataabstract.h>
 #include <gdkmm/rgba.h>
@@ -125,6 +124,18 @@ namespace Gtk {
        *
        */
       virtual ~PlotData2D();
+
+      /**
+       *
+       * \returns a copy of the dataset X-values
+       */
+      std::vector<PLFLT> get_vector_x();
+
+      /**
+       *
+       * \returns a copy of the dataset Y-values
+       */
+      std::vector<PLFLT> get_vector_y();
 
       /** Changes the color of the dataset
        *
@@ -235,8 +246,6 @@ namespace Gtk {
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
        */
       virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
-
-      friend class Plot2D;
     };
   }
 }

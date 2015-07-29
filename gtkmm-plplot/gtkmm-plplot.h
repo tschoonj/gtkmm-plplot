@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/plotabstract.h>
 #include <gtkmm-plplot/plotdata2d.h>
 #include <gtkmm-plplot/plotdataabstract.h>
+#include <gtkmm-plplot/plotpolar.h>
 #include <gtkmm-plplot/utils.h>
 
 

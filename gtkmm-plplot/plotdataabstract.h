@@ -58,7 +58,6 @@ namespace Gtk {
      public:
        /** Constructor
         *
-        * \param shown \c true means dataset is visible at construction, \c false means not
         */
        PlotDataAbstract();
 

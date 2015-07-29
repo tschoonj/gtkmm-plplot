@@ -40,8 +40,7 @@ PlotAbstract::PlotAbstract(
   plot_offset_vertical_norm(_plot_offset_vertical_norm),
   region_selectable(true),
   axes_color("Black"),
-  titles_color("Black"),
-  box_style(BOX_TICKS_TICK_LABELS) {
+  titles_color("Black") {
 
   background_color.set_alpha(0.0);
 
@@ -65,8 +64,7 @@ PlotAbstract::PlotAbstract(const PlotAbstract &_source) :
   plot_offset_vertical_norm(_source.plot_offset_vertical_norm),
   region_selectable(_source.region_selectable),
   axes_color(_source.axes_color),
-  titles_color(_source.titles_color),
-  box_style(_source.box_style) {
+  titles_color(_source.titles_color) {
 
   this->signal_select_region().connect(sigc::mem_fun(*this, &PlotAbstract::on_select_region));
   this->signal_changed().connect(sigc::mem_fun(*this, &PlotAbstract::on_changed));
@@ -140,15 +138,6 @@ Glib::ustring PlotAbstract::get_plot_title() {
   return plot_title;
 }
 
-void PlotAbstract::set_box_style(BoxStyle _box_style) {
-  box_style = _box_style;
-  _signal_changed.emit();
-}
-
-BoxStyle PlotAbstract::get_box_style() {
-  return box_style;
-}
-
 PlotDataAbstract *PlotAbstract::get_data(unsigned int index) {
   if (index < plot_data.size()) {
     return plot_data[index];
@@ -189,4 +178,43 @@ bool PlotAbstract::get_region_selectable() {
 
 void PlotAbstract::set_region_selectable(bool _region_selectable) {
   region_selectable = _region_selectable;
+}
+
+void PlotAbstract::convert_plplot_to_cairo_coordinates(
+  double x_pl, double y_pl,
+  double &x_cr, double &y_cr) {
+    //inspired by http://www.mail-archive.com/plplot-devel@lists.sourceforge.net/msg02383.html
+    //but the last equation was incorrect and is fixed here
+    double nxmin, nxmax, nymin, nymax;
+    double wxmin, wxmax, wymin, wymax;
+
+    pls->gvpd(nxmin, nxmax, nymin, nymax);
+    pls->gvpw(wxmin, wxmax, wymin, wymax);
+
+    double xmin = plot_width * nxmin + plot_offset_x;
+    double xmax = plot_width * nxmax + plot_offset_x;
+    double ymin = plot_height * (nymin - 1.0) + canvas_height - plot_offset_y;
+    double ymax = plot_height * (nymax - 1.0) + canvas_height - plot_offset_y;
+
+    x_cr = xmin + ((xmax - xmin) * ((x_pl - wxmin) / (wxmax - wxmin)));
+    y_cr = ymin + ((ymax - ymin) * ((y_pl - wymin) / (wymax - wymin)));
+}
+
+void PlotAbstract::convert_cairo_to_plplot_coordinates(
+  double x_cr, double y_cr,
+  double &x_pl, double &y_pl) {
+
+    double nxmin, nxmax, nymin, nymax;
+    double wxmin, wxmax, wymin, wymax;
+
+    pls->gvpd(nxmin, nxmax, nymin, nymax);
+    pls->gvpw(wxmin, wxmax, wymin, wymax);
+
+    double xmin = plot_width * nxmin + plot_offset_x;
+    double xmax = plot_width * nxmax + plot_offset_x;
+    double ymin = plot_height * (nymin - 1.0) + canvas_height - plot_offset_y;
+    double ymax = plot_height * (nymax - 1.0) + canvas_height - plot_offset_y;
+
+    x_pl = wxmin + ((x_cr - xmin) * (wxmax - wxmin) / (xmax - xmin));
+    y_pl = wymin + ((y_cr - ymin) * (wymax - wymin) / (ymax - ymin));
 }

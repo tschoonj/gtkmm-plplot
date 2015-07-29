@@ -175,3 +175,11 @@ void PlotData2D::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstrea
   }
 
 }
+
+std::vector<PLFLT> PlotData2D::get_vector_x() {
+  return x;
+}
+
+std::vector<PLFLT> PlotData2D::get_vector_y() {
+  return y;
+}
