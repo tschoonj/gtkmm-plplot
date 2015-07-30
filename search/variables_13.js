@@ -27,7 +27,7 @@ var searchData=
   ['set_5fsymmetric_5fdifference_5fminimal_5fn',['set_symmetric_difference_minimal_n',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#abf47bf2bbef9261d3d10b59558ddbdf2',1,'__gnu_parallel::_Settings']]],
   ['set_5funion_5fminimal_5fn',['set_union_minimal_n',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#ab42faf337cfe7b64edfb7e61c6dadd08',1,'__gnu_parallel::_Settings']]],
   ['showbase',['showbase',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#a69acbf246475f065d6648303e452fd4d',1,'std::basic_fstream']]],
-  ['shown',['shown',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#ac59616708d99b08fe280dbbdb73db6bb',1,'Gtk::PLplot::Plot2D::shown()'],['../class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a58dce4d940209332a09b070371150595',1,'Gtk::PLplot::Plot2DData::shown()']]],
+  ['shown',['shown',['../class_gtk_1_1_p_lplot_1_1_plot_abstract.html#abbdf7902f21eb3794b5c3dd3e5f51a15',1,'Gtk::PLplot::PlotAbstract::shown()'],['../class_gtk_1_1_p_lplot_1_1_plot_data_abstract.html#a36dca768a0253b4d191a095177faebd9',1,'Gtk::PLplot::PlotDataAbstract::shown()']]],
   ['showpoint',['showpoint',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#a4c79db16d6509208744e2b698a2d107f',1,'std::basic_fstream']]],
   ['showpos',['showpos',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#acf2cdf1f2ebd7914d39e25c1f071bbc4',1,'std::basic_fstream']]],
   ['signal_5fkey_5fsnooper_5f',['signal_key_snooper_',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Main.html#a97582880bbb0ac12e957861a7ed165a3',1,'Gtk::Main']]],
@@ -99,9 +99,9 @@ var searchData=
   ['surface_5ftype_5fxml',['SURFACE_TYPE_XML',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#af11d962e38a38a2d92fc1473fbe92549a028253334ffd3cb31bb6b74d03012545',1,'Cairo']]],
   ['svg_5fversion_5f1_5f1',['SVG_VERSION_1_1',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a853a6353847b8cd86001a98d36b245caaa2342af6873626640d2126f75fe0ab48',1,'Cairo']]],
   ['svg_5fversion_5f1_5f2',['SVG_VERSION_1_2',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a853a6353847b8cd86001a98d36b245caac9a963a188f21ab16da513d4482fb7bd',1,'Cairo']]],
-  ['symbol',['symbol',['../class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#abdb7b144154b02c51baef73e1df1299a',1,'Gtk::PLplot::Plot2DData']]],
-  ['symbol_5fcolor',['symbol_color',['../class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#ae55e5f2d61fdca219a58936c8ce40284',1,'Gtk::PLplot::Plot2DData']]],
-  ['symbol_5fscale_5ffactor',['symbol_scale_factor',['../class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a73fa7aec498359098317d016cdd6a5c0',1,'Gtk::PLplot::Plot2DData']]],
+  ['symbol',['symbol',['../class_gtk_1_1_p_lplot_1_1_plot_data2_d.html#a35db2eec25ef5367c028d6849530f44a',1,'Gtk::PLplot::PlotData2D']]],
+  ['symbol_5fcolor',['symbol_color',['../class_gtk_1_1_p_lplot_1_1_plot_data2_d.html#a38431e1f09aee9f2c381b9dd4f5a374d',1,'Gtk::PLplot::PlotData2D']]],
+  ['symbol_5fscale_5ffactor',['symbol_scale_factor',['../class_gtk_1_1_p_lplot_1_1_plot_data2_d.html#a27753ba074ff542f03aa7cf441f64dc9',1,'Gtk::PLplot::PlotData2D']]],
   ['symlink_5floop',['SYMLINK_LOOP',['http://library.gnome.org/devel/glibmm/unstable/group__FileUtils.html#gga0bdb855c813c7d07a424009706fc8f0ba162e633cd38eab5d522270c9a3ebcea2',1,'Glib::FileError']]],
   ['syntax',['SYNTAX',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1CssProviderError.html#a25b86727bdc2ddee1ffdd4b8c4d3d523a165fa221e22affae3cd7b05b43bdf25e',1,'Gtk::CssProviderError']]]
 ];

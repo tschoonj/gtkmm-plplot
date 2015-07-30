@@ -419,7 +419,7 @@ var searchData=
   ['is_5fsensitive',['is_sensitive',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Action.html#a70220b37e73d268911599ca5061744d3',1,'Gtk::Action::is_sensitive()'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Widget.html#afbb93061db93c091829e675631f2b163',1,'Gtk::Widget::is_sensitive()']]],
   ['is_5fshadowed',['is_shadowed',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Mount.html#a7788da3491e20c6a5563adb7690001fb',1,'Gio::Mount']]],
   ['is_5fshaped',['is_shaped',['http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1Window.html#ae0f8676d3c9b69be7b0e613b4eda30b8',1,'Gdk::Window']]],
-  ['is_5fshowing',['is_showing',['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#af2737650ea27f70f0d7b4558b975376a',1,'Gtk::PLplot::Plot2D::is_showing()'],['../class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#aa9a5028a730899f40d74aa04363ff573',1,'Gtk::PLplot::Plot2DData::is_showing()']]],
+  ['is_5fshowing',['is_showing',['../class_gtk_1_1_p_lplot_1_1_plot_abstract.html#a9555f23a66fe2870ce2d76144a80c027',1,'Gtk::PLplot::PlotAbstract::is_showing()'],['../class_gtk_1_1_p_lplot_1_1_plot_data_abstract.html#a87e0d39dffd7f232d16d166748ad5fd9',1,'Gtk::PLplot::PlotDataAbstract::is_showing()']]],
   ['is_5fsignature',['is_signature',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1VariantStringBase.html#a75f4a50974c381d161a7e1029a6bd5e7',1,'Glib::VariantStringBase']]],
   ['is_5fsigned',['is_signed',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00533.html#ac9fad027d1b91ec445d58e5036e8ea0b',1,'std::__numeric_limits_base']]],
   ['is_5fsingleton',['is_singleton',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00934.html#a38e8d383330fd41d9b27a09855ba1c0f',1,'std::tr2::bool_set']]],

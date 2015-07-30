@@ -113,8 +113,17 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html">Plot2D</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a class for two-dimensional plots  <a href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html">Plot2DData</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a class that will hold a single dataset and its properties for a <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two-dimensional plots ">Plot2D</a> plot  <a href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_abstract.html">PlotAbstract</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">an abstract base class for all plots  <a href="class_gtk_1_1_p_lplot_1_1_plot_abstract.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_data2_d.html">PlotData2D</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a class that will hold a single dataset and its properties for a <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two-dimensional plots ">Plot2D</a> plot  <a href="class_gtk_1_1_p_lplot_1_1_plot_data2_d.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_data_abstract.html">PlotDataAbstract</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">the abstract base class that will hold a single dataset and its properties  <a href="class_gtk_1_1_p_lplot_1_1_plot_data_abstract.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html">PlotPolar</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">a class for polar plots  <a href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -202,8 +211,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Controls the line style of a <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html" title="a class that will hold a single dataset and its properties for a Plot2D plot ">Plot2DData</a> dataset</p>
-<p>To be used in combination with <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html" title="a class that will hold a single dataset and its properties for a Plot2D plot ">Plot2DData</a> constructors and the <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#a537b7d3c38f31de50a0d5c046bb0aa66">Plot2DData::set_line_style()</a> and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d_data.html#ad764cd9f0c9632a8b3efca28c125e897">Plot2DData::get_line_style()</a> methods. </p>
+<p>Controls the line style of a Plot2DData dataset</p>
+<p>To be used in combination with Plot2DData constructors and the Plot2DData::set_line_style() and Plot2DData::get_line_style() methods. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="af906a181e6250225210ce29c07f58636a994e64946a56bd759d28ca090b5e68ae"></a>NONE&#160;</td><td class="fielddoc">
 <p>no line will be plotted </p>
@@ -320,7 +329,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 24 2015 16:57:40 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 30 2015 15:42:42 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

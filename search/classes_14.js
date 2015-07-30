@@ -1,8 +1,8 @@
 var searchData=
 [
   ['tabarray',['TabArray',['http://library.gnome.org/devel/pangomm/unstable/classPango_1_1TabArray.html',1,'Pango']]],
-  ['table',['Table',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Table.html',1,'Gtk']]],
   ['table',['Table',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Table.html',1,'Atk']]],
+  ['table',['Table',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Table.html',1,'Gtk']]],
   ['targetentry',['TargetEntry',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TargetEntry.html',1,'Gtk']]],
   ['targetlist',['TargetList',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TargetList.html',1,'Gtk']]],
   ['tcpconnection',['TcpConnection',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1TcpConnection.html',1,'Gio']]],
@@ -26,8 +26,8 @@ var searchData=
   ['thread',['Thread',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Thread.html',1,'Glib']]],
   ['thread',['thread',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00922.html',1,'std']]],
   ['threadedsocketservice',['ThreadedSocketService',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1ThreadedSocketService.html',1,'Gio']]],
-  ['threaderror',['ThreadError',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1ThreadError.html',1,'Glib::Threads']]],
   ['threaderror',['ThreadError',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1ThreadError.html',1,'Glib']]],
+  ['threaderror',['ThreadError',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1ThreadError.html',1,'Glib::Threads']]],
   ['threadpool',['ThreadPool',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1ThreadPool.html',1,'Glib']]],
   ['throw_5fallocator_5fbase',['throw_allocator_base',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00074.html',1,'__gnu_cxx']]],
   ['throw_5fallocator_5fbase_3c_20_5ftp_2c_20limit_5fcondition_20_3e',['throw_allocator_base&lt; _Tp, limit_condition &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00074.html',1,'__gnu_cxx']]],
@@ -99,7 +99,7 @@ var searchData=
   ['treemodel',['TreeModel',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TreeModel.html',1,'Gtk']]],
   ['treemodelcolumn',['TreeModelColumn',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TreeModelColumn.html',1,'Gtk']]],
   ['treemodelcolumn_3c_20columntype_20_3e',['TreeModelColumn&lt; ColumnType &gt;',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TreeModelColumn.html',1,'']]],
-  ['treemodelcolumn_3c_20glib_3a_3austring_20_3e',['TreeModelColumn&lt; Glib::ustring &gt;',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TreeModelColumn.html',1,'TreeModelColumn&lt; Glib::ustring &gt;'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TreeModelColumn.html',1,'Gtk::TreeModelColumn&lt; Glib::ustring &gt;']]],
+  ['treemodelcolumn_3c_20glib_3a_3austring_20_3e',['TreeModelColumn&lt; Glib::ustring &gt;',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TreeModelColumn.html',1,'Gtk::TreeModelColumn&lt; Glib::ustring &gt;'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TreeModelColumn.html',1,'TreeModelColumn&lt; Glib::ustring &gt;']]],
   ['treemodelcolumnbase',['TreeModelColumnBase',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TreeModelColumnBase.html',1,'Gtk']]],
   ['treemodelcolumnrecord',['TreeModelColumnRecord',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TreeModelColumnRecord.html',1,'Gtk']]],
   ['treemodelfilter',['TreeModelFilter',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TreeModelFilter.html',1,'Gtk']]],
