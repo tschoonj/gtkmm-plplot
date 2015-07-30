@@ -118,4 +118,7 @@
  *  \section example5 Example 5: Mixing plot lines and symbols plus adding datapoints
  *  \include test5.cpp
  *  \image html test5.png "Example 5"
+ *  \section example6 Example 6: Polar coordinate systems
+ *  \include test6.cpp
+ *  \image html test6.png "Example 6"
  */

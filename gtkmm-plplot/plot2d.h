@@ -34,6 +34,7 @@ namespace Gtk {
      *  Several properties may be set such as the axes and plot titles, type of scaling (linear or logarithmic).
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.
+     *  For more information, the reader is referred to the examples \ref example1 and \ref example2.
      */
     class Plot2D : public PlotAbstract {
     private:
@@ -41,11 +42,11 @@ namespace Gtk {
       bool log10_y; ///< \c true means Y-axis logarithmic axis, \c false means linear
       BoxStyle box_style; ///< the currently used box style to draw the box, axes and grid
 
-
-      virtual void plot_data_modified(); ///< a private method that will update the \c _range variables when datasets are added, modified or removed.
       Plot2D() = delete; ///< no default constructor
       Plot2D &operator=(const Plot2D &) = delete; ///< no copy constructor
     protected:
+      virtual void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
+
       /** This static method takes care of coordinate transformations when using non-linear axes
        *
        * When a plot has logarithmic axes or polar plot style, PLplot requires the user

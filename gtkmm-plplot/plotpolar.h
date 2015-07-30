@@ -27,21 +27,23 @@ namespace Gtk {
      *  \brief a class for polar plots
      *
      *  A class for polar plots. Construction requires
-     *  one PlotData2D dataset, meaning it is not possible to generate an empty plot.
+     *  a single PlotData2D dataset, meaning it is not possible to generate an empty plot.
      *  Afterwards, other datasets may be added using the add_data method.
      *  The \c x and \c y class variables of PlotData2D will when used with this class be interpreted
      *  to correspond to the radial coordinate (usually denoted as \c r) and the angular coordinate (usually denoted as \c θ), respectively.
      *  Several properties may be set such as the axes and plot titles.
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.
+     *  An example of this class is presented in \ref example6.
      */
     class PlotPolar : public PlotAbstract {
     private:
       PLFLT max_r; ///< the maximum radial coordinate in the datasets
-      virtual void plot_data_modified(); ///< a private method that will update the \c _range variables when datasets are added, modified or removed.
       PlotPolar() = delete; ///< no default constructor
       PlotPolar &operator=(const PlotPolar &) = delete; ///< no copy constructor
     protected:
+      virtual void plot_data_modified() override;  ///< a method that will update the \c _range variables when datasets are added, modified or removed.
+
       /** This static method takes care of coordinate transformations when using non-linear axes
        *
        * When a plot has logarithmic axes or polar plot style, PLplot requires the user
@@ -67,7 +69,6 @@ namespace Gtk {
        * \param object the object we are dealing with
        */
       static void coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object);
-
     public:
       /** Constructor
        *

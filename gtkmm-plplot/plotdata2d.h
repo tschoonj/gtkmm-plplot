@@ -33,11 +33,12 @@ namespace Gtk {
      *
      *  Instances of this class contain a single dataset for a Plot2D two-dimensional plot,
      *  consisting of the raw X- and Y-data, along with a number of properties that will determine
-     *  the appearance in the plot.
+     *  the appearance in the plot. Data may be represented as a line, symbols or both.
      *  The constructors of this class allow to use either std::vector or std::valarray as sources of data,
      *  for added flexibility. Internally they are stored only as std::vector though. The datatype is PLplot's \c PLFLT, which is typedef'ed to \c double.
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.
+     *  Several of the methods that are offered by this class are demonstrated in \ref example5
      */
     class PlotData2D : public PlotDataAbstract {
     private:

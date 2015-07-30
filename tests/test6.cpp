@@ -45,17 +45,25 @@ namespace Test6 {
       canvas.set_vexpand(true);
 
       //add a plot to canvas
-      std::valarray<PLFLT> theta = Gtk::PLplot::indgen_va(1000)*2.0*M_PI/999.0;
-      std::valarray<PLFLT> r = cos(theta) + PLFLT(1.0);
+      //a cardioid
+      std::valarray<PLFLT> theta1 = Gtk::PLplot::indgen_va(1000)*2.0*M_PI/999.0;
+      std::valarray<PLFLT> r1 = cos(theta1) + PLFLT(1.0);
 
       auto plot = Gtk::PLplot::PlotPolar(
-        Gtk::PLplot::PlotData2D(r, theta),
+        Gtk::PLplot::PlotData2D(r1, theta1, Gdk::RGBA("red"), Gtk::PLplot::LineStyle::CONTINUOUS, 2.0),
         "",
         "",
-        "r = 1 + cos(θ)"
+        "Polar coordinate system"
       );
 
-      canvas.add_plot(plot);
+      //Fermat's spiral
+      std::valarray<PLFLT> theta2 = Gtk::PLplot::indgen_va(2000)*4.0*M_PI/1999.0;
+      std::valarray<PLFLT> r2 = sqrt(theta2) * M_2_SQRTPI * 1.1;
+
+      auto data2 = Gtk::PLplot::PlotData2D(r2, theta2, Gdk::RGBA("green"), Gtk::PLplot::LineStyle::CONTINUOUS, 2.0);
+
+      auto plot_ref = canvas.add_plot(plot);
+      plot_ref->add_data(data2);
 
       grid.attach(canvas, 0, 0, 1, 1);
       add(grid);

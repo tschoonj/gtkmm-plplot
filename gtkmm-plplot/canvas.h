@@ -47,6 +47,9 @@ namespace Gtk {
      *
      *  Inheriting from `Gtk::DrawingArea`, this is by far the most important
      *  widget in PLplot, as it will contain the plots and the datasets.
+     *  Depending on which constructor is chosen, either an empty canvas will be produced, or one containing a single plot.
+     *  It is possible however, to add any number of plots on the canvas. The positions and dimensions of these plots are properties of the plots, that have to be provided
+     *  when invoking their constructors. This is demonstrated in \ref example3 and \ref example4.
      */
     class Canvas : public Gtk::DrawingArea {
     private:

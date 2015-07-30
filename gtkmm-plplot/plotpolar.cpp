@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gdkmm/rgba.h>
 #include <gdkmm/general.h>
 #include <cmath>
+#include <sstream>
 
 using namespace Gtk::PLplot;
 
@@ -71,7 +72,7 @@ void PlotPolar::plot_data_modified() {
   max_r = *std::max_element(max_x.begin(), max_x.end());
 
   plot_data_range_x[0] =
-  plot_data_range_x[1] = max_r * M_SQRT2 * 1.2;
+  plot_data_range_x[1] = max_r * M_SQRT2 * 1.3;
   plot_data_range_y[0] = 5.0 * M_PI_4;
   plot_data_range_y[1] = M_PI_4;
 
@@ -171,16 +172,48 @@ void PlotPolar::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int wid
   pls->stransform(&PlotPolar::coordinate_transform_world_to_plplot, nullptr);
 
   //additional things to be drawn: circles and lines
-  //8 major lines
+  //8 major and 16 minor lines
+  //major lines have label with angle
   for (int i = 0; i < 24; i++) {
-    if (i % 6 != 0)
+    if (i % 3 != 0)
       pls->lsty(LineStyle::SHORT_DASH_SHORT_GAP);
-    else
+    else {
       pls->lsty(LineStyle::CONTINUOUS);
-    pls->join(0.0, 0.0, max_r * 1.2, i * 2.0*M_PI/24.0);
+      std::ostringstream oss;
+      oss << round(i * 2.0 * 180.0/24.0) << "°";
+      pls->ptex(max_r * 1.2, i * 2.0 * M_PI/24.0, 0.0, 0.0, 0.5, oss.str().c_str());
+    }
+    pls->join(0.0, 0.0, max_r * 1.1, i * 2.0 * M_PI/24.0);
   }
   pls->lsty(LineStyle::CONTINUOUS);
 
+  //get tickstep
+  double tickstep = 1E-10;
+  int nticks = (int) floor(max_r/tickstep);
+
+  while (nticks < 1 || nticks >= 10) {
+    tickstep *= 10.0;
+    nticks = (int) floor(max_r/tickstep);
+  }
+
+  if (nticks == 1) {
+    tickstep /= 5.0;
+  }
+  else if (nticks == 2) {
+    tickstep /= 2.0;
+  }
+
+  double tickpos = tickstep;
+
+  do {
+    pls->arc(0.0, 0.0, tickpos, tickpos, 0.0, 360.0, 0.0, 0);
+    std::ostringstream oss;
+    oss << tickpos;
+
+    pls->ptex(tickpos + tickstep * 0.2, M_PI_2, 0.0, 0.0, 1.1, oss.str().c_str());
+
+    tickpos += tickstep;
+  } while(tickpos <= max_r);
 
   //set the label color
   change_plstream_color(pls, titles_color);
