@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tschoonj/gtkmm-plplot.svg?branch=master)](https://travis-ci.org/tschoonj/gtkmm-plplot)
+
 # Gtkmm-PLplot
 
 Gtkmm-PLplot is a (currently very) simple plotting library that brings the power of PLplot to Gtkmm. It does so by relying on the Gtk::DrawingArea widget whose drawing signal uses PLplot's extcairo plotting device to generate publication quality plots on your screen...
