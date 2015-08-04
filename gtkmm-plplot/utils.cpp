@@ -16,6 +16,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <gtkmm-plplot/utils.h>
+#include <string>
+
+static std::vector<std::string> _colormaps = {
+  "cmap1_default.pal",
+  "cmap1_blue_red.pal",
+  "cmap1_blue_yellow.pal",
+  "cmap1_gray.pal",
+  "cmap1_highfreq.pal",
+  "cmap1_lowfreq.pal",
+  "cmap1_radar.pal"
+};
 
 std::vector<PLFLT> Gtk::PLplot::indgen(unsigned int n) {
   std::vector<PLFLT> rv(n);
@@ -34,4 +45,8 @@ std::valarray<PLFLT> Gtk::PLplot::indgen_va(unsigned int n) {
 void Gtk::PLplot::change_plstream_color(plstream *pls, Gdk::RGBA color) {
   pls->scol0a(5, color.get_red_u()/256, color.get_green_u()/256, color.get_blue_u()/256, color.get_alpha());
   pls->col0(5);
+}
+
+void Gtk::PLplot::change_plstream_colormap(plstream *pls, Gtk::PLplot::ColorMapPalette colormap) {
+  pls->spal1(_colormaps[colormap].c_str(), true);
 }

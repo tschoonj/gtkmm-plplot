@@ -48,6 +48,20 @@ namespace Gtk {
       BOX_TICKS_TICK_LABELS_MAIN_AXES_MAJOR_TICK_GRID = 2, ///< also draw a grid at major tick positions in both coordinates
       BOX_TICKS_TICK_LABELS_MAIN_AXES_MAJOR_MINOR_TICK_GRID = 3, ///< also draw a grid at minor tick positions in both coordinates
     };
+
+    /** Provides access to the different colormaps supported by PLplot
+     *
+     * Currently supported by PlotDataContour
+     */
+    enum ColorMapPalette {
+      DEFAULT = 0, ///< the default colormap
+      BLUE_RED, ///< a gradient from blue to red
+      BLUE_YELLOW, ///< a gradient from blue to yellow
+      GRAY, ///< fifty shades of gray
+      HIGHFREQ, ///< to check
+      LOWFREQ, ///< to check
+      RADAR, ///< to check
+    };
   }
 }
 #endif

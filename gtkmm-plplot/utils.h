@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <valarray>
 #include <plstream.h>
 #include <gdkmm/rgba.h>
+#include <gtkmm-plplot/enums.h>
 
 namespace Gtk {
   namespace PLplot {
@@ -44,6 +45,14 @@ namespace Gtk {
      * \param color the new color
      */
      void change_plstream_color(plstream *pls, Gdk::RGBA color);
+
+    /** Changes the current colormap palette of the plstream
+     *
+     * Convenience function that allows me to change PLplot's colormap palette for PlotDataContour
+     * \param pls a pointer to a plstream object
+     * \param colormap the new colormap
+     */
+     void change_plstream_colormap(plstream *pls, ColorMapPalette colormap);
    }
 }
 

@@ -14,6 +14,9 @@ m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 
 LT_INIT
 
+MM_PREREQ([0.9.6])
+MM_INIT_MODULE([gtkmm-plplot-0.1])
+
 AC_PROG_CC
 if test `AS_BASENAME([$CC])` = $CC ; then
   AC_CHECK_PROG(CC_FULL, [$CC], $CC, [none])
@@ -35,6 +38,18 @@ if test `AS_BASENAME([$CXX])` = $CXX ; then
 fi
 
 AX_CXX_COMPILE_STDCXX_11(ext, mandatory)
+
+boost_found=yes
+BOOST_REQUIRE(, [
+  boost_found=no
+])
+
+if test x$boost_found = xyes ; then
+  AC_DEFINE([GTKMM_PLPLOT_BOOST_ENABLED],, [Boost was detected])
+  BOOST_MULTIARRAY
+fi
+
+
 
 LDFLAGS_EXTRA=""
 OS_WINDOWS=0
@@ -84,7 +99,6 @@ AC_TRY_COMPILE([
 #endif
 ],[
   result=yes
-  AC_DEFINE([HAVE_EXTCAIRO], [], [extcairo found])
 ],[result=no])
 AC_MSG_RESULT([$result])
 if test x$result = xno ; then
@@ -119,7 +133,7 @@ docs/Makefile
 docs/images/Makefile
 docs/Doxyfile
 ])
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_HEADERS([config.h gtkmm-plplot/gtkmm-plplotconfig.h])
 
 
 

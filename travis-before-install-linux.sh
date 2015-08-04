@@ -4,7 +4,7 @@ sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y || exit 1
 
 sudo apt-get update || exit 1
 
-sudo apt-get install -y libffi-dev mm-common autoconf automake libtool doxygen pkg-config cmake libpng12-dev gettext libfreetype6-dev libfontconfig1-dev libjpeg-dev libtiff4-dev intltool libxtst-dev || exit 1
+sudo apt-get install -y libffi-dev mm-common autoconf automake libtool doxygen pkg-config cmake libpng12-dev gettext libfreetype6-dev libfontconfig1-dev libjpeg-dev libtiff4-dev intltool libxtst-dev libboost-all-dev || exit 1
 
 
 
