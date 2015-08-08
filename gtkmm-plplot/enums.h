@@ -53,7 +53,7 @@ namespace Gtk {
      *
      * Currently supported by PlotDataContour
      */
-    enum ColorMapPalette {
+    enum ColormapPalette {
       DEFAULT = 0, ///< the default colormap
       BLUE_RED, ///< a gradient from blue to red
       BLUE_YELLOW, ///< a gradient from blue to yellow
@@ -62,6 +62,21 @@ namespace Gtk {
       LOWFREQ, ///< to check
       RADAR, ///< to check
     };
+
+    /** Provides access to the different area fill patterns supported by PlotDataContour
+     *
+     */
+     enum AreaFillPattern {
+       SOLID = 0, ///< solid fill of the area
+       HORIZONTAL_LINES, ///< horizontal lines
+       VERTICAL_LINES, ///< vertical lines
+       UPWARD_LINES_45_DEGREES, ///< lines at 45 degrees angle upward
+       DOWNWARD_LINES_45_DEGREES, ///< lines at 45 degrees angle downward
+       UPWARD_LINES_30_DEGREES, ///< lines at 30 degrees angle upward
+       DOWNWARD_LINES_30_DEGREES, ///< lines at 30 degrees angle downward
+       HORIZONTAL_AND_VERTICAL_LINES, ///< both horizontal and vertical lines
+       UPWARD_AND_DOWNWARD_LINES_45_DEGREES, ///< lines at 45 degrees angle upward and downward
+     };
   }
 }
 #endif

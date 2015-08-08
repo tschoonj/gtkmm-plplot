@@ -5,26 +5,30 @@ gtkmm_plplotbaseincludedir = ${includedir}/gtkmm-plplot-@GTKMM_PLPLOT_API_VERSIO
 gtkmm_plplotinclude_HEADERS = \
                               canvas.h \
                               exception.h \
-                              plotabstract.h \
+                              plot.h \
                               plotdata2d.h \
-                              plotdataabstract.h \
+                              plotdata.h \
                               plot2d.h \
                               plotpolar.h \
                               utils.h \
                               plotdatacontour.h \
+                              plotdatacontourshades.h \
+                              plotcontour.h \
                               enums.h
 
 gtkmm_plplotbaseinclude_HEADERS = gtkmm-plplot.h
 
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_SOURCES = $(gtkmm_plplotinclude_HEADERS) \
                                  $(gtkmm_plplotbaseinclude_HEADERS) \
-                                 plotdataabstract.cpp \
+                                 plotdata.cpp \
                                  plotdata2d.cpp \
-                                 plotabstract.cpp \
+                                 plot.cpp \
                                  plot2d.cpp \
                                  utils.cpp \
                                  canvas.cpp \
-                                 plotpolar.cpp
+                                 plotpolar.cpp \
+                                 plotdatacontour.cpp \
+                                 plotcontour.cpp
 
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_CPPFLAGS = $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS)
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_LIBADD = $(gtkmm_LIBS) $(plplotcxx_LIBS) $(BOOST_MULTIARRAY_LIBS)

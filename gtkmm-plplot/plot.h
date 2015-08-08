@@ -15,19 +15,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GTKMM_PLPLOT_PLOTABSTRACT_H
-#define GTKMM_PLPLOT_PLOTABSTRACT_H
+#ifndef GTKMM_PLPLOT_PLOT_H
+#define GTKMM_PLPLOT_PLOT_H
 
 #include <sigc++/sigc++.h>
 #include <vector>
 #include <plstream.h>
 #include <cairomm/cairomm.h>
 #include <glibmm/ustring.h>
-#include <gtkmm-plplot/plotdataabstract.h>
+#include <gtkmm-plplot/plotdata.h>
 
 namespace Gtk {
   namespace PLplot {
-    /** \class PlotAbstract plotabstract.h <gtkmm-plplot/plotabstract.h>
+    /** \class Plot plot.h <gtkmm-plplot/plot.h>
      *  \brief an abstract base class for all plots
      *
      *  This is the base class from which all other plots classes are derived.
@@ -35,12 +35,12 @@ namespace Gtk {
      *  This class cannot be instantiated directly, meaning that instances returned by Canvas::get_plot() and
      *  Canvas::add_plot() need to be cast to access methods offered only by the derived class.
      */
-     class PlotAbstract : public sigc::trackable {
+     class Plot : public sigc::trackable {
      private:
-      PlotAbstract() = delete; ///< no default constructor
-      PlotAbstract &operator=(const PlotAbstract &) = delete; ///< no copy constructor
+      Plot() = delete; ///< no default constructor
+      Plot &operator=(const Plot &) = delete; ///< no copy constructor
      protected:
-      std::vector<PlotDataAbstract *> plot_data; ///< vector that contains pointers to the PlotDataAbstract datasets
+      std::vector<PlotData *> plot_data; ///< vector that contains pointers to the PlotData datasets
       Glib::ustring axis_title_x; ///< X-axis title
       Glib::ustring axis_title_y; ///< Y-axis title
       Glib::ustring plot_title;   ///< Plot title
@@ -69,8 +69,8 @@ namespace Gtk {
 
 
       sigc::signal<void, double, double, double, double > _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event()
-      sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the plot parameters, or any of the contained PlotDataAbstract datasets is changed.
-      sigc::signal<void, PlotDataAbstract *> _signal_data_added; ///< signal emitted whenever a new PlotDataAbstract dataset is added to the plot
+      sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the plot parameters, or any of the contained PlotData datasets is changed.
+      sigc::signal<void, PlotData *> _signal_data_added; ///< signal emitted whenever a new PlotData dataset is added to the plot
       sigc::signal<void> _signal_data_removed; ///< signal emitted whenever data is removed from the plot.
 
       virtual void plot_data_modified() = 0; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
@@ -95,30 +95,39 @@ namespace Gtk {
 
       /** This is a default handler for signal_changed()
        *
-       * This signal is emitted whenever any of the plot properties, or the properties of the PlotDataAbstract datasets therein, is changed.
+       * This signal is emitted whenever any of the plot properties, or the properties of the PlotData datasets therein, is changed.
        * Currently it does nothing but the signal will get caught by Canvas, and will eventually trigger a redrawing of the entire widget.
        */
       virtual void on_changed();
 
       /** This is a default handler for signal_data_added()
        *
-       * This signal is emitted whenever a new PlotDataAbstract dataset is added to the plot.
+       * This signal is emitted whenever a new PlotData dataset is added to the plot.
        * It will call the private method plot_data_modified, which will update \c *_range_* properties, and emit signal_changed.
-       * \param new_data a pointer to the newly added PlotDataAbstract dataset, after it has been added to the \c plot_data vector.
+       * \param new_data a pointer to the newly added PlotData dataset, after it has been added to the \c plot_data vector.
        */
-      virtual void on_data_added(PlotDataAbstract *new_data);
+      virtual void on_data_added(PlotData *new_data);
 
       /** This is a default handler for signal_data_removed()
        *
-       * This signal is emitted whenever a PlotDataAbstract dataset is removed from the plot.
+       * This signal is emitted whenever a PlotData dataset is removed from the plot.
        * It will call the private method plot_data_modified, which will update \c *_range_* properties, and emit signal_changed.
        */
       virtual void on_data_removed();
 
+      /** Initialization method for draw_plot.
+       *
+       *  Should be called by all draw_plot() methods in derived classes.
+       * \param cr Cairo context
+       * \param width width of the plot in normalized coordinates
+       * \param height height of the plot in normalized coordinates
+       */
+      void draw_plot_init(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height);
+
     public:
       /** Constructor
        *
-       * This class provides a single constructor, which takes an existing PlotDataAbstract dataset to construct a plot.
+       * This class provides a single constructor, which takes an existing PlotData dataset to construct a plot.
        * Optionally, the constructor takes additional arguments to set the axes and plot titles, as well as normalized coordinates that will determine the position and dimensions of the plot within the canvas. The default corresponds to the plot taking up the full space.
        * \param axis_title_x X-axis title
        * \param axis_title_y Y-axis title
@@ -128,7 +137,7 @@ namespace Gtk {
        * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
        * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
        */
-      PlotAbstract(const Glib::ustring &axis_title_x,
+      Plot(const Glib::ustring &axis_title_x,
                    const Glib::ustring &axis_title_y,
                    const Glib::ustring &plot_title,
                    const double plot_width_norm,
@@ -140,28 +149,29 @@ namespace Gtk {
        *
        * \param plot plot to be copied
        */
-      PlotAbstract(const PlotAbstract &plot);
+      Plot(const Plot &plot);
 
       /** Destructor
        *
        */
-      virtual ~PlotAbstract();
+      virtual ~Plot();
+
+      /** Add a single PlotData dataset to the plot
+       *
+       * To be implemented by all deriving classes.
+       * \param data dataset to be added to the plot
+       * \return a pointer to the PlotData in the \c plot_data vector.
+       */
+      virtual PlotData *add_data(const PlotData &data) = 0;
 
       /** Get a pointer to a dataset included in the plot
        *
        * Throws an exception when \c data_index is invalid.
        * \param data_index index of the dataset in the \c plot_data vector
-       * \return a pointer to the PlotDataAbstract in the \c plot_data vector.
+       * \return a pointer to the PlotData in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      PlotDataAbstract *get_data(unsigned int data_index);
-
-      /** Add a single PlotDataAbstract dataset to the plot
-       *
-       * \param data dataset to be added to the plot
-       * \return a pointer to the PlotDataAbstract in the \c plot_data vector.
-       */
-      virtual PlotDataAbstract *add_data(const PlotDataAbstract &data) = 0;
+      PlotData *get_data(unsigned int data_index);
 
       /** Method to draw the plot with all of its datasets
        *
@@ -218,7 +228,7 @@ namespace Gtk {
        * \param ymax upper Y-coordinate
        * \exception Gtk::PLplot::Exception
        */
-      virtual void set_region(double xmin, double xmax, double ymin, double ymax) = 0;
+      virtual void set_region(double xmin, double xmax, double ymin, double ymax);
 
       /** Make the plot visible on the canvas
        *
@@ -294,7 +304,7 @@ namespace Gtk {
        * \param x_new the new \c x PLplot coordinate
        * \param y_new the new \c y PLplot coordinate
        */
-      virtual void coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) = 0;
+      virtual void coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new);
 
       /** This method takes care of coordinate transformations when using non-linear axes
        *
@@ -306,15 +316,15 @@ namespace Gtk {
        * \param x_new the new \c x world coordinate
        * \param y_new the new \c y world coordinate
        */
-      virtual void coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) = 0;
+      virtual void coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new);
 
       /** Freshly allocate a clone of the instance
        *
        * This very important method allows Canvas::add_plot() to add new plots to its internal array.
-       * Since the canvas keeps its own copies of the plots, every PlotAbstract derived class needs to provide
+       * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
        * an implementation of this method, to ensure a proper copy can be provided.
        */
-      virtual PlotAbstract *clone() const = 0;
+      virtual Plot *clone() const = 0;
 
       /** signal_select_region is emitted whenever a selection box is dragged across a plot
        *
@@ -336,7 +346,7 @@ namespace Gtk {
        *
        * See default handler on_data_added()
        */
-      sigc::signal<void, PlotDataAbstract *> signal_data_added() {
+      sigc::signal<void, PlotData *> signal_data_added() {
         return _signal_data_added;
       }
 

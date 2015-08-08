@@ -28,8 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 namespace Test4 {
   class CheckButton : public Gtk::CheckButton {
   private:
-    //we are not using any methods specific to Plot2D, so we can safely use PlotAbstract here
-    Gtk::PLplot::PlotAbstract *plot;
+    //we are not using any methods specific to Plot2D, so we can safely use Plot here
+    Gtk::PLplot::Plot *plot;
   public:
     CheckButton(Glib::ustring text) : Gtk::CheckButton(text), plot(nullptr) {}
     void on_toggled() final {
@@ -40,7 +40,7 @@ namespace Test4 {
       else
         plot->hide();
     }
-    void connect_plot(Gtk::PLplot::PlotAbstract *_plot) {
+    void connect_plot(Gtk::PLplot::Plot *_plot) {
       plot = _plot;
     }
   };

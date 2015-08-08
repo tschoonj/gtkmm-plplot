@@ -18,6 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMMPLPLOTUTILS_H
 #define GTKMMPLPLOTUTILS_H
 
+#include <gtkmm-plplot/gtkmm-plplotconfig.h>
+#ifdef GTKMM_PLPLOT_BOOST_ENABLED
+  #include <boost/multi_array.hpp>
+#endif
 #include <vector>
 #include <valarray>
 #include <plstream.h>
@@ -44,7 +48,7 @@ namespace Gtk {
      * \param pls a pointer to a plstream object
      * \param color the new color
      */
-     void change_plstream_color(plstream *pls, Gdk::RGBA color);
+    void change_plstream_color(plstream *pls, Gdk::RGBA color);
 
     /** Changes the current colormap palette of the plstream
      *
@@ -52,7 +56,35 @@ namespace Gtk {
      * \param pls a pointer to a plstream object
      * \param colormap the new colormap
      */
-     void change_plstream_colormap(plstream *pls, ColorMapPalette colormap);
+    void change_plstream_colormap(plstream *pls, ColormapPalette colormap);
+
+    /** Creates a deep copy of a dynamically allocated array of dynamically allocated array of PLFLT's (double)
+     *
+     * The return value should be freed with free_array2d();
+     * This function is likely to produce a segmentation fault or result in undefined behavior when the input arguments are incorrect or invalid.
+     * \param input the array of arrays that will be copied
+     * \param nx the extent along the first coordinate of input
+     * \param ny the extent along the second coordinate of input
+     * \returns a freshly allocated array of arrays of PLFLT's
+     */
+    PLFLT **deep_copy_array2d(PLFLT **input, int nx, int ny);
+
+    /** Frees a dynamically allocated array of dynamically allocated arrays.
+     *
+     * Typically used to free memory allocated by deep_copy_array2d().
+     * \param input the array of arrays that will be recursively freed.
+     * \param nx the extent along the first coordinate of input
+     */
+    void free_array2d(void **input, int nx);
+
+#ifdef GTKMM_PLPLOT_BOOST_ENABLED
+    /** Copy a Boost two dimensional multi array to dynamically allocated array of dynamically allocated arrays.
+     *
+     * The return value should be freed with free_array2d();
+     * \param array the Boost multi_array instance
+     */
+    PLFLT **boost_multi_array_to_array2d(const boost::multi_array<PLFLT, 2> &array);
+#endif
    }
 }
 

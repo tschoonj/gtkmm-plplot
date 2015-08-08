@@ -15,42 +15,42 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <gtkmm-plplot/plotdataabstract.h>
+#include <gtkmm-plplot/plotdata.h>
 
 using namespace Gtk::PLplot;
 
-PlotDataAbstract::PlotDataAbstract() :
+PlotData::PlotData() :
   shown(true) {
 
   this->signal_changed().connect(sigc::mem_fun(*this,
-               &PlotDataAbstract::on_changed));
+               &PlotData::on_changed));
   this->signal_data_modified().connect(sigc::mem_fun(*this,
-               &PlotDataAbstract::on_data_modified));
+               &PlotData::on_data_modified));
 
 }
 
-PlotDataAbstract::~PlotDataAbstract() {
+PlotData::~PlotData() {
 
 }
 
-void PlotDataAbstract::on_changed() {
+void PlotData::on_changed() {
   //do nothing
 }
 
-void PlotDataAbstract::on_data_modified() {
+void PlotData::on_data_modified() {
   //do nothing
 }
 
-void PlotDataAbstract::show() {
+void PlotData::show() {
   shown = true;
   _signal_changed.emit();
 }
 
-void PlotDataAbstract::hide() {
+void PlotData::hide() {
   shown = false;
   _signal_changed.emit();
 }
 
-bool PlotDataAbstract::is_showing() const {
+bool PlotData::is_showing() const {
   return shown;
 }

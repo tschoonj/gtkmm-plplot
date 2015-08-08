@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GTKMMPLPLOTCANVAS_H
 
 #include <gtkmm/drawingarea.h>
-#include <gtkmm-plplot/plotabstract.h>
+#include <gtkmm-plplot/plot.h>
 #include <vector>
 #include <plstream.h>
 #include <gdkmm/rgba.h>
@@ -53,7 +53,7 @@ namespace Gtk {
      */
     class Canvas : public Gtk::DrawingArea {
     private:
-      std::vector<PlotAbstract *> plots; ///< A vector containing pointers to the plots
+      std::vector<Plot *> plots; ///< A vector containing pointers to the plots
       sigc::signal<void> _signal_changed; ///< signal that will be emitted whenever one of the parameters of the canvas or the plots in contains changes
       double start_event[2]; ///< widget coordinates of the position where a \c button_press_event was generated
       double start_cairo[2]; ///< cairo coordinates of the position where a \c button_press_event was generated
@@ -122,7 +122,7 @@ namespace Gtk {
        * \param plot The initial plot that will be added to the canvas.
        * \param background_color The color of the background for the canvas.
        */
-      Canvas(const PlotAbstract &plot, Gdk::RGBA background_color = Gdk::RGBA("White"));
+      Canvas(const Plot &plot, Gdk::RGBA background_color = Gdk::RGBA("White"));
       /** Canvas destructor
        *
        */
@@ -133,7 +133,7 @@ namespace Gtk {
        * \param plot Plot to be added to the canvas
        * \return a pointer to the Plot in the \c plots vector.
        */
-      PlotAbstract *add_plot(const PlotAbstract &plot);
+      Plot *add_plot(const Plot &plot);
 
       /** Remove a single plot from the canvas
        *
@@ -147,7 +147,7 @@ namespace Gtk {
        * \param plot pointer to the plot in the \c plots vector
        * \exception Gtk::PLplot::Exception
        */
-      void remove_plot(PlotAbstract *plot);
+      void remove_plot(Plot *plot);
 
       /** signal_changed is emitted whenever any of the canvas properties or any of the plot properties has changed.
        *
@@ -165,7 +165,7 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        * \return a pointer to the Plot in the \c plots vector.
        */
-      PlotAbstract *get_plot(unsigned int plot_index);
+      Plot *get_plot(unsigned int plot_index);
 
       /** Get the background color
        *

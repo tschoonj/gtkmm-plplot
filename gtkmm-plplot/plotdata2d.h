@@ -21,10 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include <valarray>
 #include <glibmm/ustring.h>
-#include <gtkmm-plplot/plotdataabstract.h>
+#include <gtkmm-plplot/plotdata.h>
 #include <gdkmm/rgba.h>
 
-#define PLOTDATA2D_DEFAULT_LINE_WIDTH 1.0
 
 namespace Gtk {
   namespace PLplot {
@@ -40,7 +39,7 @@ namespace Gtk {
      *  be picked up by the \c canvas that will hold the plot.
      *  Several of the methods that are offered by this class are demonstrated in \ref example5
      */
-    class PlotData2D : public PlotDataAbstract {
+    class PlotData2D : public PlotData {
     private:
       std::vector<PLFLT> x; ///< The X-values of the dataset
       std::vector<PLFLT> y; ///< The Y-values of the dataset
@@ -62,12 +61,13 @@ namespace Gtk {
        * \param color the line color, default is red
        * \param line_style the line style, default is CONTINUOUS
        * \param line_width the line width, default is 1.0
+       * \exception Gtk::PLplot::Exception
        */
       PlotData2D(const std::vector<PLFLT> &x,
                  const std::vector<PLFLT> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
-                 double line_width = PLOTDATA2D_DEFAULT_LINE_WIDTH);
+                 double line_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
       /** Constructor
        *
@@ -83,7 +83,7 @@ namespace Gtk {
                  const std::valarray<PLFLT> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
-                 double line_width = PLOTDATA2D_DEFAULT_LINE_WIDTH);
+                 double line_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
       /** Constructor
        *
@@ -98,7 +98,7 @@ namespace Gtk {
       PlotData2D(const std::vector<PLFLT> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
-                 double line_width = PLOTDATA2D_DEFAULT_LINE_WIDTH);
+                 double line_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
       /** Constructor
        *
@@ -113,7 +113,7 @@ namespace Gtk {
       PlotData2D(const std::valarray<PLFLT> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
-                 double line_width = PLOTDATA2D_DEFAULT_LINE_WIDTH);
+                 double line_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
       /** Copy constructor
        *

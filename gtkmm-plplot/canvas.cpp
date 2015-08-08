@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #include <gtkmm-plplot/canvas.h>
-#include <gtkmm-plplot/plotabstract.h>
+#include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/exception.h>
 #include <valarray>
 #include <cmath>
@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using namespace Gtk::PLplot;
 
-Canvas::Canvas(const PlotAbstract &plot, Gdk::RGBA _background_color) :
+Canvas::Canvas(const Plot &plot, Gdk::RGBA _background_color) :
   Canvas(_background_color) {
 
   add_plot(plot);
@@ -48,7 +48,7 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
   signal_changed().connect(sigc::mem_fun(*this, &Canvas::on_changed));
 }
 
-PlotAbstract *Canvas::add_plot(const PlotAbstract &plot) {
+Plot *Canvas::add_plot(const Plot &plot) {
   //now some bad C++ code. I bet there is some cool trick that avoid this typeid stuff
   plots.push_back(plot.clone());
   plots.back()->signal_changed().connect([this](){_signal_changed.emit();});
@@ -63,7 +63,7 @@ Canvas::~Canvas() {
 }
 
 void Canvas::on_changed() {
-  //this catches all signal_changed emissions recursively from the PlotAbstract and PlotDataAbstract classes
+  //this catches all signal_changed emissions recursively from the Plot and PlotData classes
   //so this is the method that ensures things get redrawn when one of the parameters is changed.
   this->queue_draw();
 }
@@ -270,7 +270,7 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
   return true;
 }
 
-PlotAbstract *Canvas::get_plot(unsigned int index) {
+Plot *Canvas::get_plot(unsigned int index) {
   if (index < plots.size()) {
     return plots[index];
   }
@@ -297,7 +297,7 @@ void Canvas::remove_plot(unsigned int index) {
   _signal_changed.emit();
 }
 
-void Canvas::remove_plot(PlotAbstract *plot) {
+void Canvas::remove_plot(Plot *plot) {
   if (plots.empty())
     throw Exception("Gtk::PLplot::Canvas::remove_plot -> No plots on canvas");
 

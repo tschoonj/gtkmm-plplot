@@ -36,7 +36,7 @@ PlotPolar::PlotPolar(
   const double _plot_height_norm,
   const double _plot_offset_horizontal_norm,
   const double _plot_offset_vertical_norm) :
-  PlotAbstract(_axis_title_x, _axis_title_y, _plot_title,
+  Plot(_axis_title_x, _axis_title_y, _plot_title,
   _plot_width_norm, _plot_height_norm,
   _plot_offset_horizontal_norm,
   _plot_offset_vertical_norm) {
@@ -45,7 +45,7 @@ PlotPolar::PlotPolar(
 }
 
 PlotPolar::PlotPolar(const PlotPolar &_source) :
-  PlotAbstract(_source) {
+  Plot(_source) {
 
   for (auto &iter : _source.plot_data) {
     add_data(*iter);
@@ -92,7 +92,7 @@ void PlotPolar::plot_data_modified() {
   _signal_changed.emit();
 }
 
-PlotDataAbstract *PlotPolar::add_data(const PlotDataAbstract &data) {
+PlotData *PlotPolar::add_data(const PlotData &data) {
   PlotData2D *data_copy = nullptr;
   try {
     //ensure our data is PlotData2D
@@ -138,27 +138,7 @@ void PlotPolar::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int wid
   if (!shown)
     return;
 
-  canvas_width = width;
-  canvas_height = height;
-  plot_width = width * plot_width_norm;
-  plot_height= height * plot_height_norm;
-  plot_offset_x = width * plot_offset_horizontal_norm;
-  plot_offset_y = height * plot_offset_vertical_norm;
-
-  if (pls)
-    delete pls;
-  pls = new plstream;
-
-  pls->sdev("extcairo");
-  pls->spage(0.0, 0.0, plot_width , plot_height, plot_offset_x, plot_offset_y);
-  Gdk::Cairo::set_source_rgba(cr, background_color);
-  cr->rectangle(plot_offset_x, plot_offset_y, plot_width, plot_height);
-  cr->fill();
-  cr->save();
-  cr->translate(plot_offset_x, plot_offset_y);
-  pls->init();
-
-  pls->cmd(PLESC_DEVINIT, cr->cobj());
+  draw_plot_init(cr, width, height);
 
   change_plstream_color(pls, axes_color);
 
@@ -231,45 +211,10 @@ void PlotPolar::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int wid
                                       cairo_range_x[1], cairo_range_y[1]);
 }
 
-void PlotPolar::set_region(double xmin, double xmax, double ymin, double ymax) {
-  if (xmin == xmax && ymin == ymax) {
-    //due to signal propagation, this function will actually be called twice on a double-click event,
-    //the second time after the plot has already been resized to its normal geometry
-    //this condition avoids the warning message...
-    return;
-  }
-
-  if (xmin < 0 || xmax < 0)
-    throw Exception("Gtk::PLplot::Plot2D::set_region -> Invalid arguments");
-
-  coordinate_transform_world_to_plplot(
-    xmin, ymin,
-    xmin, ymin
-  );
-  coordinate_transform_world_to_plplot(
-    xmax, ymax,
-    xmax, ymax
-  );
-
-  if (xmin >= xmax || ymin >= ymax /*||
-      xmin < plot_data_range_x[0] ||
-      xmax > plot_data_range_x[1] ||
-      ymin < plot_data_range_y[0] ||
-      ymax > plot_data_range_y[1]*/) {
-    throw Exception("Gtk::PLplot::Plot2D::set_region -> Invalid arguments");
-  }
-  plotted_range_x[0] = xmin;
-  plotted_range_x[1] = xmax;
-  plotted_range_y[0] = ymin;
-  plotted_range_y[1] = ymax;
-
-  _signal_changed.emit();
-}
-
-PlotAbstract *PlotPolar::clone() const {
-  PlotAbstract *my_clone = new PlotPolar(*this);
+Plot *PlotPolar::clone() const {
+  Plot *my_clone = new PlotPolar(*this);
   if(typeid(*this) != typeid(*my_clone)) {
-    throw Exception("Gtk::PLplot::PlotPolar::clone -> Classes that derive from PlotAbstract must implement clone!");
+    throw Exception("Gtk::PLplot::PlotPolar::clone -> Classes that derive from Plot must implement clone!");
   }
   return my_clone;
 }

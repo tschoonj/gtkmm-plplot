@@ -7,9 +7,12 @@ doxyfile_deps = $(top_srcdir)/gtkmm-plplot/canvas.h \
 								$(top_srcdir)/gtkmm-plplot/plot2d.h \
 								$(top_srcdir)/gtkmm-plplot/plotdata2d.h \
 								$(top_srcdir)/gtkmm-plplot/enums.h \
-								$(top_srcdir)/gtkmm-plplot/plotabstract.h \
-								$(top_srcdir)/gtkmm-plplot/plotdataabstract.h \
+								$(top_srcdir)/gtkmm-plplot/plot.h \
+								$(top_srcdir)/gtkmm-plplot/plotdata.h \
 								$(top_srcdir)/gtkmm-plplot/utils.h \
+								$(top_srcdir)/gtkmm-plplot/plotdatacontour.h \
+								$(top_srcdir)/gtkmm-plplot/plotcontour.h \
+								$(top_srcdir)/gtkmm-plplot/plotdatacontourshades.h \
 								$(top_srcdir)/gtkmm-plplot/plotpolar.h
 
 

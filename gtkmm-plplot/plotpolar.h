@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMM_PLPLOT_PLOTPOLAR_H
 #define GTKMM_PLPLOT_PLOTPOLAR_H
 
-#include <gtkmm-plplot/plotabstract.h>
+#include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/plotdata2d.h>
 
 namespace Gtk {
@@ -36,7 +36,7 @@ namespace Gtk {
      *  be picked up by the \c canvas that will hold the plot.
      *  An example of this class is presented in \ref example6.
      */
-    class PlotPolar : public PlotAbstract {
+    class PlotPolar : public Plot {
     private:
       PLFLT max_r; ///< the maximum radial coordinate in the datasets
       PlotPolar() = delete; ///< no default constructor
@@ -110,7 +110,7 @@ namespace Gtk {
        * \return a pointer to the PlotData2D in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      virtual PlotDataAbstract *add_data(const PlotDataAbstract &data) override;
+      virtual PlotData *add_data(const PlotData &data);
 
       /** Method to draw the plot with all of its datasets
        *
@@ -161,10 +161,10 @@ namespace Gtk {
       /** Freshly allocate a clone of the instance
        *
        * This very important method allows Canvas::add_plot() to add new plots to its internal array.
-       * Since the canvas keeps its own copies of the plots, every PlotAbstract derived class needs to provide
+       * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
        * an implementation of this method, to ensure a proper copy can be provided.
        */
-      virtual PlotAbstract *clone() const;
+      virtual Plot *clone() const;
 
       friend class Canvas;
     };

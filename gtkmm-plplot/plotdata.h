@@ -15,8 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef GTKMMPLPLOT_PLOTDATA_ABSTRACT_H
-#define GTKMMPLPLOT_PLOTDATA_ABSTRACT_H
+#ifndef GTKMMPLPLOT_PLOT_DATA_H
+#define GTKMMPLPLOT_PLOT_DATA_H
 
 #include <sigc++/sigc++.h>
 #include <plstream.h>
@@ -24,19 +24,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gdkmm/rgba.h>
 #include <gtkmm-plplot/enums.h>
 
+#define PLOTDATA_DEFAULT_LINE_WIDTH 1.0
+
 namespace Gtk {
   namespace PLplot {
-    /** \class PlotDataAbstract plotdataabstract.h <gtkmm-plplot/plotdataabstract.h>
+    /** \class PlotData plotdata.h <gtkmm-plplot/plotdata.h>
      *  \brief the abstract base class that will hold a single dataset and its properties
      *
      *  The base class that all other PlotData classes ultimately derive from. Due to the wide range
      *  of plot data corresponding to the different plot types, this class offers only a few methods, meaning that
      *  the derived classes will have to contain most of their functionality themselves, as opposed to the plots.
      */
-     class PlotDataAbstract : public sigc::trackable {
+     class PlotData : public sigc::trackable {
      private:
-       PlotDataAbstract &operator=(const PlotDataAbstract &) = delete; ///< no move assignment operator
-       PlotDataAbstract(const PlotDataAbstract &source) = delete; ///< No copy constructor;
+       PlotData &operator=(const PlotData &) = delete; ///< no move assignment operator
+       PlotData(const PlotData &source) = delete; ///< No copy constructor;
      protected:
        bool shown; ///< \c true means the plot is currently visible, \c false means it is not plotted
        sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the dataset proprties is changed.
@@ -44,14 +46,14 @@ namespace Gtk {
        /** This is a default handler for signal_changed()
         *
         * This signal is emitted whenever any of the dataset properties is changed.
-        * Currently it does nothing but the signal will get caught by PlotAbstract, and will eventually trigger a redrawing of the entire widget.
+        * Currently it does nothing but the signal will get caught by Plot, and will eventually trigger a redrawing of the entire widget.
         */
        virtual void on_changed();
 
        /** This is a default handler for signal_data_modified()
         *
         * This signal is emitted whenever any of the dataset proprties is changed.
-        * Currently it does nothing but the signal will get caught by PlotAbstract, and will eventually trigger a redrawing of the entire widget, taking into account the new dataset.
+        * Currently it does nothing but the signal will get caught by Plot, and will eventually trigger a redrawing of the entire widget, taking into account the new dataset.
         */
        virtual void on_data_modified();
 
@@ -59,13 +61,13 @@ namespace Gtk {
        /** Constructor
         *
         */
-       PlotDataAbstract();
+       PlotData();
 
 
        /** Destructor
         *
         */
-       virtual ~PlotDataAbstract();
+       virtual ~PlotData();
 
       /** Make the dataset visible in the plot
        *

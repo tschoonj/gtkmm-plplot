@@ -17,6 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot/utils.h>
 #include <string>
+#include <cstdlib>
+#include <cstring>
 
 static std::vector<std::string> _colormaps = {
   "cmap1_default.pal",
@@ -47,6 +49,40 @@ void Gtk::PLplot::change_plstream_color(plstream *pls, Gdk::RGBA color) {
   pls->col0(5);
 }
 
-void Gtk::PLplot::change_plstream_colormap(plstream *pls, Gtk::PLplot::ColorMapPalette colormap) {
+void Gtk::PLplot::change_plstream_colormap(plstream *pls, Gtk::PLplot::ColormapPalette colormap) {
   pls->spal1(_colormaps[colormap].c_str(), true);
 }
+
+PLFLT **Gtk::PLplot::deep_copy_array2d(PLFLT **input, int nx, int ny) {
+  PLFLT **copy = (PLFLT **) malloc(sizeof(PLFLT *) * nx);
+  for (int i = 0 ; i < nx ; i++) {
+    copy[i] = (PLFLT *) malloc(sizeof(PLFLT) * ny);
+    memcpy(copy[i], input[i], sizeof(PLFLT) * ny);
+  }
+  return copy;
+}
+
+void Gtk::PLplot::free_array2d(void **input, int nx) {
+  for (int i = 0 ; i < nx ; i++) {
+    free(input[i]);
+  }
+  free(input);
+}
+
+#ifdef GTKMM_PLPLOT_BOOST_ENABLED
+PLFLT **boost_multi_array_to_array2d(const boost::multi_array<PLFLT, 2> &array) {
+  //get data pointer from boost array
+  const PLFLT *data = array.data();
+  //get dimensions
+  size_t nx = array.shape()[0];
+  size_t ny = array.shape()[1];
+
+
+  PLFLT **copy = (PLFLT **) malloc(sizeof(PLFLT *) * nx);
+  for (int i = 0 ; i < nx ; i++) {
+    copy[i] = (PLFLT *) malloc(sizeof(PLFLT) * ny);
+    memcpy(copy[i], data + i * ny, sizeof(PLFLT) * ny);
+  }
+  return copy;
+}
+#endif

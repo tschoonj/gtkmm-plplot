@@ -14,7 +14,7 @@ m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 
 LT_INIT
 
-MM_PREREQ([0.9.6])
+MM_PREREQ([0.9.0])
 MM_INIT_MODULE([gtkmm-plplot-0.1])
 
 AC_PROG_CC
@@ -128,10 +128,10 @@ AC_CONFIG_FILES([
 Makefile
 gtkmm-plplot/Makefile
 tests/Makefile
-gtkmm-plplot-0.1.pc
 docs/Makefile
 docs/images/Makefile
 docs/Doxyfile
+${GTKMM_PLPLOT_MODULE_NAME}.pc:gtkmm-plplot.pc.in
 ])
 AC_CONFIG_HEADERS([config.h gtkmm-plplot/gtkmm-plplotconfig.h])
 
