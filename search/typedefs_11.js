@@ -59,7 +59,6 @@ var searchData=
   ['slotpositioncalc',['SlotPositionCalc',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Menu.html#ac8978c6bcd462454c19e70a7f8805ea6',1,'Gtk::Menu']]],
   ['slotprinterenumerator',['SlotPrinterEnumerator',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Printer.html#a8225038393eff8da288ae34e104ba9ad',1,'Gtk::Printer']]],
   ['slotprintjobcomplete',['SlotPrintJobComplete',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1PrintJob.html#ae31c599bc826a1ea1f9b8791bba1a0df',1,'Gtk::PrintJob']]],
-  ['slotprintsetupdone',['SlotPrintSetupDone',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk.html#a63788d5b16e7bde4fed371e95c1ec7e9',1,'Gtk']]],
   ['slotreadfunc',['SlotReadFunc',['http://www.cairographics.org/documentation/cairomm/reference/classCairo_1_1Surface.html#af66be8453e3fc558ea1282a911bf60e2',1,'Cairo::QuartzSurface']]],
   ['slotreadmore',['SlotReadMore',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1File.html#add182d22071784fc345adc757b3d687b',1,'Gio::File']]],
   ['slotreceived',['SlotReceived',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Clipboard.html#a424180e2d14d2bb2f096be10ca2f7059',1,'Gtk::Clipboard']]],

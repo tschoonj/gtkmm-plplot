@@ -4,7 +4,7 @@ var searchData=
   ['lambda',['lambda',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1lambda.html',1,'sigc']]],
   ['lambda_3c_20t_5ftype1_20_3e',['lambda&lt; T_type1 &gt;',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1lambda.html',1,'lambda&lt; T_type1 &gt;'],['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1lambda.html',1,'sigc::lambda&lt; T_type1 &gt;']]],
   ['lambda_3c_20t_5ftype2_20_3e',['lambda&lt; T_type2 &gt;',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1lambda.html',1,'sigc::lambda&lt; T_type2 &gt;'],['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1lambda.html',1,'lambda&lt; T_type2 &gt;']]],
-  ['lambda_3c_20t_5ftype3_20_3e',['lambda&lt; T_type3 &gt;',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1lambda.html',1,'lambda&lt; T_type3 &gt;'],['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1lambda.html',1,'sigc::lambda&lt; T_type3 &gt;']]],
+  ['lambda_3c_20t_5ftype3_20_3e',['lambda&lt; T_type3 &gt;',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1lambda.html',1,'sigc::lambda&lt; T_type3 &gt;'],['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1lambda.html',1,'lambda&lt; T_type3 &gt;']]],
   ['lambda_5fbase',['lambda_base',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1lambda__base.html',1,'sigc']]],
   ['lambda_5fgroup1',['lambda_group1',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1lambda__group1.html',1,'sigc']]],
   ['lambda_5fgroup2',['lambda_group2',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1lambda__group2.html',1,'sigc']]],

@@ -8,6 +8,7 @@ var searchData=
   ['network_5funreachable',['NETWORK_UNREACHABLE',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a86e0c5e77ce892cabc0d9c0ffa35d91c',1,'Gio::Error']]],
   ['new',['NEW',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#afeadf75b7b8b773f5494d939671d04bb',1,'Gtk::Stock']]],
   ['nfile',['NFILE',['http://library.gnome.org/devel/glibmm/unstable/group__Spawn.html#ggafb7753661f7b0607951aa8881380ed1bab6c9ef50fab51e4fb51debe02b3b8ed9',1,'Glib::SpawnError']]],
+  ['nlevels',['nlevels',['../class_gtk_1_1_p_lplot_1_1_plot_data_contour.html#a897fca9e09a9c2689159b1c381172a2c',1,'Gtk::PLplot::PlotDataContour']]],
   ['no',['NO',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#ac88c5e9a0d133834bb681280238ac394',1,'Gtk::Stock']]],
   ['no_5fcommon_5ftype',['NO_COMMON_TYPE',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1VariantParseError.html#a217aafad01bee506a1b699a7e138314eacc7813aa9d6b577fba98699d9b5cf22c',1,'Glib::VariantParseError']]],
   ['no_5fconversion',['NO_CONVERSION',['http://library.gnome.org/devel/glibmm/unstable/group__CharsetConv.html#ggaea4b79ac3149c1fcfcab32155e3561a9aa8709c19293fcc2268bb94f954c3270b',1,'Glib::ConvertError']]],

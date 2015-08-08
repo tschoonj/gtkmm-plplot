@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['background_5fcolor',['background_color',['../class_gtk_1_1_p_lplot_1_1_canvas.html#ae374cd6224cd32a15ae4b6dec961c008',1,'Gtk::PLplot::Canvas::background_color()'],['../class_gtk_1_1_p_lplot_1_1_plot_abstract.html#a7b6cd0329fb35b4ee9a1c8dc583025e2',1,'Gtk::PLplot::PlotAbstract::background_color()']]],
+  ['background_5fcolor',['background_color',['../class_gtk_1_1_p_lplot_1_1_canvas.html#ae374cd6224cd32a15ae4b6dec961c008',1,'Gtk::PLplot::Canvas::background_color()'],['../class_gtk_1_1_p_lplot_1_1_plot.html#acac58be134de5e65225a26a7e943ef45',1,'Gtk::PLplot::Plot::background_color()']]],
   ['backtracking_5fcontrol_5fverb_5fargument_5fforbidden',['BACKTRACKING_CONTROL_VERB_ARGUMENT_FORBIDDEN',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html#a0f1ec693485b5b6c8148045e6ffa3aeea190d6f79bc1dec3eaee58404fbc801df',1,'Glib::RegexError']]],
   ['backtracking_5fcontrol_5fverb_5fargument_5frequired',['BACKTRACKING_CONTROL_VERB_ARGUMENT_REQUIRED',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html#a0f1ec693485b5b6c8148045e6ffa3aeea665ee6eb17bddb078c647494619bd768',1,'Glib::RegexError']]],
   ['bad_5faddress',['BAD_ADDRESS',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Error.html#acd2c910ef29b6be121c1fde3cfa8f2caabc3f73ec9017acdd84131bd7a05b11b1',1,'Gio::DBus::Error']]],

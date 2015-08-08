@@ -12,7 +12,7 @@ var searchData=
   ['region_5foverlap_5fin',['REGION_OVERLAP_IN',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#adcdefbdb596418377c360914ccee4abaa566be43517d236c5547295ce50fe0870',1,'Cairo']]],
   ['region_5foverlap_5fout',['REGION_OVERLAP_OUT',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#adcdefbdb596418377c360914ccee4abaa8f4ea05838aace48418bb07bc985a228',1,'Cairo']]],
   ['region_5foverlap_5fpart',['REGION_OVERLAP_PART',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#adcdefbdb596418377c360914ccee4abaa0085211792a91f8ac32fa6c3c205f863',1,'Cairo']]],
-  ['region_5fselectable',['region_selectable',['../class_gtk_1_1_p_lplot_1_1_plot_abstract.html#a51036f6904f61169ed680aceca37ad3a',1,'Gtk::PLplot::PlotAbstract']]],
+  ['region_5fselectable',['region_selectable',['../class_gtk_1_1_p_lplot_1_1_plot.html#a09155de6af439da0b94df524bed9b4f5',1,'Gtk::PLplot::Plot']]],
   ['remove',['REMOVE',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#af854bbf7f288d271a85ca8da98a6df2e',1,'Gtk::Stock']]],
   ['rep_5f',['rep_',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1slot__base.html#aa482f7dfc73c6950abde0fd51b3125b5',1,'sigc::slot_base']]],
   ['replace',['REPLACE',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html#a0f1ec693485b5b6c8148045e6ffa3aeeaae03b8944dce79aa18f7d74d3ad23066',1,'Glib::RegexError']]],

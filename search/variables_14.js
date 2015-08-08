@@ -11,7 +11,7 @@ var searchData=
   ['timed_5fout',['TIMED_OUT',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Error.html#acd2c910ef29b6be121c1fde3cfa8f2caa3cc501a2430a3664c3fa6caaf95fd609',1,'Gio::DBus::Error::TIMED_OUT()'],['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134ad9be2d9a98ef25458c32ac424264d963',1,'Gio::Error::TIMED_OUT()']]],
   ['timeout',['TIMEOUT',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Error.html#acd2c910ef29b6be121c1fde3cfa8f2caa25a7626b6188624c0f4620ba4bbb4c8c',1,'Gio::DBus::Error']]],
   ['tinyness_5fbefore',['tinyness_before',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00533.html#ad43f706bb453627342a50e9891ae8027',1,'std::__numeric_limits_base']]],
-  ['titles_5fcolor',['titles_color',['../class_gtk_1_1_p_lplot_1_1_plot_abstract.html#a2ba00141b5d062f41571948994a28b5e',1,'Gtk::PLplot::PlotAbstract']]],
+  ['titles_5fcolor',['titles_color',['../class_gtk_1_1_p_lplot_1_1_plot.html#a31e33be9624fca6b4823a85c41ecac21',1,'Gtk::PLplot::Plot']]],
   ['tlb_5fsize',['TLB_size',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#a5685189f3c14bde3fc8857e5217a359d',1,'__gnu_parallel::_Settings']]],
   ['too_5fbig',['TOO_BIG',['http://library.gnome.org/devel/glibmm/unstable/group__Spawn.html#ggafb7753661f7b0607951aa8881380ed1badd65e14f9e22f4db5dfa2353ff35cd1c',1,'Glib::SpawnError']]],
   ['too_5fmany_5fbranches_5fin_5fdefine',['TOO_MANY_BRANCHES_IN_DEFINE',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html#a0f1ec693485b5b6c8148045e6ffa3aeea472887aac67d3245e8d640f880ad5a60',1,'Glib::RegexError']]],

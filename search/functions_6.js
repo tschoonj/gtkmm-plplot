@@ -120,6 +120,7 @@ var searchData=
   ['fpos',['fpos',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00703.html#a6816aa318c7eeb099c78a3414a2bcdfd',1,'std::fpos']]],
   ['frac_5fdigits',['frac_digits',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00839.html#acf7df80a17d9d190ecb0bc05eda7242f',1,'std::moneypunct']]],
   ['frame',['Frame',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Frame.html#ad885c362a8c2bc29e89a3d7ec4a5b24b',1,'Gtk::Frame::Frame()'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Frame.html#a50bf70dfc0b43db4d72e08058a346071',1,'Gtk::Frame::Frame(const Glib::ustring &amp;label)']]],
+  ['free_5farray2d',['free_array2d',['../namespace_gtk_1_1_p_lplot.html#a14abbd434ea8c992de186630f77bc79e',1,'Gtk::PLplot']]],
   ['freeze',['freeze',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Menu.html#a2368b3763316dc6644c6f55386feb7f4',1,'Gio::Menu']]],
   ['freeze_5fchild_5fnotify',['freeze_child_notify',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Widget.html#a66c192d5c2c2c8c0dc11a1503d6213f8',1,'Gtk::Widget']]],
   ['freeze_5fnotify',['freeze_notify',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1ObjectBase.html#a6e9e13b75f116c20212d318204ce8ea3',1,'Glib::ObjectBase']]],

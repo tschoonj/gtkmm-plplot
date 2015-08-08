@@ -25,11 +25,12 @@ var searchData=
   ['applications',['applications',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1RecentFilter_1_1Info.html#a0fc4c78cf105a6e4b398fd42c4c62e96',1,'Gtk::RecentFilter::Info']]],
   ['apply',['APPLY',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a4cbfe0fbbd18329f560bb225081743c9',1,'Gtk::Stock']]],
   ['april',['APRIL',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#ga9781abc52ad49766808898743e44031fa1ae9ac1173f8c33acd183f4af21503e2',1,'Glib::Date']]],
+  ['area_5ffill_5fpattern',['area_fill_pattern',['../class_gtk_1_1_p_lplot_1_1_plot_data_contour_shades.html#ace3ae45f6dbe3b32435f382e98881fcf',1,'Gtk::PLplot::PlotDataContourShades']]],
   ['assertion_5fexpected',['ASSERTION_EXPECTED',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html#a0f1ec693485b5b6c8148045e6ffa3aeea1508f67a84cc3a71172562152f6cfd83',1,'Glib::RegexError']]],
   ['ate',['ate',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#ad22225874e26210dfe11263279587e75',1,'std::basic_fstream']]],
   ['august',['AUGUST',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#ga9781abc52ad49766808898743e44031fa0f91e886e724ba8b2b78c4c109608806',1,'Glib::Date']]],
   ['auth_5ffailed',['AUTH_FAILED',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Error.html#acd2c910ef29b6be121c1fde3cfa8f2caa38bca965d996fac1b057fbdd9343c117',1,'Gio::DBus::Error']]],
-  ['axes_5fcolor',['axes_color',['../class_gtk_1_1_p_lplot_1_1_plot_abstract.html#aab3c5521aa69b2da4f83f1c9a790b2e5',1,'Gtk::PLplot::PlotAbstract']]],
-  ['axis_5ftitle_5fx',['axis_title_x',['../class_gtk_1_1_p_lplot_1_1_plot_abstract.html#ac9d233d6688cb9121cc28187b58e03cc',1,'Gtk::PLplot::PlotAbstract']]],
-  ['axis_5ftitle_5fy',['axis_title_y',['../class_gtk_1_1_p_lplot_1_1_plot_abstract.html#a35d943a5c7a54dba61c324d6ed686c7b',1,'Gtk::PLplot::PlotAbstract']]]
+  ['axes_5fcolor',['axes_color',['../class_gtk_1_1_p_lplot_1_1_plot.html#a31d1083151b285b6c7e471e5d4b6a0a2',1,'Gtk::PLplot::Plot']]],
+  ['axis_5ftitle_5fx',['axis_title_x',['../class_gtk_1_1_p_lplot_1_1_plot.html#af80df8bb4508c3dd0893354b191cecd2',1,'Gtk::PLplot::Plot']]],
+  ['axis_5ftitle_5fy',['axis_title_y',['../class_gtk_1_1_p_lplot_1_1_plot.html#a8897c4f3a64a8cb6313ad1616fa39d4b',1,'Gtk::PLplot::Plot']]]
 ];

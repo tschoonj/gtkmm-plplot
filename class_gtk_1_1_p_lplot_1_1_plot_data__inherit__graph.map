@@ -1,0 +1,6 @@
+<map id="Gtk::PLplot::PlotData" name="Gtk::PLplot::PlotData">
+<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d.html" title="a class that will hold a single dataset and its properties for a Plot2D plot " alt="" coords="5,152,168,177"/>
+<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot_data_contour.html" title="a class for PlotContour datasets " alt="" coords="193,152,386,177"/>
+<area shape="rect" id="node2" href="/usr/local/Cellar/libsigc++/2.4.1/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="135,5,241,31"/>
+<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_plot_data_contour_shades.html" title="a class for PlotContourShades datasets " alt="" coords="193,225,386,264"/>
+</map>
