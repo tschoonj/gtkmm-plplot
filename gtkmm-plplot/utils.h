@@ -58,6 +58,16 @@ namespace Gtk {
      */
     void change_plstream_colormap(plstream *pls, ColormapPalette colormap);
 
+    /** Allocates a an array of arrays
+     *
+     * All elements will be initialized to zero.
+     * The return value should be freed with free_array2d();
+     * \param nx the extent along the first coordinate of the array of arrays
+     * \param ny the extent along the second coordinate of the array of arrays
+     * \returns a freshly allocated array of arrays of PLFLT's
+     */
+    PLFLT **calloc_array2d(int nx, int ny);
+
     /** Creates a deep copy of a dynamically allocated array of dynamically allocated array of PLFLT's (double)
      *
      * The return value should be freed with free_array2d();

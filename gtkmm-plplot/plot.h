@@ -171,7 +171,7 @@ namespace Gtk {
        * \return a pointer to the PlotData in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      PlotData *get_data(unsigned int data_index);
+      PlotData *get_data(unsigned int data_index = 0);
 
       /** Method to draw the plot with all of its datasets
        *

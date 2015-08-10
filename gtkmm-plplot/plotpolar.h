@@ -146,18 +146,6 @@ namespace Gtk {
        */
       virtual void coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) override;
 
-      /** Changes the visible plotted region
-       *
-       * Sets the axes range of the plotted box to the supplied parameters.
-       * Throws an exception when the coordinates are outside of \c plot_data_range_x and \c plot_data_range_y.
-       * \param xmin left X-coordinate
-       * \param xmax right X-coordinate
-       * \param ymin lower Y-coordinate
-       * \param ymax upper Y-coordinate
-       * \exception Gtk::PLplot::Exception
-       */
-      virtual void set_region(double xmin, double xmax, double ymin, double ymax) override;
-
       /** Freshly allocate a clone of the instance
        *
        * This very important method allows Canvas::add_plot() to add new plots to its internal array.

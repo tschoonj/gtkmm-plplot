@@ -211,15 +211,13 @@ namespace Gtk {
        *
        * \param line_style The new line style that will be used to draw the contour edges
        */
-      void set_edge_line_style(LineStyle line_style);
+      void set_edge_style(LineStyle line_style);
 
       /** Get the current contour edge line style
        *
        * \returns the currently used contour edge line style
        */
-      LineStyle get_edge_line_style();
-
-
+      LineStyle get_edge_style();
 
       /** Sets the width of the contour edge lines
        *
@@ -236,6 +234,9 @@ namespace Gtk {
 
       /** Sets the number of contour levels to draw
        *
+       * Note that the actually shown number of edges is equal to \c nlevels -2!
+       * This is because the maximum and minimum values in the \c z dataset have their own edge,
+       * which is just a single dot and is not shown!
        * \param nlevels The new number of contour levels
        */
       void set_nlevels(unsigned int nlevels);

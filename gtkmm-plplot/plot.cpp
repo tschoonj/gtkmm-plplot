@@ -263,9 +263,6 @@ void Plot::set_region(double xmin, double xmax, double ymin, double ymax) {
     return;
   }
 
-  if (xmin < 0 || xmax < 0)
-    throw Exception("Gtk::PLplot::Plot::set_region -> Invalid arguments");
-
   coordinate_transform_world_to_plplot(
     xmin, ymin,
     xmin, ymin

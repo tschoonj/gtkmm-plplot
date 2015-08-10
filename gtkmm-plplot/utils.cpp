@@ -69,6 +69,14 @@ void Gtk::PLplot::free_array2d(void **input, int nx) {
   free(input);
 }
 
+PLFLT **Gtk::PLplot::calloc_array2d(int nx, int ny) {
+  PLFLT **rv= (PLFLT **) malloc(sizeof(PLFLT *) * nx);
+  for (int i = 0 ; i < nx ; i++) {
+    rv[i] = (PLFLT *) calloc(ny, sizeof(PLFLT));
+  }
+  return rv;
+}
+
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
 PLFLT **boost_multi_array_to_array2d(const boost::multi_array<PLFLT, 2> &array) {
   //get data pointer from boost array

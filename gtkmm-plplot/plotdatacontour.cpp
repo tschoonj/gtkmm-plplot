@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/exception.h>
 #include <gtkmm-plplot/utils.h>
 #include <algorithm>
+#include <iostream>
 
 
 using namespace Gtk::PLplot;
@@ -148,7 +149,9 @@ PlotDataContour::PlotDataContour(const PlotDataContour &_data) :
   _data.edge_style, _data.edge_width, _data.nlevels) {}
 
 PlotDataContour::~PlotDataContour() {
+  std::cout << "Before ~PlotDataContour free_array2d" << std::endl;
   free_array2d((void **) z, x.size());
+  std::cout << "After ~PlotDataContour free_array2d" << std::endl;
 }
 
 std::vector<PLFLT> PlotDataContour::get_vector_x() {
@@ -168,12 +171,12 @@ Gdk::RGBA PlotDataContour::get_edge_color() {
   return edge_color;
 }
 
-void PlotDataContour::set_edge_line_style(LineStyle _edge_style) {
+void PlotDataContour::set_edge_style(LineStyle _edge_style) {
   edge_style = _edge_style;
   _signal_changed.emit();
 }
 
-LineStyle PlotDataContour::get_edge_line_style() {
+LineStyle PlotDataContour::get_edge_style() {
   return edge_style;
 }
 
@@ -210,6 +213,7 @@ void PlotDataContour::set_nlevels(unsigned int _nlevels) {
   //fill up level
   for (unsigned int i = 0 ; i < nlevels ; i++) {
     clevels[i] = zmin + (zmax - zmin) * i / (PLFLT) (nlevels - 1);
+    std::cout << "clevels[" << i << "]: " << clevels[i] << std::endl;
   }
   _signal_changed.emit();
 }
