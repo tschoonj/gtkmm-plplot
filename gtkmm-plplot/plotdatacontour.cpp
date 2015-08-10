@@ -22,8 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <plConfig.h>
 
-#if PLPLOT_VERSION_MAJOR >= 5 && \
-    PLPLOT_VERSION_MINOR >= 11
+#ifdef GTKMM_PLPLOT_PLPLOT_5_11_0
 	#define PLCALLBACK plcallback
 #else
 	#define PLCALLBACK plstream

@@ -121,4 +121,7 @@
  *  \section example6 Example 6: Polar coordinate systems
  *  \include test6.cpp
  *  \image html test6.png "Example 6"
+ *  \section example7 Example 7: a Simple contour plot
+ *  \include test7.cpp
+ *  \image html test7.png "Example 7"
  */

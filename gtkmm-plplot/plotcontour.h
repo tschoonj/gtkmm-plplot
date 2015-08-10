@@ -32,9 +32,11 @@ namespace Gtk {
      *  single PlotDataContour dataset, and no datasets may be added afterwards.
      *  Though this class does not offer any properties of its own, several properties are provided by its parent Plot, which may
      *  be changed when necessary.
+     *  This class is not very useful since the contour edges don't show the value that corresponds to them.
+     *  However, PlotContourShades adds support for colorbars whose colors match the regions between two contour edges, giving quantitative information.
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.
-     *  For more information, the reader is referred to the examples \ref example7.
+     *  For more information, the reader is referred to example \ref example7.
      */
     class PlotContour : public Plot {
     private:

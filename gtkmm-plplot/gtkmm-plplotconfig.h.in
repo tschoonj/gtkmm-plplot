@@ -26,5 +26,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #undef GTKMM_PLPLOT_BOOST_ENABLED
 
+#undef GTKMM_PLPLOT_PLPLOT_5_11_0
 
 #endif
