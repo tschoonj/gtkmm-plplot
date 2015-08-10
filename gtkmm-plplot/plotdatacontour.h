@@ -50,6 +50,8 @@ namespace Gtk {
       Gdk::RGBA edge_color; ///< Defines pen color used for contours defining edges.
       LineStyle edge_style; ///< The linestyle that will be used for drawing the contours defining edges.
       PLFLT edge_width; ///< Defines line width used for contours defining edges.
+      PLFLT zmin; ///< Minimum of \c z, used to determine the contour edges
+      PLFLT zmax; ///< Maximum of \c z, used to determine the contour edges
       unsigned int nlevels; ///< Number of contour levels to draw
 
       std::vector<PLFLT> clevels; ///< Vector containing the data levels corresponding to the edges of each region that will be plotted. To work properly the levels should be monotonic.

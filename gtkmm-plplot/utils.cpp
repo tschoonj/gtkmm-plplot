@@ -78,7 +78,7 @@ PLFLT **Gtk::PLplot::calloc_array2d(int nx, int ny) {
 }
 
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
-PLFLT **boost_multi_array_to_array2d(const boost::multi_array<PLFLT, 2> &array) {
+PLFLT **Gtk::PLplot::boost_multi_array_to_array2d(const boost::multi_array<PLFLT, 2> &array) {
   //get data pointer from boost array
   const PLFLT *data = array.data();
   //get dimensions

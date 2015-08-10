@@ -82,8 +82,8 @@ PKG_PROG_PKG_CONFIG([0.26])
 
 #search for our dependencies
 PKG_CHECK_MODULES([gtkmm],gtkmm-3.0 >= 3.0.0)
-PKG_CHECK_MODULES([plplotcxx], [plplot-c++], AC_SUBST([PLPLOT_CXX], [plplot-c++]),
- [PKG_CHECK_MODULES([plplotcxx], [plplotd-c++], AC_SUBST([PLPLOT_CXX], [plplotd-c++]))])
+PKG_CHECK_MODULES([plplotcxx], [plplot-c++ >= 5.10.0], AC_SUBST([PLPLOT_CXX], [plplot-c++]),
+ [PKG_CHECK_MODULES([plplotcxx], [plplotd-c++ >= 5.10.0], AC_SUBST([PLPLOT_CXX], [plplotd-c++]))])
 
 #check for the extcairo device
 result=

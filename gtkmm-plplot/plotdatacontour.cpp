@@ -20,6 +20,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/utils.h>
 #include <algorithm>
 #include <iostream>
+#include <plConfig.h>
+
+#if PLPLOT_VERSION_MAJOR >= 5 && \
+    PLPLOT_VERSION_MINOR >= 11
+	#define PLCALLBACK plcallback
+#else
+	#define PLCALLBACK plstream
+#endif
 
 
 using namespace Gtk::PLplot;
@@ -69,9 +77,7 @@ PlotDataContour::PlotDataContour(
     z = deep_copy_array2d(_z, x.size(), y.size());
 
     //get maximum of z
-    PLFLT zmin, zmax;
     plMinMax2dGrid(z, x.size(), y.size(), &zmax, &zmin);
-
 
     //fill up level
     for (unsigned int i = 0 ; i < nlevels ; i++) {
@@ -149,9 +155,7 @@ PlotDataContour::PlotDataContour(const PlotDataContour &_data) :
   _data.edge_style, _data.edge_width, _data.nlevels) {}
 
 PlotDataContour::~PlotDataContour() {
-  std::cout << "Before ~PlotDataContour free_array2d" << std::endl;
   free_array2d((void **) z, x.size());
-  std::cout << "After ~PlotDataContour free_array2d" << std::endl;
 }
 
 std::vector<PLFLT> PlotDataContour::get_vector_x() {
@@ -204,16 +208,12 @@ void PlotDataContour::set_nlevels(unsigned int _nlevels) {
     return;
 
   clevels.clear();
+  clevels.resize(_nlevels);
   nlevels = _nlevels;
-
-  //get maximum of z
-  PLFLT zmin, zmax;
-  plMinMax2dGrid(z, x.size(), y.size(), &zmax, &zmin);
 
   //fill up level
   for (unsigned int i = 0 ; i < nlevels ; i++) {
     clevels[i] = zmin + (zmax - zmin) * i / (PLFLT) (nlevels - 1);
-    std::cout << "clevels[" << i << "]: " << clevels[i] << std::endl;
   }
   _signal_changed.emit();
 }
@@ -247,5 +247,5 @@ void PlotDataContour::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, pl
   cgrid.nx = x.size();
   cgrid.ny = y.size();
 
-  pls->cont(z, x.size(), y.size(), 1, x.size(), 1, y.size(), &clevels[0], nlevels, plcallback::tr1, (void *) &cgrid);
+  pls->cont(z, x.size(), y.size(), 1, x.size(), 1, y.size(), &clevels[0], nlevels, PLCALLBACK::tr1, (void *) &cgrid);
 }

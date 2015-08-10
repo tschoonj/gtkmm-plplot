@@ -12,7 +12,6 @@ gtkmm_plplotinclude_HEADERS = \
                               plotpolar.h \
                               utils.h \
                               plotdatacontour.h \
-                              plotdatacontourshades.h \
                               plotcontour.h \
                               enums.h
 
