@@ -80,7 +80,12 @@ namespace Test7 {
       const PLINT ny = 11;
       std::vector<PLFLT> x(nx);
       std::vector<PLFLT> y(ny);
+#ifdef GTKMM_PLPLOT_BOOST_ENABLED
+      boost::multi_array<PLFLT, 2> z(boost::extents[nx][ny]);
+      std::cout << "Using Boost multi_array!" << std::endl;
+#else
       PLFLT **z = Gtk::PLplot::calloc_array2d(nx, ny);
+#endif
 
       fs.open(TEST_CSV);
       std::string line;
