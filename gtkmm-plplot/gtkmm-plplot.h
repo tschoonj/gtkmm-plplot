@@ -26,10 +26,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/plot2d.h>
 #include <gtkmm-plplot/plotpolar.h>
 #include <gtkmm-plplot/plotcontour.h>
+#include <gtkmm-plplot/plotcontourshades.h>
 #include <gtkmm-plplot/plotdata.h>
 #include <gtkmm-plplot/plotdata2d.h>
 #include <gtkmm-plplot/plotdatacontour.h>
-//#include <gtkmm-plplot/plotdatacontourshades.h>
+#include <gtkmm-plplot/plotdatacontourshades.h>
 #include <gtkmm-plplot/utils.h>
 
 

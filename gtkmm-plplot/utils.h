@@ -28,6 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gdkmm/rgba.h>
 #include <gtkmm-plplot/enums.h>
 
+#define GTKMM_PLPLOT_DEFAULT_COLOR_INDEX 5
+
 namespace Gtk {
   namespace PLplot {
     /** Returns a vector of doubles with each element set to the value of its subscript.
@@ -47,8 +49,10 @@ namespace Gtk {
      * Convenience function that allows me to change PLplot's colormap
      * \param pls a pointer to a plstream object
      * \param color the new color
+     * \param activate make this the currently active color for subsequent drawing commands
+     * \param index the index that should be used for this color in PLplot's colormap
      */
-    void change_plstream_color(plstream *pls, Gdk::RGBA color);
+    void change_plstream_color(plstream *pls, Gdk::RGBA color, bool activate = true, int index = GTKMM_PLPLOT_DEFAULT_COLOR_INDEX);
 
     /** Changes the current colormap palette of the plstream
      *

@@ -158,16 +158,13 @@ namespace Gtk {
        *
        * Initializes a new dataset for a PlotContour.The X- and Y-values will be
        * set to a vector of the appropriate size with elements set to correspond to their array subscript.
-       * \param nx the extent of z along the first dimension
-       * \param ny the extent of z along the second dimension
        * \param z the actual contour data, provided as a Boost \c multi_array.
        * \param edge_color the contour edge color, default is red
        * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        * \param nlevels the number of contour edges required for the plot
        */
-      PlotDataContour(unsigned int nx,
-                      unsigned int ny,const boost::multi_array<PLFLT, 2> &z,
+      PlotDataContour(const boost::multi_array<PLFLT, 2> &z,
                       Gdk::RGBA edge_color = Gdk::RGBA("red"),
                       LineStyle edge_style = CONTINUOUS,
                       double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH,

@@ -127,9 +127,7 @@ void PlotContour::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int w
 
   pls->lab(axis_title_x.c_str(), axis_title_y.c_str(), plot_title.c_str());
 
-  for (auto &iter : plot_data) {
-    iter->draw_plot_data(cr, pls);
-  }
+  plot_data[0]->draw_plot_data(cr, pls);
 
   cr->restore();
 

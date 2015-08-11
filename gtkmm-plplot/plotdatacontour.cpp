@@ -120,7 +120,10 @@ PlotDataContour::PlotDataContour(
   double _edge_width,
   unsigned int _nlevels) :
   PlotDataContour(_x, _y,
-  boost_multi_array_to_array2d(_z), _edge_color, _edge_style, _edge_width, _nlevels) {}
+  boost_multi_array_to_array2d(_z), _edge_color, _edge_style, _edge_width, _nlevels) {
+    if (_z.shape()[0] != _x.size() || _z.shape()[1] != _y.size())
+      throw Exception("Gtk::PLplot::PlotDataContour::PlotDataContour -> dimensions of x and/or y do not match those of z");
+  }
 
 PlotDataContour::PlotDataContour(
   const std::valarray<PLFLT> &_x,
@@ -132,18 +135,19 @@ PlotDataContour::PlotDataContour(
   unsigned int _nlevels) :
   PlotDataContour(std::vector<PLFLT>(std::begin(_x), std::end(_x)),
   std::vector<PLFLT>(std::begin(_y), std::end(_y)),
-  boost_multi_array_to_array2d(_z), _edge_color, _edge_style, _edge_width, _nlevels) {}
+  boost_multi_array_to_array2d(_z), _edge_color, _edge_style, _edge_width, _nlevels) {
+    if (_z.shape()[0] != _x.size() || _z.shape()[1] != _y.size())
+      throw Exception("Gtk::PLplot::PlotDataContour::PlotDataContour -> dimensions of x and/or y do not match those of z");
+  }
 
 PlotDataContour::PlotDataContour(
-  unsigned int nx,
-  unsigned int ny,
   const boost::multi_array<PLFLT, 2> &_z,
   Gdk::RGBA _edge_color,
   LineStyle _edge_style,
   double _edge_width,
   unsigned int _nlevels) :
-  PlotDataContour(std::vector<PLFLT>(indgen(nx)),
-  std::vector<PLFLT>(indgen(ny)),
+  PlotDataContour(std::vector<PLFLT>(indgen(_z.shape()[0])),
+  std::vector<PLFLT>(indgen(_z.shape()[1])),
   boost_multi_array_to_array2d(_z), _edge_color, _edge_style, _edge_width, _nlevels) {}
 
 #endif

@@ -44,9 +44,10 @@ std::valarray<PLFLT> Gtk::PLplot::indgen_va(unsigned int n) {
   return rv;
 }
 
-void Gtk::PLplot::change_plstream_color(plstream *pls, Gdk::RGBA color) {
-  pls->scol0a(5, color.get_red_u()/256, color.get_green_u()/256, color.get_blue_u()/256, color.get_alpha());
-  pls->col0(5);
+void Gtk::PLplot::change_plstream_color(plstream *pls, Gdk::RGBA color, bool activate, int index) {
+  pls->scol0a(index, color.get_red_u()/256, color.get_green_u()/256, color.get_blue_u()/256, color.get_alpha());
+  if (activate)
+    pls->col0(index);
 }
 
 void Gtk::PLplot::change_plstream_colormap(plstream *pls, Gtk::PLplot::ColormapPalette colormap) {

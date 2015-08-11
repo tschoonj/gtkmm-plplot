@@ -11,7 +11,9 @@ doxyfile_deps = $(top_srcdir)/gtkmm-plplot/canvas.h \
 								$(top_srcdir)/gtkmm-plplot/plotdata.h \
 								$(top_srcdir)/gtkmm-plplot/utils.h \
 								$(top_srcdir)/gtkmm-plplot/plotdatacontour.h \
+								$(top_srcdir)/gtkmm-plplot/plotdatacontourshades.h \
 								$(top_srcdir)/gtkmm-plplot/plotcontour.h \
+								$(top_srcdir)/gtkmm-plplot/plotcontourshades.h \
 								$(top_srcdir)/gtkmm-plplot/plotpolar.h
 
 
