@@ -35,16 +35,16 @@ PlotDataContour::PlotDataContour(
   const std::vector<PLFLT> &_x,
   const std::vector<PLFLT> &_y,
   PLFLT **_z,
+  unsigned int _nlevels,
   Gdk::RGBA _edge_color,
   LineStyle _edge_style,
-  double _edge_width,
-  unsigned int _nlevels) :
+  double _edge_width) :
   PlotData(),
   x(_x), y(_y),
+  nlevels(_nlevels),
   edge_color(_edge_color),
   edge_style(_edge_style),
   edge_width(_edge_width),
-  nlevels(_nlevels),
   clevels(_nlevels)
   {
     //do some checks
@@ -88,25 +88,25 @@ PlotDataContour::PlotDataContour(
   const std::valarray<PLFLT> &_x,
   const std::valarray<PLFLT> &_y,
   PLFLT **_z,
+  unsigned int _nlevels,
   Gdk::RGBA _edge_color,
   LineStyle _edge_style,
-  double _edge_width,
-  unsigned int _nlevels) :
+  double _edge_width) :
   PlotDataContour(std::vector<PLFLT>(std::begin(_x), std::end(_x)),
   std::vector<PLFLT>(std::begin(_y), std::end(_y)),
-  _z, _edge_color, _edge_style, _edge_width, _nlevels) {}
+  _z, _nlevels, _edge_color, _edge_style, _edge_width) {}
 
 PlotDataContour::PlotDataContour(
   unsigned int nx,
   unsigned int ny,
   PLFLT **_z,
+  unsigned int _nlevels,
   Gdk::RGBA _edge_color,
   LineStyle _edge_style,
-  double _edge_width,
-  unsigned int _nlevels) :
+  double _edge_width) :
   PlotDataContour(std::vector<PLFLT>(indgen(nx)),
   std::vector<PLFLT>(indgen(ny)),
-  _z, _edge_color, _edge_style, _edge_width, _nlevels) {}
+  _z, _nlevels, _edge_color, _edge_style, _edge_width) {}
 
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
 //the Boost constructors
@@ -115,12 +115,12 @@ PlotDataContour::PlotDataContour(
   const std::vector<PLFLT> &_x,
   const std::vector<PLFLT> &_y,
   const boost::multi_array<PLFLT, 2> &_z,
+  unsigned int _nlevels,
   Gdk::RGBA _edge_color,
   LineStyle _edge_style,
-  double _edge_width,
-  unsigned int _nlevels) :
+  double _edge_width) :
   PlotDataContour(_x, _y,
-  boost_multi_array_to_array2d(_z), _edge_color, _edge_style, _edge_width, _nlevels) {
+  boost_multi_array_to_array2d(_z), _nlevels, _edge_color, _edge_style, _edge_width) {
     if (_z.shape()[0] != _x.size() || _z.shape()[1] != _y.size())
       throw Exception("Gtk::PLplot::PlotDataContour::PlotDataContour -> dimensions of x and/or y do not match those of z");
   }
@@ -129,33 +129,33 @@ PlotDataContour::PlotDataContour(
   const std::valarray<PLFLT> &_x,
   const std::valarray<PLFLT> &_y,
   const boost::multi_array<PLFLT, 2> &_z,
+  unsigned int _nlevels,
   Gdk::RGBA _edge_color,
   LineStyle _edge_style,
-  double _edge_width,
-  unsigned int _nlevels) :
+  double _edge_width) :
   PlotDataContour(std::vector<PLFLT>(std::begin(_x), std::end(_x)),
   std::vector<PLFLT>(std::begin(_y), std::end(_y)),
-  boost_multi_array_to_array2d(_z), _edge_color, _edge_style, _edge_width, _nlevels) {
+  boost_multi_array_to_array2d(_z), _nlevels, _edge_color, _edge_style, _edge_width) {
     if (_z.shape()[0] != _x.size() || _z.shape()[1] != _y.size())
       throw Exception("Gtk::PLplot::PlotDataContour::PlotDataContour -> dimensions of x and/or y do not match those of z");
   }
 
 PlotDataContour::PlotDataContour(
   const boost::multi_array<PLFLT, 2> &_z,
+  unsigned int _nlevels,
   Gdk::RGBA _edge_color,
   LineStyle _edge_style,
-  double _edge_width,
-  unsigned int _nlevels) :
+  double _edge_width) :
   PlotDataContour(std::vector<PLFLT>(indgen(_z.shape()[0])),
   std::vector<PLFLT>(indgen(_z.shape()[1])),
-  boost_multi_array_to_array2d(_z), _edge_color, _edge_style, _edge_width, _nlevels) {}
+  boost_multi_array_to_array2d(_z), _nlevels, _edge_color, _edge_style, _edge_width) {}
 
 #endif
 
 //copy constructor
 PlotDataContour::PlotDataContour(const PlotDataContour &_data) :
-  PlotDataContour(_data.x, _data.y, _data.z, _data.edge_color,
-  _data.edge_style, _data.edge_width, _data.nlevels) {}
+  PlotDataContour(_data.x, _data.y, _data.z, _data.nlevels, _data.edge_color,
+  _data.edge_style, _data.edge_width) {}
 
 PlotDataContour::~PlotDataContour() {
   free_array2d((void **) z, x.size());
@@ -226,7 +226,6 @@ unsigned int PlotDataContour::get_nlevels() {
 }
 
 void PlotDataContour::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) {
-
   //thinks to set before drawing:
   // 1) edge_color
   // 2) edge_style

@@ -1,4 +1,12 @@
-noinst_PROGRAMS = test1 test2 test3 test4 test5 test6 test7
+noinst_PROGRAMS = \
+  test1 \
+  test2 \
+  test3 \
+  test4 \
+  test5 \
+  test6 \
+  test7 \
+  test8
 
 AM_CPPFLAGS = -I$(top_srcdir) -I$(top_builddir) $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS)
 AM_LDADD = ../gtkmm-plplot/libgtkmm-plplot-0.1.la $(gtkmm_LIBS) $(plplotcxx_LIBS)
@@ -32,5 +40,11 @@ test7_SOURCES = test7.cpp
 test7_CPPFLAGS = $(AM_CPPFLAGS) \
                  -DTEST_CSV=\"$(abs_srcdir)/contour-test.csv\"
 test7_LDADD = $(AM_LDADD)
+
+test8_SOURCES = test8.cpp
+test8_CPPFLAGS = $(AM_CPPFLAGS) \
+                 -DTEST_CSV=\"$(abs_srcdir)/contour-test.csv\"
+test8_LDADD = $(AM_LDADD)
+
 
 EXTRA_DIST = srm1155.csv contour-test.csv

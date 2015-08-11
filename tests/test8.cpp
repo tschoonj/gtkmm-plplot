@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 
 
-namespace Test7 {
+namespace Test8 {
   class Window : public Gtk::Window {
   private:
     Gtk::PLplot::Canvas canvas;
@@ -111,15 +111,15 @@ namespace Test7 {
       }
 
       //construct the plot
-      auto plot = Gtk::PLplot::PlotContour(
-        Gtk::PLplot::PlotDataContour(x, y, z, 7, edge_color.get_rgba(), Gtk::PLplot::LineStyle::CONTINUOUS, 1.0),
+      auto plot = Gtk::PLplot::PlotContourShades(
+        Gtk::PLplot::PlotDataContourShades(x, y, z, 7, Gtk::PLplot::ColormapPalette::BLUE_YELLOW, edge_color.get_rgba(), Gtk::PLplot::LineStyle::CONTINUOUS, 1.0),
         x_title,
         y_title,
         plot_title
       );
 
-      auto plot_ref = dynamic_cast<Gtk::PLplot::PlotContour *>(canvas.add_plot(plot));
-      auto plot_data_ref = dynamic_cast<Gtk::PLplot::PlotDataContour *>(plot_ref->get_data());
+      auto plot_ref = dynamic_cast<Gtk::PLplot::PlotContourShades *>(canvas.add_plot(plot));
+      auto plot_data_ref = dynamic_cast<Gtk::PLplot::PlotDataContourShades *>(plot_ref->get_data());
 
       //now let's set up the grid
       grid.set_column_homogeneous(false);
@@ -214,10 +214,10 @@ namespace Test7 {
 }
 
 int main(int argc, char **argv) {
-  Glib::set_application_name("gtkmm-plplot-test7");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test7");
+  Glib::set_application_name("gtkmm-plplot-test8");
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test8");
 
-  Test7::Window window;
+  Test8::Window window;
 
 	return app->run(window);
 }

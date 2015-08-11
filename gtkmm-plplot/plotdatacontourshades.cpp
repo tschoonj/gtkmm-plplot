@@ -37,7 +37,7 @@ PlotDataContourShades::PlotDataContourShades(
   Gdk::RGBA _edge_color,
   LineStyle _edge_style,
   double _edge_width) :
-  PlotDataContour(_x, _y, _z, _edge_color, _edge_style, _edge_width, _nlevels),
+  PlotDataContour(_x, _y, _z, _nlevels, _edge_color, _edge_style, _edge_width),
   colormap_palette(_colormap_palette),
   area_fill_pattern(SOLID),
   fill_width(PLOTDATA_DEFAULT_LINE_WIDTH),
@@ -92,7 +92,7 @@ PlotDataContourShades::PlotDataContourShades(
   Gdk::RGBA _edge_color,
   LineStyle _edge_style,
   double _edge_width) :
-  PlotDataContour(_x, _y, _z, _edge_color, _edge_style, _edge_width, _nlevels),
+  PlotDataContour(_x, _y, _z, _nlevels, _edge_color, _edge_style, _edge_width),
   colormap_palette(_colormap_palette),
   area_fill_pattern(SOLID),
   fill_width(PLOTDATA_DEFAULT_LINE_WIDTH),
