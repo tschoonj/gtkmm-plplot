@@ -52,7 +52,6 @@ namespace Gtk {
        * \param nlevels the number of contour edges required for the plot
        * \param colormap_palette the colormap palette that will be used to render the shaded regions of the contourplot
        * \param edge_color the contour edge color, default is black
-       * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        */
       PlotDataContourShades(const std::vector<PLFLT> &x,
@@ -61,7 +60,6 @@ namespace Gtk {
                             unsigned int nlevels = 6,
                             ColormapPalette colormap_palette = BLUE_YELLOW,
                             Gdk::RGBA edge_color = Gdk::RGBA("black"),
-                            LineStyle edge_style = CONTINUOUS,
                             double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
       /** Constructor
@@ -73,7 +71,6 @@ namespace Gtk {
        * \param nlevels the number of contour edges required for the plot
        * \param colormap_palette the colormap palette that will be used to render the shaded regions of the contourplot
        * \param edge_color the contour edge color, default is black
-       * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        */
       PlotDataContourShades(const std::valarray<PLFLT> &x,
@@ -82,7 +79,6 @@ namespace Gtk {
                             unsigned int nlevels = 6,
                             ColormapPalette colormap_palette = BLUE_YELLOW,
                             Gdk::RGBA edge_color = Gdk::RGBA("black"),
-                            LineStyle edge_style = CONTINUOUS,
                             double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
       /** Constructor
@@ -95,7 +91,6 @@ namespace Gtk {
        * \param nlevels the number of contour edges required for the plot
        * \param colormap_palette the colormap palette that will be used to render the shaded regions of the contourplot
        * \param edge_color the contour edge color, default is black
-       * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        */
       PlotDataContourShades(unsigned int nx,
@@ -104,7 +99,6 @@ namespace Gtk {
                             unsigned int nlevels = 6,
                             ColormapPalette colormap_palette = BLUE_YELLOW,
                             Gdk::RGBA edge_color = Gdk::RGBA("black"),
-                            LineStyle edge_style = CONTINUOUS,
                             double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
@@ -117,7 +111,6 @@ namespace Gtk {
        * \param nlevels the number of contour edges required for the plot
        * \param colormap_palette the colormap palette that will be used to render the shaded regions of the contourplot
        * \param edge_color the contour edge color, default is black
-       * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        */
       PlotDataContourShades(const std::vector<PLFLT> &x,
@@ -126,7 +119,6 @@ namespace Gtk {
                             unsigned int nlevels = 6,
                             ColormapPalette colormap_palette = BLUE_YELLOW,
                             Gdk::RGBA edge_color = Gdk::RGBA("black"),
-                            LineStyle edge_style = CONTINUOUS,
                             double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
       /** Constructor
@@ -138,7 +130,6 @@ namespace Gtk {
        * \param nlevels the number of contour edges required for the plot
        * \param colormap_palette the colormap palette that will be used to render the shaded regions of the contourplot
        * \param edge_color the contour edge color, default is black
-       * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        */
       PlotDataContourShades(const std::valarray<PLFLT> &x,
@@ -147,7 +138,6 @@ namespace Gtk {
                             unsigned int nlevels = 6,
                             ColormapPalette colormap_palette = BLUE_YELLOW,
                             Gdk::RGBA edge_color = Gdk::RGBA("black"),
-                            LineStyle edge_style = CONTINUOUS,
                             double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
       /** Constructor
@@ -158,14 +148,12 @@ namespace Gtk {
        * \param nlevels the number of contour edges required for the plot
        * \param colormap_palette the colormap palette that will be used to render the shaded regions of the contourplot
        * \param edge_color the contour edge color, default is black
-       * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        */
       PlotDataContourShades(const boost::multi_array<PLFLT, 2> &z,
                             unsigned int nlevels = 6,
                             ColormapPalette colormap_palette = BLUE_YELLOW,
                             Gdk::RGBA edge_color = Gdk::RGBA("black"),
-                            LineStyle edge_style = CONTINUOUS,
                             double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 #endif
 

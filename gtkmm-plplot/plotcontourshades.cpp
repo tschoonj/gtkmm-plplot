@@ -19,9 +19,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/plotcontourshades.h>
 #include <gtkmm-plplot/exception.h>
 #include <gtkmm-plplot/utils.h>
+#include <iostream>
 
 using namespace Gtk::PLplot;
 
+
+PlotContourShades::PlotContourShades(
+  const Glib::ustring &_axis_title_x,
+  const Glib::ustring &_axis_title_y,
+  const Glib::ustring &_plot_title,
+  const double _plot_width_norm,
+  const double _plot_height_norm,
+  const double _plot_offset_horizontal_norm,
+  const double _plot_offset_vertical_norm) :
+  PlotContour(_axis_title_x, _axis_title_y, _plot_title,
+  _plot_width_norm, _plot_height_norm,
+  _plot_offset_horizontal_norm,
+  _plot_offset_vertical_norm) {}
 
 PlotContourShades::PlotContourShades(
   const PlotDataContourShades &_data,
@@ -32,28 +46,32 @@ PlotContourShades::PlotContourShades(
   const double _plot_height_norm,
   const double _plot_offset_horizontal_norm,
   const double _plot_offset_vertical_norm) :
-  PlotContour(_data, _axis_title_x, _axis_title_y, _plot_title,
+  PlotContour(_axis_title_x, _axis_title_y, _plot_title,
   _plot_width_norm, _plot_height_norm,
   _plot_offset_horizontal_norm,
   _plot_offset_vertical_norm),
   showing_colorbar(true),
   colorbar_title("Magnitude") {
 
-  //add_data(_data);
+  add_data(_data);
 }
 
 PlotContourShades::PlotContourShades(const PlotContourShades &_source) :
-  PlotContour(_source), showing_colorbar(_source.showing_colorbar),
-  colorbar_title(_source.colorbar_title) {
+  PlotContourShades(_source.axis_title_x, _source.axis_title_y,
+  _source.plot_title, _source.plot_width_norm, _source.plot_height_norm,
+  _source.plot_offset_horizontal_norm, _source.plot_offset_vertical_norm) {
 
-  /*for (auto &iter : _source.plot_data) {
+  showing_colorbar = _source.showing_colorbar;
+  colorbar_title = _source.colorbar_title;
+
+  for (auto &iter : _source.plot_data) {
     add_data(*iter);
-  }*/
+  }
 }
 
 PlotContourShades::~PlotContourShades() {}
 
-PlotData *PlotContourShades::add_data(const PlotData &data) {
+PlotDataContourShades *PlotContourShades::add_data(const PlotData &data) {
   //ensure plot_data is empty
   if (!plot_data.empty())
     throw Exception("Gtk::PLplot::PlotContourShades::add_data -> cannot add data when plot_data is not empty!");
@@ -105,25 +123,28 @@ void PlotContourShades::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const
 
   draw_plot_init(cr, width, height);
 
-  change_plstream_color(pls, axes_color);
 
-  //plot the box with its axes
   pls->adv(0);
   pls->vpor(0.1, 0.9, 0.1, 0.9);
   pls->wind(plotted_range_x[0], plotted_range_x[1],
             plotted_range_y[0], plotted_range_y[1]);
-  pls->box( "bcnst", 0.0, 0, "bcnstv", 0.0, 0 );
-
 
   //set the label color
   change_plstream_color(pls, titles_color);
 
+  //draw the labels
   pls->lab(axis_title_x.c_str(), axis_title_y.c_str(), plot_title.c_str());
 
+  //draw the actual plot
   plot_data[0]->draw_plot_data(cr, pls);
 
+  //draw colorbar if requested
   if (showing_colorbar)
     dynamic_cast<PlotDataContourShades *>(plot_data[0])->draw_colorbar(cr, pls, colorbar_title, background_color, axes_color);
+
+  //plot the box with its axes
+  change_plstream_color(pls, axes_color);
+  pls->box( "bcnst", 0.0, 0, "bcnstv", 0.0, 0 );
 
   cr->restore();
 
@@ -133,8 +154,8 @@ void PlotContourShades::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const
                                       cairo_range_x[1], cairo_range_y[1]);
 }
 
-Plot *PlotContourShades::clone() const {
-  Plot *my_clone = new PlotContourShades(*this);
+PlotContourShades *PlotContourShades::clone() const {
+  PlotContourShades *my_clone = new PlotContourShades(*this);
   if(typeid(*this) != typeid(*my_clone)) {
     throw Exception("Gtk::PLplot::PlotContourShades::clone -> Classes that derive from Plot must implement clone!");
   }

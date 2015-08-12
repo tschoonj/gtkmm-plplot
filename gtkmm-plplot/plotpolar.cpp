@@ -28,6 +28,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace Gtk::PLplot;
 
 PlotPolar::PlotPolar(
+  const Glib::ustring &_axis_title_x,
+  const Glib::ustring &_axis_title_y,
+  const Glib::ustring &_plot_title,
+  const double _plot_width_norm,
+  const double _plot_height_norm,
+  const double _plot_offset_horizontal_norm,
+  const double _plot_offset_vertical_norm) :
+  Plot(_axis_title_x, _axis_title_y, _plot_title,
+  _plot_width_norm, _plot_height_norm,
+  _plot_offset_horizontal_norm,
+  _plot_offset_vertical_norm) {}
+
+PlotPolar::PlotPolar(
   const PlotData2D &_data,
   const Glib::ustring &_axis_title_x,
   const Glib::ustring &_axis_title_y,
@@ -45,7 +58,10 @@ PlotPolar::PlotPolar(
 }
 
 PlotPolar::PlotPolar(const PlotPolar &_source) :
-  Plot(_source) {
+  PlotPolar(_source.axis_title_x, _source.axis_title_y,
+  _source.plot_title, _source.plot_width_norm,
+  _source.plot_height_norm, _source.plot_offset_horizontal_norm,
+  _source.plot_offset_vertical_norm) {
 
   for (auto &iter : _source.plot_data) {
     add_data(*iter);
@@ -92,7 +108,7 @@ void PlotPolar::plot_data_modified() {
   _signal_changed.emit();
 }
 
-PlotData *PlotPolar::add_data(const PlotData &data) {
+PlotData2D *PlotPolar::add_data(const PlotData &data) {
   PlotData2D *data_copy = nullptr;
   try {
     //ensure our data is PlotData2D
@@ -211,8 +227,8 @@ void PlotPolar::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int wid
                                       cairo_range_x[1], cairo_range_y[1]);
 }
 
-Plot *PlotPolar::clone() const {
-  Plot *my_clone = new PlotPolar(*this);
+PlotPolar *PlotPolar::clone() const {
+  PlotPolar *my_clone = new PlotPolar(*this);
   if(typeid(*this) != typeid(*my_clone)) {
     throw Exception("Gtk::PLplot::PlotPolar::clone -> Classes that derive from Plot must implement clone!");
   }

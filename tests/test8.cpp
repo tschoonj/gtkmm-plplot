@@ -37,7 +37,6 @@ namespace Test8 {
     Gtk::PLplot::Canvas canvas;
     Gtk::Grid grid;
     Gtk::Label edge_label;
-    Gtk::ComboBoxText edge_style_combo;
     Gtk::ColorButton edge_color;
     Glib::RefPtr<Gtk::Adjustment> edge_width_adj;
     Gtk::SpinButton edge_width_spin;
@@ -67,7 +66,7 @@ namespace Test8 {
       Gdk::Geometry geometry;
       geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
       set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
-      set_title("Gtkmm-PLplot test7");
+      set_title("Gtkmm-PLplot test8");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
 
@@ -112,7 +111,14 @@ namespace Test8 {
 
       //construct the plot
       auto plot = Gtk::PLplot::PlotContourShades(
-        Gtk::PLplot::PlotDataContourShades(x, y, z, 7, Gtk::PLplot::ColormapPalette::BLUE_YELLOW, edge_color.get_rgba(), Gtk::PLplot::LineStyle::CONTINUOUS, 1.0),
+        Gtk::PLplot::PlotDataContourShades(x,
+          y,
+          z,
+          7,
+          Gtk::PLplot::ColormapPalette::BLUE_RED,
+          edge_color.get_rgba(),
+          1.0
+        ),
         x_title,
         y_title,
         plot_title
@@ -145,26 +151,6 @@ namespace Test8 {
 
       grid.attach(edge_color, 1, 0, 1, 1);
 
-      //the edgestyle comboboxtext
-      edge_style_combo.append("continuous");
-      edge_style_combo.append("short dash short gap");
-      edge_style_combo.append("long dash long gap");
-      edge_style_combo.append("long dash short gap");
-      edge_style_combo.append("long dash short gap short dash short gap");
-      edge_style_combo.append("long dash short gap long dash short gap");
-
-      edge_style_combo.set_active(plot_data_ref->get_edge_style()-1);
-      edge_style_combo.signal_changed().connect([this, plot_data_ref](){
-        plot_data_ref->set_edge_style(static_cast<Gtk::PLplot::LineStyle>(edge_style_combo.get_active_row_number() + 1));
-      });
-
-      edge_style_combo.set_hexpand(false);
-      edge_style_combo.set_vexpand(false);
-      edge_style_combo.set_halign(Gtk::ALIGN_CENTER);
-      edge_style_combo.set_valign(Gtk::ALIGN_CENTER);
-
-      grid.attach(edge_style_combo, 2, 0, 1, 1);
-
       //the spinbutton
       edge_width_spin.set_hexpand(true);
       edge_width_spin.set_vexpand(false);
@@ -178,10 +164,10 @@ namespace Test8 {
         ](){
         plot_data_ref->set_edge_width(edge_width_spin.get_value());
       });
-      grid.attach(edge_width_spin, 3, 0, 1, 1);
+      grid.attach(edge_width_spin, 2, 0, 1, 1);
 
       //add canvas to grid
-      grid.attach(canvas, 0, 1, 4, 1);
+      grid.attach(canvas, 0, 1, 3, 1);
 
       //nlevels
       nlevels_label.set_hexpand(true);

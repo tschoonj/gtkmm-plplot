@@ -46,11 +46,31 @@ namespace Gtk {
       PlotContour &operator=(const PlotContour &) = delete; ///< no copy constructor
     protected:
       virtual void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
+
+      /** Constructor
+       *
+       * This protected constructor is meant to be used in derived classes only to circumvent the problem of calling add_data() in a constructor which calls PlotContour's public constructor.
+       * \param axis_title_x X-axis title
+       * \param axis_title_y Y-axis title
+       * \param plot_title plot title
+       * \param plot_width_norm the normalized plot width, calculated relative to the canvas width
+       * \param plot_height_norm the normalized plot height, calculated relative to the canvas height
+       * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
+       * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
+       */
+      PlotContour(const Glib::ustring &axis_title_x,
+                  const Glib::ustring &axis_title_y,
+                  const Glib::ustring &plot_title,
+                  const double plot_width_norm,
+                  const double plot_height_norm,
+                  const double plot_offset_horizontal_norm,
+                  const double plot_offset_vertical_norm);
     public:
       /** Constructor
        *
-       * This class provides a single constructor, which takes an existing PlotDataContour dataset to construct a plot.
-       * Optionally, the constructor takes additional arguments to set the axes and plot titles, as well as normalized coordinates that will determine the position and dimensions of the plot within the canvas. The default corresponds to the plot taking up the full c
+       * This class provides a single public constructor, which takes an existing PlotDataContour dataset to construct a plot.
+       * Optionally, the constructor takes additional arguments to set the axes and plot titles, as well as normalized coordinates that will determine the position and dimensions of the plot within the canvas.
+       * The default corresponds to the plot taking up the full canvas space.
        * \param data a PlotDataContour object containing a plot dataset
        * \param axis_title_x X-axis title
        * \param axis_title_y Y-axis title
@@ -88,7 +108,7 @@ namespace Gtk {
        * \return a pointer to the PlotDataContour in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      virtual PlotData *add_data(const PlotData &data);
+      virtual PlotDataContour *add_data(const PlotData &data);
 
       /** Method to draw the plot with all of its datasets
        *
@@ -106,7 +126,7 @@ namespace Gtk {
        * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
        * an implementation of this method, to ensure a proper copy can be provided.
        */
-      virtual Plot *clone() const;
+      virtual PlotContour *clone() const;
 
       friend class Canvas;
     };

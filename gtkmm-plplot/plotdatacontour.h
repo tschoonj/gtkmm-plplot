@@ -47,12 +47,11 @@ namespace Gtk {
       std::vector<PLFLT> x; ///< The X-grid coordinates of the dataset, which are assumed to correspond to the first dimension of Z
       std::vector<PLFLT> y; ///< The Y-grid coordinates of the dataset, which are assumed to correspond to the second dimension of Z
       PLFLT **z; ///< The Z-values of the dataset. This is an array of arrays whose first dimension must correspond to the length of x, while the second must correspond to the length of y.
+      unsigned int nlevels; ///< Number of contour levels to draw
       Gdk::RGBA edge_color; ///< Defines pen color used for contours defining edges.
-      LineStyle edge_style; ///< The linestyle that will be used for drawing the contours defining edges.
       PLFLT edge_width; ///< Defines line width used for contours defining edges.
       PLFLT zmin; ///< Minimum of \c z, used to determine the contour edges
       PLFLT zmax; ///< Maximum of \c z, used to determine the contour edges
-      unsigned int nlevels; ///< Number of contour levels to draw
 
       std::vector<PLFLT> clevels; ///< Vector containing the data levels corresponding to the edges of each region that will be plotted. To work properly the levels should be monotonic.
     public:
@@ -64,7 +63,6 @@ namespace Gtk {
        * \param z the actual contour data, provided as a dynamically allocated array of dynamically allocated arrays. The constructor will initialize its own deep-copy of this variable.
        * \param nlevels the number of contour edges required for the plot
        * \param edge_color the contour edge color, default is red
-       * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        * \exception Gtk::PLplot::Exception
        */
@@ -73,7 +71,6 @@ namespace Gtk {
                       PLFLT **z,
                       unsigned int nlevels = 6,
                       Gdk::RGBA edge_color = Gdk::RGBA("red"),
-                      LineStyle edge_style = CONTINUOUS,
                       double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
       /** Constructor
@@ -84,7 +81,6 @@ namespace Gtk {
        * \param z the actual contour data, provided as a dynamically allocated array of dynamically allocated arrays. The constructor will initialize its own deep-copy of this variable.
        * \param nlevels the number of contour edges required for the plot
        * \param edge_color the contour edge color, default is red
-       * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        */
       PlotDataContour(const std::valarray<PLFLT> &x,
@@ -92,7 +88,6 @@ namespace Gtk {
                       PLFLT **z,
                       unsigned int nlevels = 6,
                       Gdk::RGBA edge_color = Gdk::RGBA("red"),
-                      LineStyle edge_style = CONTINUOUS,
                       double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
       /** Constructor
@@ -104,7 +99,6 @@ namespace Gtk {
        * \param z the actual contour data, provided as a dynamically allocated array of dynamically allocated arrays. The constructor will initialize its own deep-copy of this variable.
        * \param nlevels the number of contour edges required for the plot
        * \param edge_color the contour edge color, default is red
-       * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        */
       PlotDataContour(unsigned int nx,
@@ -112,7 +106,6 @@ namespace Gtk {
                       PLFLT **z,
                       unsigned int nlevels = 6,
                       Gdk::RGBA edge_color = Gdk::RGBA("red"),
-                      LineStyle edge_style = CONTINUOUS,
                       double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
@@ -124,7 +117,6 @@ namespace Gtk {
        * \param z the actual contour data, provided as a Boost \c multi_array.
        * \param nlevels the number of contour edges required for the plot
        * \param edge_color the contour edge color, default is red
-       * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        */
       PlotDataContour(const std::vector<PLFLT> &x,
@@ -132,7 +124,6 @@ namespace Gtk {
                       const boost::multi_array<PLFLT, 2> &z,
                       unsigned int nlevels = 6,
                       Gdk::RGBA edge_color = Gdk::RGBA("red"),
-                      LineStyle edge_style = CONTINUOUS,
                       double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
       /** Constructor
@@ -143,7 +134,6 @@ namespace Gtk {
        * \param z the actual contour data, provided as a Boost \c multi_array.
        * \param nlevels the number of contour edges required for the plot
        * \param edge_color the contour edge color, default is red
-       * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        */
       PlotDataContour(const std::valarray<PLFLT> &x,
@@ -151,7 +141,6 @@ namespace Gtk {
                       const boost::multi_array<PLFLT, 2> &z,
                       unsigned int nlevels = 6,
                       Gdk::RGBA edge_color = Gdk::RGBA("red"),
-                      LineStyle edge_style = CONTINUOUS,
                       double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
       /** Constructor
@@ -161,13 +150,11 @@ namespace Gtk {
        * \param z the actual contour data, provided as a Boost \c multi_array.
        * \param nlevels the number of contour edges required for the plot
        * \param edge_color the contour edge color, default is red
-       * \param edge_style the contour edge style, default is CONTINUOUS
        * \param edge_width the contour edge width, default is 1.0
        */
       PlotDataContour(const boost::multi_array<PLFLT, 2> &z,
                       unsigned int nlevels = 6,
                       Gdk::RGBA edge_color = Gdk::RGBA("red"),
-                      LineStyle edge_style = CONTINUOUS,
                       double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 #endif
 
@@ -205,18 +192,6 @@ namespace Gtk {
        * \returns the currently used contour edge color
        */
       Gdk::RGBA get_edge_color();
-
-      /** Changes the line style used for the contour defining edges
-       *
-       * \param line_style The new line style that will be used to draw the contour edges
-       */
-      void set_edge_style(LineStyle line_style);
-
-      /** Get the current contour edge line style
-       *
-       * \returns the currently used contour edge line style
-       */
-      LineStyle get_edge_style();
 
       /** Sets the width of the contour edge lines
        *

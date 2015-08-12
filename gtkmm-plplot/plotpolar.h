@@ -69,10 +69,29 @@ namespace Gtk {
        * \param object the object we are dealing with
        */
       static void coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object);
+
+      /** Constructor
+       *
+       * This protected constructor is meant to be used in derived classes only to circumvent the problem of calling add_data() in a constructor which calls PlotPolar's public constructor.
+       * \param axis_title_x X-axis title
+       * \param axis_title_y Y-axis title
+       * \param plot_title plot title
+       * \param plot_width_norm the normalized plot width, calculated relative to the canvas width
+       * \param plot_height_norm the normalized plot height, calculated relative to the canvas height
+       * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
+       * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
+       */
+      PlotPolar(const Glib::ustring &axis_title_x,
+                const Glib::ustring &axis_title_y,
+                const Glib::ustring &plot_title,
+                const double plot_width_norm,
+                const double plot_height_norm,
+                const double plot_offset_horizontal_norm,
+                const double plot_offset_vertical_norm);
     public:
       /** Constructor
        *
-       * This class provides a single constructor, which takes an existing PlotData2D dataset to construct a plot.
+       * This class provides a single public constructor, which takes an existing PlotData2D dataset to construct a plot.
        * Optionally, the constructor takes additional arguments to set the axes and plot titles, as well as normalized coordinates that will determine the position and dimensions of the plot within the canvas. The default corresponds to the plot taking up the full c
        * \param data a PlotData2D object containing a plot dataset
        * \param axis_title_x X-axis title
@@ -110,7 +129,7 @@ namespace Gtk {
        * \return a pointer to the PlotData2D in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      virtual PlotData *add_data(const PlotData &data);
+      virtual PlotData2D *add_data(const PlotData &data);
 
       /** Method to draw the plot with all of its datasets
        *
@@ -152,7 +171,7 @@ namespace Gtk {
        * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
        * an implementation of this method, to ensure a proper copy can be provided.
        */
-      virtual Plot *clone() const;
+      virtual PlotPolar *clone() const;
 
       friend class Canvas;
     };

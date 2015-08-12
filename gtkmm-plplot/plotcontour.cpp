@@ -18,8 +18,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/plotcontour.h>
 #include <gtkmm-plplot/exception.h>
 #include <gtkmm-plplot/utils.h>
+#include <iostream>
 
 using namespace Gtk::PLplot;
+
+PlotContour::PlotContour(
+  const Glib::ustring &_axis_title_x,
+  const Glib::ustring &_axis_title_y,
+  const Glib::ustring &_plot_title,
+  const double _plot_width_norm,
+  const double _plot_height_norm,
+  const double _plot_offset_horizontal_norm,
+  const double _plot_offset_vertical_norm) :
+  Plot(_axis_title_x, _axis_title_y, _plot_title,
+  _plot_width_norm, _plot_height_norm,
+  _plot_offset_horizontal_norm,
+  _plot_offset_vertical_norm) {
+}
 
 PlotContour::PlotContour(
   const PlotDataContour &_data,
@@ -39,7 +54,10 @@ PlotContour::PlotContour(
 }
 
 PlotContour::PlotContour(const PlotContour &_source) :
-  Plot(_source) {
+  PlotContour(_source.axis_title_x, _source.axis_title_y,
+  _source.plot_title, _source.plot_width_norm,
+  _source.plot_height_norm, _source.plot_offset_horizontal_norm,
+  _source.plot_offset_vertical_norm) {
 
   for (auto &iter : _source.plot_data) {
     add_data(*iter);
@@ -85,7 +103,7 @@ void PlotContour::plot_data_modified() {
   _signal_changed.emit();
 }
 
-PlotData *PlotContour::add_data(const PlotData &data) {
+PlotDataContour *PlotContour::add_data(const PlotData &data) {
   //ensure plot_data is empty
   if (!plot_data.empty())
     throw Exception("Gtk::PLplot::PlotContour::add_data -> cannot add data when plot_data is not empty!");
@@ -137,8 +155,8 @@ void PlotContour::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int w
                                       cairo_range_x[1], cairo_range_y[1]);
 }
 
-Plot *PlotContour::clone() const {
-  Plot *my_clone = new PlotContour(*this);
+PlotContour *PlotContour::clone() const {
+  PlotContour *my_clone = new PlotContour(*this);
   if(typeid(*this) != typeid(*my_clone)) {
     throw Exception("Gtk::PLplot::PlotContour::clone -> Classes that derive from Plot must implement clone!");
   }

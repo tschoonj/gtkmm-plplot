@@ -35,9 +35,8 @@ PlotDataContourShades::PlotDataContourShades(
   unsigned int _nlevels,
   ColormapPalette _colormap_palette,
   Gdk::RGBA _edge_color,
-  LineStyle _edge_style,
   double _edge_width) :
-  PlotDataContour(_x, _y, _z, _nlevels, _edge_color, _edge_style, _edge_width),
+  PlotDataContour(_x, _y, _z, _nlevels, _edge_color, _edge_width),
   colormap_palette(_colormap_palette),
   area_fill_pattern(SOLID),
   fill_width(PLOTDATA_DEFAULT_LINE_WIDTH),
@@ -50,7 +49,6 @@ PlotDataContourShades::PlotDataContourShades(
   unsigned int _nlevels,
   ColormapPalette _colormap_palette,
   Gdk::RGBA _edge_color,
-  LineStyle _edge_style,
   double _edge_width) :
   PlotDataContourShades(
     std::vector<PLFLT>(std::begin(_x), std::end(_x)),
@@ -59,7 +57,6 @@ PlotDataContourShades::PlotDataContourShades(
     _nlevels,
     _colormap_palette,
     _edge_color,
-    _edge_style,
     _edge_width) {}
 
 PlotDataContourShades::PlotDataContourShades(
@@ -69,7 +66,6 @@ PlotDataContourShades::PlotDataContourShades(
   unsigned int _nlevels,
   ColormapPalette _colormap_palette,
   Gdk::RGBA _edge_color,
-  LineStyle _edge_style,
   double _edge_width) :
   PlotDataContourShades(
     std::vector<PLFLT>(indgen(_nx)),
@@ -78,7 +74,6 @@ PlotDataContourShades::PlotDataContourShades(
     _nlevels,
     _colormap_palette,
     _edge_color,
-    _edge_style,
     _edge_width) {}
 
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
@@ -90,9 +85,8 @@ PlotDataContourShades::PlotDataContourShades(
   unsigned int _nlevels,
   ColormapPalette _colormap_palette,
   Gdk::RGBA _edge_color,
-  LineStyle _edge_style,
   double _edge_width) :
-  PlotDataContour(_x, _y, _z, _nlevels, _edge_color, _edge_style, _edge_width),
+  PlotDataContour(_x, _y, _z, _nlevels, _edge_color, _edge_width),
   colormap_palette(_colormap_palette),
   area_fill_pattern(SOLID),
   fill_width(PLOTDATA_DEFAULT_LINE_WIDTH),
@@ -105,7 +99,6 @@ PlotDataContourShades::PlotDataContourShades(
   unsigned int _nlevels,
   ColormapPalette _colormap_palette,
   Gdk::RGBA _edge_color,
-  LineStyle _edge_style,
   double _edge_width) :
   PlotDataContourShades(
     std::vector<PLFLT>(std::begin(_x), std::end(_x)),
@@ -114,7 +107,6 @@ PlotDataContourShades::PlotDataContourShades(
     _nlevels,
     _colormap_palette,
     _edge_color,
-    _edge_style,
     _edge_width) {}
 
 PlotDataContourShades::PlotDataContourShades(
@@ -122,7 +114,6 @@ PlotDataContourShades::PlotDataContourShades(
   unsigned int _nlevels,
   ColormapPalette _colormap_palette,
   Gdk::RGBA _edge_color,
-  LineStyle _edge_style,
   double _edge_width) :
   PlotDataContourShades(
     std::vector<PLFLT>(indgen(_z.shape()[0])),
@@ -131,14 +122,13 @@ PlotDataContourShades::PlotDataContourShades(
     _nlevels,
     _colormap_palette,
     _edge_color,
-    _edge_style,
     _edge_width) {}
 
 #endif
 
 PlotDataContourShades::PlotDataContourShades(const PlotDataContourShades &_data) :
   PlotDataContourShades(_data.x, _data.y, _data.z, _data.nlevels,
-  _data.colormap_palette, _data.edge_color, _data.edge_style,
+  _data.colormap_palette, _data.edge_color,
   _data.edge_width) {
 
   area_fill_pattern = _data.area_fill_pattern;
@@ -207,23 +197,21 @@ void PlotDataContourShades::draw_colorbar(
 	Glib::ustring colorbar_title,
 	Gdk::RGBA background_color,
 	Gdk::RGBA bounding_box_color) {
-  pls->lsty(edge_style);
 
 	change_plstream_colormap(pls, colormap_palette);
 
-	change_plstream_color(pls, edge_color, false, GTKMM_PLPLOT_DEFAULT_COLOR_INDEX);
+	change_plstream_color(pls, bounding_box_color, false, GTKMM_PLPLOT_DEFAULT_COLOR_INDEX);
 	change_plstream_color(pls, background_color, false, GTKMM_PLPLOT_DEFAULT_COLOR_INDEX+1);
-	change_plstream_color(pls, bounding_box_color, false, GTKMM_PLPLOT_DEFAULT_COLOR_INDEX+2);
 
 	pls->psty(area_fill_pattern);
 
 	int cont_color = GTKMM_PLPLOT_DEFAULT_COLOR_INDEX;
-	PLFLT cont_width = edge_width;
+	PLFLT cont_width = 1.0;
 
-	if (!showing_edges) {
+	/*if (!showing_edges) {
 		cont_color = 0;
 		cont_width = 0.0;
-	}
+	}*/
 
 	// Smaller text
 	pls->schr(0.0, 0.75);
@@ -258,14 +246,14 @@ void PlotDataContourShades::draw_colorbar(
 	pls->colorbar(
 		&colorbar_width,
 		&colorbar_height,
-		PL_COLORBAR_SHADE | PL_COLORBAR_SHADE_LABEL, //options
+		PL_COLORBAR_SHADE | PL_COLORBAR_SHADE_LABEL | PL_COLORBAR_BACKGROUND, //options
 		0, //position
 		0.005, //X offset
 		0.0, //Y offset
 		0.0375, //X length
 		0.875, //Y length
 		GTKMM_PLPLOT_DEFAULT_COLOR_INDEX+1, //background color
-		GTKMM_PLPLOT_DEFAULT_COLOR_INDEX+2, //bounding box color
+		0, //bounding box color
 		1, //bounding box style
 		0.0, //low end color bar cap
 		0.0, //high end color bar cap
@@ -289,8 +277,6 @@ void PlotDataContourShades::draw_colorbar(
 }
 
 void PlotDataContourShades::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) {
-  pls->lsty(edge_style);
-
 	change_plstream_colormap(pls, colormap_palette);
 
 	change_plstream_color(pls, edge_color, false);
