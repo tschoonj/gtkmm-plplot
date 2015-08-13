@@ -2,7 +2,7 @@ sudo add-apt-repository ppa:kalakris/cmake -y || exit 1
 
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y || exit 1
 
-sudo add-apt-repository "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty main restricted universe multiverse" -y
+sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse" -y
 
 sudo apt-get update || exit 1
 
