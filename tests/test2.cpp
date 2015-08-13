@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/grid.h>
 #include <gtkmm/label.h>
 #include <gtkmm/switch.h>
+#include <gtkmm/comboboxtext.h>
 #include <vector>
 
 namespace Test2 {
@@ -33,10 +34,14 @@ namespace Test2 {
   private:
     Gtk::PLplot::Canvas canvas;
     Gtk::Grid grid;
-    Gtk::Label x_label;
-    Gtk::Label y_label;
-    Gtk::Switch x_switch;
-    Gtk::Switch y_switch;
+    Gtk::Label x_log_label;
+    Gtk::Label x_box_label;
+    Gtk::Label y_log_label;
+    Gtk::Label y_box_label;
+    Gtk::Label box_label;
+    Gtk::Switch x_log_switch;
+    Gtk::Switch y_log_switch;
+    Gtk::ComboBoxText box_combo;
   public:
     Window(std::vector<PLFLT> &x,
            std::vector<PLFLT> &y1,
@@ -47,14 +52,16 @@ namespace Test2 {
            std::string y_title,
            std::string plot_title) :
            canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x, y1, Gdk::RGBA("red")), x_title, y_title, plot_title)),
-           x_label("X-axis logarithmic"),
-           y_label("Y-axis logarithmic") {
+           x_log_label("X-axis logarithmic"),
+           y_log_label("Y-axis logarithmic"),
+           box_label("Box options") {
 
 
         Gtk::PLplot::Plot2D *plot = dynamic_cast<Gtk::PLplot::Plot2D *>(canvas.get_plot(0));
         plot->add_data(Gtk::PLplot::PlotData2D(x, y2, Gdk::RGBA("blue")));
         plot->add_data(Gtk::PLplot::PlotData2D(x, y3, Gdk::RGBA("Blue Violet")));
         plot->add_data(Gtk::PLplot::PlotData2D(x, y4, Gdk::RGBA("Green")));
+        plot->set_axis_logarithmic_y();
 
         set_default_size(720, 580);
         Gdk::Geometry geometry;
@@ -64,39 +71,62 @@ namespace Test2 {
         canvas.set_hexpand(true);
         canvas.set_vexpand(true);
 
-        x_switch.set_active(plot->get_axis_logarithmic_x());
-        y_switch.set_active(plot->get_axis_logarithmic_y());
-        x_switch.property_active().signal_changed().connect([this, plot](){
-          if (x_switch.get_active()) {
+        x_log_switch.set_active(plot->get_axis_logarithmic_x());
+        y_log_switch.set_active(plot->get_axis_logarithmic_y());
+        x_log_switch.property_active().signal_changed().connect([this, plot](){
+          if (x_log_switch.get_active()) {
             plot->set_axis_logarithmic_x(true);
           }
           else {
             plot->set_axis_logarithmic_x(false);
           }
         });
-        y_switch.property_active().signal_changed().connect([this, plot](){
-          if (y_switch.get_active()) {
+
+        box_combo.append("No box, no ticks, no labels, no axes");
+        box_combo.append("Box only");
+        box_combo.append("Box, ticks and tick labels");
+        box_combo.append("Box, ticks, tick labels, and main axes");
+        box_combo.append("Box, ticks, tick labels, main axes and major tick grid");
+        box_combo.append("Box, ticks, tick labels, main axes and major and minor tick grid");
+        box_combo.signal_changed().connect(
+          [this, plot](){
+            plot->set_box_style(static_cast<Gtk::PLplot::BoxStyle>(
+              box_combo.get_active_row_number() - 2
+            ));
+          }
+        );
+        box_combo.set_active(plot->get_box_style() + 2);
+
+        y_log_switch.property_active().signal_changed().connect([this, plot](){
+          if (y_log_switch.get_active()) {
             plot->set_axis_logarithmic_y(true);
           }
           else {
             plot->set_axis_logarithmic_y(false);
           }
         });
-        x_label.set_hexpand(false);
-        y_label.set_hexpand(false);
-        x_switch.set_hexpand(false);
-        y_switch.set_hexpand(false);
-        x_label.set_halign(Gtk::ALIGN_END);
-        y_label.set_halign(Gtk::ALIGN_END);
-        x_switch.set_halign(Gtk::ALIGN_START);
-        y_switch.set_halign(Gtk::ALIGN_START);
+        x_log_label.set_hexpand(false);
+        y_log_label.set_hexpand(false);
+        box_label.set_hexpand(false);
+        x_log_switch.set_hexpand(false);
+        y_log_switch.set_hexpand(false);
+        box_combo.set_hexpand(false);
+        x_log_label.set_halign(Gtk::ALIGN_END);
+        y_log_label.set_halign(Gtk::ALIGN_END);
+        box_label.set_halign(Gtk::ALIGN_END);
+        x_log_switch.set_halign(Gtk::ALIGN_START);
+        y_log_switch.set_halign(Gtk::ALIGN_START);
+        box_combo.set_halign(Gtk::ALIGN_START);
 
-        grid.attach(x_label, 0, 0, 1, 1);
-        grid.attach(y_label, 0, 1, 1, 1);
-        grid.attach(x_switch, 1, 0, 1, 1);
-        grid.attach(y_switch, 1, 1, 1, 1);
-        grid.attach(canvas, 0, 2, 2, 1);
+        grid.attach(x_log_label, 0, 0, 1, 1);
+        grid.attach(y_log_label, 0, 1, 1, 1);
+        grid.attach(x_log_switch, 1, 0, 1, 1);
+        grid.attach(y_log_switch, 1, 1, 1, 1);
+        grid.attach(box_label, 0, 2, 1, 1);
+        grid.attach(box_combo, 1, 2, 1, 1);
+        grid.attach(canvas, 0, 3, 2, 1);
         grid.set_column_spacing(5);
+        grid.set_column_homogeneous(false);
 
         add(grid);
         set_border_width(10);
