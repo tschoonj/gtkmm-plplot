@@ -115,8 +115,9 @@ Inheritance diagram for Gtk::PLplot::Plot:</div>
 <map name="_gtk_1_1_p_lplot_1_1_plot_inherit__map" id="_gtk_1_1_p_lplot_1_1_plot_inherit__map">
 <area shape="rect" id="node3" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots " alt="" coords="5,152,140,177"/>
 <area shape="rect" id="node4" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html" title="a class for contour plots " alt="" coords="163,152,329,177"/>
-<area shape="rect" id="node5" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots " alt="" coords="353,152,502,177"/>
+<area shape="rect" id="node6" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots " alt="" coords="353,152,502,177"/>
 <area shape="rect" id="node2" doxygen="/usr/local/Cellar/libsigc++/2.4.1/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag:http://library.gnome.org/devel/libsigc++/unstable/" href="http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="193,5,299,31"/>
+<area shape="rect" id="node5" href="class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html" title="a class for contour plots with shaded regions. " alt="" coords="163,225,329,264"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -130,8 +131,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a277e9c79c4357b3a317d74d61dabefcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad47c30007d6d78a68f7d6ea61da00417"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_data.html">PlotData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html#ad47c30007d6d78a68f7d6ea61da00417">add_data</a> (const <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_data.html">PlotData</a> &amp;data)=0</td></tr>
 <tr class="separator:ad47c30007d6d78a68f7d6ea61da00417"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63b960f47b4ebab7853f0dcc53c1bc14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_data.html">PlotData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html#a63b960f47b4ebab7853f0dcc53c1bc14">get_data</a> (unsigned int data_index)</td></tr>
-<tr class="separator:a63b960f47b4ebab7853f0dcc53c1bc14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade04c33fceb6a681f60e6612193a9945"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_data.html">PlotData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html#ade04c33fceb6a681f60e6612193a9945">get_data</a> (unsigned int data_index=0)</td></tr>
+<tr class="separator:ade04c33fceb6a681f60e6612193a9945"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a026e8a959010b15027eb479d48ce8c47"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html#a026e8a959010b15027eb479d48ce8c47">draw_plot</a> (const <a class="elRef" doxygen="/usr/local/Cellar/cairomm/1.11.2_1/share/doc/cairomm-1.0/reference/cairomm-1.0.tag:http://www.cairographics.org/documentation/cairomm/reference/" href="http://www.cairographics.org/documentation/cairomm/reference/classCairo_1_1RefPtr.html">Cairo::RefPtr</a>&lt; <a class="elRef" doxygen="/usr/local/Cellar/cairomm/1.11.2_1/share/doc/cairomm-1.0/reference/cairomm-1.0.tag:http://www.cairographics.org/documentation/cairomm/reference/" href="http://www.cairographics.org/documentation/cairomm/reference/classCairo_1_1Context.html">Cairo::Context</a> &gt; &amp;cr, const int width, const int height)=0</td></tr>
 <tr class="separator:a026e8a959010b15027eb479d48ce8c47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23274c3e3f7b55648648ebd265d90cfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html#a23274c3e3f7b55648648ebd265d90cfd">set_axis_title_x</a> (<a class="elRef" doxygen="/usr/local/Cellar/glibmm/2.44.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag:http://library.gnome.org/devel/glibmm/unstable/" href="http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1ustring.html">Glib::ustring</a> &amp;title)</td></tr>
@@ -524,7 +525,7 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties ">PlotData</a> in the <code>plot_data</code> vector. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a5055b1b0ddfab0b6f5e53b07b6cf4c5b">Gtk::PLplot::Plot2D</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#a62a4bcdf135b2474a4562638f938997f">Gtk::PLplot::PlotPolar</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#a228fb23983364f02846ccb097def3fe7">Gtk::PLplot::PlotContour</a>.</p>
+<p>Implemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#aab6b77f5231104128c9e0372b8c1cd1d">Gtk::PLplot::Plot2D</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#a36b47dd2d0b02ebbf64f244634acfd9b">Gtk::PLplot::PlotPolar</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#a2cafda32351c7130ec2bc4ddf781620b">Gtk::PLplot::PlotContour</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a3c1f7c3973e5ac7b9b9174521c0622a3">Gtk::PLplot::PlotContourShades</a>.</p>
 
 </div>
 </div>
@@ -551,7 +552,7 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
 <p>Freshly allocate a clone of the instance</p>
 <p>This very important method allows <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#ab69c586f5f42d12d74c1fac25163feaa">Canvas::add_plot()</a> to add new plots to its internal array. Since the canvas keeps its own copies of the plots, every <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html" title="an abstract base class for all plots ">Plot</a> derived class needs to provide an implementation of this method, to ensure a proper copy can be provided. </p>
 
-<p>Implemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#afde1f453374ad1706675ef3c33a020a8">Gtk::PLplot::Plot2D</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#aae5826432a97d0b957a3e43df8c88405">Gtk::PLplot::PlotPolar</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#ae9f7413e5a5df3b66f456ae84e23f80c">Gtk::PLplot::PlotContour</a>.</p>
+<p>Implemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a6a704b13c5f3a5f67493e8c539c348e0">Gtk::PLplot::Plot2D</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#a3b2c0bbd227b79554626dddde1163295">Gtk::PLplot::PlotPolar</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a362dbac5ac7ee1e683119b9ada54d48c">Gtk::PLplot::PlotContourShades</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#a3121206b4846016cc57bfe4be6a3dce9">Gtk::PLplot::PlotContour</a>.</p>
 
 </div>
 </div>
@@ -718,7 +719,7 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#aaec4e2e6da2c94f8807b64d2f61fcf25">Gtk::PLplot::Plot2D</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#a73a99cb823d6c4de6b3a4705b2e5261d">Gtk::PLplot::PlotPolar</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#a99f57c09024b33b192ecf37234db2fc0">Gtk::PLplot::PlotContour</a>.</p>
+<p>Implemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#aaec4e2e6da2c94f8807b64d2f61fcf25">Gtk::PLplot::Plot2D</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a1bf164256271c3d360a5195cd53eafc6">Gtk::PLplot::PlotContourShades</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#a73a99cb823d6c4de6b3a4705b2e5261d">Gtk::PLplot::PlotPolar</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#a99f57c09024b33b192ecf37234db2fc0">Gtk::PLplot::PlotContour</a>.</p>
 
 </div>
 </div>
@@ -839,7 +840,7 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
 
 </div>
 </div>
-<a class="anchor" id="a63b960f47b4ebab7853f0dcc53c1bc14"></a>
+<a class="anchor" id="ade04c33fceb6a681f60e6612193a9945"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -847,7 +848,7 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
           <td class="memname"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_data.html">PlotData</a> * Plot::get_data </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>data_index</em></td><td>)</td>
+          <td class="paramname"><em>data_index</em> = <code>0</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1279,8 +1280,6 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#abf5a8f7408e4c8cbc9bebedded408026">Gtk::PLplot::Plot2D</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#a6178de6eacad86c3e255108a4fdd1d36">Gtk::PLplot::PlotPolar</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#aa12fe5e69c54dcfe37ab322768be24fb">Gtk::PLplot::PlotContour</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a25ad4803d0e33784152fdbe6f492f8f8"></a>
@@ -1456,7 +1455,7 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 8 2015 18:47:33 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Aug 13 2015 11:28:43 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

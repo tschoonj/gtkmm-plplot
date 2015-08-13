@@ -1,7 +1,6 @@
 var searchData=
 [
   ['edge_5fcolor',['edge_color',['../class_gtk_1_1_p_lplot_1_1_plot_data_contour.html#ae90ba9d5730f9c69f1894f28207ed37d',1,'Gtk::PLplot::PlotDataContour']]],
-  ['edge_5fstyle',['edge_style',['../class_gtk_1_1_p_lplot_1_1_plot_data_contour.html#a073f3eea0e3ab04d2dfd1d14b7c0a50e',1,'Gtk::PLplot::PlotDataContour']]],
   ['edge_5fwidth',['edge_width',['../class_gtk_1_1_p_lplot_1_1_plot_data_contour.html#a75956954005d6b06b1f008276301e39f',1,'Gtk::PLplot::PlotDataContour']]],
   ['edit',['EDIT',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a39b5d6f7f313ead8ce58cf51fa5344d8',1,'Gtk::Stock']]],
   ['empty',['EMPTY',['http://library.gnome.org/devel/glibmm/unstable/group__Markup.html#gga1422c4a583441bbe490b8ed47d7fe1a7a5b3981a2a475d8b0ab4481c931c816dd',1,'Glib::MarkupError']]],
