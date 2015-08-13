@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/colorbutton.h>
 #include <gtkmm/label.h>
 #include <gtkmm/comboboxtext.h>
+#include <gtkmm/switch.h>
 #include <cmath>
 #include <fstream>
 #include <iostream>
@@ -36,8 +37,14 @@ namespace Test8 {
   private:
     Gtk::PLplot::Canvas canvas;
     Gtk::Grid grid;
-    Gtk::Label edge_label;
+
+    Gtk::Label show_edges_label;
+    Gtk::Switch show_edges_switch;
+
+    Gtk::Label edge_color_label;
     Gtk::ColorButton edge_color;
+
+    Gtk::Label edge_width_label;
     Glib::RefPtr<Gtk::Adjustment> edge_width_adj;
     Gtk::SpinButton edge_width_spin;
 
@@ -45,16 +52,37 @@ namespace Test8 {
     Glib::RefPtr<Gtk::Adjustment> nlevels_adj;
     Gtk::SpinButton nlevels_spin;
 
+    Gtk::Label colormap_palette_label;
+    Gtk::ComboBoxText colormap_palette_combo;
+
+    Gtk::Label area_fill_pattern_label;
+    Gtk::ComboBoxText area_fill_pattern_combo;
+
+    Gtk::Label area_lines_width_label;
+    Glib::RefPtr<Gtk::Adjustment> area_lines_width_adj;
+    Gtk::SpinButton area_lines_width_spin;
+
+    Gtk::Label colorbar_label;
+    Gtk::Switch colorbar_switch;
+
 
   public:
     Window() :
-      edge_label("Contour edge properties"),
+      show_edges_label("Show edges"),
+      edge_color_label("Contour edge color"),
       edge_color(Gdk::RGBA("Red")),
+      edge_width_label("Contour edge width"),
       edge_width_adj(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       edge_width_spin(edge_width_adj, 0.1, 1),
       nlevels_label("Number of contour edges"),
       nlevels_adj(Gtk::Adjustment::create(7, 3, 20, 1, 5)),
-      nlevels_spin(nlevels_adj, 1, 0)
+      nlevels_spin(nlevels_adj, 1, 0),
+      colormap_palette_label("Colormap palette"),
+      area_fill_pattern_label("Fill pattern"),
+      area_lines_width_label("Fill pattern width"),
+      area_lines_width_adj(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
+      area_lines_width_spin(area_lines_width_adj, 0.1, 1),
+      colorbar_label("Show colorbar")
       {
 
       std::string x_title = "X-axis";
@@ -62,9 +90,9 @@ namespace Test8 {
       std::string plot_title = "Intensity vs detector position";
 
       // general window and canvas settings
-      set_default_size(720, 580);
+      set_default_size(720, 720);
       Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
+      geometry.min_aspect = geometry.max_aspect = double(720)/double(720);
       set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
       set_title("Gtkmm-PLplot test8");
       canvas.set_hexpand(true);
@@ -127,31 +155,64 @@ namespace Test8 {
       auto plot_ref = dynamic_cast<Gtk::PLplot::PlotContourShades *>(canvas.add_plot(plot));
       auto plot_data_ref = dynamic_cast<Gtk::PLplot::PlotDataContourShades *>(plot_ref->get_data());
 
+      plot_ref->set_background_color(Gdk::RGBA("Yellow Green"));
+
       //now let's set up the grid
-      grid.set_column_homogeneous(false);
+      grid.set_column_homogeneous(true);
       grid.set_column_spacing(5);
       grid.set_row_homogeneous(false);
       grid.set_row_spacing(5);
 
-      edge_label.set_hexpand(true);
-      edge_label.set_vexpand(false);
-      edge_label.set_valign(Gtk::ALIGN_CENTER);
-      edge_label.set_halign(Gtk::ALIGN_END);
+      int row_counter = 0;
 
-      grid.attach(edge_label, 0, 0, 1, 1);
+      show_edges_label.set_hexpand(true);
+      show_edges_label.set_vexpand(false);
+      show_edges_label.set_valign(Gtk::ALIGN_CENTER);
+      show_edges_label.set_halign(Gtk::ALIGN_END);
+      show_edges_switch.set_hexpand(true);
+      show_edges_switch.set_vexpand(false);
+      show_edges_switch.set_halign(Gtk::ALIGN_START);
+      show_edges_switch.set_valign(Gtk::ALIGN_CENTER);
+      show_edges_switch.set_active(plot_data_ref->is_showing_edges());
+      show_edges_switch.property_active().signal_changed().connect([this, plot_data_ref](){
+        if (show_edges_switch.get_active()) {
+          edge_color.set_sensitive();
+          edge_width_spin.set_sensitive();
+          plot_data_ref->show_edges();
+        }
+        else {
+          edge_color.set_sensitive(false);
+          edge_width_spin.set_sensitive(false);
+          plot_data_ref->hide_edges();
+        }
+      });
+
+      grid.attach(show_edges_label, 0, row_counter, 1, 1);
+      grid.attach(show_edges_switch, 1, row_counter++, 1, 1);
 
       //color button
+      edge_color_label.set_hexpand(true);
+      edge_color_label.set_vexpand(false);
+      edge_color_label.set_valign(Gtk::ALIGN_CENTER);
+      edge_color_label.set_halign(Gtk::ALIGN_END);
+
       edge_color.set_rgba(plot_data_ref->get_edge_color());
       edge_color.set_use_alpha(true);
-      edge_color.set_hexpand(false);
+      edge_color.set_hexpand(true);
       edge_color.set_vexpand(false);
-      edge_color.set_halign(Gtk::ALIGN_CENTER);
+      edge_color.set_halign(Gtk::ALIGN_START);
       edge_color.set_valign(Gtk::ALIGN_CENTER);
       edge_color.signal_color_set().connect([this, plot_data_ref](){plot_data_ref->set_edge_color(edge_color.get_rgba());});
 
-      grid.attach(edge_color, 1, 0, 1, 1);
+      grid.attach(edge_color_label, 0, row_counter, 1, 1);
+      grid.attach(edge_color, 1, row_counter++, 1, 1);
 
-      //the spinbutton
+      //the edge width spinbutton
+      edge_width_label.set_hexpand(true);
+      edge_width_label.set_vexpand(false);
+      edge_width_label.set_valign(Gtk::ALIGN_CENTER);
+      edge_width_label.set_halign(Gtk::ALIGN_END);
+
       edge_width_spin.set_hexpand(true);
       edge_width_spin.set_vexpand(false);
       edge_width_spin.set_halign(Gtk::ALIGN_START);
@@ -164,10 +225,9 @@ namespace Test8 {
         ](){
         plot_data_ref->set_edge_width(edge_width_spin.get_value());
       });
-      grid.attach(edge_width_spin, 2, 0, 1, 1);
 
-      //add canvas to grid
-      grid.attach(canvas, 0, 1, 3, 1);
+      grid.attach(edge_width_label, 0, row_counter, 1, 1);
+      grid.attach(edge_width_spin, 1, row_counter++, 1, 1);
 
       //nlevels
       nlevels_label.set_hexpand(true);
@@ -186,8 +246,116 @@ namespace Test8 {
         plot_data_ref->set_nlevels(nlevels_spin.get_value());
       });
 
-      grid.attach(nlevels_label, 0, 2, 2, 1);
-      grid.attach(nlevels_spin, 2, 2, 2, 1);
+      grid.attach(nlevels_label, 0, row_counter, 1, 1);
+      grid.attach(nlevels_spin, 1, row_counter++, 1, 1);
+
+      // colormap palette
+      colormap_palette_label.set_hexpand(true);
+      colormap_palette_label.set_vexpand(false);
+      colormap_palette_label.set_valign(Gtk::ALIGN_CENTER);
+      colormap_palette_label.set_halign(Gtk::ALIGN_END);
+      colormap_palette_combo.set_hexpand(true);
+      colormap_palette_combo.set_vexpand(false);
+      colormap_palette_combo.set_halign(Gtk::ALIGN_START);
+      colormap_palette_combo.set_valign(Gtk::ALIGN_CENTER);
+
+      colormap_palette_combo.append("Default");
+      colormap_palette_combo.append("Blue → Red");
+      colormap_palette_combo.append("Blue → Yellow");
+      colormap_palette_combo.append("Gray");
+      colormap_palette_combo.append("High frequencies");
+      colormap_palette_combo.append("Low frequencies");
+      colormap_palette_combo.append("Radar");
+
+      colormap_palette_combo.set_active(plot_data_ref->get_colormap_palette());
+      colormap_palette_combo.signal_changed().connect([this, plot_data_ref](){
+        plot_data_ref->set_colormap_palette(static_cast<Gtk::PLplot::ColormapPalette>(colormap_palette_combo.get_active_row_number()));
+      });
+
+      grid.attach(colormap_palette_label, 0, row_counter, 1, 1);
+      grid.attach(colormap_palette_combo, 1, row_counter++, 1, 1);
+
+      //area fill pattern
+      area_fill_pattern_label.set_hexpand(true);
+      area_fill_pattern_label.set_vexpand(false);
+      area_fill_pattern_label.set_valign(Gtk::ALIGN_CENTER);
+      area_fill_pattern_label.set_halign(Gtk::ALIGN_END);
+      area_fill_pattern_combo.set_hexpand(true);
+      area_fill_pattern_combo.set_vexpand(false);
+      area_fill_pattern_combo.set_halign(Gtk::ALIGN_START);
+      area_fill_pattern_combo.set_valign(Gtk::ALIGN_CENTER);
+
+      area_fill_pattern_combo.append("Solid");
+      area_fill_pattern_combo.append("Horizontal lines");
+      area_fill_pattern_combo.append("Vertical lines");
+      area_fill_pattern_combo.append("Upward lines at 45 degrees");
+      area_fill_pattern_combo.append("Downward lines at 45 degrees");
+      area_fill_pattern_combo.append("Upward lines at 30 degrees");
+      area_fill_pattern_combo.append("Downward lines at 30 degrees");
+      area_fill_pattern_combo.append("Horizontal and vertical lines");
+      area_fill_pattern_combo.append("Upward and downward lines at 45 degrees");
+      area_fill_pattern_combo.set_active(plot_data_ref->get_area_fill_pattern());
+      area_fill_pattern_combo.signal_changed().connect([this, plot_data_ref](){
+        plot_data_ref->set_area_fill_pattern(static_cast<Gtk::PLplot::AreaFillPattern>(area_fill_pattern_combo.get_active_row_number()));
+        if (area_fill_pattern_combo.get_active_row_number() == 0 /* SOLID */) {
+          area_lines_width_spin.set_sensitive(false);
+        }
+        else {
+          area_lines_width_spin.set_sensitive();
+        }
+      });
+
+      grid.attach(area_fill_pattern_label, 0, row_counter, 1, 1);
+      grid.attach(area_fill_pattern_combo, 1, row_counter++, 1, 1);
+
+      //the area lines width spinbutton
+      area_lines_width_label.set_hexpand(true);
+      area_lines_width_label.set_vexpand(false);
+      area_lines_width_label.set_valign(Gtk::ALIGN_CENTER);
+      area_lines_width_label.set_halign(Gtk::ALIGN_END);
+
+      area_lines_width_spin.set_hexpand(true);
+      area_lines_width_spin.set_vexpand(false);
+      area_lines_width_spin.set_halign(Gtk::ALIGN_START);
+      area_lines_width_spin.set_valign(Gtk::ALIGN_CENTER);
+      area_lines_width_spin.set_wrap(true);
+      area_lines_width_spin.set_snap_to_ticks(true);
+      area_lines_width_spin.set_numeric(true);
+      area_lines_width_spin.set_value(plot_data_ref->get_area_lines_width());
+      area_lines_width_spin.signal_value_changed().connect([this, plot_data_ref
+        ](){
+        plot_data_ref->set_area_lines_width(area_lines_width_spin.get_value());
+      });
+
+      area_lines_width_spin.set_sensitive(false);
+
+      grid.attach(area_lines_width_label, 0, row_counter, 1, 1);
+      grid.attach(area_lines_width_spin, 1, row_counter++, 1, 1);
+
+      //colorbar
+      colorbar_label.set_hexpand(true);
+      colorbar_label.set_vexpand(false);
+      colorbar_label.set_valign(Gtk::ALIGN_CENTER);
+      colorbar_label.set_halign(Gtk::ALIGN_END);
+      colorbar_switch.set_hexpand(true);
+      colorbar_switch.set_vexpand(false);
+      colorbar_switch.set_halign(Gtk::ALIGN_START);
+      colorbar_switch.set_valign(Gtk::ALIGN_CENTER);
+      colorbar_switch.set_active(plot_ref->is_showing_colorbar());
+      colorbar_switch.property_active().signal_changed().connect([this, plot_ref](){
+        if (colorbar_switch.get_active()) {
+          plot_ref->show_colorbar();
+        }
+        else {
+          plot_ref->hide_colorbar();
+        }
+      });
+
+      grid.attach(colorbar_label, 0, row_counter, 1, 1);
+      grid.attach(colorbar_switch, 1, row_counter++, 1, 1);
+
+      //add canvas to grid
+      grid.attach(canvas, 0, row_counter, 2, 1);
 
       //finishing up
       add(grid);

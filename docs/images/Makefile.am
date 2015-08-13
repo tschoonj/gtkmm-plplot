@@ -5,4 +5,5 @@ EXTRA_DIST = \
     test4.png \
     test5.png \
     test6.png \
-    test7.png
+    test7.png \
+    test8.png

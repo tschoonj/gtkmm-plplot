@@ -124,4 +124,7 @@
  *  \section example7 Example 7: a Simple contour plot
  *  \include test7.cpp
  *  \image html test7.png "Example 7"
+ *  \section example8 Example 8: a Shaded contour plot
+ *  \include test8.cpp
+ *  \image html test8.png "Example 8"
  */

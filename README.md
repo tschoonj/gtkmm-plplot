@@ -13,6 +13,7 @@ Gtkmm-PLplot is licensed under the GPLv3.
 * Create plots using two std::vector, std::valarray and boost::multi_array objects.
 * Zoom in by dragging a selection box.
 * Support for two-dimensional plots, polar plots, contour plots with or without shaded regions...
+* Supports multiple, independently controlled plots on a single canvas.
 * Extensive use of libsigc++ signals
 * Highly extensible
 

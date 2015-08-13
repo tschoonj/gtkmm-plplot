@@ -140,11 +140,11 @@ void PlotContourShades::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const
 
   //draw colorbar if requested
   if (showing_colorbar)
-    dynamic_cast<PlotDataContourShades *>(plot_data[0])->draw_colorbar(cr, pls, colorbar_title, background_color, axes_color);
+    dynamic_cast<PlotDataContourShades *>(plot_data[0])->draw_colorbar(cr, pls, colorbar_title, axes_color);
 
   //plot the box with its axes
   change_plstream_color(pls, axes_color);
-  pls->box( "bcnst", 0.0, 0, "bcnstv", 0.0, 0 );
+  pls->box("bcnst", 0.0, 0, "bcnstv", 0.0, 0);
 
   cr->restore();
 

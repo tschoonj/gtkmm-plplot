@@ -195,15 +195,15 @@ void PlotDataContourShades::draw_colorbar(
 	const Cairo::RefPtr<Cairo::Context> &cr,
 	plstream *pls,
 	Glib::ustring colorbar_title,
-	Gdk::RGBA background_color,
 	Gdk::RGBA bounding_box_color) {
 
 	change_plstream_colormap(pls, colormap_palette);
 
 	change_plstream_color(pls, bounding_box_color, false, GTKMM_PLPLOT_DEFAULT_COLOR_INDEX);
-	change_plstream_color(pls, background_color, false, GTKMM_PLPLOT_DEFAULT_COLOR_INDEX+1);
 
 	pls->psty(area_fill_pattern);
+	//cannot pass the fill_width to the colorbar :-(
+	//pls->width(fill_width);
 
 	int cont_color = GTKMM_PLPLOT_DEFAULT_COLOR_INDEX;
 	PLFLT cont_width = 1.0;
@@ -246,13 +246,13 @@ void PlotDataContourShades::draw_colorbar(
 	pls->colorbar(
 		&colorbar_width,
 		&colorbar_height,
-		PL_COLORBAR_SHADE | PL_COLORBAR_SHADE_LABEL | PL_COLORBAR_BACKGROUND, //options
+		PL_COLORBAR_SHADE | PL_COLORBAR_SHADE_LABEL, //options
 		0, //position
 		0.005, //X offset
 		0.0, //Y offset
 		0.0375, //X length
 		0.875, //Y length
-		GTKMM_PLPLOT_DEFAULT_COLOR_INDEX+1, //background color
+		0, //background color
 		0, //bounding box color
 		1, //bounding box style
 		0.0, //low end color bar cap

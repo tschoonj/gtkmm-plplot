@@ -231,13 +231,11 @@ namespace Gtk {
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
        * \param colorbar_title the text that will be added to the colorbar to reflect what type of data is rendered.
-       * \param background_color the background color of the colorbar
        * \param bounding_box_color the plot bounding box color
        */
       virtual void draw_colorbar(const Cairo::RefPtr<Cairo::Context> &cr,
                                  plstream *pls,
                                  Glib::ustring colorbar_title,
-                                 Gdk::RGBA background_color,
                                  Gdk::RGBA bounding_box_color);
 
       /** Method to draw the dataset
