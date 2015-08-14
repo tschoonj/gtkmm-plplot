@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMM_PLPLOT_H
 #define GTKMM_PLPLOT_H
 
-#include <gtkmm-plplot/gtkmm-plplotconfig.h>
 #include <gtkmm-plplot/canvas.h>
 #include <gtkmm-plplot/enums.h>
 #include <gtkmm-plplot/exception.h>

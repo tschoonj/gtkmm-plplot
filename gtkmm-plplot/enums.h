@@ -20,9 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace Gtk {
   namespace PLplot {
-    /** Controls the line style of a Plot2DData dataset
+    /** Controls the line style of a PlotData2D dataset
      *
-     * To be used in combination with Plot2DData constructors and the Plot2DData::set_line_style() and Plot2DData::get_line_style() methods.
+     * To be used in combination with PlotData2D constructors and the PlotData2D::set_line_style() and PlotData2D::get_line_style() methods.
      */
     enum LineStyle {
       NONE = 0, ///< no line will be plotted

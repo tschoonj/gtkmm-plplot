@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMMPLPLOTUTILS_H
 #define GTKMMPLPLOTUTILS_H
 
-#include <gtkmm-plplot/gtkmm-plplotconfig.h>
+#include <gtkmm-plplotconfig.h>
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
   #include <boost/multi_array.hpp>
 #endif
