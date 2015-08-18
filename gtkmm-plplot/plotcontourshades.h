@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/plotcontour.h>
-#include <gtkmm-plplot/plotdatacontourshades.h>
 #include <gtkmm-plplot/enums.h>
 
 namespace Gtk {
@@ -29,7 +28,7 @@ namespace Gtk {
      *  \brief a class for contour plots with shaded regions.
      *
      *  A class for contour plots with shaded regions. Construction requires a
-     *  single PlotDataContourShades dataset, and no datasets may be added afterwards.
+     *  single PlotDataSurface dataset, and no datasets may be added afterwards.
      *  This class offers one property on top of those offered by parent class Plot: whether to draw a colorbar or not.
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.
@@ -39,6 +38,10 @@ namespace Gtk {
      private:
        bool showing_colorbar; ///< \c true will draw a colorbar, \c false will not.
        Glib::ustring colorbar_title; ///< the title of the colorbar
+       ColormapPalette colormap_palette; ///< The colormap that will be used to render the contourplot shades.
+       AreaFillPattern area_fill_pattern; ///< The pattern that will be used to draw the shaded regions.
+       double fill_width; ///< Defines line width used by the fill pattern.
+       bool showing_edges; ///< \c true will draw contour lines at the edges, \c false will not.
        PlotContourShades() = delete; ///< no default constructor
        PlotContourShades &operator=(const PlotContourShades &) = delete; ///< no copy constructor
      protected:
@@ -48,6 +51,10 @@ namespace Gtk {
        * \param axis_title_x X-axis title
        * \param axis_title_y Y-axis title
        * \param plot_title plot title
+       * \param nlevels the number of contour edges required for the plot
+       * \param colormap_palette the colormap palette that will be used to render the shaded regions of the contourplot
+       * \param edge_color the contour edge color, default is black
+       * \param edge_width the contour edge width, default is 1.0
        * \param plot_width_norm the normalized plot width, calculated relative to the canvas width
        * \param plot_height_norm the normalized plot height, calculated relative to the canvas height
        * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
@@ -56,6 +63,10 @@ namespace Gtk {
       PlotContourShades(const Glib::ustring &axis_title_x,
                         const Glib::ustring &axis_title_y,
                         const Glib::ustring &plot_title,
+                        unsigned int nlevels,
+                        ColormapPalette colormap_palette,
+                        Gdk::RGBA edge_color,
+                        double edge_width,
                         const double plot_width_norm,
                         const double plot_height_norm,
                         const double plot_offset_horizontal_norm,
@@ -64,22 +75,30 @@ namespace Gtk {
      public:
       /** Constructor
        *
-       * This class provides a single public constructor, which takes an existing PlotDataContourShades dataset to construct a plot.
+       * This class provides a single public constructor, which takes an existing PlotDataSurface dataset to construct a plot.
        * Optionally, the constructor takes additional arguments to set the axes and plot titles, as well as normalized coordinates that will determine the position and dimensions of the plot within the canvas.
        * The default corresponds to the plot taking up the full canvas space.
-       * \param data a PlotDataContourShades object containing a plot dataset
+       * \param data a PlotDataSurface object containing a plot dataset
        * \param axis_title_x X-axis title
        * \param axis_title_y Y-axis title
        * \param plot_title plot title
+       * \param nlevels the number of contour edges required for the plot
+       * \param colormap_palette the colormap palette that will be used to render the shaded regions of the contourplot
+       * \param edge_color the contour edge color, default is black
+       * \param edge_width the contour edge width, default is 1.0
        * \param plot_width_norm the normalized plot width, calculated relative to the canvas width
        * \param plot_height_norm the normalized plot height, calculated relative to the canvas height
        * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
        * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
        */
-      PlotContourShades(const PlotDataContourShades &data,
+      PlotContourShades(const PlotDataSurface &data,
                         const Glib::ustring &axis_title_x = "X-axis",
                         const Glib::ustring &axis_title_y = "Y-axis",
                         const Glib::ustring &plot_title = "",
+                        unsigned int nlevels = 6,
+                        ColormapPalette colormap_palette = BLUE_YELLOW,
+                        Gdk::RGBA edge_color = Gdk::RGBA("black"),
+                        double edge_width = PLOTDATA_DEFAULT_LINE_WIDTH,
                         const double plot_width_norm = 1.0,
                         const double plot_height_norm = 1.0,
                         const double plot_offset_horizontal_norm = 0.0,
@@ -95,16 +114,6 @@ namespace Gtk {
        *
        */
       virtual ~PlotContourShades();
-
-      /** Add a single PlotDataContourShades dataset to the plot
-       *
-       * The dataset must be a PlotDataContourShades instance: this will be verified and an exception will be thrown if the type is incorrect.
-       * This will only work if the initial data set has been removed from the \c plot_data vector! PlotDataContourShades allows just one dataset...
-       * \param data dataset to be added to the plot
-       * \return a pointer to the PlotDataContourShades in the \c plot_data vector.
-       * \exception Gtk::PLplot::Exception
-       */
-      virtual PlotDataContourShades *add_data(const PlotData &data);
 
       /** Show the colorbar
        *
@@ -130,6 +139,69 @@ namespace Gtk {
        *
        */
       Glib::ustring get_colorbar_title();
+
+      /** Changes the colormap palette of the contour shades
+       *
+       * \param colormap The new colormap palette
+       */
+      void set_colormap_palette(ColormapPalette colormap);
+
+      /** Get the current contour shades colormap palette
+       *
+       * \returns the current contour shades colormap palette
+       */
+      ColormapPalette get_colormap_palette();
+
+      /** Changes the area fill pattern of the contour shades
+       *
+       * \param area_fill_pattern The new contour shades area fill pattern
+       */
+      void set_area_fill_pattern(AreaFillPattern area_fill_pattern);
+
+      /** Get the current contour shades area fill pattern
+       *
+       * \returns the current contour shades area fill pattern
+       */
+      AreaFillPattern get_area_fill_pattern();
+
+      /** Set the width of the lines used by the fill pattern
+       *
+       * Relevant only if get_area_fill_pattern() is not set to AreaFillPattern::SOLID.
+       * \param width the new width
+       * \exception Gtk::PLplot::Exception
+       */
+      void set_area_lines_width(double width);
+
+      /** Get the current width of fill pattern lines
+       *
+       * Relevant only if get_area_fill_pattern() is not set to AreaFillPattern::SOLID.
+       * \returns the current width of the fill pattern lines
+       */
+      double get_area_lines_width();
+
+      /** Marks the contour edges for showing
+       *
+       */
+      void show_edges();
+
+      /** Marks the contour edges for hiding
+       *
+       */
+      void hide_edges();
+
+      /** Gets whether or not the contour edge lines are showing
+       *
+       * \returns \c true means the contour edge lines are showing, \c false means not
+       */
+      bool is_showing_edges();
+
+      /** Method to draw the colorbar
+       *
+       * This method is virtual allowing inheriting classes to implement their own method with the same signature.
+       * \param cr the cairo context to draw to.
+       * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
+       */
+      virtual void draw_colorbar(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls);
 
       /** Method to draw the plot with all of its datasets
        *

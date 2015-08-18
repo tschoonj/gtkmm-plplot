@@ -11,8 +11,7 @@ gtkmm_plplotinclude_HEADERS = \
                               plot2d.h \
                               plotpolar.h \
                               utils.h \
-                              plotdatacontour.h \
-                              plotdatacontourshades.h \
+                              plotdatasurface.h \
                               plotcontour.h \
                               plotcontourshades.h \
                               enums.h
@@ -28,8 +27,7 @@ libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_SOURCES = $(gtkmm_plplotinclude_HE
                                  utils.cpp \
                                  canvas.cpp \
                                  plotpolar.cpp \
-                                 plotdatacontour.cpp \
-                                 plotdatacontourshades.cpp \
+                                 plotdatasurface.cpp \
                                  plotcontour.cpp \
                                  plotcontourshades.cpp
 

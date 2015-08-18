@@ -139,21 +139,21 @@ namespace Test8 {
 
       //construct the plot
       auto plot = Gtk::PLplot::PlotContourShades(
-        Gtk::PLplot::PlotDataContourShades(x,
+        Gtk::PLplot::PlotDataSurface(
+          x,
           y,
-          z,
-          7,
-          Gtk::PLplot::ColormapPalette::BLUE_RED,
-          edge_color.get_rgba(),
-          1.0
+          z
         ),
         x_title,
         y_title,
-        plot_title
+        plot_title,
+        7,
+        Gtk::PLplot::ColormapPalette::BLUE_RED,
+        edge_color.get_rgba(),
+        1.0
       );
 
       auto plot_ref = dynamic_cast<Gtk::PLplot::PlotContourShades *>(canvas.add_plot(plot));
-      auto plot_data_ref = dynamic_cast<Gtk::PLplot::PlotDataContourShades *>(plot_ref->get_data());
 
       plot_ref->set_background_color(Gdk::RGBA("Yellow Green"));
 
@@ -173,17 +173,17 @@ namespace Test8 {
       show_edges_switch.set_vexpand(false);
       show_edges_switch.set_halign(Gtk::ALIGN_START);
       show_edges_switch.set_valign(Gtk::ALIGN_CENTER);
-      show_edges_switch.set_active(plot_data_ref->is_showing_edges());
-      show_edges_switch.property_active().signal_changed().connect([this, plot_data_ref](){
+      show_edges_switch.set_active(plot_ref->is_showing_edges());
+      show_edges_switch.property_active().signal_changed().connect([this, plot_ref](){
         if (show_edges_switch.get_active()) {
           edge_color.set_sensitive();
           edge_width_spin.set_sensitive();
-          plot_data_ref->show_edges();
+          plot_ref->show_edges();
         }
         else {
           edge_color.set_sensitive(false);
           edge_width_spin.set_sensitive(false);
-          plot_data_ref->hide_edges();
+          plot_ref->hide_edges();
         }
       });
 
@@ -196,13 +196,13 @@ namespace Test8 {
       edge_color_label.set_valign(Gtk::ALIGN_CENTER);
       edge_color_label.set_halign(Gtk::ALIGN_END);
 
-      edge_color.set_rgba(plot_data_ref->get_edge_color());
+      edge_color.set_rgba(plot_ref->get_edge_color());
       edge_color.set_use_alpha(true);
       edge_color.set_hexpand(true);
       edge_color.set_vexpand(false);
       edge_color.set_halign(Gtk::ALIGN_START);
       edge_color.set_valign(Gtk::ALIGN_CENTER);
-      edge_color.signal_color_set().connect([this, plot_data_ref](){plot_data_ref->set_edge_color(edge_color.get_rgba());});
+      edge_color.signal_color_set().connect([this, plot_ref](){plot_ref->set_edge_color(edge_color.get_rgba());});
 
       grid.attach(edge_color_label, 0, row_counter, 1, 1);
       grid.attach(edge_color, 1, row_counter++, 1, 1);
@@ -220,10 +220,10 @@ namespace Test8 {
       edge_width_spin.set_wrap(true);
       edge_width_spin.set_snap_to_ticks(true);
       edge_width_spin.set_numeric(true);
-      edge_width_spin.set_value(plot_data_ref->get_edge_width());
-      edge_width_spin.signal_value_changed().connect([this, plot_data_ref
+      edge_width_spin.set_value(plot_ref->get_edge_width());
+      edge_width_spin.signal_value_changed().connect([this, plot_ref
         ](){
-        plot_data_ref->set_edge_width(edge_width_spin.get_value());
+        plot_ref->set_edge_width(edge_width_spin.get_value());
       });
 
       grid.attach(edge_width_label, 0, row_counter, 1, 1);
@@ -241,9 +241,9 @@ namespace Test8 {
       nlevels_spin.set_wrap(true);
       nlevels_spin.set_snap_to_ticks(true);
       nlevels_spin.set_numeric(true);
-      nlevels_spin.set_value(plot_data_ref->get_nlevels());
-      nlevels_spin.signal_value_changed().connect([this, plot_data_ref](){
-        plot_data_ref->set_nlevels(nlevels_spin.get_value());
+      nlevels_spin.set_value(plot_ref->get_nlevels());
+      nlevels_spin.signal_value_changed().connect([this, plot_ref](){
+        plot_ref->set_nlevels(nlevels_spin.get_value());
       });
 
       grid.attach(nlevels_label, 0, row_counter, 1, 1);
@@ -267,9 +267,9 @@ namespace Test8 {
       colormap_palette_combo.append("Low frequencies");
       colormap_palette_combo.append("Radar");
 
-      colormap_palette_combo.set_active(plot_data_ref->get_colormap_palette());
-      colormap_palette_combo.signal_changed().connect([this, plot_data_ref](){
-        plot_data_ref->set_colormap_palette(static_cast<Gtk::PLplot::ColormapPalette>(colormap_palette_combo.get_active_row_number()));
+      colormap_palette_combo.set_active(plot_ref->get_colormap_palette());
+      colormap_palette_combo.signal_changed().connect([this, plot_ref](){
+        plot_ref->set_colormap_palette(static_cast<Gtk::PLplot::ColormapPalette>(colormap_palette_combo.get_active_row_number()));
       });
 
       grid.attach(colormap_palette_label, 0, row_counter, 1, 1);
@@ -294,9 +294,9 @@ namespace Test8 {
       area_fill_pattern_combo.append("Downward lines at 30 degrees");
       area_fill_pattern_combo.append("Horizontal and vertical lines");
       area_fill_pattern_combo.append("Upward and downward lines at 45 degrees");
-      area_fill_pattern_combo.set_active(plot_data_ref->get_area_fill_pattern());
-      area_fill_pattern_combo.signal_changed().connect([this, plot_data_ref](){
-        plot_data_ref->set_area_fill_pattern(static_cast<Gtk::PLplot::AreaFillPattern>(area_fill_pattern_combo.get_active_row_number()));
+      area_fill_pattern_combo.set_active(plot_ref->get_area_fill_pattern());
+      area_fill_pattern_combo.signal_changed().connect([this, plot_ref](){
+        plot_ref->set_area_fill_pattern(static_cast<Gtk::PLplot::AreaFillPattern>(area_fill_pattern_combo.get_active_row_number()));
         if (area_fill_pattern_combo.get_active_row_number() == 0 /* SOLID */) {
           area_lines_width_spin.set_sensitive(false);
         }
@@ -321,10 +321,10 @@ namespace Test8 {
       area_lines_width_spin.set_wrap(true);
       area_lines_width_spin.set_snap_to_ticks(true);
       area_lines_width_spin.set_numeric(true);
-      area_lines_width_spin.set_value(plot_data_ref->get_area_lines_width());
-      area_lines_width_spin.signal_value_changed().connect([this, plot_data_ref
+      area_lines_width_spin.set_value(plot_ref->get_area_lines_width());
+      area_lines_width_spin.signal_value_changed().connect([this, plot_ref
         ](){
-        plot_data_ref->set_area_lines_width(area_lines_width_spin.get_value());
+        plot_ref->set_area_lines_width(area_lines_width_spin.get_value());
       });
 
       area_lines_width_spin.set_sensitive(false);

@@ -35,39 +35,52 @@ namespace Gtk {
      *  of plot data corresponding to the different plot types, this class offers only a few methods, meaning that
      *  the derived classes will have to contain most of their functionality themselves, as opposed to the plots.
      */
-     class PlotData : public sigc::trackable {
-     private:
-       PlotData &operator=(const PlotData &) = delete; ///< no move assignment operator
-       PlotData(const PlotData &source) = delete; ///< No copy constructor;
-     protected:
-       bool shown; ///< \c true means the plot is currently visible, \c false means it is not plotted
-       sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the dataset proprties is changed.
-       sigc::signal<void> _signal_data_modified; ///< signal that gets emitted whenever the X- and Y-datasets have been modified.
-       /** This is a default handler for signal_changed()
-        *
-        * This signal is emitted whenever any of the dataset properties is changed.
-        * Currently it does nothing but the signal will get caught by Plot, and will eventually trigger a redrawing of the entire widget.
-        */
-       virtual void on_changed();
+    class PlotData : public sigc::trackable {
+    private:
+      PlotData &operator=(const PlotData &) = delete; ///< no move assignment operator
+      PlotData(const PlotData &source) = delete; ///< No copy constructor;
+    protected:
+      Glib::ustring name; ///< the name that will be assigned to the dataset. Will be used to generate legends if supported by the Plot type
+      bool shown; ///< \c true means the plot is currently visible, \c false means it is not plotted
+      sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the dataset proprties is changed.
+      sigc::signal<void> _signal_data_modified; ///< signal that gets emitted whenever the X- and Y-datasets have been modified.
+      /** This is a default handler for signal_changed()
+       *
+       * This signal is emitted whenever any of the dataset properties is changed.
+       * Currently it does nothing but the signal will get caught by Plot, and will eventually trigger a redrawing of the entire widget.
+       */
+      virtual void on_changed();
 
-       /** This is a default handler for signal_data_modified()
-        *
-        * This signal is emitted whenever any of the dataset proprties is changed.
-        * Currently it does nothing but the signal will get caught by Plot, and will eventually trigger a redrawing of the entire widget, taking into account the new dataset.
-        */
-       virtual void on_data_modified();
+      /** This is a default handler for signal_data_modified()
+       *
+       * This signal is emitted whenever any of the dataset proprties is changed.
+       * Currently it does nothing but the signal will get caught by Plot, and will eventually trigger a redrawing of the entire widget, taking into account the new dataset.
+       */
+      virtual void on_data_modified();
 
-     public:
-       /** Constructor
-        *
-        */
-       PlotData();
+    public:
+      /** Constructor
+       *
+       */
+      PlotData();
 
 
-       /** Destructor
-        *
-        */
-       virtual ~PlotData();
+      /** Destructor
+       *
+       */
+      virtual ~PlotData();
+
+      /** Sets the name of the plot dataset
+       *
+       * This name will be used to construct a legend if supported by the Plot type.
+       * If set to an empty string, a default name will be used.
+       */
+      void set_name(Glib::ustring name);
+
+      /** Get the current name of the plot dataset
+       *
+       */
+      Glib::ustring get_name();
 
       /** Make the dataset visible in the plot
        *
@@ -107,9 +120,8 @@ namespace Gtk {
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
        */
-      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) = 0;
-
-     };
+      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls);
+    };
   }
 }
 

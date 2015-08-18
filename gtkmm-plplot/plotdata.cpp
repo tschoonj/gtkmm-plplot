@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace Gtk::PLplot;
 
 PlotData::PlotData() :
+  name(""),
   shown(true) {
 
   this->signal_changed().connect(sigc::mem_fun(*this,
@@ -41,6 +42,14 @@ void PlotData::on_data_modified() {
   //do nothing
 }
 
+void PlotData::set_name(Glib::ustring _name) {
+  name = _name;
+}
+
+Glib::ustring PlotData::get_name() {
+  return name;
+}
+
 void PlotData::show() {
   shown = true;
   _signal_changed.emit();
@@ -53,4 +62,8 @@ void PlotData::hide() {
 
 bool PlotData::is_showing() const {
   return shown;
+}
+
+void PlotData::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) {
+  //default is to do nothing -> only PlotMulti descendants should override this
 }

@@ -19,6 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/exception.h>
 #include <gtkmm-plplot/utils.h>
 #include <iostream>
+#include <plConfig.h>
+
+#ifdef GTKMM_PLPLOT_PLPLOT_5_11_0
+	#define PLCALLBACK plcallback
+#else
+	#define PLCALLBACK plstream
+#endif
 
 using namespace Gtk::PLplot;
 
@@ -26,6 +33,9 @@ PlotContour::PlotContour(
   const Glib::ustring &_axis_title_x,
   const Glib::ustring &_axis_title_y,
   const Glib::ustring &_plot_title,
+  unsigned int _nlevels,
+  Gdk::RGBA _edge_color,
+  double _edge_width,
   const double _plot_width_norm,
   const double _plot_height_norm,
   const double _plot_offset_horizontal_norm,
@@ -33,19 +43,36 @@ PlotContour::PlotContour(
   Plot(_axis_title_x, _axis_title_y, _plot_title,
   _plot_width_norm, _plot_height_norm,
   _plot_offset_horizontal_norm,
-  _plot_offset_vertical_norm) {
+  _plot_offset_vertical_norm),
+  nlevels(_nlevels),
+  edge_color(_edge_color),
+  edge_width(_edge_width),
+  clevels(_nlevels) {
+  //ensure edge_width is strictly positive
+  if (edge_width <= 0.0) {
+    throw Exception("Gtk::PLplot::PlotContour::PlotContour-> edge width must be strictly positive");
+  }
+
+  //ensure nlevels is at least 3
+  if (nlevels < 3) {
+    throw Exception("Gtk::PLplot::PlotContour::PlotContour-> nlevels must be greater than or equal to 3");
+  }
 }
 
 PlotContour::PlotContour(
-  const PlotDataContour &_data,
+  const PlotDataSurface &_data,
   const Glib::ustring &_axis_title_x,
   const Glib::ustring &_axis_title_y,
   const Glib::ustring &_plot_title,
+  unsigned int _nlevels,
+  Gdk::RGBA _edge_color,
+  double _edge_width,
   const double _plot_width_norm,
   const double _plot_height_norm,
   const double _plot_offset_horizontal_norm,
   const double _plot_offset_vertical_norm) :
-  Plot(_axis_title_x, _axis_title_y, _plot_title,
+  PlotContour(_axis_title_x, _axis_title_y, _plot_title,
+  _nlevels, _edge_color, _edge_width,
   _plot_width_norm, _plot_height_norm,
   _plot_offset_horizontal_norm,
   _plot_offset_vertical_norm) {
@@ -55,8 +82,11 @@ PlotContour::PlotContour(
 
 PlotContour::PlotContour(const PlotContour &_source) :
   PlotContour(_source.axis_title_x, _source.axis_title_y,
-  _source.plot_title, _source.plot_width_norm,
-  _source.plot_height_norm, _source.plot_offset_horizontal_norm,
+  _source.plot_title, _source.nlevels,
+  _source.edge_color, _source.edge_width,
+  _source.plot_width_norm,
+  _source.plot_height_norm,
+  _source.plot_offset_horizontal_norm,
   _source.plot_offset_vertical_norm) {
 
   for (auto &iter : _source.plot_data) {
@@ -67,23 +97,14 @@ PlotContour::PlotContour(const PlotContour &_source) :
 PlotContour::~PlotContour() {}
 
 void PlotContour::plot_data_modified() {
-  //update ranges
-  std::vector<PLFLT> min_x, min_y;
-  std::vector<PLFLT> max_x, max_y;
+  auto data = dynamic_cast<PlotDataSurface*>(plot_data[0]);
+  std::vector<PLFLT> x = data->get_vector_x();
+  std::vector<PLFLT> y = data->get_vector_y();
 
-  for (auto &iter : plot_data) {
-    auto iter2 = dynamic_cast<PlotDataContour*>(iter);
-    std::vector<PLFLT> x = iter2->get_vector_x();
-    std::vector<PLFLT> y = iter2->get_vector_y();
-    min_x.push_back(*std::min_element(x.begin(), x.end()));
-    max_x.push_back(*std::max_element(x.begin(), x.end()));
-    min_y.push_back(*std::min_element(y.begin(), y.end()));
-    max_y.push_back(*std::max_element(y.begin(), y.end()));
-  }
-  plot_data_range_x[0] = *std::min_element(min_x.begin(), min_x.end());
-  plot_data_range_x[1] = *std::max_element(max_x.begin(), max_x.end());
-  plot_data_range_y[0] = *std::min_element(min_y.begin(), min_y.end());
-  plot_data_range_y[1] = *std::max_element(max_y.begin(), max_y.end());
+  plot_data_range_x[0] = x.front();
+  plot_data_range_x[1] = x.back();
+  plot_data_range_y[0] = y.front();
+  plot_data_range_y[1] = y.back();
 
   //This function won't do anything as I am using the default implementation
   //provided by Plot
@@ -100,21 +121,32 @@ void PlotContour::plot_data_modified() {
   plotted_range_x[1] = plot_data_range_x[1];
   plotted_range_y[0] = plot_data_range_y[0];
   plotted_range_y[1] = plot_data_range_y[1];
+
+  //get maximum of z
+  PLFLT **z = data->get_array2d_z();
+  plMinMax2dGrid(z, x.size(), y.size(), &zmax, &zmin);
+  free_array2d((void **) z, x.size());
+
+  //fill up level
+  for (unsigned int i = 0 ; i < nlevels ; i++) {
+    clevels[i] = zmin + (zmax - zmin) * i / (PLFLT) (nlevels - 1);
+  }
+
   _signal_changed.emit();
 }
 
-PlotDataContour *PlotContour::add_data(const PlotData &data) {
+PlotDataSurface *PlotContour::add_data(const PlotData &data) {
   //ensure plot_data is empty
   if (!plot_data.empty())
     throw Exception("Gtk::PLplot::PlotContour::add_data -> cannot add data when plot_data is not empty!");
 
-  PlotDataContour *data_copy = nullptr;
+  PlotDataSurface *data_copy = nullptr;
   try {
-    //ensure our data is PlotDataContour
-    data_copy = new PlotDataContour(dynamic_cast<const PlotDataContour &>(data));
+    //ensure our data is PlotDataSurface
+    data_copy = new PlotDataSurface(dynamic_cast<const PlotDataSurface &>(data));
   }
   catch (std::bad_cast &e) {
-    throw Exception("Gtk::PLplot::PlotContour::add_data -> data must be of PlotDataContour type!");
+    throw Exception("Gtk::PLplot::PlotContour::add_data -> data must be of PlotDataSurface type!");
   }
   plot_data.push_back(data_copy);
   data_copy->signal_changed().connect([this](){_signal_changed.emit();});
@@ -122,6 +154,53 @@ PlotDataContour *PlotContour::add_data(const PlotData &data) {
 
   _signal_data_added.emit(data_copy);
   return data_copy;
+}
+
+void PlotContour::set_edge_color(Gdk::RGBA _edge_color) {
+  edge_color = _edge_color;
+  _signal_changed.emit();
+}
+
+Gdk::RGBA PlotContour::get_edge_color() {
+  return edge_color;
+}
+
+void PlotContour::set_edge_width(double _edge_width) {
+  //ensure edge_width is strictly positive
+  if (_edge_width <= 0.0) {
+    throw Exception("Gtk::PLplot::PlotContour::PlotContour -> edge width must be strictly positive");
+  }
+
+  edge_width = _edge_width;
+  _signal_changed.emit();
+}
+
+double PlotContour::get_edge_width() {
+  return edge_width;
+}
+
+void PlotContour::set_nlevels(unsigned int _nlevels) {
+  //ensure nlevels is at least 3
+  if (_nlevels < 3) {
+    throw Exception("Gtk::PLplot::PlotContour::PlotContour -> nlevels must be greater than or equal to 3");
+  }
+
+  if (_nlevels == nlevels)
+    return;
+
+  clevels.clear();
+  clevels.resize(_nlevels);
+  nlevels = _nlevels;
+
+  //fill up level
+  for (unsigned int i = 0 ; i < nlevels ; i++) {
+    clevels[i] = zmin + (zmax - zmin) * i / (PLFLT) (nlevels - 1);
+  }
+  _signal_changed.emit();
+}
+
+unsigned int PlotContour::get_nlevels() {
+  return nlevels;
 }
 
 void PlotContour::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) {
@@ -145,7 +224,26 @@ void PlotContour::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int w
 
   pls->lab(axis_title_x.c_str(), axis_title_y.c_str(), plot_title.c_str());
 
-  plot_data[0]->draw_plot_data(cr, pls);
+  //thinks to set before drawing:
+  // 1) edge_color
+  // 2) edge_width
+  change_plstream_color(pls, edge_color);
+
+  pls->width(edge_width);
+
+  auto data = dynamic_cast<PlotDataSurface*>(plot_data[0]);
+  std::vector<PLFLT> x = data->get_vector_x();
+  std::vector<PLFLT> y = data->get_vector_y();
+  PLcGrid cgrid;
+  cgrid.xg = &x[0];
+  cgrid.yg = &y[0];
+  cgrid.nx = x.size();
+  cgrid.ny = y.size();
+  PLFLT **z = data->get_array2d_z();
+
+  pls->cont(z, x.size(), y.size(), 1, x.size(), 1, y.size(), &clevels[0], nlevels, PLCALLBACK::tr1, (void *) &cgrid);
+
+  free_array2d((void **) z, x.size());
 
   cr->restore();
 
