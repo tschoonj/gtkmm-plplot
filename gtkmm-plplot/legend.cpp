@@ -118,7 +118,7 @@ void Legend::draw_legend(const Cairo::RefPtr<Cairo::Context> &cr) {
 
     int my_opt_array = 0;
 
-    symbols = (char **) g_realloc(symbols, sizeof(char *) * opt_array.size() + 2);
+    symbols = (char **) g_realloc(symbols, sizeof(char *) * (opt_array.size() + 2));
 
     if (iter2->get_line_style() != NONE) {
       my_opt_array |= PL_LEGEND_LINE;
@@ -145,7 +145,7 @@ void Legend::draw_legend(const Cairo::RefPtr<Cairo::Context> &cr) {
     symbol_colors.push_back(GTKMM_PLPLOT_DEFAULT_COLOR_INDEX + 2 + (2 * index) + 1);
     symbol_scales.push_back(symbol_scale);
 
-    text = (char **) realloc(text, sizeof(char *) * opt_array.size() + 1);
+    text = (char **) realloc(text, sizeof(char *) * (opt_array.size() + 1));
     if (iter2->get_name().empty()) {
       text[index] = g_strdup_printf("Data %i", index);
     }
