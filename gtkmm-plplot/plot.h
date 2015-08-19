@@ -37,9 +37,9 @@ namespace Gtk {
      */
      class Plot : public sigc::trackable {
      private:
-      Plot() = delete; ///< no default constructor
       Plot &operator=(const Plot &) = delete; ///< no copy constructor
      protected:
+      Plot() {} ///< Default constructor. This should not be used and is only here to circumvent a bug in GCC: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=58751
       std::vector<PlotData *> plot_data; ///< vector that contains pointers to the PlotData datasets
       Glib::ustring axis_title_x; ///< X-axis title
       Glib::ustring axis_title_y; ///< Y-axis title
