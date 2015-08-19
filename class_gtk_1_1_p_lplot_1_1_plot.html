@@ -113,11 +113,12 @@ Inheritance diagram for Gtk::PLplot::Plot:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_gtk_1_1_p_lplot_1_1_plot__inherit__graph.png" border="0" usemap="#_gtk_1_1_p_lplot_1_1_plot_inherit__map" alt="Inheritance graph"/></div>
 <map name="_gtk_1_1_p_lplot_1_1_plot_inherit__map" id="_gtk_1_1_p_lplot_1_1_plot_inherit__map">
-<area shape="rect" id="node3" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots " alt="" coords="5,152,140,177"/>
-<area shape="rect" id="node4" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html" title="a class for contour plots " alt="" coords="163,152,329,177"/>
-<area shape="rect" id="node6" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots " alt="" coords="353,152,502,177"/>
-<area shape="rect" id="node2" doxygen="/usr/local/Cellar/libsigc++/2.4.1/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag:http://library.gnome.org/devel/libsigc++/unstable/" href="http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="193,5,299,31"/>
-<area shape="rect" id="node5" href="class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html" title="a class for contour plots with shaded regions. " alt="" coords="163,225,329,264"/>
+<area shape="rect" id="node3" href="class_gtk_1_1_p_lplot_1_1_legend.html" title="a class providing legends for plot classes with multiple datasets " alt="" coords="339,44,478,69"/>
+<area shape="rect" id="node4" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots " alt="" coords="554,5,689,31"/>
+<area shape="rect" id="node5" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots " alt="" coords="547,67,696,92"/>
+<area shape="rect" id="node6" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html" title="a class for contour plots " alt="" coords="326,145,491,171"/>
+<area shape="rect" id="node2" doxygen="/usr/local/Cellar/libsigc++/2.4.1/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag:http://library.gnome.org/devel/libsigc++/unstable/" href="http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="5,69,112,95"/>
+<area shape="rect" id="node7" href="class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html" title="a class for contour plots with shaded regions. " alt="" coords="539,139,704,177"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -204,6 +205,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="elRef" doxygen
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a06e18d18e138923d8bfdc233c3f06169"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06e18d18e138923d8bfdc233c3f06169"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html#a06e18d18e138923d8bfdc233c3f06169">Plot</a> ()</td></tr>
+<tr class="memdesc:a06e18d18e138923d8bfdc233c3f06169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. This should not be used and is only here to circumvent a bug in GCC: <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=58751">https://gcc.gnu.org/bugzilla/show_bug.cgi?id=58751</a>. <br /></td></tr>
+<tr class="separator:a06e18d18e138923d8bfdc233c3f06169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6884ced9c72dfa24382395128a8f2614"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6884ced9c72dfa24382395128a8f2614"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html#a6884ced9c72dfa24382395128a8f2614">plot_data_modified</a> ()=0</td></tr>
 <tr class="memdesc:a6884ced9c72dfa24382395128a8f2614"><td class="mdescLeft">&#160;</td><td class="mdescRight">a method that will update the <code>_range</code> variables when datasets are added, modified or removed. <br /></td></tr>
@@ -352,10 +357,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:ae41587fc10e6723e2e55ae51b68c0599"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae41587fc10e6723e2e55ae51b68c0599"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html#ae41587fc10e6723e2e55ae51b68c0599">Plot</a> ()=delete</td></tr>
-<tr class="memdesc:ae41587fc10e6723e2e55ae51b68c0599"><td class="mdescLeft">&#160;</td><td class="mdescRight">no default constructor <br /></td></tr>
-<tr class="separator:ae41587fc10e6723e2e55ae51b68c0599"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb3892b2b10455656aac969bd0c2a1d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb3892b2b10455656aac969bd0c2a1d0"></a>
 <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html">Plot</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html#afb3892b2b10455656aac969bd0c2a1d0">operator=</a> (const <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html">Plot</a> &amp;)=delete</td></tr>
 <tr class="memdesc:afb3892b2b10455656aac969bd0c2a1d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">no copy constructor <br /></td></tr>
@@ -525,7 +526,7 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties ">PlotData</a> in the <code>plot_data</code> vector. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#aab6b77f5231104128c9e0372b8c1cd1d">Gtk::PLplot::Plot2D</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#a36b47dd2d0b02ebbf64f244634acfd9b">Gtk::PLplot::PlotPolar</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#a2cafda32351c7130ec2bc4ddf781620b">Gtk::PLplot::PlotContour</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a3c1f7c3973e5ac7b9b9174521c0622a3">Gtk::PLplot::PlotContourShades</a>.</p>
+<p>Implemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#aab6b77f5231104128c9e0372b8c1cd1d">Gtk::PLplot::Plot2D</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#a36b47dd2d0b02ebbf64f244634acfd9b">Gtk::PLplot::PlotPolar</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#a6f2cb749c95f519fa55d0146e71684ba">Gtk::PLplot::PlotContour</a>.</p>
 
 </div>
 </div>
@@ -552,7 +553,7 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
 <p>Freshly allocate a clone of the instance</p>
 <p>This very important method allows <a class="el" href="class_gtk_1_1_p_lplot_1_1_canvas.html#ab69c586f5f42d12d74c1fac25163feaa">Canvas::add_plot()</a> to add new plots to its internal array. Since the canvas keeps its own copies of the plots, every <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot.html" title="an abstract base class for all plots ">Plot</a> derived class needs to provide an implementation of this method, to ensure a proper copy can be provided. </p>
 
-<p>Implemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a6a704b13c5f3a5f67493e8c539c348e0">Gtk::PLplot::Plot2D</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#a3b2c0bbd227b79554626dddde1163295">Gtk::PLplot::PlotPolar</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a362dbac5ac7ee1e683119b9ada54d48c">Gtk::PLplot::PlotContourShades</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#a3121206b4846016cc57bfe4be6a3dce9">Gtk::PLplot::PlotContour</a>.</p>
+<p>Implemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a362dbac5ac7ee1e683119b9ada54d48c">Gtk::PLplot::PlotContourShades</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#a6a704b13c5f3a5f67493e8c539c348e0">Gtk::PLplot::Plot2D</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#a3121206b4846016cc57bfe4be6a3dce9">Gtk::PLplot::PlotContour</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#a3b2c0bbd227b79554626dddde1163295">Gtk::PLplot::PlotPolar</a>.</p>
 
 </div>
 </div>
@@ -719,7 +720,7 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#aaec4e2e6da2c94f8807b64d2f61fcf25">Gtk::PLplot::Plot2D</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a1bf164256271c3d360a5195cd53eafc6">Gtk::PLplot::PlotContourShades</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#a73a99cb823d6c4de6b3a4705b2e5261d">Gtk::PLplot::PlotPolar</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#a99f57c09024b33b192ecf37234db2fc0">Gtk::PLplot::PlotContour</a>.</p>
+<p>Implemented in <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a1bf164256271c3d360a5195cd53eafc6">Gtk::PLplot::PlotContourShades</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_contour.html#a99f57c09024b33b192ecf37234db2fc0">Gtk::PLplot::PlotContour</a>, <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot2_d.html#aaec4e2e6da2c94f8807b64d2f61fcf25">Gtk::PLplot::Plot2D</a>, and <a class="el" href="class_gtk_1_1_p_lplot_1_1_plot_polar.html#a73a99cb823d6c4de6b3a4705b2e5261d">Gtk::PLplot::PlotPolar</a>.</p>
 
 </div>
 </div>
@@ -1455,7 +1456,7 @@ typedef internal::func_destroy_notify&#160;</td><td class="memItemRight" valign=
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Aug 14 2015 09:44:10 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 19 2015 21:48:57 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

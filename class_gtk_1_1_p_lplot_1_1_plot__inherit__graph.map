@@ -1,7 +1,8 @@
 <map id="Gtk::PLplot::Plot" name="Gtk::PLplot::Plot">
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots " alt="" coords="5,152,140,177"/>
-<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot_contour.html" title="a class for contour plots " alt="" coords="163,152,329,177"/>
-<area shape="rect" id="node6" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots " alt="" coords="353,152,502,177"/>
-<area shape="rect" id="node2" href="/usr/local/Cellar/libsigc++/2.4.1/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="193,5,299,31"/>
-<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html" title="a class for contour plots with shaded regions. " alt="" coords="163,225,329,264"/>
+<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_legend.html" title="a class providing legends for plot classes with multiple datasets " alt="" coords="339,44,478,69"/>
+<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots " alt="" coords="554,5,689,31"/>
+<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots " alt="" coords="547,67,696,92"/>
+<area shape="rect" id="node6" href="$class_gtk_1_1_p_lplot_1_1_plot_contour.html" title="a class for contour plots " alt="" coords="326,145,491,171"/>
+<area shape="rect" id="node2" href="/usr/local/Cellar/libsigc++/2.4.1/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="5,69,112,95"/>
+<area shape="rect" id="node7" href="$class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html" title="a class for contour plots with shaded regions. " alt="" coords="539,139,704,177"/>
 </map>

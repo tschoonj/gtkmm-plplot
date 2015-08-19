@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name',['NAME',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1CssProviderError.html#a25b86727bdc2ddee1ffdd4b8c4d3d523a8c4ac4f9e34e356435bd2970d82c10e8',1,'Gtk::CssProviderError']]],
+  ['name',['NAME',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1CssProviderError.html#a25b86727bdc2ddee1ffdd4b8c4d3d523a8c4ac4f9e34e356435bd2970d82c10e8',1,'Gtk::CssProviderError::NAME()'],['../class_gtk_1_1_p_lplot_1_1_plot_data.html#a6358e358372e2f895819f91874bf7824',1,'Gtk::PLplot::PlotData::name()']]],
   ['name_5fhas_5fno_5fowner',['NAME_HAS_NO_OWNER',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Error.html#acd2c910ef29b6be121c1fde3cfa8f2caa227418ae04bf8a8fc969021a118f8839',1,'Gio::DBus::Error']]],
   ['name_5ftoo_5flong',['NAME_TOO_LONG',['http://library.gnome.org/devel/glibmm/unstable/group__FileUtils.html#gga0bdb855c813c7d07a424009706fc8f0ba8643f49fdab6a5ff782084c67135e1e1',1,'Glib::FileError::NAME_TOO_LONG()'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html#a0f1ec693485b5b6c8148045e6ffa3aeeaabef5d4b6e123d46da97e96fb9b594c0',1,'Glib::RegexError::NAME_TOO_LONG()']]],
   ['nametoolong',['NAMETOOLONG',['http://library.gnome.org/devel/glibmm/unstable/group__Spawn.html#ggafb7753661f7b0607951aa8881380ed1ba58e1be919ee7369e1b6c70d4e4431a0f',1,'Glib::SpawnError']]],
@@ -8,7 +8,7 @@ var searchData=
   ['network_5funreachable',['NETWORK_UNREACHABLE',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a86e0c5e77ce892cabc0d9c0ffa35d91c',1,'Gio::Error']]],
   ['new',['NEW',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#afeadf75b7b8b773f5494d939671d04bb',1,'Gtk::Stock']]],
   ['nfile',['NFILE',['http://library.gnome.org/devel/glibmm/unstable/group__Spawn.html#ggafb7753661f7b0607951aa8881380ed1bab6c9ef50fab51e4fb51debe02b3b8ed9',1,'Glib::SpawnError']]],
-  ['nlevels',['nlevels',['../class_gtk_1_1_p_lplot_1_1_plot_data_contour.html#a897fca9e09a9c2689159b1c381172a2c',1,'Gtk::PLplot::PlotDataContour']]],
+  ['nlevels',['nlevels',['../class_gtk_1_1_p_lplot_1_1_plot_contour.html#af3f57d1002020d311c7e3f54e615a096',1,'Gtk::PLplot::PlotContour']]],
   ['no',['NO',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#ac88c5e9a0d133834bb681280238ac394',1,'Gtk::Stock']]],
   ['no_5fcommon_5ftype',['NO_COMMON_TYPE',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1VariantParseError.html#a217aafad01bee506a1b699a7e138314eacc7813aa9d6b577fba98699d9b5cf22c',1,'Glib::VariantParseError']]],
   ['no_5fconversion',['NO_CONVERSION',['http://library.gnome.org/devel/glibmm/unstable/group__CharsetConv.html#ggaea4b79ac3149c1fcfcab32155e3561a9aa8709c19293fcc2268bb94f954c3270b',1,'Glib::ConvertError']]],

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['edge_5fcolor',['edge_color',['../class_gtk_1_1_p_lplot_1_1_plot_data_contour.html#ae90ba9d5730f9c69f1894f28207ed37d',1,'Gtk::PLplot::PlotDataContour']]],
-  ['edge_5fwidth',['edge_width',['../class_gtk_1_1_p_lplot_1_1_plot_data_contour.html#a75956954005d6b06b1f008276301e39f',1,'Gtk::PLplot::PlotDataContour']]],
+  ['edge_5fcolor',['edge_color',['../class_gtk_1_1_p_lplot_1_1_plot_contour.html#afb079ec8e7c3742ea7c022400b865922',1,'Gtk::PLplot::PlotContour']]],
+  ['edge_5fwidth',['edge_width',['../class_gtk_1_1_p_lplot_1_1_plot_contour.html#a7b427b03c33a5d545ee7502999a4f59d',1,'Gtk::PLplot::PlotContour']]],
   ['edit',['EDIT',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a39b5d6f7f313ead8ce58cf51fa5344d8',1,'Gtk::Stock']]],
   ['empty',['EMPTY',['http://library.gnome.org/devel/glibmm/unstable/group__Markup.html#gga1422c4a583441bbe490b8ed47d7fe1a7a5b3981a2a475d8b0ab4481c931c816dd',1,'Glib::MarkupError']]],
   ['empty_5fstring',['EMPTY_STRING',['http://library.gnome.org/devel/glibmm/unstable/group__ShellUtils.html#ggae36e02f4bf8e48d4fe678b30b5300435a8551e8302cd602dc9125c9cab9a22110',1,'Glib::ShellError']]],

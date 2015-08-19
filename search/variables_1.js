@@ -25,7 +25,7 @@ var searchData=
   ['applications',['applications',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1RecentFilter_1_1Info.html#a0fc4c78cf105a6e4b398fd42c4c62e96',1,'Gtk::RecentFilter::Info']]],
   ['apply',['APPLY',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a4cbfe0fbbd18329f560bb225081743c9',1,'Gtk::Stock']]],
   ['april',['APRIL',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#ga9781abc52ad49766808898743e44031fa1ae9ac1173f8c33acd183f4af21503e2',1,'Glib::Date']]],
-  ['area_5ffill_5fpattern',['area_fill_pattern',['../class_gtk_1_1_p_lplot_1_1_plot_data_contour_shades.html#ace3ae45f6dbe3b32435f382e98881fcf',1,'Gtk::PLplot::PlotDataContourShades']]],
+  ['area_5ffill_5fpattern',['area_fill_pattern',['../class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a5277e020793dfed04edaa95edf74a34b',1,'Gtk::PLplot::PlotContourShades']]],
   ['assertion_5fexpected',['ASSERTION_EXPECTED',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html#a0f1ec693485b5b6c8148045e6ffa3aeea1508f67a84cc3a71172562152f6cfd83',1,'Glib::RegexError']]],
   ['ate',['ate',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#ad22225874e26210dfe11263279587e75',1,'std::basic_fstream']]],
   ['august',['AUGUST',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#ga9781abc52ad49766808898743e44031fa0f91e886e724ba8b2b78c4c109608806',1,'Glib::Date']]],

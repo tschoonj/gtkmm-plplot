@@ -15,7 +15,7 @@ var searchData=
   ['fill_5fminimal_5fn',['fill_minimal_n',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#ae12932b6ecb49293c8c68a0d5dbf8919',1,'__gnu_parallel::_Settings']]],
   ['fill_5frule_5feven_5fodd',['FILL_RULE_EVEN_ODD',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a1ba15b0a2e22c87c14af044801006c85a25292f6e401747a4323ca3b83e3d4f0c',1,'Cairo']]],
   ['fill_5frule_5fwinding',['FILL_RULE_WINDING',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a1ba15b0a2e22c87c14af044801006c85a64d7bbc3c2d92a1ce8b5e3ec7ea050f7',1,'Cairo']]],
-  ['fill_5fwidth',['fill_width',['../class_gtk_1_1_p_lplot_1_1_plot_data_contour_shades.html#a3e8ebe5be82c9afa23c3c4cb0d7c16a3',1,'Gtk::PLplot::PlotDataContourShades']]],
+  ['fill_5fwidth',['fill_width',['../class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a8ab0f42371280a05dae21bd3239c47fa',1,'Gtk::PLplot::PlotContourShades']]],
   ['filter_5fbest',['FILTER_BEST',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a92b32ad7db301e18386477566c1caa6aaa20fe9f49ecb50a8ca50adb840404bb6',1,'Cairo']]],
   ['filter_5fbilinear',['FILTER_BILINEAR',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a92b32ad7db301e18386477566c1caa6aad2418ba123c6a441aefc0b22cba59758',1,'Cairo']]],
   ['filter_5ffast',['FILTER_FAST',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a92b32ad7db301e18386477566c1caa6aa53741dee114adbbc9860ff6979044ee9',1,'Cairo']]],
