@@ -243,6 +243,9 @@ void Plot::draw_plot_init(const Cairo::RefPtr<Cairo::Context> &cr, const int wid
     delete pls;
   pls = new plstream;
 
+  //add support for more colors
+  pls->scmap0n(1024);
+
   pls->sdev("extcairo");
   pls->spage(0.0, 0.0, plot_width , plot_height, plot_offset_x, plot_offset_y);
   Gdk::Cairo::set_source_rgba(cr, background_color);

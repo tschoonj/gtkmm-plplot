@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <cstdlib>
 #include <cstring>
+#include <iostream>
 
 static std::vector<std::string> _colormaps = {
   "cmap1_default.pal",
@@ -45,6 +46,7 @@ std::valarray<PLFLT> Gtk::PLplot::indgen_va(unsigned int n) {
 }
 
 void Gtk::PLplot::change_plstream_color(plstream *pls, Gdk::RGBA color, bool activate, int index) {
+  std::cout << "Gtk::PLplot::change_plstream_color: " << index << std::endl;
   pls->scol0a(index, color.get_red_u()/256, color.get_green_u()/256, color.get_blue_u()/256, color.get_alpha());
   if (activate)
     pls->col0(index);

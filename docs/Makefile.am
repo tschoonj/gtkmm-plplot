@@ -13,7 +13,8 @@ doxyfile_deps = $(top_srcdir)/gtkmm-plplot/canvas.h \
 								$(top_srcdir)/gtkmm-plplot/plotdatasurface.h \
 								$(top_srcdir)/gtkmm-plplot/plotcontour.h \
 								$(top_srcdir)/gtkmm-plplot/plotcontourshades.h \
-								$(top_srcdir)/gtkmm-plplot/plotpolar.h
+								$(top_srcdir)/gtkmm-plplot/plotpolar.h \
+								$(top_srcdir)/gtkmm-plplot/legend.h
 
 
 doxyfile.stamp: $(doxyfile_deps) Doxyfile extra_pages.dox doxygen_hack.css DoxygenLayout.xml

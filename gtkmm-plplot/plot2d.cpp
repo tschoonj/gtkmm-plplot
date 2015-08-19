@@ -63,10 +63,10 @@ Plot2D::Plot2D(
 }
 
 Plot2D::Plot2D(const Plot2D &_source) :
-  Plot2D(_source.axis_title_x, _source.axis_title_y,
+  Plot(_source.axis_title_x, _source.axis_title_y,
   _source.plot_title, _source.plot_width_norm,
   _source.plot_height_norm, _source.plot_offset_horizontal_norm,
-  _source.plot_offset_vertical_norm) {
+  _source.plot_offset_vertical_norm), Legend(_source) {
 
   log10_x = _source.log10_x;
   log10_y = _source.log10_y;
@@ -256,6 +256,11 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
   for (auto &iter : plot_data) {
     iter->draw_plot_data(cr, pls);
   }
+
+  //legend
+  if (is_showing_legend())
+    draw_legend(cr);
+
   cr->restore();
 
   convert_plplot_to_cairo_coordinates(plotted_range_x[0], plotted_range_y[0],

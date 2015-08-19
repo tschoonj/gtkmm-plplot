@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/canvas.h>
 #include <gtkmm-plplot/enums.h>
 #include <gtkmm-plplot/exception.h>
+#include <gtkmm-plplot/legend.h>
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/plot2d.h>
 #include <gtkmm-plplot/plotpolar.h>

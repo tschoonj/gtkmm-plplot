@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/plotdata2d.h>
+#include <gtkmm-plplot/legend.h>
 #include <gtkmm-plplot/enums.h>
 
 
@@ -36,7 +37,7 @@ namespace Gtk {
      *  be picked up by the \c canvas that will hold the plot.
      *  For more information, the reader is referred to the examples \ref example1 and \ref example2.
      */
-    class Plot2D : public Plot {
+    class Plot2D : public virtual Plot, public Legend {
     private:
       bool log10_x; ///< \c true means X-axis logarithmic axis, \c false means linear
       bool log10_y; ///< \c true means Y-axis logarithmic axis, \c false means linear

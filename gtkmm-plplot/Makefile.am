@@ -14,6 +14,7 @@ gtkmm_plplotinclude_HEADERS = \
                               plotdatasurface.h \
                               plotcontour.h \
                               plotcontourshades.h \
+                              legend.h \
                               enums.h
 
 gtkmm_plplotbaseinclude_HEADERS = gtkmm-plplot.h
@@ -29,7 +30,8 @@ libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_SOURCES = $(gtkmm_plplotinclude_HE
                                  plotpolar.cpp \
                                  plotdatasurface.cpp \
                                  plotcontour.cpp \
-                                 plotcontourshades.cpp
+                                 plotcontourshades.cpp \
+                                 legend.cpp
 
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_CPPFLAGS = $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS)
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_LIBADD = $(gtkmm_LIBS) $(plplotcxx_LIBS) $(BOOST_MULTIARRAY_LIBS)

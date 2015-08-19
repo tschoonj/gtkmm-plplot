@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gdkmm/rgba.h>
 #include <gtkmm-plplot/enums.h>
 
-#define GTKMM_PLPLOT_DEFAULT_COLOR_INDEX 5
+#define GTKMM_PLPLOT_DEFAULT_COLOR_INDEX 2
 
 namespace Gtk {
   namespace PLplot {
