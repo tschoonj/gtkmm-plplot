@@ -35,7 +35,8 @@ namespace Gtk {
      *  Several properties may be set such as the axes and plot titles, type of scaling (linear or logarithmic).
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.
-     *  For more information, the reader is referred to the examples \ref example1 and \ref example2.
+     *  For more information, the reader is referred to the examples \ref example1, \ref example2, \ref example3, \ref example4
+     *  and \ref example5.
      */
     class Plot2D : public virtual Plot, public Legend {
     private:

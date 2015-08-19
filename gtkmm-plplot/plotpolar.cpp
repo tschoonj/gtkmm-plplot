@@ -219,6 +219,14 @@ void PlotPolar::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int wid
   for (auto &iter : plot_data) {
     iter->draw_plot_data(cr, pls);
   }
+
+  //undo the coordinate transform
+  pls->stransform(NULL, NULL);
+
+  //legend
+  if (is_showing_legend())
+    draw_legend(cr);
+
   cr->restore();
 
   convert_plplot_to_cairo_coordinates(plotted_range_x[0], plotted_range_y[0],

@@ -58,9 +58,16 @@ namespace Test2 {
 
 
         Gtk::PLplot::Plot2D *plot = dynamic_cast<Gtk::PLplot::Plot2D *>(canvas.get_plot(0));
-        plot->add_data(Gtk::PLplot::PlotData2D(x, y2, Gdk::RGBA("blue")));
-        plot->add_data(Gtk::PLplot::PlotData2D(x, y3, Gdk::RGBA("Blue Violet")));
-        plot->add_data(Gtk::PLplot::PlotData2D(x, y4, Gdk::RGBA("Green")));
+        Gtk::PLplot::PlotData2D *plot_data1 = dynamic_cast<Gtk::PLplot::PlotData2D *>(plot->get_data(0));
+        Gtk::PLplot::PlotData2D *plot_data2 = plot->add_data(Gtk::PLplot::PlotData2D(x, y2, Gdk::RGBA("blue")));
+        Gtk::PLplot::PlotData2D *plot_data3 = plot->add_data(Gtk::PLplot::PlotData2D(x, y3, Gdk::RGBA("Blue Violet")));
+        Gtk::PLplot::PlotData2D *plot_data4 = plot->add_data(Gtk::PLplot::PlotData2D(x, y4, Gdk::RGBA("Green")));
+
+        plot_data1->set_name("1 interaction");
+        plot_data2->set_name("2 interactions");
+        plot_data3->set_name("3 interactions");
+        plot_data4->set_name("4 interactions");
+
         plot->set_axis_logarithmic_y();
 
         set_default_size(720, 580);

@@ -257,6 +257,9 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
     iter->draw_plot_data(cr, pls);
   }
 
+  //undo the coordinate transform
+  pls->stransform(NULL, NULL);
+
   //legend
   if (is_showing_legend())
     draw_legend(cr);

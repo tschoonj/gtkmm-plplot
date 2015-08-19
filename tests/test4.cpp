@@ -29,7 +29,7 @@ namespace Test4 {
   class CheckButton : public Gtk::CheckButton {
   private:
     //we are not using any methods specific to Plot2D, so we can safely use Plot here
-    Gtk::PLplot::Plot *plot;
+    Gtk::PLplot::Plot2D *plot;
   public:
     CheckButton(Glib::ustring text) : Gtk::CheckButton(text), plot(nullptr) {}
     void on_toggled() final {
@@ -40,8 +40,9 @@ namespace Test4 {
       else
         plot->hide();
     }
-    void connect_plot(Gtk::PLplot::Plot *_plot) {
+    void connect_plot(Gtk::PLplot::Plot2D *_plot) {
       plot = _plot;
+      plot->hide_legend();
     }
   };
 
@@ -79,9 +80,69 @@ namespace Test4 {
       std::valarray<PLFLT> y_va3 = tanh(x_va);
 
       //generate the data, the plot, add them to the canvas and use the return value to pass it to the checkbutton
-      checkbutton1.connect_plot(canvas.add_plot(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x_va, y_va1, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::CONTINUOUS, 3.0), "X-axis", "Y-axis", "Hyperbolic sine", 0.5, 0.5, 0.0, 0.0)));
-      checkbutton2.connect_plot(canvas.add_plot(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x_va, y_va2, Gdk::RGBA("red"), Gtk::PLplot::LineStyle::CONTINUOUS, 3.0), "X-axis", "Y-axis", "Hyperbolic cosine", 0.5, 0.5, 0.5, 0.0)));
-      checkbutton3.connect_plot(canvas.add_plot(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x_va, y_va3, Gdk::RGBA("green"), Gtk::PLplot::LineStyle::CONTINUOUS, 3.0), "X-axis", "Y-axis", "Hyperbolic tangent", 0.4, 0.4, 0.2, 0.55)));
+      checkbutton1.connect_plot(
+        dynamic_cast<Gtk::PLplot::Plot2D *>(
+          canvas.add_plot(
+            Gtk::PLplot::Plot2D(
+              Gtk::PLplot::PlotData2D(
+                x_va,
+                y_va1,
+                Gdk::RGBA("blue"),
+              Gtk::PLplot::LineStyle::CONTINUOUS,
+              3.0),
+              "X-axis",
+              "Y-axis",
+              "Hyperbolic sine",
+              0.5,
+              0.5,
+              0.0,
+              0.0
+            )
+          )
+        )
+      );
+      checkbutton2.connect_plot(
+        dynamic_cast<Gtk::PLplot::Plot2D *>(
+          canvas.add_plot(
+            Gtk::PLplot::Plot2D(
+              Gtk::PLplot::PlotData2D(
+                x_va,
+                y_va2,
+                Gdk::RGBA("red"),
+                Gtk::PLplot::LineStyle::CONTINUOUS,
+                3.0),
+              "X-axis",
+              "Y-axis",
+              "Hyperbolic cosine",
+              0.5,
+              0.5,
+              0.5,
+              0.0
+            )
+          )
+        )
+      );
+      checkbutton3.connect_plot(
+        dynamic_cast<Gtk::PLplot::Plot2D *>(
+          canvas.add_plot(
+            Gtk::PLplot::Plot2D(
+              Gtk::PLplot::PlotData2D(
+                x_va,
+                y_va3,
+                Gdk::RGBA("green"),
+                Gtk::PLplot::LineStyle::CONTINUOUS,
+                3.0),
+              "X-axis",
+              "Y-axis",
+              "Hyperbolic tangent",
+              0.4,
+              0.4,
+              0.2,
+              0.55
+            )
+          )
+        )
+      );
 
       checkbutton1.set_active();
       checkbutton2.set_active(false);

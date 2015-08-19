@@ -55,12 +55,14 @@ namespace Test6 {
         "",
         "Polar coordinate system"
       );
+      plot.get_data()->set_name("Cardiod");
 
       //Fermat's spiral
       std::valarray<PLFLT> theta2 = Gtk::PLplot::indgen_va(2000)*4.0*M_PI/1999.0;
       std::valarray<PLFLT> r2 = sqrt(theta2) * M_2_SQRTPI * 1.1;
 
       auto data2 = Gtk::PLplot::PlotData2D(r2, theta2, Gdk::RGBA("green"), Gtk::PLplot::LineStyle::CONTINUOUS, 2.0);
+      data2.set_name("Fermat's spiral");
 
       auto plot_ref = canvas.add_plot(plot);
       plot_ref->add_data(data2);

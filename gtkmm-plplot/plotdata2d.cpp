@@ -74,12 +74,14 @@ PlotData2D::PlotData2D(
   _color, _line_style, _line_width) {}
 
 PlotData2D::PlotData2D(const PlotData2D &_data) :
-  PlotData2D(_data.x, _data.y, _data.color, _data.line_style, _data.line_width) {
-    shown = _data.shown;
-    symbol = _data.symbol;
-    symbol_color = _data.symbol_color;
-    symbol_scale_factor = _data.symbol_scale_factor;
-}
+  PlotData(_data),
+  x(_data.x),
+  y(_data.y),
+  color(_data.color),
+  line_style(_data.line_style),
+  line_width(_data.line_width),
+  symbol_color(_data.symbol_color),
+  symbol_scale_factor(_data.symbol_scale_factor) {}
 
 PlotData2D::~PlotData2D() {
 
@@ -154,7 +156,7 @@ void PlotData2D::add_datapoint(std::pair<PLFLT, PLFLT> _xy_pair) {
 
 
 void PlotData2D::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) {
-  if (!shown)
+  if (!is_showing())
     return;
 
   PLFLT *x_pl = &x[0], *y_pl = &y[0];

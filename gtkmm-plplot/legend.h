@@ -32,7 +32,7 @@ namespace Gtk {
      * by adding support for a legend that shows a short string with a description of each dataset.
      * Such a legend consists of a box which contains a list of these descrptions, along with a small plot
      * of the line and/or symbol that was used to render the corresponding dataset.
-     * This is demonstrated in example \ref example1.
+     * This is demonstrated in examples \ref example2, \ref example5 and \ref example6.
      */
     class Legend : public virtual Plot {
     private:
@@ -95,6 +95,25 @@ namespace Gtk {
        * \returns the legend bounding box color
        */
       Gdk::RGBA get_legend_bounding_box_color();
+
+      /** Sets the new position of the legend
+       *
+       * This position corresponds to the normalized coordinates
+       * of the top right corner of the legend, measured with respect to the
+       * top right corner of the plot box.
+       * \param legend_pos_x the new position of the right top corner of the legend along the X-axis in normalized coordinates
+       * \param legend_pos_y the new position of the right top corner of the legend along the Y-axis in normalized coordinates
+       * \exception Gtk::PLplot::Exception
+       */
+      void set_legend_position(double legend_pos_x, double legend_pos_y);
+
+      /** Gets the current position of the legend
+       *
+       * See set_legend_position() for more information.
+       * \param legend_pos_x the current position of the right top corner of the legend along the X-axis in normalized coordinates
+       * \param legend_pos_y the current position of the right top corner of the legend along the Y-axis in normalized coordinates
+       */
+      void get_legend_position(double &legend_pos_x, double &legend_pos_y);
 
       /** Show the legend
        *

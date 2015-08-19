@@ -106,7 +106,10 @@ PlotDataSurface::PlotDataSurface(
 
 //copy constructor
 PlotDataSurface::PlotDataSurface(const PlotDataSurface &_data) :
-  PlotDataSurface(_data.x, _data.y, _data.z) {}
+  PlotData(_data),
+	x(_data.x),
+	y(_data.y),
+	z(deep_copy_array2d(_data.z, _data.x.size(), _data.y.size())) {}
 
 PlotDataSurface::~PlotDataSurface() {
   free_array2d((void **) z, x.size());

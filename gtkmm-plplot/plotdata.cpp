@@ -34,6 +34,11 @@ PlotData::~PlotData() {
 
 }
 
+PlotData::PlotData(const PlotData &_source) : PlotData() {
+  name = _source.name;
+  shown = _source.shown;
+}
+
 void PlotData::on_changed() {
   //do nothing
 }

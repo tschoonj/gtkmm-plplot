@@ -44,6 +44,7 @@ namespace Test3 {
       }
       y_va = sin(x_va);
       plot = dynamic_cast<Gtk::PLplot::Plot2D *>(canvas.add_plot(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0))));
+      plot->hide_legend();
 
       remove_plot.set_sensitive(true);
       show_plot.set_sensitive(false);

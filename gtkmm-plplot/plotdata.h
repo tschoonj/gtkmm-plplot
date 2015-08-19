@@ -37,11 +37,11 @@ namespace Gtk {
      */
     class PlotData : public sigc::trackable {
     private:
-      PlotData &operator=(const PlotData &) = delete; ///< no move assignment operator
-      PlotData(const PlotData &source) = delete; ///< No copy constructor;
-    protected:
       Glib::ustring name; ///< the name that will be assigned to the dataset. Will be used to generate legends if supported by the Plot type
       bool shown; ///< \c true means the plot is currently visible, \c false means it is not plotted
+      PlotData &operator=(const PlotData &) = delete; ///< no move assignment operator
+    protected:
+      PlotData(const PlotData &source); ///< Copy constructor;
       sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the dataset proprties is changed.
       sigc::signal<void> _signal_data_modified; ///< signal that gets emitted whenever the X- and Y-datasets have been modified.
       /** This is a default handler for signal_changed()

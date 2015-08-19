@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GTKMM_PLPLOT_PLOTPOLAR_H
 
 #include <gtkmm-plplot/plot.h>
+#include <gtkmm-plplot/legend.h>
 #include <gtkmm-plplot/plotdata2d.h>
 
 namespace Gtk {
@@ -36,7 +37,7 @@ namespace Gtk {
      *  be picked up by the \c canvas that will hold the plot.
      *  An example of this class is presented in \ref example6.
      */
-    class PlotPolar : public Plot {
+    class PlotPolar : public virtual Plot, public Legend {
     private:
       PLFLT max_r; ///< the maximum radial coordinate in the datasets
       PlotPolar() = delete; ///< no default constructor

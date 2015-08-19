@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/legend.h>
 #include <gtkmm-plplot/exception.h>
 #include <gtkmm-plplot/utils.h>
-#include <iostream>
 #include <cstdlib>
 #include <glib.h>
 
@@ -33,7 +32,12 @@ Legend::Legend(
   legend_pos_x(_legend_pos_x),
   legend_pos_y(_legend_pos_y),
   legend_background_color(_legend_background_color),
-  legend_bounding_box_color(_legend_bounding_box_color) {}
+  legend_bounding_box_color(_legend_bounding_box_color) {
+
+  if (_legend_pos_x < 0.0 || _legend_pos_x > 1.0 ||
+      _legend_pos_y < 0.0 || _legend_pos_y > 1.0)
+    throw Exception("Gtk::PLplot::Legend::set_legend_position -> position must be expressed in normalized coordinates!");
+}
 
 void Legend::set_legend_background_color(Gdk::RGBA _legend_background_color) {
   if (legend_background_color == _legend_background_color)
@@ -57,6 +61,25 @@ Gdk::RGBA Legend::get_legend_bounding_box_color() {
   return legend_bounding_box_color;
 }
 
+void Legend::set_legend_position(double _legend_pos_x, double _legend_pos_y) {
+  if (_legend_pos_x == legend_pos_x && _legend_pos_y == legend_pos_y)
+    return;
+
+  if (_legend_pos_x < 0.0 || _legend_pos_x > 1.0 ||
+      _legend_pos_y < 0.0 || _legend_pos_y > 1.0)
+    throw Exception("Gtk::PLplot::Legend::set_legend_position -> position must be expressed in normalized coordinates!");
+
+  legend_pos_x = _legend_pos_x;
+  legend_pos_y = _legend_pos_y;
+  _signal_changed.emit();
+}
+
+void Legend::get_legend_position(double &_legend_pos_x, double &_legend_pos_y) {
+  _legend_pos_x = legend_pos_x;
+  _legend_pos_y = legend_pos_y;
+}
+
+
 void Legend::show_legend() {
   if (showing_legend)
     return;
@@ -76,21 +99,17 @@ bool Legend::is_showing_legend() {
 }
 
 void Legend::draw_legend(const Cairo::RefPtr<Cairo::Context> &cr) {
-  std::cout << "Entering Legend::draw_legend()" << std::endl;
-
   double legend_width, legend_height;
 
   int opt = PL_LEGEND_BACKGROUND | PL_LEGEND_BOUNDING_BOX;
   int position = 0; /* default */
   std::vector<int> opt_array;
   std::vector<int> text_colors;
-  int line_color;
   int line_style;
   double line_width;
   std::vector<int> line_colors;
   std::vector<int> line_styles;
   std::vector<double> line_widths;
-  int symbol_color;
   double symbol_scale;
   std::vector<int> symbol_colors;
   std::vector<double> symbol_scales;
@@ -107,8 +126,6 @@ void Legend::draw_legend(const Cairo::RefPtr<Cairo::Context> &cr) {
 
     if (iter2 == nullptr)
       throw Exception("Gtk::PLplot::Legend::draw_legend -> could not perform dynamic_cast to PlotData2D");
-
-    std::cout << "plot_data: " << index << std::endl;
 
     /* no need to add it to the legend if it's not visible! */
     if (!iter2->is_showing() || (
@@ -158,13 +175,23 @@ void Legend::draw_legend(const Cairo::RefPtr<Cairo::Context> &cr) {
   }
 
   auto nlegend = opt_array.size();
+
+  if (nlegend == 0) {
+    //no data was found
+    //cleanup
+    g_strfreev(text);
+    g_strfreev(symbols);
+    return;
+  }
+
   text_colors.assign(nlegend, GTKMM_PLPLOT_DEFAULT_COLOR_INDEX +1);
-  symbol_numbers.assign(nlegend, 1);
+  symbol_numbers.assign(nlegend, 3);
 
 
   change_plstream_color(pls, legend_background_color, false, GTKMM_PLPLOT_DEFAULT_COLOR_INDEX);
   change_plstream_color(pls, legend_bounding_box_color, false, GTKMM_PLPLOT_DEFAULT_COLOR_INDEX + 1);
 
+  pls->width(1.0);
 
   pls->legend(
     &legend_width,
@@ -184,7 +211,7 @@ void Legend::draw_legend(const Cairo::RefPtr<Cairo::Context> &cr) {
     1.0, /* text offset */
     1.0, /* text scale */
     2.0, /* text spacing */
-    1.0, /* text justification */
+    0.0, /* text justification */
     &text_colors[0],
     (const char * const *) text,
     NULL, NULL, NULL, NULL, /* box stuff that we are not using */

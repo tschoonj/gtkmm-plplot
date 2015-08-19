@@ -66,6 +66,7 @@ namespace Test1 {
       auto plot = dynamic_cast<Gtk::PLplot::Plot2D *>(canvas.get_plot(0));
 
       plot->add_data(Gtk::PLplot::PlotData2D(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0));
+      plot->hide_legend();
 
 
       set_default_size(720, 580);
