@@ -37,11 +37,11 @@ namespace Gtk {
      class PlotContourShades : public PlotContour {
      private:
        bool showing_colorbar; ///< \c true will draw a colorbar, \c false will not.
+       bool showing_edges; ///< \c true will draw contour lines at the edges, \c false will not.
        Glib::ustring colorbar_title; ///< the title of the colorbar
        ColormapPalette colormap_palette; ///< The colormap that will be used to render the contourplot shades.
        AreaFillPattern area_fill_pattern; ///< The pattern that will be used to draw the shaded regions.
        double fill_width; ///< Defines line width used by the fill pattern.
-       bool showing_edges; ///< \c true will draw contour lines at the edges, \c false will not.
        PlotContourShades() = delete; ///< no default constructor
        PlotContourShades &operator=(const PlotContourShades &) = delete; ///< no copy constructor
      protected:

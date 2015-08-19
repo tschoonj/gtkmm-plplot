@@ -41,6 +41,9 @@ namespace Test8 {
     Gtk::Label show_edges_label;
     Gtk::Switch show_edges_switch;
 
+    Gtk::Label show_labels_label;
+    Gtk::Switch show_labels_switch;
+
     Gtk::Label edge_color_label;
     Gtk::ColorButton edge_color;
 
@@ -69,6 +72,7 @@ namespace Test8 {
   public:
     Window() :
       show_edges_label("Show edges"),
+      show_labels_label("Show contour labels"),
       edge_color_label("Contour edge color"),
       edge_color(Gdk::RGBA("Red")),
       edge_width_label("Contour edge width"),
@@ -178,17 +182,41 @@ namespace Test8 {
         if (show_edges_switch.get_active()) {
           edge_color.set_sensitive();
           edge_width_spin.set_sensitive();
+          show_labels_switch.set_sensitive();
           plot_ref->show_edges();
         }
         else {
           edge_color.set_sensitive(false);
           edge_width_spin.set_sensitive(false);
+          show_labels_switch.set_sensitive(false);
           plot_ref->hide_edges();
         }
       });
 
       grid.attach(show_edges_label, 0, row_counter, 1, 1);
       grid.attach(show_edges_switch, 1, row_counter++, 1, 1);
+
+      // show contour labels
+      show_labels_label.set_hexpand(true);
+      show_labels_label.set_vexpand(false);
+      show_labels_label.set_valign(Gtk::ALIGN_CENTER);
+      show_labels_label.set_halign(Gtk::ALIGN_END);
+      show_labels_switch.set_hexpand(true);
+      show_labels_switch.set_vexpand(false);
+      show_labels_switch.set_halign(Gtk::ALIGN_START);
+      show_labels_switch.set_valign(Gtk::ALIGN_CENTER);
+      show_labels_switch.set_active(plot_ref->is_showing_labels());
+      show_labels_switch.property_active().signal_changed().connect([this, plot_ref](){
+        if (show_labels_switch.get_active()) {
+          plot_ref->show_labels();
+        }
+        else {
+          plot_ref->hide_labels();
+        }
+      });
+
+      grid.attach(show_labels_label, 0, row_counter, 1, 1);
+      grid.attach(show_labels_switch, 1, row_counter++, 1, 1);
 
       //color button
       edge_color_label.set_hexpand(true);

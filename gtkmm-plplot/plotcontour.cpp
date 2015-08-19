@@ -47,6 +47,7 @@ PlotContour::PlotContour(
   nlevels(_nlevels),
   edge_color(_edge_color),
   edge_width(_edge_width),
+	showing_labels(true),
   clevels(_nlevels) {
   //ensure edge_width is strictly positive
   if (edge_width <= 0.0) {
@@ -88,6 +89,8 @@ PlotContour::PlotContour(const PlotContour &_source) :
   _source.plot_height_norm,
   _source.plot_offset_horizontal_norm,
   _source.plot_offset_vertical_norm) {
+
+	showing_labels = _source.showing_labels;
 
   for (auto &iter : _source.plot_data) {
     add_data(*iter);
@@ -203,6 +206,24 @@ unsigned int PlotContour::get_nlevels() {
   return nlevels;
 }
 
+void PlotContour::show_labels() {
+	if (showing_labels)
+		return;
+	showing_labels = true;
+	_signal_changed.emit();
+}
+
+void PlotContour::hide_labels() {
+	if (!showing_labels)
+		return;
+	showing_labels = false;
+	_signal_changed.emit();
+}
+
+bool PlotContour::is_showing_labels() const {
+	return showing_labels;
+}
+
 void PlotContour::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) {
   if (!shown)
     return;
@@ -240,6 +261,8 @@ void PlotContour::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int w
   cgrid.nx = x.size();
   cgrid.ny = y.size();
   PLFLT **z = data->get_array2d_z();
+
+	pls->setcontlabelparam(0.01, 0.4, 0.1, is_showing_labels());
 
   pls->cont(z, x.size(), y.size(), 1, x.size(), 1, y.size(), &clevels[0], nlevels, PLCALLBACK::tr1, (void *) &cgrid);
 

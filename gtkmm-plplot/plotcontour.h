@@ -30,8 +30,8 @@ namespace Gtk {
      *
      *  A class for conventional contour plots. Construction requires a
      *  single PlotDataSurface dataset, and no datasets may be added afterwards.
-     *  This class is not very useful since the contour edges don't show the value that corresponds to them.
-     *  However, PlotContourShades adds support for colorbars whose colors match the regions between two contour edges, giving quantitative information.
+     *  For more beautiful contour plot with shaded regions, check out PlotContourShades.
+     *  PlotContour features several properties that determine the appearance of the contour.
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.
      *  For more information, the reader is referred to example \ref example7.
@@ -43,11 +43,12 @@ namespace Gtk {
     protected:
       unsigned int nlevels; ///< Number of contour levels to draw
       Gdk::RGBA edge_color; ///< Defines pen color used for contours defining edges.
-      PLFLT edge_width; ///< Defines line width used for contours defining edges.
+      double edge_width; ///< Defines line width used for contours defining edges.
+      bool showing_labels; ///< \c true will draw the contour labels, \c false hides them
       //TODO: add BoxStyle???
       PLFLT zmin; ///< Minimum of \c z, used to determine the contour edges
       PLFLT zmax; ///< Maximum of \c z, used to determine the contour edges
-      std::vector<PLFLT> clevels; ///< Vector containing the data levels corresponding to the edges of each region that will be plotted. To work properly the levels should be monotonic.
+      std::vector<double> clevels; ///< Vector containing the data levels corresponding to the edges of each region that will be plotted. To work properly the levels should be monotonic.
 
       virtual void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
 
@@ -166,6 +167,21 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        */
       unsigned int get_nlevels();
+
+      /** Show the contour labels
+       *
+       */
+      void show_labels();
+
+      /** Hides the contour labels
+       *
+       */
+      void hide_labels();
+
+      /** Returns whether or not the contour labels are currently showing
+       *
+       */
+      bool is_showing_labels() const;
 
       /** Method to draw the plot with all of its datasets
        *

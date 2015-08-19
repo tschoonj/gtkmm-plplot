@@ -50,11 +50,11 @@ PlotContourShades::PlotContourShades(
   _plot_offset_horizontal_norm,
   _plot_offset_vertical_norm),
   showing_colorbar(true),
+  showing_edges(true),
   colorbar_title("Magnitude"),
   colormap_palette(_colormap_palette),
   area_fill_pattern(SOLID),
-  fill_width(PLOTDATA_DEFAULT_LINE_WIDTH),
-  showing_edges(true) {}
+  fill_width(PLOTDATA_DEFAULT_LINE_WIDTH) {}
 
 PlotContourShades::PlotContourShades(
   const PlotDataSurface &_data,
@@ -83,11 +83,16 @@ PlotContourShades::PlotContourShades(
 PlotContourShades::PlotContourShades(const PlotContourShades &_source) :
   PlotContour(_source),
   showing_colorbar(_source.showing_colorbar),
+  showing_edges(_source.showing_edges),
   colorbar_title(_source.colorbar_title),
   colormap_palette(_source.colormap_palette),
   area_fill_pattern(_source.area_fill_pattern),
-  fill_width(_source.fill_width),
-  showing_edges(_source.showing_edges) {}
+  fill_width(_source.fill_width) {
+		if (_source.is_showing_labels())
+			show_labels();
+		else
+			hide_labels();
+	}
 
 PlotContourShades::~PlotContourShades() {}
 
@@ -210,6 +215,9 @@ void PlotContourShades::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const
 		cont_color = 0;
 		cont_width = 0.0;
 	}
+
+	//this will only work if showing_edges is true!
+	pls->setcontlabelparam(0.01, 0.4, 0.1, is_showing_labels());
 
 	pls->shades(z, x.size(), y.size(), NULL, x.front(), x.back(), y.front(), y.back(),
               &clevels[0], nlevels, fill_width,
