@@ -39,3 +39,7 @@ libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_LDFLAGS = $(BOOST_MULTIARRAY_LDFLA
 
 gtkmm_plplotlibincludedir = $(libdir)/gtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@/include
 nodist_gtkmm_plplotlibinclude_HEADERS = gtkmm-plplotconfig.h
+
+if OS_WINDOWS
+libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_LDFLAGS += -no-undefined
+endif
