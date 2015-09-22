@@ -37,7 +37,7 @@ namespace Gtk {
      *  be picked up by the \c canvas that will hold the plot.
      *  An example of this class is presented in \ref example6.
      */
-    class PlotPolar : public virtual Plot, public Legend {
+    class PlotPolar : public Plot, public Legend {
     private:
       PLFLT max_r; ///< the maximum radial coordinate in the datasets
       PlotPolar() = delete; ///< no default constructor
@@ -130,7 +130,7 @@ namespace Gtk {
        * \return a pointer to the PlotData2D in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      virtual PlotData2D *add_data(const PlotData &data);
+      virtual PlotData2D *add_data(const PlotData &data) override;
 
       /** Method to draw the plot with all of its datasets
        *
@@ -172,7 +172,7 @@ namespace Gtk {
        * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
        * an implementation of this method, to ensure a proper copy can be provided.
        */
-      virtual PlotPolar *clone() const;
+      virtual PlotPolar *clone() const override;
 
       friend class Canvas;
     };

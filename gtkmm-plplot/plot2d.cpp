@@ -262,7 +262,7 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
 
   //legend
   if (is_showing_legend())
-    draw_legend(cr);
+    draw_legend(cr, plot_data, pls);
 
   cr->restore();
 

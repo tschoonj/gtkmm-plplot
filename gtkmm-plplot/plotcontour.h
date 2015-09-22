@@ -125,7 +125,7 @@ namespace Gtk {
        * \return a pointer to the PlotDataSurface in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      virtual PlotDataSurface *add_data(const PlotData &data);
+      virtual PlotDataSurface *add_data(const PlotData &data) override;
 
       /** Changes the color used for the contour defining edges
        *
@@ -199,7 +199,7 @@ namespace Gtk {
        * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
        * an implementation of this method, to ensure a proper copy can be provided.
        */
-      virtual PlotContour *clone() const;
+      virtual PlotContour *clone() const override;
 
       friend class Canvas;
     };

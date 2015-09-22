@@ -219,7 +219,7 @@ namespace Gtk {
        * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
        * an implementation of this method, to ensure a proper copy can be provided.
        */
-      virtual PlotContourShades *clone() const;
+      virtual PlotContourShades *clone() const override;
 
       friend class Canvas;
 

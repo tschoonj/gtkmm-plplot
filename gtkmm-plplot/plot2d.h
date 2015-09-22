@@ -38,7 +38,7 @@ namespace Gtk {
      *  For more information, the reader is referred to the examples \ref example1, \ref example2, \ref example3, \ref example4
      *  and \ref example5.
      */
-    class Plot2D : public virtual Plot, public Legend {
+    class Plot2D : public Plot, public Legend {
     private:
       bool log10_x; ///< \c true means X-axis logarithmic axis, \c false means linear
       bool log10_y; ///< \c true means Y-axis logarithmic axis, \c false means linear
@@ -133,7 +133,7 @@ namespace Gtk {
        * \return a pointer to the PlotData2D in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      virtual PlotData2D *add_data(const PlotData &data);
+      virtual PlotData2D *add_data(const PlotData &data) override;
 
       /** Method to draw the plot with all of its datasets
        *
@@ -218,7 +218,7 @@ namespace Gtk {
        * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
        * an implementation of this method, to ensure a proper copy can be provided.
        */
-      virtual Plot2D *clone() const;
+      virtual Plot2D *clone() const override;
 
       friend class Canvas;
     };

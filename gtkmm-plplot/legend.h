@@ -18,9 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMMPLPLOT_LEGEND_H
 #define GTKMMPLPLOT_LEGEND_H
 
-#include <gtkmm-plplot/plot.h>
-#include <gtkmm-plplot/plotdata2d.h>
+#include <sigc++/sigc++.h>
 #include <vector>
+#include <gtkmm-plplot/plotdata.h>
+#include <gtkmm-plplot/enums.h>
 
 namespace Gtk {
   namespace PLplot {
@@ -34,15 +35,26 @@ namespace Gtk {
      * of the line and/or symbol that was used to render the corresponding dataset.
      * This is demonstrated in examples \ref example2, \ref example5 and \ref example6.
      */
-    class Legend : public virtual Plot {
+    class Legend : public sigc::trackable {
     private:
       bool showing_legend; ///< \c true will render the legend, while \c false will hide it
-      double legend_pos_x; ///< the position of the right top corner of the legend along the X-axis in normalized coordinates
-      double legend_pos_y; ///< the position of the right top corner of the legend along the Y-axis in normalized coordinates
+      double legend_pos_x; ///< the position of the selected corner of the legend along the X-axis in normalized coordinates
+      double legend_pos_y; ///< the position of the selected corner of the legend along the Y-axis in normalized coordinates
       Gdk::RGBA legend_background_color; ///< the background color of the legend
       Gdk::RGBA legend_bounding_box_color; ///< the color of the bounding box of the legend
+      LegendCornerPosition legend_corner_position; ///< the corner of the legend box that will be used to determine the origin and direction of the normalized legend coordinate system
       Legend &operator=(const Legend &) = delete; ///< no move constructor
     protected:
+      sigc::signal<void> _signal_legend_changed; ///< signal that gets emitted whenever any of the legend parameters is changed.
+
+      /** This is a default handler for signal_legend_changed()
+       *
+       * This signal is emitted whenever any of the legend properties is changed.
+       * Currently this method does nothing but the signal will get caught by Canvas,
+       * and will eventually trigger a redrawing of the entire widget.
+       */
+      virtual void on_legend_changed();
+
       /** Copy constructor
        *
        * \param legend copy source
@@ -53,12 +65,14 @@ namespace Gtk {
        *
        * This class offers a single, protected constructor. To be called from the constructors of classes
        * that derive from this class through multiple inheritance.
+       * \param legend_corner_position The corner that will be used to determine the legend coordinate system
        * \param legend_pos_x The position of the right top corner of the legend along the X-axis in normalized coordinates
        * \param legend_pos_y The position of the right top corner of the legend along the Y-axis in normalized coordinates
        * \param legend_background_color The default background color of the legend
        * \param legend_bounding_box_color The default color of the bounding box color of the legend
        */
-      Legend(double legend_pos_x = 0.0,
+      Legend(LegendCornerPosition legend_corner_position = LegendCornerPosition::TOP_RIGHT,
+             double legend_pos_x = 0.0,
              double legend_pos_y = 0.0,
              Gdk::RGBA legend_background_color = Gdk::RGBA("White"),
              Gdk::RGBA legend_bounding_box_color = Gdk::RGBA("Black"));
@@ -68,8 +82,12 @@ namespace Gtk {
        * To be called from within draw_plot().
        * This method is virtual allowing inheriting classes to implement their own method with the same signature.
        * \param cr the cairo context to draw to.
+       * \param plot_data the vector of PlotData.
+       * \param pls pointer to the plstream connected to the Plot.
        */
-      virtual void draw_legend(const Cairo::RefPtr<Cairo::Context> &cr);
+      virtual void draw_legend(const Cairo::RefPtr<Cairo::Context> &cr,
+                               std::vector<PlotData *> &plot_data,
+                               plstream *pls);
 
     public:
       /** Set the background color of the legend
@@ -99,10 +117,10 @@ namespace Gtk {
       /** Sets the new position of the legend
        *
        * This position corresponds to the normalized coordinates
-       * of the top right corner of the legend, measured with respect to the
-       * top right corner of the plot box.
-       * \param legend_pos_x the new position of the right top corner of the legend along the X-axis in normalized coordinates
-       * \param legend_pos_y the new position of the right top corner of the legend along the Y-axis in normalized coordinates
+       * of the selected corner of the legend, measured with respect to the
+       * corresponding corner of the plot box.
+       * \param legend_pos_x the new position of the selected corner of the legend along the X-axis in normalized coordinates
+       * \param legend_pos_y the new position of the selected corner of the legend along the Y-axis in normalized coordinates
        * \exception Gtk::PLplot::Exception
        */
       void set_legend_position(double legend_pos_x, double legend_pos_y);
@@ -110,10 +128,24 @@ namespace Gtk {
       /** Gets the current position of the legend
        *
        * See set_legend_position() for more information.
-       * \param legend_pos_x the current position of the right top corner of the legend along the X-axis in normalized coordinates
-       * \param legend_pos_y the current position of the right top corner of the legend along the Y-axis in normalized coordinates
+       * \param legend_pos_x the current position of the selected corner of the legend along the X-axis in normalized coordinates
+       * \param legend_pos_y the current position of the selected corner of the legend along the Y-axis in normalized coordinates
        */
       void get_legend_position(double &legend_pos_x, double &legend_pos_y);
+
+      /** Sets the new legend corner position
+       *
+       * This corner will be used to determine the origin and direction of the normalized legend coordinate system.
+       * \param legend_corner_position the new legend corner
+       */
+      void set_legend_corner_position(LegendCornerPosition legend_corner_position);
+
+      /** Gets the current legend corner position
+       *
+       * Set set_legend_corner_position() for more information.
+       * \returns the legend corner position
+       */
+      LegendCornerPosition get_legend_corner_position();
 
       /** Show the legend
        *
@@ -129,6 +161,14 @@ namespace Gtk {
        *
        */
       bool is_showing_legend();
+
+      /** signal_legend_changed is emitted whenever any of the legend properties has changed.
+       *
+       * See default handler on_legend_changed()
+       */
+      sigc::signal<void> signal_legend_changed() {
+        return _signal_legend_changed;
+      }
 
     };
   }

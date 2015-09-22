@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/canvas.h>
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/exception.h>
+#include <gtkmm-plplot/legend.h>
 #include <valarray>
 #include <cmath>
 #include <gdkmm/general.h>
@@ -49,9 +50,13 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
 }
 
 Plot *Canvas::add_plot(const Plot &plot) {
-  //now some bad C++ code. I bet there is some cool trick that avoid this typeid stuff
   plots.push_back(plot.clone());
   plots.back()->signal_changed().connect([this](){_signal_changed.emit();});
+  //check if plot has a legend
+  Legend *legend = dynamic_cast<Legend *>(plots.back());
+  if (legend != nullptr) {
+    legend->signal_legend_changed().connect([this](){_signal_changed.emit();});
+  }
   _signal_changed.emit();
   return plots.back();
 }

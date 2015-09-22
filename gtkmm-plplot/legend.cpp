@@ -18,12 +18,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/legend.h>
 #include <gtkmm-plplot/exception.h>
 #include <gtkmm-plplot/utils.h>
+#include <gtkmm-plplot/plotdata2d.h>
 #include <cstdlib>
 #include <glib.h>
 
 using namespace Gtk::PLplot;
 
+static std::vector<int> _legend_corner_positions = {
+  PL_POSITION_TOP | PL_POSITION_RIGHT,
+  PL_POSITION_BOTTOM | PL_POSITION_RIGHT,
+  PL_POSITION_TOP | PL_POSITION_LEFT,
+  PL_POSITION_BOTTOM | PL_POSITION_LEFT
+};
+
 Legend::Legend(
+  LegendCornerPosition _legend_corner_position,
   double _legend_pos_x,
   double _legend_pos_y,
   Gdk::RGBA _legend_background_color,
@@ -32,18 +41,22 @@ Legend::Legend(
   legend_pos_x(_legend_pos_x),
   legend_pos_y(_legend_pos_y),
   legend_background_color(_legend_background_color),
-  legend_bounding_box_color(_legend_bounding_box_color) {
+  legend_bounding_box_color(_legend_bounding_box_color),
+  legend_corner_position(_legend_corner_position) {
 
   if (_legend_pos_x < 0.0 || _legend_pos_x > 1.0 ||
       _legend_pos_y < 0.0 || _legend_pos_y > 1.0)
     throw Exception("Gtk::PLplot::Legend::set_legend_position -> position must be expressed in normalized coordinates!");
+
+  //connect our default signal handlers
+  this->signal_legend_changed().connect(sigc::mem_fun(*this, &Legend::on_legend_changed));
 }
 
 void Legend::set_legend_background_color(Gdk::RGBA _legend_background_color) {
   if (legend_background_color == _legend_background_color)
     return;
   legend_background_color = _legend_background_color;
-  _signal_changed.emit();
+  _signal_legend_changed.emit();
 }
 
 Gdk::RGBA Legend::get_legend_background_color() {
@@ -54,7 +67,7 @@ void Legend::set_legend_bounding_box_color(Gdk::RGBA _legend_bounding_box_color)
   if (legend_bounding_box_color == _legend_bounding_box_color)
     return;
   legend_bounding_box_color = _legend_bounding_box_color;
-  _signal_changed.emit();
+  _signal_legend_changed.emit();
 }
 
 Gdk::RGBA Legend::get_legend_bounding_box_color() {
@@ -71,7 +84,7 @@ void Legend::set_legend_position(double _legend_pos_x, double _legend_pos_y) {
 
   legend_pos_x = _legend_pos_x;
   legend_pos_y = _legend_pos_y;
-  _signal_changed.emit();
+  _signal_legend_changed.emit();
 }
 
 void Legend::get_legend_position(double &_legend_pos_x, double &_legend_pos_y) {
@@ -79,30 +92,44 @@ void Legend::get_legend_position(double &_legend_pos_x, double &_legend_pos_y) {
   _legend_pos_y = legend_pos_y;
 }
 
+void Legend::set_legend_corner_position(LegendCornerPosition _legend_corner_position) {
+  if (legend_corner_position == _legend_corner_position)
+    return;
+  legend_corner_position = _legend_corner_position;
+  _signal_legend_changed.emit();
+}
+
+LegendCornerPosition Legend::get_legend_corner_position() {
+  return legend_corner_position;
+}
+
 
 void Legend::show_legend() {
   if (showing_legend)
     return;
   showing_legend = true;
-  _signal_changed.emit();
+  _signal_legend_changed.emit();
 }
 
 void Legend::hide_legend() {
   if (!showing_legend)
     return;
   showing_legend = false;
-  _signal_changed.emit();
+  _signal_legend_changed.emit();
 }
 
 bool Legend::is_showing_legend() {
   return showing_legend;
 }
 
-void Legend::draw_legend(const Cairo::RefPtr<Cairo::Context> &cr) {
+void Legend::draw_legend(
+  const Cairo::RefPtr<Cairo::Context> &cr,
+  std::vector<PlotData *> &plot_data,
+  plstream *pls) {
+
   double legend_width, legend_height;
 
   int opt = PL_LEGEND_BACKGROUND | PL_LEGEND_BOUNDING_BOX;
-  int position = 0; /* default */
   std::vector<int> opt_array;
   std::vector<int> text_colors;
   int line_style;
@@ -197,7 +224,7 @@ void Legend::draw_legend(const Cairo::RefPtr<Cairo::Context> &cr) {
     &legend_width,
     &legend_height,
     opt,
-    position,
+    _legend_corner_positions[legend_corner_position],
     legend_pos_x,
     legend_pos_y,
     0.1, /* plot width */
@@ -222,4 +249,8 @@ void Legend::draw_legend(const Cairo::RefPtr<Cairo::Context> &cr) {
   //cleanup
   g_strfreev(text);
   g_strfreev(symbols);
+}
+
+void Legend::on_legend_changed() {
+  //do nothing...
 }

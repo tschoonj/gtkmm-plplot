@@ -225,7 +225,7 @@ void PlotPolar::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int wid
 
   //legend
   if (is_showing_legend())
-    draw_legend(cr);
+    draw_legend(cr, plot_data, pls);
 
   cr->restore();
 
