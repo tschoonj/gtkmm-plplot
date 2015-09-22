@@ -22,6 +22,7 @@ var searchData=
   ['queue_5fdraw',['queue_draw',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Widget.html#a63912f0924724c78298882b7c85139b4',1,'Gtk::Widget']]],
   ['queue_5fdraw_5farea',['queue_draw_area',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Widget.html#a8c32356962bb2dc596b9bcf1684e4eac',1,'Gtk::Widget']]],
   ['queue_5fdraw_5fregion',['queue_draw_region',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Widget.html#a1fd91b6735d36830b4c93d6be32ba2d2',1,'Gtk::Widget']]],
+  ['queue_5frender',['queue_render',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1GLArea.html#a84183c143fe9c2106e683a188fd68a1f',1,'Gtk::GLArea']]],
   ['queue_5fresize',['queue_resize',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TreeViewColumn.html#a0a739239b847d3ca7107f0087d9d63c5',1,'Gtk::TreeViewColumn::queue_resize()'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Widget.html#af3f9465454a376549b12a5eeee1277c2',1,'Gtk::Widget::queue_resize()']]],
   ['queue_5fresize_5fno_5fredraw',['queue_resize_no_redraw',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Widget.html#aa6b83d447bd58b0a99d4a3f0206a1fa7',1,'Gtk::Widget']]],
   ['quiet_5fnan',['quiet_NaN',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00854.html#a4a252b113edcbac0881a4ff30d94b1e1',1,'std::numeric_limits']]],

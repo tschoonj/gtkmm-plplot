@@ -49,6 +49,8 @@ var searchData=
   ['hash_5fexponential_5fsize_5fpolicy',['hash_exponential_size_policy',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00354.html',1,'__gnu_pbds']]],
   ['hash_5fload_5fcheck_5fresize_5ftrigger',['hash_load_check_resize_trigger',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00355.html',1,'__gnu_pbds']]],
   ['hash_5fload_5fcheck_5fresize_5ftrigger_5fsize_5fbase',['hash_load_check_resize_trigger_size_base',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00269.html',1,'__gnu_pbds::detail']]],
+  ['hash_5fload_5fcheck_5fresize_5ftrigger_5fsize_5fbase',['hash_load_check_resize_trigger_size_base',['http://www.cairographics.org/documentation/cairomm/reference/classhash__load__check__resize__trigger__size__base.html',1,'']]],
+  ['hash_5fload_5fcheck_5fresize_5ftrigger_5fsize_5fbase_3c_20size_5ftype_2c_20external_5fload_5faccess_20_3e',['hash_load_check_resize_trigger_size_base&lt; Size_Type, External_Load_Access &gt;',['http://www.cairographics.org/documentation/cairomm/reference/classhash__load__check__resize__trigger__size__base.html',1,'']]],
   ['hash_5fload_5fcheck_5fresize_5ftrigger_5fsize_5fbase_3c_20size_5ftype_2c_20true_20_3e',['hash_load_check_resize_trigger_size_base&lt; Size_Type, true &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00270.html',1,'__gnu_pbds::detail']]],
   ['hash_5fmap',['hash_map',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00048.html',1,'__gnu_cxx']]],
   ['hash_5fmultimap',['hash_multimap',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00049.html',1,'__gnu_cxx']]],
@@ -67,5 +69,6 @@ var searchData=
   ['hscale',['HScale',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1HScale.html',1,'Gtk']]],
   ['hscrollbar',['HScrollbar',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1HScrollbar.html',1,'Gtk']]],
   ['hseparator',['HSeparator',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1HSeparator.html',1,'Gtk']]],
-  ['hyperlink',['Hyperlink',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Hyperlink.html',1,'Atk']]]
+  ['hyperlink',['Hyperlink',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Hyperlink.html',1,'Atk']]],
+  ['hypertext',['Hypertext',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Hypertext.html',1,'Atk']]]
 ];

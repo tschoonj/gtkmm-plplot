@@ -1,6 +1,5 @@
 <map id="Gtk::PLplot::Legend" name="Gtk::PLplot::Legend">
-<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots " alt="" coords="5,225,140,251"/>
-<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots " alt="" coords="164,225,312,251"/>
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot.html" title="an abstract base class for all plots " alt="" coords="97,79,214,104"/>
-<area shape="rect" id="node3" href="/usr/local/Cellar/libsigc++/2.4.1/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="102,5,209,31"/>
+<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots " alt="" coords="5,152,140,177"/>
+<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots " alt="" coords="164,152,312,177"/>
+<area shape="rect" id="node2" href="/usr/local/Cellar/libsigc++/2.6.0/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="102,5,209,31"/>
 </map>

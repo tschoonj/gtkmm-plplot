@@ -1,6 +1,7 @@
 var searchData=
 [
   ['day',['Day',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#a217c209f5b937185e730455aed95c4fa',1,'Glib::Date']]],
+  ['deduce_5fresult_5ft',['deduce_result_t',['http://library.gnome.org/devel/libsigc++/unstable/namespacesigc.html#ab7791439fb79592300826fe076a8e3d1',1,'sigc']]],
   ['destroynotify',['DestroyNotify',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Object.html#ace6b5aedc84260604ba591df58f45b2e',1,'Glib::Object']]],
   ['destroynotifyfunc',['DestroyNotifyFunc',['http://library.gnome.org/devel/glibmm/unstable/structGlib_1_1StaticPrivate.html#a57d45a9e73d84805d10b27312954417c',1,'Glib::StaticPrivate']]],
   ['destructorfunc',['DestructorFunc',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Private.html#abc7351a07a6a27f9d3b49861cdc8ca9e',1,'Glib::Private::DestructorFunc()'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1Private.html#a77a5149115421f8ba6cf2d43c1fff37f',1,'Glib::Threads::Private::DestructorFunc()']]],

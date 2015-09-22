@@ -4,7 +4,6 @@ var searchData=
   ['take_5fownership',['take_ownership',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1MatchInfo.html#a76ffcd817000f97214a1a83d5f39a092',1,'Glib::MatchInfo']]],
   ['template_5fmismatch',['TEMPLATE_MISMATCH',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1BuilderError.html#aac9b5e60d4306f8ce1d74e06af3413e9a5c50660b3d4a92791df017db4f9c95f3',1,'Gtk::BuilderError']]],
   ['temporary_5ffailure',['TEMPORARY_FAILURE',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1ResolverError.html#a6afd83f5c3f01ba099e5b82b8501b6f2aa34214adc268a818b8b9a1505051a704',1,'Gio::ResolverError']]],
-  ['text_5fcluster_5fflag_5fbackward',['TEXT_CLUSTER_FLAG_BACKWARD',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a61b770cf36c555a4098b5428e030542aad1fc31baabb2eaa7661a0b8a91ad3b03',1,'Cairo']]],
   ['text_5ffile_5fbusy',['TEXT_FILE_BUSY',['http://library.gnome.org/devel/glibmm/unstable/group__FileUtils.html#gga0bdb855c813c7d07a424009706fc8f0ba7e4dc1f2fd34848b7bc3000c272e1372',1,'Glib::FileError']]],
   ['thursday',['THURSDAY',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#ga073c9f49a289b2036eb226bcdf16a2f1a94dc5538b8f75d17020925c582c66f88',1,'Glib::Date']]],
   ['time',['time',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00815.html#a1da7e1b7c469ed4ed45d61139cdc043d',1,'std::locale']]],

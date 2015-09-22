@@ -18,12 +18,6 @@ var searchData=
   ['partition_5fminimal_5fn',['partition_minimal_n',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#ae56b6a01dc27becaa478828011527b4b',1,'__gnu_parallel::_Settings']]],
   ['paste',['PASTE',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#ab7e3b84945995bc01398b11b122d6593',1,'Gtk::Stock']]],
   ['path_5f',['path_',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1AccelKey.html#a115c69bb0f29e66757db3dfd3ae78fa6',1,'Gtk::AccelKey']]],
-  ['pattern_5ftype_5flinear',['PATTERN_TYPE_LINEAR',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#afeff18f1043713479dd6ceb4aa4d4f02a9e26bb15e701bef4ddd597c56dd9f3df',1,'Cairo']]],
-  ['pattern_5ftype_5fradial',['PATTERN_TYPE_RADIAL',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#afeff18f1043713479dd6ceb4aa4d4f02ae3d2664b903efd92b03cabe25a7467c7',1,'Cairo']]],
-  ['pattern_5ftype_5fsolid',['PATTERN_TYPE_SOLID',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#afeff18f1043713479dd6ceb4aa4d4f02acc00394b686b5a51707eb50507d0ff98',1,'Cairo']]],
-  ['pattern_5ftype_5fsurface',['PATTERN_TYPE_SURFACE',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#afeff18f1043713479dd6ceb4aa4d4f02aa3d3d979bffbe8abace7427d2b75f286',1,'Cairo']]],
-  ['pdf_5fversion_5f1_5f4',['PDF_VERSION_1_4',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a594c3b02635245683fcb33c23872a125ae575205b13518242f1071bb4107cdefd',1,'Cairo']]],
-  ['pdf_5fversion_5f1_5f5',['PDF_VERSION_1_5',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a594c3b02635245683fcb33c23872a125a32c02c7e6e6929a060509d6c915a9664',1,'Cairo']]],
   ['pending',['PENDING',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a61099ae764ac98a31d71a763d9ebea20',1,'Gio::Error']]],
   ['perm',['PERM',['http://library.gnome.org/devel/glibmm/unstable/group__Spawn.html#ggafb7753661f7b0607951aa8881380ed1ba0293cb13ede6acd9a35740b3c4a46b85',1,'Glib::SpawnError']]],
   ['permission_5fdenied',['PERMISSION_DENIED',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a666ae0c513ad8de01cea2689f530674e',1,'Gio::Error']]],
@@ -60,7 +54,5 @@ var searchData=
   ['proxy_5fauth_5ffailed',['PROXY_AUTH_FAILED',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134ad3a6a3b863e3228a67bd46ca4721868f',1,'Gio::Error']]],
   ['proxy_5ffailed',['PROXY_FAILED',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134ae474b4f0547ee249ffe1b91e412d0e72',1,'Gio::Error']]],
   ['proxy_5fneed_5fauth',['PROXY_NEED_AUTH',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a91345ba253b645e5fc0399530be07e5f',1,'Gio::Error']]],
-  ['proxy_5fnot_5fallowed',['PROXY_NOT_ALLOWED',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a7ba75f6f699f5542664e84f432a9ffb9',1,'Gio::Error']]],
-  ['ps_5flevel_5f2',['PS_LEVEL_2',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a452db49f19542c791e4a331f052a9a00a7fba4425a32994189848015369c71db1',1,'Cairo']]],
-  ['ps_5flevel_5f3',['PS_LEVEL_3',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a452db49f19542c791e4a331f052a9a00ae540de6bec8cf457548756a83457223b',1,'Cairo']]]
+  ['proxy_5fnot_5fallowed',['PROXY_NOT_ALLOWED',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a7ba75f6f699f5542664e84f432a9ffb9',1,'Gio::Error']]]
 ];

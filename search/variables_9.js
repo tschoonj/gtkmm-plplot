@@ -39,6 +39,7 @@ var searchData=
   ['invalid_5ffile_5fcontent',['INVALID_FILE_CONTENT',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Error.html#acd2c910ef29b6be121c1fde3cfa8f2caa991e2f9d312ce4e8256f58faae457bed',1,'Gio::DBus::Error']]],
   ['invalid_5ffilename',['INVALID_FILENAME',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a726c597108b33785960ad311612548de',1,'Gio::Error']]],
   ['invalid_5fformat_5fstring',['INVALID_FORMAT_STRING',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1VariantParseError.html#a217aafad01bee506a1b699a7e138314eadc38cf15fadb1e79bc383f74731f9a9b',1,'Glib::VariantParseError']]],
+  ['invalid_5fid',['INVALID_ID',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1BuilderError.html#aac9b5e60d4306f8ce1d74e06af3413e9a6831711fd1460104cf2341705112b34e',1,'Gtk::BuilderError']]],
   ['invalid_5fobject_5fpath',['INVALID_OBJECT_PATH',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1VariantParseError.html#a217aafad01bee506a1b699a7e138314ea7d0812e6c93180296a6a92c09e2dd201',1,'Glib::VariantParseError']]],
   ['invalid_5foctal_5fvalue',['INVALID_OCTAL_VALUE',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html#a0f1ec693485b5b6c8148045e6ffa3aeead9f70ab72243f8f2fa7a0aeaf3acf4ce',1,'Glib::RegexError']]],
   ['invalid_5fproperty',['INVALID_PROPERTY',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1BuilderError.html#aac9b5e60d4306f8ce1d74e06af3413e9a1e40df6edeb155701f4989b24a7fcbbb',1,'Gtk::BuilderError']]],

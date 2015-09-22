@@ -72,5 +72,6 @@ var searchData=
   ['_5fsignal_5fdata_5fadded',['_signal_data_added',['../class_gtk_1_1_p_lplot_1_1_plot.html#a79e62398750fbd26530d9c70c377fd26',1,'Gtk::PLplot::Plot']]],
   ['_5fsignal_5fdata_5fmodified',['_signal_data_modified',['../class_gtk_1_1_p_lplot_1_1_plot_data.html#a9b6cfc0f8a8b94e8cce44c0fc14fd6f2',1,'Gtk::PLplot::PlotData']]],
   ['_5fsignal_5fdata_5fremoved',['_signal_data_removed',['../class_gtk_1_1_p_lplot_1_1_plot.html#ac03b16f5ebc9ca787136ad6e99dcd178',1,'Gtk::PLplot::Plot']]],
+  ['_5fsignal_5flegend_5fchanged',['_signal_legend_changed',['../class_gtk_1_1_p_lplot_1_1_legend.html#a6149cae2ab086cc0ff452f8d212b04ee',1,'Gtk::PLplot::Legend']]],
   ['_5fsignal_5fselect_5fregion',['_signal_select_region',['../class_gtk_1_1_p_lplot_1_1_plot.html#aa9e26b935974944cb6b3f089bea1d120',1,'Gtk::PLplot::Plot']]]
 ];
