@@ -81,13 +81,13 @@ Plot2D::~Plot2D() {}
 
 void Plot2D::plot_data_modified() {
   //update ranges
-  std::vector<PLFLT> min_x, min_y;
-  std::vector<PLFLT> max_x, max_y;
+  std::vector<double> min_x, min_y;
+  std::vector<double> max_x, max_y;
 
   for (auto &iter : plot_data) {
     auto iter2 = dynamic_cast<PlotData2D*>(iter);
-    std::vector<PLFLT> x = iter2->get_vector_x();
-    std::vector<PLFLT> y = iter2->get_vector_y();
+    std::vector<double> x = iter2->get_vector_x();
+    std::vector<double> y = iter2->get_vector_y();
     min_x.push_back(*std::min_element(x.begin(), x.end()));
     max_x.push_back(*std::max_element(x.begin(), x.end()));
     min_y.push_back(*std::min_element(y.begin(), y.end()));
@@ -136,8 +136,8 @@ void Plot2D::set_axis_logarithmic_x(bool _log10) {
   if (_log10) {
     for (auto &iter : plot_data) {
       auto iter2 = dynamic_cast<PlotData2D*>(iter);
-      std::vector<PLFLT> x = iter2->get_vector_x();
-      if (std::count_if(x.begin(), x.end(), std::bind2nd(std::less_equal<PLFLT>(), double(0.0))) > 0) {
+      std::vector<double> x = iter2->get_vector_x();
+      if (std::count_if(x.begin(), x.end(), std::bind2nd(std::less_equal<double>(), double(0.0))) > 0) {
         throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_x -> plot X-values must be strictly positive");
       }
     }
@@ -151,8 +151,8 @@ void Plot2D::set_axis_logarithmic_y(bool _log10) {
   if (_log10) {
     for (auto &iter : plot_data) {
       auto iter2 = dynamic_cast<PlotData2D*>(iter);
-      std::vector<PLFLT> y = iter2->get_vector_y();
-      if (std::count_if(y.begin(), y.end(), std::bind2nd(std::less_equal<PLFLT>(), double(0.0))) > 0) {
+      std::vector<double> y = iter2->get_vector_y();
+      if (std::count_if(y.begin(), y.end(), std::bind2nd(std::less_equal<double>(), double(0.0))) > 0) {
         throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_y -> plot Y-values must be strictly positive");
       }
     }
@@ -178,7 +178,7 @@ BoxStyle Plot2D::get_box_style() {
   return box_style;
 }
 
-void Plot2D::coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object) {
+void Plot2D::coordinate_transform_world_to_plplot(double x_old, double y_old, double *x_new, double *y_new, PLPointer object) {
   Plot2D *plot2d = static_cast<Plot2D*>(object);
 
   //let's start with giving the new ones the old values, in case no transformation is necessary
@@ -192,11 +192,11 @@ void Plot2D::coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFL
     *y_new = log10(y_old);
 }
 
-void Plot2D::coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) {
+void Plot2D::coordinate_transform_world_to_plplot(double x_old, double y_old, double &x_new, double &y_new) {
     coordinate_transform_world_to_plplot(x_old, y_old, &x_new, &y_new, this);
 }
 
-void Plot2D::coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object) {
+void Plot2D::coordinate_transform_plplot_to_world(double x_old, double y_old, double *x_new, double *y_new, PLPointer object) {
   Plot2D *plot2d = static_cast<Plot2D*>(object);
 
   //let's start with giving the new ones the old values, in case no transformation is necessary
@@ -210,7 +210,7 @@ void Plot2D::coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFL
     *y_new = pow(10.0, y_old);
 }
 
-void Plot2D::coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) {
+void Plot2D::coordinate_transform_plplot_to_world(double x_old, double y_old, double &x_new, double &y_new) {
     coordinate_transform_plplot_to_world(x_old, y_old, &x_new, &y_new, this);
 }
 

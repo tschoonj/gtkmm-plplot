@@ -179,7 +179,6 @@ void PlotContourShades::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const
 
   draw_plot_init(cr, width, height);
 
-
   pls->adv(0);
   pls->vpor(0.1, 0.9, 0.1, 0.9);
   pls->wind(plotted_range_x[0], plotted_range_x[1],
@@ -199,17 +198,17 @@ void PlotContourShades::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const
 	pls->psty(area_fill_pattern);
 
   auto data = dynamic_cast<PlotDataSurface*>(plot_data[0]);
-  std::vector<PLFLT> x = data->get_vector_x();
-  std::vector<PLFLT> y = data->get_vector_y();
+  std::vector<double> x = data->get_vector_x();
+  std::vector<double> y = data->get_vector_y();
   PLcGrid cgrid;
   cgrid.xg = &x[0];
   cgrid.yg = &y[0];
   cgrid.nx = x.size();
   cgrid.ny = y.size();
-  PLFLT **z = data->get_array2d_z();
+  double **z = data->get_array2d_z();
 
 	int cont_color = GTKMM_PLPLOT_DEFAULT_COLOR_INDEX;
-	PLFLT cont_width = edge_width;
+	double cont_width = edge_width;
 
 	if (!showing_edges) {
 		cont_color = 0;
@@ -257,7 +256,7 @@ void PlotContourShades::draw_colorbar(
 	//pls->width(fill_width);
 
 	int cont_color = GTKMM_PLPLOT_DEFAULT_COLOR_INDEX;
-	PLFLT cont_width = 1.0;
+	double cont_width = 1.0;
 
 	/*if (!showing_edges) {
 		cont_color = 0;
@@ -276,8 +275,8 @@ void PlotContourShades::draw_colorbar(
 		"bcvtm",
 	};
 	PLINT num_values[NUM_AXES];
-	PLFLT *values[NUM_AXES];
-	PLFLT axis_ticks[NUM_AXES] = {
+	double *values[NUM_AXES];
+	double axis_ticks[NUM_AXES] = {
 		0.0,
 	};
 	PLINT axis_subticks[NUM_AXES] = {
@@ -285,7 +284,7 @@ void PlotContourShades::draw_colorbar(
 	};
 	num_values[0] = nlevels;
 	values[0] = &clevels[0];
-	PLFLT colorbar_width, colorbar_height;
+	double colorbar_width, colorbar_height;
 #define NUM_LABELS 1
 	PLINT n_labels = NUM_LABELS;
 	PLINT label_opts[] = {
@@ -318,7 +317,7 @@ void PlotContourShades::draw_colorbar(
 		axis_ticks,//major tick mark spacings
 		axis_subticks,//number of subticks
 		num_values,//number of contour levels
-		(const PLFLT * const *) values //contour levels
+		(const double * const *) values //contour levels
 	);
 
 	// Reset text and tick sizes

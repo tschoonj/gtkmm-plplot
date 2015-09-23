@@ -30,17 +30,17 @@ static std::vector<std::string> _colormaps = {
   "cmap1_radar.pal"
 };
 
-std::vector<PLFLT> Gtk::PLplot::indgen(unsigned int n) {
-  std::vector<PLFLT> rv(n);
+std::vector<double> Gtk::PLplot::indgen(unsigned int n) {
+  std::vector<double> rv(n);
   for (unsigned int i = 0 ; i < n ; i++)
-    rv[i] = (PLFLT) i;
+    rv[i] = (double) i;
   return rv;
 }
 
-std::valarray<PLFLT> Gtk::PLplot::indgen_va(unsigned int n) {
-  std::valarray<PLFLT> rv(n);
+std::valarray<double> Gtk::PLplot::indgen_va(unsigned int n) {
+  std::valarray<double> rv(n);
   for (unsigned int i = 0 ; i < n ; i++)
-    rv[i] = (PLFLT) i;
+    rv[i] = (double) i;
   return rv;
 }
 
@@ -54,11 +54,11 @@ void Gtk::PLplot::change_plstream_colormap(plstream *pls, Gtk::PLplot::ColormapP
   pls->spal1(_colormaps[colormap].c_str(), true);
 }
 
-PLFLT **Gtk::PLplot::deep_copy_array2d(PLFLT **input, int nx, int ny) {
-  PLFLT **copy = (PLFLT **) malloc(sizeof(PLFLT *) * nx);
+double **Gtk::PLplot::deep_copy_array2d(double **input, int nx, int ny) {
+  double **copy = (double **) malloc(sizeof(double *) * nx);
   for (int i = 0 ; i < nx ; i++) {
-    copy[i] = (PLFLT *) malloc(sizeof(PLFLT) * ny);
-    memcpy(copy[i], input[i], sizeof(PLFLT) * ny);
+    copy[i] = (double *) malloc(sizeof(double) * ny);
+    memcpy(copy[i], input[i], sizeof(double) * ny);
   }
   return copy;
 }
@@ -70,27 +70,27 @@ void Gtk::PLplot::free_array2d(void **input, int nx) {
   free(input);
 }
 
-PLFLT **Gtk::PLplot::calloc_array2d(int nx, int ny) {
-  PLFLT **rv= (PLFLT **) malloc(sizeof(PLFLT *) * nx);
+double **Gtk::PLplot::calloc_array2d(int nx, int ny) {
+  double **rv= (double **) malloc(sizeof(double *) * nx);
   for (int i = 0 ; i < nx ; i++) {
-    rv[i] = (PLFLT *) calloc(ny, sizeof(PLFLT));
+    rv[i] = (double *) calloc(ny, sizeof(double));
   }
   return rv;
 }
 
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
-PLFLT **Gtk::PLplot::boost_multi_array_to_array2d(const boost::multi_array<PLFLT, 2> &array) {
+double **Gtk::PLplot::boost_multi_array_to_array2d(const boost::multi_array<double, 2> &array) {
   //get data pointer from boost array
-  const PLFLT *data = array.data();
+  const double *data = array.data();
   //get dimensions
   size_t nx = array.shape()[0];
   size_t ny = array.shape()[1];
 
 
-  PLFLT **copy = (PLFLT **) malloc(sizeof(PLFLT *) * nx);
+  double **copy = (double **) malloc(sizeof(double *) * nx);
   for (int i = 0 ; i < nx ; i++) {
-    copy[i] = (PLFLT *) malloc(sizeof(PLFLT) * ny);
-    memcpy(copy[i], data + i * ny, sizeof(PLFLT) * ny);
+    copy[i] = (double *) malloc(sizeof(double) * ny);
+    memcpy(copy[i], data + i * ny, sizeof(double) * ny);
   }
   return copy;
 }

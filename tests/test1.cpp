@@ -46,7 +46,7 @@ namespace Test1 {
     Gtk::SpinButton linewidth_spin2;
 
   public:
-    Window(std::valarray<PLFLT> &x, std::valarray<PLFLT> &y,
+    Window(std::valarray<double> &x, std::valarray<double> &y,
       std::string x_title = "X-axis", std::string y_title = "Y-axis",
       std::string plot_title = "", Gdk::RGBA color = Gdk::RGBA("red")) :
       canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x, y, color), x_title, y_title, plot_title)),
@@ -57,7 +57,7 @@ namespace Test1 {
       linewidth_spin2(linewidth_adj2, 0.1, 1.0) {
 
       //let's make this more interesting by adding more data
-      std::valarray<PLFLT> x_va(1000), y_va(1000);
+      std::valarray<double> x_va(1000), y_va(1000);
       for (unsigned int i = 0 ; i < 1000 ; i++) {
         x_va[i] = 8*M_PI*i/999;
       }
@@ -191,7 +191,7 @@ int main(int argc, char **argv) {
   Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test1");
 
   //valarrays are underestimated IMHO
-  std::valarray<PLFLT> x_va(1000), y_va(1000);
+  std::valarray<double> x_va(1000), y_va(1000);
   for (unsigned int i = 0 ; i < 1000 ; i++) {
     x_va[i] = 4*M_PI*i/999;
   }

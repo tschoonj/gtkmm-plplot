@@ -101,8 +101,8 @@ PlotContour::~PlotContour() {}
 
 void PlotContour::plot_data_modified() {
   auto data = dynamic_cast<PlotDataSurface*>(plot_data[0]);
-  std::vector<PLFLT> x = data->get_vector_x();
-  std::vector<PLFLT> y = data->get_vector_y();
+  std::vector<double> x = data->get_vector_x();
+  std::vector<double> y = data->get_vector_y();
 
   plot_data_range_x[0] = x.front();
   plot_data_range_x[1] = x.back();
@@ -126,13 +126,13 @@ void PlotContour::plot_data_modified() {
   plotted_range_y[1] = plot_data_range_y[1];
 
   //get maximum of z
-  PLFLT **z = data->get_array2d_z();
+  double **z = data->get_array2d_z();
   plMinMax2dGrid(z, x.size(), y.size(), &zmax, &zmin);
   free_array2d((void **) z, x.size());
 
   //fill up level
   for (unsigned int i = 0 ; i < nlevels ; i++) {
-    clevels[i] = zmin + (zmax - zmin) * i / (PLFLT) (nlevels - 1);
+    clevels[i] = zmin + (zmax - zmin) * i / (double) (nlevels - 1);
   }
 
   _signal_changed.emit();
@@ -197,7 +197,7 @@ void PlotContour::set_nlevels(unsigned int _nlevels) {
 
   //fill up level
   for (unsigned int i = 0 ; i < nlevels ; i++) {
-    clevels[i] = zmin + (zmax - zmin) * i / (PLFLT) (nlevels - 1);
+    clevels[i] = zmin + (zmax - zmin) * i / (double) (nlevels - 1);
   }
   _signal_changed.emit();
 }
@@ -253,14 +253,14 @@ void PlotContour::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int w
   pls->width(edge_width);
 
   auto data = dynamic_cast<PlotDataSurface*>(plot_data[0]);
-  std::vector<PLFLT> x = data->get_vector_x();
-  std::vector<PLFLT> y = data->get_vector_y();
+  std::vector<double> x = data->get_vector_x();
+  std::vector<double> y = data->get_vector_y();
   PLcGrid cgrid;
   cgrid.xg = &x[0];
   cgrid.yg = &y[0];
   cgrid.nx = x.size();
   cgrid.ny = y.size();
-  PLFLT **z = data->get_array2d_z();
+  double **z = data->get_array2d_z();
 
 	pls->setcontlabelparam(0.01, 0.4, 0.1, is_showing_labels());
 

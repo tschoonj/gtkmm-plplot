@@ -38,7 +38,7 @@ namespace Test3 {
     void add_plot_clicked() {
       add_plot.set_sensitive(false);
 
-      std::valarray<PLFLT> x_va(1000), y_va(1000);
+      std::valarray<double> x_va(1000), y_va(1000);
       for (unsigned int i = 0 ; i < 1000 ; i++) {
         x_va[i] = 4*M_PI*i/999;
       }

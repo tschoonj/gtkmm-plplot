@@ -34,15 +34,15 @@ namespace Gtk {
      *  consisting of the raw X- and Y-data, along with a number of properties that will determine
      *  the appearance in the plot. Data may be represented as a line, symbols or both.
      *  The constructors of this class allow to use either std::vector or std::valarray as sources of data,
-     *  for added flexibility. Internally they are stored only as std::vector though. The datatype is PLplot's \c PLFLT, which is typedef'ed to \c double.
+     *  for added flexibility. Internally they are stored only as std::vector though. The datatype is PLplot's \c double, which is typedef'ed to \c double.
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.
      *  Several of the methods that are offered by this class are demonstrated in \ref example5
      */
     class PlotData2D : public PlotData {
     private:
-      std::vector<PLFLT> x; ///< The X-values of the dataset
-      std::vector<PLFLT> y; ///< The Y-values of the dataset
+      std::vector<double> x; ///< The X-values of the dataset
+      std::vector<double> y; ///< The Y-values of the dataset
       Gdk::RGBA color; ///< The color the dataset will be drawn in
       LineStyle line_style; ///< The linestyle that will be used for this dataset in the plot
       double line_width; ///< The line width of the dataset. Default is 1.0
@@ -63,8 +63,8 @@ namespace Gtk {
        * \param line_width the line width, default is 1.0
        * \exception Gtk::PLplot::Exception
        */
-      PlotData2D(const std::vector<PLFLT> &x,
-                 const std::vector<PLFLT> &y,
+      PlotData2D(const std::vector<double> &x,
+                 const std::vector<double> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
                  double line_width = PLOTDATA_DEFAULT_LINE_WIDTH);
@@ -79,8 +79,8 @@ namespace Gtk {
        * \param line_style the line style, default is CONTINUOUS
        * \param line_width the line width, default is 1.0
        */
-      PlotData2D(const std::valarray<PLFLT> &x,
-                 const std::valarray<PLFLT> &y,
+      PlotData2D(const std::valarray<double> &x,
+                 const std::valarray<double> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
                  double line_width = PLOTDATA_DEFAULT_LINE_WIDTH);
@@ -95,7 +95,7 @@ namespace Gtk {
        * \param line_style the line style, default is CONTINUOUS
        * \param line_width the line width, default is 1.0
        */
-      PlotData2D(const std::vector<PLFLT> &y,
+      PlotData2D(const std::vector<double> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
                  double line_width = PLOTDATA_DEFAULT_LINE_WIDTH);
@@ -110,7 +110,7 @@ namespace Gtk {
        * \param line_style the line style, default is CONTINUOUS
        * \param line_width the line width, default is 1.0
        */
-      PlotData2D(const std::valarray<PLFLT> &y,
+      PlotData2D(const std::valarray<double> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
                  double line_width = PLOTDATA_DEFAULT_LINE_WIDTH);
@@ -130,13 +130,13 @@ namespace Gtk {
        *
        * \returns a copy of the dataset X-values
        */
-      std::vector<PLFLT> get_vector_x();
+      std::vector<double> get_vector_x();
 
       /**
        *
        * \returns a copy of the dataset Y-values
        */
-      std::vector<PLFLT> get_vector_y();
+      std::vector<double> get_vector_y();
 
       /** Changes the color of the dataset
        *
@@ -229,7 +229,7 @@ namespace Gtk {
        * \param xval an X-value
        * \param yval an Y-value
        */
-      void add_datapoint(PLFLT xval, PLFLT yval);
+      void add_datapoint(double xval, double yval);
 
       /** Add a single datapoint, consisting of a std::pair with an X and Y value, to the dataset
        *
@@ -237,7 +237,7 @@ namespace Gtk {
        * After this method is called, the plot will be automatically updated to reflect the changes.
        * \param xy_pair a std::pair containing both an X- and a Y- value
        */
-      void add_datapoint(std::pair<PLFLT, PLFLT> xy_pair);
+      void add_datapoint(std::pair<double, double> xy_pair);
 
 
       /** Method to draw the dataset

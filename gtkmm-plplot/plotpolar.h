@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/legend.h>
+#include <gtkmm-plplot/regionselection.h>
 #include <gtkmm-plplot/plotdata2d.h>
 
 namespace Gtk {
@@ -37,9 +38,9 @@ namespace Gtk {
      *  be picked up by the \c canvas that will hold the plot.
      *  An example of this class is presented in \ref example6.
      */
-    class PlotPolar : public Plot, public Legend {
+    class PlotPolar : public Plot, public Legend, public RegionSelection {
     private:
-      PLFLT max_r; ///< the maximum radial coordinate in the datasets
+      double max_r; ///< the maximum radial coordinate in the datasets
       PlotPolar() = delete; ///< no default constructor
       PlotPolar &operator=(const PlotPolar &) = delete; ///< no copy constructor
     protected:
@@ -56,7 +57,7 @@ namespace Gtk {
        * \param y_new the new \c y PLplot coordinate
        * \param object the object we are dealing with
        */
-      static void coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object);
+      static void coordinate_transform_world_to_plplot(double x_old, double y_old, double *x_new, double *y_new, PLPointer object);
 
       /** This static method takes care of coordinate transformations when using non-linear axes
        *
@@ -69,7 +70,7 @@ namespace Gtk {
        * \param y_new the new \c y world coordinate
        * \param object the object we are dealing with
        */
-      static void coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object);
+      static void coordinate_transform_plplot_to_world(double x_old, double y_old, double *x_new, double *y_new, PLPointer object);
 
       /** Constructor
        *
@@ -152,7 +153,7 @@ namespace Gtk {
        * \param x_new the new \c x PLplot coordinate
        * \param y_new the new \c y PLplot coordinate
        */
-      virtual void coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) override;
+      virtual void coordinate_transform_world_to_plplot(double x_old, double y_old, double &x_new, double &y_new) override;
 
       /** This method takes care of coordinate transformations when using non-linear axes
        *
@@ -164,7 +165,7 @@ namespace Gtk {
        * \param x_new the new \c x world coordinate
        * \param y_new the new \c y world coordinate
        */
-      virtual void coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) override;
+      virtual void coordinate_transform_plplot_to_world(double x_old, double y_old, double &x_new, double &y_new) override;
 
       /** Freshly allocate a clone of the instance
        *

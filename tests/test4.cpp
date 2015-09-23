@@ -74,10 +74,10 @@ namespace Test4 {
       checkbutton3.set_hexpand(false);
       checkbutton3.set_halign(Gtk::ALIGN_CENTER);
 
-      std::valarray<PLFLT> x_va = Gtk::PLplot::indgen_va(1000)/50.0 - 10.0;
-      std::valarray<PLFLT> y_va1 = sinh(x_va);
-      std::valarray<PLFLT> y_va2 = cosh(x_va);
-      std::valarray<PLFLT> y_va3 = tanh(x_va);
+      std::valarray<double> x_va = Gtk::PLplot::indgen_va(1000)/50.0 - 10.0;
+      std::valarray<double> y_va1 = sinh(x_va);
+      std::valarray<double> y_va2 = cosh(x_va);
+      std::valarray<double> y_va3 = tanh(x_va);
 
       //generate the data, the plot, add them to the canvas and use the return value to pass it to the checkbutton
       checkbutton1.connect_plot(
@@ -152,9 +152,9 @@ namespace Test4 {
       canvas.get_plot(1)->set_background_color(Gdk::RGBA("Yellow Green"));
       canvas.get_plot(1)->hide();
       //also let's disable the region selection, for no reason whatsoever!
-      canvas.get_plot(1)->set_region_selectable(false);
+      dynamic_cast<Gtk::PLplot::RegionSelection *>(canvas.get_plot(1))->set_region_selectable(false);
       //let's override the default region of this plot, this is NOT influenced by set_region_selectable()!!!
-      canvas.get_plot(1)->set_region(-10, 10, -10, 10);
+      dynamic_cast<Gtk::PLplot::RegionSelection *>(canvas.get_plot(1))->set_region(-10, 10, -10, 10);
       //we can also change some other colors
       canvas.get_plot(1)->set_axes_color(Gdk::RGBA("Blue"));
       canvas.get_plot(1)->set_titles_color(Gdk::RGBA("Purple"));

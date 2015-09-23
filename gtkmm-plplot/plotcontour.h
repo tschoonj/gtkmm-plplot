@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GTKMMPLPLOT_PLOT_CONTOUR_H
 
 #include <gtkmm-plplot/plot.h>
+#include <gtkmm-plplot/regionselection.h>
 #include <gtkmm-plplot/plotdatasurface.h>
 #include <gtkmm-plplot/enums.h>
 
@@ -36,7 +37,7 @@ namespace Gtk {
      *  be picked up by the \c canvas that will hold the plot.
      *  For more information, the reader is referred to example \ref example7.
      */
-    class PlotContour : public Plot {
+    class PlotContour : public Plot, public RegionSelection {
     private:
       PlotContour() = delete; ///< no default constructor
       PlotContour &operator=(const PlotContour &) = delete; ///< no copy constructor
@@ -46,8 +47,8 @@ namespace Gtk {
       double edge_width; ///< Defines line width used for contours defining edges.
       bool showing_labels; ///< \c true will draw the contour labels, \c false hides them
       //TODO: add BoxStyle???
-      PLFLT zmin; ///< Minimum of \c z, used to determine the contour edges
-      PLFLT zmax; ///< Maximum of \c z, used to determine the contour edges
+      double zmin; ///< Minimum of \c z, used to determine the contour edges
+      double zmax; ///< Maximum of \c z, used to determine the contour edges
       std::vector<double> clevels; ///< Vector containing the data levels corresponding to the edges of each region that will be plotted. To work properly the levels should be monotonic.
 
       virtual void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.

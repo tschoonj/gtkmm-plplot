@@ -47,11 +47,11 @@ namespace Test2 {
     Gtk::Label corner_label;
     Gtk::ComboBoxText corner_combo;
   public:
-    Window(std::vector<PLFLT> &x,
-           std::vector<PLFLT> &y1,
-           std::vector<PLFLT> &y2,
-           std::vector<PLFLT> &y3,
-           std::vector<PLFLT> &y4,
+    Window(std::vector<double> &x,
+           std::vector<double> &y1,
+           std::vector<double> &y2,
+           std::vector<double> &y3,
+           std::vector<double> &y4,
            std::string x_title,
            std::string y_title,
            std::string plot_title) :
@@ -199,8 +199,8 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  std::vector<PLFLT> x;
-  std::vector<PLFLT> y1, y2, y3, y4;
+  std::vector<double> x;
+  std::vector<double> y1, y2, y3, y4;
 
   while (1) {
     try {
@@ -231,10 +231,10 @@ int main(int argc, char *argv[]) {
 
   //ensure our y-values are greater than 1!
   //the x-values are already...
-  std::for_each(std::begin(y1), std::end(y1), [](PLFLT &a) { if (a < 1.0 ) a = 1.0;});
-  std::for_each(std::begin(y2), std::end(y2), [](PLFLT &a) { if (a < 1.0 ) a = 1.0;});
-  std::for_each(std::begin(y3), std::end(y3), [](PLFLT &a) { if (a < 1.0 ) a = 1.0;});
-  std::for_each(std::begin(y4), std::end(y4), [](PLFLT &a) { if (a < 1.0 ) a = 1.0;});
+  std::for_each(std::begin(y1), std::end(y1), [](double &a) { if (a < 1.0 ) a = 1.0;});
+  std::for_each(std::begin(y2), std::end(y2), [](double &a) { if (a < 1.0 ) a = 1.0;});
+  std::for_each(std::begin(y3), std::end(y3), [](double &a) { if (a < 1.0 ) a = 1.0;});
+  std::for_each(std::begin(y4), std::end(y4), [](double &a) { if (a < 1.0 ) a = 1.0;});
 
   std::string x_title("Energy (keV)"), y_title("Intensity (counts)"), plot_title("NIST SRM 1155 Stainless steel");
   Test2::Window window(x, y1, y2, y3, y4, x_title, y_title, plot_title);

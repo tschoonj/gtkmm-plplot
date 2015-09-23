@@ -77,11 +77,11 @@ void PlotPolar::plot_data_modified() {
   //since we are dealing with polar coordinates, we really need to look only
   //at the maximum x (r here)
 
-  std::vector<PLFLT> max_x;
+  std::vector<double> max_x;
 
   for (auto &iter : plot_data) {
     auto iter2 = dynamic_cast<PlotData2D*>(iter);
-    std::vector<PLFLT> x = iter2->get_vector_x();
+    std::vector<double> x = iter2->get_vector_x();
     max_x.push_back(*std::max_element(x.begin(), x.end()));
   }
 
@@ -119,8 +119,8 @@ PlotData2D *PlotPolar::add_data(const PlotData &data) {
   }
 
   //throw error if any of the r values are negative
-  std::vector<PLFLT> x = data_copy->get_vector_x();
-  if (std::count_if(x.begin(), x.end(), std::bind2nd(std::less<PLFLT>(), double(0.0))) > 0) {
+  std::vector<double> x = data_copy->get_vector_x();
+  if (std::count_if(x.begin(), x.end(), std::bind2nd(std::less<double>(), double(0.0))) > 0) {
     throw Exception("Gtkmm::Plplot::PlotPolar::add_data -> plot R-values must be  positive");
   }
 
@@ -132,21 +132,21 @@ PlotData2D *PlotPolar::add_data(const PlotData &data) {
   return data_copy;
 }
 
-void PlotPolar::coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object) {
+void PlotPolar::coordinate_transform_world_to_plplot(double x_old, double y_old, double *x_new, double *y_new, PLPointer object) {
   *x_new = x_old * cos(y_old);
   *y_new = x_old * sin(y_old);
 }
 
-void PlotPolar::coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) {
+void PlotPolar::coordinate_transform_world_to_plplot(double x_old, double y_old, double &x_new, double &y_new) {
     coordinate_transform_world_to_plplot(x_old, y_old, &x_new, &y_new, nullptr);
 }
 
-void PlotPolar::coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT *x_new, PLFLT *y_new, PLPointer object) {
+void PlotPolar::coordinate_transform_plplot_to_world(double x_old, double y_old, double *x_new, double *y_new, PLPointer object) {
   *x_new = sqrt(x_old * x_old + y_old * y_old);
   *y_new = atan2(y_old, x_old);
 }
 
-void PlotPolar::coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new) {
+void PlotPolar::coordinate_transform_plplot_to_world(double x_old, double y_old, double &x_new, double &y_new) {
     coordinate_transform_plplot_to_world(x_old, y_old, &x_new, &y_new, nullptr);
 }
 

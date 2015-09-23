@@ -1,3 +1,5 @@
+NULL =
+
 lib_LTLIBRARIES = libgtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@.la
 gtkmm_plplotincludedir = ${includedir}/gtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@/gtkmm-plplot
 gtkmm_plplotbaseincludedir = ${includedir}/gtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@/gtkmm-plplot
@@ -15,7 +17,9 @@ gtkmm_plplotinclude_HEADERS = \
                               plotcontour.h \
                               plotcontourshades.h \
                               legend.h \
-                              enums.h
+                              enums.h \
+                              regionselection.h \
+                              $(NULL)
 
 gtkmm_plplotbaseinclude_HEADERS = gtkmm-plplot.h
 
@@ -31,7 +35,9 @@ libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_SOURCES = $(gtkmm_plplotinclude_HE
                                  plotdatasurface.cpp \
                                  plotcontour.cpp \
                                  plotcontourshades.cpp \
-                                 legend.cpp
+                                 legend.cpp \
+                                 regionselection.cpp
+                                 $(NULL)
 
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_CPPFLAGS = $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS)
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_LIBADD = $(gtkmm_LIBS) $(plplotcxx_LIBS) $(BOOST_MULTIARRAY_LIBS)

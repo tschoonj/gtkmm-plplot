@@ -36,13 +36,13 @@ namespace Gtk {
      *
      * \param n the length of the vector
      */
-    std::vector<PLFLT> indgen(unsigned int n);
+    std::vector<double> indgen(unsigned int n);
 
     /** Returns a valarray of doubles with each element set to the value of its subscript.
      *
      * \param n the length of the valarray
      */
-    std::valarray<PLFLT> indgen_va(unsigned int n);
+    std::valarray<double> indgen_va(unsigned int n);
 
     /** Changes the current color of the plstream
      *
@@ -68,20 +68,20 @@ namespace Gtk {
      * The return value should be freed with free_array2d();
      * \param nx the extent along the first coordinate of the array of arrays
      * \param ny the extent along the second coordinate of the array of arrays
-     * \returns a freshly allocated array of arrays of PLFLT's
+     * \returns a freshly allocated array of arrays of double's
      */
-    PLFLT **calloc_array2d(int nx, int ny);
+    double **calloc_array2d(int nx, int ny);
 
-    /** Creates a deep copy of a dynamically allocated array of dynamically allocated array of PLFLT's (double)
+    /** Creates a deep copy of a dynamically allocated array of dynamically allocated array of double's (double)
      *
      * The return value should be freed with free_array2d();
      * This function is likely to produce a segmentation fault or result in undefined behavior when the input arguments are incorrect or invalid.
      * \param input the array of arrays that will be copied
      * \param nx the extent along the first coordinate of input
      * \param ny the extent along the second coordinate of input
-     * \returns a freshly allocated array of arrays of PLFLT's
+     * \returns a freshly allocated array of arrays of double's
      */
-    PLFLT **deep_copy_array2d(PLFLT **input, int nx, int ny);
+    double **deep_copy_array2d(double **input, int nx, int ny);
 
     /** Frees a dynamically allocated array of dynamically allocated arrays.
      *
@@ -97,7 +97,7 @@ namespace Gtk {
      * The return value should be freed with free_array2d();
      * \param array the Boost multi_array instance
      */
-    PLFLT **boost_multi_array_to_array2d(const boost::multi_array<PLFLT, 2> &array);
+    double **boost_multi_array_to_array2d(const boost::multi_array<double, 2> &array);
 #endif
    }
 }

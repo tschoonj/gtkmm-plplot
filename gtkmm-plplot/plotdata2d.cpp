@@ -22,8 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace Gtk::PLplot;
 
 PlotData2D::PlotData2D(
-  const std::vector<PLFLT> &_x,
-  const std::vector<PLFLT> &_y,
+  const std::vector<double> &_x,
+  const std::vector<double> &_y,
   Gdk::RGBA _color,
   LineStyle _line_style,
   double _line_width) :
@@ -49,28 +49,28 @@ PlotData2D::PlotData2D(
 }
 
 PlotData2D::PlotData2D(
-  const std::valarray<PLFLT> &_x,
-  const std::valarray<PLFLT> &_y,
+  const std::valarray<double> &_x,
+  const std::valarray<double> &_y,
   Gdk::RGBA _color,
   LineStyle _line_style,
   double _line_width) :
-  PlotData2D(std::vector<PLFLT>(std::begin(_x), std::end(_x)),
-  std::vector<PLFLT>(std::begin(_y), std::end(_y)),
+  PlotData2D(std::vector<double>(std::begin(_x), std::end(_x)),
+  std::vector<double>(std::begin(_y), std::end(_y)),
   _color, _line_style, _line_width) {}
 
 PlotData2D::PlotData2D(
-  const std::vector<PLFLT> &_y,
+  const std::vector<double> &_y,
   Gdk::RGBA _color,
   LineStyle _line_style,
   double _line_width) :
   PlotData2D(indgen(_y.size()), _y, _color, _line_style, _line_width) {}
 
 PlotData2D::PlotData2D(
-  const std::valarray<PLFLT> &_y,
+  const std::valarray<double> &_y,
   Gdk::RGBA _color, LineStyle _line_style,
   double _line_width) :
-  PlotData2D(std::vector<PLFLT>(indgen(_y.size())),
-  std::vector<PLFLT>(std::begin(_y), std::end(_y)),
+  PlotData2D(std::vector<double>(indgen(_y.size())),
+  std::vector<double>(std::begin(_y), std::end(_y)),
   _color, _line_style, _line_width) {}
 
 PlotData2D::PlotData2D(const PlotData2D &_data) :
@@ -144,13 +144,13 @@ double PlotData2D::get_symbol_height_scale_factor() {
   return symbol_scale_factor;
 }
 
-void PlotData2D::add_datapoint(PLFLT _x, PLFLT _y) {
+void PlotData2D::add_datapoint(double _x, double _y) {
   x.push_back(_x);
   y.push_back(_y);
   _signal_data_modified.emit();
 }
 
-void PlotData2D::add_datapoint(std::pair<PLFLT, PLFLT> _xy_pair) {
+void PlotData2D::add_datapoint(std::pair<double, double> _xy_pair) {
   add_datapoint(_xy_pair.first, _xy_pair.second);
 }
 
@@ -159,7 +159,7 @@ void PlotData2D::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstrea
   if (!is_showing())
     return;
 
-  PLFLT *x_pl = &x[0], *y_pl = &y[0];
+  double *x_pl = &x[0], *y_pl = &y[0];
 
   // plot the line if requested
   if (line_style != LineStyle::NONE) {
@@ -178,10 +178,10 @@ void PlotData2D::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstrea
 
 }
 
-std::vector<PLFLT> PlotData2D::get_vector_x() {
+std::vector<double> PlotData2D::get_vector_x() {
   return x;
 }
 
-std::vector<PLFLT> PlotData2D::get_vector_y() {
+std::vector<double> PlotData2D::get_vector_y() {
   return y;
 }

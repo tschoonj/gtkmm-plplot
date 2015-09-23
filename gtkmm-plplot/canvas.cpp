@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/exception.h>
 #include <gtkmm-plplot/legend.h>
+#include <gtkmm-plplot/regionselection.h>
 #include <valarray>
 #include <cmath>
 #include <gdkmm/general.h>
@@ -51,12 +52,31 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
 
 Plot *Canvas::add_plot(const Plot &plot) {
   plots.push_back(plot.clone());
+
+  //ensure plot signal_changed gets re-emitted by the canvas
   plots.back()->signal_changed().connect([this](){_signal_changed.emit();});
+
   //check if plot has a legend
   Legend *legend = dynamic_cast<Legend *>(plots.back());
   if (legend != nullptr) {
-    legend->signal_legend_changed().connect([this](){_signal_changed.emit();});
+    legend->signal_legend_changed().connect(
+      [this]
+      () {
+        _signal_changed.emit();
+      }
+    );
   }
+  //check if plot allows for selection regions
+  RegionSelection *region_selection = dynamic_cast<RegionSelection *>(plots.back());
+  if (region_selection != nullptr) {
+    region_selection->signal_select_region().connect(
+      [this]
+      (double xmin, double xmax, double ymin, double ymax) {
+        _signal_changed.emit();
+      }
+    );
+  }
+
   _signal_changed.emit();
   return plots.back();
 }
@@ -119,33 +139,39 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
 
   //check if the starting coordinates are valid
   for (unsigned int plot = 0 ; plot < plots.size() ; plot++) {
-    if (start_cairo[0] >= plots[plot]->cairo_range_x[0] &&
-      start_cairo[0] <= plots[plot]->cairo_range_x[1] &&
-      start_cairo[1] >= plots[plot]->cairo_range_y[0] &&
-      start_cairo[1] <= plots[plot]->cairo_range_y[1] &&
-      plots[plot]->is_showing() &&
-      plots[plot]->get_region_selectable()) {
+    RegionSelection *region_selection = dynamic_cast<RegionSelection *>(plots[plot]);
+    if (region_selection != nullptr &&
+        start_cairo[0] >= region_selection->cairo_range_x[0] &&
+        start_cairo[0] <= region_selection->cairo_range_x[1] &&
+        start_cairo[1] >= region_selection->cairo_range_y[0] &&
+        start_cairo[1] <= region_selection->cairo_range_y[1] &&
+        plots[plot]->is_showing() &&
+        region_selection->get_region_selectable()) {
+
+      // double-click -> zoom out!
       if (event->type == GDK_2BUTTON_PRESS) {
         double plot_data_range_x[2];
         double plot_data_range_y[2];
-        plots[plot]->coordinate_transform_plplot_to_world(
-          plots[plot]->plot_data_range_x[0],
-          plots[plot]->plot_data_range_y[0],
+        region_selection->coordinate_transform_plplot_to_world(
+          region_selection->plot_data_range_x[0],
+          region_selection->plot_data_range_y[0],
           plot_data_range_x[0],
           plot_data_range_y[0]
         );
-        plots[plot]->coordinate_transform_plplot_to_world(
-          plots[plot]->plot_data_range_x[1],
-          plots[plot]->plot_data_range_y[1],
+        region_selection->coordinate_transform_plplot_to_world(
+          region_selection->plot_data_range_x[1],
+          region_selection->plot_data_range_y[1],
           plot_data_range_x[1],
           plot_data_range_y[1]
         );
-        plots[plot]->set_region(
+        region_selection->set_region(
           plot_data_range_x[0],
           plot_data_range_x[1],
           plot_data_range_y[0],
           plot_data_range_y[1]
         );
+        _signal_changed.emit();
+
         return false;
       }
       selecting = true;
@@ -178,21 +204,27 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
     return true;
   }
 
+  RegionSelection *region_selection = dynamic_cast<RegionSelection *>(plots[selected_plot]);
+
+  //this should never happen
+  if (region_selection == nullptr)
+    throw Exception("Gtk::PLplot::Canvas::on_button_release_event -> selecting a non-RegionSelection object");
+
   //make sure we stay within the plot while selecting
   if (end_cairo[0] > start_cairo[0]) {
     //this 1E-10 subtraction is necessary to ensure calc_world works properly
     //when dragging a box that touches the right axis.
-    end_cairo[0] = MIN(end_cairo[0], plots[selected_plot]->cairo_range_x[1] - 1E-10);
+    end_cairo[0] = MIN(end_cairo[0], region_selection->cairo_range_x[1] - 1E-10);
   }
   else if (end_cairo[0] < start_cairo[0]) {
-    end_cairo[0] = MAX(end_cairo[0], plots[selected_plot]->cairo_range_x[0]);
+    end_cairo[0] = MAX(end_cairo[0], region_selection->cairo_range_x[0]);
   }
 
   if (end_cairo[1] > start_cairo[1]) {
-    end_cairo[1] = MIN(end_cairo[1], plots[selected_plot]->cairo_range_y[1] - 1E-10);
+    end_cairo[1] = MIN(end_cairo[1], region_selection->cairo_range_y[1] - 1E-10);
   }
   else if (end_cairo[1] < start_cairo[1]) {
-    end_cairo[1] = MAX(end_cairo[1], plots[selected_plot]->cairo_range_y[0]);
+    end_cairo[1] = MAX(end_cairo[1], region_selection->cairo_range_y[0]);
   }
 
   selecting = false;
@@ -205,9 +237,9 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
   double end_plplot[2];
 
   //get the plot coordinates corresponding to the cairo coordinates
-  plots[selected_plot]->convert_cairo_to_plplot_coordinates(start_cairo[0], start_cairo[1],
+  region_selection->convert_cairo_to_plplot_coordinates(start_cairo[0], start_cairo[1],
                   start_plplot[0], start_plplot[1]);
-  plots[selected_plot]->convert_cairo_to_plplot_coordinates(end_cairo[0], end_cairo[1],
+  region_selection->convert_cairo_to_plplot_coordinates(end_cairo[0], end_cairo[1],
                   end_plplot[0], end_plplot[1]);
   double start_plplot_def[2];
   double end_plplot_def[2];
@@ -216,29 +248,29 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
   //in case of the full view, due to precision errors, the extremes calculated based on calc_world
   //are actually slightly outside of these data extremes, meaning that it's not possible to drag the selection
   //along the plot grid
-  start_plplot_def[0] = MAX(MIN(start_plplot[0], end_plplot[0]), plots[selected_plot]->plot_data_range_x[0]);
-  start_plplot_def[1] = MAX(MIN(start_plplot[1], end_plplot[1]), plots[selected_plot]->plot_data_range_y[0]);
-  end_plplot_def[0] = MIN(MAX(start_plplot[0], end_plplot[0]), plots[selected_plot]->plot_data_range_x[1]);
-  end_plplot_def[1] = MIN(MAX(start_plplot[1], end_plplot[1]), plots[selected_plot]->plot_data_range_y[1]);
+  start_plplot_def[0] = MAX(MIN(start_plplot[0], end_plplot[0]), region_selection->plot_data_range_x[0]);
+  start_plplot_def[1] = MAX(MIN(start_plplot[1], end_plplot[1]), region_selection->plot_data_range_y[0]);
+  end_plplot_def[0] = MIN(MAX(start_plplot[0], end_plplot[0]), region_selection->plot_data_range_x[1]);
+  end_plplot_def[1] = MIN(MAX(start_plplot[1], end_plplot[1]), region_selection->plot_data_range_y[1]);
 
   //this is necessary to get rid of the box on the plot, even if the signal_select_region is not caught by the plot
   _signal_changed.emit();
 
-  plots[selected_plot]->coordinate_transform_plplot_to_world(
+  region_selection->coordinate_transform_plplot_to_world(
     start_plplot_def[0],
     start_plplot_def[1],
     start_plplot_def[0],
     start_plplot_def[1]
   );
 
-  plots[selected_plot]->coordinate_transform_plplot_to_world(
+  region_selection->coordinate_transform_plplot_to_world(
     end_plplot_def[0],
     end_plplot_def[1],
     end_plplot_def[0],
     end_plplot_def[1]
   );
 
-  plots[selected_plot]->_signal_select_region.emit(start_plplot_def[0], end_plplot_def[0], start_plplot_def[1], end_plplot_def[1]);
+  region_selection->_signal_select_region.emit(start_plplot_def[0], end_plplot_def[0], start_plplot_def[1], end_plplot_def[1]);
 
   return true;
 }
@@ -255,19 +287,25 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
   end_cairo[0] = event->x;
   end_cairo[1] = height - event->y;
 
+  RegionSelection *region_selection = dynamic_cast<RegionSelection *>(plots[selected_plot]);
+
+  //this should never happen
+  if (region_selection == nullptr)
+    throw Exception("Gtk::PLplot::Canvas::on_motion_notify_event -> selecting a non-RegionSelection object");
+
   //make sure we stay within the plot while selecting
   if (end_cairo[0] > start_cairo[0]) {
-    end_cairo[0] = MIN(end_cairo[0], plots[selected_plot]->cairo_range_x[1]);
+    end_cairo[0] = MIN(end_cairo[0], region_selection->cairo_range_x[1]);
   }
   else if (end_cairo[0] < start_cairo[0]) {
-    end_cairo[0] = MAX(end_cairo[0], plots[selected_plot]->cairo_range_x[0]);
+    end_cairo[0] = MAX(end_cairo[0], region_selection->cairo_range_x[0]);
   }
 
   if (end_cairo[1] > start_cairo[1]) {
-    end_cairo[1] = MIN(end_cairo[1], plots[selected_plot]->cairo_range_y[1]);
+    end_cairo[1] = MIN(end_cairo[1], region_selection->cairo_range_y[1]);
   }
   else if (end_cairo[1] < start_cairo[1]) {
-    end_cairo[1] = MAX(end_cairo[1], plots[selected_plot]->cairo_range_y[0]);
+    end_cairo[1] = MAX(end_cairo[1], region_selection->cairo_range_y[0]);
   }
 
   _signal_changed.emit();

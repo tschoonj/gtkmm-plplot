@@ -44,7 +44,7 @@ namespace Test5 {
     Gtk::SpinButton symbol_scale_factor_spin;
     Gtk::Button add_data_button;
   public:
-    Window(std::valarray<PLFLT> &x, std::valarray<PLFLT> &y,
+    Window(std::valarray<double> &x, std::valarray<double> &y,
       std::string x_title = "X-axis", std::string y_title = "Y-axis",
       std::string plot_title = "y = sqrt(x)", Gdk::RGBA color = Gdk::RGBA("Blue")) :
       canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x, y, color), x_title, y_title, plot_title)),
@@ -170,7 +170,7 @@ namespace Test5 {
       grid.attach(add_data_button, 0, 3, 4, 1);
       add_data_button.signal_clicked().connect([this, plot_data](){
         //this lambda has a static variable that will keep our ever incrementing X-value
-        static PLFLT new_x = 11;
+        static double new_x = 11;
         plot_data->add_datapoint(new_x, sqrt(new_x));
         new_x += 1.0;
       });
@@ -189,7 +189,7 @@ int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test5");
   Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test5");
 
-  std::valarray<PLFLT> x_va = Gtk::PLplot::indgen_va(10)+double(1.0), y_va = sqrt(x_va);
+  std::valarray<double> x_va = Gtk::PLplot::indgen_va(10)+double(1.0), y_va = sqrt(x_va);
 
   Test5::Window window(x_va, y_va);
 

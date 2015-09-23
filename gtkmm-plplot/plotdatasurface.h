@@ -34,7 +34,7 @@ namespace Gtk {
      *
      *  Instances of this class will hold a single (and the only possible) dataset for
      *  a surface plot types like PlotContour and PlotContourShades. The input data can be provided
-     *  as std::vector (X and Y), std::valarray (X and Y), PLFLT** (Z, array of arrays) and boost:multi_array (Z).
+     *  as std::vector (X and Y), std::valarray (X and Y), double** (Z, array of arrays) and boost:multi_array (Z).
      *  This datatype is demonstrated in \ref example7.
      */
     class PlotDataSurface : public PlotData {
@@ -43,9 +43,9 @@ namespace Gtk {
       PlotDataSurface() = delete; ///< no default constructor
       PlotDataSurface &operator=(const PlotDataSurface &) = delete; ///< no copy constructor
     protected:
-      std::vector<PLFLT> x; ///< The X-grid coordinates of the dataset, which are assumed to correspond to the first dimension of Z
-      std::vector<PLFLT> y; ///< The Y-grid coordinates of the dataset, which are assumed to correspond to the second dimension of Z
-      PLFLT **z; ///< The Z-values of the dataset. This is an array of arrays whose first dimension must correspond to the length of x, while the second must correspond to the length of y.
+      std::vector<double> x; ///< The X-grid coordinates of the dataset, which are assumed to correspond to the first dimension of Z
+      std::vector<double> y; ///< The Y-grid coordinates of the dataset, which are assumed to correspond to the second dimension of Z
+      double **z; ///< The Z-values of the dataset. This is an array of arrays whose first dimension must correspond to the length of x, while the second must correspond to the length of y.
     public:
       /** Constructor
        *
@@ -55,9 +55,9 @@ namespace Gtk {
        * \param z the actual surface data, provided as a dynamically allocated array of dynamically allocated arrays. The constructor will initialize its own deep-copy of this variable.
        * \exception Gtk::PLplot::Exception
        */
-      PlotDataSurface(const std::vector<PLFLT> &x,
-                      const std::vector<PLFLT> &y,
-                      PLFLT **z);
+      PlotDataSurface(const std::vector<double> &x,
+                      const std::vector<double> &y,
+                      double **z);
 
       /** Constructor
        *
@@ -66,9 +66,9 @@ namespace Gtk {
        * \param y the Y-grid coordinates of the dataset, provided as a std::valarray. Have to match the second dimension of z
        * \param z the actual surface data, provided as a dynamically allocated array of dynamically allocated arrays. The constructor will initialize its own deep-copy of this variable.
        */
-      PlotDataSurface(const std::valarray<PLFLT> &x,
-                      const std::valarray<PLFLT> &y,
-                      PLFLT **z);
+      PlotDataSurface(const std::valarray<double> &x,
+                      const std::valarray<double> &y,
+                      double **z);
 
       /** Constructor
        *
@@ -80,7 +80,7 @@ namespace Gtk {
        */
       PlotDataSurface(unsigned int nx,
                       unsigned int ny,
-                      PLFLT **z);
+                      double **z);
 
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
       /** Constructor
@@ -90,9 +90,9 @@ namespace Gtk {
        * \param y the Y-grid coordinates of the dataset, provided as a std::vector. Have to match the second dimension of z
        * \param z the actual surface data, provided as a Boost \c multi_array.
        */
-      PlotDataSurface(const std::vector<PLFLT> &x,
-                      const std::vector<PLFLT> &y,
-                      const boost::multi_array<PLFLT, 2> &z);
+      PlotDataSurface(const std::vector<double> &x,
+                      const std::vector<double> &y,
+                      const boost::multi_array<double, 2> &z);
 
       /** Constructor
        *
@@ -101,9 +101,9 @@ namespace Gtk {
        * \param y the Y-grid coordinates of the dataset, provided as a std::valarray. Have to match the second dimension of z
        * \param z the actual surface data, provided as a Boost \c multi_array.
        */
-      PlotDataSurface(const std::valarray<PLFLT> &x,
-                      const std::valarray<PLFLT> &y,
-                      const boost::multi_array<PLFLT, 2> &z);
+      PlotDataSurface(const std::valarray<double> &x,
+                      const std::valarray<double> &y,
+                      const boost::multi_array<double, 2> &z);
 
       /** Constructor
        *
@@ -111,7 +111,7 @@ namespace Gtk {
        * set to a vector of the appropriate size with elements set to correspond to their array subscript.
        * \param z the actual surface data, provided as a Boost \c multi_array.
        */
-      PlotDataSurface(const boost::multi_array<PLFLT, 2> &z);
+      PlotDataSurface(const boost::multi_array<double, 2> &z);
 #endif
 
       /** Copy constructor
@@ -129,19 +129,19 @@ namespace Gtk {
        *
        * \returns a copy of the dataset X-values
        */
-      std::vector<PLFLT> get_vector_x();
+      std::vector<double> get_vector_x();
 
       /**
        *
        * \returns a copy of the dataset Y-values
        */
-      std::vector<PLFLT> get_vector_y();
+      std::vector<double> get_vector_y();
 
       /**
        * Free the memory with free_array2d().
        * \returns a copy of the dataset Z-values
        */
-      PLFLT **get_array2d_z();
+      double **get_array2d_z();
     };
   }
 }

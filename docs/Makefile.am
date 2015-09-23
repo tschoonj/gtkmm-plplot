@@ -1,4 +1,5 @@
 SUBDIRS = images
+NULL =
 
 if ENABLE_DOCUMENTATION
 
@@ -14,7 +15,9 @@ doxyfile_deps = $(top_srcdir)/gtkmm-plplot/canvas.h \
 								$(top_srcdir)/gtkmm-plplot/plotcontour.h \
 								$(top_srcdir)/gtkmm-plplot/plotcontourshades.h \
 								$(top_srcdir)/gtkmm-plplot/plotpolar.h \
-								$(top_srcdir)/gtkmm-plplot/legend.h
+								$(top_srcdir)/gtkmm-plplot/legend.h \
+								$(top_srcdir)/gtkmm-plplot/regionselection.h \
+								$(NULL)
 
 
 doxyfile.stamp: $(doxyfile_deps) Doxyfile extra_pages.dox doxygen_hack.css DoxygenLayout.xml

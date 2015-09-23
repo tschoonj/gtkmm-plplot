@@ -32,9 +32,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace Gtk::PLplot;
 
 PlotDataSurface::PlotDataSurface(
-  const std::vector<PLFLT> &_x,
-  const std::vector<PLFLT> &_y,
-  PLFLT **_z) :
+  const std::vector<double> &_x,
+  const std::vector<double> &_y,
+  double **_z) :
   PlotData(),
   x(_x), y(_y)
   {
@@ -45,11 +45,11 @@ PlotDataSurface::PlotDataSurface(
     }
 
     //ensure x and y are sorted in ascending order
-    if (!std::is_sorted(x.begin(), x.end(), std::less_equal<PLFLT>())) {
+    if (!std::is_sorted(x.begin(), x.end(), std::less_equal<double>())) {
       throw Exception("Gtk::PLplot::PlotDataSurface::PlotDataSurface -> data arrays x must consist of unique elements and be sorted in ascending order");
     }
 
-    if (!std::is_sorted(y.begin(), y.end(), std::less_equal<PLFLT>())) {
+    if (!std::is_sorted(y.begin(), y.end(), std::less_equal<double>())) {
       throw Exception("Gtk::PLplot::PlotDataSurface::PlotDataSurface -> data arrays y must consist of unique elements and be sorted in ascending order");
     }
 
@@ -59,28 +59,28 @@ PlotDataSurface::PlotDataSurface(
 }
 
 PlotDataSurface::PlotDataSurface(
-  const std::valarray<PLFLT> &_x,
-  const std::valarray<PLFLT> &_y,
-  PLFLT **_z) :
-  PlotDataSurface(std::vector<PLFLT>(std::begin(_x), std::end(_x)),
-  std::vector<PLFLT>(std::begin(_y), std::end(_y)),
+  const std::valarray<double> &_x,
+  const std::valarray<double> &_y,
+  double **_z) :
+  PlotDataSurface(std::vector<double>(std::begin(_x), std::end(_x)),
+  std::vector<double>(std::begin(_y), std::end(_y)),
   _z) {}
 
 PlotDataSurface::PlotDataSurface(
   unsigned int nx,
   unsigned int ny,
-  PLFLT **_z) :
-  PlotDataSurface(std::vector<PLFLT>(indgen(nx)),
-  std::vector<PLFLT>(indgen(ny)),
+  double **_z) :
+  PlotDataSurface(std::vector<double>(indgen(nx)),
+  std::vector<double>(indgen(ny)),
   _z) {}
 
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
 //the Boost constructors
 
 PlotDataSurface::PlotDataSurface(
-  const std::vector<PLFLT> &_x,
-  const std::vector<PLFLT> &_y,
-  const boost::multi_array<PLFLT, 2> &_z) :
+  const std::vector<double> &_x,
+  const std::vector<double> &_y,
+  const boost::multi_array<double, 2> &_z) :
   PlotDataSurface(_x, _y,
   nullptr) {
     if (_z.shape()[0] != _x.size() || _z.shape()[1] != _y.size())
@@ -89,17 +89,17 @@ PlotDataSurface::PlotDataSurface(
   }
 
 PlotDataSurface::PlotDataSurface(
-  const std::valarray<PLFLT> &_x,
-  const std::valarray<PLFLT> &_y,
-  const boost::multi_array<PLFLT, 2> &_z) :
-  PlotDataSurface(std::vector<PLFLT>(std::begin(_x), std::end(_x)),
-  std::vector<PLFLT>(std::begin(_y), std::end(_y)),
+  const std::valarray<double> &_x,
+  const std::valarray<double> &_y,
+  const boost::multi_array<double, 2> &_z) :
+  PlotDataSurface(std::vector<double>(std::begin(_x), std::end(_x)),
+  std::vector<double>(std::begin(_y), std::end(_y)),
   _z) {}
 
 PlotDataSurface::PlotDataSurface(
-  const boost::multi_array<PLFLT, 2> &_z) :
-  PlotDataSurface(std::vector<PLFLT>(indgen(_z.shape()[0])),
-  std::vector<PLFLT>(indgen(_z.shape()[1])),
+  const boost::multi_array<double, 2> &_z) :
+  PlotDataSurface(std::vector<double>(indgen(_z.shape()[0])),
+  std::vector<double>(indgen(_z.shape()[1])),
   _z) {}
 
 #endif
@@ -115,14 +115,14 @@ PlotDataSurface::~PlotDataSurface() {
   free_array2d((void **) z, x.size());
 }
 
-std::vector<PLFLT> PlotDataSurface::get_vector_x() {
+std::vector<double> PlotDataSurface::get_vector_x() {
   return x;
 }
 
-std::vector<PLFLT> PlotDataSurface::get_vector_y() {
+std::vector<double> PlotDataSurface::get_vector_y() {
   return y;
 }
 
-PLFLT **PlotDataSurface::get_array2d_z() {
+double **PlotDataSurface::get_array2d_z() {
 	return deep_copy_array2d(z, x.size(), y.size());
 }

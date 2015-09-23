@@ -45,12 +45,6 @@ namespace Gtk {
       Glib::ustring axis_title_y; ///< Y-axis title
       Glib::ustring plot_title;   ///< Plot title
       plstream *pls; ///< the \c plstream object that will ensure the connection with PLplot
-      double plot_data_range_x[2]; ///< the maximum range covered by the X-values of the datasets
-      double plot_data_range_y[2];  ///< the maximum range covered by the X-values of the datasets
-      double plotted_range_x[2]; ///< the current range shown on the plot for the X-axis
-      double plotted_range_y[2]; ///< the current range shown on the plot for the X-axis
-      double cairo_range_x[2]; ///< the current range shown on the plot for the X-axis in Cairo coordinates
-      double cairo_range_y[2]; ///< the current range shown on the plot for the X-axis in Cairo coordinates
       int canvas_width; ///< the width of the canvas in Cairo units
       int canvas_height; ///< the height of the canvas in Cairo units
       int plot_offset_x; ///< the offset of the plot with respect to the top left corner of the canvas, measured along the horizontal (X-) axis in Cairo units
@@ -63,35 +57,14 @@ namespace Gtk {
       double plot_height_norm; ///< the normalized plot height, calculated relative to the canvas height
       double plot_offset_horizontal_norm; ///< the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
       double plot_offset_vertical_norm; ///< the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
-      bool region_selectable; ///< \c true indicates that a region on the plot can be selected by dragging a box with the mouse button pressed in when showing, or if double mouse button pressed event zooms out, \c false means not possible. The default is \c true
       Gdk::RGBA axes_color; ///< the currently used color to draw the axes, the box and gridlines. Default is opaque black
       Gdk::RGBA titles_color; ///< the currently used color to draw the axes and plot titles. Default is opaque black
 
-
-      sigc::signal<void, double, double, double, double > _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event()
       sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the plot parameters, or any of the contained PlotData datasets is changed.
       sigc::signal<void, PlotData *> _signal_data_added; ///< signal emitted whenever a new PlotData dataset is added to the plot
       sigc::signal<void> _signal_data_removed; ///< signal emitted whenever data is removed from the plot.
 
       virtual void plot_data_modified() = 0; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
-      void convert_plplot_to_cairo_coordinates(
-        double x_pl, double y_pl,
-        double &x_cr, double &y_cr); ///< method to calculate the Cairo coordinates corresponding to PLplot coordinates, mostly used after draw, which is necessary after Canvas widget resizing.
-      void convert_cairo_to_plplot_coordinates(
-        double x_cr, double y_cr,
-        double &x_pl, double &y_pl); ///< method to calculate the PLplot coordinates corresponding to Cairo coordinates, mostly used after draw, which is necessary after Canvas widget resizing.
-
-      /** This is a default handler for signal_select_region()
-       *
-       * This function passes the plot (data) coordinates of the selection box to set_region, in order to set the plotted range corresponding to the selection box.
-       * If this behavior is not desired, derive the class and implement your own on_select_region method.
-       * \param xmin left X-coordinate
-       * \param xmax right X-coordinate
-       * \param ymin lower Y-coordinate
-       * \param ymax upper Y-coordinate
-       * \exception Gtk::PLplot::Exception
-       */
-      virtual void on_select_region(double xmin, double xmax, double ymin, double ymax);
 
       /** This is a default handler for signal_changed()
        *
@@ -124,7 +97,6 @@ namespace Gtk {
        */
       void draw_plot_init(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height);
 
-    public:
       /** Constructor
        *
        * This class provides a single constructor, which takes an existing PlotData dataset to construct a plot.
@@ -138,12 +110,12 @@ namespace Gtk {
        * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
        */
       Plot(const Glib::ustring &axis_title_x,
-                   const Glib::ustring &axis_title_y,
-                   const Glib::ustring &plot_title,
-                   const double plot_width_norm,
-                   const double plot_height_norm,
-                   const double plot_offset_horizontal_norm,
-                   const double plot_offset_vertical_norm);
+           const Glib::ustring &axis_title_y,
+           const Glib::ustring &plot_title,
+           const double plot_width_norm,
+           const double plot_height_norm,
+           const double plot_offset_horizontal_norm,
+           const double plot_offset_vertical_norm);
 
       /** Copy constructor
        *
@@ -151,6 +123,7 @@ namespace Gtk {
        */
       Plot(const Plot &plot);
 
+    public:
       /** Destructor
        *
        */
@@ -218,18 +191,6 @@ namespace Gtk {
        */
       Glib::ustring get_plot_title();
 
-      /** Changes the visible plotted region
-       *
-       * Sets the axes range of the plotted box to the supplied parameters.
-       * Throws an exception when the coordinates are outside of \c plot_data_range_x and \c plot_data_range_y.
-       * \param xmin left X-coordinate
-       * \param xmax right X-coordinate
-       * \param ymin lower Y-coordinate
-       * \param ymax upper Y-coordinate
-       * \exception Gtk::PLplot::Exception
-       */
-      virtual void set_region(double xmin, double xmax, double ymin, double ymax);
-
       /** Make the plot visible on the canvas
        *
        */
@@ -282,41 +243,6 @@ namespace Gtk {
        */
       void set_titles_color(Gdk::RGBA color);
 
-      /** Get whether regions can be selected on the plot by dragging the mouse while the button is clicked in.
-       *
-       * \return \c true if a region is selectable in the plot, \c false if not
-       */
-      virtual bool get_region_selectable();
-
-      /** Sets whether regions can be selected on the plot by dragging the mouse while the button is clicked in.
-       *
-       * \param selectable pass \c true if a region has to be selectable, \c false if not
-       */
-      virtual void set_region_selectable(bool selectable = true);
-
-      /** This method takes care of coordinate transformations when using non-linear axes
-       *
-       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
-       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
-       * This method is a wrapper around the static function with the same name.
-       * \param x_old the \c x world coordinate to be transformed
-       * \param y_old the \c y world coordinate to be transformed
-       * \param x_new the new \c x PLplot coordinate
-       * \param y_new the new \c y PLplot coordinate
-       */
-      virtual void coordinate_transform_world_to_plplot(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new);
-
-      /** This method takes care of coordinate transformations when using non-linear axes
-       *
-       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
-       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
-       * This method is a wrapper around the static function with the same name.
-       * \param x_old the \c x PLplot coordinate to be transformed
-       * \param y_old the \c y PLplot coordinate to be transformed
-       * \param x_new the new \c x world coordinate
-       * \param y_new the new \c y world coordinate
-       */
-      virtual void coordinate_transform_plplot_to_world(PLFLT x_old, PLFLT y_old, PLFLT &x_new, PLFLT &y_new);
 
       /** Freshly allocate a clone of the instance
        *
@@ -325,14 +251,6 @@ namespace Gtk {
        * an implementation of this method, to ensure a proper copy can be provided.
        */
       virtual Plot *clone() const = 0;
-
-      /** signal_select_region is emitted whenever a selection box is dragged across a plot
-       *
-       * See default handler on_select_region()
-       */
-      sigc::signal<void, double, double, double, double > signal_select_region() {
-        return _signal_select_region;
-      }
 
       /** signal_changed is emitted whenever any of the plot properties or any of the dataset properties has changed.
        *
@@ -359,7 +277,7 @@ namespace Gtk {
       }
 
       friend class Canvas;
-
+      friend class RegionSelection;
     };
   }
 }
