@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['z',['z',['../class_gtk_1_1_p_lplot_1_1_plot_data_surface.html#a00711658f659aaaaf4e8891df85e1d5e',1,'Gtk::PLplot::PlotDataSurface']]],
+  ['z',['z',['../class_gtk_1_1_p_lplot_1_1_plot_data_surface.html#ae08fef558582633dbe6eb2da75411ae8',1,'Gtk::PLplot::PlotDataSurface']]],
   ['zlibcompressor',['ZlibCompressor',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1ZlibCompressor.html',1,'Gio']]],
   ['zlibcompressor',['ZlibCompressor',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1ZlibCompressor.html#afb2d2885bf4e955f3d93b06b5adf4257',1,'Gio::ZlibCompressor::ZlibCompressor(ZlibCompressor &amp;&amp;src) noexcept'],['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1ZlibCompressor.html#aeaa8829018f1b0078659a4b690db4c20',1,'Gio::ZlibCompressor::ZlibCompressor(ZlibCompressorFormat format, int level)']]],
   ['zlibcompressor_2eh',['zlibcompressor.h',['http://library.gnome.org/devel/glibmm/unstable/zlibcompressor_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/pangomm/unstable/zlibcompressor_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/atkmm/unstable/zlibcompressor_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/gtkmm/unstable/zlibcompressor_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/gtkmm/unstable/zlibcompressor_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/gtkmm/unstable/zlibcompressor_8h.html',1,'(Global Namespace)']]],
@@ -8,8 +8,8 @@ var searchData=
   ['zlibdecompressor',['ZlibDecompressor',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1ZlibDecompressor.html',1,'Gio']]],
   ['zlibdecompressor',['ZlibDecompressor',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1ZlibDecompressor.html#a7c6119288a9b2904422105dc3f5978ac',1,'Gio::ZlibDecompressor::ZlibDecompressor(ZlibDecompressor &amp;&amp;src) noexcept'],['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1ZlibDecompressor.html#a5403fac899e309691d7b74408f71d6ab',1,'Gio::ZlibDecompressor::ZlibDecompressor(ZlibCompressorFormat format)']]],
   ['zlibdecompressor_2eh',['zlibdecompressor.h',['http://library.gnome.org/devel/glibmm/unstable/zlibdecompressor_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/pangomm/unstable/zlibdecompressor_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/atkmm/unstable/zlibdecompressor_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/gtkmm/unstable/zlibdecompressor_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/gtkmm/unstable/zlibdecompressor_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/gtkmm/unstable/zlibdecompressor_8h.html',1,'(Global Namespace)']]],
-  ['zmax',['zmax',['../class_gtk_1_1_p_lplot_1_1_plot_contour.html#aff5af7420d1ccf34b3858e7cc2f202f2',1,'Gtk::PLplot::PlotContour']]],
-  ['zmin',['zmin',['../class_gtk_1_1_p_lplot_1_1_plot_contour.html#a4ab7f04b88eab382d4f1dd304d7c1f89',1,'Gtk::PLplot::PlotContour']]],
+  ['zmax',['zmax',['../class_gtk_1_1_p_lplot_1_1_plot_contour.html#ac934a1849df930510605c38765a94748',1,'Gtk::PLplot::PlotContour']]],
+  ['zmin',['zmin',['../class_gtk_1_1_p_lplot_1_1_plot_contour.html#a83083183dfd0031a8896eaeccbc78bb1',1,'Gtk::PLplot::PlotContour']]],
   ['zoom_5f100',['ZOOM_100',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#aff46e9e3f4bcc45cbb57d3ac55170b75',1,'Gtk::Stock']]],
   ['zoom_5ffit',['ZOOM_FIT',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a942e4e7feaba227dcee3b4cf8ceeebbb',1,'Gtk::Stock']]],
   ['zoom_5fin',['ZOOM_IN',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a85312d896ddc087dbabe1bab1aaaa400',1,'Gtk::Stock']]],

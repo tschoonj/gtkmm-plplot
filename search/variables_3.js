@@ -2,8 +2,8 @@ var searchData=
 [
   ['c',['c',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00897.html#a33f73620226c2827824851c0c935b28b',1,'std::queue']]],
   ['cache_5fline_5fsize',['cache_line_size',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#a2918b2f3f97a4fbbcfe990e73ace805b',1,'__gnu_parallel::_Settings']]],
-  ['cairo_5frange_5fx',['cairo_range_x',['../class_gtk_1_1_p_lplot_1_1_plot.html#abb955f9eb7fd4ea08edd4ff2c63bee45',1,'Gtk::PLplot::Plot']]],
-  ['cairo_5frange_5fy',['cairo_range_y',['../class_gtk_1_1_p_lplot_1_1_plot.html#aa4851685e8c836af941d45f30af99d45',1,'Gtk::PLplot::Plot']]],
+  ['cairo_5frange_5fx',['cairo_range_x',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a8bba1af546545cb1fcf4c7d6e68ca9fc',1,'Gtk::PLplot::RegionSelection']]],
+  ['cairo_5frange_5fy',['cairo_range_y',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a30565cff9babd5fef13528b0624689c8',1,'Gtk::PLplot::RegionSelection']]],
   ['cancel',['CANCEL',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#acfe70802a49b2fb4b6ea17285eb4356e',1,'Gtk::Stock']]],
   ['cancelled',['CANCELLED',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a708f6079268ad1a626c248ace401b899',1,'Gio::Error']]],
   ['cannot_5finfer_5ftype',['CANNOT_INFER_TYPE',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1VariantParseError.html#a217aafad01bee506a1b699a7e138314eabd0392b3c64cbae6db02fd059656f2b3',1,'Glib::VariantParseError']]],

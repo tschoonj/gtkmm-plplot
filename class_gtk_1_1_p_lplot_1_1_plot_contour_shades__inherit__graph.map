@@ -1,5 +1,6 @@
 <map id="Gtk::PLplot::PlotContourShades" name="Gtk::PLplot::PlotContourShades">
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_contour.html" title="a class for contour plots " alt="" coords="5,152,170,177"/>
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot.html" title="an abstract base class for all plots " alt="" coords="29,79,147,104"/>
-<area shape="rect" id="node4" href="/usr/local/Cellar/libsigc++/2.6.0/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="35,5,141,31"/>
+<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_contour.html" title="a class for contour plots " alt="" coords="71,152,236,177"/>
+<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot.html" title="an abstract base class for all plots " alt="" coords="5,79,123,104"/>
+<area shape="rect" id="node4" href="/usr/local/Cellar/libsigc++/2.6.0/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="100,5,207,31"/>
+<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_region_selection.html" title="a class providing support for selecting a region in a plot " alt="" coords="147,79,339,104"/>
 </map>

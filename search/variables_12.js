@@ -9,7 +9,7 @@ var searchData=
   ['red',['red',['http://www.cairographics.org/documentation/cairomm/reference/structCairo_1_1ColorStop.html#adbdcec948c42c467bdbfb9aa61427356',1,'Cairo::ColorStop']]],
   ['redo',['REDO',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a68d58ed40936a79bcef345042edbc15c',1,'Gtk::Stock']]],
   ['refresh',['REFRESH',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#abac78ea7c63985cd60ed68bd3eb2ff0d',1,'Gtk::Stock']]],
-  ['region_5fselectable',['region_selectable',['../class_gtk_1_1_p_lplot_1_1_plot.html#a09155de6af439da0b94df524bed9b4f5',1,'Gtk::PLplot::Plot']]],
+  ['region_5fselectable',['region_selectable',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a6c5b5a3aceb1f97923a9b0a6cc965925',1,'Gtk::PLplot::RegionSelection']]],
   ['remove',['REMOVE',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#af854bbf7f288d271a85ca8da98a6df2e',1,'Gtk::Stock']]],
   ['rep_5f',['rep_',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1slot__base.html#aa482f7dfc73c6950abde0fd51b3125b5',1,'sigc::slot_base']]],
   ['replace',['REPLACE',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html#a0f1ec693485b5b6c8148045e6ffa3aeeaae03b8944dce79aa18f7d74d3ad23066',1,'Glib::RegexError']]],

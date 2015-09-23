@@ -66,6 +66,7 @@ var searchData=
   ['regex_5ftraits',['regex_traits',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00910.html',1,'std']]],
   ['regexerror',['RegexError',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html',1,'Glib']]],
   ['region',['Region',['http://www.cairographics.org/documentation/cairomm/reference/classCairo_1_1Region.html',1,'Cairo']]],
+  ['regionselection',['RegionSelection',['../class_gtk_1_1_p_lplot_1_1_region_selection.html',1,'Gtk::PLplot']]],
   ['relation',['Relation',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Relation.html',1,'Atk']]],
   ['relationset',['RelationSet',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1RelationSet.html',1,'Atk']]],
   ['remoteactiongroup',['RemoteActionGroup',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1RemoteActionGroup.html',1,'Gio']]],

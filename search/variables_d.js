@@ -19,7 +19,7 @@ var searchData=
   ['max_5felement_5fminimal_5fn',['max_element_minimal_n',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#ad032e9ab491119f763bfb79cbfcc24d8',1,'__gnu_parallel::_Settings']]],
   ['max_5fexponent',['max_exponent',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00533.html#ac68694be9c73ac6e36c3fe2ab1f18da4',1,'std::__numeric_limits_base']]],
   ['max_5fexponent10',['max_exponent10',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00533.html#afa984ea44c90b032e00779a960af64ff',1,'std::__numeric_limits_base']]],
-  ['max_5fr',['max_r',['../class_gtk_1_1_p_lplot_1_1_plot_polar.html#a5f4e17fc689d626771973a505f06e9b4',1,'Gtk::PLplot::PlotPolar']]],
+  ['max_5fr',['max_r',['../class_gtk_1_1_p_lplot_1_1_plot_polar.html#acafc2c77a7cb1b6e4129bca5a1e725e7',1,'Gtk::PLplot::PlotPolar']]],
   ['may',['MAY',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#ga9781abc52ad49766808898743e44031fa8cb59e2c5f3f4c407f839648428e781b',1,'Glib::Date']]],
   ['media_5fforward',['MEDIA_FORWARD',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a8b303a965b7678e771f4750fca8ea2e2',1,'Gtk::Stock']]],
   ['media_5fnext',['MEDIA_NEXT',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#acab361141f2b0f3542e4f3c5363e69e4',1,'Gtk::Stock']]],

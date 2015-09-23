@@ -564,7 +564,7 @@ var searchData=
   ['_5fsignal_5fdata_5fmodified',['_signal_data_modified',['../class_gtk_1_1_p_lplot_1_1_plot_data.html#a9b6cfc0f8a8b94e8cce44c0fc14fd6f2',1,'Gtk::PLplot::PlotData']]],
   ['_5fsignal_5fdata_5fremoved',['_signal_data_removed',['../class_gtk_1_1_p_lplot_1_1_plot.html#ac03b16f5ebc9ca787136ad6e99dcd178',1,'Gtk::PLplot::Plot']]],
   ['_5fsignal_5flegend_5fchanged',['_signal_legend_changed',['../class_gtk_1_1_p_lplot_1_1_legend.html#a6149cae2ab086cc0ff452f8d212b04ee',1,'Gtk::PLplot::Legend']]],
-  ['_5fsignal_5fselect_5fregion',['_signal_select_region',['../class_gtk_1_1_p_lplot_1_1_plot.html#aa9e26b935974944cb6b3f089bea1d120',1,'Gtk::PLplot::Plot']]],
+  ['_5fsignal_5fselect_5fregion',['_signal_select_region',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a9b3c831d3e5978992e9dd869925353df',1,'Gtk::PLplot::RegionSelection']]],
   ['_5fsortalgorithm',['_SortAlgorithm',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01609.html#a35bfabad218af713f172257aecd8414e',1,'__gnu_parallel']]],
   ['_5fsp_5febo_5fhelper_3c_20_5fnm_2c_20_5ftp_2c_20false_20_3e',['_Sp_ebo_helper&lt; _Nm, _Tp, false &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00579.html',1,'std']]],
   ['_5fsp_5febo_5fhelper_3c_20_5fnm_2c_20_5ftp_2c_20true_20_3e',['_Sp_ebo_helper&lt; _Nm, _Tp, true &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00580.html',1,'std']]],

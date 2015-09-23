@@ -12,6 +12,6 @@ var searchData=
   ['window',['Window',['http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1Window.html',1,'Gdk']]],
   ['window',['Window',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Window.html',1,'Gtk']]],
   ['windowgroup',['WindowGroup',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1WindowGroup.html',1,'Gtk']]],
-  ['writerlock',['WriterLock',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RWLock_1_1WriterLock.html',1,'Glib::RWLock']]],
-  ['writerlock',['WriterLock',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1RWLock_1_1WriterLock.html',1,'Glib::Threads::RWLock']]]
+  ['writerlock',['WriterLock',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1RWLock_1_1WriterLock.html',1,'Glib::Threads::RWLock']]],
+  ['writerlock',['WriterLock',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RWLock_1_1WriterLock.html',1,'Glib::RWLock']]]
 ];

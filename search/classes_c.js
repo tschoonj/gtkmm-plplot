@@ -22,7 +22,7 @@ var searchData=
   ['limit_5fadjustor',['limit_adjustor',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00054.html',1,'__gnu_cxx::limit_condition']]],
   ['limit_5fcondition',['limit_condition',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00052.html',1,'__gnu_cxx']]],
   ['limit_5freference',['limit_reference',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1limit__reference.html',1,'sigc']]],
-  ['limit_5freference_3c_20t_5fobj_20_3e',['limit_reference&lt; T_obj &gt;',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1limit__reference.html',1,'sigc::limit_reference&lt; T_obj &gt;'],['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1limit__reference.html',1,'limit_reference&lt; T_obj &gt;']]],
+  ['limit_5freference_3c_20t_5fobj_20_3e',['limit_reference&lt; T_obj &gt;',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1limit__reference.html',1,'limit_reference&lt; T_obj &gt;'],['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1limit__reference.html',1,'sigc::limit_reference&lt; T_obj &gt;']]],
   ['limit_5freference_3c_20t_5ftype_2c_20true_20_3e',['limit_reference&lt; T_type, true &gt;',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1limit__reference_3_01T__type_00_01true_01_4.html',1,'sigc']]],
   ['limit_5freference_3c_20t_5fwrapped_20_3e',['limit_reference&lt; T_wrapped &gt;',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1limit__reference.html',1,'']]],
   ['linear_5fcongruential_5fengine',['linear_congruential_engine',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00814.html',1,'std']]],
