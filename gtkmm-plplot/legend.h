@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMMPLPLOT_LEGEND_H
 #define GTKMMPLPLOT_LEGEND_H
 
-#include <sigc++/sigc++.h>
 #include <vector>
 #include <gtkmm-plplot/plotdata.h>
 #include <gtkmm-plplot/enums.h>
@@ -35,7 +34,7 @@ namespace Gtk {
      * of the line and/or symbol that was used to render the corresponding dataset.
      * This is demonstrated in examples \ref example2, \ref example5 and \ref example6.
      */
-    class Legend : public sigc::trackable {
+    class Legend {
     private:
       bool showing_legend; ///< \c true will render the legend, while \c false will hide it
       double legend_pos_x; ///< the position of the selected corner of the legend along the X-axis in normalized coordinates
@@ -45,16 +44,6 @@ namespace Gtk {
       LegendCornerPosition legend_corner_position; ///< the corner of the legend box that will be used to determine the origin and direction of the normalized legend coordinate system
       Legend &operator=(const Legend &) = delete; ///< no move constructor
     protected:
-      sigc::signal<void> _signal_legend_changed; ///< signal that gets emitted whenever any of the legend parameters is changed.
-
-      /** This is a default handler for signal_legend_changed()
-       *
-       * This signal is emitted whenever any of the legend properties is changed.
-       * Currently this method does nothing but the signal will get caught by Canvas,
-       * and will eventually trigger a redrawing of the entire widget.
-       */
-      virtual void on_legend_changed();
-
       /** Copy constructor
        *
        * \param legend copy source
@@ -161,15 +150,6 @@ namespace Gtk {
        *
        */
       bool is_showing_legend();
-
-      /** signal_legend_changed is emitted whenever any of the legend properties has changed.
-       *
-       * See default handler on_legend_changed()
-       */
-      sigc::signal<void> signal_legend_changed() {
-        return _signal_legend_changed;
-      }
-
     };
   }
 }

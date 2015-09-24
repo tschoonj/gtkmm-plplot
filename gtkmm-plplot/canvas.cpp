@@ -56,27 +56,6 @@ Plot *Canvas::add_plot(const Plot &plot) {
   //ensure plot signal_changed gets re-emitted by the canvas
   plots.back()->signal_changed().connect([this](){_signal_changed.emit();});
 
-  //check if plot has a legend
-  Legend *legend = dynamic_cast<Legend *>(plots.back());
-  if (legend != nullptr) {
-    legend->signal_legend_changed().connect(
-      [this]
-      () {
-        _signal_changed.emit();
-      }
-    );
-  }
-  //check if plot allows for selection regions
-  RegionSelection *region_selection = dynamic_cast<RegionSelection *>(plots.back());
-  if (region_selection != nullptr) {
-    region_selection->signal_select_region().connect(
-      [this]
-      (double xmin, double xmax, double ymin, double ymax) {
-        _signal_changed.emit();
-      }
-    );
-  }
-
   _signal_changed.emit();
   return plots.back();
 }
@@ -170,7 +149,6 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
           plot_data_range_y[0],
           plot_data_range_y[1]
         );
-        _signal_changed.emit();
 
         return false;
       }

@@ -128,6 +128,5 @@ void RegionSelection::set_region(double xmin, double xmax, double ymin, double y
   plotted_range_y[0] = ymin;
   plotted_range_y[1] = ymax;
 
-  //solve this by connecting from canvas to signal_select_region
-  //_signal_changed.emit();
+  dynamic_cast<Plot *>(this)->_signal_changed.emit();
 }

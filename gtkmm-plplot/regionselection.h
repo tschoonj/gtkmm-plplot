@@ -129,7 +129,6 @@ namespace Gtk {
       sigc::signal<void, double, double, double, double > signal_select_region() {
         return _signal_select_region;
       }
-
       friend class Canvas;
     };
   }
