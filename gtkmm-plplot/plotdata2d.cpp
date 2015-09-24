@@ -45,7 +45,6 @@ PlotData2D::PlotData2D(
   if (std::count(x.begin(), x.end(), x[0]) == x.size()) {
     throw Exception("Gtk::PLplot::PlotData2D::PlotData2D -> data array x must have at least two different elements");
   }
-
 }
 
 PlotData2D::PlotData2D(
@@ -83,9 +82,7 @@ PlotData2D::PlotData2D(const PlotData2D &_data) :
   symbol_color(_data.symbol_color),
   symbol_scale_factor(_data.symbol_scale_factor) {}
 
-PlotData2D::~PlotData2D() {
-
-}
+PlotData2D::~PlotData2D() {}
 
 void PlotData2D::set_color(Gdk::RGBA _color) {
   color = _color;
@@ -175,7 +172,6 @@ void PlotData2D::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstrea
     pls->schr(0, symbol_scale_factor);
     pls->string(x.size(), x_pl, y_pl, symbol.c_str());
   }
-
 }
 
 std::vector<double> PlotData2D::get_vector_x() {

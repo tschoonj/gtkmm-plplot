@@ -17,6 +17,7 @@ doxyfile_deps = $(top_srcdir)/gtkmm-plplot/canvas.h \
 								$(top_srcdir)/gtkmm-plplot/plotpolar.h \
 								$(top_srcdir)/gtkmm-plplot/legend.h \
 								$(top_srcdir)/gtkmm-plplot/regionselection.h \
+								$(top_srcdir)/gtkmm-plplot/plotdata3d.h \
 								$(NULL)
 
 

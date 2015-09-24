@@ -32,15 +32,18 @@ namespace Gtk {
      *
      *  Instances of this class contain a single dataset for a Plot2D two-dimensional plot,
      *  consisting of the raw X- and Y-data, along with a number of properties that will determine
-     *  the appearance in the plot. Data may be represented as a line, symbols or both.
+     *  the appearance of the plot. Data may be represented as a line, symbols or both.
      *  The constructors of this class allow to use either std::vector or std::valarray as sources of data,
-     *  for added flexibility. Internally they are stored only as std::vector though. The datatype is PLplot's \c double, which is typedef'ed to \c double.
+     *  for added flexibility. Internally they are stored only as std::vector though.
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.
      *  Several of the methods that are offered by this class are demonstrated in \ref example5
      */
     class PlotData2D : public PlotData {
     private:
+      PlotData2D() = delete; ///< no default constructor
+      PlotData2D &operator=(const PlotData2D &) = delete; ///< no copy constructor
+    protected:
       std::vector<double> x; ///< The X-values of the dataset
       std::vector<double> y; ///< The Y-values of the dataset
       Gdk::RGBA color; ///< The color the dataset will be drawn in
@@ -49,8 +52,6 @@ namespace Gtk {
       Glib::ustring symbol; ///< If not an empty string, the symbol will be plotted at each of the data points from \c x and \c y.
       Gdk::RGBA symbol_color; ///< The color the symbol will be plotted in
       double symbol_scale_factor; ///< Scale factor that will determine the size of the symbols. Default is 1.
-      PlotData2D() = delete; ///< no default constructor
-      PlotData2D &operator=(const PlotData2D &) = delete; ///< no copy constructor
     public:
       /** Constructor
        *
@@ -229,7 +230,7 @@ namespace Gtk {
        * \param xval an X-value
        * \param yval an Y-value
        */
-      void add_datapoint(double xval, double yval);
+      virtual void add_datapoint(double xval, double yval);
 
       /** Add a single datapoint, consisting of a std::pair with an X and Y value, to the dataset
        *
@@ -237,8 +238,7 @@ namespace Gtk {
        * After this method is called, the plot will be automatically updated to reflect the changes.
        * \param xy_pair a std::pair containing both an X- and a Y- value
        */
-      void add_datapoint(std::pair<double, double> xy_pair);
-
+      virtual void add_datapoint(std::pair<double, double> xy_pair);
 
       /** Method to draw the dataset
        *
