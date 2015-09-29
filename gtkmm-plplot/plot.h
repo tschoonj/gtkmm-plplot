@@ -159,13 +159,13 @@ namespace Gtk {
        *
        * \param title the new X-axis title
        */
-      void set_axis_title_x(Glib::ustring &title);
+      void set_axis_title_x(Glib::ustring title);
 
       /** Set the Y-axis title
        *
        * \param title the new Y-axis title
        */
-      void set_axis_title_y(Glib::ustring &title);
+      void set_axis_title_y(Glib::ustring title);
 
       /** Get the X-axis title
        *
@@ -183,7 +183,7 @@ namespace Gtk {
        *
        * \param title the new plot title (may be an empty string)
        */
-      void set_plot_title(Glib::ustring &title);
+      void set_plot_title(Glib::ustring title);
 
       /** Get the plot title
        *

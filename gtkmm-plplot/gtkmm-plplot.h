@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/legend.h>
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/plot2d.h>
+#include <gtkmm-plplot/plot3d.h>
 #include <gtkmm-plplot/plotpolar.h>
 #include <gtkmm-plplot/plotcontour.h>
 #include <gtkmm-plplot/plotcontourshades.h>

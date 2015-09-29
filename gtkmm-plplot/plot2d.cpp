@@ -111,6 +111,7 @@ void Plot2D::plot_data_modified() {
   plotted_range_x[1] = plot_data_range_x[1];
   plotted_range_y[0] = plot_data_range_y[0];
   plotted_range_y[1] = plot_data_range_y[1];
+
   _signal_changed.emit();
 }
 

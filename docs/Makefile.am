@@ -6,6 +6,7 @@ if ENABLE_DOCUMENTATION
 doxyfile_deps = $(top_srcdir)/gtkmm-plplot/canvas.h \
 								$(top_srcdir)/gtkmm-plplot/exception.h \
 								$(top_srcdir)/gtkmm-plplot/plot2d.h \
+								$(top_srcdir)/gtkmm-plplot/plot3d.h \
 								$(top_srcdir)/gtkmm-plplot/plotdata2d.h \
 								$(top_srcdir)/gtkmm-plplot/enums.h \
 								$(top_srcdir)/gtkmm-plplot/plot.h \

@@ -127,4 +127,7 @@
  *  \section example8 Example 8: a Shaded contour plot
  *  \include test8.cpp
  *  \image html test8.png "Example 8"
+ *  \section example9 Example 9: a Three-dimensional plot
+ *  \include test9.cpp
+ *  \image html test9.png
  */

@@ -105,12 +105,12 @@ void Plot::on_data_removed() {
   plot_data_modified();
 }
 
-void Plot::set_axis_title_x(Glib::ustring &title) {
+void Plot::set_axis_title_x(Glib::ustring title) {
   axis_title_x = title;
   _signal_changed.emit();
 }
 
-void Plot::set_axis_title_y(Glib::ustring &title) {
+void Plot::set_axis_title_y(Glib::ustring title) {
   axis_title_y = title;
   _signal_changed.emit();
 }
@@ -123,7 +123,7 @@ Glib::ustring Plot::get_axis_title_y() {
   return axis_title_y;
 }
 
-void Plot::set_plot_title(Glib::ustring &title) {
+void Plot::set_plot_title(Glib::ustring title) {
   plot_title = title;
   _signal_changed.emit();
 }
