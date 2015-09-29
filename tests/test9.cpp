@@ -67,8 +67,8 @@ namespace Test9 {
 
       //generate our data
       //first a helix
-      std::valarray<double> x_va1 = cos(Gtk::PLplot::indgen_va(1000)*8*M_PI/999.0);
-      std::valarray<double> y_va1 = sin(Gtk::PLplot::indgen_va(1000)*8*M_PI/999.0);
+      std::valarray<double> x_va1 = cos(Gtk::PLplot::indgen_va(1000)*8.0*M_PI/999.0);
+      std::valarray<double> y_va1 = sin(Gtk::PLplot::indgen_va(1000)*8.0*M_PI/999.0);
       std::valarray<double> z_va1 = Gtk::PLplot::indgen_va(1000)*10.0/999.0 - 5.0;
 
       Gtk::PLplot::PlotData3D data1(x_va1, y_va1, z_va1);
