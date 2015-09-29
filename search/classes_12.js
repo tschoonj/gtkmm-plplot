@@ -86,6 +86,6 @@ var searchData=
   ['rgba',['RGBA',['http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1RGBA.html',1,'Gdk']]],
   ['rope',['rope',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00066.html',1,'__gnu_cxx']]],
   ['runtime_5ferror',['runtime_error',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00912.html',1,'std']]],
-  ['rwlock',['RWLock',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1RWLock.html',1,'Glib::Threads']]],
-  ['rwlock',['RWLock',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RWLock.html',1,'Glib']]]
+  ['rwlock',['RWLock',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RWLock.html',1,'Glib']]],
+  ['rwlock',['RWLock',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1RWLock.html',1,'Glib::Threads']]]
 ];

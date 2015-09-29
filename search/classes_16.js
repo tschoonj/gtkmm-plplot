@@ -1,8 +1,8 @@
 var searchData=
 [
   ['valarray',['valarray',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00964.html',1,'std']]],
-  ['value',['Value',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Value.html',1,'Atk']]],
   ['value',['Value',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Value.html',1,'Glib']]],
+  ['value',['Value',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Value.html',1,'Atk']]],
   ['value_3c_20bool_20_3e',['Value&lt; bool &gt;',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Value_3_01bool_01_4.html',1,'Glib']]],
   ['value_3c_20char_20_3e',['Value&lt; char &gt;',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Value_3_01char_01_4.html',1,'Glib']]],
   ['value_3c_20const_20t_20_2a_20_3e',['Value&lt; const T * &gt;',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Value_3_01const_01T_01_5_01_4.html',1,'Glib']]],
@@ -64,8 +64,8 @@ var searchData=
   ['varianttype',['VariantType',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1VariantType.html',1,'Glib']]],
   ['vbox',['VBox',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1VBox.html',1,'Gtk']]],
   ['vbuttonbox',['VButtonBox',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1VButtonBox.html',1,'Gtk']]],
-  ['vector',['vector',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00488.html',1,'std::__debug']]],
   ['vector',['vector',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00965.html',1,'std']]],
+  ['vector',['vector',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00488.html',1,'std::__debug']]],
   ['vector_3c_20_5f_5fgnu_5fparallel_3a_3a_5fpiece_3c_20_5fdifferencetype_20_3e_20_3e',['vector&lt; __gnu_parallel::_Piece&lt; _DifferenceType &gt; &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00965.html',1,'std']]],
   ['vector_3c_20block_5ftype_2c_20allocator_5ftype_20_3e',['vector&lt; block_type, allocator_type &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00965.html',1,'std']]],
   ['vector_3c_20bool_2c_20_5falloc_20_3e',['vector&lt; bool, _Alloc &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00966.html',1,'std']]],
@@ -78,7 +78,7 @@ var searchData=
   ['visitor',['visitor',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1visitor.html',1,'sigc']]],
   ['visual',['Visual',['http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1Visual.html',1,'Gdk']]],
   ['volatile_5flimit_5freference',['volatile_limit_reference',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1volatile__limit__reference.html',1,'sigc']]],
-  ['volatile_5flimit_5freference_3c_20t_5fobj_20_3e',['volatile_limit_reference&lt; T_obj &gt;',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1volatile__limit__reference.html',1,'sigc::volatile_limit_reference&lt; T_obj &gt;'],['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1volatile__limit__reference.html',1,'volatile_limit_reference&lt; T_obj &gt;']]],
+  ['volatile_5flimit_5freference_3c_20t_5fobj_20_3e',['volatile_limit_reference&lt; T_obj &gt;',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1volatile__limit__reference.html',1,'volatile_limit_reference&lt; T_obj &gt;'],['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1volatile__limit__reference.html',1,'sigc::volatile_limit_reference&lt; T_obj &gt;']]],
   ['volatile_5flimit_5freference_3c_20t_5ftype_2c_20true_20_3e',['volatile_limit_reference&lt; T_type, true &gt;',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1volatile__limit__reference_3_01T__type_00_01true_01_4.html',1,'sigc']]],
   ['volatile_5fmem_5ffunctor0',['volatile_mem_functor0',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1volatile__mem__functor0.html',1,'sigc']]],
   ['volatile_5fmem_5ffunctor1',['volatile_mem_functor1',['http://library.gnome.org/devel/libsigc++/unstable/classsigc_1_1volatile__mem__functor1.html',1,'sigc']]],

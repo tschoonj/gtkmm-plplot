@@ -15,6 +15,7 @@ var searchData=
   ['alpha',['alpha',['http://www.cairographics.org/documentation/cairomm/reference/structCairo_1_1ColorStop.html#a524397babe94f70ed6205433066e2649',1,'Cairo::ColorStop']]],
   ['already_5fexists',['ALREADY_EXISTS',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1FileChooserError.html#aa71fb16ebc64468a95e31a91c2b555c4aabecdfbc8269fc0794f278d812472f4a',1,'Gtk::FileChooserError']]],
   ['already_5fmounted',['ALREADY_MOUNTED',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a16399644d434f214cc56a030d5b300bb',1,'Gio::Error']]],
+  ['altitude',['altitude',['../class_gtk_1_1_p_lplot_1_1_plot3_d.html#abfdcc857f727600a6d22ea0d6da96faa',1,'Gtk::PLplot::Plot3D']]],
   ['app',['app',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#abc6732e5a0d9dc40b79e2fe6e32e7b09',1,'std::basic_fstream']]],
   ['app_5fexec',['app_exec',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1RecentManager_1_1Data.html#a442c240764b959e6222d54a3c780311d',1,'Gtk::RecentManager::Data']]],
   ['app_5fname',['app_name',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1RecentManager_1_1Data.html#a275a497e18afc763f37e7638b6b75812',1,'Gtk::RecentManager::Data']]],
@@ -28,5 +29,7 @@ var searchData=
   ['auth_5ffailed',['AUTH_FAILED',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Error.html#acd2c910ef29b6be121c1fde3cfa8f2caa38bca965d996fac1b057fbdd9343c117',1,'Gio::DBus::Error']]],
   ['axes_5fcolor',['axes_color',['../class_gtk_1_1_p_lplot_1_1_plot.html#a31d1083151b285b6c7e471e5d4b6a0a2',1,'Gtk::PLplot::Plot']]],
   ['axis_5ftitle_5fx',['axis_title_x',['../class_gtk_1_1_p_lplot_1_1_plot.html#af80df8bb4508c3dd0893354b191cecd2',1,'Gtk::PLplot::Plot']]],
-  ['axis_5ftitle_5fy',['axis_title_y',['../class_gtk_1_1_p_lplot_1_1_plot.html#a8897c4f3a64a8cb6313ad1616fa39d4b',1,'Gtk::PLplot::Plot']]]
+  ['axis_5ftitle_5fy',['axis_title_y',['../class_gtk_1_1_p_lplot_1_1_plot.html#a8897c4f3a64a8cb6313ad1616fa39d4b',1,'Gtk::PLplot::Plot']]],
+  ['axis_5ftitle_5fz',['axis_title_z',['../class_gtk_1_1_p_lplot_1_1_plot3_d.html#a15a5ebb835fde74e2c11879d63fc8574',1,'Gtk::PLplot::Plot3D']]],
+  ['azimuth',['azimuth',['../class_gtk_1_1_p_lplot_1_1_plot3_d.html#ad79729eeb9bb98328917b9e49635e476',1,'Gtk::PLplot::Plot3D']]]
 ];

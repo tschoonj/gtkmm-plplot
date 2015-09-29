@@ -36,6 +36,7 @@ var searchData=
   ['searchbar_2eh',['searchbar.h',['http://library.gnome.org/devel/gtkmm/unstable/searchbar_8h.html',1,'']]],
   ['searchentry_2eh',['searchentry.h',['http://library.gnome.org/devel/gtkmm/unstable/searchentry_8h.html',1,'']]],
   ['seekable_2eh',['seekable.h',['http://library.gnome.org/devel/glibmm/unstable/seekable_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/pangomm/unstable/seekable_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/atkmm/unstable/seekable_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/gtkmm/unstable/seekable_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/gtkmm/unstable/seekable_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/gtkmm/unstable/seekable_8h.html',1,'(Global Namespace)']]],
+  ['select_2eh',['select.h',['http://library.gnome.org/devel/libsigc++/unstable/select_8h.html',1,'']]],
   ['selection_2eh',['selection.h',['http://library.gnome.org/devel/atkmm/unstable/selection_8h.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/gtkmm/unstable/selection_8h.html',1,'(Global Namespace)']]],
   ['selectiondata_2eh',['selectiondata.h',['http://library.gnome.org/devel/gtkmm/unstable/selectiondata_8h.html',1,'']]],
   ['selectiondata_5fprivate_2eh',['selectiondata_private.h',['http://library.gnome.org/devel/gtkmm/unstable/selectiondata__private_8h.html',1,'']]],
