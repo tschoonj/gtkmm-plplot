@@ -58,7 +58,7 @@ namespace Test9 {
       linewidth_adj2(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       linewidth_spin1(linewidth_adj1, 0.1, 1.0),
       linewidth_spin2(linewidth_adj2, 0.1, 1.0),
-      altitude_adj(Gtk::Adjustment::create(45.0, 0, 360.0, 1.0, 5.0, 0.0)),
+      altitude_adj(Gtk::Adjustment::create(45.0, 0, 90.0, 1.0, 5.0, 0.0)),
       azimuth_adj(Gtk::Adjustment::create(45.0, 0, 360.0, 1.0, 5.0, 0.0)),
       altitude_spin(altitude_adj, 0.1, 1.0),
       azimuth_spin(azimuth_adj, 0.1, 1.0),

@@ -79,6 +79,10 @@ Plot3D::Plot3D(const Plot3D &_source) :
 Plot3D::~Plot3D() {}
 
 void Plot3D::set_altitude(double _altitude) {
+  if (altitude == _altitude)
+    return;
+  if (_altitude < 0 || _altitude > 90.0)
+    throw Exception("Gtk::PLplot::Plot3D::set_altitude -> altitude must be between 0 and 90");
   altitude = _altitude;
   _signal_changed.emit();
 }
@@ -88,6 +92,8 @@ double Plot3D::get_altitude() {
 }
 
 void Plot3D::set_azimuth(double _azimuth) {
+  if (azimuth == _azimuth)
+    return;
   azimuth = _azimuth;
   _signal_changed.emit();
 }
