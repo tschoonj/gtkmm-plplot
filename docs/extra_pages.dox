@@ -60,11 +60,18 @@
  *  - PLplot, including its C++ bindings. This package is currently being developed against PLplot 5.11.0,
  *    but we will make sure it also runs with older versions.
  *  - A C++ compiler with full support of the C++11 standard plus GNU extensions. Compilers known to do the job are recent versions of GCC and clang.
+ *  - Boost (optional)
  *
  *  \section downloading Downloading the software
+ *  Downloads are currently hosted [here](http://lvserver.ugent.be/gtkmm-plplot).
+ *  Just get the latest tarball (currently 1.0) and run the following commands:
+ *  - tar xfvz gtkmm-plplot-1.0.tar.gz
+ *  - ./configure
+ *  - make
+ *  - make install
  *
- *  No releases have been made so far, so you will have to clone the Github repository.
- *  Make sure you have the above mentioned dependencies installed, as well as the GNU autotools (autoconf, automake and libtool) and pkg-config
+ *  People interested in running the latest development version will have to clone the Github repository.
+ *  Make sure you have the above mentioned dependencies installed, as well as the GNU autotools (autoconf, automake and libtool) and mm-common.
  *  - git clone git@github.com:tschoonj/gtkmm-plplot.git
  *  - cd gtkmm-plplot
  *  - autoreconf -i
@@ -82,11 +89,11 @@
  *  compilation, but suffices for this simple example. Assuming that your
  *  program source file is @c program.cc, compile it with:
  *  \code
- *  g++ program.cc -o program  `pkg-config --cflags --libs gtkmm-plplot-0.1`
+ *  g++ program.cc -o program  `pkg-config --cflags --libs gtkmm-plplot-1.0`
  *  \endcode
  *  Alternatively, if using autoconf, use the following in @c configure.ac:
  *  \code
- *  PKG_CHECK_MODULES([GTKMMPLPLOT], [gtkmm-plplot-0.1])
+ *  PKG_CHECK_MODULES([GTKMMPLPLOT], [gtkmm-plplot-1.0])
  *  \endcode
  *  Then use the generated \c GTKMMPLPLOT_CFLAGS and \c GTKMMPLPLOT_LIBS variables in
  *  the project \c Makefile.am files. For example:

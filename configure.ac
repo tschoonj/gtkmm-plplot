@@ -1,4 +1,4 @@
-AC_INIT([gtkmm-plplot],[0.1],[tom.schoonjans@me.com],,[https://github.com/tschoonj/gtkmm-plplot])
+AC_INIT([gtkmm-plplot],[1.0],[tom.schoonjans@me.com],,[https://github.com/tschoonj/gtkmm-plplot])
 AC_PREREQ([2.60])
 AC_CONFIG_SRCDIR([gtkmm-plplot/canvas.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -6,8 +6,14 @@ AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_CANONICAL_HOST
 AC_CONFIG_MACRO_DIR([m4])
 
-
-#m4_pattern_allow([AS_TR_SH])
+LIB_CURRENT=0
+LIB_REVISION=0
+LIB_AGE=0
+AC_SUBST(LIB_CURRENT)
+AC_SUBST(LIB_REVISION)
+AC_SUBST(LIB_AGE)
+LIB_CURRENT_MINUS_AGE=`expr $LIB_CURRENT - $LIB_AGE`
+AC_SUBST(LIB_CURRENT_MINUS_AGE)
 
 AC_USE_SYSTEM_EXTENSIONS
 m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
@@ -15,7 +21,7 @@ m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 LT_INIT
 
 MM_PREREQ([0.9.0])
-MM_INIT_MODULE([gtkmm-plplot-0.1])
+MM_INIT_MODULE([gtkmm-plplot-1.0])
 
 AC_PROG_CC
 if test `AS_BASENAME([$CC])` = $CC ; then

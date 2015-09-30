@@ -12,7 +12,7 @@ Gtkmm-PLplot is licensed under the GPLv3.
 
 * Create plots using two std::vector, std::valarray and boost::multi_array objects.
 * Zoom in by dragging a selection box.
-* Support for two-dimensional plots, polar plots, contour plots with or without shaded regions...
+* Support for two-dimensional plots, polar plots, contour plots with or without shaded regions, three-dimensional line plots
 * Supports multiple, independently controlled plots on a single canvas.
 * Extensive use of libsigc++ signals
 * Highly extensible
@@ -22,6 +22,7 @@ Gtkmm-PLplot is licensed under the GPLv3.
 * Gtkmm (minimum 3.0.0)
 * PLplot (at least 5.10.0 but earlier versions may also work, the C++ bindings are required)
 * a C++11 compiler (GCC, clang...)
+* Boost (optional)
 
 ## Supported platforms
 
@@ -31,5 +32,13 @@ Development occurs mostly on a Mac but I will ensure it also runs properly on Wi
 
 I have generated documentation with Doxygen. Have a look at http://tschoonj.github.io/gtkmm-plplot.
 
+## Downloads
+
+Tarballs can be found [here](http://lvserver.ugent.be/gtkmm-plplot)
+
+## TODO
+* plsurf3d, plmesh
+* histograms
+* ...
 
 Tom Schoonjans
