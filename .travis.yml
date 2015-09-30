@@ -6,6 +6,10 @@ compiler:
   - gcc
   #- clang
 
+os:
+  - linux
+  - osx
+
 env:
   global:
     - LD_LIBRARY_PATH=/usr/local/lib
@@ -13,7 +17,7 @@ env:
 
 before_install:
   - if [ $TRAVIS_OS_NAME == linux ]; then ./travis-before-install-linux.sh ; fi
-  - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install gtkmm3 plplot mm-common && brew link --force gtkmm3 plplot mm-common ; fi
+  - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install gtkmm3 plplot mm-common boost && brew link --force gtkmm3 plplot mm-common ; fi
 
 #install:
 #  - if [ $TRAVIS_OS_NAME == linux ]; then ./travis-deps.sh ; fi
