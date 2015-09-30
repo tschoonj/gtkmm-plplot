@@ -25,7 +25,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Gtkmm-PLplot
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">A scientific plotting library for Gtkmm</div>
   </td>
@@ -90,10 +90,17 @@ Requirements</h1>
 <li>Gtkmm (3.x) and its (long list) of dependencies</li>
 <li>PLplot, including its C++ bindings. This package is currently being developed against PLplot 5.11.0, but we will make sure it also runs with older versions.</li>
 <li>A C++ compiler with full support of the C++11 standard plus GNU extensions. Compilers known to do the job are recent versions of GCC and clang.</li>
+<li>Boost (optional)</li>
 </ul>
 <h1><a class="anchor" id="downloading"></a>
 Downloading the software</h1>
-<p>No releases have been made so far, so you will have to clone the Github repository. Make sure you have the above mentioned dependencies installed, as well as the GNU autotools (autoconf, automake and libtool) and pkg-config</p><ul>
+<p>Downloads are currently hosted <a href="http://lvserver.ugent.be/gtkmm-plplot">here</a>. Just get the latest tarball (currently 1.0) and run the following commands:</p><ul>
+<li>tar xfvz gtkmm-plplot-1.0.tar.gz</li>
+<li>./configure</li>
+<li>make</li>
+<li>make install</li>
+</ul>
+<p>People interested in running the latest development version will have to clone the Github repository. Make sure you have the above mentioned dependencies installed, as well as the GNU autotools (autoconf, automake and libtool) and mm-common.</p><ul>
 <li>git clone <a href="#" onclick="location.href='mai'+'lto:'+'git'+'@g'+'ith'+'ub'+'.co'+'m'; return false;">git@g<span style="display: none;">.nosp@m.</span>ithu<span style="display: none;">.nosp@m.</span>b.com</a>:tschoonj/gtkmm-plplot.git</li>
 <li>cd gtkmm-plplot</li>
 <li>autoreconf -i</li>
@@ -104,7 +111,7 @@ Downloading the software</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 29 2015 18:06:27 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 30 2015 17:19:15 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

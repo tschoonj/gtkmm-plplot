@@ -25,7 +25,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Gtkmm-PLplot
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">A scientific plotting library for Gtkmm</div>
   </td>
@@ -1853,7 +1853,7 @@ Example 9: a Three-dimensional plot</h1>
 <div class="line">      linewidth_adj2(<a class="code" href="namespace_gtk.html">Gtk</a>::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),</div>
 <div class="line">      linewidth_spin1(linewidth_adj1, 0.1, 1.0),</div>
 <div class="line">      linewidth_spin2(linewidth_adj2, 0.1, 1.0),</div>
-<div class="line">      altitude_adj(<a class="code" href="namespace_gtk.html">Gtk</a>::Adjustment::create(45.0, 0, 360.0, 1.0, 5.0, 0.0)),</div>
+<div class="line">      altitude_adj(<a class="code" href="namespace_gtk.html">Gtk</a>::Adjustment::create(45.0, 0, 90.0, 1.0, 5.0, 0.0)),</div>
 <div class="line">      azimuth_adj(<a class="code" href="namespace_gtk.html">Gtk</a>::Adjustment::create(45.0, 0, 360.0, 1.0, 5.0, 0.0)),</div>
 <div class="line">      altitude_spin(altitude_adj, 0.1, 1.0),</div>
 <div class="line">      azimuth_spin(azimuth_adj, 0.1, 1.0),</div>
@@ -1862,8 +1862,8 @@ Example 9: a Three-dimensional plot</h1>
 <div class="line"></div>
 <div class="line">      <span class="comment">//generate our data</span></div>
 <div class="line">      <span class="comment">//first a helix</span></div>
-<div class="line">      <a class="codeRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00964.html">std::valarray&lt;double&gt;</a> x_va1 = <a class="codeRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01644.html#gaed6443d175b556280b801357758d1526">cos</a>(<a class="code" href="namespace_gtk_1_1_p_lplot.html#a78f82db9b3d089b006439f97efad850c">Gtk::PLplot::indgen_va</a>(1000)*8*M_PI/999.0);</div>
-<div class="line">      <a class="codeRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00964.html">std::valarray&lt;double&gt;</a> y_va1 = <a class="codeRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01644.html#ga249915bcbce6563e63f5ffa6d464155a">sin</a>(<a class="code" href="namespace_gtk_1_1_p_lplot.html#a78f82db9b3d089b006439f97efad850c">Gtk::PLplot::indgen_va</a>(1000)*8*M_PI/999.0);</div>
+<div class="line">      <a class="codeRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00964.html">std::valarray&lt;double&gt;</a> x_va1 = <a class="codeRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01644.html#gaed6443d175b556280b801357758d1526">cos</a>(<a class="code" href="namespace_gtk_1_1_p_lplot.html#a78f82db9b3d089b006439f97efad850c">Gtk::PLplot::indgen_va</a>(1000)*8.0*M_PI/999.0);</div>
+<div class="line">      <a class="codeRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00964.html">std::valarray&lt;double&gt;</a> y_va1 = <a class="codeRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01644.html#ga249915bcbce6563e63f5ffa6d464155a">sin</a>(<a class="code" href="namespace_gtk_1_1_p_lplot.html#a78f82db9b3d089b006439f97efad850c">Gtk::PLplot::indgen_va</a>(1000)*8.0*M_PI/999.0);</div>
 <div class="line">      <a class="codeRef" doxygen="/usr/local/Cellar/mm-common/0.9.8/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00964.html">std::valarray&lt;double&gt;</a> z_va1 = <a class="code" href="namespace_gtk_1_1_p_lplot.html#a78f82db9b3d089b006439f97efad850c">Gtk::PLplot::indgen_va</a>(1000)*10.0/999.0 - 5.0;</div>
 <div class="line"></div>
 <div class="line">      <a class="code" href="class_gtk_1_1_p_lplot_1_1_plot_data3_d.html">Gtk::PLplot::PlotData3D</a> data1(x_va1, y_va1, z_va1);</div>
@@ -2047,7 +2047,7 @@ Example 9: a Three-dimensional plot</h1>
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 29 2015 18:06:27 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 30 2015 17:19:16 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>
