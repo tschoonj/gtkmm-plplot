@@ -75,6 +75,7 @@ namespace Gtk {
        * \param object the object we are dealing with
        */
       static void coordinate_transform_plplot_to_world(double x_old, double y_old, double *x_new, double *y_new, PLPointer object);
+
       /** Constructor
        *
        * This protected constructor is meant to be used in derived classes only to circumvent the problem of calling add_data() in a constructor which calls Plot2D's public constructor.

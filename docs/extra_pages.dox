@@ -1,4 +1,40 @@
 /** \mainpage
+ *
+ *  \htmlonly
+ *  <p><img src="test1.png" width="500" name="slide"/></p>
+ *  <script type="text/javascript">
+ *  var image1 = new Image();
+ *  image1.src = "test1.png"
+ *  var image2 = new Image();
+ *  image2.src = "test2.png"
+ *  var image3 = new Image();
+ *  image3.src = "test3.png"
+ *  var image4 = new Image();
+ *  image4.src = "test4.png"
+ *  var image5 = new Image();
+ *  image5.src = "test5.png"
+ *  var image6 = new Image();
+ *  image6.src = "test6.png"
+ *  var image7 = new Image();
+ *  image7.src = "test7.png"
+ *  var image8 = new Image();
+ *  image8.src = "test8.png"
+ *  var image9 = new Image();
+ *  image9.src = "test9.png"
+ *
+ *  var step = 1;
+ *  function slideit() {
+ *    document.images.slide.src = eval("image"+step+".src");
+ *    if (step < 9)
+ *      step++;
+ *    else
+ *      step=1;
+ *    setTimeout("slideit()", 2500);
+ *  }
+ *  slideit();
+ *  </script>
+ *  \endhtmlonly
+ *
  *  Scientific plotting and GTK+ have never been good friends.
  *  Over the years there have been several attempts like [GtkExtra](http://gtkextra.sourceforge.net/cms/),
  *  [GtkDataBox](http://sourceforge.net/projects/gtkdatabox/), [GoatPlot](https://github.com/drahnr/goatplot),
