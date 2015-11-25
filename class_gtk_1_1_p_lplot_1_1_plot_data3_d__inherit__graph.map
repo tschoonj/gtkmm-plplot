@@ -1,5 +1,5 @@
 <map id="Gtk::PLplot::PlotData3D" name="Gtk::PLplot::PlotData3D">
 <area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d.html" title="a class that will hold a single dataset and its properties for a Plot2D plot " alt="" coords="5,152,168,177"/>
 <area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties " alt="" coords="14,79,160,104"/>
-<area shape="rect" id="node4" href="/usr/local/Cellar/libsigc++/2.6.1/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="33,5,140,31"/>
+<area shape="rect" id="node4" href="/usr/local/Cellar/libsigc++/2.6.2/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="33,5,140,31"/>
 </map>
