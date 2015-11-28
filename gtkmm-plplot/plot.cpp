@@ -101,9 +101,38 @@ void Plot::on_data_added(PlotData *added_data) {
   plot_data_modified();
 }
 
-void Plot::on_data_removed() {
+void Plot::on_data_removed(PlotData *removed_data) {
+  delete removed_data; //this is necessary to avoid a memory leak.
   plot_data_modified();
 }
+
+void Plot::remove_data(unsigned int index) {
+  if (plot_data.size() < 2)
+    throw Exception("Gtk::PLplot::Plot::remove_data -> At least one dataset must be present in the dataset");
+
+  if (index >= plot_data.size())
+    throw Exception("Gtk::PLplot::Plot::remove_data -> Invalid index");
+
+  PlotData *removed_plot = plot_data[index];
+
+  plot_data.erase(plot_data.begin() + index);
+  _signal_data_removed.emit(removed_plot);
+}
+
+void Plot::remove_data(PlotData *plot_data_member) {
+  if (plot_data.size() < 2)
+    throw Exception("Gtk::PLplot::Plot::remove_data -> At least one dataset must be present in the dataset");
+
+  auto iter = std::find(plot_data.begin(), plot_data.end(), plot_data_member);
+  if (iter == plot_data.end())
+    throw Exception("Gtk::PLplot::Plot::remove_data -> No match for argument");
+
+  PlotData *removed_plot = *iter;
+
+  plot_data.erase(iter);
+  _signal_data_removed.emit(removed_plot);
+}
+
 
 void Plot::set_axis_title_x(Glib::ustring title) {
   axis_title_x = title;

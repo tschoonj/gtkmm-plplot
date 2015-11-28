@@ -22,3 +22,4 @@ build2
 *.app
 *.zip
 gh-pages
+.tags*

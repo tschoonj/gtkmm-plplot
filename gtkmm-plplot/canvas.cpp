@@ -314,6 +314,8 @@ void Canvas::remove_plot(unsigned int index) {
   if (index >= plots.size())
     throw Exception("Gtk::PLplot::Canvas::remove_plot -> Invalid index");
 
+  delete plots[index];
+
   plots.erase(plots.begin() + index);
   _signal_changed.emit();
 }
@@ -325,6 +327,8 @@ void Canvas::remove_plot(Plot *plot) {
   auto iter = std::find(plots.begin(), plots.end(), plot);
   if (iter == plots.end())
     throw Exception("Gtk::PLplot::Canvas::remove_plot -> No match for input");
+
+  delete *iter;
 
   plots.erase(iter);
   _signal_changed.emit();

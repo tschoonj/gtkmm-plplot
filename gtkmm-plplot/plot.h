@@ -62,7 +62,7 @@ namespace Gtk {
 
       sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the plot parameters, or any of the contained PlotData datasets is changed.
       sigc::signal<void, PlotData *> _signal_data_added; ///< signal emitted whenever a new PlotData dataset is added to the plot
-      sigc::signal<void> _signal_data_removed; ///< signal emitted whenever data is removed from the plot.
+      sigc::signal<void, PlotData *> _signal_data_removed; ///< signal emitted whenever data is removed from the plot.
 
       virtual void plot_data_modified() = 0; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
 
@@ -83,10 +83,12 @@ namespace Gtk {
 
       /** This is a default handler for signal_data_removed()
        *
-       * This signal is emitted whenever a PlotData dataset is removed from the plot.
-       * It will call the private method plot_data_modified, which will update \c *_range_* properties, and emit signal_changed.
+       * This signal is emitted whenever a PlotData dataset is removed from the plot with remove_data.
+       * It will first delete removed_data, followed by a call to the
+       * private method plot_data_modified, which will update \c *_range_* properties, and emit signal_changed.
+       * \param removed_data a pointer to the PlotData dataset that was just removed. It should be deleted in this method or a memory leak will be created.
        */
-      virtual void on_data_removed();
+      virtual void on_data_removed(PlotData *removed_data);
 
       /** Initialization method for draw_plot.
        *
@@ -95,7 +97,7 @@ namespace Gtk {
        * \param width width of the plot in normalized coordinates
        * \param height height of the plot in normalized coordinates
        */
-      void draw_plot_init(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height);
+      virtual void draw_plot_init(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) final;
 
       /** Constructor
        *
@@ -137,6 +139,20 @@ namespace Gtk {
        */
       virtual PlotData *add_data(const PlotData &data) = 0;
 
+      /** Remove a single dataset from the plot
+       *
+       * \param plot_data_index index of the plotdata in the \c plot_data vector
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void remove_data(unsigned int plot_data_index) final;
+
+      /** Remove a single dataset from the plot
+       *
+       * \param plot_data_member pointer to the plotdata in the \c plot_data vector
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void remove_data(PlotData *plot_data_member) final;
+
       /** Get a pointer to a dataset included in the plot
        *
        * Throws an exception when \c data_index is invalid.
@@ -144,7 +160,7 @@ namespace Gtk {
        * \return a pointer to the PlotData in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      PlotData *get_data(unsigned int data_index = 0);
+      virtual PlotData *get_data(unsigned int data_index = 0) final;
 
       /** Method to draw the plot with all of its datasets
        *
@@ -272,7 +288,7 @@ namespace Gtk {
       *
       * See default handler on_data_removed()
       */
-      sigc::signal<void> signal_data_removed() {
+      sigc::signal<void, PlotData *> signal_data_removed() {
         return _signal_data_removed;
       }
 
