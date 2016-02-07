@@ -35,7 +35,7 @@ void RegionSelection::on_select_region(double xmin, double xmax, double ymin, do
 
 void RegionSelection::on_cursor_motion(double x, double y) {
   //does nothing: write your own handler or override the method
-  std::cout << "x: " << x << " y: " << y << std::endl;
+  //std::cout << "x: " << x << " y: " << y << std::endl;
 }
 
 bool RegionSelection::get_region_selectable() {

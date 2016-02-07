@@ -263,6 +263,7 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
   end_cairo[1] = height - event->y;
 
   //emit signal for new cursor coordinates
+  bool cursor_checked = false;
   for (unsigned int plot = 0 ; plot < plots.size() ; plot++) {
     RegionSelection *region_selection = dynamic_cast<RegionSelection *>(plots[plot]);
 
@@ -288,8 +289,22 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
         cursor_y
       );
       region_selection->_signal_cursor_motion(cursor_x, cursor_y);
+
+      // change cursor to crosshair or system default if necessary
+      const Glib::RefPtr<Gdk::Window> window = get_window();
+      if (window && !window->get_cursor()) {
+        Glib::RefPtr<Gdk::Cursor> crosshair = Gdk::Cursor::create(window->get_display(), "crosshair");
+        window->set_cursor(crosshair);
+      }
+
+      cursor_checked = true;
+
       break;
     }
+  }
+
+  if (!cursor_checked && get_window()) {
+    get_window()->set_cursor(Glib::RefPtr<Gdk::Cursor>(0));
   }
 
   // if not dragging a selection box, stop here
