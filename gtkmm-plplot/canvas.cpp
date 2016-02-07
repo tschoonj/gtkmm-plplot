@@ -254,9 +254,6 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
 }
 
 bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
-  if (!selecting)
-    return true;
-
   Gtk::Allocation allocation = get_allocation();
   const int height = allocation.get_height();
 
@@ -264,6 +261,40 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
   end_event[1] = event->y;
   end_cairo[0] = event->x;
   end_cairo[1] = height - event->y;
+
+  //emit signal for new cursor coordinates
+  for (unsigned int plot = 0 ; plot < plots.size() ; plot++) {
+    RegionSelection *region_selection = dynamic_cast<RegionSelection *>(plots[plot]);
+
+    if (region_selection != nullptr &&
+        end_cairo[0] >= region_selection->cairo_range_x[0] &&
+        end_cairo[0] <= region_selection->cairo_range_x[1] &&
+        end_cairo[1] >= region_selection->cairo_range_y[0] &&
+        end_cairo[1] <= region_selection->cairo_range_y[1] &&
+        plots[plot]->is_showing()) {
+      //std::cout << "on_motion_notify_event plot " << plot << std::endl;
+      double cursor_pl_x, cursor_pl_y;
+      double cursor_x, cursor_y;
+      region_selection->convert_cairo_to_plplot_coordinates(
+        end_cairo[0],
+        end_cairo[1],
+        cursor_pl_x,
+        cursor_pl_y
+      );
+      region_selection->coordinate_transform_plplot_to_world(
+        cursor_pl_x,
+        cursor_pl_y,
+        cursor_x,
+        cursor_y
+      );
+      region_selection->_signal_cursor_motion(cursor_x, cursor_y);
+      break;
+    }
+  }
+
+  // if not dragging a selection box, stop here
+  if (!selecting)
+    return true;
 
   RegionSelection *region_selection = dynamic_cast<RegionSelection *>(plots[selected_plot]);
 

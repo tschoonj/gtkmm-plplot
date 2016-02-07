@@ -42,6 +42,7 @@ namespace Gtk {
       double plot_data_range_x[2]; ///< the maximum range covered by the X-values of the datasets
       double plot_data_range_y[2];  ///< the maximum range covered by the Y-values of the datasets
       sigc::signal<void, double, double, double, double > _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event()
+      sigc::signal<void, double , double > _signal_cursor_motion; ///< signal that will be emitted whenever the cursor (usually the mouse) is moved.
 
       void convert_plplot_to_cairo_coordinates(
         double x_pl, double y_pl,
@@ -53,7 +54,7 @@ namespace Gtk {
 
       /** This is a default handler for signal_select_region()
        *
-       * This function passes the plot (data) coordinates of the selection box to set_region, in order to set the plotted range corresponding to the selection box.
+       * This method passes the plot (data) coordinates of the selection box to set_region, in order to set the plotted range corresponding to the selection box.
        * If this behavior is not desired, derive the class and implement your own on_select_region method.
        * \param xmin left X-coordinate
        * \param xmax right X-coordinate
@@ -62,6 +63,15 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        */
       virtual void on_select_region(double xmin, double xmax, double ymin, double ymax);
+
+      /** This is a default handler for signal_cursor_motion()
+       *
+       * This signal is emitted whenever the cursor (usually the mouse) is moved within the plot. x and y correspond to the new data coordinates.
+       * Currently this method does nothing, and users are encouraged to write their own signal handler or override the method in a new class.
+       * \param x The X-value corresponding to the current cursor position
+       * \param y The Y-value corresponding to the current cursor position
+       */
+      virtual void on_cursor_motion(double x, double y);
 
       /** Constructor
        *
@@ -129,6 +139,15 @@ namespace Gtk {
       sigc::signal<void, double, double, double, double > signal_select_region() {
         return _signal_select_region;
       }
+
+      /** signal_cursor_motion is emitted whenever the cursor is moved within the plot
+       *
+       * See default handler on_select_region()
+       */
+      sigc::signal<void, double, double > signal_cursor_motion() {
+        return _signal_cursor_motion;
+      }
+
       friend class Canvas;
     };
   }

@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/regionselection.h>
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/exception.h>
+#include <iostream>
 
 using namespace Gtk::PLplot;
 
@@ -25,11 +26,16 @@ RegionSelection::RegionSelection() :
   region_selectable(true) {
   //connect our default signal handlers
   this->signal_select_region().connect(sigc::mem_fun(*this, &RegionSelection::on_select_region));
+  this->signal_cursor_motion().connect(sigc::mem_fun(*this, &RegionSelection::on_cursor_motion));
 }
-
 
 void RegionSelection::on_select_region(double xmin, double xmax, double ymin, double ymax) {
   set_region(xmin, xmax, ymin, ymax);
+}
+
+void RegionSelection::on_cursor_motion(double x, double y) {
+  //does nothing: write your own handler or override the method
+  std::cout << "x: " << x << " y: " << y << std::endl;
 }
 
 bool RegionSelection::get_region_selectable() {

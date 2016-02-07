@@ -18,9 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/gtkmm-plplot.h>
 #include <gtkmm/application.h>
 #include <glibmm/miscutils.h>
+#include <glibmm/stringutils.h>
 #include <gtkmm/window.h>
 #include <gtkmm/grid.h>
 #include <gtkmm/checkbutton.h>
+#include <gtkmm/label.h>
+#include <gtkmm/entry.h>
 #include <iostream>
 #include <glib.h>
 #include <cmath>
@@ -53,8 +56,16 @@ namespace Test4 {
     Test4::CheckButton checkbutton1;
     Test4::CheckButton checkbutton2;
     Test4::CheckButton checkbutton3;
+    Gtk::Grid coordinates_grid;
+    Gtk::Label label_x;
+    Gtk::Label label_y;
+    Gtk::Entry entry_x;
+    Gtk::Entry entry_y;
   public:
-    Window() : canvas(), checkbutton1("Plot 1"), checkbutton2("Plot 2"), checkbutton3("Plot 3") {
+    Window() : canvas(), checkbutton1("Plot 1"),
+      checkbutton2("Plot 2"), checkbutton3("Plot 3"),
+      label_x("X:"),
+      label_y("Y:") {
       set_default_size(720, 580);
       Gdk::Geometry geometry;
       geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
@@ -163,10 +174,46 @@ namespace Test4 {
       //lets'give the third plot a nice opaque background color
       canvas.get_plot(2)->set_background_color(Gdk::RGBA("White"));
 
+      //hook up signal_cursor_motion to the entries
+      unsigned int plotnr = 0;
+      while (1) {
+        try {
+          Gtk::PLplot::Plot2D *plot = dynamic_cast<Gtk::PLplot::Plot2D *>(canvas.get_plot(plotnr++));
+          plot->signal_cursor_motion().connect([this](double x, double y){
+            entry_x.set_text(Glib::Ascii::dtostr(x));
+            entry_y.set_text(Glib::Ascii::dtostr(y));
+          });
+        }
+        catch (Gtk::PLplot::Exception &e) {
+          break;
+        }
+      }
+
       grid.attach(checkbutton1, 0, 0, 1, 1);
       grid.attach(checkbutton2, 1, 0, 1, 1);
       grid.attach(checkbutton3, 2, 0, 1, 1);
       grid.attach(canvas, 0, 1, 3, 1);
+
+      coordinates_grid.set_column_homogeneous(false);
+      coordinates_grid.attach(label_x, 0, 0, 1, 1);
+      coordinates_grid.attach(entry_x, 1, 0, 1, 1);
+      coordinates_grid.attach(label_y, 2, 0, 1, 1);
+      coordinates_grid.attach(entry_y, 3, 0, 1, 1);
+      label_x.set_vexpand(false);
+      label_x.set_hexpand(true);
+      label_x.set_halign(Gtk::ALIGN_END);
+      label_y.set_vexpand(false);
+      label_y.set_hexpand(false);
+      label_y.set_halign(Gtk::ALIGN_CENTER);
+      entry_x.set_vexpand(false);
+      entry_x.set_hexpand(false);
+      entry_x.set_halign(Gtk::ALIGN_END);
+      entry_y.set_vexpand(false);
+      entry_y.set_hexpand(true);
+      entry_y.set_halign(Gtk::ALIGN_START);
+      coordinates_grid.set_column_spacing(5);
+      grid.attach(coordinates_grid, 0, 2, 3, 1);
+      grid.set_row_spacing(5);
 
       add(grid);
       set_border_width(10);
