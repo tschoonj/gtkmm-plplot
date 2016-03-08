@@ -26,6 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/label.h>
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/switch.h>
+#include <gtkmm/paned.h>
+#include <gtkmm/aspectframe.h>
 #include <cmath>
 #include <fstream>
 #include <iostream>
@@ -68,6 +70,10 @@ namespace Test8 {
     Gtk::Label colorbar_label;
     Gtk::Switch colorbar_switch;
 
+    Gtk::Paned paned;
+
+    Gtk::AspectFrame aspect_frame;
+
 
   public:
     Window() :
@@ -86,7 +92,9 @@ namespace Test8 {
       area_lines_width_label("Fill pattern width"),
       area_lines_width_adj(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       area_lines_width_spin(area_lines_width_adj, 0.1, 1),
-      colorbar_label("Show colorbar")
+      colorbar_label("Show colorbar"),
+      paned(Gtk::ORIENTATION_VERTICAL),
+      aspect_frame(Glib::ustring(), Gtk::ALIGN_CENTER, Gtk::ALIGN_CENTER, 1.5, false)
       {
 
       std::string x_title = "X-axis";
@@ -381,14 +389,17 @@ namespace Test8 {
 
       grid.attach(colorbar_label, 0, row_counter, 1, 1);
       grid.attach(colorbar_switch, 1, row_counter++, 1, 1);
+      paned.add1(grid);
 
       //add canvas to grid
-      grid.attach(canvas, 0, row_counter, 2, 1);
+      aspect_frame.add(canvas);
+      paned.add2(aspect_frame);
 
       //finishing up
-      add(grid);
+      add(paned);
       set_border_width(10);
-      grid.show_all();
+      paned.set_wide_handle(true);
+      paned.show_all();
 
     }
     virtual ~Window() {}
