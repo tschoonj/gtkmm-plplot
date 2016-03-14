@@ -10,6 +10,7 @@ noinst_PROGRAMS = \
   test7 \
   test8 \
   test9 \
+  test10 \
   $(NULL)
 
 AM_CPPFLAGS = -I$(top_srcdir) -I$(top_builddir) $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS)
@@ -53,6 +54,10 @@ test8_LDADD = $(AM_LDADD)
 test9_SOURCES = test9.cpp
 test9_CPPFLAGS = $(AM_CPPFLAGS)
 test9_LDADD = $(AM_LDADD)
+
+test10_SOURCES = test10.cpp
+test10_CPPFLAGS = $(AM_CPPFLAGS)
+test10_LDADD = $(AM_LDADD)
 
 
 EXTRA_DIST = srm1155.csv contour-test.csv
