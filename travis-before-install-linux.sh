@@ -1,5 +1,3 @@
-sudo add-apt-repository ppa:kalakris/cmake -y || exit 1
-
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y || exit 1
 
 sudo apt-get update || exit 1
