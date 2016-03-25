@@ -52,9 +52,9 @@ namespace Test2 {
            std::vector<double> &y2,
            std::vector<double> &y3,
            std::vector<double> &y4,
-           std::string x_title,
-           std::string y_title,
-           std::string plot_title) :
+           Glib::ustring x_title,
+           Glib::ustring y_title,
+           Glib::ustring plot_title) :
            canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x, y1, Gdk::RGBA("red")), x_title, y_title, plot_title)),
            x_log_label("X-axis logarithmic"),
            y_log_label("Y-axis logarithmic"),
@@ -236,7 +236,7 @@ int main(int argc, char *argv[]) {
   std::for_each(std::begin(y3), std::end(y3), [](double &a) { if (a < 1.0 ) a = 1.0;});
   std::for_each(std::begin(y4), std::end(y4), [](double &a) { if (a < 1.0 ) a = 1.0;});
 
-  std::string x_title("Energy (keV)"), y_title("Intensity (counts)"), plot_title("NIST SRM 1155 Stainless steel");
+  Glib::ustring x_title("Energy (keV)"), y_title("Intensity (counts)"), plot_title("NIST SRM 1155 Stainless steel");
   Test2::Window window(x, y1, y2, y3, y4, x_title, y_title, plot_title);
 
 	return app->run(window);

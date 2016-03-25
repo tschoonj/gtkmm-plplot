@@ -2,9 +2,7 @@ sudo add-apt-repository ppa:kalakris/cmake -y || exit 1
 
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y || exit 1
 
-sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse" -y
-
-#sudo apt-get update || exit 1
+sudo apt-get update || exit 1
 
 sudo apt-get install -y libplplot-dev libplplot-c++11 libgtkmm-3.0-dev libgtkmm-3.0-doc libffi-dev mm-common autoconf automake libtool doxygen pkg-config cmake libpng12-dev gettext libfreetype6-dev libfontconfig1-dev libjpeg-dev libtiff4-dev intltool libxtst-dev libboost-all-dev || exit 1
 

@@ -97,9 +97,9 @@ namespace Test8 {
       aspect_frame(Glib::ustring(), Gtk::ALIGN_CENTER, Gtk::ALIGN_CENTER, 1.5, false)
       {
 
-      std::string x_title = "X-axis";
-      std::string y_title = "Y-axis";
-      std::string plot_title = "Intensity vs detector position";
+      Glib::ustring x_title = "X-axis";
+      Glib::ustring y_title = "Y-axis";
+      Glib::ustring plot_title = "Intensity vs detector position";
 
       // general window and canvas settings
       set_default_size(720, 720);

@@ -30,14 +30,14 @@ namespace Gtk {
      */
     class Exception: public std::exception {
     private:
-      std::string Message; ///< The exception message
+      Glib::ustring Message; ///< The exception message
     public:
       /** Constructor
        *
        * Creates a new Gtkmm-PLplot exception.
        * \param s the exception message
        */
-      explicit Exception(const std::string &s) : Message(s) {}
+      explicit Exception(const Glib::ustring &s) : Message(s) {}
 
       /** destructor
        */

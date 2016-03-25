@@ -45,8 +45,8 @@ namespace Test5 {
     Gtk::Button add_data_button;
   public:
     Window(std::valarray<double> &x, std::valarray<double> &y,
-      std::string x_title = "X-axis", std::string y_title = "Y-axis",
-      std::string plot_title = "y = sqrt(x)", Gdk::RGBA color = Gdk::RGBA("Blue")) :
+      Glib::ustring x_title = "X-axis", Glib::ustring y_title = "Y-axis",
+      Glib::ustring plot_title = "y = sqrt(x)", Gdk::RGBA color = Gdk::RGBA("Blue")) :
       canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x, y, color), x_title, y_title, plot_title)),
       line_label("Line"), symbol_label("Symbols"),
       linewidth_adj(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),

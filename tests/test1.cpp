@@ -47,8 +47,8 @@ namespace Test1 {
 
   public:
     Window(std::valarray<double> &x, std::valarray<double> &y,
-      std::string x_title = "X-axis", std::string y_title = "Y-axis",
-      std::string plot_title = "", Gdk::RGBA color = Gdk::RGBA("red")) :
+      Glib::ustring x_title = "X-axis", Glib::ustring y_title = "Y-axis",
+      Glib::ustring plot_title = "", Gdk::RGBA color = Gdk::RGBA("red")) :
       canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x, y, color), x_title, y_title, plot_title)),
       label1("Plot 1"), label2("Plot 2"),
       linewidth_adj1(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
@@ -197,7 +197,7 @@ int main(int argc, char **argv) {
   }
   y_va = sin(x_va);
 
-  std::string x_title("x"), y_title("y");
+  Glib::ustring x_title("x"), y_title("y");
 
   Test1::Window window(x_va, y_va, x_title, y_title);
 

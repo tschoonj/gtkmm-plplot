@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <cstring>
 
-static std::vector<std::string> _colormaps = {
+static std::vector<Glib::ustring> _colormaps = {
   "cmap1_default.pal",
   "cmap1_blue_red.pal",
   "cmap1_blue_yellow.pal",

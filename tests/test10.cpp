@@ -21,9 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/main.h>
 
 static void activate (GtkApplication* app, gpointer user_data) {
-  std::string x_title = "X-axis";
-  std::string y_title = "Y-axis";
-  std::string plot_title = "";
+  Glib::ustring x_title = "X-axis";
+  Glib::ustring y_title = "Y-axis";
+  Glib::ustring plot_title = "";
   Gdk::RGBA color = Gdk::RGBA("red");
   std::valarray<double> x_va(1000), y_va(1000);
   for (unsigned int i = 0 ; i < 1000 ; i++) {
