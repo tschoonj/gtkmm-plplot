@@ -18,10 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMMPLPLOT_PLOT_DATA_H
 #define GTKMMPLPLOT_PLOT_DATA_H
 
-#include <sigc++/sigc++.h>
 #include <plstream.h>
 #include <cairomm/cairomm.h>
 #include <gdkmm/rgba.h>
+#include <gtkmm-plplot/object.h>
 #include <gtkmm-plplot/enums.h>
 
 #define PLOTDATA_DEFAULT_LINE_WIDTH 1.0
@@ -35,13 +35,13 @@ namespace Gtk {
      *  of plot data corresponding to the different plot types, this class offers only a few methods, meaning that
      *  the derived classes will have to contain most of their functionality themselves, as opposed to the plots.
      */
-    class PlotData : public sigc::trackable {
+    class PlotData : public Object {
     private:
       Glib::ustring name; ///< the name that will be assigned to the dataset. Will be used to generate legends if supported by the Plot type
       bool shown; ///< \c true means the plot is currently visible, \c false means it is not plotted
       PlotData &operator=(const PlotData &) = delete; ///< no move assignment operator
+      PlotData(const PlotData &source) = delete; ///< no default copy constructor;
     protected:
-      PlotData(const PlotData &source); ///< Copy constructor;
       sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the dataset proprties is changed.
       sigc::signal<void> _signal_data_modified; ///< signal that gets emitted whenever the X- and Y-datasets have been modified.
       /** This is a default handler for signal_changed()

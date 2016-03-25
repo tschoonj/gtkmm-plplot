@@ -30,6 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 namespace Test1 {
   class Window : public Gtk::Window {
   private:
+    Gtk::PLplot::PlotData2D plot_data1;
+    Gtk::PLplot::Plot2D plot;
     Gtk::PLplot::Canvas canvas;
     Gtk::Grid grid;
     Gtk::Label label1;
@@ -49,7 +51,9 @@ namespace Test1 {
     Window(std::valarray<double> &x, std::valarray<double> &y,
       Glib::ustring x_title = "X-axis", Glib::ustring y_title = "Y-axis",
       Glib::ustring plot_title = "", Gdk::RGBA color = Gdk::RGBA("red")) :
-      canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x, y, color), x_title, y_title, plot_title)),
+      plot_data1(x, y, color),
+      plot(plot_data1, x_title, y_title, plot_title),
+      canvas(plot),
       label1("Plot 1"), label2("Plot 2"),
       linewidth_adj1(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       linewidth_adj2(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
@@ -63,10 +67,9 @@ namespace Test1 {
       }
       y_va = 2*cos(x_va)-1;
 
-      auto plot = dynamic_cast<Gtk::PLplot::Plot2D *>(canvas.get_plot(0));
-
-      plot->add_data(Gtk::PLplot::PlotData2D(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0));
-      plot->hide_legend();
+      // Gtk::manage can be used for memory management here...
+      plot.add_data(*Gtk::manage(new Gtk::PLplot::PlotData2D(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0)));
+      plot.hide_legend();
 
 
       set_default_size(720, 580);
@@ -77,28 +80,35 @@ namespace Test1 {
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
 
-      show_radio1.set_active(canvas.get_plot(0)->get_data(0)->is_showing());
-      show_radio2.set_active(canvas.get_plot(0)->get_data(1)->is_showing());
+      show_radio1.set_active(plot_data1.is_showing());
+      show_radio2.set_active(plot.get_data(1)->is_showing());
       show_radio1.property_active().signal_changed().connect([this](){
         if (show_radio1.get_active()) {
-          canvas.get_plot(0)->get_data(0)->show();
+          plot_data1.show();
           color_combo1.set_sensitive(true);
+          linestyle_combo1.set_sensitive(true);
+          linewidth_spin1.set_sensitive(true);
         }
         else {
+          // another way to access our data, though this is really just plot_data1
           canvas.get_plot(0)->get_data(0)->hide();
           color_combo1.set_sensitive(false);
-
+          linestyle_combo1.set_sensitive(false);
+          linewidth_spin1.set_sensitive(false);
         }
       });
       show_radio2.property_active().signal_changed().connect([this](){
         if (show_radio2.get_active()) {
           canvas.get_plot(0)->get_data(1)->show();
           color_combo2.set_sensitive(true);
+          linestyle_combo2.set_sensitive(true);
+          linewidth_spin2.set_sensitive(true);
         }
         else {
-          canvas.get_plot(0)->get_data(1)->hide();
+          plot.get_data(1)->hide();
           color_combo2.set_sensitive(false);
-
+          linestyle_combo2.set_sensitive(false);
+          linewidth_spin2.set_sensitive(false);
         }
       });
 
@@ -141,28 +151,28 @@ namespace Test1 {
       grid.set_column_spacing(5);
       grid.set_row_spacing(5);
 
-      auto plot_data1 = dynamic_cast<Gtk::PLplot::PlotData2D *>(canvas.get_plot(0)->get_data(0));
-      auto plot_data2 = dynamic_cast<Gtk::PLplot::PlotData2D *>(canvas.get_plot(0)->get_data(1));
+      // unlike plot_data1, plot_data2 is a pointer!
+      auto plot_data2 = dynamic_cast<Gtk::PLplot::PlotData2D *>(plot.get_data(1));
 
-      color_combo1.set_rgba(plot_data1->get_color());
+      color_combo1.set_rgba(plot_data1.get_color());
       color_combo2.set_rgba(plot_data2->get_color());
 
       color_combo1.set_use_alpha(true);
       color_combo2.set_use_alpha(true);
 
-      linestyle_combo1.set_active(plot_data1->get_line_style()-1);
+      linestyle_combo1.set_active(plot_data1.get_line_style()-1);
       linestyle_combo2.set_active(plot_data2->get_line_style()-1);
 
-      color_combo1.signal_color_set().connect([this, plot_data1](){plot_data1->set_color(color_combo1.get_rgba());});
+      color_combo1.signal_color_set().connect([this](){plot_data1.set_color(color_combo1.get_rgba());});
       color_combo2.signal_color_set().connect([this, plot_data2](){plot_data2->set_color(color_combo2.get_rgba());});
 
-      linestyle_combo1.signal_changed().connect([this, plot_data1](){plot_data1->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo1.get_active_row_number()+1));});
+      linestyle_combo1.signal_changed().connect([this](){plot_data1.set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo1.get_active_row_number()+1));});
       linestyle_combo2.signal_changed().connect([this, plot_data2](){plot_data2->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo2.get_active_row_number()+1));});
 
-      linewidth_spin1.set_value(plot_data1->get_line_width());
+      linewidth_spin1.set_value(plot_data1.get_line_width());
       linewidth_spin2.set_value(plot_data2->get_line_width());
 
-      linewidth_spin1.signal_value_changed().connect([this, plot_data1](){plot_data1->set_line_width(linewidth_spin1.get_value());});
+      linewidth_spin1.signal_value_changed().connect([this](){plot_data1.set_line_width(linewidth_spin1.get_value());});
       linewidth_spin2.signal_value_changed().connect([this, plot_data2](){plot_data2->set_line_width(linewidth_spin2.get_value());});
 
       grid.attach(label1, 0, 0, 1, 1);

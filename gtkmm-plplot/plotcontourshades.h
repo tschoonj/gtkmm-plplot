@@ -43,7 +43,8 @@ namespace Gtk {
        AreaFillPattern area_fill_pattern; ///< The pattern that will be used to draw the shaded regions.
        double fill_width; ///< Defines line width used by the fill pattern.
        PlotContourShades() = delete; ///< no default constructor
-       PlotContourShades &operator=(const PlotContourShades &) = delete; ///< no copy constructor
+       PlotContourShades(const PlotContourShades &) = delete; ///< no default copy constructor
+       PlotContourShades &operator=(const PlotContourShades &) = delete; ///< no assignment operator
      protected:
       /** Constructor
        *
@@ -91,7 +92,7 @@ namespace Gtk {
        * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
        * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
        */
-      PlotContourShades(const PlotDataSurface &data,
+      PlotContourShades(PlotDataSurface &data,
                         const Glib::ustring &axis_title_x = "X-axis",
                         const Glib::ustring &axis_title_y = "Y-axis",
                         const Glib::ustring &plot_title = "",
@@ -103,12 +104,6 @@ namespace Gtk {
                         const double plot_height_norm = 1.0,
                         const double plot_offset_horizontal_norm = 0.0,
                         const double plot_offset_vertical_norm = 0.0);
-
-      /** Copy constructor
-       *
-       * \param plot plot to be copied
-       */
-      PlotContourShades(const PlotContourShades &plot);
 
       /** Destructor
        *
@@ -212,14 +207,6 @@ namespace Gtk {
        */
       //void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, plstream *_pls, int width, int height);
       virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
-
-      /** Freshly allocate a clone of the instance
-       *
-       * This very important method allows Canvas::add_plot() to add new plots to its internal array.
-       * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
-       * an implementation of this method, to ensure a proper copy can be provided.
-       */
-      virtual PlotContourShades *clone() const override;
 
       friend class Canvas;
 

@@ -41,7 +41,7 @@ Plot3D::Plot3D(
   azimuth(45.0) {}
 
 Plot3D::Plot3D(
-  const PlotData3D &_data,
+  PlotData3D &_data,
   const Glib::ustring &_axis_title_x,
   const Glib::ustring &_axis_title_y,
   const Glib::ustring &_axis_title_z,
@@ -59,21 +59,6 @@ Plot3D::Plot3D(
   azimuth(45.0) {
 
   add_data(_data);
-}
-
-Plot3D::Plot3D(const Plot3D &_source) :
-  Plot(_source.axis_title_x, _source.axis_title_y,
-  _source.plot_title, _source.plot_width_norm,
-  _source.plot_height_norm, _source.plot_offset_horizontal_norm,
-  _source.plot_offset_vertical_norm), Legend(_source) {
-
-  axis_title_z = _source.axis_title_z;
-  altitude = _source.altitude;
-  azimuth = _source.azimuth;
-
-  for (auto &iter : _source.plot_data) {
-    add_data(*iter);
-  }
 }
 
 Plot3D::~Plot3D() {}
@@ -136,21 +121,12 @@ void Plot3D::plot_data_modified() {
   _signal_changed.emit();
 }
 
-PlotData3D *Plot3D::add_data(const PlotData &data) {
-  PlotData3D *data_copy = nullptr;
-  try {
-    //ensure our data is PlotData3D
-    data_copy = new PlotData3D(dynamic_cast<const PlotData3D &>(data));
-  }
-  catch (std::bad_cast &e) {
-    throw Exception("Gtk::PLplot::Plot3D::add_data -> data must be of PlotData3D type!");
-  }
-  plot_data.push_back(data_copy);
-  data_copy->signal_changed().connect([this](){_signal_changed.emit();});
-  data_copy->signal_data_modified().connect([this](){plot_data_modified();});
+void Plot3D::add_data(PlotData3D &data) {
+  plot_data.push_back(&data);
+  data.signal_changed().connect([this](){_signal_changed.emit();});
+  data.signal_data_modified().connect([this](){plot_data_modified();});
 
-  _signal_data_added.emit(data_copy);
-  return data_copy;
+  _signal_data_added.emit(&data);
 }
 
 void Plot3D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) {
@@ -189,12 +165,4 @@ void Plot3D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
     draw_legend(cr, plot_data, pls);
 
   cr->restore();
-}
-
-Plot3D *Plot3D::clone() const {
-  Plot3D *my_clone = new Plot3D(*this);
-  if(typeid(*this) != typeid(*my_clone)) {
-    throw Exception("Gtk::PLplot::Plot3D::clone -> Classes that derive from Plot must implement clone!");
-  }
-  return my_clone;
 }

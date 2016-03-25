@@ -18,11 +18,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMM_PLPLOT_PLOT_H
 #define GTKMM_PLPLOT_PLOT_H
 
-#include <sigc++/sigc++.h>
 #include <vector>
 #include <plstream.h>
 #include <cairomm/cairomm.h>
 #include <glibmm/ustring.h>
+#include <gtkmm-plplot/object.h>
 #include <gtkmm-plplot/plotdata.h>
 
 namespace Gtk {
@@ -35,9 +35,10 @@ namespace Gtk {
      *  This class cannot be instantiated directly, meaning that instances returned by Canvas::get_plot() and
      *  Canvas::add_plot() need to be cast to access methods offered only by the derived class.
      */
-     class Plot : public sigc::trackable {
+     class Plot : public Object {
      private:
-      Plot &operator=(const Plot &) = delete; ///< no copy constructor
+      Plot &operator=(const Plot &) = delete; ///< no assignment operator
+      Plot(const Plot &) = delete; ///< no default copy constructor
      protected:
       Plot() {} ///< Default constructor. This should not be used and is only here to circumvent a bug in GCC: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=58751
       std::vector<PlotData *> plot_data; ///< vector that contains pointers to the PlotData datasets
@@ -84,7 +85,7 @@ namespace Gtk {
       /** This is a default handler for signal_data_removed()
        *
        * This signal is emitted whenever a PlotData dataset is removed from the plot with remove_data.
-       * It will first delete removed_data, followed by a call to the
+       * It will first delete removed_data, provided its memory is managed, followed by a call to the
        * private method plot_data_modified, which will update \c *_range_* properties, and emit signal_changed.
        * \param removed_data a pointer to the PlotData dataset that was just removed. It should be deleted in this method or a memory leak will be created.
        */
@@ -119,25 +120,11 @@ namespace Gtk {
            const double plot_offset_horizontal_norm,
            const double plot_offset_vertical_norm);
 
-      /** Copy constructor
-       *
-       * \param plot plot to be copied
-       */
-      Plot(const Plot &plot);
-
     public:
       /** Destructor
        *
        */
       virtual ~Plot();
-
-      /** Add a single PlotData dataset to the plot
-       *
-       * To be implemented by all deriving classes.
-       * \param data dataset to be added to the plot
-       * \return a pointer to the PlotData in the \c plot_data vector.
-       */
-      virtual PlotData *add_data(const PlotData &data) = 0;
 
       /** Remove a single dataset from the plot
        *
@@ -151,7 +138,7 @@ namespace Gtk {
        * \param plot_data_member pointer to the plotdata in the \c plot_data vector
        * \exception Gtk::PLplot::Exception
        */
-      virtual void remove_data(PlotData *plot_data_member) final;
+      virtual void remove_data(PlotData &plot_data_member) final;
 
       /** Get a pointer to a dataset included in the plot
        *
@@ -258,15 +245,6 @@ namespace Gtk {
        * \param color Set a new titles color.
        */
       void set_titles_color(Gdk::RGBA color);
-
-
-      /** Freshly allocate a clone of the instance
-       *
-       * This very important method allows Canvas::add_plot() to add new plots to its internal array.
-       * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
-       * an implementation of this method, to ensure a proper copy can be provided.
-       */
-      virtual Plot *clone() const = 0;
 
       /** signal_changed is emitted whenever any of the plot properties or any of the dataset properties has changed.
        *

@@ -46,6 +46,7 @@ namespace Test2 {
     Gtk::Switch legend_switch;
     Gtk::Label corner_label;
     Gtk::ComboBoxText corner_combo;
+    Gtk::PLplot::PlotData2D plot_data1;
   public:
     Window(std::vector<double> &x,
            std::vector<double> &y1,
@@ -55,21 +56,45 @@ namespace Test2 {
            Glib::ustring x_title,
            Glib::ustring y_title,
            Glib::ustring plot_title) :
-           canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x, y1, Gdk::RGBA("red")), x_title, y_title, plot_title)),
+           canvas(),
            x_log_label("X-axis logarithmic"),
            y_log_label("Y-axis logarithmic"),
            box_label("Box options"),
            legend_label("Show legend"),
-           corner_label("Legend corner position") {
+           corner_label("Legend corner position"),
+           plot_data1(x, y1, Gdk::RGBA("red")) {
 
+        // The first dataset is a class member variable,
+        // meaning that it will be destroyed along with
+        // the Window when it is closed. It is is constructed in the
+        // constructor initialization list.
+        // Next, construct a plot with this dataset (mandatory).
+        // Here I am using a managed pointer, but a class member variable would
+        // in this case have been equally good. The fact that it is managed
+        // means that we will not have to delete it when the canvas that will
+        // own it gets destroyed.
+        Gtk::PLplot::Plot2D *plot = Gtk::manage(new Gtk::PLplot::Plot2D(plot_data1, x_title, y_title, plot_title));
 
-        Gtk::PLplot::Plot2D *plot = dynamic_cast<Gtk::PLplot::Plot2D *>(canvas.get_plot(0));
-        Gtk::PLplot::PlotData2D *plot_data1 = dynamic_cast<Gtk::PLplot::PlotData2D *>(plot->get_data(0));
-        Gtk::PLplot::PlotData2D *plot_data2 = plot->add_data(Gtk::PLplot::PlotData2D(x, y2, Gdk::RGBA("blue")));
-        Gtk::PLplot::PlotData2D *plot_data3 = plot->add_data(Gtk::PLplot::PlotData2D(x, y3, Gdk::RGBA("Blue Violet")));
-        Gtk::PLplot::PlotData2D *plot_data4 = plot->add_data(Gtk::PLplot::PlotData2D(x, y4, Gdk::RGBA("Green")));
+        // Additional datasets may be added using add_data
+        // Again, I will be using managed pointers here, but class member
+        // variables would have worked out just as well in this case.
+        Gtk::PLplot::PlotData2D *plot_data2 = Gtk::manage(new Gtk::PLplot::PlotData2D(x, y2, Gdk::RGBA("blue")));
+        plot->add_data(*plot_data2);
+        plot->add_data(*Gtk::manage(new Gtk::PLplot::PlotData2D(x, y3, Gdk::RGBA("Blue Violet"))));
+        Gtk::PLplot::PlotData2D *plot_data3 = dynamic_cast<Gtk::PLplot::PlotData2D *>(plot->get_data(2));
+        // This next line creates and adds a dataset. However, the memory will
+        // not be managed by Gtkmm-PLplot!!!
+        // DO NOT DO THIS as it creates a memory leak unless handled for example
+        // in on_delete_event or something like that...
+        // Alternatively, plot_data3 could be turned into a class member variable,
+        // and could then be deleted in the destructor...
+        // So in this example we are naughty and create intentionally a memory leak...
+        plot->add_data(*new Gtk::PLplot::PlotData2D(x, y4, Gdk::RGBA("Green")));
+        Gtk::PLplot::PlotData2D *plot_data4 = dynamic_cast<Gtk::PLplot::PlotData2D *>(plot->get_data(3));
 
-        plot_data1->set_name("1 interaction");
+        canvas.add_plot(*plot);
+
+        plot_data1.set_name("1 interaction");
         plot_data2->set_name("2 interactions");
         plot_data3->set_name("3 interactions");
         plot_data4->set_name("4 interactions");

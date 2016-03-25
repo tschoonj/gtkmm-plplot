@@ -38,7 +38,8 @@ namespace Gtk {
     class PlotData3D : public PlotData2D {
     private:
       PlotData3D() = delete; ///< no default constructor
-      PlotData3D &operator=(const PlotData3D &) = delete; ///< no copy constructor
+      PlotData3D(const PlotData3D &) = delete; ///< no copy constructor
+      PlotData3D &operator=(const PlotData3D &) = delete; ///< no assignment operator
 
       /** Add a single datapoint, consisting of an \c xval and \c yval value, to the dataset
        *
@@ -99,12 +100,6 @@ namespace Gtk {
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
                  double line_width = PLOTDATA_DEFAULT_LINE_WIDTH);
-
-      /** Copy constructor
-       *
-       * \param data dataset to be copied
-       */
-      PlotData3D(const PlotData3D &data);
 
       /** Destructor
        *

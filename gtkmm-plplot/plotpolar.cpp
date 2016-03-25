@@ -41,7 +41,7 @@ PlotPolar::PlotPolar(
   _plot_offset_vertical_norm) {}
 
 PlotPolar::PlotPolar(
-  const PlotData2D &_data,
+  PlotData2D &_data,
   const Glib::ustring &_axis_title_x,
   const Glib::ustring &_axis_title_y,
   const Glib::ustring &_plot_title,
@@ -55,17 +55,6 @@ PlotPolar::PlotPolar(
   _plot_offset_vertical_norm) {
 
   add_data(_data);
-}
-
-PlotPolar::PlotPolar(const PlotPolar &_source) :
-  PlotPolar(_source.axis_title_x, _source.axis_title_y,
-  _source.plot_title, _source.plot_width_norm,
-  _source.plot_height_norm, _source.plot_offset_horizontal_norm,
-  _source.plot_offset_vertical_norm) {
-
-  for (auto &iter : _source.plot_data) {
-    add_data(*iter);
-  }
 }
 
 PlotPolar::~PlotPolar() {
@@ -108,28 +97,18 @@ void PlotPolar::plot_data_modified() {
   _signal_changed.emit();
 }
 
-PlotData2D *PlotPolar::add_data(const PlotData &data) {
-  PlotData2D *data_copy = nullptr;
-  try {
-    //ensure our data is PlotData2D
-    data_copy = new PlotData2D(dynamic_cast<const PlotData2D &>(data));
-  }
-  catch (std::bad_cast &e) {
-    throw Exception("Gtk::PLplot::PlotPolar::add_data -> data must be of PlotData2D type!");
-  }
-
+void PlotPolar::add_data(PlotData2D &data) {
   //throw error if any of the r values are negative
-  std::vector<double> x = data_copy->get_vector_x();
+  std::vector<double> x = data.get_vector_x();
   if (std::count_if(x.begin(), x.end(), std::bind2nd(std::less<double>(), double(0.0))) > 0) {
     throw Exception("Gtkmm::Plplot::PlotPolar::add_data -> plot R-values must be  positive");
   }
 
-  plot_data.push_back(data_copy);
-  data_copy->signal_changed().connect([this](){_signal_changed.emit();});
-  data_copy->signal_data_modified().connect([this](){plot_data_modified();});
+  plot_data.push_back(&data);
+  data.signal_changed().connect([this](){_signal_changed.emit();});
+  data.signal_data_modified().connect([this](){plot_data_modified();});
 
-  _signal_data_added.emit(data_copy);
-  return data_copy;
+  _signal_data_added.emit(&data);
 }
 
 void PlotPolar::coordinate_transform_world_to_plplot(double x_old, double y_old, double *x_new, double *y_new, PLPointer object) {
@@ -233,12 +212,4 @@ void PlotPolar::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int wid
                                       cairo_range_x[0], cairo_range_y[0]);
   convert_plplot_to_cairo_coordinates(plotted_range_x[1], plotted_range_y[1],
                                       cairo_range_x[1], cairo_range_y[1]);
-}
-
-PlotPolar *PlotPolar::clone() const {
-  PlotPolar *my_clone = new PlotPolar(*this);
-  if(typeid(*this) != typeid(*my_clone)) {
-    throw Exception("Gtk::PLplot::PlotPolar::clone -> Classes that derive from Plot must implement clone!");
-  }
-  return my_clone;
 }

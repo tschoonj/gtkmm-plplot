@@ -30,7 +30,25 @@ static void activate (GtkApplication* app, gpointer user_data) {
     x_va[i] = 8*M_PI*i/999;
   }
   y_va = 2*cos(x_va)-1;
-  Gtk::PLplot::Canvas *canvas = new Gtk::PLplot::Canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x_va, y_va, color), x_title, y_title, plot_title));
+
+  // Though this works nicely, I am pretty sure the canvas will not be freed
+  // when the window is destroyed. May need to use one of the widget signals
+  Gtk::PLplot::Canvas *canvas = new Gtk::PLplot::Canvas(
+    *Gtk::manage(
+      new Gtk::PLplot::Plot2D(
+        *Gtk::manage(
+          new Gtk::PLplot::PlotData2D(
+            x_va,
+            y_va,
+            color
+          )
+        ),
+        x_title,
+        y_title,
+        plot_title
+      )
+    )
+  );
 
   GtkWidget *window = gtk_application_window_new(app);
   gtk_window_set_title (GTK_WINDOW (window), "Gtkmm-PLplot test10");

@@ -122,7 +122,7 @@ namespace Gtk {
        * \param plot The initial plot that will be added to the canvas.
        * \param background_color The color of the background for the canvas.
        */
-      Canvas(const Plot &plot, Gdk::RGBA background_color = Gdk::RGBA("White"));
+      Canvas(Plot &plot, Gdk::RGBA background_color = Gdk::RGBA("White"));
       /** Canvas destructor
        *
        */
@@ -131,9 +131,8 @@ namespace Gtk {
       /** Add a single plot to the canvas
        *
        * \param plot Plot to be added to the canvas
-       * \return a pointer to the Plot in the \c plots vector.
        */
-      Plot *add_plot(const Plot &plot);
+      void add_plot(Plot &plot);
 
       /** Remove a single plot from the canvas
        *
@@ -147,7 +146,7 @@ namespace Gtk {
        * \param plot pointer to the plot in the \c plots vector
        * \exception Gtk::PLplot::Exception
        */
-      void remove_plot(Plot *plot);
+      void remove_plot(Plot &plot);
 
       /** signal_changed is emitted whenever any of the canvas properties or any of the plot properties has changed.
        *

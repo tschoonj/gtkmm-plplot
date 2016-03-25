@@ -51,28 +51,11 @@ Plot::Plot(
   this->signal_data_removed().connect(sigc::mem_fun(*this, &Plot::on_data_removed));
 }
 
-Plot::Plot(const Plot &_source) :
-  axis_title_x(_source.axis_title_x),
-  axis_title_y(_source.axis_title_y),
-  plot_title(_source.plot_title),
-  pls(nullptr),
-  shown(true),
-  background_color(_source.background_color),
-  plot_width_norm(_source.plot_width_norm),
-  plot_height_norm(_source.plot_height_norm),
-  plot_offset_horizontal_norm(_source.plot_offset_horizontal_norm),
-  plot_offset_vertical_norm(_source.plot_offset_vertical_norm),
-  axes_color(_source.axes_color),
-  titles_color(_source.titles_color) {
-
-  this->signal_changed().connect(sigc::mem_fun(*this, &Plot::on_changed));
-  this->signal_data_added().connect(sigc::mem_fun(*this, &Plot::on_data_added));
-  this->signal_data_removed().connect(sigc::mem_fun(*this, &Plot::on_data_removed));
-}
-
 Plot::~Plot() {
   for (auto &iter : plot_data) {
-    delete iter;
+    if (iter->is_managed_()) {
+      delete iter;
+    }
   }
   if (pls)
     delete pls;
@@ -102,7 +85,9 @@ void Plot::on_data_added(PlotData *added_data) {
 }
 
 void Plot::on_data_removed(PlotData *removed_data) {
-  delete removed_data; //this is necessary to avoid a memory leak.
+  if (removed_data->is_managed_()) {
+    delete removed_data; //this is necessary to avoid a memory leak.
+  }
   plot_data_modified();
 }
 
@@ -119,11 +104,11 @@ void Plot::remove_data(unsigned int index) {
   _signal_data_removed.emit(removed_plot);
 }
 
-void Plot::remove_data(PlotData *plot_data_member) {
+void Plot::remove_data(PlotData &plot_data_member) {
   if (plot_data.size() < 2)
     throw Exception("Gtk::PLplot::Plot::remove_data -> At least one dataset must be present in the dataset");
 
-  auto iter = std::find(plot_data.begin(), plot_data.end(), plot_data_member);
+  auto iter = std::find(plot_data.begin(), plot_data.end(), &plot_data_member);
   if (iter == plot_data.end())
     throw Exception("Gtk::PLplot::Plot::remove_data -> No match for argument");
 

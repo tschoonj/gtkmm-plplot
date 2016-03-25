@@ -49,7 +49,8 @@ namespace Gtk {
       double azimuth; ///< the viewing azimuth
 
       Plot3D() = delete; ///< no default constructor
-      Plot3D &operator=(const Plot3D &) = delete; ///< no copy constructor
+      Plot3D(const Plot3D &) = delete; ///< no default copy constructor
+      Plot3D &operator=(const Plot3D &) = delete; ///< no assignment operator
     protected:
       virtual void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
 
@@ -88,7 +89,7 @@ namespace Gtk {
        * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
        * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
        */
-      Plot3D(const PlotData3D &data,
+      Plot3D(PlotData3D &data,
              const Glib::ustring &axis_title_x = "X-axis",
              const Glib::ustring &axis_title_y = "Y-axis",
              const Glib::ustring &axis_title_z = "Z-axis",
@@ -97,12 +98,6 @@ namespace Gtk {
              const double plot_height_norm = 1.0,
              const double plot_offset_horizontal_norm = 0.0,
              const double plot_offset_vertical_norm = 0.0);
-
-      /** Copy constructor
-       *
-       * \param plot plot to be copied
-       */
-      Plot3D(const Plot3D &plot);
 
       /** Destructor
        *
@@ -142,7 +137,7 @@ namespace Gtk {
        * \return a pointer to the PlotData3D in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      virtual PlotData3D *add_data(const PlotData &data) override;
+      virtual void add_data(PlotData3D &data);
 
       /** Method to draw the plot with all of its datasets
        *
@@ -153,14 +148,6 @@ namespace Gtk {
        */
       //void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, plstream *_pls, int width, int height);
       virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
-
-      /** Freshly allocate a clone of the instance
-       *
-       * This very important method allows Canvas::add_plot() to add new plots to its internal array.
-       * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
-       * an implementation of this method, to ensure a proper copy can be provided.
-       */
-      virtual Plot3D *clone() const override;
 
       friend class Canvas;
     };

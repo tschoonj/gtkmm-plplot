@@ -72,17 +72,6 @@ PlotData2D::PlotData2D(
   std::vector<double>(std::begin(_y), std::end(_y)),
   _color, _line_style, _line_width) {}
 
-PlotData2D::PlotData2D(const PlotData2D &_data) :
-  PlotData(_data),
-  x(_data.x),
-  y(_data.y),
-  color(_data.color),
-  line_style(_data.line_style),
-  line_width(_data.line_width),
-  symbol(_data.symbol),
-  symbol_color(_data.symbol_color),
-  symbol_scale_factor(_data.symbol_scale_factor) {}
-
 PlotData2D::~PlotData2D() {}
 
 void PlotData2D::set_color(Gdk::RGBA _color) {

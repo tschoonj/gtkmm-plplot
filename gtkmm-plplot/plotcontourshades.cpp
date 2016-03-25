@@ -57,7 +57,7 @@ PlotContourShades::PlotContourShades(
   fill_width(PLOTDATA_DEFAULT_LINE_WIDTH) {}
 
 PlotContourShades::PlotContourShades(
-  const PlotDataSurface &_data,
+  PlotDataSurface &_data,
   const Glib::ustring &_axis_title_x,
   const Glib::ustring &_axis_title_y,
   const Glib::ustring &_plot_title,
@@ -79,20 +79,6 @@ PlotContourShades::PlotContourShades(
 
   add_data(_data);
 }
-
-PlotContourShades::PlotContourShades(const PlotContourShades &_source) :
-  PlotContour(_source),
-  showing_colorbar(_source.showing_colorbar),
-  showing_edges(_source.showing_edges),
-  colorbar_title(_source.colorbar_title),
-  colormap_palette(_source.colormap_palette),
-  area_fill_pattern(_source.area_fill_pattern),
-  fill_width(_source.fill_width) {
-		if (_source.is_showing_labels())
-			show_labels();
-		else
-			hide_labels();
-	}
 
 PlotContourShades::~PlotContourShades() {}
 
@@ -324,11 +310,4 @@ void PlotContourShades::draw_colorbar(
 	pls->schr( 0.0, 1.0 );
 	pls->smaj( 0.0, 1.0 );
 	pls->smin( 0.0, 1.0 );
-}
-PlotContourShades *PlotContourShades::clone() const {
-  PlotContourShades *my_clone = new PlotContourShades(*this);
-  if(typeid(*this) != typeid(*my_clone)) {
-    throw Exception("Gtk::PLplot::PlotContourShades::clone -> Classes that derive from Plot must implement clone!");
-  }
-  return my_clone;
 }

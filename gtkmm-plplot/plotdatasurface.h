@@ -41,7 +41,8 @@ namespace Gtk {
     private:
 
       PlotDataSurface() = delete; ///< no default constructor
-      PlotDataSurface &operator=(const PlotDataSurface &) = delete; ///< no copy constructor
+      PlotDataSurface(const PlotDataSurface &) = delete; ///< no copy constructor
+      PlotDataSurface &operator=(const PlotDataSurface &) = delete; ///< no assignment operator
     protected:
       std::vector<double> x; ///< The X-grid coordinates of the dataset, which are assumed to correspond to the first dimension of Z
       std::vector<double> y; ///< The Y-grid coordinates of the dataset, which are assumed to correspond to the second dimension of Z
@@ -113,12 +114,6 @@ namespace Gtk {
        */
       PlotDataSurface(const boost::multi_array<double, 2> &z);
 #endif
-
-      /** Copy constructor
-       *
-       * \param data dataset to be copied
-       */
-      PlotDataSurface(const PlotDataSurface &data);
 
       /** Destructor
        *

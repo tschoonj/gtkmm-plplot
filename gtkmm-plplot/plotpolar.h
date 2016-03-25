@@ -42,7 +42,8 @@ namespace Gtk {
     private:
       double max_r; ///< the maximum radial coordinate in the datasets
       PlotPolar() = delete; ///< no default constructor
-      PlotPolar &operator=(const PlotPolar &) = delete; ///< no copy constructor
+      PlotPolar(const PlotPolar &) = delete; ///< no default copy constructor
+      PlotPolar &operator=(const PlotPolar &) = delete; ///< no assignment operator
     protected:
       virtual void plot_data_modified() override;  ///< a method that will update the \c _range variables when datasets are added, modified or removed.
 
@@ -104,7 +105,7 @@ namespace Gtk {
        * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
        * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
        */
-      PlotPolar(const PlotData2D &data,
+      PlotPolar(PlotData2D &data,
                 const Glib::ustring &axis_title_x = "",
                 const Glib::ustring &axis_title_y = "",
                 const Glib::ustring &plot_title = "",
@@ -113,12 +114,6 @@ namespace Gtk {
                 const double plot_offset_horizontal_norm = 0.0,
                 const double plot_offset_vertical_norm = 0.0);
 
-      /** Copy constructor
-       *
-       * \param plot plot to be copied
-       */
-      PlotPolar(const PlotPolar &plot);
-
       /** Destructor
        *
        */
@@ -126,12 +121,10 @@ namespace Gtk {
 
       /** Add a single PlotData2D dataset to the plot
        *
-       * The dataset must be a PlotData2D instance: this will be verified and an exception will be thrown if the type is incorrect.
        * \param data dataset to be added to the plot
-       * \return a pointer to the PlotData2D in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      virtual PlotData2D *add_data(const PlotData &data) override;
+      virtual void add_data(PlotData2D &data);
 
       /** Method to draw the plot with all of its datasets
        *
@@ -166,14 +159,6 @@ namespace Gtk {
        * \param y_new the new \c y world coordinate
        */
       virtual void coordinate_transform_plplot_to_world(double x_old, double y_old, double &x_new, double &y_new) override;
-
-      /** Freshly allocate a clone of the instance
-       *
-       * This very important method allows Canvas::add_plot() to add new plots to its internal array.
-       * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
-       * an implementation of this method, to ensure a proper copy can be provided.
-       */
-      virtual PlotPolar *clone() const override;
 
       friend class Canvas;
     };

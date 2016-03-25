@@ -43,7 +43,7 @@ Plot2D::Plot2D(
   _plot_offset_vertical_norm) {}
 
 Plot2D::Plot2D(
-  const PlotData2D &_data,
+  PlotData2D &_data,
   const Glib::ustring &_axis_title_x,
   const Glib::ustring &_axis_title_y,
   const Glib::ustring &_plot_title,
@@ -60,21 +60,6 @@ Plot2D::Plot2D(
   box_style(BOX_TICKS_TICK_LABELS) {
 
   add_data(_data);
-}
-
-Plot2D::Plot2D(const Plot2D &_source) :
-  Plot(_source.axis_title_x, _source.axis_title_y,
-  _source.plot_title, _source.plot_width_norm,
-  _source.plot_height_norm, _source.plot_offset_horizontal_norm,
-  _source.plot_offset_vertical_norm), Legend(_source) {
-
-  log10_x = _source.log10_x;
-  log10_y = _source.log10_y;
-  box_style = _source.box_style;
-
-  for (auto &iter : _source.plot_data) {
-    add_data(*iter);
-  }
 }
 
 Plot2D::~Plot2D() {}
@@ -115,21 +100,12 @@ void Plot2D::plot_data_modified() {
   _signal_changed.emit();
 }
 
-PlotData2D *Plot2D::add_data(const PlotData &data) {
-  PlotData2D *data_copy = nullptr;
-  try {
-    //ensure our data is PlotData2D
-    data_copy = new PlotData2D(dynamic_cast<const PlotData2D &>(data));
-  }
-  catch (std::bad_cast &e) {
-    throw Exception("Gtk::PLplot::Plot2D::add_data -> data must be of PlotData2D type!");
-  }
-  plot_data.push_back(data_copy);
-  data_copy->signal_changed().connect([this](){_signal_changed.emit();});
-  data_copy->signal_data_modified().connect([this](){plot_data_modified();});
+void Plot2D::add_data(PlotData2D &data) {
+  plot_data.push_back(&data);
+  data.signal_changed().connect([this](){_signal_changed.emit();});
+  data.signal_data_modified().connect([this](){plot_data_modified();});
 
-  _signal_data_added.emit(data_copy);
-  return data_copy;
+  _signal_data_added.emit(&data);
 }
 
 void Plot2D::set_axis_logarithmic_x(bool _log10) {
@@ -271,12 +247,4 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
                                       cairo_range_x[0], cairo_range_y[0]);
   convert_plplot_to_cairo_coordinates(plotted_range_x[1], plotted_range_y[1],
                                       cairo_range_x[1], cairo_range_y[1]);
-}
-
-Plot2D *Plot2D::clone() const {
-  Plot2D *my_clone = new Plot2D(*this);
-  if(typeid(*this) != typeid(*my_clone)) {
-    throw Exception("Gtk::PLplot::Plot2D::clone -> Classes that derive from Plot must implement clone!");
-  }
-  return my_clone;
 }

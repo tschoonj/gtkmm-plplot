@@ -71,25 +71,23 @@ namespace Test9 {
       std::valarray<double> y_va1 = sin(Gtk::PLplot::indgen_va(1000)*8.0*M_PI/999.0);
       std::valarray<double> z_va1 = Gtk::PLplot::indgen_va(1000)*10.0/999.0 - 5.0;
 
-      Gtk::PLplot::PlotData3D data1(x_va1, y_va1, z_va1);
-      data1.set_name("Helix");
+      Gtk::PLplot::PlotData3D *data1 = Gtk::manage(new Gtk::PLplot::PlotData3D(x_va1, y_va1, z_va1));
+      data1->set_name("Helix");
 
       //followed by a simple sine
       std::valarray<double> x_va2 = Gtk::PLplot::indgen_va(1000)*6.0/999.0 - 3.0;
       std::valarray<double> y_va2 = Gtk::PLplot::indgen_va(1000)*6.0/999.0 - 3.0;
       std::valarray<double> z_va2 = cos(sqrt(x_va2*x_va2 + y_va2*y_va2));
 
-      Gtk::PLplot::PlotData3D data2(x_va2, y_va2, z_va2, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP);
-      data2.set_name("Cosine");
+      Gtk::PLplot::PlotData3D *data2 = Gtk::manage(new Gtk::PLplot::PlotData3D(x_va2, y_va2, z_va2, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP));
+      data2->set_name("Cosine");
 
-      Gtk::PLplot::Plot3D plot(data1);
-      plot.add_data(data2);
+      Gtk::PLplot::Plot3D *plot = Gtk::manage(new Gtk::PLplot::Plot3D(*data1));
+      plot->add_data(*data2);
 
-      plot.set_plot_title("Plot3D demo");
+      plot->set_plot_title("Plot3D demo");
 
-      auto plot_ref = dynamic_cast<Gtk::PLplot::Plot3D *>(canvas.add_plot(plot));
-      auto data1_ref =  dynamic_cast<Gtk::PLplot::PlotData3D *>(plot_ref->get_data(0));
-      auto data2_ref =  dynamic_cast<Gtk::PLplot::PlotData3D *>(plot_ref->get_data(1));
+      canvas.add_plot(*plot);
 
       set_default_size(720, 580);
       Gdk::Geometry geometry;
@@ -99,25 +97,25 @@ namespace Test9 {
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
 
-      show_radio1.set_active(data1_ref->is_showing());
-      show_radio2.set_active(data2_ref->is_showing());
-      show_radio1.property_active().signal_changed().connect([this, data1_ref](){
+      show_radio1.set_active(data1->is_showing());
+      show_radio2.set_active(data2->is_showing());
+      show_radio1.property_active().signal_changed().connect([this, data1](){
         if (show_radio1.get_active()) {
-          data1_ref->show();
+          data1->show();
           color_combo1.set_sensitive(true);
         }
         else {
-          data1_ref->hide();
+          data1->hide();
           color_combo1.set_sensitive(false);
         }
       });
-      show_radio2.property_active().signal_changed().connect([this, data2_ref](){
+      show_radio2.property_active().signal_changed().connect([this, data2](){
         if (show_radio2.get_active()) {
-          data2_ref->show();
+          data2->show();
           color_combo2.set_sensitive(true);
         }
         else {
-          data2_ref->hide();
+          data2->hide();
           color_combo2.set_sensitive(false);
         }
       });
@@ -160,26 +158,26 @@ namespace Test9 {
       grid.set_column_spacing(5);
       grid.set_row_spacing(5);
 
-      color_combo1.set_rgba(data1_ref->get_color());
-      color_combo2.set_rgba(data2_ref->get_color());
+      color_combo1.set_rgba(data1->get_color());
+      color_combo2.set_rgba(data2->get_color());
 
       color_combo1.set_use_alpha(true);
       color_combo2.set_use_alpha(true);
 
-      linestyle_combo1.set_active(data1_ref->get_line_style()-1);
-      linestyle_combo2.set_active(data2_ref->get_line_style()-1);
+      linestyle_combo1.set_active(data1->get_line_style()-1);
+      linestyle_combo2.set_active(data2->get_line_style()-1);
 
-      color_combo1.signal_color_set().connect([this, data1_ref](){data1_ref->set_color(color_combo1.get_rgba());});
-      color_combo2.signal_color_set().connect([this, data2_ref](){data2_ref->set_color(color_combo2.get_rgba());});
+      color_combo1.signal_color_set().connect([this, data1](){data1->set_color(color_combo1.get_rgba());});
+      color_combo2.signal_color_set().connect([this, data2](){data2->set_color(color_combo2.get_rgba());});
 
-      linestyle_combo1.signal_changed().connect([this, data1_ref](){data1_ref->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo1.get_active_row_number()+1));});
-      linestyle_combo2.signal_changed().connect([this, data2_ref](){data2_ref->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo2.get_active_row_number()+1));});
+      linestyle_combo1.signal_changed().connect([this, data1](){data1->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo1.get_active_row_number()+1));});
+      linestyle_combo2.signal_changed().connect([this, data2](){data2->set_line_style(static_cast<Gtk::PLplot::LineStyle>(linestyle_combo2.get_active_row_number()+1));});
 
-      linewidth_spin1.set_value(data1_ref->get_line_width());
-      linewidth_spin2.set_value(data2_ref->get_line_width());
+      linewidth_spin1.set_value(data1->get_line_width());
+      linewidth_spin2.set_value(data2->get_line_width());
 
-      linewidth_spin1.signal_value_changed().connect([this, data1_ref](){data1_ref->set_line_width(linewidth_spin1.get_value());});
-      linewidth_spin2.signal_value_changed().connect([this, data2_ref](){data2_ref->set_line_width(linewidth_spin2.get_value());});
+      linewidth_spin1.signal_value_changed().connect([this, data1](){data1->set_line_width(linewidth_spin1.get_value());});
+      linewidth_spin2.signal_value_changed().connect([this, data2](){data2->set_line_width(linewidth_spin2.get_value());});
 
       altitude_spin.set_wrap(true);
       azimuth_spin.set_wrap(true);
@@ -200,17 +198,17 @@ namespace Test9 {
       altitude_spin.set_vexpand(false);
       azimuth_spin.set_vexpand(false);
 
-      altitude_spin.set_value(plot_ref->get_altitude());
-      azimuth_spin.set_value(plot_ref->get_azimuth());
+      altitude_spin.set_value(plot->get_altitude());
+      azimuth_spin.set_value(plot->get_azimuth());
 
       altitude_spin.signal_value_changed().connect(
-        [this, plot_ref]() {
-          plot_ref->set_altitude(altitude_spin.get_value());
+        [this, plot]() {
+          plot->set_altitude(altitude_spin.get_value());
         }
       );
       azimuth_spin.signal_value_changed().connect(
-        [this, plot_ref]() {
-          plot_ref->set_azimuth(azimuth_spin.get_value());
+        [this, plot]() {
+          plot->set_azimuth(azimuth_spin.get_value());
         }
       );
 

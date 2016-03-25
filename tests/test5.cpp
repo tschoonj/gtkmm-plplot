@@ -47,7 +47,7 @@ namespace Test5 {
     Window(std::valarray<double> &x, std::valarray<double> &y,
       Glib::ustring x_title = "X-axis", Glib::ustring y_title = "Y-axis",
       Glib::ustring plot_title = "y = sqrt(x)", Gdk::RGBA color = Gdk::RGBA("Blue")) :
-      canvas(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x, y, color), x_title, y_title, plot_title)),
+      canvas(*Gtk::manage(new Gtk::PLplot::Plot2D(*Gtk::manage(new Gtk::PLplot::PlotData2D(x, y, color)), x_title, y_title, plot_title))),
       line_label("Line"), symbol_label("Symbols"),
       linewidth_adj(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       symbol_scale_factor_adj(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),

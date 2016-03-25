@@ -40,7 +40,8 @@ namespace Gtk {
     class PlotContour : public Plot, public RegionSelection {
     private:
       PlotContour() = delete; ///< no default constructor
-      PlotContour &operator=(const PlotContour &) = delete; ///< no copy constructor
+      PlotContour(const PlotContour &) = delete; ///< no copy constructor
+      PlotContour &operator=(const PlotContour &) = delete; ///< no assignment operator
     protected:
       unsigned int nlevels; ///< Number of contour levels to draw
       Gdk::RGBA edge_color; ///< Defines pen color used for contours defining edges.
@@ -95,7 +96,7 @@ namespace Gtk {
        * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
        * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
        */
-      PlotContour(const PlotDataSurface &data,
+      PlotContour(PlotDataSurface &data,
                   const Glib::ustring &axis_title_x = "X-axis",
                   const Glib::ustring &axis_title_y = "Y-axis",
                   const Glib::ustring &plot_title = "",
@@ -107,12 +108,6 @@ namespace Gtk {
                   const double plot_offset_horizontal_norm = 0.0,
                   const double plot_offset_vertical_norm = 0.0);
 
-      /** Copy constructor
-       *
-       * \param plot plot to be copied
-       */
-      PlotContour(const PlotContour &plot);
-
       /** Destructor
        *
        */
@@ -120,13 +115,11 @@ namespace Gtk {
 
       /** Add a single PlotDataSurface dataset to the plot
        *
-       * The dataset must be a PlotDataSurface instance: this will be verified and an exception will be thrown if the type is incorrect.
        * This will only work if the initial data set has been removed from the \c plot_data vector! PlotDataSurface allows just one dataset...
        * \param data dataset to be added to the plot
-       * \return a pointer to the PlotDataSurface in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      virtual PlotDataSurface *add_data(const PlotData &data) override;
+      virtual void add_data(PlotDataSurface &data);
 
       /** Changes the color used for the contour defining edges
        *
@@ -193,14 +186,6 @@ namespace Gtk {
        */
       //void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, plstream *_pls, int width, int height);
       virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
-
-      /** Freshly allocate a clone of the instance
-       *
-       * This very important method allows Canvas::add_plot() to add new plots to its internal array.
-       * Since the canvas keeps its own copies of the plots, every Plot derived class needs to provide
-       * an implementation of this method, to ensure a proper copy can be provided.
-       */
-      virtual PlotContour *clone() const override;
 
       friend class Canvas;
     };

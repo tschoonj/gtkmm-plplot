@@ -43,7 +43,9 @@ namespace Test3 {
         x_va[i] = 4*M_PI*i/999;
       }
       y_va = sin(x_va);
-      plot = dynamic_cast<Gtk::PLplot::Plot2D *>(canvas.add_plot(Gtk::PLplot::Plot2D(Gtk::PLplot::PlotData2D(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0))));
+      auto plot_data = Gtk::manage(new Gtk::PLplot::PlotData2D(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0));
+      plot = Gtk::manage(new Gtk::PLplot::Plot2D(*plot_data));
+      canvas.add_plot(*plot);
       plot->hide_legend();
 
       remove_plot.set_sensitive(true);
@@ -77,7 +79,7 @@ namespace Test3 {
 
       add_plot.signal_clicked().connect(sigc::mem_fun(*this, &Window::add_plot_clicked));
       remove_plot.signal_clicked().connect([this](){
-        canvas.remove_plot(plot);
+        canvas.remove_plot(*plot);
         add_plot.set_sensitive(true);
         remove_plot.set_sensitive(false);
         show_plot.set_sensitive(false);

@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using namespace Gtk::PLplot;
 
-Canvas::Canvas(const Plot &plot, Gdk::RGBA _background_color) :
+Canvas::Canvas(Plot &plot, Gdk::RGBA _background_color) :
   Canvas(_background_color) {
 
   add_plot(plot);
@@ -50,19 +50,20 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
   signal_changed().connect(sigc::mem_fun(*this, &Canvas::on_changed));
 }
 
-Plot *Canvas::add_plot(const Plot &plot) {
-  plots.push_back(plot.clone());
+void Canvas::add_plot(Plot &plot) {
+  plots.push_back(&plot);
 
   //ensure plot signal_changed gets re-emitted by the canvas
   plots.back()->signal_changed().connect([this](){_signal_changed.emit();});
 
   _signal_changed.emit();
-  return plots.back();
 }
 
 Canvas::~Canvas() {
   for (auto &iter : plots) {
-    delete iter;
+    if (iter->is_managed_()) {
+      delete iter;
+    }
   }
 }
 
@@ -366,15 +367,16 @@ void Canvas::remove_plot(unsigned int index) {
   _signal_changed.emit();
 }
 
-void Canvas::remove_plot(Plot *plot) {
+void Canvas::remove_plot(Plot &plot) {
   if (plots.empty())
     throw Exception("Gtk::PLplot::Canvas::remove_plot -> No plots on canvas");
 
-  auto iter = std::find(plots.begin(), plots.end(), plot);
+  auto iter = std::find(plots.begin(), plots.end(), &plot);
   if (iter == plots.end())
     throw Exception("Gtk::PLplot::Canvas::remove_plot -> No match for input");
 
-  delete *iter;
+  if ((*iter)->is_managed_())
+    delete *iter;
 
   plots.erase(iter);
   _signal_changed.emit();

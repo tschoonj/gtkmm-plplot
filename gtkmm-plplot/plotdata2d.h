@@ -116,12 +116,6 @@ namespace Gtk {
                  LineStyle line_style = CONTINUOUS,
                  double line_width = PLOTDATA_DEFAULT_LINE_WIDTH);
 
-      /** Copy constructor
-       *
-       * \param data dataset to be copied
-       */
-      PlotData2D(const PlotData2D &data);
-
       /** Destructor
        *
        */

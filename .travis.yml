@@ -24,7 +24,10 @@ before_install:
 #  - if [ $TRAVIS_OS_NAME == linux ]; then ./travis-deps.sh ; fi
 
 script:
-  - autoreconf -fi && ./configure LDFLAGS="-Wl,-rpath -Wl,/usr/local/lib" && make
+  - autoreconf -fi
+  - ./configure LDFLAGS="-Wl,-rpath -Wl,/usr/local/lib"
+  - make
+  - make distcheck
 
 branches:
   only:

@@ -104,13 +104,6 @@ PlotDataSurface::PlotDataSurface(
 
 #endif
 
-//copy constructor
-PlotDataSurface::PlotDataSurface(const PlotDataSurface &_data) :
-  PlotData(_data),
-	x(_data.x),
-	y(_data.y),
-	z(deep_copy_array2d(_data.z, _data.x.size(), _data.y.size())) {}
-
 PlotDataSurface::~PlotDataSurface() {
   free_array2d((void **) z, x.size());
 }

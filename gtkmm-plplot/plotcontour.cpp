@@ -61,7 +61,7 @@ PlotContour::PlotContour(
 }
 
 PlotContour::PlotContour(
-  const PlotDataSurface &_data,
+  PlotDataSurface &_data,
   const Glib::ustring &_axis_title_x,
   const Glib::ustring &_axis_title_y,
   const Glib::ustring &_plot_title,
@@ -79,22 +79,6 @@ PlotContour::PlotContour(
   _plot_offset_vertical_norm) {
 
   add_data(_data);
-}
-
-PlotContour::PlotContour(const PlotContour &_source) :
-  PlotContour(_source.axis_title_x, _source.axis_title_y,
-  _source.plot_title, _source.nlevels,
-  _source.edge_color, _source.edge_width,
-  _source.plot_width_norm,
-  _source.plot_height_norm,
-  _source.plot_offset_horizontal_norm,
-  _source.plot_offset_vertical_norm) {
-
-	showing_labels = _source.showing_labels;
-
-  for (auto &iter : _source.plot_data) {
-    add_data(*iter);
-  }
 }
 
 PlotContour::~PlotContour() {}
@@ -138,25 +122,16 @@ void PlotContour::plot_data_modified() {
   _signal_changed.emit();
 }
 
-PlotDataSurface *PlotContour::add_data(const PlotData &data) {
+void PlotContour::add_data(PlotDataSurface &data) {
   //ensure plot_data is empty
   if (!plot_data.empty())
     throw Exception("Gtk::PLplot::PlotContour::add_data -> cannot add data when plot_data is not empty!");
 
-  PlotDataSurface *data_copy = nullptr;
-  try {
-    //ensure our data is PlotDataSurface
-    data_copy = new PlotDataSurface(dynamic_cast<const PlotDataSurface &>(data));
-  }
-  catch (std::bad_cast &e) {
-    throw Exception("Gtk::PLplot::PlotContour::add_data -> data must be of PlotDataSurface type!");
-  }
-  plot_data.push_back(data_copy);
-  data_copy->signal_changed().connect([this](){_signal_changed.emit();});
-  data_copy->signal_data_modified().connect([this](){plot_data_modified();});
+  plot_data.push_back(&data);
+  data.signal_changed().connect([this](){_signal_changed.emit();});
+  data.signal_data_modified().connect([this](){plot_data_modified();});
 
-  _signal_data_added.emit(data_copy);
-  return data_copy;
+  _signal_data_added.emit(&data);
 }
 
 void PlotContour::set_edge_color(Gdk::RGBA _edge_color) {
@@ -274,12 +249,4 @@ void PlotContour::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int w
                                       cairo_range_x[0], cairo_range_y[0]);
   convert_plplot_to_cairo_coordinates(plotted_range_x[1], plotted_range_y[1],
                                       cairo_range_x[1], cairo_range_y[1]);
-}
-
-PlotContour *PlotContour::clone() const {
-  PlotContour *my_clone = new PlotContour(*this);
-  if(typeid(*this) != typeid(*my_clone)) {
-    throw Exception("Gtk::PLplot::PlotContour::clone -> Classes that derive from Plot must implement clone!");
-  }
-  return my_clone;
 }

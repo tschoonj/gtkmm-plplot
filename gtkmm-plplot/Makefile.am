@@ -21,18 +21,19 @@ gtkmm_plplotinclude_HEADERS = \
                               regionselection.h \
                               plotdata3d.h \
                               plot3d.h \
+                              object.h \
                               $(NULL)
 
 gtkmm_plplotbaseinclude_HEADERS = gtkmm-plplot.h
 
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_SOURCES = $(gtkmm_plplotinclude_HEADERS) \
                                  $(gtkmm_plplotbaseinclude_HEADERS) \
+                                 canvas.cpp \
+                                 plot.cpp \
                                  plotdata.cpp \
                                  plotdata2d.cpp \
-                                 plot.cpp \
                                  plot2d.cpp \
                                  utils.cpp \
-                                 canvas.cpp \
                                  plotpolar.cpp \
                                  plotdatasurface.cpp \
                                  plotcontour.cpp \

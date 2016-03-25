@@ -91,88 +91,96 @@ namespace Test4 {
       std::valarray<double> y_va3 = tanh(x_va);
 
       //generate the data, the plot, add them to the canvas and use the return value to pass it to the checkbutton
-      checkbutton1.connect_plot(
-        dynamic_cast<Gtk::PLplot::Plot2D *>(
-          canvas.add_plot(
-            Gtk::PLplot::Plot2D(
-              Gtk::PLplot::PlotData2D(
-                x_va,
-                y_va1,
-                Gdk::RGBA("blue"),
+      Gtk::PLplot::Plot2D *plot1 = Gtk::manage(
+        new Gtk::PLplot::Plot2D(
+          *Gtk::manage(
+            new Gtk::PLplot::PlotData2D(
+              x_va,
+              y_va1,
+              Gdk::RGBA("blue"),
               Gtk::PLplot::LineStyle::CONTINUOUS,
-              3.0),
-              "X-axis",
-              "Y-axis",
-              "Hyperbolic sine",
-              0.5,
-              0.5,
-              0.0,
-              0.0
+              3.0
             )
-          )
+          ),
+          "X-axis",
+          "Y-axis",
+          "Hyperbolic sine",
+          0.5,
+          0.5,
+          0.0,
+          0.0
         )
       );
-      checkbutton2.connect_plot(
-        dynamic_cast<Gtk::PLplot::Plot2D *>(
-          canvas.add_plot(
-            Gtk::PLplot::Plot2D(
-              Gtk::PLplot::PlotData2D(
-                x_va,
-                y_va2,
-                Gdk::RGBA("red"),
-                Gtk::PLplot::LineStyle::CONTINUOUS,
-                3.0),
-              "X-axis",
-              "Y-axis",
-              "Hyperbolic cosine",
-              0.5,
-              0.5,
-              0.5,
-              0.0
+      canvas.add_plot(*plot1);
+      checkbutton1.connect_plot(plot1);
+
+      Gtk::PLplot::Plot2D *plot2 = Gtk::manage(
+        new Gtk::PLplot::Plot2D(
+          *Gtk::manage(
+            new Gtk::PLplot::PlotData2D(
+              x_va,
+              y_va2,
+              Gdk::RGBA("red"),
+              Gtk::PLplot::LineStyle::CONTINUOUS,
+              3.0
             )
-          )
+          ),
+          "X-axis",
+          "Y-axis",
+          "Hyperbolic cosine",
+          0.5,
+          0.5,
+          0.5,
+          0.0
         )
       );
-      checkbutton3.connect_plot(
-        dynamic_cast<Gtk::PLplot::Plot2D *>(
-          canvas.add_plot(
-            Gtk::PLplot::Plot2D(
-              Gtk::PLplot::PlotData2D(
-                x_va,
-                y_va3,
-                Gdk::RGBA("green"),
-                Gtk::PLplot::LineStyle::CONTINUOUS,
-                3.0),
-              "X-axis",
-              "Y-axis",
-              "Hyperbolic tangent",
-              0.4,
-              0.4,
-              0.2,
-              0.55
+      canvas.add_plot(*plot2);
+      checkbutton2.connect_plot(plot2);
+
+      Gtk::PLplot::Plot2D *plot3 = Gtk::manage(
+        new Gtk::PLplot::Plot2D(
+          *Gtk::manage(
+            new Gtk::PLplot::PlotData2D(
+              x_va,
+              y_va3,
+              Gdk::RGBA("green"),
+              Gtk::PLplot::LineStyle::CONTINUOUS,
+              3.0
             )
-          )
+          ),
+          "X-axis",
+          "Y-axis",
+          "Hyperbolic tangent",
+          0.4,
+          0.4,
+          0.2,
+          0.55
         )
       );
+      canvas.add_plot(*plot3);
+      checkbutton3.connect_plot(plot3);
 
       checkbutton1.set_active();
       checkbutton2.set_active(false);
       checkbutton3.set_active();
 
       //let's override the background color of the second plot and hide it to make the surprise complete!!
-      canvas.get_plot(1)->set_background_color(Gdk::RGBA("Yellow Green"));
-      canvas.get_plot(1)->hide();
+      plot2->set_background_color(Gdk::RGBA("Yellow Green"));
+      plot2->hide();
+
       //also let's disable the region selection, for no reason whatsoever!
-      dynamic_cast<Gtk::PLplot::RegionSelection *>(canvas.get_plot(1))->set_region_selectable(false);
+      plot2->set_region_selectable(false);
+
       //let's override the default region of this plot, this is NOT influenced by set_region_selectable()!!!
-      dynamic_cast<Gtk::PLplot::RegionSelection *>(canvas.get_plot(1))->set_region(-10, 10, -10, 10);
+      plot2->set_region(-10, 10, -10, 10);
+
       //we can also change some other colors
-      canvas.get_plot(1)->set_axes_color(Gdk::RGBA("Blue"));
-      canvas.get_plot(1)->set_titles_color(Gdk::RGBA("Purple"));
-      dynamic_cast<Gtk::PLplot::Plot2D *>(canvas.get_plot(1))->set_box_style(Gtk::PLplot::BOX_TICKS_TICK_LABELS_MAIN_AXES_MAJOR_MINOR_TICK_GRID);
+      plot2->set_axes_color(Gdk::RGBA("Blue"));
+      plot2->set_titles_color(Gdk::RGBA("Purple"));
+      plot2->set_box_style(Gtk::PLplot::BOX_TICKS_TICK_LABELS_MAIN_AXES_MAJOR_MINOR_TICK_GRID);
 
       //lets'give the third plot a nice opaque background color
-      canvas.get_plot(2)->set_background_color(Gdk::RGBA("White"));
+      plot3->set_background_color(Gdk::RGBA("White"));
 
       //hook up signal_cursor_motion to the entries
       unsigned int plotnr = 0;
