@@ -28,6 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/switch.h>
 #include <gtkmm/paned.h>
 #include <gtkmm/aspectframe.h>
+#include <gtkmmconfig.h>
 #include <cmath>
 #include <fstream>
 #include <iostream>
@@ -398,7 +399,9 @@ namespace Test8 {
       //finishing up
       add(paned);
       set_border_width(10);
+#if GTKMM_MAJOR_VERSION == 3 && GTKMM_MINOR_VERSION >= 16
       paned.set_wide_handle(true);
+#endif
       paned.show_all();
 
     }
