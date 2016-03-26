@@ -42,7 +42,7 @@ namespace Gtk {
         * Newly constructed instances have managed set to \c false
         */
        Object() : managed(false) {
-         std::cout << "Gtkmm::PLplot::Object constructor called" << std::endl;
+         //std::cout << "Gtkmm::PLplot::Object constructor called" << std::endl;
        }
      public:
        /** Marks that this Object is managed by its Canvas or Plot container.

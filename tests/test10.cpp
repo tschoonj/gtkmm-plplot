@@ -31,9 +31,11 @@ static void activate (GtkApplication* app, gpointer user_data) {
   }
   y_va = 2*cos(x_va)-1;
 
-  // Though this works nicely, I am pretty sure the canvas will not be freed
-  // when the window is destroyed. May need to use one of the widget signals
-  Gtk::PLplot::Canvas *canvas = new Gtk::PLplot::Canvas(
+  // Gtk::manage even seems to work when the canvas is added to a GTK+ container,
+  // instead of Gtkmm::Container!!!
+  // This means we will not have to manually free canvas ourselves, which is
+  // really cool!
+  Gtk::PLplot::Canvas *canvas = Gtk::manage(new Gtk::PLplot::Canvas(
     *Gtk::manage(
       new Gtk::PLplot::Plot2D(
         *Gtk::manage(
@@ -48,11 +50,13 @@ static void activate (GtkApplication* app, gpointer user_data) {
         plot_title
       )
     )
-  );
+  ));
 
   GtkWidget *window = gtk_application_window_new(app);
   gtk_window_set_title (GTK_WINDOW (window), "Gtkmm-PLplot test10");
   gtk_window_set_default_size (GTK_WINDOW (window), 720, 580);
+  // print the type name
+  std::cout << "Type:" << g_type_name(G_OBJECT_TYPE(canvas->gobj())) << std::endl;
   // this next line is where the magic happens
   gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(canvas->gobj()));
   gtk_widget_show_all (window);
