@@ -79,14 +79,7 @@ bool Canvas::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
   const int width = allocation.get_width();
   const int height = allocation.get_height();
 
-  //start by drawing the background
-  cr->rectangle(0.0, 0.0, width, height);
-  Gdk::Cairo::set_source_rgba(cr, background_color);
-  cr->fill();
-
-  for (auto &iter : plots) {
-      iter->draw_plot(cr, width, height);
-  }
+  draw_plot(cr, width, height);
 
   if (selecting &&
     start_cairo[0] >= 0.0 &&
@@ -104,6 +97,19 @@ bool Canvas::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
   }
   return true;
 }
+
+void Canvas::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, int width, int height) {
+  //start by drawing the background...
+  cr->rectangle(0.0, 0.0, width, height);
+  Gdk::Cairo::set_source_rgba(cr, background_color);
+  cr->fill();
+
+  //...followed by the plots
+  for (auto &iter : plots) {
+      iter->draw_plot(cr, width, height);
+  }
+}
+
 
 bool Canvas::on_button_press_event(GdkEventButton *event) {
   Gtk::Allocation allocation = get_allocation();

@@ -21,10 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/drawingarea.h>
 #include <gtkmm-plplot/plot.h>
 #include <vector>
-#include <plstream.h>
 #include <gdkmm/rgba.h>
-
-
 
 
 /** \namespace Gtk::PLplot
@@ -50,6 +47,8 @@ namespace Gtk {
      *  Depending on which constructor is chosen, either an empty canvas will be produced, or one containing a single plot.
      *  It is possible however, to add any number of plots on the canvas. The positions and dimensions of these plots are properties of the plots, that have to be provided
      *  when invoking their constructors. This is demonstrated in \ref example3 and \ref example4.
+     *  \ref example1 shows how to write a canvas and its contents to a file as well as to send a canvas to a printer
+     *  using the draw_plot method.
      */
     class Canvas : public Gtk::DrawingArea {
     private:
@@ -127,6 +126,15 @@ namespace Gtk {
        *
        */
       virtual ~Canvas();
+
+      /** Draw onto a given cairo context
+       *
+       * Enables drawing the canvas and its plot(s) onto a particular cairo context,
+       * whose surface is not necessarily connected to a widget.
+       * Use this method if you want to write to PNG, EPS, PDF etc. files or if
+       * you would like to send this to a print job
+       */
+      void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, int width, int height);
 
       /** Add a single plot to the canvas
        *

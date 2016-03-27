@@ -26,6 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/grid.h>
 #include <gtkmm/spinbutton.h>
 #include <gtkmm/colorbutton.h>
+#include <gtkmm/printsettings.h>
+#include <gtkmm/pagesetup.h>
+#include <gtkmm/printoperation.h>
+#include <gtkmm/filechooserdialog.h>
 
 namespace Test1 {
   class Window : public Gtk::Window {
@@ -46,6 +50,8 @@ namespace Test1 {
     Glib::RefPtr<Gtk::Adjustment> linewidth_adj2;
     Gtk::SpinButton linewidth_spin1;
     Gtk::SpinButton linewidth_spin2;
+    Gtk::Button print_button;
+    Gtk::Button saveas_button;
 
   public:
     Window(std::valarray<double> &x, std::valarray<double> &y,
@@ -58,7 +64,9 @@ namespace Test1 {
       linewidth_adj1(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       linewidth_adj2(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       linewidth_spin1(linewidth_adj1, 0.1, 1.0),
-      linewidth_spin2(linewidth_adj2, 0.1, 1.0) {
+      linewidth_spin2(linewidth_adj2, 0.1, 1.0),
+      print_button("Print"),
+      saveas_button("Save as") {
 
       //let's make this more interesting by adding more data
       std::valarray<double> x_va(1000), y_va(1000);
@@ -187,11 +195,121 @@ namespace Test1 {
       grid.attach(linewidth_spin2, 4, 1, 1, 1);
       grid.attach(canvas, 0, 2, 5, 1);
 
+      Gtk::Grid *button_grid = Gtk::manage(new Gtk::Grid());
+      button_grid->set_column_homogeneous(true);
+      button_grid->set_column_spacing(5);
+      button_grid->set_row_spacing(5);
+      button_grid->attach(print_button, 0, 0, 1, 1);
+      button_grid->attach(saveas_button, 1, 0, 1, 1);
+      grid.attach(*button_grid, 0, 3, 5, 1);
+      print_button.set_hexpand(false);
+      saveas_button.set_hexpand(false);
+      print_button.set_vexpand(false);
+      saveas_button.set_vexpand(false);
+      print_button.set_halign(Gtk::ALIGN_END);
+      saveas_button.set_halign(Gtk::ALIGN_START);
+
+      print_button.signal_clicked().connect(sigc::mem_fun(*this, &Window::on_print_button_clicked));
+      saveas_button.signal_clicked().connect(sigc::mem_fun(*this, &Window::on_saveas_button_clicked));
+
       add(grid);
       set_border_width(10);
       grid.show_all();
     }
     virtual ~Window() {}
+
+    void on_draw_page(const Glib::RefPtr<Gtk::PrintContext>& context, int page_nr) {
+      Cairo::RefPtr< ::Cairo::Context> cr = context->get_cairo_context();
+
+      canvas.draw_plot(cr, 842, 595);
+    }
+
+    void on_print_button_clicked() {
+      //print settings
+      Glib::RefPtr<Gtk::PrintSettings> print_settings = Gtk::PrintSettings::create();
+      print_settings->set_orientation(Gtk::PAGE_ORIENTATION_LANDSCAPE);
+      print_settings->set_paper_size(Gtk::PaperSize(Gtk::PAPER_NAME_A4));
+
+      Glib::RefPtr<Gtk::PageSetup> page_setup = Gtk::PageSetup::create();
+      page_setup->set_orientation(Gtk::PAGE_ORIENTATION_LANDSCAPE);
+      page_setup->set_paper_size_and_default_margins(Gtk::PaperSize(Gtk::PAPER_NAME_A4));
+
+      Glib::RefPtr<Gtk::PrintOperation> operation = Gtk::PrintOperation::create();
+      operation->set_print_settings(print_settings);
+      operation->set_default_page_setup(page_setup);
+      operation->set_show_progress(true);
+      operation->set_track_print_status(true);
+      operation->set_use_full_page(true);
+      operation->signal_draw_page().connect(sigc::mem_fun(*this, &Window::on_draw_page));
+      operation->set_n_pages(1);
+
+      if (Gtk::PRINT_OPERATION_RESULT_APPLY != operation->run(Gtk::PRINT_OPERATION_ACTION_PRINT_DIALOG, *this)) {
+        //error handling
+      }
+
+      return;
+    }
+
+    void on_saveas_button_clicked() {
+      Gtk::FileChooserDialog dialog(*this, "Save as", Gtk::FILE_CHOOSER_ACTION_SAVE);
+      dialog.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
+    	dialog.add_button("Select", Gtk::RESPONSE_OK);
+      dialog.set_do_overwrite_confirmation(true);
+      Glib::RefPtr<Gtk::FileFilter> filter_eps = Gtk::FileFilter::create();
+      filter_eps->add_pattern("*.eps");
+      filter_eps->set_name("EPS");
+      dialog.add_filter(filter_eps);
+      Glib::RefPtr<Gtk::FileFilter> filter_png = Gtk::FileFilter::create();
+      filter_png->add_pattern("*.png");
+      filter_png->set_name("PNG");
+      dialog.add_filter(filter_png);
+      Glib::RefPtr<Gtk::FileFilter> filter_pdf = Gtk::FileFilter::create();
+      filter_pdf->add_pattern("*.pdf");
+      filter_pdf->set_name("PDF");
+      dialog.add_filter(filter_pdf);
+
+      if (dialog.run() == Gtk::RESPONSE_OK) {
+        std::string filename = dialog.get_filename();
+        Glib::RefPtr<Gtk::FileFilter> filter_selected = dialog.get_filter();
+        if (filter_selected->get_name() == "EPS") {
+          if (filename.compare(filename.length()-4, std::string::npos, ".eps") != 0)
+    				filename += ".eps";
+
+          Cairo::RefPtr<Cairo::PsSurface> surface = Cairo::PsSurface::create(filename, 842, 595);
+          surface->set_eps(true);
+          Cairo::RefPtr<Cairo::Context> cr = Cairo::Context::create(surface);
+
+          canvas.draw_plot(cr, 842, 595);
+
+          cr->show_page();
+        }
+        else if (filter_selected->get_name() == "PNG") {
+          if (filename.compare(filename.length()-4, std::string::npos, ".png") != 0)
+    				filename += ".png";
+
+          Cairo::RefPtr<Cairo::ImageSurface> surface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, 842, 595);
+          Cairo::RefPtr<Cairo::Context> cr = Cairo::Context::create(surface);
+
+          canvas.draw_plot(cr, 842, 595);
+
+          surface->write_to_png(filename);
+        }
+        else if (filter_selected->get_name() == "PDF") {
+          if (filename.compare(filename.length()-4, std::string::npos, ".pdf") != 0)
+    				filename += ".pdf";
+
+          Cairo::RefPtr<Cairo::PdfSurface> surface = Cairo::PdfSurface::create(filename, 842, 595);
+          Cairo::RefPtr<Cairo::Context> cr = Cairo::Context::create(surface);
+
+          canvas.draw_plot(cr, 842, 595);
+
+          cr->show_page();
+        }
+      }
+      return;
+    }
+
+
   };
 }
 
