@@ -36,7 +36,7 @@ Canvas::Canvas(Plot &plot, Gdk::RGBA _background_color) :
 }
 
 Canvas::Canvas(Gdk::RGBA _background_color) :
-  Glib::ObjectBase ("GtkmmPLplotCanvas"),
+  Glib::ObjectBase("GtkmmPLplotCanvas"),
   start_event{-1.0, -1.0},
   start_cairo{-1.0, -1.0},
   end_event{-1.0, -1.0},

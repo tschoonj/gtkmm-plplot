@@ -40,6 +40,7 @@ PlotContour::PlotContour(
   const double _plot_height_norm,
   const double _plot_offset_horizontal_norm,
   const double _plot_offset_vertical_norm) :
+	Glib::ObjectBase("GtkmmPLplotPlotContour"),
   Plot(_axis_title_x, _axis_title_y, _plot_title,
   _plot_width_norm, _plot_height_norm,
   _plot_offset_horizontal_norm,

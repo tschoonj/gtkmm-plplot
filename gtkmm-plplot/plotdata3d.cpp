@@ -28,6 +28,7 @@ PlotData3D::PlotData3D(
   Gdk::RGBA _color,
   LineStyle _line_style,
   double _line_width) :
+  Glib::ObjectBase("GtkmmPLplotPlotData3D"),
   PlotData2D(_x, _y, _color, _line_style, _line_width),
   z(_z) {
 

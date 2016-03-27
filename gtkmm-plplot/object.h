@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMM_PLPLOT_OBJECT_H
 #define GTKMM_PLPLOT_OBJECT_H
 
-#include <sigc++/sigc++.h>
+#include <glibmm/object.h>
 #include <iostream>
 
 namespace Gtk {
@@ -27,10 +27,10 @@ namespace Gtk {
      *  \brief an abstract base class for all plots and plotdata's
      *
      *  This is the base class from which all other plots classes are derived.
-     *  It derives from libsigc++'s trackable to provide signalling support,
+     *  Through Glib::Object, it derives from libsigc++'s trackable to provide signalling support,
      *  and allows for memory management using Gtkmm's Gtk::manage method.
      */
-     class Object : public sigc::trackable {
+     class Object : public Glib::Object {
      private:
        bool managed; ///< \c true means memory managed by us, \c false indicates otherwise
        //disable copy construction and assignment operator
@@ -41,7 +41,7 @@ namespace Gtk {
         *
         * Newly constructed instances have managed set to \c false
         */
-       Object() : managed(false) {
+       Object() : Glib::ObjectBase("GtkmmPLplotObject"), managed(false) {
          //std::cout << "Gtkmm::PLplot::Object constructor called" << std::endl;
        }
      public:

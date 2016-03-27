@@ -27,6 +27,7 @@ PlotData2D::PlotData2D(
   Gdk::RGBA _color,
   LineStyle _line_style,
   double _line_width) :
+  Glib::ObjectBase("GtkmmPLplotPlotData2D"),
   PlotData(),
   x(_x), y(_y), color(_color), line_style(_line_style),
   line_width(_line_width),

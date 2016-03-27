@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace Gtk::PLplot;
 
 PlotData::PlotData() :
+  Glib::ObjectBase("GtkmmPLplotPlotData"),
   name(""),
   shown(true) {
 

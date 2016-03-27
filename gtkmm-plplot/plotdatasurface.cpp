@@ -35,6 +35,7 @@ PlotDataSurface::PlotDataSurface(
   const std::vector<double> &_x,
   const std::vector<double> &_y,
   double **_z) :
+	Glib::ObjectBase("GtkmmPLplotPlotDataSurface"),
   PlotData(),
   x(_x), y(_y)
   {
