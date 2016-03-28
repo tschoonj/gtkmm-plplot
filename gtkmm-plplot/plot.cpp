@@ -93,7 +93,7 @@ void Plot::on_data_removed(PlotData *removed_data) {
 }
 
 void Plot::remove_data(unsigned int index) {
-  if (plot_data.size() < 2)
+  if (plot_data.size() == 1)
     throw Exception("Gtk::PLplot::Plot::remove_data -> At least one dataset must be present in the dataset");
 
   if (index >= plot_data.size())
@@ -106,7 +106,7 @@ void Plot::remove_data(unsigned int index) {
 }
 
 void Plot::remove_data(PlotData &plot_data_member) {
-  if (plot_data.size() < 2)
+  if (plot_data.size() == 1)
     throw Exception("Gtk::PLplot::Plot::remove_data -> At least one dataset must be present in the dataset");
 
   auto iter = std::find(plot_data.begin(), plot_data.end(), &plot_data_member);

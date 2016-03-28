@@ -80,6 +80,14 @@ void Plot2D::plot_data_modified() {
     min_y.push_back(*std::min_element(y.begin(), y.end()));
     max_y.push_back(*std::max_element(y.begin(), y.end()));
   }
+
+  if (min_x.empty()) {
+    min_x.push_back(0.0);
+    max_x.push_back(1.0);
+    min_y.push_back(0.0);
+    max_y.push_back(1.0);
+  }
+
   plot_data_range_x[0] = *std::min_element(min_x.begin(), min_x.end());
   plot_data_range_x[1] = *std::max_element(max_x.begin(), max_x.end());
   plot_data_range_y[0] = *std::min_element(min_y.begin(), min_y.end());
@@ -108,6 +116,33 @@ void Plot2D::add_data(PlotData2D &data) {
   data.signal_data_modified().connect([this](){plot_data_modified();});
 
   _signal_data_added.emit(&data);
+}
+
+void Plot2D::remove_data(unsigned int index) {
+  if (plot_data.size() == 0)
+    throw Exception("Gtk::PLplot::Plot2D::remove_data -> No more datasets left to remove");
+
+  if (index >= plot_data.size())
+    throw Exception("Gtk::PLplot::Plot2D::remove_data -> Invalid index");
+
+  PlotData *removed_plot = plot_data[index];
+
+  plot_data.erase(plot_data.begin() + index);
+  _signal_data_removed.emit(removed_plot);
+}
+
+void Plot2D::remove_data(PlotData &plot_data_member) {
+  if (plot_data.size() == 0)
+    throw Exception("Gtk::PLplot::Plot2D::remove_data -> No more datasets left to remove");
+
+  auto iter = std::find(plot_data.begin(), plot_data.end(), &plot_data_member);
+  if (iter == plot_data.end())
+    throw Exception("Gtk::PLplot::Plot::remove_data -> No match for argument");
+
+  PlotData *removed_plot = *iter;
+
+  plot_data.erase(iter);
+  _signal_data_removed.emit(removed_plot);
 }
 
 void Plot2D::set_axis_logarithmic_x(bool _log10) {

@@ -131,14 +131,14 @@ namespace Gtk {
        * \param plot_data_index index of the plotdata in the \c plot_data vector
        * \exception Gtk::PLplot::Exception
        */
-      virtual void remove_data(unsigned int plot_data_index) final;
+      virtual void remove_data(unsigned int plot_data_index);
 
       /** Remove a single dataset from the plot
        *
        * \param plot_data_member pointer to the plotdata in the \c plot_data vector
        * \exception Gtk::PLplot::Exception
        */
-      virtual void remove_data(PlotData &plot_data_member) final;
+      virtual void remove_data(PlotData &plot_data_member);
 
       /** Get a pointer to a dataset included in the plot
        *

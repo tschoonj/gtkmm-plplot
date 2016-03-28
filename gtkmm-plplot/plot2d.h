@@ -76,10 +76,12 @@ namespace Gtk {
        * \param object the object we are dealing with
        */
       static void coordinate_transform_plplot_to_world(double x_old, double y_old, double *x_new, double *y_new, PLPointer object);
+    public:
 
       /** Constructor
        *
-       * This protected constructor is meant to be used in derived classes only to circumvent the problem of calling add_data() in a constructor which calls Plot2D's public constructor.
+       * This constructor produces an empty PlotData2D plot. Add data to it using add_data.
+       * Optionally, the constructor takes additional arguments to set the axes and plot titles, as well as normalized coordinates that will determine the position and dimensions of the plot within the canvas. The default corresponds to the plot taking up the full c
        * \param axis_title_x X-axis title
        * \param axis_title_y Y-axis title
        * \param plot_title plot title
@@ -88,17 +90,17 @@ namespace Gtk {
        * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
        * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
        */
-      Plot2D(const Glib::ustring &axis_title_x,
-             const Glib::ustring &axis_title_y,
-             const Glib::ustring &plot_title,
-             const double plot_width_norm,
-             const double plot_height_norm,
-             const double plot_offset_horizontal_norm,
-             const double plot_offset_vertical_norm);
-    public:
+      Plot2D(const Glib::ustring &axis_title_x = "X-axis",
+             const Glib::ustring &axis_title_y = "Y-axis",
+             const Glib::ustring &plot_title = "",
+             const double plot_width_norm = 1.0,
+             const double plot_height_norm = 1.0,
+             const double plot_offset_horizontal_norm = 0.0,
+             const double plot_offset_vertical_norm = 0.0);
+
       /** Constructor
        *
-       * This class provides a single public constructor, which takes an existing PlotData2D dataset to construct a plot.
+       * This constructor takes an existing PlotData2D dataset to construct a plot.
        * Optionally, the constructor takes additional arguments to set the axes and plot titles, as well as normalized coordinates that will determine the position and dimensions of the plot within the canvas. The default corresponds to the plot taking up the full c
        * \param data a PlotData2D object containing a plot dataset
        * \param axis_title_x X-axis title
@@ -130,6 +132,20 @@ namespace Gtk {
        */
       virtual void add_data(PlotData2D &data);
 
+      /** Remove a single dataset from the plot
+       *
+       * \param plot_data_index index of the plotdata in the \c plot_data vector
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void remove_data(unsigned int plot_data_index) override;
+
+      /** Remove a single dataset from the plot
+       *
+       * \param plot_data_member pointer to the plotdata in the \c plot_data vector
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void remove_data(PlotData &plot_data_member) override;
+
       /** Method to draw the plot with all of its datasets
        *
        * This method is virtual allowing inheriting classes to implement their own method with the same signature.
@@ -137,7 +153,6 @@ namespace Gtk {
        * \param width the width of the Canvas widget
        * \param height the height of the Canvas widget
        */
-      //void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, plstream *_pls, int width, int height);
       virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
 
       /** Set the box style
