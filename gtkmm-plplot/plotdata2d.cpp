@@ -42,10 +42,6 @@ PlotData2D::PlotData2D(
   if (x.size() < 2) {
     throw Exception("Gtk::PLplot::PlotData2D::PlotData2D -> data arrays x and y must have at least two elements");
   }
-  //ensure the X-values are not all the same
-  if (std::count(x.begin(), x.end(), x[0]) == x.size()) {
-    throw Exception("Gtk::PLplot::PlotData2D::PlotData2D -> data array x must have at least two different elements");
-  }
 }
 
 PlotData2D::PlotData2D(

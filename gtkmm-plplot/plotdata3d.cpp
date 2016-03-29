@@ -36,10 +36,6 @@ PlotData3D::PlotData3D(
   if (y.size() != z.size()) {
     throw Exception("Gtk::PLplot::PlotData3D::PlotData3D -> data arrays x, y and z must have the same size!");
   }
-  //ensure the Y-values are not all the same
-  if (std::count(y.begin(), y.end(), y[0]) == y.size()) {
-    throw Exception("Gtk::PLplot::PlotData3D::PlotData3D -> data array y must have at least two different elements");
-  }
 }
 
 PlotData3D::PlotData3D(
