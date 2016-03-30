@@ -41,7 +41,12 @@ Plot2D::Plot2D(
   Plot(_axis_title_x, _axis_title_y, _plot_title,
   _plot_width_norm, _plot_height_norm,
   _plot_offset_horizontal_norm,
-  _plot_offset_vertical_norm) {}
+  _plot_offset_vertical_norm),
+  log10_x(false),
+  log10_y(false),
+  box_style(BOX_TICKS_TICK_LABELS) {
+
+}
 
 Plot2D::Plot2D(
   PlotData2D &_data,
@@ -52,14 +57,10 @@ Plot2D::Plot2D(
   const double _plot_height_norm,
   const double _plot_offset_horizontal_norm,
   const double _plot_offset_vertical_norm) :
-  Glib::ObjectBase("GtkmmPLplotPlot2D"),
-  Plot(_axis_title_x, _axis_title_y, _plot_title,
+  Plot2D(_axis_title_x, _axis_title_y, _plot_title,
   _plot_width_norm, _plot_height_norm,
   _plot_offset_horizontal_norm,
-  _plot_offset_vertical_norm),
-  log10_x(false),
-  log10_y(false),
-  box_style(BOX_TICKS_TICK_LABELS) {
+  _plot_offset_vertical_norm) {
 
   add_data(_data);
 }

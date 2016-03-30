@@ -51,14 +51,10 @@ Plot3D::Plot3D(
   const double _plot_height_norm,
   const double _plot_offset_horizontal_norm,
   const double _plot_offset_vertical_norm) :
-  Glib::ObjectBase("GtkmmPLplotPlot3D"),
-  Plot(_axis_title_x, _axis_title_y, _plot_title,
+  Plot3D(_axis_title_x, _axis_title_y, _axis_title_z, _plot_title,
   _plot_width_norm, _plot_height_norm,
   _plot_offset_horizontal_norm,
-  _plot_offset_vertical_norm),
-  axis_title_z(_axis_title_z),
-  altitude(45.0),
-  azimuth(45.0) {
+  _plot_offset_vertical_norm) {
 
   add_data(_data);
 }
