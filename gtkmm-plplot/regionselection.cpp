@@ -72,7 +72,7 @@ void RegionSelection::set_region_selectable(bool _region_selectable) {
   region_selectable = _region_selectable;
 }
 
-void RegionSelection::convert_plplot_to_cairo_coordinates(
+void RegionSelection::coordinate_transform_plplot_to_cairo(
   double x_pl, double y_pl,
   double &x_cr, double &y_cr) {
     //inspired by http://www.mail-archive.com/plplot-devel@lists.sourceforge.net/msg02383.html
@@ -83,7 +83,7 @@ void RegionSelection::convert_plplot_to_cairo_coordinates(
     Plot* plot = dynamic_cast<Plot *>(this);
 
     if (plot == nullptr)
-      throw Exception("Gtk::PLplot::RegionSelection::convert_plplot_to_cairo_coordinates -> could not dynamic_cast this to Plot*");
+      throw Exception("Gtk::PLplot::RegionSelection::coordinate_transform_plplot_to_cairo -> could not dynamic_cast this to Plot*");
 
     plot->pls->gvpd(nxmin, nxmax, nymin, nymax);
     plot->pls->gvpw(wxmin, wxmax, wymin, wymax);
@@ -97,7 +97,7 @@ void RegionSelection::convert_plplot_to_cairo_coordinates(
     y_cr = ymin + ((ymax - ymin) * ((y_pl - wymin) / (wymax - wymin)));
 }
 
-void RegionSelection::convert_cairo_to_plplot_coordinates(
+void RegionSelection::coordinate_transform_cairo_to_plplot(
   double x_cr, double y_cr,
   double &x_pl, double &y_pl) {
 
@@ -107,7 +107,7 @@ void RegionSelection::convert_cairo_to_plplot_coordinates(
     Plot* plot = dynamic_cast<Plot *>(this);
 
     if (plot == nullptr)
-      throw Exception("Gtk::PLplot::RegionSelection::convert_plplot_to_cairo_coordinates -> could not dynamic_cast this to Plot*");
+      throw Exception("Gtk::PLplot::RegionSelection::coordinate_transform_plplot_to_cairo -> could not dynamic_cast this to Plot*");
 
     plot->pls->gvpd(nxmin, nxmax, nymin, nymax);
     plot->pls->gvpw(wxmin, wxmax, wymin, wymax);

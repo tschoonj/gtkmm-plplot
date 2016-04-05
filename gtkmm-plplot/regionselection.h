@@ -45,11 +45,11 @@ namespace Gtk {
       sigc::signal<void, double, double > _signal_cursor_motion; ///< signal that will be emitted whenever the cursor (usually the mouse) is moved.
       sigc::signal<void, double, double> _signal_double_press; ///< signal that will emitted whenever a double mouse-click event was recorded within the plot box. Default response will be to reset the region to a range determined by the minima and maxima of the X- and Y- datasets.
 
-      void convert_plplot_to_cairo_coordinates(
+      void coordinate_transform_plplot_to_cairo(
         double x_pl, double y_pl,
         double &x_cr, double &y_cr); ///< method to calculate the Cairo coordinates corresponding to PLplot coordinates, mostly used after draw, which is necessary after Canvas widget resizing.
 
-      void convert_cairo_to_plplot_coordinates(
+      void coordinate_transform_cairo_to_plplot(
         double x_cr, double y_cr,
         double &x_pl, double &y_pl); ///< method to calculate the PLplot coordinates corresponding to Cairo coordinates, mostly used after draw, which is necessary after Canvas widget resizing.
 

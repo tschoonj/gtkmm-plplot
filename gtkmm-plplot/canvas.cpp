@@ -143,7 +143,7 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
         double cursor_pl_x, cursor_pl_y;
         double cursor_x, cursor_y;
 
-        region_selection->convert_cairo_to_plplot_coordinates(
+        region_selection->coordinate_transform_cairo_to_plplot(
           start_cairo[0],
           start_cairo[1],
           cursor_pl_x,
@@ -223,9 +223,9 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
   double end_plplot[2];
 
   //get the plot coordinates corresponding to the cairo coordinates
-  region_selection->convert_cairo_to_plplot_coordinates(start_cairo[0], start_cairo[1],
+  region_selection->coordinate_transform_cairo_to_plplot(start_cairo[0], start_cairo[1],
                   start_plplot[0], start_plplot[1]);
-  region_selection->convert_cairo_to_plplot_coordinates(end_cairo[0], end_cairo[1],
+  region_selection->coordinate_transform_cairo_to_plplot(end_cairo[0], end_cairo[1],
                   end_plplot[0], end_plplot[1]);
   double start_plplot_def[2];
   double end_plplot_def[2];
@@ -284,7 +284,7 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
       //std::cout << "on_motion_notify_event plot " << plot << std::endl;
       double cursor_pl_x, cursor_pl_y;
       double cursor_x, cursor_y;
-      region_selection->convert_cairo_to_plplot_coordinates(
+      region_selection->coordinate_transform_cairo_to_plplot(
         end_cairo[0],
         end_cairo[1],
         cursor_pl_x,

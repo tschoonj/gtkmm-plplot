@@ -224,9 +224,9 @@ void PlotContourShades::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const
 
   cr->restore();
 
-  convert_plplot_to_cairo_coordinates(plotted_range_x[0], plotted_range_y[0],
+  coordinate_transform_plplot_to_cairo(plotted_range_x[0], plotted_range_y[0],
                                       cairo_range_x[0], cairo_range_y[0]);
-  convert_plplot_to_cairo_coordinates(plotted_range_x[1], plotted_range_y[1],
+  coordinate_transform_plplot_to_cairo(plotted_range_x[1], plotted_range_y[1],
                                       cairo_range_x[1], cairo_range_y[1]);
 }
 
