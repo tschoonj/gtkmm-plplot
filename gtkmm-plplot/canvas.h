@@ -59,7 +59,7 @@ namespace Gtk {
       double end_event[2]; ///< widget coordinates of the position where a \c button_release_event was generated
       double end_cairo[2]; ///< cairo coordinates of the position where a \c button_release_event was generated
       bool selecting; ///< set to true if the user is currently dragging a selection box
-      unsigned int selected_plot; ///< \c plots index of the currently selected plot
+      Plot* selected_plot; ///< \c pointer to the currently selected plot
       Gdk::RGBA background_color; ///< the currently used background color of the canvas (default = opaque White)
       Canvas(const Canvas &) = delete; ///< no copy constructor
       Canvas &operator=(const Canvas &) = delete; ///< no move assignment operator

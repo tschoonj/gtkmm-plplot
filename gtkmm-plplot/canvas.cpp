@@ -42,7 +42,7 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
   end_event{-1.0, -1.0},
   end_cairo{-1.0, -1.0},
   selecting(false),
-  selected_plot(0),
+  selected_plot(nullptr),
   background_color(_background_color) {
 
   add_events(Gdk::POINTER_MOTION_MASK |
@@ -104,7 +104,7 @@ void Canvas::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, int width, int h
   Gdk::Cairo::set_source_rgba(cr, background_color);
   cr->fill();
 
-  //...followed by the plots
+  //...followed by the plots, according to their order in the plots vector
   for (auto &iter : plots) {
       iter->draw_plot(cr, width, height);
   }
@@ -125,14 +125,16 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
   end_cairo[1] = -1.0;
 
   //check if the starting coordinates are valid
-  for (unsigned int plot = 0 ; plot < plots.size() ; plot++) {
-    RegionSelection *region_selection = dynamic_cast<RegionSelection *>(plots[plot]);
+  //go backwards as the plots are drawn from first to last.
+  //assume that the signal comes from the last drawn plot.
+  for (auto plot = plots.rbegin(); plot != plots.rend(); ++plot) {
+    RegionSelection *region_selection = dynamic_cast<RegionSelection *>(*plot);
     if (region_selection != nullptr &&
         start_cairo[0] >= region_selection->cairo_range_x[0] &&
         start_cairo[0] <= region_selection->cairo_range_x[1] &&
         start_cairo[1] >= region_selection->cairo_range_y[0] &&
         start_cairo[1] <= region_selection->cairo_range_y[1] &&
-        plots[plot]->is_showing() &&
+        (*plot)->is_showing() &&
         region_selection->get_region_selectable()) {
 
       // double-click -> zoom out!
@@ -161,7 +163,7 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
         return false;
       }
       selecting = true;
-      selected_plot = plot;
+      selected_plot = *plot;
 
       //_signal_changed.emit();
       return false;
@@ -190,7 +192,7 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
     return true;
   }
 
-  RegionSelection *region_selection = dynamic_cast<RegionSelection *>(plots[selected_plot]);
+  RegionSelection *region_selection = dynamic_cast<RegionSelection *>(selected_plot);
 
   //this should never happen
   if (region_selection == nullptr)
@@ -272,15 +274,15 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
 
   //emit signal for new cursor coordinates
   bool cursor_checked = false;
-  for (unsigned int plot = 0 ; plot < plots.size() ; plot++) {
-    RegionSelection *region_selection = dynamic_cast<RegionSelection *>(plots[plot]);
+  for (auto plot = plots.rbegin() ; plot != plots.rend() ; plot++) {
+    RegionSelection *region_selection = dynamic_cast<RegionSelection *>(*plot);
 
     if (region_selection != nullptr &&
         end_cairo[0] >= region_selection->cairo_range_x[0] &&
         end_cairo[0] <= region_selection->cairo_range_x[1] &&
         end_cairo[1] >= region_selection->cairo_range_y[0] &&
         end_cairo[1] <= region_selection->cairo_range_y[1] &&
-        plots[plot]->is_showing()) {
+        (*plot)->is_showing()) {
       //std::cout << "on_motion_notify_event plot " << plot << std::endl;
       double cursor_pl_x, cursor_pl_y;
       double cursor_x, cursor_y;
@@ -319,7 +321,7 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
   if (!selecting)
     return true;
 
-  RegionSelection *region_selection = dynamic_cast<RegionSelection *>(plots[selected_plot]);
+  RegionSelection *region_selection = dynamic_cast<RegionSelection *>(selected_plot);
 
   //this should never happen
   if (region_selection == nullptr)
