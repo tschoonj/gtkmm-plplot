@@ -27,6 +27,7 @@ RegionSelection::RegionSelection() :
   //connect our default signal handlers
   this->signal_select_region().connect(sigc::mem_fun(*this, &RegionSelection::on_select_region));
   this->signal_cursor_motion().connect(sigc::mem_fun(*this, &RegionSelection::on_cursor_motion));
+  this->signal_double_press().connect(sigc::mem_fun(*this, &RegionSelection::on_double_press));
 }
 
 void RegionSelection::on_select_region(double xmin, double xmax, double ymin, double ymax) {
@@ -36,6 +37,31 @@ void RegionSelection::on_select_region(double xmin, double xmax, double ymin, do
 void RegionSelection::on_cursor_motion(double x, double y) {
   //does nothing: write your own handler or override the method
   //std::cout << "x: " << x << " y: " << y << std::endl;
+}
+
+void RegionSelection::on_double_press(double x, double y) {
+  //default implementation -> override in a derived class to get a different behavior
+  double temp_x[2];
+  double temp_y[2];
+
+  coordinate_transform_plplot_to_world(
+    plot_data_range_x[0],
+    plot_data_range_y[0],
+    temp_x[0],
+    temp_y[0]
+  );
+  coordinate_transform_plplot_to_world(
+    plot_data_range_x[1],
+    plot_data_range_y[1],
+    temp_x[1],
+    temp_y[1]
+  );
+  set_region(
+    temp_x[0],
+    temp_x[1],
+    temp_y[0],
+    temp_y[1]
+  );
 }
 
 bool RegionSelection::get_region_selectable() {

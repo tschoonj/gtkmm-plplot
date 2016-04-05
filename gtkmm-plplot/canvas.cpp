@@ -139,26 +139,24 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
 
       // double-click -> zoom out!
       if (event->type == GDK_2BUTTON_PRESS) {
-        double plot_data_range_x[2];
-        double plot_data_range_y[2];
-        region_selection->coordinate_transform_plplot_to_world(
-          region_selection->plot_data_range_x[0],
-          region_selection->plot_data_range_y[0],
-          plot_data_range_x[0],
-          plot_data_range_y[0]
+        //convert event coordinates to plot coordinates
+        double cursor_pl_x, cursor_pl_y;
+        double cursor_x, cursor_y;
+
+        region_selection->convert_cairo_to_plplot_coordinates(
+          start_cairo[0],
+          start_cairo[1],
+          cursor_pl_x,
+          cursor_pl_y
         );
         region_selection->coordinate_transform_plplot_to_world(
-          region_selection->plot_data_range_x[1],
-          region_selection->plot_data_range_y[1],
-          plot_data_range_x[1],
-          plot_data_range_y[1]
+          cursor_pl_x,
+          cursor_pl_y,
+          cursor_x,
+          cursor_y
         );
-        region_selection->set_region(
-          plot_data_range_x[0],
-          plot_data_range_x[1],
-          plot_data_range_y[0],
-          plot_data_range_y[1]
-        );
+
+        region_selection->_signal_double_press.emit(cursor_x, cursor_y);
 
         return false;
       }

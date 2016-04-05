@@ -42,7 +42,8 @@ namespace Gtk {
       double plot_data_range_x[2]; ///< the maximum range covered by the X-values of the datasets
       double plot_data_range_y[2];  ///< the maximum range covered by the Y-values of the datasets
       sigc::signal<void, double, double, double, double > _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event()
-      sigc::signal<void, double , double > _signal_cursor_motion; ///< signal that will be emitted whenever the cursor (usually the mouse) is moved.
+      sigc::signal<void, double, double > _signal_cursor_motion; ///< signal that will be emitted whenever the cursor (usually the mouse) is moved.
+      sigc::signal<void, double, double> _signal_double_press; ///< signal that will emitted whenever a double mouse-click event was recorded within the plot box. Default response will be to reset the region to a range determined by the minima and maxima of the X- and Y- datasets.
 
       void convert_plplot_to_cairo_coordinates(
         double x_pl, double y_pl,
@@ -72,6 +73,15 @@ namespace Gtk {
        * \param y The Y-value corresponding to the current cursor position
        */
       virtual void on_cursor_motion(double x, double y);
+
+      /** This is a default handler for signal_double_press()
+       *
+       * This signal is emitted whenever a double mouse-click event is recorded within the plot box.
+       * Default response will be the resetting of the plot region to a range determined by the minima and maxima of the X- and Y- datasets
+       * \param x X-plot-coordinate of the position where the double click event occurred.
+       * \param y Y-plot-coordinate of the position where the double click event occurred.
+       */
+      virtual void on_double_press(double x, double y);
 
       /** Constructor
        *
@@ -146,6 +156,14 @@ namespace Gtk {
        */
       sigc::signal<void, double, double > signal_cursor_motion() {
         return _signal_cursor_motion;
+      }
+
+      /** signal_double_press is emitted whenever a double-click event on the plot is recorded.
+       *
+       * See default handler on_double_press()
+       */
+      sigc::signal<void, double, double > signal_double_press() {
+        return _signal_double_press;
       }
 
       friend class Canvas;
