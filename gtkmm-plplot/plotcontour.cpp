@@ -238,7 +238,7 @@ void PlotContour::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int w
   cgrid.ny = y.size();
   double **z = data->get_array2d_z();
 
-	pls->setcontlabelparam(0.01, 0.4, 0.1, is_showing_labels());
+	pls->setcontlabelparam(0.01, 0.6, 0.1, is_showing_labels());
 
   pls->cont(z, x.size(), y.size(), 1, x.size(), 1, y.size(), &clevels[0], nlevels, PLCALLBACK::tr1, (void *) &cgrid);
 

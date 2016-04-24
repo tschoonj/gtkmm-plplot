@@ -203,7 +203,7 @@ void PlotContourShades::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const
 	}
 
 	//this will only work if showing_edges is true!
-	pls->setcontlabelparam(0.01, 0.4, 0.1, is_showing_labels());
+	pls->setcontlabelparam(0.01, 0.6, 0.1, is_showing_labels());
 
 	pls->shades(z, x.size(), y.size(), NULL, x.front(), x.back(), y.front(), y.back(),
               &clevels[0], nlevels, fill_width,
