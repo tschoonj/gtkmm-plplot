@@ -131,6 +131,13 @@ void RegionSelection::coordinate_transform_plplot_to_world(double x_old, double 
   y_new = y_old;
 }
 
+void RegionSelection::get_region(double &xmin, double &xmax, double &ymin, double &ymax) {
+  xmin = plotted_range_x[0];
+  xmax = plotted_range_x[1];
+  ymin = plotted_range_y[0];
+  ymax = plotted_range_y[1];
+}
+
 void RegionSelection::set_region(double xmin, double xmax, double ymin, double ymax) {
   if (xmin == xmax && ymin == ymax) {
     //due to signal propagation, this function will actually be called twice on a double-click event,

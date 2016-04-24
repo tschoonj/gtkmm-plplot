@@ -96,27 +96,36 @@ namespace Gtk {
     public:
       /** Changes the visible plotted region
        *
-       * Sets the axes range of the plotted box to the supplied parameters.
-       * Throws an exception when the coordinates are outside of \c plot_data_range_x and \c plot_data_range_y.
+       * Sets the axes range of the plotted box to the provided world coordinates.
        * \param xmin left X-coordinate
        * \param xmax right X-coordinate
        * \param ymin lower Y-coordinate
        * \param ymax upper Y-coordinate
        * \exception Gtk::PLplot::Exception
        */
-      virtual void set_region(double xmin, double xmax, double ymin, double ymax);
+      void set_region(double xmin, double xmax, double ymin, double ymax);
+
+      /** Get the currently visible plotted region
+       *
+       * \param xmin left X-coordinate
+       * \param xmax right X-coordinate
+       * \param ymin lower Y-coordinate
+       * \param ymax upper Y-coordinate
+       * \exception Gtk::PLplot::Exception
+       */
+      void get_region(double &xmin, double &xmax, double &ymin, double &ymax);
 
       /** Get whether regions can be selected on the plot by dragging the mouse while the button is clicked in.
        *
        * \return \c true if a region is selectable in the plot, \c false if not
        */
-      virtual bool get_region_selectable();
+      bool get_region_selectable();
 
       /** Sets whether regions can be selected on the plot by dragging the mouse while the button is clicked in.
        *
        * \param selectable pass \c true if a region has to be selectable, \c false if not
        */
-      virtual void set_region_selectable(bool selectable = true);
+      void set_region_selectable(bool selectable = true);
 
       /** This method takes care of coordinate transformations when using non-linear axes
        *
