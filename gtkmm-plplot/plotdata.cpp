@@ -45,6 +45,7 @@ void PlotData::on_data_modified() {
 
 void PlotData::set_name(Glib::ustring _name) {
   name = _name;
+  _signal_changed.emit();
 }
 
 Glib::ustring PlotData::get_name() {
