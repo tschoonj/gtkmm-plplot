@@ -58,13 +58,11 @@ namespace Gtk {
        */
       virtual void on_data_modified();
 
-    public:
       /** Constructor
        *
        */
       PlotData();
-
-
+    public:
       /** Destructor
        *
        */
