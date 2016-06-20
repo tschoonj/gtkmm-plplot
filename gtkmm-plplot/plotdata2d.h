@@ -133,6 +133,15 @@ namespace Gtk {
        */
       std::vector<double> get_vector_y();
 
+      /** Get the data extremes: minima and maxima along both X- and Y-axes
+       *
+       * \param xmin X minimum value
+       * \param xmax X maximum value
+       * \param ymin Y minimum value
+       * \param ymax Y minimum value
+       */
+      virtual void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax);
+
       /** Changes the color of the dataset
        *
        * \param color The new dataset color

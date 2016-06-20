@@ -74,12 +74,12 @@ void Plot2D::plot_data_modified() {
 
   for (auto &iter : plot_data) {
     auto iter2 = dynamic_cast<PlotData2D*>(iter);
-    std::vector<double> x = iter2->get_vector_x();
-    std::vector<double> y = iter2->get_vector_y();
-    min_x.push_back(*std::min_element(x.begin(), x.end()));
-    max_x.push_back(*std::max_element(x.begin(), x.end()));
-    min_y.push_back(*std::min_element(y.begin(), y.end()));
-    max_y.push_back(*std::max_element(y.begin(), y.end()));
+    double xmin, xmax, ymin, ymax;
+    iter2->get_extremes(xmin, xmax, ymin, ymax);
+    min_x.push_back(xmin);
+    max_x.push_back(xmax);
+    min_y.push_back(ymin);
+    max_y.push_back(ymax);
   }
 
   if (min_x.empty()) {

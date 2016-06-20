@@ -167,3 +167,10 @@ std::vector<double> PlotData2D::get_vector_x() {
 std::vector<double> PlotData2D::get_vector_y() {
   return y;
 }
+
+void PlotData2D::get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) {
+  xmin = *std::min_element(x.begin(), x.end());
+  xmax = *std::max_element(x.begin(), x.end());
+  ymin = *std::min_element(y.begin(), y.end());
+  ymax = *std::max_element(y.begin(), y.end());
+}
