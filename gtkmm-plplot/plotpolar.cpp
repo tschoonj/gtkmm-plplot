@@ -42,7 +42,7 @@ PlotPolar::PlotPolar(
   _plot_offset_vertical_norm) {}
 
 PlotPolar::PlotPolar(
-  PlotData2D &_data,
+  PlotDataPolar &_data,
   const Glib::ustring &_axis_title_x,
   const Glib::ustring &_axis_title_y,
   const Glib::ustring &_plot_title,
@@ -67,15 +67,16 @@ void PlotPolar::plot_data_modified() {
   //since we are dealing with polar coordinates, we really need to look only
   //at the maximum x (r here)
 
-  std::vector<double> max_x;
+  std::vector<double> vec_max_r;
 
   for (auto &iter : plot_data) {
-    auto iter2 = dynamic_cast<PlotData2D*>(iter);
-    std::vector<double> x = iter2->get_vector_x();
-    max_x.push_back(*std::max_element(x.begin(), x.end()));
+    auto iter2 = dynamic_cast<PlotDataPolar*>(iter);
+    double r;
+    iter2->get_max_r(r);
+    vec_max_r.push_back(r);
   }
 
-  max_r = *std::max_element(max_x.begin(), max_x.end());
+  max_r = *std::max_element(vec_max_r.begin(), vec_max_r.end());
 
   plot_data_range_x[0] =
   plot_data_range_x[1] = max_r * M_SQRT2 * 1.3;
@@ -95,10 +96,11 @@ void PlotPolar::plot_data_modified() {
   plotted_range_x[1] = plot_data_range_x[1];
   plotted_range_y[0] = plot_data_range_y[0];
   plotted_range_y[1] = plot_data_range_y[1];
+
   _signal_changed.emit();
 }
 
-void PlotPolar::add_data(PlotData2D &data) {
+void PlotPolar::add_data(PlotDataPolar &data) {
   //throw error if any of the r values are negative
   std::vector<double> x = data.get_vector_x();
   if (std::count_if(x.begin(), x.end(), std::bind2nd(std::less<double>(), double(0.0))) > 0) {

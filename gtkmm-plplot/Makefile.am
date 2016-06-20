@@ -22,6 +22,7 @@ gtkmm_plplotinclude_HEADERS = \
                               plotdata3d.h \
                               plot3d.h \
                               object.h \
+                              plotdatapolar.h \
                               $(NULL)
 
 gtkmm_plplotbaseinclude_HEADERS = gtkmm-plplot.h
@@ -42,6 +43,7 @@ libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_SOURCES = $(gtkmm_plplotinclude_HE
                                  regionselection.cpp \
                                  plotdata3d.cpp \
                                  plot3d.cpp \
+                                 plotdatapolar.cpp \
                                  $(NULL)
 
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_CPPFLAGS = $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS)

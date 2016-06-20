@@ -50,7 +50,7 @@ namespace Test6 {
       std::valarray<double> r1 = cos(theta1) + double(1.0);
 
       auto plot = Gtk::manage(new Gtk::PLplot::PlotPolar(
-        *Gtk::manage(new Gtk::PLplot::PlotData2D(r1, theta1, Gdk::RGBA("red"), Gtk::PLplot::LineStyle::CONTINUOUS, 2.0)),
+        *Gtk::manage(new Gtk::PLplot::PlotDataPolar(r1, theta1, Gdk::RGBA("red"), Gtk::PLplot::LineStyle::CONTINUOUS, 2.0)),
         "",
         "",
         "Polar coordinate system"
@@ -61,7 +61,7 @@ namespace Test6 {
       std::valarray<double> theta2 = Gtk::PLplot::indgen_va(2000)*4.0*M_PI/1999.0;
       std::valarray<double> r2 = sqrt(theta2) * M_2_SQRTPI * 1.1;
 
-      auto data2 = Gtk::manage(new Gtk::PLplot::PlotData2D(r2, theta2, Gdk::RGBA("green"), Gtk::PLplot::LineStyle::CONTINUOUS, 2.0));
+      auto data2 = Gtk::manage(new Gtk::PLplot::PlotDataPolar(r2, theta2, Gdk::RGBA("green"), Gtk::PLplot::LineStyle::CONTINUOUS, 2.0));
       data2->set_name("Fermat's spiral");
 
       canvas.add_plot(*plot);

@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/legend.h>
 #include <gtkmm-plplot/regionselection.h>
-#include <gtkmm-plplot/plotdata2d.h>
+#include <gtkmm-plplot/plotdatapolar.h>
 
 namespace Gtk {
   namespace PLplot {
@@ -29,7 +29,7 @@ namespace Gtk {
      *  \brief a class for polar plots
      *
      *  A class for polar plots. Construction requires
-     *  a single PlotData2D dataset, meaning it is not possible to generate an empty plot.
+     *  a single PlotDataPolar (which derives from PlotData2D) dataset, meaning it is not possible to generate an empty plot.
      *  Afterwards, other datasets may be added using the add_data method.
      *  The \c x and \c y class variables of PlotData2D will when used with this class be interpreted
      *  to correspond to the radial coordinate (usually denoted as \c r) and the angular coordinate (usually denoted as \c θ), respectively.
@@ -94,9 +94,9 @@ namespace Gtk {
     public:
       /** Constructor
        *
-       * This class provides a single public constructor, which takes an existing PlotData2D dataset to construct a plot.
-       * Optionally, the constructor takes additional arguments to set the axes and plot titles, as well as normalized coordinates that will determine the position and dimensions of the plot within the canvas. The default corresponds to the plot taking up the full c
-       * \param data a PlotData2D object containing a plot dataset
+       * This class provides a single public constructor, which takes an existing PlotDataPolar dataset to construct a plot.
+       * Optionally, the constructor takes additional arguments to set the axes and plot titles, as well as normalized coordinates that will determine the position and dimensions of the plot within the canvas.
+       * \param data a PlotDataPolar object containing a plot dataset
        * \param axis_title_x X-axis title
        * \param axis_title_y Y-axis title
        * \param plot_title plot title
@@ -105,7 +105,7 @@ namespace Gtk {
        * \param plot_offset_horizontal_norm the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
        * \param plot_offset_vertical_norm the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
        */
-      PlotPolar(PlotData2D &data,
+      PlotPolar(PlotDataPolar &data,
                 const Glib::ustring &axis_title_x = "",
                 const Glib::ustring &axis_title_y = "",
                 const Glib::ustring &plot_title = "",
@@ -119,12 +119,12 @@ namespace Gtk {
        */
       virtual ~PlotPolar();
 
-      /** Add a single PlotData2D dataset to the plot
+      /** Add a single PlotDataPolar dataset to the plot
        *
        * \param data dataset to be added to the plot
        * \exception Gtk::PLplot::Exception
        */
-      virtual void add_data(PlotData2D &data);
+      virtual void add_data(PlotDataPolar &data);
 
       /** Method to draw the plot with all of its datasets
        *
