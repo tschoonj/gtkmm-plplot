@@ -31,7 +31,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/plotcontourshades.h>
 #include <gtkmm-plplot/plotdata.h>
 #include <gtkmm-plplot/plotdata2d.h>
+#include <gtkmm-plplot/plotdata2derrorx.h>
 #include <gtkmm-plplot/plotdata3d.h>
+#include <gtkmm-plplot/plotdatapolar.h>
 #include <gtkmm-plplot/plotdatasurface.h>
 #include <gtkmm-plplot/regionselection.h>
 #include <gtkmm-plplot/utils.h>
