@@ -42,7 +42,8 @@ namespace Gtk {
     class PlotDataPolar : public PlotData2D {
     private:
       PlotDataPolar() = delete; ///< no default constructor
-      PlotDataPolar &operator=(const PlotDataPolar &) = delete; ///< no copy constructor
+      PlotDataPolar &operator=(const PlotDataPolar &) = delete; ///< no assignment operator
+      PlotDataPolar(const PlotDataPolar &source) = delete; ///< no default copy constructor;
     protected:
     public:
       /** Constructor

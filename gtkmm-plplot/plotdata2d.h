@@ -42,7 +42,8 @@ namespace Gtk {
     class PlotData2D : public PlotData {
     private:
       PlotData2D() = delete; ///< no default constructor
-      PlotData2D &operator=(const PlotData2D &) = delete; ///< no copy constructor
+      PlotData2D &operator=(const PlotData2D &) = delete; ///< no assignment operator
+      PlotData2D(const PlotData2D &source) = delete; ///< no default copy constructor;
     protected:
       std::vector<double> x; ///< The X-values of the dataset
       std::vector<double> y; ///< The Y-values of the dataset

@@ -30,9 +30,9 @@ namespace Gtk {
     /** \class Plot2D plot2d.h <gtkmm-plplot/plot2d.h>
      *  \brief a class for two-dimensional plots
      *
-     *  A class for conventional two-dimensional plots. Construction requires
-     *  one PlotData2D dataset, meaning it is not possible to generate an empty plot.
-     *  Afterwards, other datasets may be added using the add_data method.
+     *  A class for conventional two-dimensional plots.
+     *  New plots can be created with either none or a single dataset.
+     *  Afterwards, additional datasets may be added using the add_data method.
      *  Several properties may be set such as the axes and plot titles, type of scaling (linear or logarithmic).
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.

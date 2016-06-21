@@ -44,11 +44,11 @@ PlotDataPolar::PlotDataPolar(
 PlotDataPolar::~PlotDataPolar() {}
 
 std::vector<double> PlotDataPolar::get_vector_r() {
-  return get_vector_x();
+  return x;
 }
 
 std::vector<double> PlotDataPolar::get_vector_theta() {
-  return get_vector_y();
+  return y;
 }
 
 void PlotDataPolar::get_max_r(double &rmax) {
