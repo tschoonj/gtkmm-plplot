@@ -25,6 +25,7 @@ gtkmm_plplotinclude_HEADERS = \
                               plotdatapolar.h \
                               plotdata2derrorx.h \
                               plotdata2derrory.h \
+                              plotdata2derrorxy.h \
                               $(NULL)
 
 gtkmm_plplotbaseinclude_HEADERS = gtkmm-plplot.h
@@ -48,6 +49,7 @@ libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_SOURCES = $(gtkmm_plplotinclude_HE
                                  plotdatapolar.cpp \
                                  plotdata2derrorx.cpp \
                                  plotdata2derrory.cpp \
+                                 plotdata2derrorxy.cpp \
                                  $(NULL)
 
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_CPPFLAGS = $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS)

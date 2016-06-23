@@ -40,8 +40,8 @@ namespace Gtk {
       PlotData2DErrorX() = delete; ///< no default constructor
       PlotData2DErrorX &operator=(const PlotData2DErrorX &) = delete; ///< no assignment operator
       PlotData2DErrorX(const PlotData2DErrorX &source) = delete; ///< no default copy constructor;
-      virtual void add_datapoint(double xval, double yval) final; ///< disable this method
-      virtual void add_datapoint(std::pair<double, double> xy_pair) final; ///< disable this method;
+      virtual void add_datapoint(double xval, double yval) override; ///< disable this method
+      virtual void add_datapoint(std::pair<double, double> xy_pair) override; ///< disable this method;
     protected:
       std::vector<double> errorx_low; ///< The lower error margins of the X-data
       std::vector<double> errorx_high; ///< The upper error margins of the X-data
