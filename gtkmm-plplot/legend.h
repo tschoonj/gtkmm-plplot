@@ -66,6 +66,11 @@ namespace Gtk {
              Gdk::RGBA legend_background_color = Gdk::RGBA("White"),
              Gdk::RGBA legend_bounding_box_color = Gdk::RGBA("Black"));
 
+      /** Destructor
+       *
+       */
+      virtual ~Legend();
+
       /** Method to draw the legend
        *
        * To be called from within draw_plot().

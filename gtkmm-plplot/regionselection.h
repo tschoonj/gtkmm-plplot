@@ -94,6 +94,11 @@ namespace Gtk {
        */
       RegionSelection(const RegionSelection &region_selection) = default;
     public:
+      /** Destructor
+       *
+       */
+      virtual ~RegionSelection();
+
       /** Changes the visible plotted region
        *
        * Sets the axes range of the plotted box to the provided world coordinates.

@@ -51,6 +51,8 @@ Legend::Legend(
     throw Exception("Gtk::PLplot::Legend::set_legend_position -> position must be expressed in normalized coordinates!");
 }
 
+Legend::~Legend() {}
+
 void Legend::set_legend_background_color(Gdk::RGBA _legend_background_color) {
   if (legend_background_color == _legend_background_color)
     return;

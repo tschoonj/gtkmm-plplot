@@ -42,6 +42,8 @@ Plot2D::Plot2D(
   _plot_width_norm, _plot_height_norm,
   _plot_offset_horizontal_norm,
   _plot_offset_vertical_norm),
+  Legend(),
+  RegionSelection(),
   log10_x(false),
   log10_y(false),
   box_style(BOX_TICKS_TICK_LABELS) {

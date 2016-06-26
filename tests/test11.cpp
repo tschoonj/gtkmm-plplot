@@ -53,9 +53,9 @@ namespace Test11 {
         plot_data_2d_error_y(x, y, ymin, ymax),
         plot_data_2d_error_xy(x, y, xmin, xmax, ymin, ymax),
         plot_2d(plot_data_2d, "X-axis", "Y-axis", "No errorbars", 0.5, 0.5, 0.0, 0.0),
-        plot_2d_error_x("X-axis", "Y-axis", "X-data errorbars", 0.5, 0.5, 0.5, 0.0),
-        plot_2d_error_y("X-axis", "Y-axis", "Y-data errorbars", 0.5, 0.5, 0.0, 0.5),
-        plot_2d_error_xy("X-axis", "Y-axis", "X- and Y-data errorbars", 0.5, 0.5, 0.5, 0.5)
+        plot_2d_error_x(plot_data_2d_error_x, "X-axis", "Y-axis", "X-data errorbars", 0.5, 0.5, 0.5, 0.0),
+        plot_2d_error_y(plot_data_2d_error_y, "X-axis", "Y-axis", "Y-data errorbars", 0.5, 0.5, 0.0, 0.5),
+        plot_2d_error_xy(plot_data_2d_error_xy, "X-axis", "Y-axis", "X- and Y-data errorbars", 0.5, 0.5, 0.5, 0.5)
     {
       //no need to show legends
       plot_2d.hide_legend();
@@ -64,10 +64,10 @@ namespace Test11 {
       plot_2d_error_xy.hide_legend();
 
       //add all plots to the canvas
-      //canvas.add_plot(plot_2d);
+      canvas.add_plot(plot_2d);
       canvas.add_plot(plot_2d_error_x);
-      //canvas.add_plot(plot_2d_error_y);
-      //canvas.add_plot(plot_2d_error_xy);
+      canvas.add_plot(plot_2d_error_y);
+      canvas.add_plot(plot_2d_error_xy);
 
       set_default_size(720, 580);
       Gdk::Geometry geometry;
@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test11");
   Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test11");
 
-  Test11::Window window;
+  Test11::Window *window = new Test11::Window();
 
-	return app->run(window);
+  return app->run(*window);
 }

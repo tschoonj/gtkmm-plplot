@@ -18,17 +18,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/regionselection.h>
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/exception.h>
-#include <iostream>
 
 using namespace Gtk::PLplot;
 
 RegionSelection::RegionSelection() :
-  region_selectable(true) {
+  region_selectable(true),
+  plotted_range_x{0.1, 1.0},
+  plotted_range_y{0.1, 1.0},
+  plot_data_range_x{0.1, 1.0},
+  plot_data_range_y{0.1, 1.0} {
   //connect our default signal handlers
   this->signal_select_region().connect(sigc::mem_fun(*this, &RegionSelection::on_select_region));
   this->signal_cursor_motion().connect(sigc::mem_fun(*this, &RegionSelection::on_cursor_motion));
   this->signal_double_press().connect(sigc::mem_fun(*this, &RegionSelection::on_double_press));
 }
+
+RegionSelection::~RegionSelection() {}
 
 void RegionSelection::on_select_region(double xmin, double xmax, double ymin, double ymax) {
   set_region(xmin, xmax, ymin, ymax);

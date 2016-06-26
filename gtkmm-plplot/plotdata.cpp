@@ -31,9 +31,7 @@ PlotData::PlotData() :
 
 }
 
-PlotData::~PlotData() {
-
-}
+PlotData::~PlotData() {}
 
 void PlotData::on_changed() {
   //do nothing
