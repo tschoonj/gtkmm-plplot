@@ -2,7 +2,7 @@ NULL =
 
 lib_LTLIBRARIES = libgtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@.la
 gtkmm_plplotincludedir = ${includedir}/gtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@/gtkmm-plplot
-gtkmm_plplotbaseincludedir = ${includedir}/gtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@/gtkmm-plplot
+gtkmm_plplotbaseincludedir = ${includedir}/gtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@
 
 gtkmm_plplotinclude_HEADERS = \
                               canvas.h \
