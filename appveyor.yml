@@ -1,0 +1,30 @@
+version: 1.0.{build}
+
+environment:
+  matrix:
+    - compiler: msvc_msys2
+      ARCH: x64
+      MSYS2_ARCH: x86_64
+      MSYS2_DIR: msys64
+      MSYSTEM: MINGW64
+    - compiler: msvc_msys2
+      ARCH: x86
+      MSYS2_ARCH: i686
+      MSYS2_DIR: msys64
+      MSYSTEM: MINGW32
+
+before_build:
+    - set PATH=C:\%MSYS2_DIR%\%MSYSTEM%\bin;C:\%MSYS2_DIR%\usr\bin;%PATH%
+    - bash -lc "for i in {1..3}; do update-core && break || sleep 15; done"
+    # msys2's plplot does not have the cairo bindings but that should not impact this build
+    - bash -lc "for i in {1..3}; do pacman --noconfirm -Su mingw-w64-%MSYS2_ARCH%-{gcc,gsl,libtool,plplot,gtkmm3,boost} automake autoconf make && break || sleep 15; done"
+
+build_script:
+    - cd %APPVEYOR_BUILD_FOLDER%
+    - echo %cd%
+    - dir
+    - bash -lc "cd $APPVEYOR_BUILD_FOLDER && exec 0</dev/null && autoreconf -fi && ./configure && make && make check && make distcheck"
+    #- perl -i".bak" -pe "s/^test -n \".DJDIR\"/#$&/" configure
+    #- bash -lc "./configure && make && make check && make distcheck"
+
+
