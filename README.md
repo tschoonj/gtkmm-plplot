@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/tschoonj/gtkmm-plplot.svg?branch=master)](https://travis-ci.org/tschoonj/gtkmm-plplot)
+[![Build Status](https://travis-ci.org/tschoonj/gtkmm-plplot.svg?branch=master)](https://travis-ci.org/tschoonj/gtkmm-plplot)[![Build status](https://ci.appveyor.com/api/projects/status/6i04opv34tn6i4sh?svg=true)](https://ci.appveyor.com/project/tschoonj/gtkmm-plplot)
 
 # Gtkmm-PLplot
 
@@ -7,6 +7,8 @@ Gtkmm-PLplot is a simple plotting library that brings the power of PLplot to Gtk
 Currently this library is under heavy development but it should already be useful for simple two-dimensional graphs. The API should not be considered to be stable at all and will be changed without warning...
 
 Gtkmm-PLplot is licensed under the GPLv3.
+
+**Important: currently I am preparing to release v2.0.0. This version will introduce several backwards incompatible changes due to bad design decisions I made in v1.0.0 (I am a lousy C++ programmer but I am learning...). This will bring the API more in line with what the Gtkmm API. Apart from this, I will also be changing the license from GPLv3 to LGPLv3...**
 
 ## Features
 
