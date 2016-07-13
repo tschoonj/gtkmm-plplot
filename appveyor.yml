@@ -19,7 +19,7 @@ before_build:
     # msys2's plplot does not have the cairo bindings but that should not impact this build
     - bash -lc "for i in {1..3}; do pacman --noconfirm -Su mingw-w64-%MSYS2_ARCH%-{gcc,gsl,libtool,plplot,gtkmm3,boost} automake autoconf make && break || sleep 15; done"
     # install mm-common
-    - bash -lc "wget https://download.gnome.org/sources/mm-common/0.9/mm-common-0.9.10.tar.xz && tar xvfJ mm-common-0.9.10.tar.xz && cd mm-common-0.9.10 && ./configure=/ && make && make install"
+    - bash -lc "wget https://download.gnome.org/sources/mm-common/0.9/mm-common-0.9.10.tar.xz && tar xvfJ mm-common-0.9.10.tar.xz && cd mm-common-0.9.10 && ./configure --prefix=/ && make && make install"
 
 build_script:
     - cd %APPVEYOR_BUILD_FOLDER%
