@@ -21,11 +21,15 @@
  *  image8.src = "test8.png"
  *  var image9 = new Image();
  *  image9.src = "test9.png"
+ *  var image10 = new Image();
+ *  image10.src = "test10.png"
+ *  var image11 = new Image();
+ *  image11.src = "test11.png"
  *
  *  var step = 1;
  *  function slideit() {
  *    document.images.slide.src = eval("image"+step+".src");
- *    if (step < 9)
+ *    if (step < 11)
  *      step++;
  *    else
  *      step=1;
@@ -76,14 +80,15 @@
  *  - Relies on Cairo for rendering, which looks like it will remain the GTK+ workhorse for a long time to come. This means low maintenance.
  *  - PLplot itself has a lot of useful features, but suffers (IMHO) from its obscure, often acronym based hard to remember API. Gtkmm-PLplot hides this API
  *    and offers an interface that should be familiar to anyone with GTK+/Gtkmm experience.
- *  - One of the things that bothers me about GtkExtra is that every time you change a plot or canvas property, you are responsible for calling drawing routines to ensure the widget is updated accordingly.
-      Gtkmm-PLplot does this for you: a property is updated, everything is redrawn immediately. This is done by relying heavily on [libsigc++](http://libsigc.sourceforge.net)'s signalling
+ *  - One of the things that bothers me about GtkExtra is that every time you change a plot or canvas property, you are responsible for calling drawing routines to ensure the widget is updated accordingly. Gtkmm-PLplot does this for you: a property is updated, everything is redrawn immediately. This is done by relying heavily on [libsigc++](http://libsigc.sourceforge.net)'s signalling
  *
  *  There may be people wondering why I didn't write this in plain C using GTK+ instead of Gtkmm. I acknowledge that this project would
  *  benefit from this as it makes the API easily available in other languages through GObject introspection. However, writing GTK+ widgets is a real pain
  *  (remember: nobody is maintaining those other plotting widgets...), while writing in C++ produces nice, streamlined and compact code, especially when using the C++11 features. It's also just
  *  a lot more fun to do, and that's very important to me :-)
  *
+ *  Starting with version 2.0, Gtkmm-PLplot is released under the [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl-3.0.en.html).
+
  *  That's it! Enjoy using Gtkmm-PLplot and let me know if you run into bugs...
  *  \author Tom Schoonjans
  *
@@ -100,8 +105,9 @@
  *
  *  \section downloading Downloading the software
  *  Downloads are currently hosted [here](http://lvserver.ugent.be/gtkmm-plplot).
- *  Just get the latest tarball (currently 1.0) and run the following commands:
- *  - tar xfvz gtkmm-plplot-1.0.tar.gz
+ *  Just get the latest tarball (currently 2.0) and run the following commands:
+ *  - tar xfvz gtkmm-plplot-2.0.tar.gz
+ *  - cd gtkmm-plplot-2.0
  *  - ./configure
  *  - make
  *  - make install
@@ -125,11 +131,11 @@
  *  compilation, but suffices for this simple example. Assuming that your
  *  program source file is @c program.cc, compile it with:
  *  \code
- *  g++ program.cc -o program  `pkg-config --cflags --libs gtkmm-plplot-1.0`
+ *  g++ program.cc -o program  `pkg-config --cflags --libs gtkmm-plplot-2.0`
  *  \endcode
  *  Alternatively, if using autoconf, use the following in @c configure.ac:
  *  \code
- *  PKG_CHECK_MODULES([GTKMMPLPLOT], [gtkmm-plplot-1.0])
+ *  PKG_CHECK_MODULES([GTKMMPLPLOT], [gtkmm-plplot-2.0])
  *  \endcode
  *  Then use the generated \c GTKMMPLPLOT_CFLAGS and \c GTKMMPLPLOT_LIBS variables in
  *  the project \c Makefile.am files. For example:
@@ -173,4 +179,10 @@
  *  \section example9 Example 9: a Three-dimensional plot
  *  \include test9.cpp
  *  \image html test9.png
+ *  \section example10 Example 10: use Gtkmm-PLplot from Gtk+
+ *  \include test10.cpp
+ *  \image html test10.png
+ *  \section example11 Example 11: 2 dimensional plots with errorbars
+ *  \include test11.cpp
+ *  \image html test11.png
  */

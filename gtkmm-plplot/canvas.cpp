@@ -272,7 +272,7 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
 
   //emit signal for new cursor coordinates
   bool cursor_checked = false;
-  for (auto plot = plots.rbegin() ; plot != plots.rend() ; plot++) {
+  for (auto plot = plots.rbegin() ; plot != plots.rend() ; ++plot) {
     RegionSelection *region_selection = dynamic_cast<RegionSelection *>(*plot);
 
     if (region_selection != nullptr &&

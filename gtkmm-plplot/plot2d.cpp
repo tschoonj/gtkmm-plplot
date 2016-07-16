@@ -70,7 +70,6 @@ Plot2D::Plot2D(
 Plot2D::~Plot2D() {}
 
 void Plot2D::plot_data_modified() {
-  std::cout << "Entering plot_data_modified" << std::endl;
   //update ranges
   std::vector<double> min_x, min_y;
   std::vector<double> max_x, max_y;
@@ -110,12 +109,6 @@ void Plot2D::plot_data_modified() {
   plotted_range_x[1] = plot_data_range_x[1];
   plotted_range_y[0] = plot_data_range_y[0];
   plotted_range_y[1] = plot_data_range_y[1];
-
-  std::cout << "in plot_data_modified" << std::endl;
-  std::cout << "plotted_range_x[0]: " << plotted_range_x[0] << std::endl;
-  std::cout << "plotted_range_y[0]: " << plotted_range_y[0] << std::endl;
-  std::cout << "plotted_range_x[1]: " << plotted_range_x[1] << std::endl;
-  std::cout << "plotted_range_y[1]: " << plotted_range_y[1] << std::endl;
 
   _signal_changed.emit();
 }
@@ -263,12 +256,6 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
   }
 
   change_plstream_color(pls, axes_color);
-
-  std::cout << "in draw_plot" << std::endl;
-  std::cout << "plotted_range_x[0]: " << plotted_range_x[0] << std::endl;
-  std::cout << "plotted_range_y[0]: " << plotted_range_y[0] << std::endl;
-  std::cout << "plotted_range_x[1]: " << plotted_range_x[1] << std::endl;
-  std::cout << "plotted_range_y[1]: " << plotted_range_y[1] << std::endl;
 
   //plot the box with its axes
   pls->env(plotted_range_x[0], plotted_range_x[1],
