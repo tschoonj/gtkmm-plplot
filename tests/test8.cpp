@@ -15,7 +15,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <gtkmm-plplot/gtkmm-plplot.h>
+#include <gtkmm-plplot.h>
 #include <gtkmm/application.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>

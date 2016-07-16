@@ -43,7 +43,7 @@ if test `AS_BASENAME([$CXX])` = $CXX ; then
   fi
 fi
 
-AX_CXX_COMPILE_STDCXX_11(ext, mandatory)
+AX_CXX_COMPILE_STDCXX_11(noext, mandatory)
 
 boost_found=yes
 BOOST_REQUIRE(, [

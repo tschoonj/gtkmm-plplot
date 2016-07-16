@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* This examples demonstrates how to use Gtkmm-PLplot from Gtk */
 
-#include "gtkmm-plplot/gtkmm-plplot.h"
+#include "gtkmm-plplot.h"
 #include <gtkmm/main.h>
 
 static void activate (GtkApplication* app, gpointer user_data) {

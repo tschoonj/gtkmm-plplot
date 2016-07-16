@@ -14,7 +14,7 @@ noinst_PROGRAMS = \
   test11 \
   $(NULL)
 
-AM_CPPFLAGS = -I$(top_srcdir) -I$(top_builddir) $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS)
+AM_CPPFLAGS = -I$(top_srcdir) -I$(top_srcdir)/gtkmm-plplot -I$(top_builddir) $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS)
 AM_LDADD = ../gtkmm-plplot/libgtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@.la $(gtkmm_LIBS) $(plplotcxx_LIBS)
 
 test1_SOURCES = test1.cpp
