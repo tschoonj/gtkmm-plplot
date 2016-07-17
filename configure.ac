@@ -22,6 +22,7 @@ LT_INIT
 
 MM_PREREQ([0.9.0])
 MM_INIT_MODULE([gtkmm-plplot-2.0])
+MM_CONFIG_DOCTOOL_DIR([docs])
 
 AC_PROG_CC
 if test `AS_BASENAME([$CC])` = $CC ; then
