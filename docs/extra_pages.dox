@@ -100,7 +100,7 @@
  *  - Gtkmm (3.x) and its (long list) of dependencies
  *  - PLplot, including its C++ bindings. This package is currently being developed against PLplot 5.11.0,
  *    but we will make sure it also runs with older versions.
- *  - A C++ compiler with full support of the C++11 standard plus GNU extensions. Compilers known to do the job are recent versions of GCC and clang.
+ *  - A C++ compiler with full support of the C++11 standard. Compilers known to do the job are recent versions of GCC and clang.
  *  - Boost (optional)
  *
  *  \section downloading Downloading the software
@@ -178,11 +178,11 @@
  *  \image html test8.png "Example 8"
  *  \section example9 Example 9: a Three-dimensional plot
  *  \include test9.cpp
- *  \image html test9.png
+ *  \image html test9.png "Example 9"
  *  \section example10 Example 10: use Gtkmm-PLplot from Gtk+
  *  \include test10.cpp
- *  \image html test10.png
+ *  \image html test10.png "Example 10"
  *  \section example11 Example 11: 2 dimensional plots with errorbars
- *  \include test11.cpp
+ *  \include test11.cpp "Example 11"
  *  \image html test11.png
  */
