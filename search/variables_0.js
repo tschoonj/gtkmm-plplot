@@ -69,8 +69,10 @@ var searchData=
   ['_5fm_5fversion',['_M_version',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00086.html#ad07568d7660eb8b85493b548d10c637a',1,'__gnu_debug::_Safe_iterator::_M_version()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00090.html#af796b1fd115ea27cd078eeb7e4909bd5',1,'__gnu_debug::_Safe_sequence::_M_version()']]],
   ['_5fm_5fw',['_M_w',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00547.html#a935cf17f91719fcd39d284151064f170',1,'std::_Base_bitset::_M_w()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00929.html#abc7e61e9d07120ebbc6fa2e351fc3af6',1,'std::tr2::__dynamic_bitset_base::_M_w()']]],
   ['_5fsignal_5fchanged',['_signal_changed',['../class_gtk_1_1_p_lplot_1_1_canvas.html#a10071c0b9a772301656c7607b9a9de04',1,'Gtk::PLplot::Canvas::_signal_changed()'],['../class_gtk_1_1_p_lplot_1_1_plot.html#a16b52e0c011952af76e12c6cb0647083',1,'Gtk::PLplot::Plot::_signal_changed()'],['../class_gtk_1_1_p_lplot_1_1_plot_data.html#af121f0d40763e54174dff6890a2449c6',1,'Gtk::PLplot::PlotData::_signal_changed()']]],
+  ['_5fsignal_5fcursor_5fmotion',['_signal_cursor_motion',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a87a69ac89678e59ec3e346e71d7cf8df',1,'Gtk::PLplot::RegionSelection']]],
   ['_5fsignal_5fdata_5fadded',['_signal_data_added',['../class_gtk_1_1_p_lplot_1_1_plot.html#a79e62398750fbd26530d9c70c377fd26',1,'Gtk::PLplot::Plot']]],
   ['_5fsignal_5fdata_5fmodified',['_signal_data_modified',['../class_gtk_1_1_p_lplot_1_1_plot_data.html#a9b6cfc0f8a8b94e8cce44c0fc14fd6f2',1,'Gtk::PLplot::PlotData']]],
-  ['_5fsignal_5fdata_5fremoved',['_signal_data_removed',['../class_gtk_1_1_p_lplot_1_1_plot.html#ac03b16f5ebc9ca787136ad6e99dcd178',1,'Gtk::PLplot::Plot']]],
+  ['_5fsignal_5fdata_5fremoved',['_signal_data_removed',['../class_gtk_1_1_p_lplot_1_1_plot.html#a0818a2e8a4ef533a222c44878566f50f',1,'Gtk::PLplot::Plot']]],
+  ['_5fsignal_5fdouble_5fpress',['_signal_double_press',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a779d6efd1d4487709dcd55aff8e6208c',1,'Gtk::PLplot::RegionSelection']]],
   ['_5fsignal_5fselect_5fregion',['_signal_select_region',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a9b3c831d3e5978992e9dd869925353df',1,'Gtk::PLplot::RegionSelection']]]
 ];

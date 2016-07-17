@@ -17,7 +17,7 @@ var searchData=
   ['select_5fall',['SELECT_ALL',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#ab24c622a1ef1c23d39f1e5333e83c404',1,'Gtk::Stock']]],
   ['select_5fcolor',['SELECT_COLOR',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a3faa83ee08ecd780b30caa3179610298',1,'Gtk::Stock']]],
   ['select_5ffont',['SELECT_FONT',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#acc8a15b74a82e600aa8215578c03539b',1,'Gtk::Stock']]],
-  ['selected_5fplot',['selected_plot',['../class_gtk_1_1_p_lplot_1_1_canvas.html#aa967f177501c1589c607c46c82817939',1,'Gtk::PLplot::Canvas']]],
+  ['selected_5fplot',['selected_plot',['../class_gtk_1_1_p_lplot_1_1_canvas.html#a5be2d80b3071728f6dec30691abae10b',1,'Gtk::PLplot::Canvas']]],
   ['selecting',['selecting',['../class_gtk_1_1_p_lplot_1_1_canvas.html#a8f0d5280c8a8c3ae6214aa9882e06138',1,'Gtk::PLplot::Canvas']]],
   ['selinux_5fsecurity_5fcontext_5funknown',['SELINUX_SECURITY_CONTEXT_UNKNOWN',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Error.html#acd2c910ef29b6be121c1fde3cfa8f2caa0689542e01b8133111ed0ef3eb624283',1,'Gio::DBus::Error']]],
   ['september',['SEPTEMBER',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#ga9781abc52ad49766808898743e44031fa6bb760f0b99884e88b05dd45361a8e36',1,'Glib::Date']]],

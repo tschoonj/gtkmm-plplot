@@ -16,6 +16,7 @@ var searchData=
   ['pixbufrotation',['PixbufRotation',['http://library.gnome.org/devel/gtkmm/unstable/group__gdkmmEnums.html#ga2587434fd0a409f88feba9e5311e6240',1,'Gdk::PixbufRotation()'],['http://library.gnome.org/devel/gtkmm/unstable/group__gdkmmEnums.html#ga2587434fd0a409f88feba9e5311e6240',1,'PixbufRotation()(Global Namespace)']]],
   ['placesopenflags',['PlacesOpenFlags',['http://library.gnome.org/devel/gtkmm/unstable/group__gtkmmEnums.html#ga2697cced647fdc326af296be5fb56cd0',1,]]],
   ['policytype',['PolicyType',['http://library.gnome.org/devel/gtkmm/unstable/group__gtkmmEnums.html#gacb7ebcc442f2bdbeca2bf7436c18ffd9',1,]]],
+  ['popoverconstraint',['PopoverConstraint',['http://library.gnome.org/devel/gtkmm/unstable/group__gtkmmEnums.html#ga92be4c914d0652067ce26d4bd964937e',1,]]],
   ['positiontype',['PositionType',['http://library.gnome.org/devel/gtkmm/unstable/group__gtkmmEnums.html#ga3568edcd04af4a2cbd1eb0195513fe6b',1,]]],
   ['printcapabilities',['PrintCapabilities',['http://library.gnome.org/devel/gtkmm/unstable/group__gtkmmEnums.html#gaba4fee25db9350d20b61ec5c3f468bcb',1,]]],
   ['printduplex',['PrintDuplex',['http://library.gnome.org/devel/gtkmm/unstable/group__gtkmmEnums.html#ga50af48ce5ffc122b50924230939b78e3',1,]]],

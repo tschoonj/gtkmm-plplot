@@ -25,7 +25,7 @@ var searchData=
   ['clevels',['clevels',['../class_gtk_1_1_p_lplot_1_1_plot_contour.html#a9e992f6b89d55d7b9658f6feb57e5e04',1,'Gtk::PLplot::PlotContour']]],
   ['close',['CLOSE',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a56b04c0b7ca639605134529d4763c785',1,'Gtk::Stock']]],
   ['closed',['CLOSED',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134aa6a502e9ed81ddc95d135b773d3aa23e',1,'Gio::Error']]],
-  ['collate',['COLLATE',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1PrintSettings_1_1Keys.html#a9c0a1720011ff17522586b12f88f4149',1,'Gtk::PrintSettings::Keys::COLLATE()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00815.html#acd2238d0ec6436541c1f9f343e5e32d3',1,'std::locale::collate()']]],
+  ['collate',['collate',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00815.html#acd2238d0ec6436541c1f9f343e5e32d3',1,'std::locale::collate()'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1PrintSettings_1_1Keys.html#a9c0a1720011ff17522586b12f88f4149',1,'Gtk::PrintSettings::Keys::COLLATE()']]],
   ['color',['color',['../class_gtk_1_1_p_lplot_1_1_plot_data2_d.html#ab497f859158e179d6f1476bebb51914d',1,'Gtk::PLplot::PlotData2D']]],
   ['color_5fpicker',['COLOR_PICKER',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a429e7f57f5ff8778899249233d19edd5',1,'Gtk::Stock']]],
   ['colorbar_5ftitle',['colorbar_title',['../class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#ac8f5ced013213109e51fcea684d09d85',1,'Gtk::PLplot::PlotContourShades']]],
