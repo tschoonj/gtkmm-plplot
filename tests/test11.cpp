@@ -21,6 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/window.h>
 #include <valarray>
 
+#ifndef M_PI
+#define M_PI (3.14159265358979323846)
+#endif
+
 namespace Test11 {
   class Window : public Gtk::Window {
   private:
@@ -57,13 +61,19 @@ namespace Test11 {
         plot_2d_error_y(plot_data_2d_error_y, "X-axis", "Y-axis", "Y-data errorbars", 0.5, 0.5, 0.0, 0.5),
         plot_2d_error_xy(plot_data_2d_error_xy, "X-axis", "Y-axis", "X- and Y-data errorbars", 0.5, 0.5, 0.5, 0.5)
     {
-      //no need to show legends
+      // no need to show legends
       plot_2d.hide_legend();
       plot_2d_error_x.hide_legend();
       plot_2d_error_y.hide_legend();
       plot_2d_error_xy.hide_legend();
 
-      //add all plots to the canvas
+      // a some color
+      plot_data_2d_error_x.set_error_x_color(Gdk::RGBA("blue"));
+      plot_data_2d_error_xy.set_error_x_color(Gdk::RGBA("blue"));
+      plot_data_2d_error_y.set_error_y_color(Gdk::RGBA("green"));
+      plot_data_2d_error_xy.set_error_y_color(Gdk::RGBA("green"));
+
+      // add all plots to the canvas
       canvas.add_plot(plot_2d);
       canvas.add_plot(plot_2d_error_x);
       canvas.add_plot(plot_2d_error_y);

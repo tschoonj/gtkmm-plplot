@@ -25,6 +25,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 #include <sstream>
 
+#ifndef M_SQRT2
+  #define M_SQRT2 (sqrt(2.0))
+#endif
+
+#ifndef M_PI
+  #define M_PI (3.14159265358979323846)
+#endif
+
+#ifndef M_PI_4
+  #define M_PI_4 (M_PI / 4.0)
+#endif
+
+#ifndef M_PI_2
+  #define M_PI_2 (M_PI / 2.0)
+#endif
+
+
 using namespace Gtk::PLplot;
 
 PlotPolar::PlotPolar(
