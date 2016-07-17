@@ -6,9 +6,7 @@ Gtkmm-PLplot is a simple plotting library that brings the power of PLplot to Gtk
 
 Currently this library is under heavy development but it should already be useful for simple two-dimensional graphs. The API should not be considered to be stable at all and will be changed without warning...
 
-Gtkmm-PLplot is licensed under the GPLv3.
-
-**Important: currently I am preparing to release v2.0.0. This version will introduce several backwards incompatible changes due to bad design decisions I made in v1.0.0 (I am a lousy C++ programmer but I am learning...). This will bring the API more in line with what the Gtkmm API. Apart from this, I will also be changing the license from GPLv3 to LGPLv3...**
+Gtkmm-PLplot is licensed under the LGPLv3.
 
 ## Features
 
@@ -37,6 +35,12 @@ I have generated documentation with Doxygen. Have a look at http://tschoonj.gith
 ## Downloads
 
 Tarballs can be found [here](http://lvserver.ugent.be/gtkmm-plplot)
+
+[Homebrew](http://brew.sh) users can install Gtkmm-PLplot via my tap:
+
+````
+brew install tschoonj/tap/gtkmm-plplot
+````
 
 ## TODO
 * plsurf3d, plmesh
