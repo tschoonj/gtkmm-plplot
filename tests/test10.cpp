@@ -20,6 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "gtkmm-plplot.h"
 #include <gtkmm/main.h>
 
+#ifndef M_PI
+#define M_PI (3.14159265358979323846)
+#endif
+
 static void activate (GtkApplication* app, gpointer user_data) {
   Glib::ustring x_title = "X-axis";
   Glib::ustring y_title = "Y-axis";

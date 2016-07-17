@@ -24,6 +24,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <glib.h>
 
+#ifndef M_PI
+#define M_PI (3.14159265358979323846)
+#endif
+
 namespace Test3 {
   class Window : public Gtk::Window {
   private:
