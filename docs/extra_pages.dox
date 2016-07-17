@@ -105,9 +105,9 @@
  *
  *  \section downloading Downloading the software
  *  Downloads are currently hosted [here](http://lvserver.ugent.be/gtkmm-plplot).
- *  Just get the latest tarball (currently 2.0) and run the following commands:
- *  - tar xfvz gtkmm-plplot-2.0.tar.gz
- *  - cd gtkmm-plplot-2.0
+ *  Just get the latest tarball and run the following commands:
+ *  - tar xfvz gtkmm-plplot-x.y.tar.gz
+ *  - cd gtkmm-plplot-x.y
  *  - ./configure
  *  - make
  *  - make install
