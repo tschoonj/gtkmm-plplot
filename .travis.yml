@@ -25,6 +25,7 @@ before_install:
 
 script:
   - autoreconf -fi
+  - if [ $TRAVIS_OS_NAME == osx ]; then brew uninstall mm-common ; fi
   - ./configure LDFLAGS="-Wl,-rpath -Wl,/usr/local/lib"
   - make
   - make distcheck
