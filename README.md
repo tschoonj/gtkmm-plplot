@@ -45,6 +45,7 @@ brew install tschoonj/tap/gtkmm-plplot
 ## TODO
 * plsurf3d, plmesh
 * histograms
+* Scroll to zoom in/out
 * ...
 
 Tom Schoonjans
