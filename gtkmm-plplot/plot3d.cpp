@@ -120,6 +120,11 @@ void Plot3D::plot_data_modified() {
 }
 
 void Plot3D::add_data(PlotData3D &data) {
+  // ensure data is not already present in plot_data
+  auto iter = std::find(plot_data.begin(), plot_data.end(), &data);
+  if (iter != plot_data.end())
+    throw Exception("Gtk::PLplot::Plot3D::add_data -> Data has been added before to this plot");
+
   plot_data.push_back(&data);
   data.signal_changed().connect([this](){_signal_changed.emit();});
   data.signal_data_modified().connect([this](){plot_data_modified();});

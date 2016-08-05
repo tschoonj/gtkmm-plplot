@@ -1,4 +1,4 @@
-AC_INIT([gtkmm-plplot],[2.1],[tom.schoonjans@me.com],,[https://github.com/tschoonj/gtkmm-plplot])
+AC_INIT([gtkmm-plplot],[2.2],[tom.schoonjans@me.com],,[https://github.com/tschoonj/gtkmm-plplot])
 AC_PREREQ([2.60])
 AC_CONFIG_SRCDIR([gtkmm-plplot/canvas.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -6,9 +6,9 @@ AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_CANONICAL_HOST
 AC_CONFIG_MACRO_DIR([m4])
 
-LIB_CURRENT=0
+LIB_CURRENT=1
 LIB_REVISION=0
-LIB_AGE=0
+LIB_AGE=1
 AC_SUBST(LIB_CURRENT)
 AC_SUBST(LIB_REVISION)
 AC_SUBST(LIB_AGE)

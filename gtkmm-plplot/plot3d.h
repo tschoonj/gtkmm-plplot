@@ -30,7 +30,7 @@ namespace Gtk {
      *
      *  A class for conventional three-dimensional plots. Construction requires
      *  one PlotData3D dataset, meaning it is not possible to generate an empty plot.
-     *  Afterwards, other datasets may be added using the add_data method.
+     *  Afterwards, other datasets may be added using the add_data() method.
      *  Several properties may be set such as the axes and plot titles.
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.

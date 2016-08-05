@@ -93,7 +93,12 @@ void PlotPolar::plot_data_modified() {
     vec_max_r.push_back(r);
   }
 
-  max_r = *std::max_element(vec_max_r.begin(), vec_max_r.end());
+  if (vec_max_r.empty()) {
+    max_r = 1.0;
+  }
+  else {
+    max_r = *std::max_element(vec_max_r.begin(), vec_max_r.end());
+  }
 
   plot_data_range_x[0] =
   plot_data_range_x[1] = max_r * M_SQRT2 * 1.3;
@@ -118,6 +123,11 @@ void PlotPolar::plot_data_modified() {
 }
 
 void PlotPolar::add_data(PlotDataPolar &data) {
+  // ensure data is not already present in plot_data
+  auto iter = std::find(plot_data.begin(), plot_data.end(), &data);
+  if (iter != plot_data.end())
+    throw Exception("Gtk::PLplot::PlotPolar::add_data -> Data has been added before to this plot");
+
   //throw error if any of the r values are negative
   std::vector<double> x = data.get_vector_x();
   if (std::count_if(x.begin(), x.end(), std::bind2nd(std::less<double>(), double(0.0))) > 0) {
@@ -129,6 +139,33 @@ void PlotPolar::add_data(PlotDataPolar &data) {
   data.signal_data_modified().connect([this](){plot_data_modified();});
 
   _signal_data_added.emit(&data);
+}
+
+void PlotPolar::remove_data(unsigned int index) {
+  if (plot_data.size() == 0)
+    throw Exception("Gtk::PLplot::PlotPolar::remove_data -> No more datasets left to remove");
+
+  if (index >= plot_data.size())
+    throw Exception("Gtk::PLplot::PlotPolar::remove_data -> Invalid index");
+
+  PlotData *removed_plot = plot_data[index];
+
+  plot_data.erase(plot_data.begin() + index);
+  _signal_data_removed.emit(removed_plot);
+}
+
+void PlotPolar::remove_data(PlotData &plot_data_member) {
+  if (plot_data.size() == 0)
+    throw Exception("Gtk::PLplot::PlotPolar::remove_data -> No more datasets left to remove");
+
+  auto iter = std::find(plot_data.begin(), plot_data.end(), &plot_data_member);
+  if (iter == plot_data.end())
+    throw Exception("Gtk::PLplot::PlotPolar::remove_data -> No match for argument");
+
+  PlotData *removed_plot = *iter;
+
+  plot_data.erase(iter);
+  _signal_data_removed.emit(removed_plot);
 }
 
 void PlotPolar::coordinate_transform_world_to_plplot(double x_old, double y_old, double *x_new, double *y_new, PLPointer object) {

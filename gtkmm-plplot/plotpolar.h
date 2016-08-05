@@ -30,7 +30,7 @@ namespace Gtk {
      *
      *  A class for polar plots. Construction requires
      *  a single PlotDataPolar (which derives from PlotData2D) dataset, meaning it is not possible to generate an empty plot.
-     *  Afterwards, other datasets may be added using the add_data method.
+     *  Afterwards, other datasets may be added using the add_data() method.
      *  The \c x and \c y class variables of PlotData2D will when used with this class be interpreted
      *  to correspond to the radial coordinate (usually denoted as \c r) and the angular coordinate (usually denoted as \c θ), respectively.
      *  Several properties may be set such as the axes and plot titles.
@@ -125,6 +125,20 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        */
       virtual void add_data(PlotDataPolar &data);
+
+      /** Remove a single dataset from the plot
+       *
+       * \param plot_data_index index of the plotdata in the \c plot_data vector
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void remove_data(unsigned int plot_data_index) override;
+
+      /** Remove a single dataset from the plot
+       *
+       * \param plot_data_member pointer to the plotdata in the \c plot_data vector
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void remove_data(PlotData &plot_data_member) override;
 
       /** Method to draw the plot with all of its datasets
        *

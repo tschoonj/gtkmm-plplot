@@ -111,6 +111,7 @@ namespace Gtk {
        * This is the default class constructor, which will produce only a widget with the \c background_color specified.
        * Add plots using add_plot.
        * \param background_color The color of the background for the canvas.
+       * \exception Gtk::PLplot::Exception
        */
       Canvas(Gdk::RGBA background_color = Gdk::RGBA("White"));
 

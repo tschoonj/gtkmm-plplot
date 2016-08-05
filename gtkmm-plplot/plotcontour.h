@@ -78,6 +78,15 @@ namespace Gtk {
                   const double plot_height_norm,
                   const double plot_offset_horizontal_norm,
                   const double plot_offset_vertical_norm);
+
+      /** Add a single PlotDataSurface dataset to the plot
+       *
+       * This will only work if the initial data set has been removed from the \c plot_data vector! PlotDataSurface allows just one dataset...
+       * \param data dataset to be added to the plot
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void add_data(PlotDataSurface &data);
+
     public:
       /** Constructor
        *
@@ -112,14 +121,6 @@ namespace Gtk {
        *
        */
       virtual ~PlotContour();
-
-      /** Add a single PlotDataSurface dataset to the plot
-       *
-       * This will only work if the initial data set has been removed from the \c plot_data vector! PlotDataSurface allows just one dataset...
-       * \param data dataset to be added to the plot
-       * \exception Gtk::PLplot::Exception
-       */
-      virtual void add_data(PlotDataSurface &data);
 
       /** Changes the color used for the contour defining edges
        *

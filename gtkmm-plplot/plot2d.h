@@ -32,7 +32,7 @@ namespace Gtk {
      *
      *  A class for conventional two-dimensional plots.
      *  New plots can be created with either none or a single dataset.
-     *  Afterwards, additional datasets may be added using the add_data method.
+     *  Afterwards, additional datasets may be added using the add_data() method.
      *  Several properties may be set such as the axes and plot titles, type of scaling (linear or logarithmic).
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
      *  be picked up by the \c canvas that will hold the plot.

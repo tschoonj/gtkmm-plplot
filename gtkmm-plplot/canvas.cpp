@@ -52,9 +52,14 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
 }
 
 void Canvas::add_plot(Plot &plot) {
+  // ensure plot is not already present in plot
+  auto iter = std::find(plots.begin(), plots.end(), &plot);
+  if (iter != plots.end())
+    throw Exception("Gtk::PLplot::Canvas::add_plot -> Plot has been added before to this canvas");
+
   plots.push_back(&plot);
 
-  //ensure plot signal_changed gets re-emitted by the canvas
+  // ensure plot signal_changed gets re-emitted by the canvas
   plots.back()->signal_changed().connect([this](){_signal_changed.emit();});
 
   _signal_changed.emit();
