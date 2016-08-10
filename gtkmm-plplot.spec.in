@@ -11,8 +11,8 @@ Requires: gtkmm30 >= 3.2.0
 Requires: plplot-libs >= 5.10.0
 BuildRequires:   gtkmm30-devel >= 3.2.0
 BuildRequires:   plplot-devel >= 5.10.0
-BuildRequires:   doxygen
-BuildRequires:   gtkmm30-doc >= 3.2.0
+BuildRequires:   doxygen graphviz
+BuildRequires:   gtkmm30-doc >= 3.2.0 cairomm-doc pangomm-doc atkmm-doc 
 BuildRequires:   boost-devel
 
 %description
@@ -36,7 +36,7 @@ This package contains the necessary headers and libraries to start developing wi
 Summary: Plotting widgets for Gtkmm3: documentation
 Group: Development/Libraries
 Requires: %{name}-devel = %{version}
-Requires: gtkmm30-doc
+Requires: gtkmm30-doc cairomm-doc pangomm-doc atkmm-doc
 
 %description doc
 Gtkmm3 widgets for scientific plotting, implemented as a wrapper around PLplot. Includes support for two- and three-dimensional plots, polar and contour plots. 
