@@ -36,11 +36,8 @@ I have generated documentation with Doxygen. Have a look at http://tschoonj.gith
 
 Tarballs can be found [here](http://lvserver.ugent.be/gtkmm-plplot)
 
-[Homebrew](http://brew.sh) users can install Gtkmm-PLplot via my tap:
+Homebrew users as well as Linux aficionados will find installations instructions in the [documentation](https://tschoonj.github.io/gtkmm-plplot/installation_instructions.html)
 
-````
-brew install tschoonj/tap/gtkmm-plplot
-````
 
 ## TODO
 * plsurf3d, plmesh

@@ -130,6 +130,7 @@ namespace Gtk {
        *
        * \param plot_data_index index of the plotdata in the \c plot_data vector
        * \exception Gtk::PLplot::Exception
+       * \since 2.2
        */
       virtual void remove_data(unsigned int plot_data_index) override;
 
@@ -137,6 +138,7 @@ namespace Gtk {
        *
        * \param plot_data_member pointer to the plotdata in the \c plot_data vector
        * \exception Gtk::PLplot::Exception
+       * \since 2.2
        */
       virtual void remove_data(PlotData &plot_data_member) override;
 
