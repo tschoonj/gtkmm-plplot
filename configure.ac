@@ -141,6 +141,7 @@ docs/Makefile
 docs/images/Makefile
 docs/Doxyfile
 ${GTKMM_PLPLOT_MODULE_NAME}.pc:gtkmm-plplot.pc.in
+gtkmm-plplot.spec
 ])
 AC_CONFIG_HEADERS([config.h gtkmm-plplot/gtkmm-plplotconfig.h])
 
