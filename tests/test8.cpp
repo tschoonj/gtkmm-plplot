@@ -397,7 +397,7 @@ namespace Test8 {
       //finishing up
       add(paned);
       set_border_width(10);
-#if GTKMM_MAJOR_VERSION == 3 && GTKMM_MINOR_VERSION >= 16
+#if GTKMM_MAJOR_VERSION == 3 && GTKMM_MINOR_VERSION >= 18
       paned.set_wide_handle(true);
 #endif
       paned.show_all();
