@@ -94,30 +94,71 @@ Requirements</h1>
 </ul>
 <h1><a class="anchor" id="downloading"></a>
 Downloading the software</h1>
-<p>Downloads are currently hosted <a href="http://lvserver.ugent.be/gtkmm-plplot">here</a>. Just get the latest tarball and run the following commands:</p><ul>
-<li>tar xfvz gtkmm-plplot-x.y.tar.gz</li>
-<li>cd gtkmm-plplot-x.y</li>
-<li>./configure</li>
-<li>make</li>
-<li>make install</li>
-</ul>
-<h2><a class="anchor" id="homebrew"></a>
+<p>Downloads are currently hosted <a href="http://lvserver.ugent.be/gtkmm-plplot">here</a>. Just get the latest tarball and run the following commands: </p><pre class="fragment"> tar xfvz gtkmm-plplot-x.y.tar.gz
+ cd gtkmm-plplot-x.y
+ ./configure
+ make
+ make install
+</pre><h2><a class="anchor" id="homebrew"></a>
 Homebrew</h2>
 <p>Homebrew users can install Gtkmm-PLplot via my tap:</p>
-<div class="fragment"><div class="line">brew install tschoonj/tap/gtkmm-plplot</div></div><!-- fragment --> <h2><a class="anchor" id="head"></a>
+<blockquote class="doxtable">
+<p><code>brew install tschoonj/tap/gtkmm-plplot</code> </p>
+</blockquote>
+<h2><a class="anchor" id="linux"></a>
+Linux</h2>
+<h3><a class="anchor" id="rhel"></a>
+Fedora, Centos and Scientific Linux</h3>
+<p>To facilitate the installation on RPM based Linux distributions, the package includes a spec file which can be used to produce RPM packages for linux distributions that support them (Fedora, Red Hat etc). The developers have built 64-bit RPM packages of Gtkmm-PLplot for the officially supported Fedora and Redhat EL/CentOS/Scientific Linux 7 distributions. These can be downloaded from the RPM repository that is hosted by the X-ray Microspectroscopy and Imaging research group of Ghent University. Access to this repository can be obtained as follows for Fedora distros:</p>
+<blockquote class="doxtable">
+<p><code>su -c 'rpm -Uvh <a href="http://lvserver.ugent.be/yum/xmi-repo-key-fedora.noarch.rpm'">http://lvserver.ugent.be/yum/xmi-repo-key-fedora.noarch.rpm'</a></code> </p>
+</blockquote>
+<p>for Red Hat EL 7 based distributions:</p>
+<blockquote class="doxtable">
+<p><code>su -c 'rpm -Uvh <a href="http://lvserver.ugent.be/yum/xmi-repo-key-7.0-1.el7.noarch.rpm'">http://lvserver.ugent.be/yum/xmi-repo-key-7.0-1.el7.noarch.rpm'</a></code> </p>
+</blockquote>
+<p>The Gtkmm-PLplot packages themselves can then be downloaded using yum (or <code>dnf</code> which is increasingly being used nowadays):</p>
+<blockquote class="doxtable">
+<p><code>su -c 'yum install gtkmm-plplot gtkmm-plplot-devel gtkmm-plplot-doc'</code> </p>
+</blockquote>
+<p>Updates can be installed in a similar way:</p>
+<blockquote class="doxtable">
+<p><code>su -c 'yum update gtkmm-plplot gtkmm-plplot-devel gtkmm-plplot-doc'</code> </p>
+</blockquote>
+<h3><a class="anchor" id="debian"></a>
+Debian and Ubuntu</h3>
+<p>Packages were created for Debian and Ubuntu. Currently the following flavors are supported: Debian Jessie and several Ubuntu versions . In order to access these packages using your favorite package manager, execute the following command to import my public key:</p>
+<blockquote class="doxtable">
+<p><code>curl <a href="http://lvserver.ugent.be/apt/xmi.packages.key">http://lvserver.ugent.be/apt/xmi.packages.key</a> | sudo apt-key add -</code> </p>
+</blockquote>
+<p>Next, add the package download location corresponding to your distribution to the /etc/apt/sources.list file (as root):</p>
+<p>Debian Jessie: </p><pre class="fragment">  deb http://lvserver.ugent.be/apt/debian jessie stable
+  deb-src http://lvserver.ugent.be/apt/debian jessie stable
+</pre><p>Ubuntu Trusty 14.04: </p><pre class="fragment">  deb [arch=amd64] http://lvserver.ugent.be/apt/ubuntu trusty stable
+  deb-src http://lvserver.ugent.be/apt/ubuntu trusty stable
+</pre><p>Ubuntu Wily 15.10: </p><pre class="fragment">  deb [arch=amd64] http://lvserver.ugent.be/apt/ubuntu wily stable
+  deb-src http://lvserver.ugent.be/apt/ubuntu wily stable
+</pre><p>Ubuntu Xenial 16.04: </p><pre class="fragment">  deb [arch=amd64] http://lvserver.ugent.be/apt/ubuntu xenial stable
+  deb-src http://lvserver.ugent.be/apt/ubuntu xenial stable
+</pre><p>When the sources.list file contains the correct download locations, update the apt cache by running:</p>
+<blockquote class="doxtable">
+<p><code>sudo apt-get update</code> </p>
+</blockquote>
+<p>After this, one can install Gtkmm-PLplot by executing the following command:</p>
+<blockquote class="doxtable">
+<p><code>sudo apt-get install libgtkmm-plplot2 libgtkmm-plplot2-dev libgtkmm-plplot2-doc</code> </p>
+</blockquote>
+<h2><a class="anchor" id="head"></a>
 Github repository</h2>
-<p>People interested in running the latest development version will have to clone the Github repository. Make sure you have the above mentioned dependencies installed, as well as the GNU autotools (autoconf, automake and libtool) and mm-common.</p><ul>
-<li>git clone <a href="#" onclick="location.href='mai'+'lto:'+'git'+'@g'+'ith'+'ub'+'.co'+'m'; return false;">git@g<span style="display: none;">.nosp@m.</span>ithu<span style="display: none;">.nosp@m.</span>b.com</a>:tschoonj/gtkmm-plplot.git</li>
-<li>cd gtkmm-plplot</li>
-<li>autoreconf -i</li>
-<li>./configure</li>
-<li>make</li>
-<li>make install </li>
-</ul>
-</div></div><!-- contents -->
+<p>People interested in running the latest development version will have to clone the Github repository. Make sure you have the above mentioned dependencies installed, as well as the GNU autotools (autoconf, automake and libtool) and mm-common. </p><pre class="fragment"> git clone git@github.com:tschoonj/gtkmm-plplot.git
+ cd gtkmm-plplot
+ autoreconf -i
+ ./configure
+ make
+ make install</pre> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 17 2016 14:57:24 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 10 2016 17:10:47 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
