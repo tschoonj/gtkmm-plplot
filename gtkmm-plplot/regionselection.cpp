@@ -23,6 +23,8 @@ using namespace Gtk::PLplot;
 
 RegionSelection::RegionSelection() :
   region_selectable(true),
+  region_zoomable(true),
+  region_zoom_scale_factor(2.0),
   plotted_range_x{0.1, 1.0},
   plotted_range_y{0.1, 1.0},
   plot_data_range_x{0.1, 1.0},
@@ -31,11 +33,13 @@ RegionSelection::RegionSelection() :
   this->signal_select_region().connect(sigc::mem_fun(*this, &RegionSelection::on_select_region));
   this->signal_cursor_motion().connect(sigc::mem_fun(*this, &RegionSelection::on_cursor_motion));
   this->signal_double_press().connect(sigc::mem_fun(*this, &RegionSelection::on_double_press));
+  this->signal_zoom_region().connect(sigc::mem_fun(*this, &RegionSelection::on_zoom_region));
 }
 
 RegionSelection::~RegionSelection() {}
 
 void RegionSelection::on_select_region(double xmin, double xmax, double ymin, double ymax) {
+  //default implementation -> override in a derived class to get a different behavior
   set_region(xmin, xmax, ymin, ymax);
 }
 
@@ -69,12 +73,57 @@ void RegionSelection::on_double_press(double x, double y) {
   );
 }
 
+void RegionSelection::on_zoom_region(double x, double y, GdkScrollDirection direction) {
+  //default implementation -> override in a derived class to get a different behavior
+  double x_left = x - plotted_range_x[0];
+  double x_right = plotted_range_x[1] - x;
+  double y_bottom = y - plotted_range_y[0];
+  double y_top = plotted_range_y[1] - y;
+  double effective_scale_factor;
+
+  if (direction == GDK_SCROLL_UP) {
+    effective_scale_factor = 1.0 / region_zoom_scale_factor;
+  }
+  else if (direction == GDK_SCROLL_DOWN) {
+    effective_scale_factor = region_zoom_scale_factor;
+  }
+  else {
+    //ignore other directions for now
+    return;
+  }
+  set_region(
+    x - x_left * effective_scale_factor,
+    x + x_right * effective_scale_factor,
+    y - y_bottom * effective_scale_factor,
+    y + y_top * effective_scale_factor
+  );
+}
+
 bool RegionSelection::get_region_selectable() {
   return region_selectable;
 }
 
 void RegionSelection::set_region_selectable(bool _region_selectable) {
   region_selectable = _region_selectable;
+}
+
+bool RegionSelection::get_region_zoomable() {
+  return region_zoomable;
+}
+
+void RegionSelection::set_region_zoomable(bool _region_zoomable) {
+  region_zoomable = _region_zoomable;
+}
+
+double RegionSelection::get_region_zoom_scale_factor() {
+  return region_zoom_scale_factor;
+}
+
+void RegionSelection::set_region_zoom_scale_factor(double scale_factor) {
+  if (scale_factor == 1.0 || scale_factor <= 0.0) {
+    throw Exception("Gtk::PLplot::RegionSelection::set_region_zoom_scale_factor -> invalid scale_factor provided");
+  }
+  region_zoom_scale_factor = scale_factor;
 }
 
 void RegionSelection::coordinate_transform_plplot_to_cairo(

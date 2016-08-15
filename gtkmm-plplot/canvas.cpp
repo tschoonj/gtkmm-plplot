@@ -47,8 +47,53 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
 
   add_events(Gdk::POINTER_MOTION_MASK |
              Gdk::BUTTON_PRESS_MASK |
-             Gdk::BUTTON_RELEASE_MASK);
+             Gdk::BUTTON_RELEASE_MASK |
+             Gdk::SCROLL_MASK);
   signal_changed().connect(sigc::mem_fun(*this, &Canvas::on_changed));
+}
+
+bool Canvas::on_scroll_event(GdkEventScroll *event) {
+  Gtk::Allocation allocation = get_allocation();
+  const int height = allocation.get_height();
+
+  double start_event[2];
+  double start_cairo[2];
+
+  start_event[0] = event->x;
+  start_event[1] = event->y;
+  start_cairo[0] = event->x;
+  start_cairo[1] = height - event->y;
+
+  for (auto plot = plots.rbegin(); plot != plots.rend(); ++plot) {
+    RegionSelection *region_selection = dynamic_cast<RegionSelection *>(*plot);
+    if (region_selection != nullptr &&
+        start_cairo[0] >= region_selection->cairo_range_x[0] &&
+        start_cairo[0] <= region_selection->cairo_range_x[1] &&
+        start_cairo[1] >= region_selection->cairo_range_y[0] &&
+        start_cairo[1] <= region_selection->cairo_range_y[1] &&
+        (*plot)->is_showing() &&
+        region_selection->get_region_zoomable()) {
+
+      double cursor_pl_x, cursor_pl_y;
+      double cursor_x, cursor_y;
+
+      region_selection->coordinate_transform_cairo_to_plplot(
+        start_cairo[0],
+        start_cairo[1],
+        cursor_pl_x,
+        cursor_pl_y
+      );
+      region_selection->coordinate_transform_plplot_to_world(
+        cursor_pl_x,
+        cursor_pl_y,
+        cursor_x,
+        cursor_y
+      );
+      region_selection->_signal_zoom_region.emit(cursor_x, cursor_y, event->direction);
+      return false;
+    }
+  }
+  return true;
 }
 
 void Canvas::add_plot(Plot &plot) {

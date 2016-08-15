@@ -70,13 +70,13 @@ namespace Gtk {
        * \param cr The cairo context to draw to.
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        */
-      virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
+      virtual bool on_draw(const ::Cairo::RefPtr<::Cairo::Context>& cr) override;
 
       /** This is a default handler for signal_button_press_event().
        *
        * This method tracks the button press event that may lead to a selection box being dragged, as well as the double press event that will bring a previously zoomed-in range back to its default view.
        * When deriving from Canvas and if overriding this method, you may still want to call it to ensure that the selection box will still be drawn.
-       * \param event The Gdk::EventButton which triggered this signal.
+       * \param event The GdkEventButton which triggered this signal.
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        */
       virtual bool on_button_press_event(GdkEventButton *event) override;
@@ -85,7 +85,7 @@ namespace Gtk {
        *
        * This method tracks the button release event that leads to a selection box being completed and thus deleted, which is then followed by signal_select_region being emitted by the plot that had the selection box.
        * When deriving from Canvas and if overriding this method, you may still want to call it to ensure that the selection box will still be drawn.
-       * \param event The Gdk::EventButton which triggered this signal.
+       * \param event The GdkEventButton which triggered this signal.
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        */
       virtual bool on_button_release_event(GdkEventButton *event) override;
@@ -94,10 +94,20 @@ namespace Gtk {
        *
        * This method tracks the mouse movement event that leads to a selection box being drawn within the plot box.
        * When deriving from Canvas and if overriding this method, you may still want to call it to ensure that the selection box will still be drawn.
-       * \param event The Gdk::EventButton which triggered this signal.
+       * \param event The GdkEventMotion which triggered this signal.
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        */
-      virtual bool on_motion_notify_event (GdkEventMotion *event) override;
+      virtual bool on_motion_notify_event(GdkEventMotion *event) override;
+
+      /** This is a default handler for signal_scroll_event().
+       *
+       * This method tracks the scroll movement that may be used to trigger a zoom-in or zoom-out event on a particular plot.
+       * When deriving from Canvas and if overriding this method, you may still want to call it to ensure that the selection box will still be drawn.
+       * \param event The GdkEventScroll which triggered this signal.
+       * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
+       * \since 2.2
+       */
+      virtual bool on_scroll_event(GdkEventScroll *event) override;
 
       /** This is a default handler for signal_changed().
        *
@@ -123,6 +133,7 @@ namespace Gtk {
        * \param background_color The color of the background for the canvas.
        */
       Canvas(Plot &plot, Gdk::RGBA background_color = Gdk::RGBA("White"));
+
       /** Canvas destructor
        *
        */

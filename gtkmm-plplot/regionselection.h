@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GTKMM_PLPLOT_REGIONSELECTION_H
 
 #include <sigc++/sigc++.h>
+#include <gdk/gdk.h>
 
 namespace Gtk {
   namespace PLplot {
@@ -34,6 +35,8 @@ namespace Gtk {
     class RegionSelection : public sigc::trackable {
     private:
       bool region_selectable; ///< \c true indicates that a region on the plot can be selected by dragging a box with the mouse button pressed in when showing, or if double mouse button pressed event zooms out, \c false means not possible. The default is \c true
+      bool region_zoomable; ///< \c true indicates that one can zoom in on a region on the plot by using the mouse scroll wheel (or trackpad), \c false means not possible. The default is \c true
+      double region_zoom_scale_factor; ///< \c scale factor that will be used for scroll wheel based zooming
     protected:
       double cairo_range_x[2]; ///< the current range shown on the plot for the X-axis in Cairo coordinates
       double cairo_range_y[2]; ///< the current range shown on the plot for the Y-axis in Cairo coordinates
@@ -42,6 +45,7 @@ namespace Gtk {
       double plot_data_range_x[2]; ///< the maximum range covered by the X-values of the datasets
       double plot_data_range_y[2];  ///< the maximum range covered by the Y-values of the datasets
       sigc::signal<void, double, double, double, double > _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event()
+      sigc::signal<void, double, double, GdkScrollDirection > _signal_zoom_region; ///< signal that gets emitted whenever one zooms in on the plot using the mouse scroll wheel in Canvas::on_scroll_event()
       sigc::signal<void, double, double > _signal_cursor_motion; ///< signal that will be emitted whenever the cursor (usually the mouse) is moved.
       sigc::signal<void, double, double> _signal_double_press; ///< signal that will emitted whenever a double mouse-click event was recorded within the plot box. Default response will be to reset the region to a range determined by the minima and maxima of the X- and Y- datasets.
 
@@ -64,6 +68,19 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        */
       virtual void on_select_region(double xmin, double xmax, double ymin, double ymax);
+
+      /** This is a default handler for signal_zoom_region()
+       *
+       * This method passes the plot (data) coordinates corresponding to the position where the user produced a scroll event.
+       * Depending on the direction of the scroll movement, the region will be zoomed in or out.
+       * If this behavior is not desired, derive the class and implement your own on_zoom_region method.
+       * \param x X-coordinate
+       * \param y Y-coordinate
+       * \param direction Movement direction
+       * \exception Gtk::PLplot::Exception
+       * \since 2.2
+       */
+      virtual void on_zoom_region(double x, double y, GdkScrollDirection direction);
 
       /** This is a default handler for signal_cursor_motion()
        *
@@ -132,6 +149,36 @@ namespace Gtk {
        */
       void set_region_selectable(bool selectable = true);
 
+      /** Get whether regions can be selected on the plot by scrolling the mouse wheel (or trackpad)
+       *
+       * \return \c true if a region is zoomable in the plot, \c false if not
+       * \since 2.2
+       */
+      bool get_region_zoomable();
+
+      /** Sets whether regions can be selected on the plot by scrolling the mouse wheel (or trackpad)
+       *
+       * \param zoomable pass \c true if a region has to be selectable, \c false if not
+       * \since 2.2
+       */
+      void set_region_zoomable(bool zoomable = true);
+
+      /** Gets the currently used zoom scale factor
+       *
+       * The default value is 2.0. If a value lower than 1.0 is chosen, zoom-in and zoom-out will exchange behavior.
+       * \return the currently used zoom scale factor
+       * \since 2.2
+       */
+      double get_region_zoom_scale_factor();
+
+      /** Sets a new zoom scale factor
+       *
+       * \param scale_factor the new zoom scale factor
+       * \exception Gtk::PLplot::Exception
+       * \since 2.2
+       */
+      void set_region_zoom_scale_factor(double scale_factor);
+
       /** This method takes care of coordinate transformations when using non-linear axes
        *
        * When a plot has logarithmic axes or polar plot style, PLplot requires the user
@@ -178,6 +225,15 @@ namespace Gtk {
        */
       sigc::signal<void, double, double > signal_double_press() {
         return _signal_double_press;
+      }
+
+      /** signal_zoom_region is emitted whenever a mouse scroll event on the plot is recorded.
+       *
+       * See default handler on_zoom_region()
+       * \since 2.2
+       */
+      sigc::signal<void, double, double, GdkScrollDirection> signal_zoom_region() {
+        return _signal_zoom_region;
       }
 
       friend class Canvas;
