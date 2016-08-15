@@ -39,8 +39,8 @@ namespace Gtk {
      private:
       Plot &operator=(const Plot &) = delete; ///< no assignment operator
       Plot(const Plot &) = delete; ///< no default copy constructor
+      Plot() = delete;
      protected:
-      Plot() {} ///< Default constructor. This should not be used and is only here to circumvent a bug in GCC: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=58751
       std::vector<PlotData *> plot_data; ///< vector that contains pointers to the PlotData datasets
       Glib::ustring axis_title_x; ///< X-axis title
       Glib::ustring axis_title_y; ///< Y-axis title
@@ -54,10 +54,10 @@ namespace Gtk {
       int plot_height; ///< the current height of the plot in Cairo units
       bool shown; ///< \c true means the plot is currently visible, \c false means it is not plotted
       Gdk::RGBA background_color; ///< the currently used background color of the plot (default = fully transparent white, meaning that the background will be determined by the canvas)
-      double plot_width_norm; ///< the normalized plot width, calculated relative to the canvas width
-      double plot_height_norm; ///< the normalized plot height, calculated relative to the canvas height
-      double plot_offset_horizontal_norm; ///< the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
-      double plot_offset_vertical_norm; ///< the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
+      const double plot_width_norm; ///< the normalized plot width, calculated relative to the canvas width
+      const double plot_height_norm; ///< the normalized plot height, calculated relative to the canvas height
+      const double plot_offset_horizontal_norm; ///< the normalized horizontal offset from the canvas top left corner, calculated relative to the canvas width
+      const double plot_offset_vertical_norm; ///< the normalized vertical offset from the canvas top left corner, calculated relative to the canvas height
       Gdk::RGBA axes_color; ///< the currently used color to draw the axes, the box and gridlines. Default is opaque black
       Gdk::RGBA titles_color; ///< the currently used color to draw the axes and plot titles. Default is opaque black
 
