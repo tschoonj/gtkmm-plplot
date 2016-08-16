@@ -182,6 +182,13 @@ namespace Test4 {
       //lets'give the third plot a nice opaque background color
       plot3->set_background_color(Gdk::RGBA("White"));
 
+      //but disable zooming by scrolling
+      plot3->set_region_zoomable(false);
+
+      //and give it an unusual selection box
+      plot3->set_region_selection_color(Gdk::RGBA("Purple"));
+      plot3->set_region_selection_width(4.0);
+
       //hook up signal_cursor_motion to the entries
       unsigned int plotnr = 0;
       while (1) {

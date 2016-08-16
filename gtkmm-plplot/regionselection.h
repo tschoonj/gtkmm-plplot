@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <sigc++/sigc++.h>
 #include <gdk/gdk.h>
+#include <gdkmm/rgba.h>
 
 namespace Gtk {
   namespace PLplot {
@@ -36,7 +37,9 @@ namespace Gtk {
     private:
       bool region_selectable; ///< \c true indicates that a region on the plot can be selected by dragging a box with the mouse button pressed in when showing, or if double mouse button pressed event zooms out, \c false means not possible. The default is \c true
       bool region_zoomable; ///< \c true indicates that one can zoom in on a region on the plot by using the mouse scroll wheel (or trackpad), \c false means not possible. The default is \c true
-      double region_zoom_scale_factor; ///< \c scale factor that will be used for scroll wheel based zooming
+      double region_zoom_scale_factor; ///< scale factor that will be used for scroll wheel based zooming
+      Gdk::RGBA region_selection_color; ///< color that will be used to draw the selection box
+      double region_selection_width; ///< width of the selection box frame
     protected:
       double cairo_range_x[2]; ///< the current range shown on the plot for the X-axis in Cairo coordinates
       double cairo_range_y[2]; ///< the current range shown on the plot for the Y-axis in Cairo coordinates
@@ -178,6 +181,37 @@ namespace Gtk {
        * \since 2.2
        */
       void set_region_zoom_scale_factor(double scale_factor);
+
+      /** Gets the currently used selection box color
+       *
+       * The default color is black
+       * \return the currently used selection box color
+       * \since 2.2
+       */
+      Gdk::RGBA get_region_selection_color();
+
+      /** Sets the selection box color
+       *
+       * \param color the new region selection box color
+       * \since 2.2
+       */
+      void set_region_selection_color(Gdk::RGBA color);
+
+      /** Gets the currently used selection box line width
+       *
+       * The default width is 2.0
+       * \return the currently used selection box width
+       * \since 2.2
+       */
+      double get_region_selection_width();
+
+      /** Sets the selection box line width
+       *
+       * \param line_width the new region selection box line width
+       * \exception Gtk::PLplot::Exception
+       * \since 2.2
+       */
+      void set_region_selection_width(double line_width);
 
       /** This method takes care of coordinate transformations when using non-linear axes
        *

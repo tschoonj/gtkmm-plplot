@@ -25,6 +25,8 @@ RegionSelection::RegionSelection() :
   region_selectable(true),
   region_zoomable(true),
   region_zoom_scale_factor(2.0),
+  region_selection_color(Gdk::RGBA("Black")),
+  region_selection_width(2.0),
   plotted_range_x{0.1, 1.0},
   plotted_range_y{0.1, 1.0},
   plot_data_range_x{0.1, 1.0},
@@ -124,6 +126,25 @@ void RegionSelection::set_region_zoom_scale_factor(double scale_factor) {
     throw Exception("Gtk::PLplot::RegionSelection::set_region_zoom_scale_factor -> invalid scale_factor provided");
   }
   region_zoom_scale_factor = scale_factor;
+}
+
+Gdk::RGBA RegionSelection::get_region_selection_color() {
+  return region_selection_color;
+}
+
+void RegionSelection::set_region_selection_color(Gdk::RGBA _region_selection_color) {
+  region_selection_color = _region_selection_color;
+}
+
+double RegionSelection::get_region_selection_width() {
+  return region_selection_width;
+}
+
+void RegionSelection::set_region_selection_width(double _region_selection_width) {
+  if (_region_selection_width <= 0.0) {
+    throw Exception("Gtk::PLplot::RegionSelection::set_region_selection_width -> invalid width provided");
+  }
+  region_selection_width = _region_selection_width;
 }
 
 void RegionSelection::coordinate_transform_plplot_to_cairo(

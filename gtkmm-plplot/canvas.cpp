@@ -137,8 +137,10 @@ bool Canvas::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
     end_cairo[0] >= 0.0 &&
     end_cairo[1] >= 0.0) {
 
-    cr->set_line_width(3);
-    Gdk::Cairo::set_source_rgba(cr, Gdk::RGBA("Black"));
+    RegionSelection *region_selection = dynamic_cast<RegionSelection *>(selected_plot);
+
+    cr->set_line_width(region_selection->get_region_selection_width());
+    Gdk::Cairo::set_source_rgba(cr, region_selection->get_region_selection_color());
     cr->rectangle(MIN(start_cairo[0], end_cairo[0]) ,
                   MIN(height - start_cairo[1], height - end_cairo[1]) ,
                   fabs(end_cairo[0] - start_cairo[0]),
