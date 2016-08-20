@@ -272,7 +272,6 @@ namespace Gtk {
 
       friend class Canvas;
       friend class RegionSelection;
-      friend class Legend;
     };
   }
 }

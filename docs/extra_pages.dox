@@ -164,7 +164,7 @@
  *       deb-src http://lvserver.ugent.be/apt/ubuntu wily stable
  *
  * Ubuntu Xenial 16.04:
- * 
+ *
  *       deb [arch=amd64] http://lvserver.ugent.be/apt/ubuntu xenial stable
  *       deb-src http://lvserver.ugent.be/apt/ubuntu xenial stable
  *
@@ -250,6 +250,6 @@
  *  \include test10.cpp
  *  \image html test10.png "Example 10"
  *  \section example11 Example 11: 2 dimensional plots with errorbars
- *  \include test11.cpp "Example 11"
- *  \image html test11.png
+ *  \include test11.cpp
+ *  \image html test11.png "Example 11"
  */

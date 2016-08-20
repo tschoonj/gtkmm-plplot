@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <sigc++/sigc++.h>
 #include <gdk/gdk.h>
 #include <gdkmm/rgba.h>
+#include <vector>
 
 namespace Gtk {
   namespace PLplot {
@@ -29,7 +30,8 @@ namespace Gtk {
      *
      * Several plot classes (Plot2D, PlotPolar, PlotContour and PlotContourShades)
      * that represent data in a two-dimensional grid inherit from this class, allowing
-     * users to drag a selection box using a mouse gesture (mouse button press, drag, mouse button release).
+     * users to drag a selection box using a mouse gesture (mouse button press, drag, mouse button release),
+     * to zoom in or out by using the scroll button, or to drag the plotdata around in its plot box by pressing in Shift and pressing the left mouse button in, while moving the mouse around.
      * The default signal handler will initiate a redrawing of the plot, with the visible region set to
      * correspond to the initally drawn box. This is shown in \ref example1 and others.
      */
@@ -37,6 +39,7 @@ namespace Gtk {
     private:
       bool region_selectable; ///< \c true indicates that a region on the plot can be selected by dragging a box with the mouse button pressed in when showing, or if double mouse button pressed event zooms out, \c false means not possible. The default is \c true
       bool region_zoomable; ///< \c true indicates that one can zoom in on a region on the plot by using the mouse scroll wheel (or trackpad), \c false means not possible. The default is \c true
+      bool region_draggable; ///< \c true indicates that one can drag a plot around by simultaneously pressing Shift and the left mouse button while moving the mouse cursor around. \c false means not possible. The default is \c true
       double region_zoom_scale_factor; ///< scale factor that will be used for scroll wheel based zooming
       Gdk::RGBA region_selection_color; ///< color that will be used to draw the selection box
       double region_selection_width; ///< width of the selection box frame
@@ -50,6 +53,7 @@ namespace Gtk {
       sigc::signal<void, double, double, double, double > _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event()
       sigc::signal<void, double, double, GdkScrollDirection > _signal_zoom_region; ///< signal that gets emitted whenever one zooms in on the plot using the mouse scroll wheel in Canvas::on_scroll_event()
       sigc::signal<void, double, double > _signal_cursor_motion; ///< signal that will be emitted whenever the cursor (usually the mouse) is moved.
+      sigc::signal<std::vector<double>, double, double, double, double > _signal_cursor_drag_motion; ///< signal that will be emitted whenever the cursor is moved within a draggable plot while the SHIFT key is pressed in and the left mouse button is pressed.
       sigc::signal<void, double, double> _signal_double_press; ///< signal that will emitted whenever a double mouse-click event was recorded within the plot box. Default response will be to reset the region to a range determined by the minima and maxima of the X- and Y- datasets.
 
       void coordinate_transform_plplot_to_cairo(
@@ -93,6 +97,21 @@ namespace Gtk {
        * \param y The Y-value corresponding to the current cursor position
        */
       virtual void on_cursor_motion(double x, double y);
+
+      /** This is a default handler for signal_cursor_drag_motion()
+       *
+       * This signal is emitted whenever the cursor is moved within a draggable plot, with the Shift key and left mouse button pressed in. old_x and old_y correspond to the old data coordinates, before the motion,
+       * while new_x and new_y refer to the new data coordinates.
+       * Currently this method will cause the plot to move around in its box.
+       * If this behavior is not desired, derive the class and implement your own on_zoom_region method.
+       * \param old_x The X-value corresponding to the previous cursor position
+       * \param old_y The Y-value corresponding to the previous cursor position
+       * \param new_x The X-value corresponding to the previous cursor position
+       * \param new_y The Y-value corresponding to the previous cursor position
+       * \returns a vector containing old_x, old_y, new_x and new_y, which may be different from the originally passed values!
+       * \since 2.2
+       */
+      virtual std::vector<double> on_cursor_drag_motion(double old_x, double old_y, double new_x, double new_y);
 
       /** This is a default handler for signal_double_press()
        *
@@ -161,7 +180,7 @@ namespace Gtk {
 
       /** Sets whether regions can be selected on the plot by scrolling the mouse wheel (or trackpad)
        *
-       * \param zoomable pass \c true if a region has to be selectable, \c false if not
+       * \param zoomable pass \c true if a region has to be zoomable, \c false if not
        * \since 2.2
        */
       void set_region_zoomable(bool zoomable = true);
@@ -213,6 +232,20 @@ namespace Gtk {
        */
       void set_region_selection_width(double line_width);
 
+      /** Get whether regions can be dragged on the plot by clicking the left mouse button and the shift key
+       *
+       * \return \c true if a region is draggable in the plot, \c false if not
+       * \since 2.2
+       */
+      bool get_region_draggable();
+
+      /** Sets whether regions can be dragged on the plot by clicking the left mouse button and the shift key
+       *
+       * \param draggable pass \c true if a region has to be draggable, \c false if not
+       * \since 2.2
+       */
+      void set_region_draggable(bool draggable = true);
+
       /** This method takes care of coordinate transformations when using non-linear axes
        *
        * When a plot has logarithmic axes or polar plot style, PLplot requires the user
@@ -247,10 +280,18 @@ namespace Gtk {
 
       /** signal_cursor_motion is emitted whenever the cursor is moved within the plot
        *
-       * See default handler on_select_region()
+       * See default handler on_cursor_motion()
        */
       sigc::signal<void, double, double > signal_cursor_motion() {
         return _signal_cursor_motion;
+      }
+
+      /** signal_cursor_drag_motion is emitted whenever the cursor is moved within the plot
+       *
+       * See default handler on_cursor_drag_motion()
+       */
+      sigc::signal<std::vector<double>, double, double, double, double > signal_cursor_drag_motion() {
+        return _signal_cursor_drag_motion;
       }
 
       /** signal_double_press is emitted whenever a double-click event on the plot is recorded.

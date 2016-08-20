@@ -57,7 +57,7 @@ void Legend::set_legend_background_color(Gdk::RGBA _legend_background_color) {
   if (legend_background_color == _legend_background_color)
     return;
   legend_background_color = _legend_background_color;
-  dynamic_cast<Plot *>(this)->_signal_changed.emit();
+  dynamic_cast<Plot *>(this)->signal_changed().emit();
 }
 
 Gdk::RGBA Legend::get_legend_background_color() {
@@ -68,7 +68,7 @@ void Legend::set_legend_bounding_box_color(Gdk::RGBA _legend_bounding_box_color)
   if (legend_bounding_box_color == _legend_bounding_box_color)
     return;
   legend_bounding_box_color = _legend_bounding_box_color;
-  dynamic_cast<Plot *>(this)->_signal_changed.emit();
+  dynamic_cast<Plot *>(this)->signal_changed().emit();
 }
 
 Gdk::RGBA Legend::get_legend_bounding_box_color() {
@@ -85,7 +85,7 @@ void Legend::set_legend_position(double _legend_pos_x, double _legend_pos_y) {
 
   legend_pos_x = _legend_pos_x;
   legend_pos_y = _legend_pos_y;
-  dynamic_cast<Plot *>(this)->_signal_changed.emit();
+  dynamic_cast<Plot *>(this)->signal_changed().emit();
 }
 
 void Legend::get_legend_position(double &_legend_pos_x, double &_legend_pos_y) {
@@ -97,7 +97,7 @@ void Legend::set_legend_corner_position(LegendCornerPosition _legend_corner_posi
   if (legend_corner_position == _legend_corner_position)
     return;
   legend_corner_position = _legend_corner_position;
-  dynamic_cast<Plot *>(this)->_signal_changed.emit();
+  dynamic_cast<Plot *>(this)->signal_changed().emit();
 }
 
 LegendCornerPosition Legend::get_legend_corner_position() {
@@ -108,14 +108,14 @@ void Legend::show_legend() {
   if (showing_legend)
     return;
   showing_legend = true;
-  dynamic_cast<Plot *>(this)->_signal_changed.emit();
+  dynamic_cast<Plot *>(this)->signal_changed().emit();
 }
 
 void Legend::hide_legend() {
   if (!showing_legend)
     return;
   showing_legend = false;
-  dynamic_cast<Plot *>(this)->_signal_changed.emit();
+  dynamic_cast<Plot *>(this)->signal_changed().emit();
 }
 
 bool Legend::is_showing_legend() {

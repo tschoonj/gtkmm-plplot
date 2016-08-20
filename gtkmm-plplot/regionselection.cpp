@@ -24,6 +24,7 @@ using namespace Gtk::PLplot;
 RegionSelection::RegionSelection() :
   region_selectable(true),
   region_zoomable(true),
+  region_draggable(true),
   region_zoom_scale_factor(2.0),
   region_selection_color(Gdk::RGBA("Black")),
   region_selection_width(2.0),
@@ -36,6 +37,7 @@ RegionSelection::RegionSelection() :
   this->signal_cursor_motion().connect(sigc::mem_fun(*this, &RegionSelection::on_cursor_motion));
   this->signal_double_press().connect(sigc::mem_fun(*this, &RegionSelection::on_double_press));
   this->signal_zoom_region().connect(sigc::mem_fun(*this, &RegionSelection::on_zoom_region));
+  this->signal_cursor_drag_motion().connect(sigc::mem_fun(*this, &RegionSelection::on_cursor_drag_motion));
 }
 
 RegionSelection::~RegionSelection() {}
@@ -43,6 +45,18 @@ RegionSelection::~RegionSelection() {}
 void RegionSelection::on_select_region(double xmin, double xmax, double ymin, double ymax) {
   //default implementation -> override in a derived class to get a different behavior
   set_region(xmin, xmax, ymin, ymax);
+}
+
+std::vector<double> RegionSelection::on_cursor_drag_motion(double old_x, double old_y, double new_x, double new_y) {
+  double delta_x = new_x - old_x;
+  double delta_y = new_y - old_y;
+
+  if (delta_x == 0.0 && delta_y == 0.0)
+    return std::vector<double>{old_x, old_y, new_x, new_y};
+
+  set_region(plotted_range_x[0] - delta_x, plotted_range_x[1] - delta_x,
+    plotted_range_y[0] - delta_y, plotted_range_y[1] - delta_y);
+  return std::vector<double>{old_x - delta_x, old_y - delta_y, new_x - delta_x, new_y - delta_y};
 }
 
 void RegionSelection::on_cursor_motion(double x, double y) {
@@ -115,6 +129,14 @@ bool RegionSelection::get_region_zoomable() {
 
 void RegionSelection::set_region_zoomable(bool _region_zoomable) {
   region_zoomable = _region_zoomable;
+}
+
+bool RegionSelection::get_region_draggable() {
+  return region_draggable;
+}
+
+void RegionSelection::set_region_draggable(bool _region_draggable) {
+  region_draggable = _region_draggable;
 }
 
 double RegionSelection::get_region_zoom_scale_factor() {
@@ -242,5 +264,5 @@ void RegionSelection::set_region(double xmin, double xmax, double ymin, double y
   plotted_range_y[0] = ymin;
   plotted_range_y[1] = ymax;
 
-  dynamic_cast<Plot *>(this)->_signal_changed.emit();
+  dynamic_cast<Plot *>(this)->signal_changed().emit();
 }

@@ -59,7 +59,11 @@ namespace Gtk {
       double end_event[2]; ///< widget coordinates of the position where a \c button_release_event was generated
       double end_cairo[2]; ///< cairo coordinates of the position where a \c button_release_event was generated
       bool selecting; ///< set to true if the user is currently dragging a selection box
-      Plot* selected_plot; ///< \c pointer to the currently selected plot
+      bool left_mouse_button_clicked; ///< set to true if the user is currently pressing the left mouse button
+      bool shift_pressed; ///< set to true if the shift button is currently pressed in
+      Plot *selected_plot; ///< \c pointer to the currently selected plot
+      Plot *inside_plot; ///< \c pointer to the plot that currently contains the mouse cursor. It will be set to nullptr when it is not above a plot.
+      double inside_plot_current_coords[2]; ///< coords of the current cursor position within inside_plot, updated in on_motion_notify_event();
       Gdk::RGBA background_color; ///< the currently used background color of the canvas (default = opaque White)
       Canvas(const Canvas &) = delete; ///< no copy constructor
       Canvas &operator=(const Canvas &) = delete; ///< no move assignment operator
@@ -108,6 +112,26 @@ namespace Gtk {
        * \since 2.2
        */
       virtual bool on_scroll_event(GdkEventScroll *event) override;
+
+      /** This is a default handler for signal_key_press_event().
+       *
+       * This method gets called whenever a key is pressed.
+       * In this class, the method will only be useful whenever the SHIFT key is pressed, as this will lead to the plot being moved around within its box.
+       * \param event The GdkEventKey which triggered this signal.
+       * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
+       * \since 2.2
+       */
+      virtual bool on_key_press_event(GdkEventKey *event) override;
+
+      /** This is a default handler for signal_key_release_event().
+       *
+       * This method gets called whenever a key is released.
+       * In this class, the method will only be useful whenever the SHIFT key is released, as this will lead to the plot being moved around within its box.
+       * \param event The GdkEventKey which triggered this signal.
+       * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
+       * \since 2.2
+       */
+      virtual bool on_key_release_event(GdkEventKey *event) override;
 
       /** This is a default handler for signal_changed().
        *

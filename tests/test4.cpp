@@ -164,6 +164,9 @@ namespace Test4 {
       checkbutton2.set_active(false);
       checkbutton3.set_active();
 
+      //let's make the first plot undraggable
+      plot1->set_region_draggable(false);
+
       //let's override the background color of the second plot and hide it to make the surprise complete!!
       plot2->set_background_color(Gdk::RGBA("Yellow Green"));
       plot2->hide();
