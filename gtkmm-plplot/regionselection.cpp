@@ -255,10 +255,8 @@ void RegionSelection::coordinate_transform_plplot_to_world(double x_old, double 
 }
 
 void RegionSelection::get_region(double &xmin, double &xmax, double &ymin, double &ymax) {
-  xmin = plotted_range_x[0];
-  xmax = plotted_range_x[1];
-  ymin = plotted_range_y[0];
-  ymax = plotted_range_y[1];
+  coordinate_transform_plplot_to_world(plotted_range_x[0], plotted_range_y[0], xmin, ymin);
+  coordinate_transform_plplot_to_world(plotted_range_x[1], plotted_range_y[1], xmax, ymax);
 }
 
 void RegionSelection::set_region(double xmin, double xmax, double ymin, double ymax) {
