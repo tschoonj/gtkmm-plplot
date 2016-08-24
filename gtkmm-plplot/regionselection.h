@@ -67,13 +67,55 @@ namespace Gtk {
       sigc::signal<std::vector<double>, double, double, double, double > _signal_cursor_drag_motion; ///< signal that will be emitted whenever the cursor is moved within a draggable plot while the SHIFT key is pressed in and the left mouse button is pressed.
       sigc::signal<void, double, double> _signal_double_press; ///< signal that will emitted whenever a double mouse-click event was recorded within the plot box. Default response will be to reset the region to a range determined by the minima and maxima of the X- and Y- datasets.
 
-      void coordinate_transform_plplot_to_cairo(
+      /** Transform PLplot coordinate system coordinates to Cairo
+       *
+       * This method cannot be overridden in derived classed.
+       * \param x_pl PLplot X-coordinate
+       * \param y_pl PLplot Y-coordinate
+       * \param x_cr Cairo X-coordinate
+       * \param y_cr Cairo Y-coordinate
+       */
+      virtual void coordinate_transform_plplot_to_cairo(
         double x_pl, double y_pl,
-        double &x_cr, double &y_cr); ///< method to calculate the Cairo coordinates corresponding to PLplot coordinates, mostly used after draw, which is necessary after Canvas widget resizing.
+        double &x_cr, double &y_cr) final;
 
-      void coordinate_transform_cairo_to_plplot(
+      /** Transform Cairo coordinate system coordinates to PLplot
+       *
+       * This method cannot be overridden in derived classed.
+       * \param x_cr Cairo X-coordinate
+       * \param y_cr Cairo Y-coordinate
+       * \param x_pl PLplot X-coordinate
+       * \param y_pl PLplot Y-coordinate
+       */
+      virtual void coordinate_transform_cairo_to_plplot(
         double x_cr, double y_cr,
-        double &x_pl, double &y_pl); ///< method to calculate the PLplot coordinates corresponding to Cairo coordinates, mostly used after draw, which is necessary after Canvas widget resizing.
+        double &x_pl, double &y_pl) final;
+
+      /** Transform World coordinate system coordinates to PLplot
+       *
+       * This method takes care of coordinate transformations when using non-linear axes
+       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
+       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
+       * The default implementation does returns output coordinates that is identical to the input.
+       * \param x_wr the \c x world coordinate to be transformed
+       * \param y_wr the \c y world coordinate to be transformed
+       * \param x_pl the new \c x PLplot coordinate
+       * \param y_pl the new \c y PLplot coordinate
+       */
+      virtual void coordinate_transform_world_to_plplot(double x_wr, double y_wr, double &x_pl, double &y_pl);
+
+      /** Transform PLplot coordinate system coordinates to world
+       *
+       * This method takes care of coordinate transformations when using non-linear axes
+       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
+       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
+       * The default implementation does returns output coordinates that is identical to the input.
+       * \param x_pl the \c x PLplot coordinate to be transformed
+       * \param y_pl the \c y PLplot coordinate to be transformed
+       * \param x_wr the new \c x world coordinate
+       * \param y_wr the new \c y world coordinate
+       */
+      virtual void coordinate_transform_plplot_to_world(double x_pl, double y_pl, double &x_wr, double &y_wr);
 
       /** This is a default handler for signal_select_region()
        *
@@ -162,6 +204,8 @@ namespace Gtk {
 
       /** Get the currently visible plotted region
        *
+       * (xmin, ymin) corresponds to the World coordinates of the lower left corner of the visible region,
+       * while (xmax, ymax) corresponds to the World coordinates of the upper right corner of the visible region.
        * \param xmin left X-coordinate
        * \param xmax right X-coordinate
        * \param ymin lower Y-coordinate
@@ -256,30 +300,6 @@ namespace Gtk {
        * \since 2.2
        */
       void set_region_draggable(bool draggable = true);
-
-      /** This method takes care of coordinate transformations when using non-linear axes
-       *
-       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
-       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
-       * This method is a wrapper around the static function with the same name.
-       * \param x_old the \c x world coordinate to be transformed
-       * \param y_old the \c y world coordinate to be transformed
-       * \param x_new the new \c x PLplot coordinate
-       * \param y_new the new \c y PLplot coordinate
-       */
-      virtual void coordinate_transform_world_to_plplot(double x_old, double y_old, double &x_new, double &y_new);
-
-      /** This method takes care of coordinate transformations when using non-linear axes
-       *
-       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
-       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
-       * This method is a wrapper around the static function with the same name.
-       * \param x_old the \c x PLplot coordinate to be transformed
-       * \param y_old the \c y PLplot coordinate to be transformed
-       * \param x_new the new \c x world coordinate
-       * \param y_new the new \c y world coordinate
-       */
-      virtual void coordinate_transform_plplot_to_world(double x_old, double y_old, double &x_new, double &y_new);
 
       /** signal_select_region is emitted whenever a selection box is dragged across a plot
        *
