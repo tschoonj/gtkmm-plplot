@@ -76,6 +76,30 @@ namespace Gtk {
        * \param object the object we are dealing with
        */
       static void coordinate_transform_plplot_to_world(double x_old, double y_old, double *x_new, double *y_new, PLPointer object);
+
+      /** This method takes care of coordinate transformations when using non-linear axes
+       *
+       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
+       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
+       * This method is a wrapper around the static function with the same name.
+       * \param x_old the \c x world coordinate to be transformed
+       * \param y_old the \c y world coordinate to be transformed
+       * \param x_new the new \c x PLplot coordinate
+       * \param y_new the new \c y PLplot coordinate
+       */
+      virtual void coordinate_transform_world_to_plplot(double x_old, double y_old, double &x_new, double &y_new) override;
+
+      /** This method takes care of coordinate transformations when using non-linear axes
+       *
+       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
+       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
+       * This method is a wrapper around the static function with the same name.
+       * \param x_old the \c x PLplot coordinate to be transformed
+       * \param y_old the \c y PLplot coordinate to be transformed
+       * \param x_new the new \c x world coordinate
+       * \param y_new the new \c y world coordinate
+       */
+      virtual void coordinate_transform_plplot_to_world(double x_old, double y_old, double &x_new, double &y_new) override;
     public:
 
       /** Constructor
@@ -197,30 +221,6 @@ namespace Gtk {
        * \return \c true indicates logarithmic scaling, \c false linear scaling.
        */
       bool get_axis_logarithmic_y();
-
-      /** This method takes care of coordinate transformations when using non-linear axes
-       *
-       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
-       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
-       * This method is a wrapper around the static function with the same name.
-       * \param x_old the \c x world coordinate to be transformed
-       * \param y_old the \c y world coordinate to be transformed
-       * \param x_new the new \c x PLplot coordinate
-       * \param y_new the new \c y PLplot coordinate
-       */
-      virtual void coordinate_transform_world_to_plplot(double x_old, double y_old, double &x_new, double &y_new) override;
-
-      /** This method takes care of coordinate transformations when using non-linear axes
-       *
-       * When a plot has logarithmic axes or polar plot style, PLplot requires the user
-       * to transform the dataset into the linear cartesian coordinate system which it uses internally.
-       * This method is a wrapper around the static function with the same name.
-       * \param x_old the \c x PLplot coordinate to be transformed
-       * \param y_old the \c y PLplot coordinate to be transformed
-       * \param x_new the new \c x world coordinate
-       * \param y_new the new \c y world coordinate
-       */
-      virtual void coordinate_transform_plplot_to_world(double x_old, double y_old, double &x_new, double &y_new) override;
 
       friend class Canvas;
     };
