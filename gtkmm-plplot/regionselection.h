@@ -34,6 +34,17 @@ namespace Gtk {
      * to zoom in or out by using the scroll button, or to drag the plotdata around in its plot box by pressing in Shift and pressing the left mouse button in, while moving the mouse around.
      * The default signal handler will initiate a redrawing of the plot, with the visible region set to
      * correspond to the initally drawn box. This is shown in \ref example1 and others.
+     *
+     * \par Coordinate systems
+     *
+     * Anyone interested in deriving this library (or classes that inherit from RegionSelection), will notice that there are three coordinate systems in use.
+     *
+     * 1. Cairo coordinates: the coordinate system used by the Cairo library. All events generated on the Canvas have a corresponding position of where the event was triggered, which will be converted to world coordinates before Gtkmm-PLplot signals are emitted.
+     * 2. PLplot coordinates: the coordinate system used by the PLplot library. Though PLplot supports polar and logarithmic axes and coordinate systems, it has a funny way of doing so, since all data passed to PLplot functions must be according to a traditional Cartesian coordinate system.
+     * 3. World coordinates: the coordinate system as it is shown on the Plot. Unless using a Plot2D in logarithmic mode or using PlotPolar, PLplot coordinates and world coordinates are identical.
+     *
+     * Methods have been provided that allow for coordinate transformations between these three coordinate systems.
+     * Regular users of the library (not hackers!), will only ever be dealing with the World coordinate system, as all transformations are taken care of by Gtkmm-PLplot.
      */
     class RegionSelection : public sigc::trackable {
     private:
@@ -46,10 +57,10 @@ namespace Gtk {
     protected:
       double cairo_range_x[2]; ///< the current range shown on the plot for the X-axis in Cairo coordinates
       double cairo_range_y[2]; ///< the current range shown on the plot for the Y-axis in Cairo coordinates
-      double plotted_range_x[2]; ///< the current range shown on the plot for the X-axis
-      double plotted_range_y[2]; ///< the current range shown on the plot for the Y-axis
-      double plot_data_range_x[2]; ///< the maximum range covered by the X-values of the datasets
-      double plot_data_range_y[2];  ///< the maximum range covered by the Y-values of the datasets
+      double plotted_range_x[2]; ///< the current range shown on the plot for the X-axis in PLplot coordinates (NOT world!!!)
+      double plotted_range_y[2]; ///< the current range shown on the plot for the Y-axis in PLplot coordinates (NOT world!!!)
+      double plot_data_range_x[2]; ///< the maximum range covered by the X-values of the datasets in PLplot coordinates (NOT world!!!)
+      double plot_data_range_y[2];  ///< the maximum range covered by the Y-values of the datasets in PLplot coordinates (NOT world!!!)
       sigc::signal<void, double, double, double, double > _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event()
       sigc::signal<void, double, double, GdkScrollDirection > _signal_zoom_region; ///< signal that gets emitted whenever one zooms in on the plot using the mouse scroll wheel in Canvas::on_scroll_event()
       sigc::signal<void, double, double > _signal_cursor_motion; ///< signal that will be emitted whenever the cursor (usually the mouse) is moved.

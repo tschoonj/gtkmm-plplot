@@ -91,12 +91,9 @@ void RegionSelection::on_double_press(double x, double y) {
 
 void RegionSelection::on_zoom_region(double x, double y, GdkScrollDirection direction) {
   //default implementation -> override in a derived class to get a different behavior
-  double x_left = x - plotted_range_x[0];
-  double x_right = plotted_range_x[1] - x;
-  double y_bottom = y - plotted_range_y[0];
-  double y_top = plotted_range_y[1] - y;
   double effective_scale_factor;
 
+  // calculate effective_scale_factor based on scroll direction
   if (direction == GDK_SCROLL_UP) {
     effective_scale_factor = 1.0 / region_zoom_scale_factor;
   }
@@ -104,14 +101,43 @@ void RegionSelection::on_zoom_region(double x, double y, GdkScrollDirection dire
     effective_scale_factor = region_zoom_scale_factor;
   }
   else {
-    //ignore other directions for now
+    // ignore other directions for now
     return;
   }
+  // get cairo coordinates of (x,y)
+  double cairo_x, cairo_y;
+  coordinate_transform_world_to_plplot(x, y, cairo_x, cairo_y);
+  coordinate_transform_plplot_to_cairo(cairo_x, cairo_y, cairo_x, cairo_y);
+
+  double x_left = cairo_x - cairo_range_x[0];
+  double x_right = cairo_range_x[1] - cairo_x;
+  double y_bottom = cairo_y - cairo_range_y[0];
+  double y_top = cairo_range_y[1] - cairo_y;
+
+  double cairo_range_new_x[2];
+  double cairo_range_new_y[2];
+
+  // calculate new cairo coordinates...
+  cairo_range_new_x[0] = cairo_x - x_left * effective_scale_factor;
+  cairo_range_new_x[1] = cairo_x + x_right * effective_scale_factor;
+  cairo_range_new_y[0] = cairo_y - y_bottom * effective_scale_factor;
+  cairo_range_new_y[1] = cairo_y + y_top * effective_scale_factor;
+
+  double world_range_new_x[2];
+  double world_range_new_y[2];
+
+  // ...and transform into world coordinates
+  coordinate_transform_cairo_to_plplot(cairo_range_new_x[0], cairo_range_new_y[0], world_range_new_x[0], world_range_new_y[0]);
+  coordinate_transform_plplot_to_world(world_range_new_x[0], world_range_new_y[0], world_range_new_x[0], world_range_new_y[0]);
+  coordinate_transform_cairo_to_plplot(cairo_range_new_x[1], cairo_range_new_y[1], world_range_new_x[1], world_range_new_y[1]);
+  coordinate_transform_plplot_to_world(world_range_new_x[1], world_range_new_y[1], world_range_new_x[1], world_range_new_y[1]);
+
+  // call set_region with the new world coordinates
   set_region(
-    x - x_left * effective_scale_factor,
-    x + x_right * effective_scale_factor,
-    y - y_bottom * effective_scale_factor,
-    y + y_top * effective_scale_factor
+    world_range_new_x[0],
+    world_range_new_x[1],
+    world_range_new_y[0],
+    world_range_new_y[1]
   );
 }
 
