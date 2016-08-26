@@ -77,18 +77,11 @@ bool Canvas::on_scroll_event(GdkEventScroll *event) {
   if (inside_plot != nullptr && !selecting && !left_mouse_button_clicked && !shift_pressed) {
     RegionSelection *region_selection = dynamic_cast<RegionSelection *>(inside_plot);
     if (region_selection != nullptr && region_selection->get_region_zoomable()) {
-      double cursor_pl_x, cursor_pl_y;
       double cursor_x, cursor_y;
 
-      region_selection->coordinate_transform_cairo_to_plplot(
+      region_selection->coordinate_transform_cairo_to_world(
         start_cairo[0],
         start_cairo[1],
-        cursor_pl_x,
-        cursor_pl_y
-      );
-      region_selection->coordinate_transform_plplot_to_world(
-        cursor_pl_x,
-        cursor_pl_y,
         cursor_x,
         cursor_y
       );
@@ -204,18 +197,11 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
       // double-click -> zoom out!
       if (event->type == GDK_2BUTTON_PRESS) {
         //convert event coordinates to plot coordinates
-        double cursor_pl_x, cursor_pl_y;
         double cursor_x, cursor_y;
 
-        region_selection->coordinate_transform_cairo_to_plplot(
+        region_selection->coordinate_transform_cairo_to_world(
           start_cairo[0],
           start_cairo[1],
-          cursor_pl_x,
-          cursor_pl_y
-        );
-        region_selection->coordinate_transform_plplot_to_world(
-          cursor_pl_x,
-          cursor_pl_y,
           cursor_x,
           cursor_y
         );
@@ -377,17 +363,10 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
         end_cairo[1] <= region_selection->cairo_range_y[1] &&
         (*plot)->is_showing()) {
       //std::cout << "on_motion_notify_event plot " << plot << std::endl;
-      double cursor_pl_x, cursor_pl_y;
       double cursor_x, cursor_y;
-      region_selection->coordinate_transform_cairo_to_plplot(
+      region_selection->coordinate_transform_cairo_to_world(
         end_cairo[0],
         end_cairo[1],
-        cursor_pl_x,
-        cursor_pl_y
-      );
-      region_selection->coordinate_transform_plplot_to_world(
-        cursor_pl_x,
-        cursor_pl_y,
         cursor_x,
         cursor_y
       );

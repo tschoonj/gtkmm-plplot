@@ -91,6 +91,32 @@ namespace Gtk {
         double x_cr, double y_cr,
         double &x_pl, double &y_pl) final;
 
+      /** Transform World coordinate system coordinates to Cairo
+       *
+       * This method cannot be overridden in derived classed.
+       * \param x_wr World X-coordinate
+       * \param y_wr World Y-coordinate
+       * \param x_cr Cairo X-coordinate
+       * \param y_cr Cairo Y-coordinate
+       * \since 2.2
+       */
+      virtual void coordinate_transform_world_to_cairo(
+        double x_wr, double y_wr,
+        double &x_cr, double &y_cr) final;
+
+      /** Transform Cairo coordinate system coordinates to World
+       *
+       * This method cannot be overridden in derived classed.
+       * \param x_cr Cairo X-coordinate
+       * \param y_cr Cairo Y-coordinate
+       * \param x_wr World X-coordinate
+       * \param y_wr World Y-coordinate
+       * \since 2.2
+       */
+      virtual void coordinate_transform_cairo_to_world(
+        double x_cr, double y_cr,
+        double &x_wr, double &y_wr) final;
+
       /** Transform World coordinate system coordinates to PLplot
        *
        * This method takes care of coordinate transformations when using non-linear axes

@@ -54,8 +54,40 @@ std::vector<double> RegionSelection::on_cursor_drag_motion(double old_x, double 
   if (delta_x == 0.0 && delta_y == 0.0)
     return std::vector<double>{old_x, old_y, new_x, new_y};
 
-  set_region(plotted_range_x[0] - delta_x, plotted_range_x[1] - delta_x,
-    plotted_range_y[0] - delta_y, plotted_range_y[1] - delta_y);
+  // transform old and new coords to cairo
+  double cairo_old_x;
+  double cairo_old_y;
+  double cairo_new_x;
+  double cairo_new_y;
+
+  coordinate_transform_world_to_cairo(old_x, old_y, cairo_old_x, cairo_old_y);
+  coordinate_transform_world_to_cairo(new_x, new_y, cairo_new_x, cairo_new_y);
+
+  double cairo_delta_x = cairo_new_x - cairo_old_x;
+  double cairo_delta_y = cairo_new_y - cairo_old_y;
+
+  double new_world_plotted_range_x[2];
+  double new_world_plotted_range_y[2];
+
+  coordinate_transform_cairo_to_world(
+    cairo_range_x[0] - cairo_delta_x,
+    cairo_range_y[0] - cairo_delta_y,
+    new_world_plotted_range_x[0],
+    new_world_plotted_range_y[0]
+  );
+
+  coordinate_transform_cairo_to_world(
+    cairo_range_x[1] - cairo_delta_x,
+    cairo_range_y[1] - cairo_delta_y,
+    new_world_plotted_range_x[1],
+    new_world_plotted_range_y[1]
+  );
+
+  set_region(
+    new_world_plotted_range_x[0], new_world_plotted_range_x[1],
+    new_world_plotted_range_y[0], new_world_plotted_range_y[1]
+  );
+
   return std::vector<double>{old_x - delta_x, old_y - delta_y, new_x - delta_x, new_y - delta_y};
 }
 
@@ -106,8 +138,7 @@ void RegionSelection::on_zoom_region(double x, double y, GdkScrollDirection dire
   }
   // get cairo coordinates of (x,y)
   double cairo_x, cairo_y;
-  coordinate_transform_world_to_plplot(x, y, cairo_x, cairo_y);
-  coordinate_transform_plplot_to_cairo(cairo_x, cairo_y, cairo_x, cairo_y);
+  coordinate_transform_world_to_cairo(x, y, cairo_x, cairo_y);
 
   double x_left = cairo_x - cairo_range_x[0];
   double x_right = cairo_range_x[1] - cairo_x;
@@ -127,10 +158,8 @@ void RegionSelection::on_zoom_region(double x, double y, GdkScrollDirection dire
   double world_range_new_y[2];
 
   // ...and transform into world coordinates
-  coordinate_transform_cairo_to_plplot(cairo_range_new_x[0], cairo_range_new_y[0], world_range_new_x[0], world_range_new_y[0]);
-  coordinate_transform_plplot_to_world(world_range_new_x[0], world_range_new_y[0], world_range_new_x[0], world_range_new_y[0]);
-  coordinate_transform_cairo_to_plplot(cairo_range_new_x[1], cairo_range_new_y[1], world_range_new_x[1], world_range_new_y[1]);
-  coordinate_transform_plplot_to_world(world_range_new_x[1], world_range_new_y[1], world_range_new_x[1], world_range_new_y[1]);
+  coordinate_transform_cairo_to_world(cairo_range_new_x[0], cairo_range_new_y[0], world_range_new_x[0], world_range_new_y[0]);
+  coordinate_transform_cairo_to_world(cairo_range_new_x[1], cairo_range_new_y[1], world_range_new_x[1], world_range_new_y[1]);
 
   // call set_region with the new world coordinates
   set_region(
@@ -252,6 +281,20 @@ void RegionSelection::coordinate_transform_world_to_plplot(double x_old, double 
 void RegionSelection::coordinate_transform_plplot_to_world(double x_old, double y_old, double &x_new, double &y_new) {
   x_new = x_old;
   y_new = y_old;
+}
+
+void RegionSelection::coordinate_transform_world_to_cairo(double x_old, double y_old, double &x_new, double &y_new) {
+  double x_temp, y_temp;
+
+  coordinate_transform_world_to_plplot(x_old, y_old, x_temp, y_temp);
+  coordinate_transform_plplot_to_cairo(x_temp, y_temp, x_new, y_new);
+}
+
+void RegionSelection::coordinate_transform_cairo_to_world(double x_old, double y_old, double &x_new, double &y_new) {
+  double x_temp, y_temp;
+
+  coordinate_transform_cairo_to_plplot(x_old, y_old, x_temp, y_temp);
+  coordinate_transform_plplot_to_world(x_temp, y_temp, x_new, y_new);
 }
 
 void RegionSelection::get_region(double &xmin, double &xmax, double &ymin, double &ymax) {
