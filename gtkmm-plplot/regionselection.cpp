@@ -24,7 +24,7 @@ using namespace Gtk::PLplot;
 RegionSelection::RegionSelection() :
   region_selectable(true),
   region_zoomable(true),
-  region_draggable(true),
+  region_pannable(true),
   region_zoom_scale_factor(2.0),
   region_selection_color(Gdk::RGBA("Black")),
   region_selection_width(2.0),
@@ -37,7 +37,7 @@ RegionSelection::RegionSelection() :
   this->signal_cursor_motion().connect(sigc::mem_fun(*this, &RegionSelection::on_cursor_motion));
   this->signal_double_press().connect(sigc::mem_fun(*this, &RegionSelection::on_double_press));
   this->signal_zoom_region().connect(sigc::mem_fun(*this, &RegionSelection::on_zoom_region));
-  this->signal_cursor_drag_motion().connect(sigc::mem_fun(*this, &RegionSelection::on_cursor_drag_motion));
+  this->signal_pan().connect(sigc::mem_fun(*this, &RegionSelection::on_pan));
 }
 
 RegionSelection::~RegionSelection() {}
@@ -47,7 +47,7 @@ void RegionSelection::on_select_region(double xmin, double xmax, double ymin, do
   set_region(xmin, xmax, ymin, ymax);
 }
 
-std::vector<double> RegionSelection::on_cursor_drag_motion(double old_x, double old_y, double new_x, double new_y) {
+std::vector<double> RegionSelection::on_pan(double old_x, double old_y, double new_x, double new_y) {
   double delta_x = new_x - old_x;
   double delta_y = new_y - old_y;
 
@@ -186,12 +186,12 @@ void RegionSelection::set_region_zoomable(bool _region_zoomable) {
   region_zoomable = _region_zoomable;
 }
 
-bool RegionSelection::get_region_draggable() {
-  return region_draggable;
+bool RegionSelection::get_region_pannable() {
+  return region_pannable;
 }
 
-void RegionSelection::set_region_draggable(bool _region_draggable) {
-  region_draggable = _region_draggable;
+void RegionSelection::set_region_pannable(bool _region_pannable) {
+  region_pannable = _region_pannable;
 }
 
 double RegionSelection::get_region_zoom_scale_factor() {

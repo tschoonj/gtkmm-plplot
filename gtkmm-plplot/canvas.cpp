@@ -217,19 +217,14 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
     }
     else if (region_selection != nullptr &&
       event->type == GDK_BUTTON_PRESS &&
-      region_selection->get_region_draggable()) {
+      region_selection->get_region_pannable() &&
+      shift_pressed == true) {
       left_mouse_button_clicked = true;
 
       //change cursor if appropriate
       if (get_window()) {
-        if (shift_pressed) {
           Glib::RefPtr<Gdk::Cursor> grabbing = Gdk::Cursor::create(get_window()->get_display(), "grabbing");
           get_window()->set_cursor(grabbing);
-        }
-        else {
-          Glib::RefPtr<Gdk::Cursor> grab= Gdk::Cursor::create(get_window()->get_display(), "grab");
-          get_window()->set_cursor(grab);
-        }
       }
       return true;
     }
@@ -382,14 +377,14 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
       // change cursor to crosshair or system default if necessary
       const Glib::RefPtr<Gdk::Window> window = get_window();
       if (window) {
-        if (region_selection->get_region_draggable() && left_mouse_button_clicked && shift_pressed) {
+        if (region_selection->get_region_pannable() && left_mouse_button_clicked && shift_pressed) {
           Glib::RefPtr<Gdk::Cursor> grabbing = Gdk::Cursor::create(window->get_display(), "grabbing");
           window->set_cursor(grabbing);
-          std::vector<double> rv = region_selection->signal_cursor_drag_motion().emit(inside_plot_current_coords[0], inside_plot_current_coords[1], cursor_x, cursor_y);
+          std::vector<double> rv = region_selection->signal_pan().emit(inside_plot_current_coords[0], inside_plot_current_coords[1], cursor_x, cursor_y);
           cursor_x = rv[2];
           cursor_y = rv[3];
         }
-        else if (region_selection->get_region_draggable() && shift_pressed) {
+        else if (region_selection->get_region_pannable() && shift_pressed) {
           Glib::RefPtr<Gdk::Cursor> grab = Gdk::Cursor::create(window->get_display(), "grab");
           window->set_cursor(grab);
         }
@@ -399,7 +394,7 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
         }
       }
 
-      // this should be emitted after signal_cursor_drag_motion(), as cursor_x and cursor_y may have changed
+      // this should be emitted after signal_pan(), as cursor_x and cursor_y may have changed
       region_selection->signal_cursor_motion().emit(cursor_x, cursor_y);
 
       cursor_checked = true;
@@ -456,7 +451,7 @@ bool Canvas::on_key_press_event(GdkEventKey *event) {
   RegionSelection *region_selection = dynamic_cast<RegionSelection *>(inside_plot);
 
   if (region_selection != nullptr &&
-    region_selection->get_region_draggable() &&
+    region_selection->get_region_pannable() &&
     (event->keyval == GDK_KEY_Shift_L || event->keyval == GDK_KEY_Shift_R)
     ) {
     shift_pressed = true;
