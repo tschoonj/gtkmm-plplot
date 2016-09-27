@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/plot.h>
 #include <cstdlib>
 #include <glib.h>
+#include <plstream.h>
 
 using namespace Gtk::PLplot;
 

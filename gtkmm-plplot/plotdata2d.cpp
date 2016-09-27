@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/plotdata2d.h>
 #include <gtkmm-plplot/exception.h>
 #include <gtkmm-plplot/utils.h>
+#include <plstream.h>
 
 using namespace Gtk::PLplot;
 

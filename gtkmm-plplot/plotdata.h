@@ -18,13 +18,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMMPLPLOT_PLOT_DATA_H
 #define GTKMMPLPLOT_PLOT_DATA_H
 
-#include <plstream.h>
 #include <cairomm/cairomm.h>
 #include <gdkmm/rgba.h>
 #include <gtkmm-plplot/object.h>
 #include <gtkmm-plplot/enums.h>
 
 #define PLOTDATA_DEFAULT_LINE_WIDTH 1.0
+
+class plstream;
 
 namespace Gtk {
   namespace PLplot {

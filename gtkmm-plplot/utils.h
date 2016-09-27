@@ -24,11 +24,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 #include <vector>
 #include <valarray>
-#include <plstream.h>
 #include <gdkmm/rgba.h>
 #include <gtkmm-plplot/enums.h>
 
 #define GTKMM_PLPLOT_DEFAULT_COLOR_INDEX 2
+
+class plstream;
 
 namespace Gtk {
   namespace PLplot {

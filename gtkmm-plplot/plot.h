@@ -19,11 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GTKMM_PLPLOT_PLOT_H
 
 #include <vector>
-#include <plstream.h>
 #include <cairomm/cairomm.h>
 #include <glibmm/ustring.h>
 #include <gtkmm-plplot/object.h>
 #include <gtkmm-plplot/plotdata.h>
+
+class plstream;
 
 namespace Gtk {
   namespace PLplot {

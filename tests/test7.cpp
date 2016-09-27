@@ -75,8 +75,8 @@ namespace Test7 {
       fs.exceptions(std::ifstream::failbit | std::ifstream::badbit | std::ifstream::eofbit);
 
       // 11 x 11 dataset (I know the file layout and the data dimensions already)
-      const PLINT nx = 11;
-      const PLINT ny = 11;
+      const int nx = 11;
+      const int ny = 11;
       std::vector<double> x(nx);
       std::vector<double> y(ny);
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED

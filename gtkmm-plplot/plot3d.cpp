@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/utils.h>
 #include <iostream>
 #include <gdkmm/rgba.h>
+#include <plstream.h>
 
 using namespace Gtk::PLplot;
 

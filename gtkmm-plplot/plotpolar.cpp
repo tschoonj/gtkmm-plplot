@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gdkmm/general.h>
 #include <cmath>
 #include <sstream>
+#include <plstream.h>
 
 #ifndef M_SQRT2
   #define M_SQRT2 (sqrt(2.0))

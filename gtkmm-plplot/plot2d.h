@@ -24,7 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/regionselection.h>
 #include <gtkmm-plplot/enums.h>
 
-
 namespace Gtk {
   namespace PLplot {
     /** \class Plot2D plot2d.h <gtkmm-plplot/plot2d.h>
@@ -62,7 +61,7 @@ namespace Gtk {
        * \param y_new the new \c y PLplot coordinate
        * \param object the object we are dealing with
        */
-      static void coordinate_transform_world_to_plplot(double x_old, double y_old, double *x_new, double *y_new, PLPointer object);
+      static void coordinate_transform_world_to_plplot(double x_old, double y_old, double *x_new, double *y_new, void *object);
 
       /** This static method takes care of coordinate transformations when using non-linear axes
        *
@@ -75,7 +74,7 @@ namespace Gtk {
        * \param y_new the new \c y world coordinate
        * \param object the object we are dealing with
        */
-      static void coordinate_transform_plplot_to_world(double x_old, double y_old, double *x_new, double *y_new, PLPointer object);
+      static void coordinate_transform_plplot_to_world(double x_old, double y_old, double *x_new, double *y_new, void *object);
 
       /** This method takes care of coordinate transformations when using non-linear axes
        *

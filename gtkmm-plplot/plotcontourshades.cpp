@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/utils.h>
 #include <iostream>
 #include <plConfig.h>
+#include <plstream.h>
 
 #ifdef GTKMM_PLPLOT_PLPLOT_5_11_0
 	#define PLCALLBACK plcallback
