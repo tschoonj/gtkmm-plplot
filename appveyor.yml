@@ -31,4 +31,6 @@ build_script:
     #- perl -i".bak" -pe "s/^test -n \".DJDIR\"/#$&/" configure
     #- bash -lc "./configure && make && make check && make distcheck"
 
-
+branches:
+  only:
+    - master
