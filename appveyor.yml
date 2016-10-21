@@ -21,7 +21,7 @@ before_build:
     # install mm-common
     - bash -lc "wget https://download.gnome.org/sources/mm-common/0.9/mm-common-0.9.10.tar.xz && tar xvfJ mm-common-0.9.10.tar.xz && cd mm-common-0.9.10 && ./configure && make && make install"
     # install PLplot
-    - bash -lc "wget http://lvserver.ugent.be/~schoon/plplot-5.11.1.tar.gz && tar xvfz plplot-5.11.1.tar.gz && cd plplot-5.11.1 && cmake -G \"MSYS Makefiles\" -DENABLE_DYNDRIVERS=OFF -DPLD_wingcc=OFF -DCMAKE_INSTALL_PREFIX=/usr/local . && make && make install"
+    - bash -lc "git clone --depth 1 git://git.code.sf.net/p/plplot/plplot && cd plplot && cmake -G \"MSYS Makefiles\" -DENABLE_DYNDRIVERS=OFF -DPLD_wingcc=OFF -DCMAKE_INSTALL_PREFIX=/usr/local . && make && make install"
 
 build_script:
     - cd %APPVEYOR_BUILD_FOLDER%
