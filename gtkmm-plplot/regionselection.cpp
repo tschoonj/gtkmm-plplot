@@ -304,10 +304,11 @@ void RegionSelection::get_region(double &xmin, double &xmax, double &ymin, doubl
 }
 
 void RegionSelection::set_region(double xmin, double xmax, double ymin, double ymax) {
-  if (xmin == xmax && ymin == ymax) {
-    //due to signal propagation, this function will actually be called twice on a double-click event,
-    //the second time after the plot has already been resized to its normal geometry
-    //this condition avoids the warning message...
+  if (xmin == xmax || ymin == ymax) {
+    // due to signal propagation, this function will actually be called twice on a double-click event,
+    // the second time after the plot has already been resized to its normal geometry
+    // this condition avoids the warning message...
+    // it also blocks zero width or length selection boxes, which would otherwise lead to the exception being thrown
     return;
   }
 
