@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GTKMMPLPLOT_LEGEND_H
 
 #include <vector>
+#include <gdkmm/rgba.h>
 #include <gtkmm-plplot/plotdata.h>
 #include <gtkmm-plplot/enums.h>
 

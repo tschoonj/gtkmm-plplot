@@ -21,8 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include <cairomm/cairomm.h>
 #include <glibmm/ustring.h>
+#include <gdkmm/rgba.h>
 #include <gtkmm-plplot/object.h>
 #include <gtkmm-plplot/plotdata.h>
+
 
 class plstream;
 
