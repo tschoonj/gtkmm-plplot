@@ -29,9 +29,8 @@ PlotData2D::PlotData2D(
   LineStyle _line_style,
   double _line_width) :
   Glib::ObjectBase("GtkmmPLplotPlotData2D"),
-  PlotData(),
-  x(_x), y(_y), color(_color), line_style(_line_style),
-  line_width(_line_width),
+  PlotDataLine(_color, _line_style, _line_width),
+  x(_x), y(_y),
   symbol(""), symbol_color(Gdk::RGBA("Red")),
   symbol_scale_factor(1.0) {
 
@@ -71,33 +70,6 @@ PlotData2D::PlotData2D(
   _color, _line_style, _line_width) {}
 
 PlotData2D::~PlotData2D() {}
-
-void PlotData2D::set_color(Gdk::RGBA _color) {
-  color = _color;
-  _signal_changed.emit();
-}
-
-Gdk::RGBA PlotData2D::get_color() {
-  return color;
-}
-
-void PlotData2D::set_line_style(LineStyle _line_style) {
-  line_style = _line_style;
-  _signal_changed.emit();
-}
-
-LineStyle PlotData2D::get_line_style() {
-  return line_style;
-}
-
-void PlotData2D::set_line_width(double _line_width) {
-  line_width = _line_width;
-  _signal_changed.emit();
-}
-
-double PlotData2D::get_line_width() {
-  return line_width;
-}
 
 void PlotData2D::set_symbol(Glib::ustring _symbol) {
   symbol = _symbol;

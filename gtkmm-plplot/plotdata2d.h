@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include <valarray>
 #include <glibmm/ustring.h>
-#include <gtkmm-plplot/plotdata.h>
+#include <gtkmm-plplot/plotdataline.h>
 #include <gdkmm/rgba.h>
 
 
@@ -39,7 +39,7 @@ namespace Gtk {
      *  be picked up by the \c canvas that will hold the plot.
      *  Several of the methods that are offered by this class are demonstrated in \ref example5
      */
-    class PlotData2D : public PlotData {
+    class PlotData2D : public PlotDataLine {
     private:
       PlotData2D() = delete; ///< no default constructor
       PlotData2D &operator=(const PlotData2D &) = delete; ///< no assignment operator
@@ -47,9 +47,6 @@ namespace Gtk {
     protected:
       std::vector<double> x; ///< The X-values of the dataset
       std::vector<double> y; ///< The Y-values of the dataset
-      Gdk::RGBA color; ///< The color the dataset will be drawn in
-      LineStyle line_style; ///< The linestyle that will be used for this dataset in the plot
-      double line_width; ///< The line width of the dataset. Default is 1.0
       Glib::ustring symbol; ///< If not an empty string, the symbol will be plotted at each of the data points from \c x and \c y.
       Gdk::RGBA symbol_color; ///< The color the symbol will be plotted in
       double symbol_scale_factor; ///< Scale factor that will determine the size of the symbols. Default is 1.
@@ -142,42 +139,6 @@ namespace Gtk {
        * \param ymax Y minimum value
        */
       virtual void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax);
-
-      /** Changes the color of the dataset
-       *
-       * \param color The new dataset color
-       */
-      void set_color(Gdk::RGBA color);
-
-      /** Get the current dataset color
-       *
-       * \return the current dataset color
-       */
-      Gdk::RGBA get_color();
-
-      /** Changes the line style of the dataset
-       *
-       * \param line_style The new dataset line style
-       */
-      void set_line_style(LineStyle line_style);
-
-      /** Get the current dataset line style
-       *
-       * \return the current dataset line style
-       */
-      LineStyle get_line_style();
-
-      /** Changes the line width of the dataset
-       *
-       * \param line_width The new dataset line width
-       */
-      void set_line_width(double line_width);
-
-      /** Get the current dataset line width
-       *
-       * \return the current dataset line width
-       */
-      double get_line_width();
 
       /** Set the plot symbol
        *
