@@ -29,7 +29,6 @@ PlotDataLine::PlotDataLine(
   line_style(_line_style),
   line_width(_line_width) {}
 
-
 void PlotDataLine::set_color(Gdk::RGBA _color) {
   color = _color;
   _signal_changed.emit();
@@ -56,3 +55,5 @@ void PlotDataLine::set_line_width(double _line_width) {
 double PlotDataLine::get_line_width() {
   return line_width;
 }
+
+PlotDataLine::~PlotDataLine() {}

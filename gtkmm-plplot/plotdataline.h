@@ -54,6 +54,11 @@ namespace Gtk {
                    LineStyle line_style,
                    double line_width);
     public:
+      /** Destructor
+       *
+       */
+      virtual ~PlotDataLine();
+
       /** Changes the color of the dataset
        *
        * \param color The new dataset color
