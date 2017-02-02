@@ -30,7 +30,7 @@ namespace Gtk {
      *  This class extends PlotData with support for drawing lines, defined by their color,
      *  style and width. Getters and setters are provided for each of these properties.
      *  Important is that whenever a property is changed, \c signal_changed() is emitted, which will eventually
-    *  be picked up by the \c canvas that will hold the plot
+     *  be picked up by the \c canvas that will hold the plot
      */
     class PlotDataLine : public PlotData {
     private:
@@ -86,6 +86,7 @@ namespace Gtk {
       /** Changes the line width of the dataset
        *
        * \param line_width The new dataset line width
+       * \exception Gtk::PLplot::Exception
        */
       void set_line_width(double line_width);
 
