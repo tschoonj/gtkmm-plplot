@@ -16,16 +16,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <gtkmm-plplot/plotdatahistogram.h>
+#include <gtkmm-plplot/exception.h>
 
 using namespace Gtk::PLplot;
 
 PlotDataHistogram::PlotDataHistogram(
+  double _datmin,
+  double _datmax,
+  int _nbins,
   bool _expand_bins,
   bool _empty_bins) :
   Glib::ObjectBase("GtkmmPlplotPlotDataHistogram"),
   PlotDataLine(Gdk::RGBA("red"), CONTINUOUS, PLOTDATA_DEFAULT_LINE_WIDTH),
+  datmin(_datmin),
+  datmax(_datmax),
+  nbins(_nbins),
   expand_bins(_expand_bins),
-  empty_bins(_empty_bins) {}
+  empty_bins(_empty_bins) {
+
+  if (datmin >= datmax)
+    throw Exception("PlotDataHistogram::PlotDataHistogram -> datmax must be greater than datmin");
+
+  if (nbins < 3)
+    throw Exception("PlotDataHistogram::PlotDataHistogram -> nbins must greater than or equal to 3");
+}
 
 PlotDataHistogram::~PlotDataHistogram() {}
 
@@ -49,4 +63,16 @@ void PlotDataHistogram::set_empty_bins(bool _empty_bins) {
 
 bool PlotDataHistogram::get_empty_bins() {
   return empty_bins;
+}
+
+double PlotDataHistogram::get_data_minimum() {
+  return datmin;
+}
+
+double PlotDataHistogram::get_data_maximum() {
+  return datmax;
+}
+
+int PlotDataHistogram::get_nbins() {
+  return nbins;
 }

@@ -40,18 +40,105 @@ namespace Gtk {
       PlotDataHistogramUnbinned() = delete; ///< no default constructor
       PlotDataHistogramUnbinned &operator=(const PlotDataHistogramUnbinned &) = delete; ///< no assignment operator
       PlotDataHistogramUnbinned(const PlotDataHistogramUnbinned &source) = delete; ///< no default copy constructor;
+      double *x; ///< the X-values of the bins
+      double *y; ///< the Y-values (heights) of the bins
     protected:
-      /* unbinned data variables */
       std::vector<double> data; ///< unbinned data
-      double datmin; ///< Left-hand edge of the lowest-valued bin
-      double datmax; ///< Right-hand edge of the highest-valued bin
-      int nbin; ///< Number of bins into which to divide the data
+      bool ignore_outliers; ///< flag that will determine what happens to outliers, i.e. data outside of datmin and datmax
+      void rebin(); ///< rebin the data
+    public:
+      /** Constructor
+       *
+       * This constructor initializes a new dataset for a PlotHistogram from unbinned data.
+       * \param data the unbinned data, as std::vector
+       * \param datmin left-hand edge of the lowest-valued bin
+       * \param datmax right-hand edge of the highest-valued bin
+       * \param nbins number of bins into which to divide the data (minimum = 3)
+       * \exception Gtk::PLplot::Exception
+       */
+      PlotDataHistogramUnbinned(const std::vector<double> &data,
+                                double datmin,
+                                double datmax,
+                                int nbins);
+
+      /** Constructor
+       *
+       * This constructor initializes a new dataset for a PlotHistogram from unbinned data.
+       * \param data the unbinned data, as std::valarray
+       * \param datmin left-hand edge of the lowest-valued bin
+       * \param datmax right-hand edge of the highest-valued bin
+       * \param nbins number of bins into which to divide the data (minimum = 3)
+       * \exception Gtk::PLplot::Exception
+       */
+      PlotDataHistogramUnbinned(const std::valarray<double> &data,
+                                double datmin,
+                                double datmax,
+                                int nbins);
+
+      /** Destructor
+       *
+       */
+      virtual ~PlotDataHistogramUnbinned();
+
+      /** Add a single datapoint to the unbinned data
+       *
+       * This will lead to the bins being recalculated, which will be reflected
+       * in the plot being updated.
+       * \param value a new value to add to the unbinned data
+       */
+      virtual void add_datapoint(double value);
+
+      /** Sets the left-hand edge of the lowest-valued bin
+       *
+       * This value must be less than the right-hand edge of the highest-valued bin (obtained using get_data_maximum())
+       * \param datmin the new value
+       * \exception Gtk::PLplot::Exception
+       */
+      void set_data_minimum(double datmin);
+
+      /** Sets the right-hand edge of the highest-valued bin
+       *
+       * This value must be more than the left-hand edge of the lowest-valued bin (obtained using get_data_minimum())
+       * \param datmax the new value
+       * \exception Gtk::PLplot::Exception
+       */
+      void set_data_maximum(double datmax);
+
+      /** Sets the number of histogram bins
+       *
+       * This value must be greater than or equal to 3
+       * \param nbins the new value
+       * \exception Gtk::PLplot::Exception
+       */
+      void set_nbins(int nbins);
+
+      /** Get whether outliers should be ignored or added to the lowest or highest-valued bins.
+       *
+       * \returns the requested value
+       */
+      bool get_ignore_outliers();
+
+      /** Sets whether outliers should be ignored or added to the lowest or highest-valued bins.
+       *
+       * \param ignore_outliers the new value
+       */
+      void set_ignore_outliers(bool ignore_outliers);
+
+      /** Method to draw the dataset
+       *
+       * This method is virtual allowing inheriting classes to implement their own method with the same signature.
+       * \param cr the cairo context to draw to.
+       * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
+       */
+      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+
+      /** Get dataset extremes
+       *
+       * Will be used in determining the box and its axes
+       */
+      virtual void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) override;
     };
   }
 }
-
-
-
-
 
 #endif
