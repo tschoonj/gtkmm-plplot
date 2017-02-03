@@ -28,6 +28,8 @@ gtkmm_plplotinclude_HEADERS = \
                               plotdata2derrorxy.h \
                               plotdataline.h \
                               plotdatahistogram.h \
+                              plotdatahistogramunbinned.h \
+                              plothistogram.h \
                               $(NULL)
 
 gtkmm_plplotbaseinclude_HEADERS = gtkmm-plplot.h
@@ -54,6 +56,7 @@ libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_SOURCES = $(gtkmm_plplotinclude_HE
                                  plotdata2derrorxy.cpp \
                                  plotdataline.cpp \
                                  plotdatahistogram.cpp \
+                                 plothistogram.cpp \
                                  $(NULL)
 
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_CPPFLAGS = $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS)

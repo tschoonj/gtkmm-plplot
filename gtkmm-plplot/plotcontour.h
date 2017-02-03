@@ -81,7 +81,6 @@ namespace Gtk {
 
       /** Add a single PlotDataSurface dataset to the plot
        *
-       * This will only work if the initial data set has been removed from the \c plot_data vector! PlotDataSurface allows just one dataset...
        * \param data dataset to be added to the plot
        * \exception Gtk::PLplot::Exception
        */
@@ -185,7 +184,6 @@ namespace Gtk {
        * \param width the width of the Canvas widget
        * \param height the height of the Canvas widget
        */
-      //void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, plstream *_pls, int width, int height);
       virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
 
       friend class Canvas;
