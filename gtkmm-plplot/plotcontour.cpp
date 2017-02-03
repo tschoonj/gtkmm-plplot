@@ -214,7 +214,7 @@ void PlotContour::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int w
   pls->vpor(0.1, 0.9, 0.1, 0.9);
   pls->wind(plotted_range_x[0], plotted_range_x[1],
             plotted_range_y[0], plotted_range_y[1]);
-  pls->box( "bcnst", 0.0, 0, "bcnstv", 0.0, 0 );
+  pls->box("bcnst", 0.0, 0, "bcnstv", 0.0, 0);
 
 
   //set the label color
@@ -222,7 +222,7 @@ void PlotContour::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int w
 
   pls->lab(axis_title_x.c_str(), axis_title_y.c_str(), plot_title.c_str());
 
-  //thinks to set before drawing:
+  //things to set before drawing:
   // 1) edge_color
   // 2) edge_width
   change_plstream_color(pls, edge_color);

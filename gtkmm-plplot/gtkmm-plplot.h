@@ -35,9 +35,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/plotdata2derrorxy.h>
 #include <gtkmm-plplot/plotdata2derrory.h>
 #include <gtkmm-plplot/plotdata3d.h>
+#include <gtkmm-plplot/plotdatahistogram.h>
+#include <gtkmm-plplot/plotdatahistogramunbinned.h>
 #include <gtkmm-plplot/plotdataline.h>
 #include <gtkmm-plplot/plotdatapolar.h>
 #include <gtkmm-plplot/plotdatasurface.h>
+#include <gtkmm-plplot/plothistogram.h>
 #include <gtkmm-plplot/regionselection.h>
 #include <gtkmm-plplot/utils.h>
 

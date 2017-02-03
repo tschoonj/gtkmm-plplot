@@ -246,9 +246,7 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
 
   draw_plot_init(cr, width, height);
 
-  int plplot_axis_style;
-
-  plplot_axis_style = box_style;
+  int plplot_axis_style = box_style;
 
   if (box_style >= 0 ) {
     if (log10_x && log10_y)

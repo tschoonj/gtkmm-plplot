@@ -73,6 +73,8 @@ namespace Gtk {
        * \return the current empty bins drawing behavior
        */
       bool get_empty_bins();
+
+      virtual void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) = 0;
     };
   }
 }
