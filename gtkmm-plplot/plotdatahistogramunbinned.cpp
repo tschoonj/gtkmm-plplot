@@ -17,6 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot/plotdatahistogramunbinned.h>
 #include <gtkmm-plplot/exception.h>
+#include <gtkmm-plplot/utils.h>
+#include <algorithm>
+#include <plstream.h>
 
 using namespace Gtk::PLplot;
 
@@ -105,13 +108,57 @@ void PlotDataHistogramUnbinned::set_ignore_outliers(bool _ignore_outliers) {
 }
 
 void PlotDataHistogramUnbinned::rebin() {
-  // TODO
+  if (x)
+    delete[] x;
+  x = new double[nbins];
+
+  if (y)
+    delete[] y;
+  y = new double[nbins];
+
+  /* shamelessly stolen from plhist.c */
+  double dx = ( datmax - datmin ) / nbins;
+
+  for (int i = 0; i < nbins; i++ ) {
+    x[i] = datmin + i * dx;
+    y[i] = 0.0;
+  }
+
+  for (int i = 0; i < data.size(); i++ ) {
+    int bin = (int) ( ( data[i] - datmin ) / dx );
+    if (ignore_outliers == false) {
+      bin = bin > 0 ? bin : 0;
+      bin = bin < nbins ? bin : nbins - 1;
+      y[bin]++;
+    }
+    else if (bin >= 0 && bin < nbins ) {
+      y[bin]++;
+    }
+  }
 }
 
 void PlotDataHistogramUnbinned::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) {
-  // TODO
+  if (!is_showing())
+    return;
+
+  int flags = 0;
+  if (expand_bins == false)
+    flags |= PL_BIN_NOEXPAND;
+  if (empty_bins == false)
+    flags |= PL_BIN_NOEMPTY;
+
+  // plot the histogram if line_style allows for it...
+  if (line_style != LineStyle::NONE) {
+    change_plstream_color(pls, color);
+    pls->lsty(line_style);
+    pls->width(line_width);
+    pls->bin(nbins, x, y, flags);
+  }
 }
 
 void PlotDataHistogramUnbinned::get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) {
-  // TODO
+  xmin = datmin;
+  xmax = datmax;
+  ymin = 0.0;
+  ymax = 1.1 * *std::max_element(y, y + nbins);
 }
