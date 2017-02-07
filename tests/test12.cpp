@@ -27,6 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/label.h>
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/notebook.h>
+#include <functional>
+#include <random>
 
 #ifndef M_PI
 #define M_PI (3.14159265358979323846)
@@ -163,9 +165,9 @@ namespace Test12 {
   public:
     HistogramUnbinnedTab(Gtk::PLplot::PlotDataHistogramUnbinned *_histogram_data, Glib::ustring x_title, Glib::ustring y_title, Glib::ustring plot_title) :
     HistogramTab(_histogram_data, x_title, y_title, plot_title),
-    datmin_adj(Gtk::Adjustment::create(-1.1, -1.1, 1.09, 0.1)),
-    datmax_adj(Gtk::Adjustment::create(1.1, -1.09, 1.1, 0.1)),
-    nbins_adj(Gtk::Adjustment::create(44, 3, 100, 1)),
+    datmin_adj(Gtk::Adjustment::create(_histogram_data->get_data_minimum(), _histogram_data->get_data_minimum(), _histogram_data->get_data_maximum() - 0.01, 0.1)),
+    datmax_adj(Gtk::Adjustment::create(_histogram_data->get_data_maximum(), _histogram_data->get_data_minimum() + 0.01, _histogram_data->get_data_maximum(), 0.1)),
+    nbins_adj(Gtk::Adjustment::create(_histogram_data->get_nbins(), 3, 100, 1)),
     datmin_spin(datmin_adj, 0.1, 1),
     datmax_spin(datmax_adj, 0.1, 1),
     nbins_spin(nbins_adj, 1, 0)
@@ -252,12 +254,29 @@ namespace Test12 {
     }
   };
 
+  class HistogramUnbinnedWithAddButtonTab : public HistogramUnbinnedTab {
+  private:
+    Gtk::Button add_data_button;
+    HistogramUnbinnedWithAddButtonTab() = delete;
+  public:
+    HistogramUnbinnedWithAddButtonTab(Gtk::PLplot::PlotDataHistogramUnbinned *_histogram_data, Glib::ustring x_title, Glib::ustring y_title, Glib::ustring plot_title, std::function<void()> add_data_function) :
+    HistogramUnbinnedTab(_histogram_data, x_title, y_title, plot_title),
+    add_data_button("Add 10 data points") {
+      add_data_button.set_hexpand(false);
+      add_data_button.set_halign(Gtk::ALIGN_CENTER);
+      add_data_button.signal_clicked().connect(add_data_function);
+
+      attach(add_data_button, 0, 5, 4, 1);
+    }
+  };
 
   class Window : public Gtk::Window {
   private:
     Gtk::Notebook notebook;
+    std::mt19937 gen;
+    std::normal_distribution<> d;
   public:
-    Window() : notebook()/*, tab1()*/ {
+    Window() : notebook(), gen(1234), d(0, 1){
       // general window and canvas settings
       set_default_size(720, 580);
       Gdk::Geometry geometry;
@@ -282,7 +301,33 @@ namespace Test12 {
           )
         );
 
+      // page2: Gaussian distribution
+      std::vector<double> data2;
+      for (size_t i = 0 ; i < 100 ; i++)
+        data2.push_back(d(gen));
+      Gtk::PLplot::PlotDataHistogramUnbinned *histogram_data2 = Gtk::manage(
+              new Gtk::PLplot::PlotDataHistogramUnbinned(
+                data2, -5.0, 5, 10
+              )
+            );
+      HistogramUnbinnedTab *tab2 =
+        Gtk::manage(
+          new HistogramUnbinnedWithAddButtonTab(
+            histogram_data2,
+            "Value",
+            "Frequency",
+            "Normal distribution",
+            [histogram_data2, this](){ /* function that will be called whenever the add_data_button is clicked */
+              for (size_t i = 0 ; i < 10 ; i++)
+                histogram_data2->add_datapoint(d(gen));
+            }
+          )
+        );
+
+
+      // append pages
       notebook.append_page(*tab1, "Histogram 1");
+      notebook.append_page(*tab2, "Histogram 2");
       add(notebook);
       set_border_width(5);
       notebook.show_all();
