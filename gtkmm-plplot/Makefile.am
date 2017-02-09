@@ -29,6 +29,7 @@ gtkmm_plplotinclude_HEADERS = \
                               plotdataline.h \
                               plotdatahistogram.h \
                               plotdatahistogramunbinned.h \
+                              plotdatahistogrambinned.h \
                               plothistogram.h \
                               $(NULL)
 
@@ -58,6 +59,7 @@ libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_SOURCES = $(gtkmm_plplotinclude_HE
                                  plotdatahistogram.cpp \
                                  plothistogram.cpp \
                                  plotdatahistogramunbinned.cpp \
+                                 plotdatahistogrambinned.cpp \
                                  $(NULL)
 
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_CPPFLAGS = $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS)
