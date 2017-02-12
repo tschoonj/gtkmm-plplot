@@ -23,13 +23,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using namespace Gtk::PLplot;
 
+double PlotDataHistogramBinned::get_new_datmin(
+  std::vector<double> data_x,
+  bool centred) {
+
+  if (!centred) {
+    return data_x.front();
+  } else {
+    return data_x[0] - 0.5 * (data_x[1] - data_x[0]);
+  }
+}
+
+double PlotDataHistogramBinned::get_new_datmax(
+  std::vector<double> data_x,
+  bool centred) {
+
+  if (!centred) {
+    return data_x[data_x.size()-1] + (data_x[data_x.size()-1] - data_x[data_x.size()-2]);
+  } else {
+    return data_x[data_x.size()-1] + 0.5 * (data_x[data_x.size()-1] - data_x[data_x.size()-2]);
+  }
+}
+
 PlotDataHistogramBinned::PlotDataHistogramBinned(
   const std::vector<double> &_data_x,
   const std::vector<double> &_data_y,
   bool _centred) :
   Glib::ObjectBase("GtkmmPlplotPlotDataHistogramBinned"),
-  // TODO: this needs revision as datmax corresponds to the right-hand edge of the highest-valued bin
-  PlotDataHistogram(_data_x.front(), _data_x.back(), _data_x.size()),
+  PlotDataHistogram(get_new_datmin(_data_x, _centred), get_new_datmax(_data_x, _centred), _data_x.size()),
   data_x(_data_x),
   data_y(_data_y),
   centred(_centred) {
@@ -65,6 +86,8 @@ void PlotDataHistogramBinned::set_centred(bool _centred) {
   if (centred == _centred)
     return;
   centred = _centred;
+  datmin = get_new_datmin(data_x, centred);
+  datmax = get_new_datmax(data_x, centred);
   _signal_data_modified.emit();
 }
 
@@ -94,8 +117,8 @@ void PlotDataHistogramBinned::draw_plot_data(const Cairo::RefPtr<Cairo::Context>
 }
 
 void PlotDataHistogramBinned::get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) {
-  /*xmin = datmin;
+  xmin = datmin;
   xmax = datmax;
   ymin = 0.0;
-  ymax = 1.1 * *std::max_element(y, y + nbins);*/
+  ymax = 1.1 * *std::max_element(data_y.begin(), data_y.end());
 }

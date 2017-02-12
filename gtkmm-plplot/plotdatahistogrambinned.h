@@ -44,6 +44,8 @@ namespace Gtk {
       std::vector<double> data_x; ///< bin X-values, must be monotonicly increasing!
       std::vector<double> data_y; ///< bin Y-values (heights)
       bool centred; ///< if \c true, yhe bin boundaries are to be midway between the \c data_x values. If the values in \c data_x are equally spaced, the values are the center values of the bins.
+      static double get_new_datmin(std::vector<double> data_x, bool centred); ///< static method to calculate the data minumum
+      static double get_new_datmax(std::vector<double> data_x, bool centred); ///< static method to calculate the data maximum
     public:
       /** Constructor
        *
