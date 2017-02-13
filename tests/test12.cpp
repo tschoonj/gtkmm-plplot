@@ -151,6 +151,32 @@ namespace Test12 {
     }
   };
 
+  class HistogramBinnedTab : public HistogramTab {
+  private:
+    Gtk::Switch centred;
+    HistogramBinnedTab() = delete;
+  public:
+    HistogramBinnedTab(Gtk::PLplot::PlotDataHistogramBinned *_histogram_data, Glib::ustring x_title, Glib::ustring y_title, Glib::ustring plot_title) :
+    HistogramTab(_histogram_data, x_title, y_title, plot_title) {
+      Gtk::Label *label;
+
+      label = Gtk::manage(new Gtk::Label("X-data is centred"));
+      label->set_halign(Gtk::ALIGN_END);
+      label->set_hexpand(false);
+      label->set_vexpand(false);
+      attach(*label, 0, 3, 1, 1);
+
+      centred.set_halign(Gtk::ALIGN_START);
+      centred.set_hexpand(false);
+      centred.set_vexpand(false);
+      centred.set_active(_histogram_data->get_centred());
+      centred.property_active().signal_changed().connect([this, _histogram_data](){
+        _histogram_data->set_centred(centred.get_active());
+      });
+      attach(centred, 1, 3, 1, 1);
+    }
+  };
+
   class HistogramUnbinnedTab : public HistogramTab {
   private:
   /*  Gtk::Button add_data_button; */
@@ -324,10 +350,27 @@ namespace Test12 {
           )
         );
 
+      std::valarray<double> data3_x = Gtk::PLplot::indgen_va(21) - 10.0;
+      std::valarray<double> data3_y = exp(-1.0 * data3_x * data3_x / 2.0) / sqrt(2.0 * M_PI);
+      Gtk::PLplot::PlotDataHistogramBinned *histogram_data3 = Gtk::manage(
+              new Gtk::PLplot::PlotDataHistogramBinned(
+                data3_x, data3_y
+              )
+            );
+      HistogramBinnedTab *tab3 =
+        Gtk::manage(
+          new HistogramBinnedTab(
+            histogram_data3,
+            "Value",
+            "Frequency",
+            "Normal distribution"
+          )
+        );
 
       // append pages
       notebook.append_page(*tab1, "Histogram 1");
       notebook.append_page(*tab2, "Histogram 2");
+      notebook.append_page(*tab3, "Histogram 3");
       add(notebook);
       set_border_width(5);
       notebook.show_all();
