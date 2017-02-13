@@ -25,11 +25,13 @@
  *  image10.src = "test10.png"
  *  var image11 = new Image();
  *  image11.src = "test11.png"
+ *  var image12 = new Image();
+ *  image12.src = "test12.png"
  *
  *  var step = 1;
  *  function slideit() {
  *    document.images.slide.src = eval("image"+step+".src");
- *    if (step < 11)
+ *    if (step < 12)
  *      step++;
  *    else
  *      step=1;
@@ -252,4 +254,7 @@
  *  \section example11 Example 11: 2 dimensional plots with errorbars
  *  \include test11.cpp
  *  \image html test11.png "Example 11"
+ *  \section example12 Example 12: Histograms 
+ *  \include test12.cpp
+ *  \image html test12.png "Example 12"
  */

@@ -12,4 +12,5 @@ EXTRA_DIST = \
     test9.png \
     test10.png \
     test11.png \
+    test12.png \
     $(NULL)
