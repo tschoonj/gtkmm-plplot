@@ -41,7 +41,7 @@ Homebrew users as well as Linux aficionados will find installations instructions
 
 ## TODO
 * plsurf3d, plmesh
-* histograms
+* ~~histograms~~
 * ~~Scroll to zoom in/out~~
 * ...
 
