@@ -26,6 +26,7 @@ var searchData=
   ['set_5fintersection_5fminimal_5fn',['set_intersection_minimal_n',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#a397d3c431a2dc32de6e2eef4e7134b50',1,'__gnu_parallel::_Settings']]],
   ['set_5fsymmetric_5fdifference_5fminimal_5fn',['set_symmetric_difference_minimal_n',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#abf47bf2bbef9261d3d10b59558ddbdf2',1,'__gnu_parallel::_Settings']]],
   ['set_5funion_5fminimal_5fn',['set_union_minimal_n',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00164.html#ab42faf337cfe7b64edfb7e61c6dadd08',1,'__gnu_parallel::_Settings']]],
+  ['shift_5fpressed',['shift_pressed',['../class_gtk_1_1_p_lplot_1_1_canvas.html#adc3c1c590d2c3616e7c5b8bda15c0508',1,'Gtk::PLplot::Canvas']]],
   ['showbase',['showbase',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#a69acbf246475f065d6648303e452fd4d',1,'std::basic_fstream']]],
   ['showing_5fcolorbar',['showing_colorbar',['../class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a91d9eb3eea8c2acd162f641d3c91a303',1,'Gtk::PLplot::PlotContourShades']]],
   ['showing_5fedges',['showing_edges',['../class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a864c9b60bd557411192052fdaa390260',1,'Gtk::PLplot::PlotContourShades']]],

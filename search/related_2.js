@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['call_5fonce',['call_once',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00875.html#a413ad4ec8c9116bffdd976beed6fc029',1,'std::once_flag']]]
+  ['call_5fonce',['call_once',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00875.html#a413ad4ec8c9116bffdd976beed6fc029',1,'std::once_flag']]],
+  ['canvas',['Canvas',['../class_gtk_1_1_p_lplot_1_1_plot.html#a9816083e25bae0b2f472e19382136687',1,'Gtk::PLplot::Plot::Canvas()'],['../class_gtk_1_1_p_lplot_1_1_plot2_d.html#a9816083e25bae0b2f472e19382136687',1,'Gtk::PLplot::Plot2D::Canvas()'],['../class_gtk_1_1_p_lplot_1_1_plot3_d.html#a9816083e25bae0b2f472e19382136687',1,'Gtk::PLplot::Plot3D::Canvas()'],['../class_gtk_1_1_p_lplot_1_1_plot_contour.html#a9816083e25bae0b2f472e19382136687',1,'Gtk::PLplot::PlotContour::Canvas()'],['../class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html#a9816083e25bae0b2f472e19382136687',1,'Gtk::PLplot::PlotContourShades::Canvas()'],['../class_gtk_1_1_p_lplot_1_1_plot_polar.html#a9816083e25bae0b2f472e19382136687',1,'Gtk::PLplot::PlotPolar::Canvas()'],['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a9816083e25bae0b2f472e19382136687',1,'Gtk::PLplot::RegionSelection::Canvas()']]]
 ];

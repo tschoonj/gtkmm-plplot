@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['object',['Object',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Object.html',1,'Glib']]],
-  ['object',['Object',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Object.html',1,'Gio::DBus']]],
-  ['object',['Object',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Object.html',1,'Atk']]],
-  ['object',['Object',['../class_gtk_1_1_p_lplot_1_1_object.html',1,'Gtk::PLplot']]],
-  ['object',['Object',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Object.html',1,'Gtk']]],
+  ['object',['Object',['../class_gtk_1_1_p_lplot_1_1_object.html',1,'Gtk::PLplot::Object'],['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Object.html',1,'Gio::DBus::Object'],['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Object.html',1,'Atk::Object'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Object.html',1,'Glib::Object'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Object.html',1,'Gtk::Object']]],
   ['objectaccessible',['ObjectAccessible',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1ObjectAccessible.html',1,'Atk']]],
   ['objectbase',['ObjectBase',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1ObjectBase.html',1,'Glib']]],
   ['offscreenwindow',['OffscreenWindow',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1OffscreenWindow.html',1,'Gtk']]],

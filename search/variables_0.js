@@ -74,5 +74,7 @@ var searchData=
   ['_5fsignal_5fdata_5fmodified',['_signal_data_modified',['../class_gtk_1_1_p_lplot_1_1_plot_data.html#a9b6cfc0f8a8b94e8cce44c0fc14fd6f2',1,'Gtk::PLplot::PlotData']]],
   ['_5fsignal_5fdata_5fremoved',['_signal_data_removed',['../class_gtk_1_1_p_lplot_1_1_plot.html#a0818a2e8a4ef533a222c44878566f50f',1,'Gtk::PLplot::Plot']]],
   ['_5fsignal_5fdouble_5fpress',['_signal_double_press',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a779d6efd1d4487709dcd55aff8e6208c',1,'Gtk::PLplot::RegionSelection']]],
-  ['_5fsignal_5fselect_5fregion',['_signal_select_region',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a9b3c831d3e5978992e9dd869925353df',1,'Gtk::PLplot::RegionSelection']]]
+  ['_5fsignal_5fpan',['_signal_pan',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a46dfd4c6408534a1e14baab56dbfb43e',1,'Gtk::PLplot::RegionSelection']]],
+  ['_5fsignal_5fselect_5fregion',['_signal_select_region',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a9b3c831d3e5978992e9dd869925353df',1,'Gtk::PLplot::RegionSelection']]],
+  ['_5fsignal_5fzoom_5fregion',['_signal_zoom_region',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#a476d3324c36ca1dac54c729226f55c32',1,'Gtk::PLplot::RegionSelection']]]
 ];

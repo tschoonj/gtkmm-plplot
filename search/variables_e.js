@@ -4,6 +4,7 @@ var searchData=
   ['name_5fhas_5fno_5fowner',['NAME_HAS_NO_OWNER',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Error.html#acd2c910ef29b6be121c1fde3cfa8f2caa227418ae04bf8a8fc969021a118f8839',1,'Gio::DBus::Error']]],
   ['name_5ftoo_5flong',['NAME_TOO_LONG',['http://library.gnome.org/devel/glibmm/unstable/group__FileUtils.html#gga0bdb855c813c7d07a424009706fc8f0ba8643f49fdab6a5ff782084c67135e1e1',1,'Glib::FileError::NAME_TOO_LONG()'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RegexError.html#a0f1ec693485b5b6c8148045e6ffa3aeeaabef5d4b6e123d46da97e96fb9b594c0',1,'Glib::RegexError::NAME_TOO_LONG()']]],
   ['nametoolong',['NAMETOOLONG',['http://library.gnome.org/devel/glibmm/unstable/group__Spawn.html#ggafb7753661f7b0607951aa8881380ed1ba58e1be919ee7369e1b6c70d4e4431a0f',1,'Glib::SpawnError']]],
+  ['nbins',['nbins',['../class_gtk_1_1_p_lplot_1_1_plot_data_histogram.html#abe64099246c231a1daa434646b8c456b',1,'Gtk::PLplot::PlotDataHistogram']]],
   ['network',['NETWORK',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#a1ce3bfcd72ff75052f1a11b5714c0fcb',1,'Gtk::Stock']]],
   ['network_5funreachable',['NETWORK_UNREACHABLE',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a86e0c5e77ce892cabc0d9c0ffa35d91c',1,'Gio::Error']]],
   ['new',['NEW',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGtk_1_1Stock.html#afeadf75b7b8b773f5494d939671d04bb',1,'Gtk::Stock']]],

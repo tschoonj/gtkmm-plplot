@@ -1,5 +1,10 @@
 var searchData=
 [
+  ['data',['data',['../class_gtk_1_1_p_lplot_1_1_plot_data_histogram_unbinned.html#aff63c5542debb7fe2b8df2b78f92d03f',1,'Gtk::PLplot::PlotDataHistogramUnbinned']]],
+  ['data_5fx',['data_x',['../class_gtk_1_1_p_lplot_1_1_plot_data_histogram_binned.html#a26708d6f5c18322b29ecf57078095ac0',1,'Gtk::PLplot::PlotDataHistogramBinned']]],
+  ['data_5fy',['data_y',['../class_gtk_1_1_p_lplot_1_1_plot_data_histogram_binned.html#a2f187624ec58abc21b7c73cf0d8b2c5e',1,'Gtk::PLplot::PlotDataHistogramBinned']]],
+  ['datmax',['datmax',['../class_gtk_1_1_p_lplot_1_1_plot_data_histogram.html#a32b5ea845252d3c416809a4415f6dc5f',1,'Gtk::PLplot::PlotDataHistogram']]],
+  ['datmin',['datmin',['../class_gtk_1_1_p_lplot_1_1_plot_data_histogram.html#aec31cd0253d8aa7422426fdac3eded14',1,'Gtk::PLplot::PlotDataHistogram']]],
   ['day',['DAY',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#gac803072d86bbc2ce1f7d558c94f41ae1a560fa4f9a4733a4c043b3f279610f9d3',1,'Glib::Date']]],
   ['dbus_5ferror',['DBUS_ERROR',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Error.html#a85e6b7d494c35d7a51ca879e4c65f134a2d4d3dcdabb75be97e8a0d2b0f9cb6ec',1,'Gio::Error']]],
   ['dec',['dec',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00762.html#a3b38d2c92a8191a8f6d4994c663d408e',1,'std::basic_fstream']]],

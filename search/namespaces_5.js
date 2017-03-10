@@ -1,14 +1,11 @@
 var searchData=
 [
   ['_5f_5fdebug',['__debug',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01617.html',1,'std']]],
-  ['_5f_5fdetail',['__detail',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01618.html',1,'std']]],
-  ['_5f_5fdetail',['__detail',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01631.html',1,'std::tr1']]],
-  ['_5f_5fdetail',['__detail',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01633.html',1,'std::tr2']]],
+  ['_5f_5fdetail',['__detail',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01618.html',1,'std::__detail'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01631.html',1,'std::tr1::__detail'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01633.html',1,'std::tr2::__detail']]],
   ['_5f_5fexception_5fptr',['__exception_ptr',['http://library.gnome.org/devel/libsigc++/unstable/a00529.html',1,'std']]],
   ['_5f_5fparallel',['__parallel',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01620.html',1,'std']]],
   ['_5f_5fprofile',['__profile',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01621.html',1,'std']]],
-  ['_5fv2',['_V2',['http://library.gnome.org/devel/libsigc++/unstable/a00584.html',1,'std']]],
-  ['_5fv2',['_V2',['http://library.gnome.org/devel/libsigc++/unstable/a00650.html',1,'std::chrono']]],
+  ['_5fv2',['_V2',['http://library.gnome.org/devel/libsigc++/unstable/a00584.html',1,'std::_V2'],['http://library.gnome.org/devel/libsigc++/unstable/a00650.html',1,'std::chrono::_V2']]],
   ['chrono',['chrono',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01623.html',1,'std']]],
   ['decimal',['decimal',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01625.html',1,'std']]],
   ['internal',['internal',['http://library.gnome.org/devel/libsigc++/unstable/namespacesigc_1_1internal.html',1,'sigc']]],
