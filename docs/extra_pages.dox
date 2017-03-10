@@ -107,7 +107,7 @@
  *
  *  \section downloading Downloading the software
  *
- *  Downloads are currently hosted [here](http://lvserver.ugent.be/gtkmm-plplot).
+ *  The source code release tarballs are hosted on the Github repository, in the [releases section](https://github.com/tschoonj/gtkmm-plplot/releases).
  *  Just get the latest tarball and run the following commands:
  *
  *       tar xfvz gtkmm-plplot-x.y.tar.gz
@@ -124,13 +124,13 @@
  *
  *  \subsection linux Linux
  *  \subsubsection rhel Fedora, Centos and Scientific Linux
- *  To facilitate the installation on RPM based Linux distributions, the package includes a spec file which can be used to produce RPM packages for linux distributions that support them (Fedora, Red Hat etc). The developers have built 64-bit RPM packages of Gtkmm-PLplot for the officially supported Fedora and Redhat EL/CentOS/Scientific Linux 7 distributions. These can be downloaded from the RPM repository that is hosted by the X-ray Microspectroscopy and Imaging research group of Ghent University. Access to this repository can be obtained as follows for Fedora distros:
+ *  To facilitate the installation on RPM based Linux distributions, the package includes a spec file which can be used to produce RPM packages for linux distributions that support them (Fedora, Red Hat etc). The developers have built 64-bit RPM packages of Gtkmm-PLplot for the officially supported Fedora and Redhat EL/CentOS/Scientific Linux 7 distributions. Access to my RPM repository can be obtained as follows for Fedora distros:
  *
- * > `su -c 'rpm -Uvh http://lvserver.ugent.be/yum/xmi-repo-key-fedora.noarch.rpm'`
+ * > `su -c 'rpm -Uvh http://xmi-yum.tomschoonjans.eu/xmi-repo-key-fedora.noarch.rpm'`
  *
  * for Red Hat EL 7 based distributions:
  *
- * > `su -c 'rpm -Uvh http://lvserver.ugent.be/yum/xmi-repo-key-7.0-1.el7.noarch.rpm'`
+ * > `su -c 'rpm -Uvh http://xmi-yum.tomschoonjans.eu/xmi-repo-key-7.0-1.el7.noarch.rpm'`
  *
  * The Gtkmm-PLplot packages themselves can then be downloaded using yum (or \c dnf which is increasingly being used nowadays):
  *
@@ -145,30 +145,30 @@
  * Packages were created for Debian and Ubuntu. Currently the following flavors are supported: Debian Jessie and several Ubuntu versions .
  * In order to access these packages using your favorite package manager, execute the following command to import my public key:
  *
- * > `curl http://lvserver.ugent.be/apt/xmi.packages.key | sudo apt-key add -`
+ * > `curl http://xmi-apt.tomschoonjans.eu/xmi.packages.key | sudo apt-key add -`
  *
  * Next, add the package download location corresponding to your distribution to the /etc/apt/sources.list file (as root):
  *
  *
  * Debian Jessie:
  *
- *       deb http://lvserver.ugent.be/apt/debian jessie stable
- *       deb-src http://lvserver.ugent.be/apt/debian jessie stable
+ *       deb http://xmi-apt.tomschoonjans.eu/debian jessie stable
+ *       deb-src http://xmi-apt.tomschoonjans.eu/debian jessie stable
  *
  * Ubuntu Trusty 14.04:
  *
- *       deb [arch=amd64] http://lvserver.ugent.be/apt/ubuntu trusty stable
- *       deb-src http://lvserver.ugent.be/apt/ubuntu trusty stable
- *
- * Ubuntu Wily 15.10:
- *
- *       deb [arch=amd64] http://lvserver.ugent.be/apt/ubuntu wily stable
- *       deb-src http://lvserver.ugent.be/apt/ubuntu wily stable
+ *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu trusty stable
+ *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu trusty stable
  *
  * Ubuntu Xenial 16.04:
  *
- *       deb [arch=amd64] http://lvserver.ugent.be/apt/ubuntu xenial stable
- *       deb-src http://lvserver.ugent.be/apt/ubuntu xenial stable
+ *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu xenial stable
+ *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu xenial stable
+ *
+ * Ubuntu Yakkety 16.10:
+ *
+ *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu yakkety stable
+ *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu yakkety stable
  *
  * When the sources.list file contains the correct download locations, update the apt cache by running:
  *
