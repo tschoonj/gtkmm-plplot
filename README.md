@@ -34,7 +34,7 @@ I have generated documentation with Doxygen. Have a look at http://tschoonj.gith
 
 ## Downloads
 
-Tarballs can be found [here](http://lvserver.ugent.be/gtkmm-plplot)
+Tarballs can be found [here](https://github.com/tschoonj/gtkmm-plplot/releases)
 
 Homebrew users as well as Linux aficionados will find installations instructions in the [documentation](https://tschoonj.github.io/gtkmm-plplot/installation_instructions.html)
 
