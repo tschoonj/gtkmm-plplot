@@ -178,10 +178,20 @@
  *
  * > `sudo apt-get install libgtkmm-plplot2 libgtkmm-plplot2-dev libgtkmm-plplot2-doc`
  *
- *  \subsection head Github repository
+ * \subsubsection archlinux Arch Linux
  *
- *  People interested in running the latest development version will have to clone the Github repository.
- *  Make sure you have the above mentioned dependencies installed, as well as the GNU autotools (autoconf, automake and libtool) and mm-common.
+ * Thanks to the efforts of Grzegorz Uriasz, Gtkmm-PLplot can now be downloaded from the Arch User Repository. To get the most recent stable version:
+ *
+ * > `yaourt -S gtkmm3-plplot`
+ *
+ * For the latest development version:
+ *
+ * > `yaourt -S gtkmm3-plplot-git`
+ *
+ * \subsection head Github repository
+ *
+ * People interested in running the latest development version will have to clone the Github repository.
+ * Make sure you have the above mentioned dependencies installed, as well as the GNU autotools (autoconf, automake and libtool) and mm-common.
  *
  *       git clone git@github.com:tschoonj/gtkmm-plplot.git
  *       cd gtkmm-plplot
@@ -190,71 +200,71 @@
  *       make
  *       make install
  *
- *  \page usage Usage
+ * \page usage Usage
  *
- *  Include the Gtkmm-PLplot header:
- *  \code
- *  #include <gtkmm-plplot.h>
- *  \endcode
- *  This includes every header installed by Gtkmm-PLplot, so can slow down
- *  compilation, but suffices for this simple example. Assuming that your
- *  program source file is @c program.cc, compile it with:
- *  \code
- *  g++ program.cc -o program  `pkg-config --cflags --libs gtkmm-plplot-2.0`
- *  \endcode
- *  Alternatively, if using autoconf, use the following in @c configure.ac:
- *  \code
- *  PKG_CHECK_MODULES([GTKMMPLPLOT], [gtkmm-plplot-2.0])
- *  \endcode
- *  Then use the generated \c GTKMMPLPLOT_CFLAGS and \c GTKMMPLPLOT_LIBS variables in
- *  the project \c Makefile.am files. For example:
- *  \code
- *  program_CPPFLAGS = $(GTKMMPLPLOT_CFLAGS)
- *  program_LDADD = $(GTKMMPLPLOT_LIBS)
- *  \endcode
+ * Include the Gtkmm-PLplot header:
+ * \code
+ * #include <gtkmm-plplot.h>
+ * \endcode
+ * This includes every header installed by Gtkmm-PLplot, so can slow down
+ * compilation, but suffices for this simple example. Assuming that your
+ * program source file is @c program.cc, compile it with:
+ * \code
+ * g++ program.cc -o program  `pkg-config --cflags --libs gtkmm-plplot-2.0`
+ * \endcode
+ * Alternatively, if using autoconf, use the following in @c configure.ac:
+ * \code
+ * PKG_CHECK_MODULES([GTKMMPLPLOT], [gtkmm-plplot-2.0])
+ * \endcode
+ * Then use the generated \c GTKMMPLPLOT_CFLAGS and \c GTKMMPLPLOT_LIBS variables in
+ * the project \c Makefile.am files. For example:
+ * \code
+ * program_CPPFLAGS = $(GTKMMPLPLOT_CFLAGS)
+ * program_LDADD = $(GTKMMPLPLOT_LIBS)
+ * \endcode
  *
- *  \page examples Examples
+ * \page examples Examples
  *
- *  This page contains the code of the tests I have included to demonstrate the
- *  capabilities of Gtkmm-PLplot. The code should be quite straightforward and contains
- *  some commenting where useful. Every testcase is followed by a screenshot of the corresponding running program.
+ * This page contains the code of the tests I have included to demonstrate the
+ * capabilities of Gtkmm-PLplot. The code should be quite straightforward and contains
+ * some commenting where useful. Every testcase is followed by a screenshot of the corresponding running program.
  *
- *  \tableofcontents
+ * \tableofcontents
  *
- *  \section example1 Example 1: Plot data properties and zooming
- *  \include test1.cpp
- *  \image html test1.png "Example 1"
- *  \section example2 Example 2: Logarithmic axes and box styles
- *  \include test2.cpp
- *  \image html test2.png "Example 2"
- *  \section example3 Example 3: Adding, removing, showing and hiding plots
- *  \include test3.cpp
- *  \image html test3.png "Example 3"
- *  \section example4 Example 4: Displaying multiple plots on a single canvas
- *  \include test4.cpp
- *  \image html test4.png "Example 4"
- *  \section example5 Example 5: Mixing plot lines and symbols plus adding datapoints
- *  \include test5.cpp
- *  \image html test5.png "Example 5"
- *  \section example6 Example 6: Polar coordinate systems
- *  \include test6.cpp
- *  \image html test6.png "Example 6"
- *  \section example7 Example 7: a Simple contour plot
- *  \include test7.cpp
- *  \image html test7.png "Example 7"
- *  \section example8 Example 8: a Shaded contour plot
- *  \include test8.cpp
- *  \image html test8.png "Example 8"
- *  \section example9 Example 9: a Three-dimensional plot
- *  \include test9.cpp
- *  \image html test9.png "Example 9"
- *  \section example10 Example 10: use Gtkmm-PLplot from Gtk+
- *  \include test10.cpp
- *  \image html test10.png "Example 10"
- *  \section example11 Example 11: 2 dimensional plots with errorbars
- *  \include test11.cpp
- *  \image html test11.png "Example 11"
- *  \section example12 Example 12: Histograms 
- *  \include test12.cpp
- *  \image html test12.png "Example 12"
+ * \section example1 Example 1: Plot data properties and zooming
+ * \include test1.cpp
+ * \image html test1.png "Example 1"
+ * \section example2 Example 2: Logarithmic axes and box styles
+ * \include test2.cpp
+ * \image html test2.png "Example 2"
+ * \section example3 Example 3: Adding, removing, showing and hiding plots
+ * \include test3.cpp
+ * \image html test3.png "Example 3"
+ * \section example4 Example 4: Displaying multiple plots on a single canvas
+ * \include test4.cpp
+ * \image html test4.png "Example 4"
+ * \section example5 Example 5: Mixing plot lines and symbols plus adding datapoints
+ * \include test5.cpp
+ * \image html test5.png "Example 5"
+ * \section example6 Example 6: Polar coordinate systems
+ * \include test6.cpp
+ * \image html test6.png "Example 6"
+ * \section example7 Example 7: a Simple contour plot
+ * \include test7.cpp
+ * \image html test7.png "Example 7"
+ * \section example8 Example 8: a Shaded contour plot
+ * \include test8.cpp
+ * \image html test8.png "Example 8"
+ * \section example9 Example 9: a Three-dimensional plot
+ * \include test9.cpp
+ * \image html test9.png "Example 9"
+ * \section example10 Example 10: use Gtkmm-PLplot from Gtk+
+ * \include test10.cpp
+ * \image html test10.png "Example 10"
+ * \section example11 Example 11: 2 dimensional plots with errorbars
+ * \include test11.cpp
+ * \image html test11.png "Example 11"
+ * \section example12 Example 12: Histograms 
+ * \include test12.cpp
+ * \image html test12.png "Example 12"
  */
