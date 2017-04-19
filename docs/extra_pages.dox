@@ -170,6 +170,11 @@
  *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu yakkety stable
  *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu yakkety stable
  *
+ * Ubuntu Zesty 17.04:
+ *
+ *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu zesty stable
+ *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu zesty stable
+ *
  * When the sources.list file contains the correct download locations, update the apt cache by running:
  *
  * > `sudo apt-get update`
