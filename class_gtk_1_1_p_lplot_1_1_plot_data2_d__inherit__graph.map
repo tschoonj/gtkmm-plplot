@@ -6,8 +6,8 @@
 <area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_data_line.html" title="abstract base class that will hold a single dataset that can be rendered as a line ..." alt="" coords="843,80,1014,105"/>
 <area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties " alt="" coords="649,80,795,105"/>
 <area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s " alt="" coords="468,80,601,105"/>
-<area shape="rect" id="node5" href="/usr/local/Cellar/glibmm/2.50.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1Object.html" title="Glib::Object" alt="" coords="329,80,420,105"/>
-<area shape="rect" id="node6" href="/usr/local/Cellar/glibmm/2.50.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1ObjectBase.html" title="Glib::ObjectBase" alt="" coords="160,80,281,105"/>
+<area shape="rect" id="node5" href="/usr/local/Cellar/glibmm/2.50.1/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1Object.html" title="Glib::Object" alt="" coords="329,80,420,105"/>
+<area shape="rect" id="node6" href="/usr/local/Cellar/glibmm/2.50.1/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1ObjectBase.html" title="Glib::ObjectBase" alt="" coords="160,80,281,105"/>
 <area shape="rect" id="node7" href="/usr/local/Cellar/libsigc++/2.10.0/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title="sigc::trackable" alt="" coords="5,80,112,105"/>
 <area shape="rect" id="node9" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_x_y.html" title="a class that will hold a single XY dataset with X and Y errorbars and its properties for a Plot2D plo..." alt="" coords="1523,31,1733,56"/>
 </map>
