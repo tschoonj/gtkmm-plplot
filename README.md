@@ -43,6 +43,7 @@ Homebrew users as well as Linux aficionados will find installations instructions
 * plsurf3d, plmesh
 * ~~histograms~~
 * ~~Scroll to zoom in/out~~
+* plimage
 * ...
 
 Tom Schoonjans
