@@ -80,7 +80,7 @@ PlotDataHistogramBinned::PlotDataHistogramBinned(
     std::vector<double>(std::begin(_data_y), std::end(_data_y)),
     _centred) {}
 
-PlotDataHistogramBinned::~PlotDataHistogramBinned() {}
+PlotDataHistogramBinned::~PlotDataHistogramBinned() = default;
 
 void PlotDataHistogramBinned::set_centred(bool _centred) {
   if (centred == _centred)

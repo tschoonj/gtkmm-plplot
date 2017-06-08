@@ -31,7 +31,7 @@ PlotData::PlotData() :
 
 }
 
-PlotData::~PlotData() {}
+PlotData::~PlotData() = default;
 
 void PlotData::on_changed() {
   //do nothing

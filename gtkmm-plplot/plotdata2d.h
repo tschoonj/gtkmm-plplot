@@ -41,9 +41,6 @@ namespace Gtk {
      */
     class PlotData2D : public PlotDataLine {
     private:
-      PlotData2D() = delete; ///< no default constructor
-      PlotData2D &operator=(const PlotData2D &) = delete; ///< no assignment operator
-      PlotData2D(const PlotData2D &source) = delete; ///< no default copy constructor;
     protected:
       std::vector<double> x; ///< The X-values of the dataset
       std::vector<double> y; ///< The Y-values of the dataset
@@ -117,7 +114,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotData2D();
+      ~PlotData2D() override;
 
       /**
        *
@@ -211,7 +208,11 @@ namespace Gtk {
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
        */
-      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+      void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+
+      PlotData2D() = delete; ///< no default constructor
+      PlotData2D &operator=(const PlotData2D &) = delete; ///< no assignment operator
+      PlotData2D(const PlotData2D &source) = delete; ///< no default copy constructor;
     };
   }
 }

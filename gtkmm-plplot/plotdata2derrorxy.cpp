@@ -57,7 +57,7 @@ PlotData2DErrorXY::PlotData2DErrorXY(
     std::vector<double>(std::begin(_errory_high), std::end(_errory_high)),
     _color, _line_style, _line_width) {}
 
-PlotData2DErrorXY::~PlotData2DErrorXY() {}
+PlotData2DErrorXY::~PlotData2DErrorXY() = default;
 
 void PlotData2DErrorXY::add_datapoint(double _x, double _y) {
   throw Exception("Gtk::PLplot::PlotData2DErrorXY::add_datapoint -> This method is not supported for PlotData2DErrorXY");

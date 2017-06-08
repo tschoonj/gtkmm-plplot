@@ -85,10 +85,10 @@ namespace Test4 {
       checkbutton3.set_hexpand(false);
       checkbutton3.set_halign(Gtk::ALIGN_CENTER);
 
-      std::valarray<double> x_va = Gtk::PLplot::indgen_va(1000)/50.0 - 10.0;
-      std::valarray<double> y_va1 = sinh(x_va);
-      std::valarray<double> y_va2 = cosh(x_va);
-      std::valarray<double> y_va3 = tanh(x_va);
+      auto x_va = Gtk::PLplot::indgen_va<double>(1000)/50.0 - 10.0;
+      auto y_va1 = sinh(x_va);
+      auto y_va2 = cosh(x_va);
+      auto y_va3 = tanh(x_va);
 
       //generate the data, the plot, add them to the canvas and use the return value to pass it to the checkbutton
       Gtk::PLplot::Plot2D *plot1 = Gtk::manage(

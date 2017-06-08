@@ -33,17 +33,38 @@ class plstream;
 
 namespace Gtk {
   namespace PLplot {
-    /** Returns a vector of doubles with each element set to the value of its subscript.
+    /** Returns a vector of T's with each element set to the value of its subscript.
      *
+     * \tparam T the type for the vector elements
      * \param n the length of the vector
      */
-    std::vector<double> indgen(unsigned int n);
+    template <typename T>
+    std::vector<T> indgen(unsigned int n) {
+      std::vector<T> rv(n);
+      for (unsigned int i = 0 ; i < n ; i++)
+        rv[i] = (T) i;
+      return rv;
+    }
 
-    /** Returns a valarray of doubles with each element set to the value of its subscript.
+    /** Returns a valarray of T's with each element set to the value of its subscript.
      *
+     * \tparam T the type for the valarray elements
      * \param n the length of the valarray
      */
-    std::valarray<double> indgen_va(unsigned int n);
+    template <typename T>
+    std::valarray<T> indgen_va(unsigned int n) {
+      std::valarray<T> rv(n);
+      for (unsigned int i = 0 ; i < n ; i++)
+        rv[i] = (T) i;
+      return rv;
+    }
+
+    /*
+    template <typename T>
+    std::vector<T> valarray_to_vector(const std::valarray<T> &va) {
+      return std::vector<T>(std::begin(va), std::end(va))
+    }
+    */
 
     /** Changes the current color of the plstream
      *

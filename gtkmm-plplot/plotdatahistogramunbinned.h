@@ -37,9 +37,6 @@ namespace Gtk {
      */
     class PlotDataHistogramUnbinned : public PlotDataHistogram {
     private:
-      PlotDataHistogramUnbinned() = delete; ///< no default constructor
-      PlotDataHistogramUnbinned &operator=(const PlotDataHistogramUnbinned &) = delete; ///< no assignment operator
-      PlotDataHistogramUnbinned(const PlotDataHistogramUnbinned &source) = delete; ///< no default copy constructor;
       double *x; ///< the X-values of the bins
       double *y; ///< the Y-values (heights) of the bins
     protected:
@@ -78,7 +75,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotDataHistogramUnbinned();
+      ~PlotDataHistogramUnbinned() override;
 
       /** Add a single datapoint to the unbinned data
        *
@@ -130,13 +127,17 @@ namespace Gtk {
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
        */
-      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+      void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
 
       /** Get dataset extremes
        *
        * Will be used in determining the box and its axes
        */
-      virtual void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) override;
+      void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) override;
+
+      PlotDataHistogramUnbinned() = delete; ///< no default constructor
+      PlotDataHistogramUnbinned &operator=(const PlotDataHistogramUnbinned &) = delete; ///< no assignment operator
+      PlotDataHistogramUnbinned(const PlotDataHistogramUnbinned &source) = delete; ///< no default copy constructor;
     };
   }
 }

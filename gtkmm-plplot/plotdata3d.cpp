@@ -51,7 +51,7 @@ PlotData3D::PlotData3D(
   std::vector<double>(std::begin(_z), std::end(_z)),
   _color, _line_style, _line_width) {}
 
-PlotData3D::~PlotData3D() {}
+PlotData3D::~PlotData3D() = default;
 
 void PlotData3D::add_datapoint(double _x, double _y) {
   throw Exception("Gtk::PLplot::PlotData3D::add_datapoint -> This method is not supported for PlotData3D");

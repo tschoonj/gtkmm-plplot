@@ -312,7 +312,7 @@ namespace Test12 {
 
       //add pages to notebook
       // page1 -> PLplot example
-      std::valarray<double> data1 = sin(Gtk::PLplot::indgen_va(2047) * 2.0 * M_PI / 2047.0);
+      std::valarray<double> data1 = sin(Gtk::PLplot::indgen_va<double>(2047) * 2.0 * M_PI / 2047.0);
       HistogramUnbinnedTab *tab1 =
         Gtk::manage(
           new HistogramUnbinnedTab(
@@ -350,7 +350,7 @@ namespace Test12 {
           )
         );
 
-      std::valarray<double> data3_x = Gtk::PLplot::indgen_va(21) - 10.0;
+      std::valarray<double> data3_x = Gtk::PLplot::indgen_va<double>(21) - 10.0;
       std::valarray<double> data3_y = exp(-1.0 * data3_x * data3_x / 2.0) / sqrt(2.0 * M_PI);
       Gtk::PLplot::PlotDataHistogramBinned *histogram_data3 = Gtk::manage(
               new Gtk::PLplot::PlotDataHistogramBinned(

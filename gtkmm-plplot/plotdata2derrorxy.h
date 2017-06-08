@@ -38,12 +38,9 @@ namespace Gtk {
      */
     class PlotData2DErrorXY : public PlotData2DErrorX, public PlotData2DErrorY {
     private:
-      PlotData2DErrorXY() = delete; ///< no default constructor
-      PlotData2DErrorXY &operator=(const PlotData2DErrorXY &) = delete; ///< no assignment operator
-      PlotData2DErrorXY(const PlotData2DErrorXY &source) = delete; ///< no default copy constructor;
-      virtual void add_datapoint(double xval, double yval) final; ///< disable this method
-      virtual void add_datapoint(std::pair<double, double> xy_pair) final; ///< disable this method;
-      virtual void add_datapoint(double xval, double yval, double xval_error_low, double xval_error_high) final; ///< disable this method
+      void add_datapoint(double xval, double yval) final; ///< disable this method
+      void add_datapoint(std::pair<double, double> xy_pair) final; ///< disable this method;
+      void add_datapoint(double xval, double yval, double xval_error_low, double xval_error_high) final; ///< disable this method
     protected:
     public:
       /** Constructor
@@ -104,7 +101,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotData2DErrorXY();
+      ~PlotData2DErrorXY() override;
 
       /** Get the data extremes: minima and maxima along both X- and Y-axes
        *
@@ -113,7 +110,7 @@ namespace Gtk {
        * \param ymin Y minimum value
        * \param ymax Y minimum value
        */
-      virtual void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) override;
+      void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) override;
 
       /** Add a single datapoint, consisting of an \c xval and \c yval value, as well as the errors associated with the \c xval and \c yval values, to the dataset
        *
@@ -134,7 +131,11 @@ namespace Gtk {
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
        */
-      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+      void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+
+      PlotData2DErrorXY() = delete; ///< no default constructor
+      PlotData2DErrorXY &operator=(const PlotData2DErrorXY &) = delete; ///< no assignment operator
+      PlotData2DErrorXY(const PlotData2DErrorXY &source) = delete; ///< no default copy constructor;
     };
   }
 }

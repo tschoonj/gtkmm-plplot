@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <exception>
+#include <glibmm/ustring.h>
 
 namespace Gtk {
   namespace PLplot {
@@ -41,14 +42,14 @@ namespace Gtk {
 
       /** destructor
        */
-      virtual ~Exception() throw() {};
+      ~Exception() throw() override = default;
       // throw method
       /** Get the exception message
        *
        *  To be used in a catch block
        *  \return the exception message
        */
-      virtual const char* what() const throw() {
+      const char* what() const throw() override {
         return Message.c_str();
       }
     };

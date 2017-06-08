@@ -43,7 +43,6 @@ namespace Gtk {
       Gdk::RGBA legend_background_color; ///< the background color of the legend
       Gdk::RGBA legend_bounding_box_color; ///< the color of the bounding box of the legend
       LegendCornerPosition legend_corner_position; ///< the corner of the legend box that will be used to determine the origin and direction of the normalized legend coordinate system
-      Legend &operator=(const Legend &) = delete; ///< no move constructor
     protected:
       /** Copy constructor
        *
@@ -156,6 +155,8 @@ namespace Gtk {
        *
        */
       bool is_showing_legend();
+
+      Legend &operator=(const Legend &) = delete; ///< no move constructor
     };
   }
 }

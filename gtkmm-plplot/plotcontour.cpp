@@ -83,7 +83,7 @@ PlotContour::PlotContour(
   add_data(_data);
 }
 
-PlotContour::~PlotContour() {}
+PlotContour::~PlotContour() = default;
 
 void PlotContour::plot_data_modified() {
   auto data = dynamic_cast<PlotDataSurface*>(plot_data[0]);

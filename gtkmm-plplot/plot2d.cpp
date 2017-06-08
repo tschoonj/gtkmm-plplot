@@ -68,7 +68,7 @@ Plot2D::Plot2D(
   add_data(_data);
 }
 
-Plot2D::~Plot2D() {}
+Plot2D::~Plot2D() = default;
 
 void Plot2D::plot_data_modified() {
   //update ranges
@@ -202,7 +202,7 @@ BoxStyle Plot2D::get_box_style() {
 }
 
 void Plot2D::coordinate_transform_world_to_plplot(double x_old, double y_old, double *x_new, double *y_new, PLPointer object) {
-  Plot2D *plot2d = static_cast<Plot2D*>(object);
+  auto plot2d = static_cast<Plot2D*>(object);
 
   //let's start with giving the new ones the old values, in case no transformation is necessary
   *x_new = x_old;
@@ -220,7 +220,7 @@ void Plot2D::coordinate_transform_world_to_plplot(double x_old, double y_old, do
 }
 
 void Plot2D::coordinate_transform_plplot_to_world(double x_old, double y_old, double *x_new, double *y_new, PLPointer object) {
-  Plot2D *plot2d = static_cast<Plot2D*>(object);
+  auto plot2d = static_cast<Plot2D*>(object);
 
   //let's start with giving the new ones the old values, in case no transformation is necessary
   *x_new = x_old;
@@ -279,7 +279,7 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
   }
 
   //undo the coordinate transform
-  pls->stransform(NULL, NULL);
+  pls->stransform(nullptr, nullptr);
 
   //legend
   if (is_showing_legend())

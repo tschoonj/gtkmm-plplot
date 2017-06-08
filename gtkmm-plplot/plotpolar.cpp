@@ -76,9 +76,7 @@ PlotPolar::PlotPolar(
   add_data(_data);
 }
 
-PlotPolar::~PlotPolar() {
-
-}
+PlotPolar::~PlotPolar() = default;
 
 void PlotPolar::plot_data_modified() {
   //update ranges
@@ -222,7 +220,7 @@ void PlotPolar::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int wid
 
   //get tickstep
   double tickstep = 1E-10;
-  int nticks = (int) floor(max_r/tickstep);
+  auto nticks = (int) floor(max_r/tickstep);
 
   while (nticks < 1 || nticks >= 10) {
     tickstep *= 10.0;
@@ -258,7 +256,7 @@ void PlotPolar::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int wid
   }
 
   //undo the coordinate transform
-  pls->stransform(NULL, NULL);
+  pls->stransform(nullptr, nullptr);
 
   //legend
   if (is_showing_legend())

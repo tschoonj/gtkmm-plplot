@@ -118,8 +118,8 @@ namespace Test8 {
       // 11 x 11 dataset (I know the file layout and the data dimensions already)
       const int nx = 11;
       const int ny = 11;
-      std::vector<double> x(nx);
-      std::vector<double> y(ny);
+      std::valarray<double> x(nx);
+      std::valarray<double> y(ny);
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
       boost::multi_array<double, 2> z(boost::extents[nx][ny]);
       std::cout << "Using Boost multi_array!" << std::endl;

@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/plotdata2d.h>
 #include <gtkmm-plplot/plot.h>
 #include <cstdlib>
+#include <utility>
 #include <glib.h>
 #include <plstream.h>
 
@@ -43,8 +44,8 @@ Legend::Legend(
   showing_legend(true),
   legend_pos_x(_legend_pos_x),
   legend_pos_y(_legend_pos_y),
-  legend_background_color(_legend_background_color),
-  legend_bounding_box_color(_legend_bounding_box_color),
+  legend_background_color(std::move(_legend_background_color)),
+  legend_bounding_box_color(std::move(_legend_bounding_box_color)),
   legend_corner_position(_legend_corner_position) {
 
   if (_legend_pos_x < 0.0 || _legend_pos_x > 1.0 ||
@@ -52,7 +53,7 @@ Legend::Legend(
     throw Exception("Gtk::PLplot::Legend::set_legend_position -> position must be expressed in normalized coordinates!");
 }
 
-Legend::~Legend() {}
+Legend::~Legend() = default;
 
 void Legend::set_legend_background_color(Gdk::RGBA _legend_background_color) {
   if (legend_background_color == _legend_background_color)
@@ -144,8 +145,8 @@ void Legend::draw_legend(
   std::vector<int> symbol_numbers;
 
 
-  char **text = NULL; /* let's use plain old C for this */
-  char **symbols = NULL; /* let's use plain old C for this */
+  char **text = nullptr; /* let's use plain old C for this */
+  char **symbols = nullptr; /* let's use plain old C for this */
 
   int index = 0;
 
@@ -176,11 +177,11 @@ void Legend::draw_legend(
       change_plstream_color(pls, iter2->get_symbol_color(), false, GTKMM_PLPLOT_DEFAULT_COLOR_INDEX + 2 + (2 * index) + 1);
       symbol_scale = iter2->get_symbol_height_scale_factor();
       symbols[index] = g_strdup(iter2->get_symbol().c_str());
-      symbols[index + 1] = NULL;
+      symbols[index + 1] = nullptr;
     }
     else {
       symbols[index] = g_strdup("");
-      symbols[index + 1] = NULL;
+      symbols[index + 1] = nullptr;
     }
 
     opt_array.push_back(my_opt_array);
@@ -197,7 +198,7 @@ void Legend::draw_legend(
     else {
       text[index] = g_strdup(iter2->get_name().c_str());
     }
-    text[index + 1] = NULL;
+    text[index + 1] = nullptr;
 
     index++;
   }
@@ -242,7 +243,7 @@ void Legend::draw_legend(
     0.0, /* text justification */
     &text_colors[0],
     (const char * const *) text,
-    NULL, NULL, NULL, NULL, /* box stuff that we are not using */
+    nullptr, nullptr, nullptr, nullptr, /* box stuff that we are not using */
     &line_colors[0], &line_styles[0], &line_widths[0],
     &symbol_colors[0], &symbol_scales[0], &symbol_numbers[0], (const char * const *) symbols);
 

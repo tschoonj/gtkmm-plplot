@@ -32,8 +32,6 @@ namespace Gtk {
      */
     class PlotDataHistogram : public PlotDataLine {
     private:
-      PlotDataHistogram &operator=(const PlotDataHistogram &) = delete; ///< no assignment operator
-      PlotDataHistogram(const PlotDataHistogram &source) = delete; ///< no default copy constructor
     protected:
       double datmin; ///< Left-hand edge of the lowest-valued bin
       double datmax; ///< Right-hand edge of the highest-valued bin
@@ -61,7 +59,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotDataHistogram();
+      ~PlotDataHistogram() override;
 
       /** Get the left-hand edge of the lowest-valued bin
        *
@@ -110,6 +108,9 @@ namespace Gtk {
        * Will be used in determining the box and its axes
        */
       virtual void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) = 0;
+
+      PlotDataHistogram &operator=(const PlotDataHistogram &) = delete; ///< no assignment operator
+      PlotDataHistogram(const PlotDataHistogram &source) = delete; ///< no default copy constructor
     };
   }
 }

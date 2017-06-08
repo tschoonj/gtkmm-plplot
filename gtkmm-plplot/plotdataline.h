@@ -34,9 +34,6 @@ namespace Gtk {
      */
     class PlotDataLine : public PlotData {
     private:
-      PlotDataLine() = delete; ///< no default constructor
-      PlotDataLine &operator=(const PlotDataLine &) = delete; ///< no assignment operator
-      PlotDataLine(const PlotDataLine &source) = delete; ///< no default copy constructor
     protected:
       Gdk::RGBA color; ///< The color the dataset will be drawn in
       LineStyle line_style; ///< The linestyle that will be used for this dataset in the plot
@@ -57,7 +54,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotDataLine();
+      ~PlotDataLine() override;
 
       /** Changes the color of the dataset
        *
@@ -96,6 +93,9 @@ namespace Gtk {
        */
       double get_line_width();
 
+      PlotDataLine() = delete; ///< no default constructor
+      PlotDataLine &operator=(const PlotDataLine &) = delete; ///< no assignment operator
+      PlotDataLine(const PlotDataLine &source) = delete; ///< no default copy constructor
     };
   }
 }

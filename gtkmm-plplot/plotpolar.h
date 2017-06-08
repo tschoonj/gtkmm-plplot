@@ -41,11 +41,8 @@ namespace Gtk {
     class PlotPolar : public Plot, public Legend, public RegionSelection {
     private:
       double max_r; ///< the maximum radial coordinate in the datasets
-      PlotPolar() = delete; ///< no default constructor
-      PlotPolar(const PlotPolar &) = delete; ///< no default copy constructor
-      PlotPolar &operator=(const PlotPolar &) = delete; ///< no assignment operator
     protected:
-      virtual void plot_data_modified() override;  ///< a method that will update the \c _range variables when datasets are added, modified or removed.
+      void plot_data_modified() override;  ///< a method that will update the \c _range variables when datasets are added, modified or removed.
 
       /** This static method takes care of coordinate transformations when using non-linear axes
        *
@@ -102,7 +99,7 @@ namespace Gtk {
        * \param x_new the new \c x PLplot coordinate
        * \param y_new the new \c y PLplot coordinate
        */
-      virtual void coordinate_transform_world_to_plplot(double x_old, double y_old, double &x_new, double &y_new) override;
+      void coordinate_transform_world_to_plplot(double x_old, double y_old, double &x_new, double &y_new) override;
 
       /** This method takes care of coordinate transformations when using non-linear axes
        *
@@ -114,7 +111,7 @@ namespace Gtk {
        * \param x_new the new \c x world coordinate
        * \param y_new the new \c y world coordinate
        */
-      virtual void coordinate_transform_plplot_to_world(double x_old, double y_old, double &x_new, double &y_new) override;
+      void coordinate_transform_plplot_to_world(double x_old, double y_old, double &x_new, double &y_new) override;
     public:
       /** Constructor
        *
@@ -141,14 +138,14 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotPolar();
+      ~PlotPolar() override;
 
       /** Add a single PlotDataPolar dataset to the plot
        *
        * \param data dataset to be added to the plot
        * \exception Gtk::PLplot::Exception
        */
-      virtual void add_data(PlotDataPolar &data);
+      void add_data(PlotDataPolar &data);
 
       /** Remove a single dataset from the plot
        *
@@ -156,7 +153,7 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        * \since 2.2
        */
-      virtual void remove_data(unsigned int plot_data_index) override;
+      void remove_data(unsigned int plot_data_index) override;
 
       /** Remove a single dataset from the plot
        *
@@ -164,7 +161,7 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        * \since 2.2
        */
-      virtual void remove_data(PlotData &plot_data_member) override;
+      void remove_data(PlotData &plot_data_member) override;
 
       /** Method to draw the plot with all of its datasets
        *
@@ -174,7 +171,11 @@ namespace Gtk {
        * \param height the height of the Canvas widget
        */
       //void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, plstream *_pls, int width, int height);
-      virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
+      void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
+
+      PlotPolar() = delete; ///< no default constructor
+      PlotPolar(const PlotPolar &) = delete; ///< no default copy constructor
+      PlotPolar &operator=(const PlotPolar &) = delete; ///< no assignment operator
 
       friend class Canvas;
     };

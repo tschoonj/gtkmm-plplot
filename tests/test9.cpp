@@ -71,16 +71,16 @@ namespace Test9 {
 
       //generate our data
       //first a helix
-      std::valarray<double> x_va1 = cos(Gtk::PLplot::indgen_va(1000)*8.0*M_PI/999.0);
-      std::valarray<double> y_va1 = sin(Gtk::PLplot::indgen_va(1000)*8.0*M_PI/999.0);
-      std::valarray<double> z_va1 = Gtk::PLplot::indgen_va(1000)*10.0/999.0 - 5.0;
+      std::valarray<double> x_va1 = cos(Gtk::PLplot::indgen_va<double>(1000)*8.0*M_PI/999.0);
+      std::valarray<double> y_va1 = sin(Gtk::PLplot::indgen_va<double>(1000)*8.0*M_PI/999.0);
+      std::valarray<double> z_va1 = Gtk::PLplot::indgen_va<double>(1000)*10.0/999.0 - 5.0;
 
       Gtk::PLplot::PlotData3D *data1 = Gtk::manage(new Gtk::PLplot::PlotData3D(x_va1, y_va1, z_va1));
       data1->set_name("Helix");
 
       //followed by a simple sine
-      std::valarray<double> x_va2 = Gtk::PLplot::indgen_va(1000)*6.0/999.0 - 3.0;
-      std::valarray<double> y_va2 = Gtk::PLplot::indgen_va(1000)*6.0/999.0 - 3.0;
+      std::valarray<double> x_va2 = Gtk::PLplot::indgen_va<double>(1000)*6.0/999.0 - 3.0;
+      std::valarray<double> y_va2 = Gtk::PLplot::indgen_va<double>(1000)*6.0/999.0 - 3.0;
       std::valarray<double> z_va2 = cos(sqrt(x_va2*x_va2 + y_va2*y_va2));
 
       Gtk::PLplot::PlotData3D *data2 = Gtk::manage(new Gtk::PLplot::PlotData3D(x_va2, y_va2, z_va2, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP));

@@ -40,9 +40,6 @@ namespace Gtk {
      */
      class Plot : public Object {
      private:
-      Plot &operator=(const Plot &) = delete; ///< no assignment operator
-      Plot(const Plot &) = delete; ///< no default copy constructor
-      Plot() = delete;
      protected:
       std::vector<PlotData *> plot_data; ///< vector that contains pointers to the PlotData datasets
       Glib::ustring axis_title_x; ///< X-axis title
@@ -101,7 +98,7 @@ namespace Gtk {
        * \param width width of the plot in normalized coordinates
        * \param height height of the plot in normalized coordinates
        */
-      virtual void draw_plot_init(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) final;
+      void draw_plot_init(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height);
 
       /** Constructor
        *
@@ -127,7 +124,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~Plot();
+      ~Plot() override;
 
       /** Remove a single dataset from the plot
        *
@@ -150,7 +147,7 @@ namespace Gtk {
        * \return a pointer to the PlotData in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      virtual PlotData *get_data(unsigned int data_index = 0) final;
+      PlotData *get_data(unsigned int data_index = 0);
 
       /** Method to draw the plot with all of its datasets
        *
@@ -272,6 +269,10 @@ namespace Gtk {
       sigc::signal<void, PlotData *> signal_data_removed() {
         return _signal_data_removed;
       }
+
+      Plot &operator=(const Plot &) = delete; ///< no assignment operator
+      Plot(const Plot &) = delete; ///< no default copy constructor
+      Plot() = delete;
 
       friend class Canvas;
       friend class RegionSelection;

@@ -43,12 +43,8 @@ namespace Gtk {
       bool log10_x; ///< \c true means X-axis logarithmic axis, \c false means linear
       bool log10_y; ///< \c true means Y-axis logarithmic axis, \c false means linear
       BoxStyle box_style; ///< the currently used box style to draw the box, axes and grid
-
-      Plot2D() = delete; ///< no default constructor
-      Plot2D(const Plot2D &) = delete; ///< no default copy constructor
-      Plot2D &operator=(const Plot2D &) = delete; ///< no assignment operator
     protected:
-      virtual void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
+      void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
 
       /** This static method takes care of coordinate transformations when using non-linear axes
        *
@@ -86,7 +82,7 @@ namespace Gtk {
        * \param x_new the new \c x PLplot coordinate
        * \param y_new the new \c y PLplot coordinate
        */
-      virtual void coordinate_transform_world_to_plplot(double x_old, double y_old, double &x_new, double &y_new) override;
+      void coordinate_transform_world_to_plplot(double x_old, double y_old, double &x_new, double &y_new) override;
 
       /** This method takes care of coordinate transformations when using non-linear axes
        *
@@ -98,7 +94,7 @@ namespace Gtk {
        * \param x_new the new \c x world coordinate
        * \param y_new the new \c y world coordinate
        */
-      virtual void coordinate_transform_plplot_to_world(double x_old, double y_old, double &x_new, double &y_new) override;
+      void coordinate_transform_plplot_to_world(double x_old, double y_old, double &x_new, double &y_new) override;
     public:
 
       /** Constructor
@@ -146,28 +142,28 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~Plot2D();
+      ~Plot2D() override;
 
       /** Add a single PlotData2D dataset to the plot
        *
        * \param data dataset to be added to the plot
        * \exception Gtk::PLplot::Exception
        */
-      virtual void add_data(PlotData2D &data);
+      void add_data(PlotData2D &data);
 
       /** Remove a single dataset from the plot
        *
        * \param plot_data_index index of the plotdata in the \c plot_data vector
        * \exception Gtk::PLplot::Exception
        */
-      virtual void remove_data(unsigned int plot_data_index) override;
+      void remove_data(unsigned int plot_data_index) override;
 
       /** Remove a single dataset from the plot
        *
        * \param plot_data_member pointer to the plotdata in the \c plot_data vector
        * \exception Gtk::PLplot::Exception
        */
-      virtual void remove_data(PlotData &plot_data_member) override;
+      void remove_data(PlotData &plot_data_member) override;
 
       /** Method to draw the plot with all of its datasets
        *
@@ -176,7 +172,7 @@ namespace Gtk {
        * \param width the width of the Canvas widget
        * \param height the height of the Canvas widget
        */
-      virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
+      void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
 
       /** Set the box style
        *
@@ -189,7 +185,6 @@ namespace Gtk {
        * \return the currently selected box style
        */
       BoxStyle get_box_style();
-
 
       /** Sets the scaling of the X-axis to logarithmic
        *
@@ -222,6 +217,10 @@ namespace Gtk {
       bool get_axis_logarithmic_y();
 
       friend class Canvas;
+
+      Plot2D() = delete; ///< no default constructor
+      Plot2D(const Plot2D &) = delete; ///< no default copy constructor
+      Plot2D &operator=(const Plot2D &) = delete; ///< no assignment operator
     };
   }
 }

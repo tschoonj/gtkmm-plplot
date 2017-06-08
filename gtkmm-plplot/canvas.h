@@ -65,8 +65,6 @@ namespace Gtk {
       Plot *inside_plot; ///< \c pointer to the plot that currently contains the mouse cursor. It will be set to nullptr when it is not above a plot.
       double inside_plot_current_coords[2]; ///< coords of the current cursor position within inside_plot, updated in on_motion_notify_event();
       Gdk::RGBA background_color; ///< the currently used background color of the canvas (default = opaque White)
-      Canvas(const Canvas &) = delete; ///< no copy constructor
-      Canvas &operator=(const Canvas &) = delete; ///< no move assignment operator
     protected:
       /** This is a default handler for signal_draw().
        *
@@ -74,7 +72,7 @@ namespace Gtk {
        * \param cr The cairo context to draw to.
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        */
-      virtual bool on_draw(const ::Cairo::RefPtr<::Cairo::Context>& cr) override;
+      bool on_draw(const ::Cairo::RefPtr<::Cairo::Context>& cr) override;
 
       /** This is a default handler for signal_button_press_event().
        *
@@ -83,7 +81,7 @@ namespace Gtk {
        * \param event The GdkEventButton which triggered this signal.
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        */
-      virtual bool on_button_press_event(GdkEventButton *event) override;
+      bool on_button_press_event(GdkEventButton *event) override;
 
       /** This is a default handler for signal_button_release_event().
        *
@@ -92,7 +90,7 @@ namespace Gtk {
        * \param event The GdkEventButton which triggered this signal.
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        */
-      virtual bool on_button_release_event(GdkEventButton *event) override;
+      bool on_button_release_event(GdkEventButton *event) override;
 
       /** This is a default handler for signal_motion_notify_event().
        *
@@ -101,7 +99,7 @@ namespace Gtk {
        * \param event The GdkEventMotion which triggered this signal.
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        */
-      virtual bool on_motion_notify_event(GdkEventMotion *event) override;
+      bool on_motion_notify_event(GdkEventMotion *event) override;
 
       /** This is a default handler for signal_scroll_event().
        *
@@ -111,7 +109,7 @@ namespace Gtk {
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        * \since 2.2
        */
-      virtual bool on_scroll_event(GdkEventScroll *event) override;
+      bool on_scroll_event(GdkEventScroll *event) override;
 
       /** This is a default handler for signal_key_press_event().
        *
@@ -121,7 +119,7 @@ namespace Gtk {
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        * \since 2.2
        */
-      virtual bool on_key_press_event(GdkEventKey *event) override;
+      bool on_key_press_event(GdkEventKey *event) override;
 
       /** This is a default handler for signal_key_release_event().
        *
@@ -131,7 +129,7 @@ namespace Gtk {
        * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
        * \since 2.2
        */
-      virtual bool on_key_release_event(GdkEventKey *event) override;
+      bool on_key_release_event(GdkEventKey *event) override;
 
       /** This is a default handler for signal_changed().
        *
@@ -161,7 +159,7 @@ namespace Gtk {
       /** Canvas destructor
        *
        */
-      virtual ~Canvas();
+      ~Canvas() override;
 
       /** Draw onto a given cairo context
        *
@@ -221,6 +219,9 @@ namespace Gtk {
        * \param color Set a new background color.
        */
       void set_background_color(Gdk::RGBA color);
+
+      Canvas(const Canvas &) = delete; ///< no copy constructor
+      Canvas &operator=(const Canvas &) = delete; ///< no move assignment operator
     };
   }
 }

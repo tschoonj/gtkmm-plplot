@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot/plotdataline.h>
 #include <gtkmm-plplot/exception.h>
+#include <utility>
 
 using namespace Gtk::PLplot;
 
@@ -25,7 +26,7 @@ PlotDataLine::PlotDataLine(
   LineStyle _line_style,
   double _line_width) :
   Glib::ObjectBase("GtkmmPlplotPlotDataLine"),
-  color(_color),
+  color(std::move(_color)),
   line_style(_line_style),
   line_width(_line_width) {
 
@@ -69,4 +70,4 @@ double PlotDataLine::get_line_width() {
   return line_width;
 }
 
-PlotDataLine::~PlotDataLine() {}
+PlotDataLine::~PlotDataLine() = default;

@@ -60,7 +60,7 @@ Plot3D::Plot3D(
   add_data(_data);
 }
 
-Plot3D::~Plot3D() {}
+Plot3D::~Plot3D() = default;
 
 void Plot3D::set_altitude(double _altitude) {
   if (altitude == _altitude)

@@ -39,11 +39,8 @@ namespace Gtk {
      */
     class PlotHistogram : public Plot, public RegionSelection {
     private:
-      PlotHistogram() = delete; ///< no default constructor
-      PlotHistogram(const PlotHistogram &) = delete; ///< no copy constructor
-      PlotHistogram &operator=(const PlotHistogram &) = delete; ///< no assignment operato
     protected:
-      virtual void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
+      void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
 
       /** Constructor
        *
@@ -69,7 +66,7 @@ namespace Gtk {
        * \param data dataset to be added to the plot
        * \exception Gtk::PLplot::Exception
        */
-      virtual void add_data(PlotDataHistogram &data);
+      void add_data(PlotDataHistogram &data);
 
       public:
       /** Constructor
@@ -98,7 +95,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotHistogram();
+      ~PlotHistogram() override;
 
       /** Method to draw the plot with all of its datasets
        *
@@ -107,7 +104,11 @@ namespace Gtk {
        * \param width the width of the Canvas widget
        * \param height the height of the Canvas widget
        */
-      virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
+      void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
+
+      PlotHistogram() = delete; ///< no default constructor
+      PlotHistogram(const PlotHistogram &) = delete; ///< no copy constructor
+      PlotHistogram &operator=(const PlotHistogram &) = delete; ///< no assignment operato
     };
   }
 }

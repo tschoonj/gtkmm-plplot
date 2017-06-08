@@ -32,16 +32,13 @@ namespace Gtk {
      */
      class Object : public Glib::Object {
      private:
-       bool managed; ///< \c true means memory managed by us, \c false indicates otherwise
-       //disable copy construction and assignment operator
-       Object(const Object &); ///< disable copy constructor
-       Object &operator=(const Object &) = delete; ///< disable assignment operator
+       bool managed{false}; ///< \c true means memory managed by us, \c false indicates otherwise
      protected:
        /** Constructor
         *
         * Newly constructed instances have managed set to \c false
         */
-       Object() : Glib::ObjectBase("GtkmmPLplotObject"), managed(false) {
+       Object() : Glib::ObjectBase("GtkmmPLplotObject") {
          //std::cout << "Gtkmm::PLplot::Object constructor called" << std::endl;
        }
      public:
@@ -50,7 +47,7 @@ namespace Gtk {
         * This method should not be used directly: the user is strongly encouraged
         * to use Gtk::manage instead.
         */
-       virtual void set_manage() {
+       void set_manage() override {
          managed = true;
        }
        #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -58,6 +55,8 @@ namespace Gtk {
          return managed;
        }
        #endif
+       Object(const Object &); ///< disable copy constructor
+       Object &operator=(const Object &) = delete; ///< disable assignment operator
      };
   }
 }

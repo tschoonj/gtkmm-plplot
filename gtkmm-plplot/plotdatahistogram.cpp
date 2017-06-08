@@ -41,7 +41,7 @@ PlotDataHistogram::PlotDataHistogram(
     throw Exception("PlotDataHistogram::PlotDataHistogram -> nbins must greater than or equal to 3");
 }
 
-PlotDataHistogram::~PlotDataHistogram() {}
+PlotDataHistogram::~PlotDataHistogram() = default;
 
 void PlotDataHistogram::set_expand_bins(bool _expand_bins) {
   if (_expand_bins == expand_bins)

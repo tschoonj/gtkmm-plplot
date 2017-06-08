@@ -37,9 +37,6 @@ namespace Gtk {
      */
     class PlotDataHistogramBinned : public PlotDataHistogram {
     private:
-      PlotDataHistogramBinned() = delete; ///< no default constructor
-      PlotDataHistogramBinned &operator=(const PlotDataHistogramBinned &) = delete; ///< no assignment operator
-      PlotDataHistogramBinned(const PlotDataHistogramBinned &source) = delete; ///< no default copy constructor
     protected:
       std::vector<double> data_x; ///< bin X-values, must be monotonicly increasing!
       std::vector<double> data_y; ///< bin Y-values (heights)
@@ -74,7 +71,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotDataHistogramBinned();
+      ~PlotDataHistogramBinned() override;
 
       /** Set the manner in which the X-values should be interpreted
        *
@@ -96,13 +93,17 @@ namespace Gtk {
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
        */
-      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+      void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
 
       /** Get dataset extremes
        *
        * Will be used in determining the box and its axes
        */
-      virtual void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) override;
+      void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) override;
+
+      PlotDataHistogramBinned() = delete; ///< no default constructor
+      PlotDataHistogramBinned &operator=(const PlotDataHistogramBinned &) = delete; ///< no assignment operator
+      PlotDataHistogramBinned(const PlotDataHistogramBinned &source) = delete; ///< no default copy constructor
     };
   }
 }

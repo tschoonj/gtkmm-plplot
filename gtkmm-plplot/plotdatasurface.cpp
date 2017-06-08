@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/utils.h>
 #include <algorithm>
 #include <iostream>
+#include <utility>
 #include <plConfig.h>
 
 #ifdef GTKMM_PLPLOT_PLPLOT_5_11_0
@@ -55,25 +56,27 @@ PlotDataSurface::PlotDataSurface(
     }
 
     //allocate memory for z. This could easily segfault if bad input was provided
-		if (_z)
-    	z = deep_copy_array2d(_z, x.size(), y.size());
+    if (_z)
+      z = deep_copy_array2d(_z, x.size(), y.size());
 }
 
 PlotDataSurface::PlotDataSurface(
   const std::valarray<double> &_x,
   const std::valarray<double> &_y,
   double **_z) :
-  PlotDataSurface(std::vector<double>(std::begin(_x), std::end(_x)),
-  std::vector<double>(std::begin(_y), std::end(_y)),
-  _z) {}
+  PlotDataSurface(
+    std::vector<double>(std::begin(_x), std::end(_x)),
+    std::vector<double>(std::begin(_y), std::end(_y)),
+    _z) {}
 
 PlotDataSurface::PlotDataSurface(
   unsigned int nx,
   unsigned int ny,
   double **_z) :
-  PlotDataSurface(std::vector<double>(indgen(nx)),
-  std::vector<double>(indgen(ny)),
-  _z) {}
+  PlotDataSurface(
+    std::vector<double>(indgen<double>(nx)),
+    std::vector<double>(indgen<double>(ny)),
+    _z) {}
 
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
 //the Boost constructors
@@ -93,15 +96,17 @@ PlotDataSurface::PlotDataSurface(
   const std::valarray<double> &_x,
   const std::valarray<double> &_y,
   const boost::multi_array<double, 2> &_z) :
-  PlotDataSurface(std::vector<double>(std::begin(_x), std::end(_x)),
-  std::vector<double>(std::begin(_y), std::end(_y)),
-  _z) {}
+  PlotDataSurface(
+    std::vector<double>(std::begin(_x), std::end(_x)),
+    std::vector<double>(std::begin(_y), std::end(_y)),
+    _z) {}
 
 PlotDataSurface::PlotDataSurface(
   const boost::multi_array<double, 2> &_z) :
-  PlotDataSurface(std::vector<double>(indgen(_z.shape()[0])),
-  std::vector<double>(indgen(_z.shape()[1])),
-  _z) {}
+  PlotDataSurface(
+    std::vector<double>(indgen<double>(_z.shape()[0])),
+    std::vector<double>(indgen<double>(_z.shape()[1])),
+    _z) {}
 
 #endif
 

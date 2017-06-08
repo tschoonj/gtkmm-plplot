@@ -42,9 +42,6 @@ namespace Gtk {
        ColormapPalette colormap_palette; ///< The colormap that will be used to render the contourplot shades.
        AreaFillPattern area_fill_pattern; ///< The pattern that will be used to draw the shaded regions.
        double fill_width; ///< Defines line width used by the fill pattern.
-       PlotContourShades() = delete; ///< no default constructor
-       PlotContourShades(const PlotContourShades &) = delete; ///< no default copy constructor
-       PlotContourShades &operator=(const PlotContourShades &) = delete; ///< no assignment operator
      protected:
       /** Constructor
        *
@@ -108,7 +105,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotContourShades();
+      ~PlotContourShades() override;
 
       /** Show the colorbar
        *
@@ -205,11 +202,13 @@ namespace Gtk {
        * \param width the width of the Canvas widget
        * \param height the height of the Canvas widget
        */
-      //void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, plstream *_pls, int width, int height);
-      virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
+      void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
 
       friend class Canvas;
 
+      PlotContourShades() = delete; ///< no default constructor
+      PlotContourShades(const PlotContourShades &) = delete; ///< no default copy constructor
+      PlotContourShades &operator=(const PlotContourShades &) = delete; ///< no assignment operator
      };
   }
 }

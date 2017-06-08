@@ -15,7 +15,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <gtkmm-plplot/gtkmm-plplotconfig.h>
+#include <gtkmm-plplotconfig.h>
 #include <gtkmm-plplot/plotcontourshades.h>
 #include <gtkmm-plplot/exception.h>
 #include <gtkmm-plplot/utils.h>
@@ -82,7 +82,7 @@ PlotContourShades::PlotContourShades(
   add_data(_data);
 }
 
-PlotContourShades::~PlotContourShades() {}
+PlotContourShades::~PlotContourShades() = default;
 
 void PlotContourShades::show_colorbar() {
   if (showing_colorbar)
@@ -206,7 +206,7 @@ void PlotContourShades::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const
 	//this will only work if showing_edges is true!
 	pls->setcontlabelparam(0.01, 0.6, 0.1, is_showing_labels());
 
-	pls->shades(z, x.size(), y.size(), NULL, x.front(), x.back(), y.front(), y.back(),
+	pls->shades(z, x.size(), y.size(), nullptr, x.front(), x.back(), y.front(), y.back(),
               &clevels[0], nlevels, fill_width,
               cont_color, cont_width,
               PLCALLBACK::fill, true, PLCALLBACK::tr1, (void *) &cgrid);

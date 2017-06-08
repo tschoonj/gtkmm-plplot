@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/exception.h>
 #include <gtkmm-plplot/utils.h>
 #include <algorithm>
+#include <utility>
 #include <plstream.h>
 
 using namespace Gtk::PLplot;
@@ -124,8 +125,8 @@ void PlotDataHistogramUnbinned::rebin() {
     y[i] = 0.0;
   }
 
-  for (int i = 0; i < data.size(); i++ ) {
-    int bin = (int) ( ( data[i] - datmin ) / dx );
+  for (auto & datai : data) {
+    auto bin = (int) ( ( datai - datmin ) / dx );
     if (ignore_outliers == false) {
       bin = bin > 0 ? bin : 0;
       bin = bin < nbins ? bin : nbins - 1;

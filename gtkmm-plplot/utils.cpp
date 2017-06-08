@@ -31,20 +31,6 @@ static std::vector<Glib::ustring> _colormaps = {
   "cmap1_radar.pal"
 };
 
-std::vector<double> Gtk::PLplot::indgen(unsigned int n) {
-  std::vector<double> rv(n);
-  for (unsigned int i = 0 ; i < n ; i++)
-    rv[i] = (double) i;
-  return rv;
-}
-
-std::valarray<double> Gtk::PLplot::indgen_va(unsigned int n) {
-  std::valarray<double> rv(n);
-  for (unsigned int i = 0 ; i < n ; i++)
-    rv[i] = (double) i;
-  return rv;
-}
-
 void Gtk::PLplot::change_plstream_color(plstream *pls, Gdk::RGBA color, bool activate, int index) {
   pls->scol0a(index, color.get_red_u()/256, color.get_green_u()/256, color.get_blue_u()/256, color.get_alpha());
   if (activate)
@@ -56,7 +42,7 @@ void Gtk::PLplot::change_plstream_colormap(plstream *pls, Gtk::PLplot::ColormapP
 }
 
 double **Gtk::PLplot::deep_copy_array2d(double **input, int nx, int ny) {
-  double **copy = (double **) malloc(sizeof(double *) * nx);
+  auto **copy = (double **) malloc(sizeof(double *) * nx);
   for (int i = 0 ; i < nx ; i++) {
     copy[i] = (double *) malloc(sizeof(double) * ny);
     memcpy(copy[i], input[i], sizeof(double) * ny);
@@ -72,7 +58,7 @@ void Gtk::PLplot::free_array2d(void **input, int nx) {
 }
 
 double **Gtk::PLplot::calloc_array2d(int nx, int ny) {
-  double **rv= (double **) malloc(sizeof(double *) * nx);
+  auto **rv= (double **) malloc(sizeof(double *) * nx);
   for (int i = 0 ; i < nx ; i++) {
     rv[i] = (double *) calloc(ny, sizeof(double));
   }
@@ -88,7 +74,7 @@ double **Gtk::PLplot::boost_multi_array_to_array2d(const boost::multi_array<doub
   size_t ny = array.shape()[1];
 
 
-  double **copy = (double **) malloc(sizeof(double *) * nx);
+  auto copy = (double **) malloc(sizeof(double *) * nx);
   for (int i = 0 ; i < nx ; i++) {
     copy[i] = (double *) malloc(sizeof(double) * ny);
     memcpy(copy[i], data + i * ny, sizeof(double) * ny);

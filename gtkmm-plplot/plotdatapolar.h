@@ -41,9 +41,6 @@ namespace Gtk {
      */
     class PlotDataPolar : public PlotData2D {
     private:
-      PlotDataPolar() = delete; ///< no default constructor
-      PlotDataPolar &operator=(const PlotDataPolar &) = delete; ///< no assignment operator
-      PlotDataPolar(const PlotDataPolar &source) = delete; ///< no default copy constructor;
     protected:
     public:
       /** Constructor
@@ -82,7 +79,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotDataPolar();
+      ~PlotDataPolar() override;
 
       /**
        *
@@ -101,6 +98,10 @@ namespace Gtk {
        * \param rmax R maximum value
        */
       virtual void get_max_r(double &rmax);
+
+      PlotDataPolar() = delete; ///< no default constructor
+      PlotDataPolar &operator=(const PlotDataPolar &) = delete; ///< no assignment operator
+      PlotDataPolar(const PlotDataPolar &source) = delete; ///< no default copy constructor;
     };
   }
 }

@@ -39,9 +39,6 @@ namespace Gtk {
      */
     class PlotContour : public Plot, public RegionSelection {
     private:
-      PlotContour() = delete; ///< no default constructor
-      PlotContour(const PlotContour &) = delete; ///< no copy constructor
-      PlotContour &operator=(const PlotContour &) = delete; ///< no assignment operator
     protected:
       unsigned int nlevels; ///< Number of contour levels to draw
       Gdk::RGBA edge_color; ///< Defines pen color used for contours defining edges.
@@ -52,7 +49,7 @@ namespace Gtk {
       double zmax; ///< Maximum of \c z, used to determine the contour edges
       std::vector<double> clevels; ///< Vector containing the data levels corresponding to the edges of each region that will be plotted. To work properly the levels should be monotonic.
 
-      virtual void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
+      void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
 
       /** Constructor
        *
@@ -84,7 +81,7 @@ namespace Gtk {
        * \param data dataset to be added to the plot
        * \exception Gtk::PLplot::Exception
        */
-      virtual void add_data(PlotDataSurface &data);
+      void add_data(PlotDataSurface &data);
 
     public:
       /** Constructor
@@ -119,7 +116,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotContour();
+      ~PlotContour() override;
 
       /** Changes the color used for the contour defining edges
        *
@@ -184,9 +181,13 @@ namespace Gtk {
        * \param width the width of the Canvas widget
        * \param height the height of the Canvas widget
        */
-      virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
+      void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
 
       friend class Canvas;
+
+      PlotContour() = delete; ///< no default constructor
+      PlotContour(const PlotContour &) = delete; ///< no copy constructor
+      PlotContour &operator=(const PlotContour &) = delete; ///< no assignment operator
     };
   }
 }

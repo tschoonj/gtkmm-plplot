@@ -47,12 +47,8 @@ namespace Gtk {
       double plot_data_range_z[2];  ///< the maximum range covered by the Z-values of the datasets
       double altitude; ///< the viewing altitude
       double azimuth; ///< the viewing azimuth
-
-      Plot3D() = delete; ///< no default constructor
-      Plot3D(const Plot3D &) = delete; ///< no default copy constructor
-      Plot3D &operator=(const Plot3D &) = delete; ///< no assignment operator
     protected:
-      virtual void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
+      void plot_data_modified() override; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
 
       /** Constructor
        *
@@ -102,7 +98,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~Plot3D();
+      ~Plot3D() override;
 
       /** Set the viewing altitude in degrees above the XY plane
        *
@@ -137,7 +133,7 @@ namespace Gtk {
        * \return a pointer to the PlotData3D in the \c plot_data vector.
        * \exception Gtk::PLplot::Exception
        */
-      virtual void add_data(PlotData3D &data);
+      void add_data(PlotData3D &data);
 
       /** Method to draw the plot with all of its datasets
        *
@@ -146,10 +142,13 @@ namespace Gtk {
        * \param width the width of the Canvas widget
        * \param height the height of the Canvas widget
        */
-      //void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, plstream *_pls, int width, int height);
-      virtual void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
+      void draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width, const int height) override;
 
       friend class Canvas;
+
+      Plot3D() = delete; ///< no default constructor
+      Plot3D(const Plot3D &) = delete; ///< no default copy constructor
+      Plot3D &operator=(const Plot3D &) = delete; ///< no assignment operator
     };
   }
 }

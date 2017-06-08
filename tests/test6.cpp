@@ -51,7 +51,7 @@ namespace Test6 {
 
       //add a plot to canvas
       //a cardioid
-      std::valarray<double> theta1 = Gtk::PLplot::indgen_va(1000)*2.0*M_PI/999.0;
+      std::valarray<double> theta1 = Gtk::PLplot::indgen_va<double>(1000)*2.0*M_PI/999.0;
       std::valarray<double> r1 = cos(theta1) + double(1.0);
 
       auto plot = Gtk::manage(new Gtk::PLplot::PlotPolar(
@@ -63,7 +63,7 @@ namespace Test6 {
       plot->get_data()->set_name("Cardiod");
 
       //Fermat's spiral
-      std::valarray<double> theta2 = Gtk::PLplot::indgen_va(2000)*4.0*M_PI/1999.0;
+      std::valarray<double> theta2 = Gtk::PLplot::indgen_va<double>(2000)*4.0*M_PI/1999.0;
       std::valarray<double> r2 = sqrt(theta2) * 2.0 / sqrt(M_PI) * 1.1;
 
       auto data2 = Gtk::manage(new Gtk::PLplot::PlotDataPolar(r2, theta2, Gdk::RGBA("green"), Gtk::PLplot::LineStyle::CONTINUOUS, 2.0));

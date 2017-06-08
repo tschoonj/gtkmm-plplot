@@ -45,12 +45,12 @@ namespace Test11 {
     Gtk::PLplot::Plot2D plot_2d_error_xy;
   public:
     Window() :
-        x(Gtk::PLplot::indgen_va(40) * 2.0 * M_PI / 39.0),
+        x(Gtk::PLplot::indgen_va<double>(40) * 2.0 * M_PI / 39.0),
         xmin(x - 2.0 * M_PI / 80.0),
         xmax(x + 2.0 * M_PI / 80.0),
         y(sin(x)),
-        ymin(y - 0.1 - Gtk::PLplot::indgen_va(40) / 39.0),
-        ymax(y + 0.1 + Gtk::PLplot::indgen_va(40) / 39.0),
+        ymin(y - 0.1 - Gtk::PLplot::indgen_va<double>(40) / 39.0),
+        ymax(y + 0.1 + Gtk::PLplot::indgen_va<double>(40) / 39.0),
         canvas(),
         plot_data_2d(x, y),
         plot_data_2d_error_x(x, y, xmin, xmax),

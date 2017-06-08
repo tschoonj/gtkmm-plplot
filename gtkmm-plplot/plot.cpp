@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/exception.h>
 #include <gdkmm/general.h>
 #include <plstream.h>
+#include <utility>
 
 using namespace Gtk::PLplot;
 

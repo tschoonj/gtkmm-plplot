@@ -39,10 +39,6 @@ namespace Gtk {
      */
     class PlotDataSurface : public PlotData {
     private:
-
-      PlotDataSurface() = delete; ///< no default constructor
-      PlotDataSurface(const PlotDataSurface &) = delete; ///< no copy constructor
-      PlotDataSurface &operator=(const PlotDataSurface &) = delete; ///< no assignment operator
     protected:
       std::vector<double> x; ///< The X-grid coordinates of the dataset, which are assumed to correspond to the first dimension of Z
       std::vector<double> y; ///< The Y-grid coordinates of the dataset, which are assumed to correspond to the second dimension of Z
@@ -118,7 +114,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotDataSurface();
+      ~PlotDataSurface() override;
 
       /**
        *
@@ -137,6 +133,10 @@ namespace Gtk {
        * \returns a copy of the dataset Z-values
        */
       double **get_array2d_z();
+
+      PlotDataSurface() = delete; ///< no default constructor
+      PlotDataSurface(const PlotDataSurface &) = delete; ///< no copy constructor
+      PlotDataSurface &operator=(const PlotDataSurface &) = delete; ///< no assignment operator
     };
   }
 }

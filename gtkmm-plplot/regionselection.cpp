@@ -41,7 +41,7 @@ RegionSelection::RegionSelection() :
   this->signal_pan().connect(sigc::mem_fun(*this, &RegionSelection::on_pan));
 }
 
-RegionSelection::~RegionSelection() {}
+RegionSelection::~RegionSelection() = default;
 
 void RegionSelection::on_select_region(double xmin, double xmax, double ymin, double ymax) {
   //default implementation -> override in a derived class to get a different behavior
@@ -233,7 +233,7 @@ void RegionSelection::coordinate_transform_plplot_to_cairo(
     double nxmin, nxmax, nymin, nymax;
     double wxmin, wxmax, wymin, wymax;
 
-    Plot* plot = dynamic_cast<Plot *>(this);
+    auto plot = dynamic_cast<Plot *>(this);
 
     if (plot == nullptr)
       throw Exception("Gtk::PLplot::RegionSelection::coordinate_transform_plplot_to_cairo -> could not dynamic_cast this to Plot*");
@@ -257,7 +257,7 @@ void RegionSelection::coordinate_transform_cairo_to_plplot(
     double nxmin, nxmax, nymin, nymax;
     double wxmin, wxmax, wymin, wymax;
 
-    Plot* plot = dynamic_cast<Plot *>(this);
+    auto plot = dynamic_cast<Plot *>(this);
 
     if (plot == nullptr)
       throw Exception("Gtk::PLplot::RegionSelection::coordinate_transform_plplot_to_cairo -> could not dynamic_cast this to Plot*");

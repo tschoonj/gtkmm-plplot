@@ -37,11 +37,8 @@ namespace Gtk {
      */
     class PlotData2DErrorY : virtual public PlotData2D {
     private:
-      PlotData2DErrorY() = delete; ///< no default constructor
-      PlotData2DErrorY &operator=(const PlotData2DErrorY &) = delete; ///< no assignment operator
-      PlotData2DErrorY(const PlotData2DErrorY &source) = delete; ///< no default copy constructor;
-      virtual void add_datapoint(double xval, double yval) override; ///< disable this method
-      virtual void add_datapoint(std::pair<double, double> xy_pair) override; ///< disable this method;
+      void add_datapoint(double xval, double yval) override; ///< disable this method
+      void add_datapoint(std::pair<double, double> xy_pair) override; ///< disable this method;
     protected:
       std::vector<double> errory_low; ///< The lower error margins of the Y-data
       std::vector<double> errory_high; ///< The upper error margins of the Y-data
@@ -97,7 +94,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotData2DErrorY();
+      ~PlotData2DErrorY() override;
 
       /**
        *
@@ -118,7 +115,7 @@ namespace Gtk {
        * \param ymin Y minimum value
        * \param ymax Y minimum value
        */
-      virtual void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) override;
+      void get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) override;
 
       /** Set the Y-dataset errorbar color
        *
@@ -149,7 +146,11 @@ namespace Gtk {
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
        */
-      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+      void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+
+      PlotData2DErrorY() = delete; ///< no default constructor
+      PlotData2DErrorY &operator=(const PlotData2DErrorY &) = delete; ///< no assignment operator
+      PlotData2DErrorY(const PlotData2DErrorY &source) = delete; ///< no default copy constructor;
     };
   }
 }

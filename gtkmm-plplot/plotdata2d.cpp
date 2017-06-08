@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/exception.h>
 #include <gtkmm-plplot/utils.h>
 #include <plstream.h>
+#include <utility>
 
 using namespace Gtk::PLplot;
 
@@ -59,17 +60,17 @@ PlotData2D::PlotData2D(
   Gdk::RGBA _color,
   LineStyle _line_style,
   double _line_width) :
-  PlotData2D(indgen(_y.size()), _y, _color, _line_style, _line_width) {}
+  PlotData2D(indgen<double>(_y.size()), _y, _color, _line_style, _line_width) {}
 
 PlotData2D::PlotData2D(
   const std::valarray<double> &_y,
   Gdk::RGBA _color, LineStyle _line_style,
   double _line_width) :
-  PlotData2D(std::vector<double>(indgen(_y.size())),
+  PlotData2D(std::vector<double>(indgen<double>(_y.size())),
   std::vector<double>(std::begin(_y), std::end(_y)),
   _color, _line_style, _line_width) {}
 
-PlotData2D::~PlotData2D() {}
+PlotData2D::~PlotData2D() = default;
 
 void PlotData2D::set_symbol(Glib::ustring _symbol) {
   symbol = _symbol;

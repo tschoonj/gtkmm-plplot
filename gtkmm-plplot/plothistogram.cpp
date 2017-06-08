@@ -52,7 +52,7 @@ PlotHistogram::PlotHistogram(
   add_data(_data);
 }
 
-PlotHistogram::~PlotHistogram() {}
+PlotHistogram::~PlotHistogram() = default;
 
 void PlotHistogram::plot_data_modified() {
   auto data = dynamic_cast<PlotDataHistogram*>(plot_data[0]);

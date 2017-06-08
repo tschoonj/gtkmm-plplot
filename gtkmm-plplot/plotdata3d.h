@@ -37,10 +37,6 @@ namespace Gtk {
      */
     class PlotData3D : public PlotData2D {
     private:
-      PlotData3D() = delete; ///< no default constructor
-      PlotData3D(const PlotData3D &) = delete; ///< no copy constructor
-      PlotData3D &operator=(const PlotData3D &) = delete; ///< no assignment operator
-
       /** Add a single datapoint, consisting of an \c xval and \c yval value, to the dataset
        *
        * This datapoint will be added at the end of the std::vector's \c x and \c y.
@@ -50,7 +46,7 @@ namespace Gtk {
        * \param yval an Y-value
        * \exception Gtk::PLplot::Exception
        */
-      virtual void add_datapoint(double xval, double yval) final;
+      void add_datapoint(double xval, double yval) final;
 
       /** Add a single datapoint, consisting of a std::pair with an X and Y value, to the dataset
        *
@@ -60,7 +56,7 @@ namespace Gtk {
        * \param xy_pair a std::pair containing both an X- and a Y- value
        * \exception Gtk::PLplot::Exception
        */
-      virtual void add_datapoint(std::pair<double, double> xy_pair) final;
+      void add_datapoint(std::pair<double, double> xy_pair) final;
     protected:
       std::vector<double> z; ///< The Z-values of the dataset
     public:
@@ -104,7 +100,7 @@ namespace Gtk {
       /** Destructor
        *
        */
-      virtual ~PlotData3D();
+      ~PlotData3D() override;
 
       /**
        *
@@ -136,7 +132,11 @@ namespace Gtk {
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
        */
-      virtual void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+      void draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+
+      PlotData3D() = delete; ///< no default constructor
+      PlotData3D(const PlotData3D &) = delete; ///< no copy constructor
+      PlotData3D &operator=(const PlotData3D &) = delete; ///< no assignment operator
     };
   }
 }

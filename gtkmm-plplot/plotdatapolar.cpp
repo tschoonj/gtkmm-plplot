@@ -41,7 +41,7 @@ PlotDataPolar::PlotDataPolar(
   std::vector<double>(std::begin(_y), std::end(_y)),
   _color, _line_style, _line_width) {}
 
-PlotDataPolar::~PlotDataPolar() {}
+PlotDataPolar::~PlotDataPolar() = default;
 
 std::vector<double> PlotDataPolar::get_vector_r() {
   return x;

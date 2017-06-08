@@ -26,11 +26,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gdkmm/general.h>
 #include <iostream>
 #include <typeinfo>
+#include <utility>
 
 using namespace Gtk::PLplot;
 
 Canvas::Canvas(Plot &plot, Gdk::RGBA _background_color) :
-  Canvas(_background_color) {
+  Canvas(std::move(_background_color)) {
 
   add_plot(plot);
 }
@@ -47,7 +48,7 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
   selected_plot(nullptr),
   inside_plot(nullptr),
   inside_plot_current_coords{0.0, 0.0},
-  background_color(_background_color) {
+  background_color(std::move(_background_color)) {
 
   add_events(Gdk::POINTER_MOTION_MASK |
              Gdk::BUTTON_PRESS_MASK |
@@ -75,7 +76,7 @@ bool Canvas::on_scroll_event(GdkEventScroll *event) {
   start_cairo[1] = height - event->y;
 
   if (inside_plot != nullptr && !selecting && !left_mouse_button_clicked && !shift_pressed) {
-    RegionSelection *region_selection = dynamic_cast<RegionSelection *>(inside_plot);
+    auto region_selection = dynamic_cast<RegionSelection *>(inside_plot);
     if (region_selection != nullptr && region_selection->get_region_zoomable()) {
       double cursor_x, cursor_y;
 
@@ -134,7 +135,7 @@ bool Canvas::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
     end_cairo[0] >= 0.0 &&
     end_cairo[1] >= 0.0) {
 
-    RegionSelection *region_selection = dynamic_cast<RegionSelection *>(selected_plot);
+    auto region_selection = dynamic_cast<RegionSelection *>(selected_plot);
 
     cr->set_line_width(region_selection->get_region_selection_width());
     Gdk::Cairo::set_source_rgba(cr, region_selection->get_region_selection_color());
@@ -190,7 +191,7 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
 
 
   if (inside_plot != nullptr) {
-    RegionSelection *region_selection = dynamic_cast<RegionSelection *>(inside_plot);
+    auto region_selection = dynamic_cast<RegionSelection *>(inside_plot);
     if (region_selection != nullptr &&
       region_selection->get_region_selectable() &&
       !shift_pressed) {
@@ -264,7 +265,7 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
     return false;
   }
 
-  RegionSelection *region_selection = dynamic_cast<RegionSelection *>(selected_plot);
+  auto region_selection = dynamic_cast<RegionSelection *>(selected_plot);
 
   //this should never happen
   if (region_selection == nullptr)
@@ -349,7 +350,7 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
   //emit signal for new cursor coordinates
   bool cursor_checked = false;
   for (auto plot = plots.rbegin() ; plot != plots.rend() ; ++plot) {
-    RegionSelection *region_selection = dynamic_cast<RegionSelection *>(*plot);
+    auto region_selection = dynamic_cast<RegionSelection *>(*plot);
 
     if (region_selection != nullptr &&
         end_cairo[0] >= region_selection->cairo_range_x[0] &&
@@ -409,7 +410,7 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
   if (!cursor_checked) {
     inside_plot = nullptr;
     if (get_window()) {
-      get_window()->set_cursor(Glib::RefPtr<Gdk::Cursor>(0));
+      get_window()->set_cursor(Glib::RefPtr<Gdk::Cursor>(nullptr));
     }
   }
 
@@ -417,7 +418,7 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
   if (!selecting)
     return false;
 
-  RegionSelection *region_selection = dynamic_cast<RegionSelection *>(selected_plot);
+  auto region_selection = dynamic_cast<RegionSelection *>(selected_plot);
 
   //this should never happen
   if (region_selection == nullptr)
@@ -448,7 +449,7 @@ bool Canvas::on_key_press_event(GdkEventKey *event) {
   if (inside_plot == nullptr || selecting)
     return false;
 
-  RegionSelection *region_selection = dynamic_cast<RegionSelection *>(inside_plot);
+  auto region_selection = dynamic_cast<RegionSelection *>(inside_plot);
 
   if (region_selection != nullptr &&
     region_selection->get_region_pannable() &&
@@ -477,7 +478,7 @@ bool Canvas::on_key_release_event(GdkEventKey *event) {
   if (event->keyval == GDK_KEY_Shift_L || event->keyval == GDK_KEY_Shift_R) {
     shift_pressed = false;
     if (inside_plot != nullptr) {
-      RegionSelection *region_selection = dynamic_cast<RegionSelection *>(inside_plot);
+      auto region_selection = dynamic_cast<RegionSelection *>(inside_plot);
       if (region_selection != nullptr) {
         if (get_window()) {
           Glib::RefPtr<Gdk::Cursor> crosshair = Gdk::Cursor::create(get_window()->get_display(), "crosshair");
@@ -487,7 +488,7 @@ bool Canvas::on_key_release_event(GdkEventKey *event) {
       }
     }
     if (get_window()) {
-      get_window()->set_cursor(Glib::RefPtr<Gdk::Cursor>(0));
+      get_window()->set_cursor(Glib::RefPtr<Gdk::Cursor>(nullptr));
     }
 
     return true;
