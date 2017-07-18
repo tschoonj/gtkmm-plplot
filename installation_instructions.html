@@ -108,13 +108,15 @@ Fedora, Centos and Scientific Linux</h3>
 </blockquote>
 <h3><a class="anchor" id="debian"></a>
 Debian and Ubuntu</h3>
-<p>Packages were created for Debian and Ubuntu. Currently the following flavors are supported: Debian Jessie and several Ubuntu versions . In order to access these packages using your favorite package manager, execute the following command to import my public key:</p>
+<p>Packages were created for Debian and Ubuntu. Currently the following flavors are supported: Debian Jessie and Stretch and several Ubuntu versions . In order to access these packages using your favorite package manager, execute the following command to import my public key:</p>
 <blockquote class="doxtable">
 <p><code>curl <a href="http://xmi-apt.tomschoonjans.eu/xmi.packages.key">http://xmi-apt.tomschoonjans.eu/xmi.packages.key</a> | sudo apt-key add -</code> </p>
 </blockquote>
 <p>Next, add the package download location corresponding to your distribution to the /etc/apt/sources.list file (as root):</p>
 <p>Debian Jessie: </p><pre class="fragment">  deb http://xmi-apt.tomschoonjans.eu/debian jessie stable
   deb-src http://xmi-apt.tomschoonjans.eu/debian jessie stable
+</pre><p>Debian Stretch: </p><pre class="fragment">  deb http://xmi-apt.tomschoonjans.eu/debian stretch stable
+  deb-src http://xmi-apt.tomschoonjans.eu/debian stretch stable
 </pre><p>Ubuntu Trusty 14.04: </p><pre class="fragment">  deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu trusty stable
   deb-src http://xmi-apt.tomschoonjans.eu/ubuntu trusty stable
 </pre><p>Ubuntu Xenial 16.04: </p><pre class="fragment">  deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu xenial stable
@@ -151,7 +153,7 @@ Github repository</h2>
   make install</pre> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 19 2017 09:50:38 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 18 2017 08:11:54 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

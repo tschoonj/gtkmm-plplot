@@ -74,17 +74,18 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;gtkmm-plplotconfig.h&gt;</code><br />
+<code>#include &lt;boost/multi_array.hpp&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;valarray&gt;</code><br />
-<code>#include &lt;<a class="elRef" doxygen="/usr/local/Cellar/gtkmm3/3.22.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/rgba_8h.html">gdkmm/rgba.h</a>&gt;</code><br />
+<code>#include &lt;<a class="elRef" doxygen="/usr/local/Cellar/gtkmm3/3.22.1/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/rgba_8h.html">gdkmm/rgba.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="enums_8h.html">gtkmm-plplot/enums.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for utils.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="utils_8h__incl.png" border="0" usemap="#utils_8h" alt=""/></div>
 <map name="utils_8h" id="utils_8h">
-<area shape="rect" id="node5" doxygen="/usr/local/Cellar/gtkmm3/3.22.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/rgba_8h.html" title="gdkmm/rgba.h" alt="" coords="348,79,455,104"/>
-<area shape="rect" id="node6" href="enums_8h.html" title="gtkmm&#45;plplot/enums.h" alt="" coords="479,79,631,104"/>
+<area shape="rect" id="node6" doxygen="/usr/local/Cellar/gtkmm3/3.22.1/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/rgba_8h.html" title="gdkmm/rgba.h" alt="" coords="520,79,627,104"/>
+<area shape="rect" id="node7" href="enums_8h.html" title="gtkmm&#45;plplot/enums.h" alt="" coords="651,79,803,104"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -115,7 +116,7 @@ Functions</h2></td></tr>
 <tr class="separator:afb688c291205e98a84fa81cfe74f06af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f4f64e6d94f956709f0b4dddbb59392"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/usr/local/Cellar/mm-common/0.9.10/share/mm-common/doctags/libstdc++.tag:http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/" href="http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00964.html">std::valarray</a>&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_gtk_1_1_p_lplot.html#a8f4f64e6d94f956709f0b4dddbb59392">Gtk::PLplot::indgen_va</a> (unsigned int n)</td></tr>
 <tr class="separator:a8f4f64e6d94f956709f0b4dddbb59392"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5dcaeea693400354b19c6f54fb567569"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_gtk_1_1_p_lplot.html#a5dcaeea693400354b19c6f54fb567569">Gtk::PLplot::change_plstream_color</a> (plstream *pls, <a class="elRef" doxygen="/usr/local/Cellar/gtkmm3/3.22.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1RGBA.html">Gdk::RGBA</a> color, bool activate=true, int index=2)</td></tr>
+<tr class="memitem:a5dcaeea693400354b19c6f54fb567569"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_gtk_1_1_p_lplot.html#a5dcaeea693400354b19c6f54fb567569">Gtk::PLplot::change_plstream_color</a> (plstream *pls, <a class="elRef" doxygen="/usr/local/Cellar/gtkmm3/3.22.1/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag:http://library.gnome.org/devel/gtkmm/unstable/" href="http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1RGBA.html">Gdk::RGBA</a> color, bool activate=true, int index=2)</td></tr>
 <tr class="separator:a5dcaeea693400354b19c6f54fb567569"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c18799dab22e7634068e7d0b9dd6189"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_gtk_1_1_p_lplot.html#a9c18799dab22e7634068e7d0b9dd6189">Gtk::PLplot::change_plstream_colormap</a> (plstream *pls, ColormapPalette colormap)</td></tr>
 <tr class="separator:a9c18799dab22e7634068e7d0b9dd6189"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,6 +126,8 @@ Functions</h2></td></tr>
 <tr class="separator:a96b372117cc941a7b38d7a0db0d71048"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14abbd434ea8c992de186630f77bc79e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_gtk_1_1_p_lplot.html#a14abbd434ea8c992de186630f77bc79e">Gtk::PLplot::free_array2d</a> (void **input, int nx)</td></tr>
 <tr class="separator:a14abbd434ea8c992de186630f77bc79e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4455d86b7dccb03481f5833beda7fb92"><td class="memItemLeft" align="right" valign="top">double **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_gtk_1_1_p_lplot.html#a4455d86b7dccb03481f5833beda7fb92">Gtk::PLplot::boost_multi_array_to_array2d</a> (const boost::multi_array&lt; double, 2 &gt; &amp;array)</td></tr>
+<tr class="separator:a4455d86b7dccb03481f5833beda7fb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a48746afd12e380ffd4db69b87122521a"></a>
@@ -144,7 +147,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 19 2017 09:50:38 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 18 2017 08:11:54 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

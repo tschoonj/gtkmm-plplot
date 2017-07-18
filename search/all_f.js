@@ -289,7 +289,7 @@ var searchData=
   ['on_5fwindow_5fremoved',['on_window_removed',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Application.html#a3ee1588b96238b6d68cbda7c284727fa',1,'Gtk::Application']]],
   ['on_5fwindow_5fstate_5fevent',['on_window_state_event',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Widget.html#ad74c825c509bb04d1fa171266a72c420',1,'Gtk::Widget']]],
   ['on_5fwrapped',['on_wrapped',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1SpinButton.html#a99f5ea1f872dc6ae06f83b80b2f1706f',1,'Gtk::SpinButton']]],
-  ['on_5fwritable_5fchange_5fevent',['on_writable_change_event',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Settings.html#a6824e75577a579815cc9eaf64f8b15f9',1,'Gio::Settings']]],
+  ['on_5fwritable_5fchange_5fevent',['on_writable_change_event',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Settings.html#a39319fdcb5ba844a6d1150add60a1196',1,'Gio::Settings']]],
   ['on_5fwritable_5fchanged',['on_writable_changed',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Settings.html#a2428f5d4bf7c40753fc112412197c5cb',1,'Gio::Settings']]],
   ['on_5fzoom_5fregion',['on_zoom_region',['../class_gtk_1_1_p_lplot_1_1_region_selection.html#ae944b9c160a521e7a19bb65c4b8b022b',1,'Gtk::PLplot::RegionSelection']]],
   ['once_5fflag',['once_flag',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00875.html',1,'std::once_flag'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00875.html#a78b964b5391b5aa7da309eb3d8b88178',1,'std::once_flag::once_flag() noexcept=default'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00875.html#a60da2be389d0324a5210bd778a522af8',1,'std::once_flag::once_flag(const once_flag &amp;)=delete']]],

@@ -1,9 +1,9 @@
 <map id="plotcontour.h" name="plotcontour.h">
-<area shape="rect" id="node2" href="$plot_8h.html" title="gtkmm&#45;plplot/plot.h" alt="" coords="505,79,639,104"/>
+<area shape="rect" id="node2" href="$plot_8h.html" title="gtkmm&#45;plplot/plot.h" alt="" coords="534,79,668,104"/>
 <area shape="rect" id="node11" href="$regionselection_8h.html" title="gtkmm&#45;plplot/regionselection.h" alt="" coords="200,79,402,104"/>
-<area shape="rect" id="node14" href="$plotdatasurface_8h.html" title="gtkmm&#45;plplot/plotdatasurface.h" alt="" coords="754,79,957,104"/>
-<area shape="rect" id="node16" href="$enums_8h.html" title="gtkmm&#45;plplot/enums.h" alt="" coords="1151,152,1304,177"/>
-<area shape="rect" id="node6" href="/usr/local/Cellar/gtkmm3/3.22.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag$rgba_8h.html" title="gdkmm/rgba.h" alt="" coords="248,152,354,177"/>
-<area shape="rect" id="node7" href="$object_8h.html" title="gtkmm&#45;plplot/object.h" alt="" coords="474,225,622,251"/>
-<area shape="rect" id="node10" href="$plotdata_8h.html" title="gtkmm&#45;plplot/plotdata.h" alt="" coords="706,152,866,177"/>
+<area shape="rect" id="node14" href="$plotdatasurface_8h.html" title="gtkmm&#45;plplot/plotdatasurface.h" alt="" coords="860,79,1063,104"/>
+<area shape="rect" id="node17" href="$enums_8h.html" title="gtkmm&#45;plplot/enums.h" alt="" coords="1322,152,1475,177"/>
+<area shape="rect" id="node6" href="/usr/local/Cellar/gtkmm3/3.22.1/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag$rgba_8h.html" title="gdkmm/rgba.h" alt="" coords="248,152,355,177"/>
+<area shape="rect" id="node7" href="$object_8h.html" title="gtkmm&#45;plplot/object.h" alt="" coords="431,225,579,251"/>
+<area shape="rect" id="node10" href="$plotdata_8h.html" title="gtkmm&#45;plplot/plotdata.h" alt="" coords="705,152,865,177"/>
 </map>

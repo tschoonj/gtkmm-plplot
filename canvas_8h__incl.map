@@ -1,7 +1,7 @@
 <map id="canvas.h" name="canvas.h">
-<area shape="rect" id="node2" href="/usr/local/Cellar/gtkmm3/3.22.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag$drawingarea_8h.html" title="gtkmm/drawingarea.h" alt="" coords="5,79,155,104"/>
+<area shape="rect" id="node2" href="/usr/local/Cellar/gtkmm3/3.22.1/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag$drawingarea_8h.html" title="gtkmm/drawingarea.h" alt="" coords="5,79,155,104"/>
 <area shape="rect" id="node3" href="$plot_8h.html" title="gtkmm&#45;plplot/plot.h" alt="" coords="229,79,363,104"/>
-<area shape="rect" id="node7" href="/usr/local/Cellar/gtkmm3/3.22.0/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag$rgba_8h.html" title="gdkmm/rgba.h" alt="" coords="548,152,655,177"/>
+<area shape="rect" id="node7" href="/usr/local/Cellar/gtkmm3/3.22.1/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag$rgba_8h.html" title="gdkmm/rgba.h" alt="" coords="548,152,655,177"/>
 <area shape="rect" id="node8" href="$object_8h.html" title="gtkmm&#45;plplot/object.h" alt="" coords="378,225,526,251"/>
 <area shape="rect" id="node11" href="$plotdata_8h.html" title="gtkmm&#45;plplot/plotdata.h" alt="" coords="313,152,473,177"/>
 </map>
