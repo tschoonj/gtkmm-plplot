@@ -142,7 +142,7 @@
  *
  * \subsubsection debian Debian and Ubuntu
  *
- * Packages were created for Debian and Ubuntu. Currently the following flavors are supported: Debian Jessie and several Ubuntu versions .
+ * Packages were created for Debian and Ubuntu. Currently the following flavors are supported: Debian Jessie and Stretch and several Ubuntu versions .
  * In order to access these packages using your favorite package manager, execute the following command to import my public key:
  *
  * > `curl http://xmi-apt.tomschoonjans.eu/xmi.packages.key | sudo apt-key add -`
@@ -154,6 +154,11 @@
  *
  *       deb http://xmi-apt.tomschoonjans.eu/debian jessie stable
  *       deb-src http://xmi-apt.tomschoonjans.eu/debian jessie stable
+ *
+ * Debian Stretch:
+ *
+ *       deb http://xmi-apt.tomschoonjans.eu/debian stretch stable
+ *       deb-src http://xmi-apt.tomschoonjans.eu/debian stretch stable
  *
  * Ubuntu Trusty 14.04:
  *
