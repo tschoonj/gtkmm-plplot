@@ -62,7 +62,7 @@ libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_SOURCES = $(gtkmm_plplotinclude_HE
                                  plotdatahistogrambinned.cpp \
                                  $(NULL)
 
-libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_CPPFLAGS = $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS)
+libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_CPPFLAGS = $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS) -DG_LOG_DOMAIN=\"Gtkmm::PLplot\"
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_LIBADD = $(gtkmm_LIBS) $(plplotcxx_LIBS) $(BOOST_MULTIARRAY_LIBS)
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_LDFLAGS = $(BOOST_MULTIARRAY_LDFLAGS) -version-info @LIB_CURRENT@:@LIB_REVISION@:@LIB_AGE@
 

@@ -304,6 +304,9 @@ void RegionSelection::get_region(double &xmin, double &xmax, double &ymin, doubl
 }
 
 void RegionSelection::set_region(double xmin, double xmax, double ymin, double ymax) {
+
+  g_debug("RegionSelection::set_region: xmin -> %g, xmax -> %g, ymin -> %g, ymax -> %g", xmin, xmax, ymin, ymax);
+
   if (xmin == xmax || ymin == ymax) {
     // due to signal propagation, this function will actually be called twice on a double-click event,
     // the second time after the plot has already been resized to its normal geometry

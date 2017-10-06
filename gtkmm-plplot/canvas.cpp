@@ -308,29 +308,37 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
   //in case of the full view, due to precision errors, the extremes calculated based on calc_world
   //are actually slightly outside of these data extremes, meaning that it's not possible to drag the selection
   //along the plot grid
-  start_plplot_def[0] = MAX(MIN(start_plplot[0], end_plplot[0]), region_selection->plot_data_range_x[0]);
-  start_plplot_def[1] = MAX(MIN(start_plplot[1], end_plplot[1]), region_selection->plot_data_range_y[0]);
-  end_plplot_def[0] = MIN(MAX(start_plplot[0], end_plplot[0]), region_selection->plot_data_range_x[1]);
-  end_plplot_def[1] = MIN(MAX(start_plplot[1], end_plplot[1]), region_selection->plot_data_range_y[1]);
+  start_plplot_def[0] = MIN(start_plplot[0], end_plplot[0]);
+  start_plplot_def[1] = MIN(start_plplot[1], end_plplot[1]);
+  end_plplot_def[0] = MAX(start_plplot[0], end_plplot[0]);
+  end_plplot_def[1] = MAX(start_plplot[1], end_plplot[1]);
 
   //this is necessary to get rid of the box on the plot, even if the signal_select_region is not caught by the plot
   _signal_changed.emit();
 
+  double start_world[2];
+  double end_world[2];
+
   region_selection->coordinate_transform_plplot_to_world(
     start_plplot_def[0],
     start_plplot_def[1],
-    start_plplot_def[0],
-    start_plplot_def[1]
+    start_world[0],
+    start_world[1]
   );
 
   region_selection->coordinate_transform_plplot_to_world(
     end_plplot_def[0],
     end_plplot_def[1],
-    end_plplot_def[0],
-    end_plplot_def[1]
+    end_world[0],
+    end_world[1]
   );
 
-  region_selection->signal_select_region().emit(start_plplot_def[0], end_plplot_def[0], start_plplot_def[1], end_plplot_def[1]);
+  try {
+    region_selection->signal_select_region().emit(start_world[0], end_world[0], start_world[1], end_world[1]);
+  }
+  catch (Exception &e) {
+    g_warning("Exception caught when emitting signal_select_region()!");
+  }
 
   return true;
 }
