@@ -41,14 +41,14 @@ namespace Gtk {
 
       /** destructor
        */
-      virtual ~Exception() throw() {};
+      virtual ~Exception() noexcept {};
       // throw method
       /** Get the exception message
        *
        *  To be used in a catch block
        *  \return the exception message
        */
-      virtual const char* what() const throw() {
+      virtual const char* what() const noexcept {
         return Message.c_str();
       }
     };
