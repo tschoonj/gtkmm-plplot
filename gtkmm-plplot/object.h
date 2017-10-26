@@ -41,7 +41,7 @@ namespace Gtk {
         *
         * Newly constructed instances have managed set to \c false
         */
-       Object() : Glib::ObjectBase("GtkmmPLplotObject"), managed(false) {
+       Object() : Glib::ObjectBase("GtkmmPLplotObject"), Glib::Object(), managed(false) {
          //std::cout << "Gtkmm::PLplot::Object constructor called" << std::endl;
        }
      public:

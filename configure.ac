@@ -2,7 +2,7 @@ AC_INIT([gtkmm-plplot],[2.2],[tom.schoonjans@me.com],,[https://github.com/tschoo
 AC_PREREQ([2.60])
 AC_CONFIG_SRCDIR([gtkmm-plplot/canvas.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AM_INIT_AUTOMAKE([-Wall -Wno-portability foreign])
 AC_CANONICAL_HOST
 AC_CONFIG_MACRO_DIR([m4])
 

@@ -1,0 +1,31 @@
+headers = canvas.h \
+          exception.h \
+          plot.h \
+          plotdata2d.h \
+          plotdata.h \
+          plot2d.h \
+          plotpolar.h \
+          utils.h \
+          plotdatasurface.h \
+          plotcontour.h \
+          plotcontourshades.h \
+          legend.h \
+          enums.h \
+          regionselection.h \
+          plotdata3d.h \
+          plot3d.h \
+          object.h \
+          plotdatapolar.h \
+          plotdata2derrorx.h \
+          plotdata2derrory.h \
+          plotdata2derrorxy.h \
+          plotdataline.h \
+          plotdatahistogram.h \
+          plotdatahistogramunbinned.h \
+          plotdatahistogrambinned.h \
+          plothistogram.h \
+          plotobject.h \
+          plotobject2d.h \
+          plotobject2dtext.h \
+          $(NULL)
+

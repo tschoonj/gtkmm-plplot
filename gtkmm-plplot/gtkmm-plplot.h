@@ -42,6 +42,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm-plplot/plotdatapolar.h>
 #include <gtkmm-plplot/plotdatasurface.h>
 #include <gtkmm-plplot/plothistogram.h>
+#include <gtkmm-plplot/plotobject.h>
+#include <gtkmm-plplot/plotobject2d.h>
+#include <gtkmm-plplot/plotobject2dtext.h>
 #include <gtkmm-plplot/regionselection.h>
 #include <gtkmm-plplot/utils.h>
 

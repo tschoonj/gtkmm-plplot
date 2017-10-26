@@ -4,34 +4,9 @@ lib_LTLIBRARIES = libgtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@.la
 gtkmm_plplotincludedir = ${includedir}/gtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@/gtkmm-plplot
 gtkmm_plplotbaseincludedir = ${includedir}/gtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@
 
-gtkmm_plplotinclude_HEADERS = \
-                              canvas.h \
-                              exception.h \
-                              plot.h \
-                              plotdata2d.h \
-                              plotdata.h \
-                              plot2d.h \
-                              plotpolar.h \
-                              utils.h \
-                              plotdatasurface.h \
-                              plotcontour.h \
-                              plotcontourshades.h \
-                              legend.h \
-                              enums.h \
-                              regionselection.h \
-                              plotdata3d.h \
-                              plot3d.h \
-                              object.h \
-                              plotdatapolar.h \
-                              plotdata2derrorx.h \
-                              plotdata2derrory.h \
-                              plotdata2derrorxy.h \
-                              plotdataline.h \
-                              plotdatahistogram.h \
-                              plotdatahistogramunbinned.h \
-                              plotdatahistogrambinned.h \
-                              plothistogram.h \
-                              $(NULL)
+include $(srcdir)/filelist.am
+
+gtkmm_plplotinclude_HEADERS = $(headers)
 
 gtkmm_plplotbaseinclude_HEADERS = gtkmm-plplot.h
 
@@ -60,6 +35,9 @@ libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_SOURCES = $(gtkmm_plplotinclude_HE
                                  plothistogram.cpp \
                                  plotdatahistogramunbinned.cpp \
                                  plotdatahistogrambinned.cpp \
+                                 plotobject.cpp \
+                                 plotobject2d.cpp \
+                                 plotobject2dtext.cpp \
                                  $(NULL)
 
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_CPPFLAGS = $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS) -DG_LOG_DOMAIN=\"Gtkmm::PLplot\"

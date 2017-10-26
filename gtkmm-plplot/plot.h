@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <glibmm/ustring.h>
 #include <gdkmm/rgba.h>
 #include <gtkmm-plplot/object.h>
+#include <gtkmm-plplot/plotobject.h>
 #include <gtkmm-plplot/plotdata.h>
 
 
@@ -45,6 +46,7 @@ namespace Gtk {
       Plot() = delete;
      protected:
       std::vector<PlotData *> plot_data; ///< vector that contains pointers to the PlotData datasets
+      std::vector<PlotObject *> plot_objects; ///< vector that contains pointers to the PlotObject datasets
       Glib::ustring axis_title_x; ///< X-axis title
       Glib::ustring axis_title_y; ///< Y-axis title
       Glib::ustring plot_title;   ///< Plot title
@@ -65,8 +67,10 @@ namespace Gtk {
       Gdk::RGBA titles_color; ///< the currently used color to draw the axes and plot titles. Default is opaque black
 
       sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the plot parameters, or any of the contained PlotData datasets is changed.
-      sigc::signal<void, PlotData *> _signal_data_added; ///< signal emitted whenever a new PlotData dataset is added to the plot
+      sigc::signal<void, PlotData *> _signal_data_added; ///< signal emitted whenever a PlotData dataset is added to the plot
       sigc::signal<void, PlotData *> _signal_data_removed; ///< signal emitted whenever data is removed from the plot.
+      sigc::signal<void, PlotObject *> _signal_object_added; ///< signal emitted whenever a PlotObject is added to the plot
+      sigc::signal<void, PlotObject *> _signal_object_removed; ///< signal emitted whenever a PlotObject is removed from the plot.
 
       virtual void plot_data_modified() = 0; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
 
@@ -93,6 +97,21 @@ namespace Gtk {
        * \param removed_data a pointer to the PlotData dataset that was just removed. It should be deleted in this method or a memory leak will be created.
        */
       virtual void on_data_removed(PlotData *removed_data);
+
+      /** This is a default handler for signal_object_added()
+       *
+       * This signal is emitted whenever a new PlotObject instance is added to the plot.
+       * \param new_object a pointer to the newly added PlotObject instance, after it has been added to the \c plot_objects vector.
+       */
+      virtual void on_object_added(PlotObject *new_object);
+
+      /** This is a default handler for signal_object_removed()
+       *
+       * This signal is emitted whenever a PlotObject instance is removed from the plot with remove_object.
+       * It will first delete removed_object, provided its memory is managed, followed by a emitting signal_changed.
+       * \param removed_object a pointer to the PlotObject objectset that was just removed. It should be deleted in this method or a memory leak will be created.
+       */
+      virtual void on_object_removed(PlotObject *removed_object);
 
       /** Initialization method for draw_plot.
        *
@@ -142,6 +161,20 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        */
       virtual void remove_data(PlotData &plot_data_member);
+
+      /** Remove a single object from the plot
+       *
+       * \param plot_object_index index of the plotobject in the \c plot_objects vector
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void remove_object(unsigned int plot_object_index);
+
+      /** Remove a single object from the plot
+       *
+       * \param plot_object_member pointer to the plotobject in the \c plot_data vector
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void remove_object(PlotObject &plot_object_member);
 
       /** Get a pointer to a dataset included in the plot
        *
@@ -271,6 +304,22 @@ namespace Gtk {
       */
       sigc::signal<void, PlotData *> signal_data_removed() {
         return _signal_data_removed;
+      }
+
+      /** signal_object_added is emitted whenever a new object is added to the plot
+       *
+       * See default handler on_object_added()
+       */
+      sigc::signal<void, PlotObject *> signal_object_added() {
+        return _signal_object_added;
+      }
+
+      /** signal_object_removed is emitted whenever an object is removed from the plot
+      *
+      * See default handler on_object_removed()
+      */
+      sigc::signal<void, PlotObject *> signal_object_removed() {
+        return _signal_object_removed;
       }
 
       friend class Canvas;
