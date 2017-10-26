@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/tschoonj/gtkmm-plplot.svg?branch=master)](https://travis-ci.org/tschoonj/gtkmm-plplot)[![Build status](https://ci.appveyor.com/api/projects/status/6i04opv34tn6i4sh?svg=true)](https://ci.appveyor.com/project/tschoonj/gtkmm-plplot)
+[![Build Status](https://travis-ci.org/tschoonj/gtkmm-plplot.svg?branch=master)](https://travis-ci.org/tschoonj/gtkmm-plplot)    [![Build status](https://ci.appveyor.com/api/projects/status/6i04opv34tn6i4sh?svg=true)](https://ci.appveyor.com/project/tschoonj/gtkmm-plplot)   [![PayPal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/tomschoonjans/10)   [![Amazon Wish list](https://img.shields.io/badge/Amazon-Wishlist-green.svg)](http://amzn.eu/8ml3d0c)
 
 # Gtkmm-PLplot
 
