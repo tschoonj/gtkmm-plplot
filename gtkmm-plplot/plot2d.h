@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/plotdata2d.h>
+#include <gtkmm-plplot/plotobject2d.h>
 #include <gtkmm-plplot/legend.h>
 #include <gtkmm-plplot/regionselection.h>
 #include <gtkmm-plplot/enums.h>
@@ -168,6 +169,13 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        */
       virtual void remove_data(PlotData &plot_data_member) override;
+
+      /** Add a single PlotObject2D object to the plot
+       *
+       * \param object Object to be added to the plot
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void add_object(PlotObject2D &object);
 
       /** Method to draw the plot with all of its datasets
        *

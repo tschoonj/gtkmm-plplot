@@ -50,10 +50,17 @@ Plot::Plot(
   this->signal_changed().connect(sigc::mem_fun(*this, &Plot::on_changed));
   this->signal_data_added().connect(sigc::mem_fun(*this, &Plot::on_data_added));
   this->signal_data_removed().connect(sigc::mem_fun(*this, &Plot::on_data_removed));
+  this->signal_object_added().connect(sigc::mem_fun(*this, &Plot::on_object_added));
+  this->signal_object_removed().connect(sigc::mem_fun(*this, &Plot::on_object_removed));
 }
 
 Plot::~Plot() {
   for (auto &iter : plot_data) {
+    if (iter->is_managed_()) {
+      delete iter;
+    }
+  }
+  for (auto &iter : plot_objects) {
     if (iter->is_managed_()) {
       delete iter;
     }
@@ -85,11 +92,22 @@ void Plot::on_data_added(PlotData *added_data) {
   plot_data_modified();
 }
 
+void Plot::on_object_added(PlotObject *added_object) {
+  _signal_changed.emit();
+}
+
 void Plot::on_data_removed(PlotData *removed_data) {
   if (removed_data->is_managed_()) {
     delete removed_data; //this is necessary to avoid a memory leak.
   }
   plot_data_modified();
+}
+
+void Plot::on_object_removed(PlotObject *removed_object) {
+  if (removed_object->is_managed_()) {
+    delete removed_object; //this is necessary to avoid a memory leak.
+  }
+  _signal_changed.emit();
 }
 
 void Plot::remove_data(unsigned int index) {
@@ -119,6 +137,32 @@ void Plot::remove_data(PlotData &plot_data_member) {
   _signal_data_removed.emit(removed_plot);
 }
 
+void Plot::remove_object(unsigned int index) {
+  if (plot_objects.size() == 0)
+    throw Exception("Gtk::PLplot::Plot::remove_object -> No more objects left to remove");
+
+  if (index >= plot_objects.size())
+    throw Exception("Gtk::PLplot::Plot::remove_object -> Invalid index");
+
+  PlotObject *removed_object = plot_objects[index];
+
+  plot_objects.erase(plot_objects.begin() + index);
+  _signal_object_removed.emit(removed_object);
+}
+
+void Plot::remove_object(PlotObject &plot_object_member) {
+  if (plot_objects.size() == 0)
+    throw Exception("Gtk::PLplot::Plot::remove_object -> No more objects left to remove");
+
+  auto iter = std::find(plot_objects.begin(), plot_objects.end(), &plot_object_member);
+  if (iter == plot_objects.end())
+    throw Exception("Gtk::PLplot::Plot::remove_object -> No match for argument");
+
+  PlotObject *removed_object = *iter;
+
+  plot_objects.erase(iter);
+  _signal_object_removed.emit(removed_object);
+}
 
 void Plot::set_axis_title_x(Glib::ustring title) {
   axis_title_x = title;

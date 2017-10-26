@@ -43,6 +43,7 @@ namespace Gtk {
     protected:
       sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the dataset proprties is changed.
       sigc::signal<void> _signal_data_modified; ///< signal that gets emitted whenever the X- and Y-datasets have been modified.
+
       /** This is a default handler for signal_changed()
        *
        * This signal is emitted whenever any of the dataset properties is changed.

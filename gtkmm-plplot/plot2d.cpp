@@ -127,6 +127,18 @@ void Plot2D::add_data(PlotData2D &data) {
   _signal_data_added.emit(&data);
 }
 
+void Plot2D::add_object(PlotObject2D &object) {
+  // ensure object is not already present in plot_objects
+  auto iter = std::find(plot_objects.begin(), plot_objects.end(), &object);
+  if (iter != plot_objects.end())
+    throw Exception("Gtk::PLplot::Plot2D::add_object -> Object has been added before to this plot");
+
+  plot_objects.push_back(&object);
+  object.signal_changed().connect([this](){_signal_changed.emit();});
+
+  _signal_object_added.emit(&object);
+}
+
 void Plot2D::remove_data(unsigned int index) {
   if (plot_data.size() == 0)
     throw Exception("Gtk::PLplot::Plot2D::remove_data -> No more datasets left to remove");
@@ -164,6 +176,12 @@ void Plot2D::set_axis_logarithmic_x(bool _log10) {
         throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_x -> plot X-values must be strictly positive");
       }
     }
+    for (auto &iter : plot_objects) {
+      auto iter2 = dynamic_cast<PlotObject2D*>(iter);
+      if (!iter2->is_logarithmic_x_compatible()) {
+        throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_x -> plot objects must be compatible with a logarithmic X-axis");
+      }
+    }
   }
   log10_x = _log10;
   plot_data_modified();
@@ -177,6 +195,12 @@ void Plot2D::set_axis_logarithmic_y(bool _log10) {
       std::vector<double> y = iter2->get_vector_y();
       if (std::count_if(y.begin(), y.end(), std::bind2nd(std::less_equal<double>(), double(0.0))) > 0) {
         throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_y -> plot Y-values must be strictly positive");
+      }
+    }
+    for (auto &iter : plot_objects) {
+      auto iter2 = dynamic_cast<PlotObject2D*>(iter);
+      if (!iter2->is_logarithmic_y_compatible()) {
+        throw Exception("Gtkmm::Plplot::Plot2D::set_ayis_logarithmic_x -> plot objects must be compatible with a logarithmic Y-axis");
       }
     }
   }
@@ -276,6 +300,10 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
 
   for (auto &iter : plot_data) {
     iter->draw_plot_data(cr, pls);
+  }
+
+  for (auto &iter : plot_objects) {
+    iter->draw_plot_object(cr, pls);
   }
 
   //undo the coordinate transform
