@@ -26,6 +26,7 @@ headers = canvas.h \
           plothistogram.h \
           plotobject.h \
           plotobject2d.h \
+          plotobject2dline.h \
           plotobject2dtext.h \
           $(NULL)
 

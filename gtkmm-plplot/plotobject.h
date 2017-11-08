@@ -25,6 +25,16 @@ class plstream;
 
 namespace Gtk {
   namespace PLplot {
+
+    /** \struct PlotObjectAuxData plotobject.h <gtkmm-plplot/plotobject.h>
+     *  \brief base class for auxiliary data to the drawing routine draw_plot_object()
+     *
+     *  It is empty by design: override this class and add variables that may be useful.
+     */
+    struct PlotObjectAuxData {
+	
+    };
+
     /** \class PlotObject plotobject.h <gtkmm-plplot/plotobject.h>
      *  \brief the abstract base class that will hold a single plot object and its properties
      *
@@ -84,8 +94,9 @@ namespace Gtk {
        * This method is virtual allowing inheriting classes to implement their own method with the same signature.
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
+       * \param data additional data sent from the Plot to influence drawing
        */
-      virtual void draw_plot_object(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) = 0;
+      virtual void draw_plot_object(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls, PlotObjectAuxData &data) = 0;
     };
   }
 }

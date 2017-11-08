@@ -83,6 +83,12 @@ namespace Test1 {
       plot.add_data(*Gtk::manage(new Gtk::PLplot::PlotData2D(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0)));
       plot.hide_legend();
 
+      // add some lines
+      //plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(-5, -1, 30, -2)));
+      plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(30, -2, -5, -1)));
+      plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(Gtk::ORIENTATION_HORIZONTAL, -1)));
+      plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(Gtk::ORIENTATION_VERTICAL, 12)));
+
 
       set_default_size(720, 580);
       Gdk::Geometry geometry;

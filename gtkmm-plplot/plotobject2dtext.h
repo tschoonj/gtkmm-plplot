@@ -130,8 +130,9 @@ namespace Gtk {
        * This method is virtual allowing inheriting classes to implement their own method with the same signature.
        * \param cr the cairo context to draw to.
        * \param pls the PLplot plstream object that will do the actual plotting on the Cairo context
+       * \param data additional data sent from the Plot to influence drawing
        */
-      virtual void draw_plot_object(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) override;
+      virtual void draw_plot_object(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls, PlotObjectAuxData &data) override;
     };
   }
 }
