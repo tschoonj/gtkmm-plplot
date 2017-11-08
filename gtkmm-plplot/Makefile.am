@@ -38,6 +38,7 @@ libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_SOURCES = $(gtkmm_plplotinclude_HE
                                  plotobject.cpp \
                                  plotobject2d.cpp \
                                  plotobject2dtext.cpp \
+                                 plotobject2dline.cpp \
                                  $(NULL)
 
 libgtkmm_plplot_@GTKMM_PLPLOT_API_VERSION@_la_CPPFLAGS = $(gtkmm_CFLAGS) $(plplotcxx_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS) -DG_LOG_DOMAIN=\"Gtkmm::PLplot\"

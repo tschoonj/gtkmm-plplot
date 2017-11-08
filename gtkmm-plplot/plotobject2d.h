@@ -23,6 +23,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace Gtk {
   namespace PLplot {
+    /** \struct PlotObject2DAuxData plotobject2d.h <gtkmm-plplot/plotobject2d.h>
+     *  \brief class for auxiliary data to the drawing routine draw_plot_object() used from 2D plots
+     *
+     */
+    struct PlotObject2DAuxData : public PlotObjectAuxData {
+      double world_range_x[2]; ///< plot X-range, in world coordinates
+      double world_range_y[2]; ///< plot Y-range, in world coordinates
+      PlotObject2DAuxData(double _world_range_x[2], double _world_range_y[2]) :
+        world_range_x{_world_range_x[0], _world_range_x[1]},
+        world_range_y{_world_range_y[0], _world_range_y[1]} {}
+    };
+
     /** \class PlotObject2D plotobject2d.h <gtkmm-plplot/plotobject2d.h>
      *  \brief the abstract base class that will hold a single plot object and its properties that can be added to a plot containing 2D data, such as Plot2D, PlotContour, PlotPolar and PlotHistogram
      *

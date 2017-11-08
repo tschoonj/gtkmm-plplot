@@ -98,7 +98,7 @@ void PlotObject2DText::set_scale_factor(double _scale_factor) {
   _signal_changed.emit();
 }
 
-void PlotObject2DText::draw_plot_object(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) {
+void PlotObject2DText::draw_plot_object(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls, PlotObjectAuxData &data) {
   if (!is_showing())
     return;
 

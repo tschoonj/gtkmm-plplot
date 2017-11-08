@@ -30,9 +30,9 @@ PlotDataLine::PlotDataLine(
   line_width(_line_width) {
 
   if (_line_width <= 0.0)
-    throw Exception("Gtk::PLplot::PlotDataLine::set_line_width -> line_width must be strictly positive");
+    throw Exception("Gtk::PLplot::PlotDataLine::PlotDataLine -> line_width must be strictly positive");
 
-  }
+}
 
 void PlotDataLine::set_color(Gdk::RGBA _color) {
   if (color == _color)

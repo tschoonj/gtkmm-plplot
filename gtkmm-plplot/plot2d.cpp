@@ -176,12 +176,6 @@ void Plot2D::set_axis_logarithmic_x(bool _log10) {
         throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_x -> plot X-values must be strictly positive");
       }
     }
-    for (auto &iter : plot_objects) {
-      auto iter2 = dynamic_cast<PlotObject2D*>(iter);
-      if (!iter2->is_logarithmic_x_compatible()) {
-        throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_x -> plot objects must be compatible with a logarithmic X-axis");
-      }
-    }
   }
   log10_x = _log10;
   plot_data_modified();
@@ -195,12 +189,6 @@ void Plot2D::set_axis_logarithmic_y(bool _log10) {
       std::vector<double> y = iter2->get_vector_y();
       if (std::count_if(y.begin(), y.end(), std::bind2nd(std::less_equal<double>(), double(0.0))) > 0) {
         throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_y -> plot Y-values must be strictly positive");
-      }
-    }
-    for (auto &iter : plot_objects) {
-      auto iter2 = dynamic_cast<PlotObject2D*>(iter);
-      if (!iter2->is_logarithmic_y_compatible()) {
-        throw Exception("Gtkmm::Plplot::Plot2D::set_ayis_logarithmic_x -> plot objects must be compatible with a logarithmic Y-axis");
       }
     }
   }
@@ -302,8 +290,19 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
     iter->draw_plot_data(cr, pls);
   }
 
+  double world_range_x[2];
+  double world_range_y[2];
+
+  coordinate_transform_plplot_to_world(plotted_range_x[0], plotted_range_y[0], world_range_x[0], world_range_y[0]);
+  coordinate_transform_plplot_to_world(plotted_range_x[1], plotted_range_y[1], world_range_x[1], world_range_y[1]);
+
+  PlotObject2DAuxData aux_data(world_range_x, world_range_y);
+
   for (auto &iter : plot_objects) {
-    iter->draw_plot_object(cr, pls);
+    auto plot_object2d = dynamic_cast<PlotObject2D *>(iter);
+    if ((log10_x && !plot_object2d->is_logarithmic_x_compatible()) || (log10_y && !plot_object2d->is_logarithmic_y_compatible()))
+      continue; // do not attempt to draw object in logarithmic mode if this could cause trouble
+    iter->draw_plot_object(cr, pls, aux_data);
   }
 
   //undo the coordinate transform

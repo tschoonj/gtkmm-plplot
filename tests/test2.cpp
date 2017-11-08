@@ -60,6 +60,7 @@ namespace Test2 {
     Gtk::Switch text_orientation_switch;
     Gtk::PLplot::PlotData2D plot_data1;
     Gtk::PLplot::PlotObject2DText plot_text2d;
+    Gtk::PLplot::PlotObject2DLine plot_line2d;
   public:
     Window(std::vector<double> &x,
            std::vector<double> &y1,
@@ -85,7 +86,10 @@ namespace Test2 {
 	   text_scale_factor_spin_button(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 0.2), 0.0, 2),
 	   text_orientation_label("Text vertical?"),
            plot_data1(x, y1, Gdk::RGBA("red")),
-	   plot_text2d("Text", 12.5, 1000, Gdk::RGBA("red")) {
+	   plot_text2d("Fe-Kα", 6.4039 + 0.3, 1E5, Gdk::RGBA("red")),
+	   plot_line2d(Gtk::ORIENTATION_VERTICAL, 6.4039, Gdk::RGBA("purple"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 3.0) 
+	  
+	  {
 
         // The first dataset is a class member variable,
         // meaning that it will be destroyed along with
@@ -116,8 +120,11 @@ namespace Test2 {
         Gtk::PLplot::PlotData2D *plot_data4 = dynamic_cast<Gtk::PLplot::PlotData2D *>(plot->get_data(3));
 
 	// add our text object
-	plot_text2d.set_justification(0.5);
+	//plot_text2d.set_justification(0.5);
 	plot->add_object(plot_text2d);
+
+	// and the vertical line
+	plot->add_object(plot_line2d);
 
         canvas.add_plot(*plot);
 
