@@ -18,17 +18,24 @@ env:
 
 before_install:
   - if [ $TRAVIS_OS_NAME == linux ]; then ./travis-before-install-linux.sh ; fi
-  - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install gtkmm3 plplot mm-common && brew link --force gtkmm3 plplot mm-common ; fi
+  - |
+    if [ $TRAVIS_OS_NAME == osx ] ; then
+      brew cask uninstall --force oclint || exit 1
+      brew uninstall --ignore-dependencies --force $(brew list) || exit 1
+      brew update || exit 1
+      brew install autoconf automake libtool gtkmm3 plplot mm-common wget pkg-config || exit 1
+      brew link --force gtkmm3 plplot mm-common || exit 1
+    fi
 
 #install:
 #  - if [ $TRAVIS_OS_NAME == linux ]; then ./travis-deps.sh ; fi
 
 script:
-  - autoreconf -fi
+  - autoreconf -fi || exit 1
   - if [ $TRAVIS_OS_NAME == osx ]; then brew uninstall mm-common ; fi
-  - ./configure LDFLAGS="-Wl,-rpath -Wl,/usr/local/lib"
-  - make
-  - make distcheck
+  - ./configure LDFLAGS="-Wl,-rpath -Wl,/usr/local/lib" || exit 1
+  - make || exit 1
+  - make distcheck || exit 1
 
 branches:
   only:
