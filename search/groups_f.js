@@ -1,12 +1,15 @@
 var searchData=
 [
-  ['time',['Time',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01643.html',1,'']]],
-  ['the_20main_20event_20loop',['The Main Event Loop',['http://library.gnome.org/devel/glibmm/unstable/group__MainLoop.html',1,'']]],
-  ['tags',['Tags',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01696.html',1,'']]],
-  ['textview_20classes',['TextView Classes',['http://library.gnome.org/devel/gtkmm/unstable/group__TextView.html',1,'']]],
-  ['thread_20pools',['Thread Pools',['http://library.gnome.org/devel/glibmm/unstable/group__ThreadPools.html',1,'']]],
-  ['threads',['Threads',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01653.html',1,'(Global Namespace)'],['http://library.gnome.org/devel/glibmm/unstable/group__Threads.html',1,'(Global Namespace)']]],
-  ['track_5fobj_28_29',['track_obj()',['http://library.gnome.org/devel/libsigc++/unstable/group__track__obj.html',1,'']]],
-  ['traits',['Traits',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01699.html',1,'']]],
-  ['treeview_20classes',['TreeView Classes',['http://library.gnome.org/devel/gtkmm/unstable/group__TreeView.html',1,'']]]
+  ['simple_20xml_20subset_20parser',['Simple XML Subset Parser',['http://library.gnome.org/devel/glibmm/unstable/group__Markup.html',1,'']]],
+  ['sequences',['Sequences',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01467.html',1,'']]],
+  ['set_20operation',['Set Operation',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01489.html',1,'']]],
+  ['sgi',['SGI',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01465.html',1,'']]],
+  ['shell_2drelated_20utilities',['Shell-related Utilities',['http://library.gnome.org/devel/glibmm/unstable/group__ShellUtils.html',1,'']]],
+  ['signals',['Signals',['http://library.gnome.org/devel/libsigc++/unstable/group__signal.html',1,'']]],
+  ['slots',['Slots',['http://library.gnome.org/devel/libsigc++/unstable/group__slot.html',1,'']]],
+  ['sorting',['Sorting',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01488.html',1,'']]],
+  ['spawning_20processes',['Spawning Processes',['http://library.gnome.org/devel/glibmm/unstable/group__Spawn.html',1,'']]],
+  ['stream_20classes',['Stream Classes',['http://library.gnome.org/devel/glibmm/unstable/group__Streams.html',1,'']]],
+  ['strings',['Strings',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01512.html',1,'']]],
+  ['string_20utility_20functions',['String Utility Functions',['http://library.gnome.org/devel/glibmm/unstable/group__StringUtils.html',1,'']]]
 ];

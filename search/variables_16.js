@@ -21,6 +21,7 @@ var searchData=
   ['variant_5ftype_5fint64',['VARIANT_TYPE_INT64',['http://library.gnome.org/devel/glibmm/unstable/namespaceGlib.html#a9fda1870c01b8514588eaf17c1f11700',1,'Glib']]],
   ['variant_5ftype_5fmaybe',['VARIANT_TYPE_MAYBE',['http://library.gnome.org/devel/glibmm/unstable/namespaceGlib.html#afa3c807de47227c78826fbd0c1ff1c59',1,'Glib']]],
   ['variant_5ftype_5fobject_5fpath',['VARIANT_TYPE_OBJECT_PATH',['http://library.gnome.org/devel/glibmm/unstable/namespaceGlib.html#acb229115cd457c6f4c46db53179bcf09',1,'Glib']]],
+  ['variant_5ftype_5fobject_5fpath_5farray',['VARIANT_TYPE_OBJECT_PATH_ARRAY',['http://library.gnome.org/devel/glibmm/unstable/namespaceGlib.html#adfdadf7e0a33345e22924c238987272f',1,'Glib']]],
   ['variant_5ftype_5fsignature',['VARIANT_TYPE_SIGNATURE',['http://library.gnome.org/devel/glibmm/unstable/namespaceGlib.html#a1ae362fd54a0dca4ff11dc91eb91e807',1,'Glib']]],
   ['variant_5ftype_5fstring',['VARIANT_TYPE_STRING',['http://library.gnome.org/devel/glibmm/unstable/namespaceGlib.html#a5234d463a42d95bf51ed31795aa214b0',1,'Glib']]],
   ['variant_5ftype_5fstring_5farray',['VARIANT_TYPE_STRING_ARRAY',['http://library.gnome.org/devel/glibmm/unstable/namespaceGlib.html#aeba26de9c5d32fb0d5fd14a66279d930',1,'Glib']]],

@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['wednesday',['WEDNESDAY',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#ga073c9f49a289b2036eb226bcdf16a2f1a6893621fdc75f8d2f9ab4aadbf00f94e',1,'Glib::Date']]],
+  ['wcerr',['wcerr',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01544.html#ae50854b2a6629e6504846f8aff472e7e',1,'std::wcerr()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01544.html#ae50854b2a6629e6504846f8aff472e7e',1,'std::wcerr()']]],
+  ['wcin',['wcin',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01544.html#ab1807d3145162e06150b063da4da2707',1,'std::wcin()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01544.html#ab1807d3145162e06150b063da4da2707',1,'std::wcin()']]],
+  ['wclog',['wclog',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01544.html#a09e3edb1609f2a7fb18370eab59ba8dc',1,'std::wclog()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01544.html#a09e3edb1609f2a7fb18370eab59ba8dc',1,'std::wclog()']]],
+  ['wcout',['wcout',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01544.html#a2f5fc307ed84f0ecfbc36d2cda322040',1,'std::wcout()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01544.html#a2f5fc307ed84f0ecfbc36d2cda322040',1,'std::wcout()']]],
+  ['wednesday',['WEDNESDAY',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#ga073c9f49a289b2036eb226bcdf16a2f1a6893621fdc75f8d2f9ab4aadbf00f94e',1,'Glib::Date::WEDNESDAY()'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Date.html#ga073c9f49a289b2036eb226bcdf16a2f1a6893621fdc75f8d2f9ab4aadbf00f94e',1,'WEDNESDAY()(Global Namespace)']]],
   ['widget_5f',['widget_',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1StylePropertyBase.html#a3edc93af4c779aedf7080d256d9147f3',1,'Gtk::StylePropertyBase']]],
   ['win32_5fdriver_5fextra',['WIN32_DRIVER_EXTRA',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1PrintSettings_1_1Keys.html#ae61b3fecdb4907a47247c47187584701',1,'Gtk::PrintSettings::Keys']]],
   ['win32_5fdriver_5fversion',['WIN32_DRIVER_VERSION',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1PrintSettings_1_1Keys.html#ab9e1278b35c7d232040bd736408aadf4',1,'Gtk::PrintSettings::Keys']]],

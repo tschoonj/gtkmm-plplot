@@ -17,8 +17,8 @@ var searchData=
   ['fillrule',['FillRule',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a1ba15b0a2e22c87c14af044801006c85',1,'Cairo']]],
   ['filter',['Filter',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a92b32ad7db301e18386477566c1caa6a',1,'Cairo']]],
   ['flags',['Flags',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1OptionEntry.html#a5b550ab1ac9884bcc614653c9cf98280',1,'Glib::OptionEntry']]],
-  ['float_5fdenorm_5fstyle',['float_denorm_style',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01616.html#a5d4e3dd02abab45dde95b5bb4ae7fdbf',1,'std']]],
-  ['float_5fround_5fstyle',['float_round_style',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01616.html#a53dbc8572a84ca50272f9e55a1e23e18',1,'std']]],
+  ['float_5fdenorm_5fstyle',['float_denorm_style',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01544.html#a5d4e3dd02abab45dde95b5bb4ae7fdbf',1,'std']]],
+  ['float_5fround_5fstyle',['float_round_style',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01544.html#a53dbc8572a84ca50272f9e55a1e23e18',1,'std']]],
   ['fontmask',['FontMask',['http://library.gnome.org/devel/pangomm/unstable/group__pangommEnums.html#ga1c0868659f2899d822c5c600ee57db74',1,'Pango::FontMask()'],['http://library.gnome.org/devel/pangomm/unstable/group__pangommEnums.html#ga1c0868659f2899d822c5c600ee57db74',1,'FontMask()(Global Namespace)']]],
   ['fontslant',['FontSlant',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a0a2c19fefac301a702a6b7fdb368bf55',1,'Cairo']]],
   ['fonttype',['FontType',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a23e1a9a5be49d16cf3871e841e8ab522',1,'Cairo']]],
@@ -27,6 +27,6 @@ var searchData=
   ['formatsizeflags',['FormatSizeFlags',['http://library.gnome.org/devel/glibmm/unstable/group__glibmmEnums.html#ga53f0c2b27f8ba1bca1e695397a75c673',1,'Glib::FormatSizeFlags()'],['http://library.gnome.org/devel/glibmm/unstable/group__glibmmEnums.html#ga53f0c2b27f8ba1bca1e695397a75c673',1,'FormatSizeFlags()(Global Namespace)']]],
   ['ftsynthesize',['FtSynthesize',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a5666215cadfe7c88ff03f9d465a8d35a',1,'Cairo']]],
   ['fullscreenmode',['FullscreenMode',['http://library.gnome.org/devel/gtkmm/unstable/group__gdkmmEnums.html#gab6878e8f24bf48a74f62573e4f252847',1,'Gdk::FullscreenMode()'],['http://library.gnome.org/devel/gtkmm/unstable/group__gdkmmEnums.html#gab6878e8f24bf48a74f62573e4f252847',1,'FullscreenMode()(Global Namespace)']]],
-  ['future_5ferrc',['future_errc',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01646.html#ga61938f7ac25df97b5362109e61bb46a6',1,'std::future_errc()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01646.html#ga61938f7ac25df97b5362109e61bb46a6',1,'future_errc()(Global Namespace)']]],
-  ['future_5fstatus',['future_status',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01646.html#ga528eb8f3b350394c0406d4d58ab7dbf4',1,'std::future_status()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01646.html#ga528eb8f3b350394c0406d4d58ab7dbf4',1,'future_status()(Global Namespace)']]]
+  ['future_5ferrc',['future_errc',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01475.html#ga61938f7ac25df97b5362109e61bb46a6',1,'std::future_errc()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01475.html#ga61938f7ac25df97b5362109e61bb46a6',1,'future_errc()(Global Namespace)']]],
+  ['future_5fstatus',['future_status',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01475.html#ga528eb8f3b350394c0406d4d58ab7dbf4',1,'std::future_status()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01475.html#ga528eb8f3b350394c0406d4d58ab7dbf4',1,'future_status()(Global Namespace)']]]
 ];

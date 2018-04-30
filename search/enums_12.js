@@ -34,5 +34,6 @@ var searchData=
   ['subpixelorder',['SubpixelOrder',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a4a23dc1a6008ac7395bd44767b288783',1,'Cairo']]],
   ['subtreeflags',['SubtreeFlags',['http://library.gnome.org/devel/glibmm/unstable/group__giommEnums.html#ga57ca559dd8d3b93c96c4828cb457b975',1,'Gio::DBus::SubtreeFlags()'],['http://library.gnome.org/devel/glibmm/unstable/group__giommEnums.html#ga57ca559dd8d3b93c96c4828cb457b975',1,'SubtreeFlags()(Global Namespace)']]],
   ['surfacetype',['SurfaceType',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#af11d962e38a38a2d92fc1473fbe92549',1,'Cairo']]],
-  ['svgversion',['SvgVersion',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a853a6353847b8cd86001a98d36b245ca',1,'Cairo']]]
+  ['svgversion',['SvgVersion',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a853a6353847b8cd86001a98d36b245ca',1,'Cairo']]],
+  ['syntax_5foption_5ftype',['syntax_option_type',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01568.html#a510caedb3e640b81620023a85c1280bb',1,'std::regex_constants']]]
 ];

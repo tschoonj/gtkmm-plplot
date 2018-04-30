@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['random_20number_20generation',['Random Number Generation',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01668.html',1,'']]],
-  ['random_20numbers',['Random Numbers',['http://library.gnome.org/devel/glibmm/unstable/group__Random.html',1,'']]],
-  ['random_20number_20distributions',['Random Number Distributions',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01701.html',1,'']]],
-  ['random_20number_20generators',['Random Number Generators',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01700.html',1,'']]],
-  ['random_20number_20utilities',['Random Number Utilities',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01706.html',1,'']]],
-  ['rational_20arithmetic',['Rational Arithmetic',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01652.html',1,'']]],
-  ['recentfiles',['RecentFiles',['http://library.gnome.org/devel/gtkmm/unstable/group__RecentFiles.html',1,'']]],
-  ['regular_20expressions',['Regular Expressions',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01670.html',1,'']]],
-  ['retype_28_29_2c_20retype_5freturn_28_29',['retype(), retype_return()',['http://library.gnome.org/devel/libsigc++/unstable/group__retype.html',1,'']]]
+  ['platform_2dspecific_20content_20typing',['Platform-specific content typing',['http://library.gnome.org/devel/glibmm/unstable/group__giommContentType.html',1,'']]],
+  ['portable_20network_20i_2fo_20functionality',['Portable Network I/O Functionality',['http://library.gnome.org/devel/glibmm/unstable/group__NetworkIO.html',1,'']]],
+  ['pangomm_20enums_20and_20flags',['pangomm Enums and Flags',['http://library.gnome.org/devel/pangomm/unstable/group__pangommEnums.html',1,'']]],
+  ['policy_2dbased_20data_20structures',['Policy-Based Data Structures',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01532.html',1,'']]],
+  ['pointer_20abstractions',['Pointer Abstractions',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01478.html',1,'']]],
+  ['printing',['Printing',['http://library.gnome.org/devel/gtkmm/unstable/group__Printing.html',1,'']]],
+  ['ptr_5ffun_28_29',['ptr_fun()',['http://library.gnome.org/devel/libsigc++/unstable/group__ptr__fun.html',1,'']]],
+  ['poisson_20distributions',['Poisson Distributions',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01542.html',1,'']]]
 ];

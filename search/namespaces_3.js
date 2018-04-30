@@ -7,6 +7,7 @@ var searchData=
   ['cairo',['Cairo',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGdk_1_1Cairo.html',1,'Gdk']]],
   ['container_5fhelpers',['Container_Helpers',['http://library.gnome.org/devel/glibmm/unstable/namespaceGlib_1_1Container__Helpers.html',1,'Glib']]],
   ['dbus',['DBus',['http://library.gnome.org/devel/glibmm/unstable/namespaceGio_1_1DBus.html',1,'Gio']]],
+  ['detail',['detail',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGlib_1_1detail.html',1,'Glib']]],
   ['errorutils',['ErrorUtils',['http://library.gnome.org/devel/glibmm/unstable/namespaceGio_1_1DBus_1_1ErrorUtils.html',1,'Gio::DBus']]],
   ['gdk',['Gdk',['http://library.gnome.org/devel/gtkmm/unstable/namespaceGdk.html',1,'']]],
   ['gio',['Gio',['http://library.gnome.org/devel/glibmm/unstable/namespaceGio.html',1,'']]],

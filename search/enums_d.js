@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['memory_5forder',['memory_order',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01663.html#gab4f8c60de95c10793a8e3e27fcb800d9',1,'std::memory_order()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01663.html#gab4f8c60de95c10793a8e3e27fcb800d9',1,'memory_order()(Global Namespace)']]],
+  ['match_5fflag_5ftype',['match_flag_type',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01568.html#aaa717c7c94d1075dfb06f79feb4ca11c',1,'std::regex_constants']]],
+  ['memory_5forder',['memory_order',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01491.html#gab4f8c60de95c10793a8e3e27fcb800d9',1,'std::memory_order()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01491.html#gab4f8c60de95c10793a8e3e27fcb800d9',1,'memory_order()(Global Namespace)']]],
   ['menuattribute',['MenuAttribute',['http://library.gnome.org/devel/glibmm/unstable/namespaceGio.html#a7df84578d37eccbf86072c8fc85b217a',1,'Gio']]],
   ['menudirectiontype',['MenuDirectionType',['http://library.gnome.org/devel/gtkmm/unstable/group__gtkmmEnums.html#gae902f8d62fa1e764d6bd22e8a0e8e015',1,'Gtk::MenuDirectionType()'],['http://library.gnome.org/devel/gtkmm/unstable/group__gtkmmEnums.html#gae902f8d62fa1e764d6bd22e8a0e8e015',1,'MenuDirectionType()(Global Namespace)']]],
   ['menulink',['MenuLink',['http://library.gnome.org/devel/glibmm/unstable/namespaceGio.html#a4febebe134c8e141020c6c253711e0d2',1,'Gio']]],
