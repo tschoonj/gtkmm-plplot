@@ -66,6 +66,7 @@ namespace Gtk {
       sigc::signal<void, double, double > _signal_cursor_motion; ///< signal that will be emitted whenever the cursor (usually the mouse) is moved.
       sigc::signal<std::vector<double>, double, double, double, double > _signal_pan; ///< signal that will be emitted whenever the cursor is moved within a pannable plot while the SHIFT key is pressed in and the left mouse button is pressed.
       sigc::signal<void, double, double> _signal_double_press; ///< signal that will emitted whenever a double mouse-click event was recorded within the plot box. Default response will be to reset the region to a range determined by the minima and maxima of the X- and Y- datasets.
+      static void ensure_valid_range(double &val0, double &val1); ///< internal function that ensures valid ranges are always plotted, mostly avoiding case where for either x or y, data min is equal to data max.
 
       /** Transform PLplot coordinate system coordinates to Cairo
        *

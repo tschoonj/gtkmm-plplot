@@ -114,12 +114,33 @@ void RegionSelection::on_double_press(double x, double y) {
     temp_x[1],
     temp_y[1]
   );
+
+  ensure_valid_range(temp_x[0], temp_x[1]);
+  ensure_valid_range(temp_y[0], temp_y[1]);
+
   set_region(
     temp_x[0],
     temp_x[1],
     temp_y[0],
     temp_y[1]
   );
+}
+
+void RegionSelection::ensure_valid_range(double &val0, double &val1) {
+  if (val0 == val1) {
+    if (val0 == 0.0) {
+      val0 = -1;
+      val1 = 1;
+    }
+    else if (val0 < 0.0) {
+      val0 *= 1.10;
+      val1 *= 0.90;
+    }
+    else {
+      val0 *= 0.90;
+      val1 *= 1.10;
+    }
+  }
 }
 
 void RegionSelection::on_zoom_region(double x, double y, GdkScrollDirection direction) {

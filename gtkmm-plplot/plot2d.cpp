@@ -273,6 +273,13 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
 
   change_plstream_color(pls, axes_color);
 
+  // apply plotted range corrections if min == max
+  RegionSelection::ensure_valid_range(plotted_range_x[0], plotted_range_x[1]);
+  RegionSelection::ensure_valid_range(plotted_range_y[0], plotted_range_y[1]);
+
+  // g_debug("Plot2D::draw_plot -> plotted_range_x: %g  %g", plotted_range_x[0], plotted_range_x[1]);
+  // g_debug("Plot2D::draw_plot -> plotted_range_y: %g  %g", plotted_range_y[0], plotted_range_y[1]);
+
   //plot the box with its axes
   pls->env(plotted_range_x[0], plotted_range_x[1],
            plotted_range_y[0], plotted_range_y[1],
