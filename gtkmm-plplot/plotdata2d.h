@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include <valarray>
 #include <glibmm/ustring.h>
+#include <glibmm/datetime.h>
 #include <gtkmm-plplot/plotdataline.h>
 #include <gdkmm/rgba.h>
 
@@ -46,6 +47,9 @@ namespace Gtk {
       PlotData2D(const PlotData2D &source) = delete; ///< no default copy constructor;
     protected:
       std::vector<double> x; ///< The X-values of the dataset
+      std::vector<Glib::DateTime> x_time; ///< The X-values of the dataset as time
+      std::vector<double> real_x; ///< The real X-values of the dataset (classical + time)
+      bool need_calculate_real_x = false; ///< Indicate if real_x need to be recalculate
       std::vector<double> y; ///< The Y-values of the dataset
       Glib::ustring symbol; ///< If not an empty string, the symbol will be plotted at each of the data points from \c x and \c y.
       Gdk::RGBA symbol_color; ///< The color the symbol will be plotted in
@@ -63,6 +67,23 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        */
       PlotData2D(const std::vector<double> &x,
+                 const std::vector<double> &y,
+                 Gdk::RGBA color = Gdk::RGBA("red"),
+                 LineStyle line_style = CONTINUOUS,
+                 double line_width = PLOTDATA_DEFAULT_LINE_WIDTH);
+
+      /** Constructor
+       *
+       * This constructor initializes a new dataset using two vectors, one for the X-values as date / time, and one for the Y-values.
+       * Optionally, one can also use the constructor to override the default color, line style and line width.
+       * \param x the X-values, as std::vector of date / time
+       * \param y the Y-values, as std::vector
+       * \param color the line color, default is red
+       * \param line_style the line style, default is CONTINUOUS
+       * \param line_width the line width, default is 1.0
+       * \exception Gtk::PLplot::Exception
+       */
+      PlotData2D(const std::vector<Glib::DateTime> &x,
                  const std::vector<double> &y,
                  Gdk::RGBA color = Gdk::RGBA("red"),
                  LineStyle line_style = CONTINUOUS,
@@ -124,6 +145,12 @@ namespace Gtk {
        * \returns a copy of the dataset X-values
        */
       std::vector<double> get_vector_x();
+
+      /**
+       *
+       * \returns a copy of the dataset X-values time
+       */
+      std::vector<Glib::DateTime> get_vector_x_time();
 
       /**
        *
@@ -204,6 +231,23 @@ namespace Gtk {
        * \param xy_pair a std::pair containing both an X- and a Y- value
        */
       virtual void add_datapoint(std::pair<double, double> xy_pair);
+
+      /** Add a single datapoint, consisting of a std::pair with an X date /time and Y value, to the dataset
+       *
+       * This datapoint will be added at the end of the std::vector's \c x_time and \c y.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param xy_pair a std::pair containing both an X- and a Y- value
+       */
+      virtual void add_datapoint(std::pair<const Glib::DateTime&, double> xy_pair);
+
+      /** Add a single datapoint, consisting of an \c xval as DateTime and \c yval value, to the dataset
+       *
+       * This datapoint will be added at the end of the std::vector's \c x_time and \c y.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param xval an X-value
+       * \param yval an Y-value
+       */
+      virtual void add_datapoint(const Glib::DateTime& xval, double yval);
 
       /** Method to draw the dataset
        *

@@ -45,6 +45,11 @@ namespace Gtk {
       bool log10_y; ///< \c true means Y-axis logarithmic axis, \c false means linear
       BoxStyle box_style; ///< the currently used box style to draw the box, axes and grid
 
+      bool config_time_done = false; ///< Indicate that cnofig time has been done,  needed for adding date / time data
+      Glib::ustring time_format; ///< the time format to use date / time in the X-axis
+      double time_scale; ///< the time scale in fraction of day when converting from date/time to double
+      Glib::DateTime time_start; ///< the time start when converting from date/time to double
+
       Plot2D() = delete; ///< no default constructor
       Plot2D(const Plot2D &) = delete; ///< no default copy constructor
       Plot2D &operator=(const Plot2D &) = delete; ///< no assignment operator
@@ -228,6 +233,28 @@ namespace Gtk {
        * \return \c true indicates logarithmic scaling, \c false linear scaling.
        */
       bool get_axis_logarithmic_y();
+
+       /** Configure transformation between continuous and broken-down time (and vice versa)
+       *
+       * \param scale the time scale in fraction of day when converting from date/time to double..
+       * \param time the time start when converting from date/time to double.
+       */
+      void config_time(double scale = 1. / 86400., const Glib::DateTime& time = Glib::DateTime::create_utc(1970,1,1,0,0,0));
+
+      /** Sets the time format of the X-axis to logarithmic
+       *
+       * Before calling this method, the (default) time format is not set.
+       * When you call this function, the X-axis will interpret the X data as date / time
+       * The format is based on the C strftime function
+       * \param time_fmt the new time format.
+       */
+      void set_axis_time_format(Glib::ustring time_format);
+
+      /** Get the current time format of the X-axis
+       *
+       * \return the current time format of the X-axis.
+       */
+      Glib::ustring get_axis_time_format();
 
       friend class Canvas;
     };

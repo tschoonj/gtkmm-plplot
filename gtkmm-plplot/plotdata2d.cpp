@@ -45,6 +45,29 @@ PlotData2D::PlotData2D(
 }
 
 PlotData2D::PlotData2D(
+  const std::vector<Glib::DateTime> &_x,
+  const std::vector<double> &_y,
+  Gdk::RGBA _color,
+  LineStyle _line_style,
+  double _line_width) :
+  Glib::ObjectBase("GtkmmPLplotPlotData2D"),
+  PlotDataLine(_color, _line_style, _line_width),
+  x_time(_x), y(_y),
+  symbol(""), symbol_color(Gdk::RGBA("Red")),
+  symbol_scale_factor(1.0),
+  need_calculate_real_x(true) {
+
+   //ensure both arrays have the same size
+  if (x_time.size() != y.size()) {
+    throw Exception("Gtk::PLplot::PlotData2D::PlotData2D -> data arrays x and y must have the same size!");
+  }
+  //ensure there are at least two elements in the arrays
+  if (x_time.size() < 2) {
+    throw Exception("Gtk::PLplot::PlotData2D::PlotData2D -> data arrays x and y must have at least two elements");
+  }
+}
+
+PlotData2D::PlotData2D(
   const std::valarray<double> &_x,
   const std::valarray<double> &_y,
   Gdk::RGBA _color,
@@ -111,25 +134,56 @@ void PlotData2D::add_datapoint(std::pair<double, double> _xy_pair) {
   add_datapoint(_xy_pair.first, _xy_pair.second);
 }
 
+void PlotData2D::add_datapoint(const Glib::DateTime& _x, double _y){
+  x_time.push_back(_x);
+  y.push_back(_y);
+  need_calculate_real_x = true;
+  _signal_data_modified.emit();
+}
+
+void PlotData2D::add_datapoint(std::pair<const Glib::DateTime&, double> _xy_pair){
+  add_datapoint(_xy_pair.first, _xy_pair.second);
+}
+
 void PlotData2D::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) {
   if (!is_showing())
     return;
 
-  double *x_pl = &x[0], *y_pl = &y[0];
+  if (need_calculate_real_x){
+    real_x.clear();
+    std::copy(x.begin(), x.end(), std::back_inserter(real_x));
+
+    for (auto &iter : x_time) {
+      PLFLT ctime;
+      pls->ctime(iter.get_year(), iter.get_month() - 1,
+	  iter.get_day_of_month(), iter.get_hour(), iter.get_minute(),
+	  iter.get_second(), ctime);
+      real_x.push_back(ctime);
+    }
+    _signal_data_modified.emit();
+    need_calculate_real_x = false;
+  }
+
+  double *x_pl;
+  if (real_x.empty())
+    x_pl = x.data();
+  else
+    x_pl = real_x.data();
+  double *y_pl = y.data();
 
   // plot the line if requested
   if (line_style != LineStyle::NONE) {
     change_plstream_color(pls, color);
     pls->lsty(line_style);
     pls->width(line_width);
-    pls->line(x.size(), x_pl, y_pl);
+    pls->line(y.size(), x_pl, y_pl);
   }
 
   // plot the symbols if requested
   if (!symbol.empty()) {
     change_plstream_color(pls, symbol_color);
     pls->schr(0, symbol_scale_factor);
-    pls->string(x.size(), x_pl, y_pl, symbol.c_str());
+    pls->string(y.size(), x_pl, y_pl, symbol.c_str());
   }
 }
 
@@ -137,13 +191,28 @@ std::vector<double> PlotData2D::get_vector_x() {
   return x;
 }
 
+std::vector<Glib::DateTime> PlotData2D::get_vector_x_time() {
+  return x_time;
+}
+
 std::vector<double> PlotData2D::get_vector_y() {
   return y;
 }
 
 void PlotData2D::get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) {
-  xmin = *std::min_element(x.begin(), x.end());
-  xmax = *std::max_element(x.begin(), x.end());
+  if (x.empty()){
+    if (real_x.empty()){
+	  xmin = 0;
+	  xmax = 1;
+    } else {
+      xmin = *std::min_element(real_x.begin(), real_x.end());
+      xmax = *std::max_element(real_x.begin(), real_x.end());
+    }
+  }
+  else {
+    xmin = *std::min_element(x.begin(), x.end());
+    xmax = *std::max_element(x.begin(), x.end());
+  }
   ymin = *std::min_element(y.begin(), y.end());
   ymax = *std::max_element(y.begin(), y.end());
 }

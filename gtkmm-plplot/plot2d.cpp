@@ -26,6 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PLPLOT_LIN_LOG 20
 #define PLPLOT_LOG_LIN 10
 #define PLPLOT_LOG_LOG 30
+#define PLPLOT_DATE_LIN 40
+#define PLPLOT_LIN_DATE 50
+#define PLPLOT_DATE_DATE 60
 
 
 using namespace Gtk::PLplot;
@@ -184,6 +187,8 @@ void Plot2D::set_axis_logarithmic_x(bool _log10) {
 void Plot2D::set_axis_logarithmic_y(bool _log10) {
   //need to check that all values are positive!
   if (_log10) {
+    if (get_axis_logarithmic_x())
+      throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_y -> X-axys cannot be time and logarithmic");
     for (auto &iter : plot_data) {
       auto iter2 = dynamic_cast<PlotData2D*>(iter);
       std::vector<double> y = iter2->get_vector_y();
@@ -202,6 +207,29 @@ bool Plot2D::get_axis_logarithmic_x() {
 
 bool Plot2D::get_axis_logarithmic_y() {
   return log10_y;
+}
+
+void Plot2D::set_axis_time_format(Glib::ustring _time_format)
+{
+  if (!_time_format.empty())
+  {
+    if (get_axis_logarithmic_x())
+      throw Exception("Gtkmm::Plplot::Plot2D::set_axis_time_format -> X-axys cannot be time and logarithmic");
+  }
+  time_format = _time_format;
+  plot_data_modified();
+}
+
+Glib::ustring  Plot2D::get_axis_time_format()
+{
+  return time_format;
+}
+
+void Plot2D::config_time(double _scale, const Glib::DateTime& _time)
+{
+  time_scale = _scale;
+  time_start = _time;
+  config_time_done = true;
 }
 
 void Plot2D::set_box_style(BoxStyle _box_style) {
@@ -269,6 +297,19 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
       plplot_axis_style += PLPLOT_LIN_LOG;
     else
       plplot_axis_style += PLPLOT_LIN_LIN;
+  }
+
+  // Set time
+  if (!time_format.empty())
+  {
+    pls->timefmt(time_format.c_str());
+    plplot_axis_style += PLPLOT_DATE_LIN;
+  }
+  if (config_time_done)
+  {
+	pls->configtime(time_scale, 0,0,0,1,time_start.get_year(), time_start.get_month() - 1,
+	  time_start.get_day_of_month(), time_start.get_hour(), time_start.get_minute(),
+	  time_start.get_second());
   }
 
   change_plstream_color(pls, axes_color);
