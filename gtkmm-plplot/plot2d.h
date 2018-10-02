@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMM_PLPLOT_PLOT2D_H
 #define GTKMM_PLPLOT_PLOT2D_H
 
+#include <glibmm/datetime.h>
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/plotdata2d.h>
 #include <gtkmm-plplot/plotobject2d.h>
@@ -45,10 +46,9 @@ namespace Gtk {
       bool log10_y; ///< \c true means Y-axis logarithmic axis, \c false means linear
       BoxStyle box_style; ///< the currently used box style to draw the box, axes and grid
 
-      bool config_time_done = false; ///< Indicate that cnofig time has been done,  needed for adding date / time data
       Glib::ustring time_format; ///< the time format to use date / time in the X-axis
-      double time_scale; ///< the time scale in fraction of day when converting from date/time to double
-      Glib::DateTime time_start; ///< the time start when converting from date/time to double
+      double time_scale = 1. / 86400; ///< the time scale in fraction of day when converting from date/time to double
+      Glib::DateTime time_start = Glib::DateTime::create_utc(1970,1,1,0,0,0); ///< the time start when converting from date/time to double
 
       Plot2D() = delete; ///< no default constructor
       Plot2D(const Plot2D &) = delete; ///< no default copy constructor
@@ -239,7 +239,7 @@ namespace Gtk {
        * \param scale the time scale in fraction of day when converting from date/time to double..
        * \param time the time start when converting from date/time to double.
        */
-      void config_time(double scale = 1. / 86400., const Glib::DateTime& time = Glib::DateTime::create_utc(1970,1,1,0,0,0));
+      void config_time(double scale, const Glib::DateTime& time);
 
       /** Sets the time format of the X-axis to logarithmic
        *

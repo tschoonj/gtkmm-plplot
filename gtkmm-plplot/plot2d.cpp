@@ -229,7 +229,6 @@ void Plot2D::config_time(double _scale, const Glib::DateTime& _time)
 {
   time_scale = _scale;
   time_start = _time;
-  config_time_done = true;
 }
 
 void Plot2D::set_box_style(BoxStyle _box_style) {
@@ -304,9 +303,7 @@ void Plot2D::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int width,
   {
     pls->timefmt(time_format.c_str());
     plplot_axis_style += PLPLOT_DATE_LIN;
-  }
-  if (config_time_done)
-  {
+
 	pls->configtime(time_scale, 0,0,0,1,time_start.get_year(), time_start.get_month() - 1,
 	  time_start.get_day_of_month(), time_start.get_hour(), time_start.get_minute(),
 	  time_start.get_second());

@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/radiobutton.h>
 #include <iostream>
 #include <glib.h>
+#include <glibmm/date.h>
 
 #ifndef M_PI
 #define M_PI (3.14159265358979323846)
@@ -38,6 +39,7 @@ namespace Test13 {
     Gtk::Box box;
     Gtk::RadioButton button_1;
     Gtk::RadioButton button_2;
+    Gtk::RadioButton button_3;
 
     void add_plot_1() {
       if (plot != nullptr){
@@ -71,17 +73,37 @@ namespace Test13 {
 	  }
 
 	  int npts = 365;
-      std::vector<double> y_va(npts);
-      std::vector<Glib::DateTime> x_va(npts);
+      std::valarray<double> y_va(npts);
+      std::valarray<double> x_va(npts);
       Glib::DateTime first_date = Glib::DateTime::create_local(2010, 1,1,0,0,0);
       for (unsigned int i = 0 ; i < npts ; i++) {
-        x_va[i] = first_date.add_days(i);
+        x_va[i] = first_date.add_days(i).to_unix();
         y_va[i] = 15.0 - 5.0 * cos( 2 * M_PI * ( (double) i / (double) (npts/12) ) );
       }
       auto plot_data = Gtk::manage(new Gtk::PLplot::PlotData2D(x_va, y_va));
       plot = Gtk::manage(new Gtk::PLplot::Plot2D(*plot_data));
-      plot->config_time();
       plot->set_axis_time_format("%D");
+      canvas.add_plot(*plot);
+      plot->hide_legend();
+    }
+
+    void add_plot_3() {
+      if (plot != nullptr){
+		canvas.remove_plot(*plot);
+		plot = nullptr;
+	  }
+
+	  int npts = 2018;
+      std::valarray<double> y_va(npts);
+      std::valarray<double> x_va(npts);
+      for (unsigned int i = 0 ; i < npts ; i++) {
+        x_va[i] = i;
+        y_va[i] = 15.0 - 5.0 * cos( 2 * M_PI * ( (double) i / (double) (npts/10) ) );
+      }
+      auto plot_data = Gtk::manage(new Gtk::PLplot::PlotData2D(x_va, y_va));
+      plot = Gtk::manage(new Gtk::PLplot::Plot2D(*plot_data));
+      plot->set_axis_time_format("%Y");
+      plot->config_time(365.25, Glib::DateTime::create_local(1, 1,1,0,0,0));
       canvas.add_plot(*plot);
       plot->hide_legend();
     }
@@ -108,8 +130,14 @@ namespace Test13 {
       button_2.join_group(button_1);
       button_2.signal_clicked().connect(sigc::mem_fun(*this, &Window::add_plot_2));
 
+      button_3.set_label("Test 3");
+      button_3.set_mode(false);
+      button_3.join_group(button_1);
+      button_3.signal_clicked().connect(sigc::mem_fun(*this, &Window::add_plot_3));
+
       box.pack_start(button_1);
       box.pack_start(button_2);
+      box.pack_start(button_3);
       grid.attach(box, 0, 0, 1, 1);
 
       add_plot_1();
