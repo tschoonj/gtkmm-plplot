@@ -173,7 +173,7 @@ void Plot2D::set_axis_logarithmic_x(bool _log10) {
   //need to check that all values are positive!
   if (_log10) {
     if (!get_axis_time_format_x().empty())
-      throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_y -> X-axis cannot be time and logarithmic");
+      throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_x -> X-axis cannot be time and logarithmic");
     for (auto &iter : plot_data) {
       auto iter2 = dynamic_cast<PlotData2D*>(iter);
       std::vector<double> x = iter2->get_vector_x();
