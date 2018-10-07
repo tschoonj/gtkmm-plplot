@@ -43,12 +43,12 @@ namespace Test13 {
 
     void add_plot_1() {
       if (plot != nullptr){
-		canvas.remove_plot(*plot);
-		plot = nullptr;
-	  }
+        canvas.remove_plot(*plot);
+        plot = nullptr;
+      }
 
       // Data points every 10 minutes for 1 day
-	  int npts = 73;
+      int npts = 73;
       std::valarray<double> x_va(npts), y_va(npts);
       double xmin = 0;
       double xmax = 60.0 * 60.0 * 24.0; // Number of seconds in a day
@@ -61,18 +61,18 @@ namespace Test13 {
       }
       auto plot_data = Gtk::manage(new Gtk::PLplot::PlotData2D(x_va, y_va, Gdk::RGBA("blue"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 5.0));
       plot = Gtk::manage(new Gtk::PLplot::Plot2D(*plot_data));
-      plot->set_axis_time_format("%H:%M");
+      plot->set_axis_time_format_x("%H:%M");
       canvas.add_plot(*plot);
       plot->hide_legend();
     }
 
     void add_plot_2() {
       if (plot != nullptr){
-		canvas.remove_plot(*plot);
-		plot = nullptr;
-	  }
+        canvas.remove_plot(*plot);
+        plot = nullptr;
+      }
 
-	  int npts = 365;
+      int npts = 365;
       std::valarray<double> y_va(npts);
       std::valarray<double> x_va(npts);
       Glib::DateTime first_date = Glib::DateTime::create_local(2010, 1,1,0,0,0);
@@ -82,18 +82,18 @@ namespace Test13 {
       }
       auto plot_data = Gtk::manage(new Gtk::PLplot::PlotData2D(x_va, y_va));
       plot = Gtk::manage(new Gtk::PLplot::Plot2D(*plot_data));
-      plot->set_axis_time_format("%D");
+      plot->set_axis_time_format_x("%D");
       canvas.add_plot(*plot);
       plot->hide_legend();
     }
 
     void add_plot_3() {
       if (plot != nullptr){
-		canvas.remove_plot(*plot);
-		plot = nullptr;
-	  }
+        canvas.remove_plot(*plot);
+        plot = nullptr;
+      }
 
-	  int npts = 2018;
+      int npts = 2018;
       std::valarray<double> y_va(npts);
       std::valarray<double> x_va(npts);
       for (unsigned int i = 0 ; i < npts ; i++) {
@@ -102,8 +102,8 @@ namespace Test13 {
       }
       auto plot_data = Gtk::manage(new Gtk::PLplot::PlotData2D(x_va, y_va));
       plot = Gtk::manage(new Gtk::PLplot::Plot2D(*plot_data));
-      plot->set_axis_time_format("%Y");
-      plot->config_time(365.25, Glib::DateTime::create_local(1, 1,1,0,0,0));
+      plot->set_axis_time_format_x("%Y");
+      plot->config_time_x(365.25, Glib::DateTime::create_local(1, 1,1,0,0,0));
       canvas.add_plot(*plot);
       plot->hide_legend();
     }

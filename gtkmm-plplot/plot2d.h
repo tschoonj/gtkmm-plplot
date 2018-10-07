@@ -234,12 +234,12 @@ namespace Gtk {
        */
       bool get_axis_logarithmic_y();
 
-       /** Configure transformation between continuous and broken-down time (and vice versa)
+       /** Configure transformation between continuous and broken-down time (and vice versa) of the X-axis
        *
        * \param scale the time scale in fraction of day when converting from date/time to double..
        * \param time the time start when converting from date/time to double.
        */
-      void config_time(double scale, const Glib::DateTime& time);
+      void config_time_x(double scale, const Glib::DateTime& time);
 
       /** Sets the time format of the X-axis to logarithmic
        *
@@ -248,13 +248,13 @@ namespace Gtk {
        * The format is based on the C strftime function
        * \param time_fmt the new time format.
        */
-      void set_axis_time_format(Glib::ustring time_format);
+      void set_axis_time_format_x(Glib::ustring time_format);
 
       /** Get the current time format of the X-axis
        *
        * \return the current time format of the X-axis.
        */
-      Glib::ustring get_axis_time_format();
+      Glib::ustring get_axis_time_format_x();
 
       friend class Canvas;
     };
