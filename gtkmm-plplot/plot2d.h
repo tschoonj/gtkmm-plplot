@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMM_PLPLOT_PLOT2D_H
 #define GTKMM_PLPLOT_PLOT2D_H
 
+#include <glibmm/datetime.h>
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/plotdata2d.h>
 #include <gtkmm-plplot/plotobject2d.h>
@@ -44,6 +45,10 @@ namespace Gtk {
       bool log10_x; ///< \c true means X-axis logarithmic axis, \c false means linear
       bool log10_y; ///< \c true means Y-axis logarithmic axis, \c false means linear
       BoxStyle box_style; ///< the currently used box style to draw the box, axes and grid
+
+      Glib::ustring time_format; ///< the time format to use date / time in the X-axis
+      double time_scale = 1. / 86400; ///< the time scale in fraction of day when converting from date/time to double
+      Glib::DateTime time_start = Glib::DateTime::create_utc(1970,1,1,0,0,0); ///< the time start when converting from date/time to double
 
       Plot2D() = delete; ///< no default constructor
       Plot2D(const Plot2D &) = delete; ///< no default copy constructor
@@ -228,6 +233,28 @@ namespace Gtk {
        * \return \c true indicates logarithmic scaling, \c false linear scaling.
        */
       bool get_axis_logarithmic_y();
+
+       /** Configure transformation between continuous and broken-down time (and vice versa) of the X-axis
+       *
+       * \param scale the time scale in fraction of day when converting from date/time to double..
+       * \param time the time start when converting from date/time to double.
+       */
+      void config_time_x(double scale, const Glib::DateTime& time);
+
+      /** Sets the time format of the X-axis to logarithmic
+       *
+       * Before calling this method, the (default) time format is not set.
+       * When you call this function, the X-axis will interpret the X data as date / time
+       * The format is based on the C strftime function
+       * \param time_fmt the new time format.
+       */
+      void set_axis_time_format_x(Glib::ustring time_format);
+
+      /** Get the current time format of the X-axis
+       *
+       * \return the current time format of the X-axis.
+       */
+      Glib::ustring get_axis_time_format_x();
 
       friend class Canvas;
     };
