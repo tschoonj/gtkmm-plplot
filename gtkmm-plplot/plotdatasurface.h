@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GTKMMPLPLOT_PLOT_DATA_SURFACE_H
 #define GTKMMPLPLOT_PLOT_DATA_SURFACE_H
 
-#include <gtkmm-plplotconfig.h>
+#include <gtkmm-plplot/gtkmm-plplotconfig.h>
 #ifdef GTKMM_PLPLOT_BOOST_ENABLED
   #include <boost/multi_array.hpp>
 #endif
