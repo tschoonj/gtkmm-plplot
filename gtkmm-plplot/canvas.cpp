@@ -66,11 +66,8 @@ bool Canvas::on_scroll_event(GdkEventScroll *event) {
   Gtk::Allocation allocation = get_allocation();
   const int height = allocation.get_height();
 
-  double start_event[2];
   double start_cairo[2];
 
-  start_event[0] = event->x;
-  start_event[1] = event->y;
   start_cairo[0] = event->x;
   start_cairo[1] = height - event->y;
 

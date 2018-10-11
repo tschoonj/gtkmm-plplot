@@ -42,7 +42,7 @@ PlotData2DErrorX::PlotData2DErrorX(
   }
 
   //ensure that the errorx_low values are greater than x
-  for (int i = 0 ; i < x.size() ; i++) {
+  for (size_t i = 0 ; i < x.size() ; i++) {
     if (errorx_low[i] > x[i])
       throw Exception("Gtk::PLplot::PlotData2DErrorX::PlotData2DErrorX -> errorx_low elements must be less than the corresponding elements in x");
     else if (errorx_high[i] < x[i])

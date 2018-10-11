@@ -42,7 +42,7 @@ PlotData2DErrorY::PlotData2DErrorY(
   }
 
   //ensure that the errory_low values are greater than y
-  for (int i = 0 ; i < y.size() ; i++) {
+  for (size_t i = 0 ; i < y.size() ; i++) {
     if (errory_low[i] > y[i])
       throw Exception("Gtk::PLplot::PlotData2DErrorY::PlotData2DErrorY -> errory_low elements must be less than the corresponding elements in y");
     else if (errory_high[i] < y[i])
