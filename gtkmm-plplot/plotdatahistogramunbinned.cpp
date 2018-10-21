@@ -124,7 +124,7 @@ void PlotDataHistogramUnbinned::rebin() {
     y[i] = 0.0;
   }
 
-  for (int i = 0; i < data.size(); i++ ) {
+  for (size_t i = 0; i < data.size(); i++ ) {
     int bin = (int) ( ( data[i] - datmin ) / dx );
     if (ignore_outliers == false) {
       bin = bin > 0 ? bin : 0;

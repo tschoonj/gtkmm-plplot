@@ -15,7 +15,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <gtkmm-plplot/gtkmm-plplotconfig.h>
+#include <gtkmm-plplotconfig.h>
 #include <gtkmm-plplot/plotcontourshades.h>
 #include <gtkmm-plplot/exception.h>
 #include <gtkmm-plplot/utils.h>
