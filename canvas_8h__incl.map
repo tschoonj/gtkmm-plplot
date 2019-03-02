@@ -1,7 +1,14 @@
 <map id="canvas.h" name="canvas.h">
-<area shape="rect" id="node2" href="/usr/local/Cellar/gtkmm3/3.22.2_1/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag$drawingarea_8h.html" title="gtkmm/drawingarea.h" alt="" coords="5,79,155,104"/>
-<area shape="rect" id="node3" href="$plot_8h.html" title="gtkmm&#45;plplot/plot.h" alt="" coords="229,79,363,104"/>
-<area shape="rect" id="node7" href="/usr/local/Cellar/gtkmm3/3.22.2_1/share/doc/gtkmm-3.0/reference/gtkmm-3.0.tag$rgba_8h.html" title="gdkmm/rgba.h" alt="" coords="548,152,655,177"/>
-<area shape="rect" id="node8" href="$object_8h.html" title="gtkmm&#45;plplot/object.h" alt="" coords="378,225,526,251"/>
-<area shape="rect" id="node11" href="$plotdata_8h.html" title="gtkmm&#45;plplot/plotdata.h" alt="" coords="313,152,473,177"/>
+<area shape="rect" id="node1" title=" " alt="" coords="318,5,393,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="117,79,266,104"/>
+<area shape="rect" id="node3" href="$plot_8h.html" title=" " alt="" coords="341,79,474,104"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,152,63,177"/>
+<area shape="rect" id="node7" title=" " alt="" coords="710,152,817,177"/>
+<area shape="rect" id="node5" href="/usr/local/Cellar/cairomm/1.12.2/share/doc/cairomm-1.0/reference/cairomm-1.0.tag$cairomm_8h.html" title=" " alt="" coords="338,225,477,251"/>
+<area shape="rect" id="node6" title=" " alt="" coords="516,152,635,177"/>
+<area shape="rect" id="node8" href="$object_8h.html" title=" " alt="" coords="144,225,292,251"/>
+<area shape="rect" id="node11" href="$plotobject_8h.html" title=" " alt="" coords="323,152,492,177"/>
+<area shape="rect" id="node12" href="$plotdata_8h.html" title=" " alt="" coords="138,152,298,177"/>
+<area shape="rect" id="node9" title=" " alt="" coords="102,299,217,324"/>
+<area shape="rect" id="node10" title=" " alt="" coords="241,299,313,324"/>
 </map>

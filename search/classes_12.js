@@ -46,13 +46,13 @@ var searchData=
   ['recentmanager',['RecentManager',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1RecentManager.html',1,'Gtk']]],
   ['recentmanagererror',['RecentManagerError',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1RecentManagerError.html',1,'Gtk']]],
   ['recmutex',['RecMutex',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1RecMutex.html',1,'Glib::Threads::RecMutex'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RecMutex.html',1,'Glib::RecMutex']]],
-  ['rectangle',['Rectangle',['http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1Rectangle.html',1,'Gdk::Rectangle'],['http://library.gnome.org/devel/pangomm/unstable/classPango_1_1Rectangle.html',1,'Pango::Rectangle']]],
+  ['rectangle',['Rectangle',['http://library.gnome.org/devel/pangomm/unstable/classPango_1_1Rectangle.html',1,'Pango::Rectangle'],['http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1Rectangle.html',1,'Gdk::Rectangle']]],
   ['recursive_5finit_5ferror',['recursive_init_error',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01648.html',1,'__gnu_cxx']]],
   ['recursive_5fmutex',['recursive_mutex',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a02728.html',1,'std']]],
   ['recursive_5ftimed_5fmutex',['recursive_timed_mutex',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a02736.html',1,'std']]],
-  ['reference',['reference',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08716.html',1,'std::tr2::dynamic_bitset&lt; _WordT, _Alloc &gt;::reference'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01820.html',1,'std::bitset&lt; _Nb &gt;::reference']]],
-  ['reference_5fwrapper',['reference_wrapper',['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1reference__wrapper.html',1,'sigc::reference_wrapper&lt; class &gt;'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a05776.html',1,'std::reference_wrapper&lt; _Tp &gt;']]],
-  ['refptr',['RefPtr',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RefPtr.html',1,'Glib::RefPtr&lt; T_CppObject &gt;'],['http://www.cairographics.org/documentation/cairomm/reference/classCairo_1_1RefPtr.html',1,'Cairo::RefPtr&lt; T_CppObject &gt;']]],
+  ['reference',['reference',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01820.html',1,'std::bitset&lt; _Nb &gt;::reference'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08716.html',1,'std::tr2::dynamic_bitset&lt; _WordT, _Alloc &gt;::reference']]],
+  ['reference_5fwrapper',['reference_wrapper',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a05776.html',1,'std::reference_wrapper&lt; _Tp &gt;'],['http://library.gnome.org/devel/libsigc++/unstable/structsigc_1_1reference__wrapper.html',1,'sigc::reference_wrapper&lt; class &gt;']]],
+  ['refptr',['RefPtr',['http://www.cairographics.org/documentation/cairomm/reference/classCairo_1_1RefPtr.html',1,'Cairo::RefPtr&lt; T_CppObject &gt;'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RefPtr.html',1,'Glib::RefPtr&lt; T_CppObject &gt;']]],
   ['refptr_3c_20cairo_3a_3adevice_20_3e',['RefPtr&lt; Cairo::Device &gt;',['http://www.cairographics.org/documentation/cairomm/reference/classCairo_1_1RefPtr.html',1,'']]],
   ['refptr_3c_20gtk_3a_3aliststore_20_3e',['RefPtr&lt; Gtk::ListStore &gt;',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RefPtr.html',1,'Glib']]],
   ['regex',['Regex',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Regex.html',1,'Glib']]],
@@ -83,5 +83,5 @@ var searchData=
   ['rgba',['RGBA',['http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1RGBA.html',1,'Gdk']]],
   ['rope',['rope',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08168.html',1,'__gnu_cxx']]],
   ['runtime_5ferror',['runtime_error',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a02920.html',1,'std']]],
-  ['rwlock',['RWLock',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RWLock.html',1,'Glib::RWLock'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1RWLock.html',1,'Glib::Threads::RWLock']]]
+  ['rwlock',['RWLock',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1RWLock.html',1,'Glib::Threads::RWLock'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RWLock.html',1,'Glib::RWLock']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['nativedialog',['NativeDialog',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1NativeDialog.html',1,'Gtk']]],
   ['negate',['negate',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06420.html',1,'std']]],
   ['negate_3c_20void_20_3e',['negate&lt; void &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06444.html',1,'std']]],
   ['negative_5fbinomial_5fdistribution',['negative_binomial_distribution',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a05520.html',1,'std']]],

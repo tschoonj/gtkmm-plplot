@@ -13,7 +13,7 @@ var searchData=
   ['hash_3c_20_5f_5fprofile_3a_3abitset_3c_20_5fnb_20_3e_20_3e',['hash&lt; __profile::bitset&lt; _Nb &gt; &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08028.html',1,'std']]],
   ['hash_3c_20_5f_5fprofile_3a_3avector_3c_20bool_2c_20_5falloc_20_3e_20_3e',['hash&lt; __profile::vector&lt; bool, _Alloc &gt; &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08076.html',1,'std']]],
   ['hash_3c_20_5f_5fshared_5fptr_3c_20_5ftp_2c_20_5flp_20_3e_20_3e',['hash&lt; __shared_ptr&lt; _Tp, _Lp &gt; &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06148.html',1,'std']]],
-  ['hash_3c_20_5ftp_20_2a_3e',['hash&lt; _Tp *&gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a04612.html',1,'std']]],
+  ['hash_3c_20_5ftp_20_2a_20_3e',['hash&lt; _Tp * &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a04612.html',1,'std']]],
   ['hash_3c_20bool_20_3e',['hash&lt; bool &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a04616.html',1,'std']]],
   ['hash_3c_20char_20_3e',['hash&lt; char &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a04620.html',1,'std']]],
   ['hash_3c_20char16_5ft_20_3e',['hash&lt; char16_t &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a04636.html',1,'std']]],

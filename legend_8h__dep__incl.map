@@ -1,6 +1,7 @@
 <map id="legend.h" name="legend.h">
-<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title="gtkmm&#45;plplot.h" alt="" coords="48,152,157,177"/>
-<area shape="rect" id="node3" href="$plot2d_8h.html" title="plot2d.h" alt="" coords="22,79,91,104"/>
-<area shape="rect" id="node4" href="$plot3d_8h.html" title="plot3d.h" alt="" coords="115,79,184,104"/>
-<area shape="rect" id="node5" href="$plotpolar_8h.html" title="plotpolar.h" alt="" coords="208,79,291,104"/>
+<area shape="rect" id="node1" title=" " alt="" coords="67,5,139,31"/>
+<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="48,152,157,177"/>
+<area shape="rect" id="node3" href="$plot2d_8h.html" title=" " alt="" coords="22,79,91,104"/>
+<area shape="rect" id="node4" href="$plot3d_8h.html" title=" " alt="" coords="115,79,184,104"/>
+<area shape="rect" id="node5" href="$plotpolar_8h.html" title=" " alt="" coords="208,79,291,104"/>
 </map>

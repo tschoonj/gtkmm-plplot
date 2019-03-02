@@ -1,5 +1,6 @@
 <map id="Gtk::PLplot::Legend" name="Gtk::PLplot::Legend">
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots " alt="" coords="5,79,140,104"/>
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot3_d.html" title="a class for three&#45;dimensional plots " alt="" coords="164,79,299,104"/>
-<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots " alt="" coords="322,79,471,104"/>
+<area shape="rect" id="node1" title="a class providing legends for plot classes with multiple datasets" alt="" coords="162,5,301,31"/>
+<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots" alt="" coords="5,79,140,104"/>
+<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot3_d.html" title="a class for three&#45;dimensional plots" alt="" coords="164,79,299,104"/>
+<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots" alt="" coords="322,79,471,104"/>
 </map>

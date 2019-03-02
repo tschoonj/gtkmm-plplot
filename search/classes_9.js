@@ -21,7 +21,7 @@ var searchData=
   ['indirect_5farray',['indirect_array',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a03764.html',1,'std']]],
   ['inetaddress',['InetAddress',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1InetAddress.html',1,'Gio']]],
   ['inetsocketaddress',['InetSocketAddress',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1InetSocketAddress.html',1,'Gio']]],
-  ['info',['Info',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1RecentFilter_1_1Info.html',1,'Gtk::RecentFilter::Info'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1FileFilter_1_1Info.html',1,'Gtk::FileFilter::Info']]],
+  ['info',['Info',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1FileFilter_1_1Info.html',1,'Gtk::FileFilter::Info'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1RecentFilter_1_1Info.html',1,'Gtk::RecentFilter::Info']]],
   ['infobar',['InfoBar',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1InfoBar.html',1,'Gtk']]],
   ['initable',['Initable',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1Initable.html',1,'Gio']]],
   ['initializer_5flist',['initializer_list',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01656.html',1,'std']]],
@@ -137,6 +137,6 @@ var searchData=
   ['iterator_3c_20std_3a_3arandom_5faccess_5fiterator_5ftag_2c_20_5fchart_20_3e',['iterator&lt; std::random_access_iterator_tag, _CharT &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06672.html',1,'']]],
   ['iterator_3c_20std_3a_3arandom_5faccess_5fiterator_5ftag_2c_20bool_20_3e',['iterator&lt; std::random_access_iterator_tag, bool &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06672.html',1,'']]],
   ['iterator_5f',['iterator_',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a11016.html',1,'']]],
-  ['iterator_5ftraits_3c_20_5ftp_20_2a_3e',['iterator_traits&lt; _Tp *&gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06688.html',1,'std']]],
-  ['iterator_5ftraits_3c_20const_20_5ftp_20_2a_3e',['iterator_traits&lt; const _Tp *&gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06692.html',1,'std']]]
+  ['iterator_5ftraits_3c_20_5ftp_20_2a_20_3e',['iterator_traits&lt; _Tp * &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06688.html',1,'std']]],
+  ['iterator_5ftraits_3c_20const_20_5ftp_20_2a_20_3e',['iterator_traits&lt; const _Tp * &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06692.html',1,'std']]]
 ];
