@@ -246,7 +246,7 @@ namespace Gtk {
        * Before calling this method, the (default) time format is not set.
        * When you call this function, the X-axis will interpret the X data as date / time
        * The format is based on the C strftime function
-       * \param time_fmt the new time format.
+       * \param time_format the new time format.
        */
       void set_axis_time_format_x(Glib::ustring time_format);
 

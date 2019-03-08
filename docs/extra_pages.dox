@@ -27,11 +27,13 @@
  *  image11.src = "test11.png"
  *  var image12 = new Image();
  *  image12.src = "test12.png"
+ *  var image13 = new Image();
+ *  image13.src = "test13.png"
  *
  *  var step = 1;
  *  function slideit() {
  *    document.images.slide.src = eval("image"+step+".src");
- *    if (step < 12)
+ *    if (step < 13)
  *      step++;
  *    else
  *      step=1;
@@ -170,20 +172,15 @@
  *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu xenial stable
  *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu xenial stable
  *
- * Ubuntu Zesty 17.04:
- *
- *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu zesty stable
- *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu zesty stable
- *
- * Ubuntu Artful 17.10:
- *
- *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu artful stable
- *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu artful stable
- *
  * Ubuntu Bionic 18.04:
  *
  *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu bionic stable
  *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu bionic stable
+ *
+ * Ubuntu Cosmic 18.10:
+ *
+ *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu cosmic stable
+ *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu cosmic stable
  *
  * When the sources.list file contains the correct download locations, update the apt cache by running:
  *
@@ -282,4 +279,7 @@
  * \section example12 Example 12: Histograms 
  * \include test12.cpp
  * \image html test12.png "Example 12"
+ * \section example13 Example 13: Dates and times
+ * \include test13.cpp
+ * \image html test13.png "Example 13"
  */
