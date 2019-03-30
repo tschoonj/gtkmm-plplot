@@ -1,0 +1,30 @@
+variables:
+  LD_LIBRARY_PATH: /usr/local/lib
+
+trigger: ['master']
+
+jobs:
+- job: osx_64
+  pool:
+    vmImage: macOS-10.13
+  timeoutInMinutes: 240
+
+  steps:
+  - script: |
+      set -e -x
+      brew update
+      brew upgrade
+    displayName: Update Homebrew
+  - script: |
+      set -e -x
+      brew install autoconf automake libtool gtkmm3 plplot mm-common wget pkg-config
+    displayName: Install dependencies
+  - script: |
+      set -e -x
+      autoreconf -fi
+      brew uninstall mm-common
+      export PKG_CONFIG_PATH=/usr/local/opt/libffi/lib/pkgconfig
+      ./configure
+      make
+      make distcheck
+    displayName: Test build
