@@ -4,27 +4,67 @@ variables:
 trigger: ['master']
 
 jobs:
-- job: osx_64
-  pool:
-    vmImage: macOS-10.13
-  timeoutInMinutes: 240
-
-  steps:
-  - script: |
-      set -e -x
-      brew update
-      brew upgrade
-    displayName: Update Homebrew
-  - script: |
-      set -e -x
-      brew install autoconf automake libtool gtkmm3 plplot mm-common wget pkg-config
-    displayName: Install dependencies
-  - script: |
-      set -e -x
-      autoreconf -fi
-      brew uninstall mm-common
-      export PKG_CONFIG_PATH=/usr/local/opt/libffi/lib/pkgconfig
-      ./configure
-      make
-      make distcheck
-    displayName: Test build
+  - job: osx_64
+    pool:
+      vmImage: macOS-10.13
+    steps:
+    - script: |
+        set -e -x
+        brew update
+        brew upgrade
+      displayName: Update Homebrew
+    - script: |
+        set -e -x
+        brew install autoconf automake libtool gtkmm3 plplot mm-common wget pkg-config
+      displayName: Install dependencies
+    - script: |
+        set -e -x
+        autoreconf -fi
+        brew uninstall mm-common
+        export PKG_CONFIG_PATH=/usr/local/opt/libffi/lib/pkgconfig
+        ./configure
+        make
+        make distcheck
+      displayName: Test build
+  - job: MSYS2
+    pool:
+      vmImage: vs2017-win2016
+    strategy:
+      matrix:
+        x86_64:
+          ARCH: x64
+          MSYS2_ARCH: x86_64
+          MSYS2_DIR: msys64
+          MSYSTEM: MINGW64
+        i686:
+          ARCH: x86
+          MSYS2_ARCH: i686
+          MSYS2_DIR: msys64
+          MSYSTEM: MINGW32
+    steps:
+    - script: |
+        choco install msys2 --params="/InstallDir:C:\msys64 /NoUpdate /NoPath"
+      displayName: Install MSYS2
+    - script: |
+        set PATH=C:\msys64\usr\bin;%PATH%
+        pacman --noconfirm -Syyuu
+        pacman --noconfirm -Syuu
+      displayName: Update MSYS2
+    - script: |
+        set PATH=C:\msys64\usr\bin;%PATH%
+        pacman --noconfirm -Su mingw-w64-%MSYS2_ARCH%-{gcc,libtool,gtkmm3,boost,cmake,pkg-config} automake autoconf make wget tar pkg-config libtool
+      displayName: Install MSYS2 packages
+    - script: |
+        set PATH=C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
+        bash -lc "wget https://download.gnome.org/sources/mm-common/0.9/mm-common-0.9.12.tar.xz && tar xvfJ mm-common-0.9.12.tar.xz && cd mm-common-0.9.12 && ./configure && make && make install"
+      displayName: Install mm-common
+    - script: |
+        set PATH=C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
+        bash -lc "wget http://lvserver.ugent.be/~schoon/plplot-5.14.0.tar.gz && tar xfz plplot-5.14.0.tar.gz && cd plplot-5.14.0 && cmake -G \"MSYS Makefiles\" -DENABLE_DYNDRIVERS=OFF -DPLD_wingcc=OFF -DCMAKE_INSTALL_PREFIX=/usr/local . && make && make install"
+      displayName: Install PLplot
+    - script: |
+        set PATH=C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
+        bash -lc "cd $SOURCE_HOME && unset BOOST_ROOT && ACLOCAL_PATH=/usr/local/share/aclocal autoreconf -fi && PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig ./configure && make && make check && make distcheck"
+      displayName: Build Gtkmm-PLplot
+      env:
+        SOURCE_HOME: $(Build.SourcesDirectory)
