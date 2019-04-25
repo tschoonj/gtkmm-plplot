@@ -1,7 +1,7 @@
 var searchData=
 [
   ['tabarray',['TabArray',['http://library.gnome.org/devel/pangomm/unstable/classPango_1_1TabArray.html',1,'Pango']]],
-  ['table',['Table',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Table.html',1,'Atk::Table'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Table.html',1,'Gtk::Table']]],
+  ['table',['Table',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Table.html',1,'Gtk::Table'],['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Table.html',1,'Atk::Table']]],
   ['targetentry',['TargetEntry',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TargetEntry.html',1,'Gtk']]],
   ['targetlist',['TargetList',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TargetList.html',1,'Gtk']]],
   ['tcpconnection',['TcpConnection',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1TcpConnection.html',1,'Gio']]],
@@ -22,9 +22,9 @@ var searchData=
   ['themedicon',['ThemedIcon',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1ThemedIcon.html',1,'Gio']]],
   ['thin_5fheap',['thin_heap',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a10960.html',1,'__gnu_pbds::detail']]],
   ['thin_5fheap_5ftag',['thin_heap_tag',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a10208.html',1,'__gnu_pbds']]],
-  ['thread',['thread',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a02972.html',1,'std::thread'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Thread.html',1,'Glib::Thread'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1Thread.html',1,'Glib::Threads::Thread']]],
+  ['thread',['Thread',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Thread.html',1,'Glib::Thread'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1Thread.html',1,'Glib::Threads::Thread'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a02972.html',1,'std::thread']]],
   ['threadedsocketservice',['ThreadedSocketService',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1ThreadedSocketService.html',1,'Gio']]],
-  ['threaderror',['ThreadError',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1ThreadError.html',1,'Glib::Threads::ThreadError'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1ThreadError.html',1,'Glib::ThreadError']]],
+  ['threaderror',['ThreadError',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1ThreadError.html',1,'Glib::ThreadError'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1ThreadError.html',1,'Glib::Threads::ThreadError']]],
   ['threadpool',['ThreadPool',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1ThreadPool.html',1,'Glib']]],
   ['throw_5fallocator_5fbase',['throw_allocator_base',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a09660.html',1,'__gnu_cxx']]],
   ['throw_5fallocator_5fbase_3c_20_5ftp_2c_20limit_5fcondition_20_3e',['throw_allocator_base&lt; _Tp, limit_condition &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a09660.html',1,'']]],

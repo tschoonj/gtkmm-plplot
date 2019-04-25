@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['object',['Object',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Object.html',1,'Glib::Object'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Object.html',1,'Gtk::Object'],['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Object.html',1,'Gio::DBus::Object'],['../class_gtk_1_1_p_lplot_1_1_object.html',1,'Gtk::PLplot::Object'],['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Object.html',1,'Atk::Object']]],
+  ['object',['Object',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Object.html',1,'Atk::Object'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Object.html',1,'Gtk::Object'],['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Object.html',1,'Gio::DBus::Object'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Object.html',1,'Glib::Object'],['../class_gtk_1_1_p_lplot_1_1_object.html',1,'Gtk::PLplot::Object']]],
   ['objectaccessible',['ObjectAccessible',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1ObjectAccessible.html',1,'Atk']]],
   ['objectbase',['ObjectBase',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1ObjectBase.html',1,'Glib']]],
   ['offscreenwindow',['OffscreenWindow',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1OffscreenWindow.html',1,'Gtk']]],
@@ -26,7 +26,7 @@ var searchData=
   ['overflow_5ferror',['overflow_error',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a02928.html',1,'std']]],
   ['overlay',['Overlay',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Overlay.html',1,'Gtk']]],
   ['owner_5fless',['owner_less',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a05948.html',1,'std']]],
-  ['owner_5fless_3c_20shared_5fptr_3c_20_5ftp_20_3e_20_3e',['owner_less&lt; shared_ptr&lt; _Tp &gt; &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a05956.html',1,'std::owner_less&lt; shared_ptr&lt; _Tp &gt; &gt;'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08872.html',1,'std::experimental::fundamentals_v2::owner_less&lt; shared_ptr&lt; _Tp &gt; &gt;']]],
+  ['owner_5fless_3c_20shared_5fptr_3c_20_5ftp_20_3e_20_3e',['owner_less&lt; shared_ptr&lt; _Tp &gt; &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08872.html',1,'std::experimental::fundamentals_v2::owner_less&lt; shared_ptr&lt; _Tp &gt; &gt;'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a05956.html',1,'std::owner_less&lt; shared_ptr&lt; _Tp &gt; &gt;']]],
   ['owner_5fless_3c_20void_20_3e',['owner_less&lt; void &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a05952.html',1,'std']]],
   ['owner_5fless_3c_20weak_5fptr_3c_20_5ftp_20_3e_20_3e',['owner_less&lt; weak_ptr&lt; _Tp &gt; &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a05960.html',1,'std::owner_less&lt; weak_ptr&lt; _Tp &gt; &gt;'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08876.html',1,'std::experimental::fundamentals_v2::owner_less&lt; weak_ptr&lt; _Tp &gt; &gt;']]]
 ];

@@ -30,9 +30,9 @@ var searchData=
   ['menuattributeiter',['MenuAttributeIter',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1MenuAttributeIter.html',1,'Gio']]],
   ['menubar',['MenuBar',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1MenuBar.html',1,'Gtk']]],
   ['menubutton',['MenuButton',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1MenuButton.html',1,'Gtk']]],
-  ['menuitem',['MenuItem',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1MenuItem.html',1,'Gtk::MenuItem'],['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1MenuItem.html',1,'Gio::MenuItem']]],
+  ['menuitem',['MenuItem',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1MenuItem.html',1,'Gio::MenuItem'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1MenuItem.html',1,'Gtk::MenuItem']]],
   ['menulinkiter',['MenuLinkIter',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1MenuLinkIter.html',1,'Gio']]],
-  ['menumodel',['MenuModel',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1MenuModel.html',1,'Gio::DBus::MenuModel'],['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1MenuModel.html',1,'Gio::MenuModel']]],
+  ['menumodel',['MenuModel',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1MenuModel.html',1,'Gio::MenuModel'],['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1MenuModel.html',1,'Gio::DBus::MenuModel']]],
   ['menushell',['MenuShell',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1MenuShell.html',1,'Gtk']]],
   ['menutoolbutton',['MenuToolButton',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1MenuToolButton.html',1,'Gtk']]],
   ['mersenne_5ftwister_5fengine',['mersenne_twister_engine',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a05404.html',1,'std']]],
@@ -68,5 +68,5 @@ var searchData=
   ['multiway_5fmergesort_5fexact_5ftag',['multiway_mergesort_exact_tag',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08672.html',1,'__gnu_parallel']]],
   ['multiway_5fmergesort_5fsampling_5ftag',['multiway_mergesort_sampling_tag',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08676.html',1,'__gnu_parallel']]],
   ['multiway_5fmergesort_5ftag',['multiway_mergesort_tag',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08668.html',1,'__gnu_parallel']]],
-  ['mutex',['mutex',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06240.html',1,'std::mutex'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1Mutex.html',1,'Glib::Threads::Mutex'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Mutex.html',1,'Glib::Mutex']]]
+  ['mutex',['mutex',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06240.html',1,'std::mutex'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Mutex.html',1,'Glib::Mutex'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1Mutex.html',1,'Glib::Threads::Mutex']]]
 ];

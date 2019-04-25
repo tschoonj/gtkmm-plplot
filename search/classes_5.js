@@ -36,5 +36,6 @@ var searchData=
   ['exit',['Exit',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Thread_1_1Exit.html',1,'Glib::Thread::Exit'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1Thread_1_1Exit.html',1,'Glib::Threads::Thread::Exit']]],
   ['expander',['Expander',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Expander.html',1,'Gtk']]],
   ['exponential_5fdistribution',['exponential_distribution',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a05536.html',1,'std']]],
+  ['extraclassinit',['ExtraClassInit',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1ExtraClassInit.html',1,'Glib']]],
   ['extreme_5fvalue_5fdistribution',['extreme_value_distribution',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a05552.html',1,'std']]]
 ];
