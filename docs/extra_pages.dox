@@ -128,19 +128,19 @@
  *  \subsubsection rhel Fedora, Centos and Scientific Linux
  *  To facilitate the installation on RPM based Linux distributions, the package includes a spec file which can be used to produce RPM packages for linux distributions that support them (Fedora, Red Hat etc). The developers have built 64-bit RPM packages of Gtkmm-PLplot for the officially supported Fedora and Redhat EL/CentOS/Scientific Linux 7 distributions. Access to my RPM repository can be obtained as follows for Fedora distros:
  *
- * > `su -c 'rpm -Uvh http://xmi-yum.tomschoonjans.eu/xmi-repo-key-fedora.noarch.rpm'`
+ * > `sudo rpm -Uvh http://xmi-yum.tomschoonjans.eu/xmi-repo-key-fedora.noarch.rpm`
  *
  * for Red Hat EL 7 based distributions:
  *
- * > `su -c 'rpm -Uvh http://xmi-yum.tomschoonjans.eu/xmi-repo-key-7.0-1.el7.noarch.rpm'`
+ * > `sudo rpm -Uvh http://xmi-yum.tomschoonjans.eu/xmi-repo-key-7.0-1.el7.noarch.rpm`
  *
  * The Gtkmm-PLplot packages themselves can then be downloaded using yum (or \c dnf which is increasingly being used nowadays):
  *
- * > `su -c 'yum install gtkmm-plplot gtkmm-plplot-devel gtkmm-plplot-doc'`
+ * > `sudo yum install gtkmm-plplot gtkmm-plplot-devel gtkmm-plplot-doc`
  *
  * Updates can be installed in a similar way:
  *
- * > `su -c 'yum update gtkmm-plplot gtkmm-plplot-devel gtkmm-plplot-doc'`
+ * > `sudo yum update gtkmm-plplot gtkmm-plplot-devel gtkmm-plplot-doc`
  *
  * \subsubsection debian Debian and Ubuntu
  *
@@ -162,10 +162,10 @@
  *       deb http://xmi-apt.tomschoonjans.eu/debian stretch stable
  *       deb-src http://xmi-apt.tomschoonjans.eu/debian stretch stable
  *
- * Ubuntu Trusty 14.04:
+ * Debian Buster:
  *
- *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu trusty stable
- *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu trusty stable
+ *       deb http://xmi-apt.tomschoonjans.eu/debian buster stable
+ *       deb-src http://xmi-apt.tomschoonjans.eu/debian buster stable
  *
  * Ubuntu Xenial 16.04:
  *
