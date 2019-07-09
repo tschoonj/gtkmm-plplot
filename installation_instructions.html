@@ -95,19 +95,19 @@ Linux</h2>
 Fedora, Centos and Scientific Linux</h3>
 <p>To facilitate the installation on RPM based Linux distributions, the package includes a spec file which can be used to produce RPM packages for linux distributions that support them (Fedora, Red Hat etc). The developers have built 64-bit RPM packages of Gtkmm-PLplot for the officially supported Fedora and Redhat EL/CentOS/Scientific Linux 7 distributions. Access to my RPM repository can be obtained as follows for Fedora distros:</p>
 <blockquote class="doxtable">
-<p>&lsquo;su -c 'rpm -Uvh <a href="http://xmi-yum.tomschoonjans.eu/xmi-repo-key-fedora.noarch.rpm&rsquo;">http://xmi-yum.tomschoonjans.eu/xmi-repo-key-fedora.noarch.rpm&amp;rsquo;</a>` </p>
+<p><code>sudo rpm -Uvh <a href="http://xmi-yum.tomschoonjans.eu/xmi-repo-key-fedora.noarch.rpm">http://xmi-yum.tomschoonjans.eu/xmi-repo-key-fedora.noarch.rpm</a></code> </p>
 </blockquote>
 <p>for Red Hat EL 7 based distributions:</p>
 <blockquote class="doxtable">
-<p>&lsquo;su -c 'rpm -Uvh <a href="http://xmi-yum.tomschoonjans.eu/xmi-repo-key-7.0-1.el7.noarch.rpm&rsquo;">http://xmi-yum.tomschoonjans.eu/xmi-repo-key-7.0-1.el7.noarch.rpm&amp;rsquo;</a>` </p>
+<p><code>sudo rpm -Uvh <a href="http://xmi-yum.tomschoonjans.eu/xmi-repo-key-7.0-1.el7.noarch.rpm">http://xmi-yum.tomschoonjans.eu/xmi-repo-key-7.0-1.el7.noarch.rpm</a></code> </p>
 </blockquote>
 <p>The Gtkmm-PLplot packages themselves can then be downloaded using yum (or <code>dnf</code> which is increasingly being used nowadays):</p>
 <blockquote class="doxtable">
-<p>&lsquo;su -c 'yum install gtkmm-plplot gtkmm-plplot-devel gtkmm-plplot-doc&rsquo;` </p>
+<p><code>sudo yum install gtkmm-plplot gtkmm-plplot-devel gtkmm-plplot-doc</code> </p>
 </blockquote>
 <p>Updates can be installed in a similar way:</p>
 <blockquote class="doxtable">
-<p>&lsquo;su -c 'yum update gtkmm-plplot gtkmm-plplot-devel gtkmm-plplot-doc&rsquo;` </p>
+<p><code>sudo yum update gtkmm-plplot gtkmm-plplot-devel gtkmm-plplot-doc</code> </p>
 </blockquote>
 <h3><a class="anchor" id="debian"></a>
 Debian and Ubuntu</h3>
@@ -120,8 +120,8 @@ Debian and Ubuntu</h3>
   deb-src http://xmi-apt.tomschoonjans.eu/debian jessie stable
 </pre><p>Debian Stretch: </p><pre class="fragment">  deb http://xmi-apt.tomschoonjans.eu/debian stretch stable
   deb-src http://xmi-apt.tomschoonjans.eu/debian stretch stable
-</pre><p>Ubuntu Trusty 14.04: </p><pre class="fragment">  deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu trusty stable
-  deb-src http://xmi-apt.tomschoonjans.eu/ubuntu trusty stable
+</pre><p>Debian Buster: </p><pre class="fragment">  deb http://xmi-apt.tomschoonjans.eu/debian buster stable
+  deb-src http://xmi-apt.tomschoonjans.eu/debian buster stable
 </pre><p>Ubuntu Xenial 16.04: </p><pre class="fragment">  deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu xenial stable
   deb-src http://xmi-apt.tomschoonjans.eu/ubuntu xenial stable
 </pre><p>Ubuntu Bionic 18.04: </p><pre class="fragment">  deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu bionic stable
@@ -160,7 +160,7 @@ Github repository</h2>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Apr 25 2019 14:04:59 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 9 2019 17:22:32 for Gtkmm-PLplot by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.15
 </small></address>
