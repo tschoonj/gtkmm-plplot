@@ -357,11 +357,11 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
     RegionSelection *region_selection = dynamic_cast<RegionSelection *>(*plot);
 
     if (region_selection != nullptr &&
+        (*plot)->is_showing() &&
         end_cairo[0] >= region_selection->cairo_range_x[0] &&
         end_cairo[0] <= region_selection->cairo_range_x[1] &&
         end_cairo[1] >= region_selection->cairo_range_y[0] &&
-        end_cairo[1] <= region_selection->cairo_range_y[1] &&
-        (*plot)->is_showing()) {
+        end_cairo[1] <= region_selection->cairo_range_y[1]) {
       //std::cout << "on_motion_notify_event plot " << plot << std::endl;
       double cursor_x, cursor_y;
       region_selection->coordinate_transform_cairo_to_world(
