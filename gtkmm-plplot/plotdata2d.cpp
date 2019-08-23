@@ -38,10 +38,6 @@ PlotData2D::PlotData2D(
   if (x.size() != y.size()) {
     throw Exception("Gtk::PLplot::PlotData2D::PlotData2D -> data arrays x and y must have the same size!");
   }
-  //ensure there are at least two elements in the arrays
-  if (x.size() < 2) {
-    throw Exception("Gtk::PLplot::PlotData2D::PlotData2D -> data arrays x and y must have at least two elements");
-  }
 }
 
 PlotData2D::PlotData2D(
@@ -142,8 +138,15 @@ std::vector<double> PlotData2D::get_vector_y() {
 }
 
 void PlotData2D::get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) {
-  xmin = *std::min_element(x.begin(), x.end());
-  xmax = *std::max_element(x.begin(), x.end());
-  ymin = *std::min_element(y.begin(), y.end());
-  ymax = *std::max_element(y.begin(), y.end());
+  if (x.size() == 0) {
+    xmin = 0;
+    xmax = 0;
+    ymin = 0;
+    ymax = 0;
+  } else {
+    xmin = *std::min_element(x.begin(), x.end());
+    xmax = *std::max_element(x.begin(), x.end());
+    ymin = *std::min_element(y.begin(), y.end());
+    ymax = *std::max_element(y.begin(), y.end());
+  }
 }
