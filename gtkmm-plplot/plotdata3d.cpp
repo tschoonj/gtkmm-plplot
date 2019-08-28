@@ -33,11 +33,16 @@ PlotData3D::PlotData3D(
   PlotData2D(_x, _y, _color, _line_style, _line_width),
   z(_z) {
 
-  //ensure all arrays have the same size
+  // ensure all arrays have the same size
   if (y.size() != z.size()) {
     throw Exception("Gtk::PLplot::PlotData3D::PlotData3D -> data arrays x, y and z must have the same size!");
   }
-}
+
+  // require at least 2 datapoints
+  if (x.size() < 2) {
+    throw Exception("Gtk::PLplot::PlotData3D::PlotData3D -> data arrays x, y and z must contain at least two datapoints");
+  }
+} 
 
 PlotData3D::PlotData3D(
   const std::valarray<double> &_x,

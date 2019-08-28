@@ -138,7 +138,7 @@ std::vector<double> PlotData2D::get_vector_y() {
 }
 
 void PlotData2D::get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) {
-  if (x.size() == 0) {
+  if (x.empty()) {
     xmin = 0;
     xmax = 0;
     ymin = 0;

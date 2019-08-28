@@ -84,10 +84,17 @@ std::vector<double> PlotData2DErrorX::get_vector_error_x_high() {
 }
 
 void PlotData2DErrorX::get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) {
-  xmin = *std::min_element(errorx_low.begin(), errorx_low.end());
-  xmax = *std::max_element(errorx_high.begin(), errorx_high.end());
-  ymin = *std::min_element(y.begin(), y.end());
-  ymax = *std::max_element(y.begin(), y.end());
+  if (x.empty()) {
+    xmin = 0;
+    xmax = 0;
+    ymin = 0;
+    ymax = 0;
+  } else {
+    xmin = *std::min_element(errorx_low.begin(), errorx_low.end());
+    xmax = *std::max_element(errorx_high.begin(), errorx_high.end());
+    ymin = *std::min_element(y.begin(), y.end());
+    ymax = *std::max_element(y.begin(), y.end());
+  }
 }
 
 void PlotData2DErrorX::set_error_x_color(Gdk::RGBA _errorx_color) {

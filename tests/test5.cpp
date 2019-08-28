@@ -170,7 +170,7 @@ namespace Test5 {
       grid.attach(add_data_button, 0, 3, 4, 1);
       add_data_button.signal_clicked().connect([this, plot_data](){
         //this lambda has a static variable that will keep our ever incrementing X-value
-        static double new_x = 11;
+        static double new_x = 0.0;
         plot_data->add_datapoint(new_x, sqrt(new_x));
         new_x += 1.0;
       });
@@ -189,7 +189,7 @@ int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test5");
   Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test5");
 
-  std::valarray<double> x_va = Gtk::PLplot::indgen_va(10)+double(1.0), y_va = sqrt(x_va);
+  std::valarray<double> x_va, y_va;
 
   Test5::Window window(x_va, y_va);
 
