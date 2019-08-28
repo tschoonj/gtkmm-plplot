@@ -72,10 +72,17 @@ void PlotData2DErrorXY::add_datapoint(double _x, double _y, double _v, double _w
 }
 
 void PlotData2DErrorXY::get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) {
-  xmin = *std::min_element(errorx_low.begin(), errorx_low.end());
-  xmax = *std::max_element(errorx_high.begin(), errorx_high.end());
-  ymin = *std::min_element(errory_low.begin(), errory_low.end());
-  ymax = *std::max_element(errory_high.begin(), errory_high.end());
+  if (x.empty()) {
+    xmin = 0;
+    xmax = 0;
+    ymin = 0;
+    ymax = 0;
+  } else {
+    xmin = *std::min_element(errorx_low.begin(), errorx_low.end());
+    xmax = *std::max_element(errorx_high.begin(), errorx_high.end());
+    ymin = *std::min_element(errory_low.begin(), errory_low.end());
+    ymax = *std::max_element(errory_high.begin(), errory_high.end());
+  }
 }
 
 void PlotData2DErrorXY::add_datapoint(double xval, double yval, double xval_error_low, double xval_error_high, double yval_error_low, double yval_error_high) {

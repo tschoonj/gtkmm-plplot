@@ -99,6 +99,9 @@ void PlotPolar::plot_data_modified() {
   }
   else {
     max_r = *std::max_element(vec_max_r.begin(), vec_max_r.end());
+    if (max_r == 0.0) {
+      max_r = 1.0;
+    }
   }
 
   plot_data_range_x[0] =

@@ -52,5 +52,10 @@ std::vector<double> PlotDataPolar::get_vector_theta() {
 }
 
 void PlotDataPolar::get_max_r(double &rmax) {
-  rmax = *std::max_element(x.begin(), x.end());
+  if (x.empty()) {
+    rmax = 0.0;
+  }
+  else {
+    rmax = *std::max_element(x.begin(), x.end());
+  }
 }
