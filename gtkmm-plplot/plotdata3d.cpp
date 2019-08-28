@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2015 Tom Schoonjans
+Copyright (C) 2015-2019 Tom Schoonjans
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -75,6 +75,16 @@ void PlotData3D::add_datapoint(double _x, double _y, double _z) {
 
 void PlotData3D::add_datapoint(std::tuple<double, double, double> _xyz) {
   add_datapoint(std::get<0>(_xyz), std::get<1>(_xyz), std::get<2>(_xyz));
+}
+
+void PlotData3D::remove_datapoint(unsigned long int _index) {
+  if (_index >= x.size()) {
+    throw Exception("Gtk::PLplot::PlotData3D::remove_datapoint -> invalid index!");
+  }
+  x.erase(x.begin() + _index);
+  y.erase(y.begin() + _index);
+  z.erase(z.begin() + _index);
+  _signal_data_modified.emit();
 }
 
 std::vector<double> PlotData3D::get_vector_z() {

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2015 Tom Schoonjans
+Copyright (C) 2015-2019 Tom Schoonjans
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -204,6 +204,16 @@ namespace Gtk {
        * \param xy_pair a std::pair containing both an X- and a Y- value
        */
       virtual void add_datapoint(std::pair<double, double> xy_pair);
+
+      /** Removes a single datapoint from the dataset.
+       *
+       * The datapoint at position \c index will be removed from the dataset if \c index is valid.
+       * An exception will be thrown otherwise.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param index The current position of the datapoint in the dataset.
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void remove_datapoint(unsigned long int index);
 
       /** Method to draw the dataset
        *
