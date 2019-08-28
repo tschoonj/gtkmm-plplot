@@ -39,9 +39,11 @@ namespace Gtk {
     private:
       PlotData2DErrorX() = delete; ///< no default constructor
       PlotData2DErrorX &operator=(const PlotData2DErrorX &) = delete; ///< no assignment operator
-      PlotData2DErrorX(const PlotData2DErrorX &source) = delete; ///< no default copy constructor;
+      PlotData2DErrorX(const PlotData2DErrorX &source) = delete; ///< no default copy constructor
       virtual void add_datapoint(double xval, double yval) override; ///< disable this method
-      virtual void add_datapoint(std::pair<double, double> xy_pair) override; ///< disable this method;
+      virtual void add_datapoint(std::pair<double, double> xy_pair) override; ///< disable this method
+      virtual void replace_datapoints(const std::vector<double> &x, const std::vector<double> &y) override; ///< disable this method
+      virtual void replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y) override; ///< disable this method
     protected:
       std::vector<double> errorx_low; ///< The lower error margins of the X-data
       std::vector<double> errorx_high; ///< The upper error margins of the X-data
@@ -152,6 +154,32 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        */
       virtual void remove_datapoint(unsigned long int index) override;
+
+      /** Replaces all datapoints in the dataset with the new vectors
+       *
+       * This method assumes that \c x, \c y, \c errorx_low and \c errorx_high are vectors of equal length.
+       * An exception will be thrown otherwise.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param x The new X-values, as std::vector<double>
+       * \param y The new Y-values, as std::vector<double>
+       * \param errorx_low  The new lower values of the X-data errorbars, as std::vector<double>. Each value must be less than its X-data counterpart.
+       * \param errorx_high The new upper values of the X-data errorbars, as std::vector<double>. Each value must be greater than its X-data counterpart.
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void replace_datapoints(const std::vector<double> &x, const std::vector<double> &y, const std::vector<double> &errorx_low, const std::vector<double> &errorx_high);
+
+      /** Replaces all datapoints in the dataset with the new valarrays
+       *
+       * This method assumes that \c x, \c y, \c errorx_low and \c errorx_high are valarrays of equal length.
+       * An exception will be thrown otherwise.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param x The new X-values, as std::valarray<double>
+       * \param y The new Y-values, as std::valarray<double>
+       * \param errorx_low  The new lower values of the X-data errorbars, as std::valarray<double>. Each value must be less than its X-data counterpart.
+       * \param errorx_high The new upper values of the X-data errorbars, as std::valarray<double>. Each value must be greater than its X-data counterpart.
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y, const std::valarray<double> &errorx_low, const std::valarray<double> &errorx_high);
 
       /** Method to draw the dataset
        *

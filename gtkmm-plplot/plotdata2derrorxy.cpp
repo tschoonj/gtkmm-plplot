@@ -71,6 +71,22 @@ void PlotData2DErrorXY::add_datapoint(double _x, double _y, double _v, double _w
   throw Exception("Gtk::PLplot::PlotData2DErrorXY::add_datapoint -> This method is not supported for PlotData2DErrorXY");
 }
 
+void PlotData2DErrorXY::replace_datapoints(const std::vector<double> &x, const std::vector<double> &y) {
+  throw Exception("Gtk::PLplot::PlotData2DErrorXY::replace_datapoints -> This method is not supported for PlotData2DErrorXY");
+}
+
+void PlotData2DErrorXY::replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y) {
+  throw Exception("Gtk::PLplot::PlotData2DErrorXY::replace_datapoints -> This method is not supported for PlotData2DErrorXY");
+}
+
+void PlotData2DErrorXY::replace_datapoints(const std::vector<double> &x, const std::vector<double> &y, const std::vector<double> &error_low, const std::vector<double> &error_high) {
+  throw Exception("Gtk::PLplot::PlotData2DErrorXY::replace_datapoints -> This method is not supported for PlotData2DErrorXY");
+}
+
+void PlotData2DErrorXY::replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y, const std::valarray<double> &error_low, const std::valarray<double> &error_high) {
+  throw Exception("Gtk::PLplot::PlotData2DErrorXY::replace_datapoints -> This method is not supported for PlotData2DErrorXY");
+}
+
 void PlotData2DErrorXY::get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) {
   if (x.empty()) {
     xmin = 0;
@@ -151,4 +167,42 @@ void PlotData2DErrorXY::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, 
     pls->schr(0, symbol_scale_factor);
     pls->string(x.size(), x_pl, y_pl, symbol.c_str());
   }
+}
+
+void PlotData2DErrorXY::replace_datapoints(const std::vector<double> &_x, const std::vector<double> &_y, const std::vector<double> &_errorx_low, const std::vector<double> &_errorx_high, const std::vector<double> &_errory_low, const std::vector<double> &_errory_high) {
+  //ensure all arrays have the same size
+  if (_x.size() != _y.size() || _x.size() != _errorx_low.size() || _x.size() != _errorx_high.size() || _x.size() != _errory_low.size() || _x.size() != _errory_high.size()) {
+    throw Exception("Gtk::PLplot::PlotData2DErrorXY::replace_datapoints -> data arrays x, y, errorx_low, errorx_high, errory_low and errory_high must have the same size!");
+  }
+
+  //ensure that the errorx_low values are greater than x
+  for (size_t i = 0 ; i < _x.size() ; i++) {
+    if (_errorx_low[i] > _x[i])
+      throw Exception("Gtk::PLplot::PlotData2DErrorX::replace_datapoints -> errorx_low elements must be less than the corresponding elements in x");
+    else if (_errorx_high[i] < _x[i])
+      throw Exception("Gtk::PLplot::PlotData2DErrorX::replace_datapoints -> errorx_high elements must be greater than the corresponding elements in x");
+    else if (_errory_low[i] > _y[i])
+      throw Exception("Gtk::PLplot::PlotData2DErrorY::replace_datapoints -> errory_low elements must be less than the corresponding elements in y");
+    else if (_errory_high[i] < _y[i])
+      throw Exception("Gtk::PLplot::PlotData2DErrorY::replace_datapoints -> errory_high elements must be greater than the corresponding elements in y");
+  }
+  x.assign(_x.begin(), _x.end());
+  y.assign(_y.begin(), _y.end());
+  errorx_low.assign(_errorx_low.begin(), _errorx_low.end());
+  errorx_high.assign(_errorx_high.begin(), _errorx_high.end());
+  errory_low.assign(_errory_low.begin(), _errory_low.end());
+  errory_high.assign(_errory_high.begin(), _errory_high.end());
+
+  _signal_data_modified.emit();
+}
+
+void PlotData2DErrorXY::replace_datapoints(const std::valarray<double> &_x, const std::valarray<double> &_y, const std::valarray<double> &_errorx_low, const std::valarray<double> &_errorx_high, const std::valarray<double> &_errory_low, const std::valarray<double> &_errory_high) {
+  replace_datapoints(
+    std::vector<double>(std::begin(_x), std::end(_x)),
+    std::vector<double>(std::begin(_y), std::end(_y)),
+    std::vector<double>(std::begin(_errorx_low), std::end(_errorx_low)),
+    std::vector<double>(std::begin(_errorx_high), std::end(_errorx_high)),
+    std::vector<double>(std::begin(_errory_low), std::end(_errory_low)),
+    std::vector<double>(std::begin(_errory_high), std::end(_errory_high))
+  );
 }

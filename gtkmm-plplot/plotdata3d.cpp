@@ -66,6 +66,14 @@ void PlotData3D::add_datapoint(std::pair<double, double> _xy_pair) {
   throw Exception("Gtk::PLplot::PlotData3D::add_datapoint -> This method is not supported for PlotData3D");
 }
 
+void PlotData3D::replace_datapoints(const std::vector<double> &_x, const std::vector<double> &_y) {
+  throw Exception("Gtk::PLplot::PlotData3D::replace_datapoints -> This method is not supported for PlotData3D");
+}
+
+void PlotData3D::replace_datapoints(const std::valarray<double> &_x, const std::valarray<double> &_y) {
+  throw Exception("Gtk::PLplot::PlotData3D::replace_datapoints -> This method is not supported for PlotData3D");
+}
+
 void PlotData3D::add_datapoint(double _x, double _y, double _z) {
   x.push_back(_x);
   y.push_back(_y);
@@ -111,4 +119,25 @@ void PlotData3D::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstrea
     pls->schr(0, symbol_scale_factor);
     pls->string3(x.size(), x_pl, y_pl, z_pl, symbol.c_str());
   }
+}
+
+void PlotData3D::replace_datapoints(const std::vector<double> &_x, const std::vector<double> &_y, const std::vector<double> &_z) {
+   //ensure both arrays have the same size
+  if (_x.size() != _y.size() || _x.size() != _z.size()) {
+    throw Exception("Gtk::PLplot::PlotData3D::replace_datapoints -> data arrays x, y and zmust have the same size!");
+  }
+  
+  x.assign(_x.begin(), _x.end());
+  y.assign(_y.begin(), _y.end());
+  z.assign(_z.begin(), _z.end());
+
+  _signal_data_modified.emit();
+}
+
+void PlotData3D::replace_datapoints(const std::valarray<double> &_x, const std::valarray<double> &_y, const std::valarray<double> &_z) {
+  replace_datapoints(
+    std::vector<double>(std::begin(_x), std::end(_x)),
+    std::vector<double>(std::begin(_y), std::end(_y)),
+    std::vector<double>(std::begin(_z), std::end(_z))
+  );
 }

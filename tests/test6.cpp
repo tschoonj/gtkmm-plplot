@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2015 Tom Schoonjans
+Copyright (C) 2015-2019 Tom Schoonjans
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -38,8 +38,11 @@ namespace Test6 {
   private:
     Gtk::PLplot::Canvas canvas;
     Gtk::Grid grid;
+    std::valarray<double> theta3;
+    std::valarray<double> r3;
+    Gtk::Button button;
   public:
-    Window() {
+    Window() : theta3(Gtk::PLplot::indgen_va(2000)*2.0*M_PI/1999.0), r3(2.0 * sin(4.0 * theta3 )), button("Replace Fermat's Spiral with Polar Rose") {
       // general window and canvas settings
       set_default_size(720, 580);
       Gdk::Geometry geometry;
@@ -67,12 +70,22 @@ namespace Test6 {
       std::valarray<double> r2 = sqrt(theta2) * 2.0 / sqrt(M_PI) * 1.1;
 
       auto data2 = Gtk::manage(new Gtk::PLplot::PlotDataPolar(r2, theta2, Gdk::RGBA("green"), Gtk::PLplot::LineStyle::CONTINUOUS, 2.0));
-      data2->set_name("Fermat's spiral");
+      data2->set_name("Fermat's Spiral");
 
       canvas.add_plot(*plot);
       plot->add_data(*data2);
 
       grid.attach(canvas, 0, 0, 1, 1);
+      button.set_hexpand(false);
+      button.set_vexpand(false);
+      button.set_halign(Gtk::ALIGN_CENTER);
+      button.set_vexpand(false);
+      button.signal_clicked().connect([this, data2](){
+        data2->set_name("Polar Rose");
+	data2->replace_datapoints(r3, theta3);
+	button.set_sensitive(false);
+      });
+      grid.attach(button, 0, 1, 1, 1);
       add(grid);
       set_border_width(10);
       grid.show_all();

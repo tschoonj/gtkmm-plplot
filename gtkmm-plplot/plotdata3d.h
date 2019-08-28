@@ -61,6 +61,30 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        */
       virtual void add_datapoint(std::pair<double, double> xy_pair) final;
+
+      /** Replaces all datapoints in the dataset with the new vectors
+       *
+       * This method assumes that \c x and \c y are vectors of equal length.
+       * An exception will be thrown otherwise.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * **Do not use this method for PlotData3D objects, an exception will be thrown!**
+       * \param x The new X-values, as std::vector<double>
+       * \param y The new Y-values, as std::vector<double>
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void replace_datapoints(const std::vector<double> &x, const std::vector<double> &y);
+
+      /** Replaces all datapoints in the dataset with the new valarrays
+       *
+       * This method assumes that \c x and \c y are valarrays of equal length.
+       * An exception will be thrown otherwise.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * **Do not use this method for PlotData3D objects, an exception will be thrown!**
+       * \param x The new X-values, as std::valarray<double>
+       * \param y The new Y-values, as std::valarray<double>
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y);
     protected:
       std::vector<double> z; ///< The Z-values of the dataset
     public:
@@ -139,6 +163,30 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        */
       virtual void remove_datapoint(unsigned long int index) override;
+
+      /** Replaces all datapoints in the dataset with the new vectors
+       *
+       * This method assumes that \c x, \c y and \c z are vectors of equal length.
+       * An exception will be thrown otherwise.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param x The new X-values, as std::vector<double>
+       * \param y The new Y-values, as std::vector<double>
+       * \param z The new Z-values, as std::vector<double>
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void replace_datapoints(const std::vector<double> &x, const std::vector<double> &y, const std::vector<double> &z);
+
+      /** Replaces all datapoints in the dataset with the new valarrays
+       *
+       * This method assumes that \c x, \c y and \c z are valarrays of equal length.
+       * An exception will be thrown otherwise.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param x The new X-values, as std::valarray<double>
+       * \param y The new Y-values, as std::valarray<double>
+       * \param z The new Z-values, as std::valarray<double>
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y, const std::valarray<double> &z);
 
       /** Method to draw the dataset
        *

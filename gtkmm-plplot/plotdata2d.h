@@ -221,6 +221,28 @@ namespace Gtk {
        */
       virtual void remove_datapoint(unsigned long int index);
 
+      /** Replaces all datapoints in the dataset with the new vectors
+       *
+       * This method assumes that \c x and \c y are vectors of equal length.
+       * An exception will be thrown otherwise.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param x The new X-values, as std::vector<double>
+       * \param y The new Y-values, as std::vector<double>
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void replace_datapoints(const std::vector<double> &x, const std::vector<double> &y);
+
+      /** Replaces all datapoints in the dataset with the new valarrays
+       *
+       * This method assumes that \c x and \c y are valarrays of equal length.
+       * An exception will be thrown otherwise.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param x The new X-values, as std::valarray<double>
+       * \param y The new Y-values, as std::valarray<double>
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y);
+
       /** Method to draw the dataset
        *
        * This method is virtual allowing inheriting classes to implement their own method with the same signature.

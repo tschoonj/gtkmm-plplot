@@ -163,3 +163,22 @@ void PlotData2D::get_extremes(double &xmin, double &xmax, double &ymin, double &
     ymax = *std::max_element(y.begin(), y.end());
   }
 }
+
+void PlotData2D::replace_datapoints(const std::vector<double> &_x, const std::vector<double> &_y) {
+   //ensure both arrays have the same size
+  if (_x.size() != _y.size()) {
+    throw Exception("Gtk::PLplot::PlotData2D::replace_datapoints -> data arrays x and y must have the same size!");
+  }
+  
+  x.assign(_x.begin(), _x.end());
+  y.assign(_y.begin(), _y.end());
+
+  _signal_data_modified.emit();
+}
+
+void PlotData2D::replace_datapoints(const std::valarray<double> &_x, const std::valarray<double> &_y) {
+  replace_datapoints(
+    std::vector<double>(std::begin(_x), std::end(_x)),
+    std::vector<double>(std::begin(_y), std::end(_y))
+  );
+}

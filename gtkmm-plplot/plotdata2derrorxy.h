@@ -44,6 +44,10 @@ namespace Gtk {
       virtual void add_datapoint(double xval, double yval) final; ///< disable this method
       virtual void add_datapoint(std::pair<double, double> xy_pair) final; ///< disable this method;
       virtual void add_datapoint(double xval, double yval, double xval_error_low, double xval_error_high) final; ///< disable this method
+      virtual void replace_datapoints(const std::vector<double> &x, const std::vector<double> &y) final; ///< disable this method
+      virtual void replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y) final; ///< disable this method
+      virtual void replace_datapoints(const std::vector<double> &x, const std::vector<double> &y, const std::vector<double> &error_low, const std::vector<double> &error_high) final; ///< disable this method
+      virtual void replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y, const std::valarray<double> &error_low, const std::valarray<double> &error_high) final; ///< disable this method
     protected:
     public:
       /** Constructor
@@ -137,6 +141,36 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        */
       virtual void remove_datapoint(unsigned long int index) override;
+
+      /** Replaces all datapoints in the dataset with the new vectors
+       *
+       * This method assumes that \c x, \c y, \c errorx_low, \c errorx_high, \c errory_low and \c errory_high are vectors of equal length.
+       * An exception will be thrown otherwise.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param x The new X-values, as std::vector<double>
+       * \param y The new Y-values, as std::vector<double>
+       * \param errorx_low  The new lower values of the X-data errorbars, as std::vector<double>. Each value must be less than its X-data counterpart.
+       * \param errorx_high The new upper values of the X-data errorbars, as std::vector<double>. Each value must be greater than its X-data counterpart.
+       * \param errory_low  The new lower values of the Y-data errorbars, as std::vector<double>. Each value must be less than its Y-data counterpart.
+       * \param errory_high The new upper values of the Y-data errorbars, as std::vector<double>. Each value must be greater than its Y-data counterpart.
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void replace_datapoints(const std::vector<double> &x, const std::vector<double> &y, const std::vector<double> &errorx_low, const std::vector<double> &errorx_high, const std::vector<double> &errory_low, const std::vector<double> &errory_high);
+
+      /** Replaces all datapoints in the dataset with the new valarrays
+       *
+       * This method assumes that \c x, \c y, \c errorx_low, \c errorx_high, \c errory_low and \c errory_high are valarrays of equal length.
+       * An exception will be thrown otherwise.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param x The new X-values, as std::valarray<double>
+       * \param y The new Y-values, as std::valarray<double>
+       * \param errorx_low  The new lower values of the X-data errorbars, as std::valarray<double>. Each value must be less than its X-data counterpart.
+       * \param errorx_high The new upper values of the X-data errorbars, as std::valarray<double>. Each value must be greater than its X-data counterpart.
+       * \param errory_low  The new lower values of the Y-data errorbars, as std::valarray<double>. Each value must be less than its Y-data counterpart.
+       * \param errory_high The new upper values of the Y-data errorbars, as std::valarray<double>. Each value must be greater than its Y-data counterpart.
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y, const std::valarray<double> &errorx_low, const std::valarray<double> &errorx_high, const std::valarray<double> &errory_low, const std::valarray<double> &errory_high);
 
       /** Method to draw the dataset
        *
