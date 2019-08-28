@@ -107,7 +107,7 @@ void PlotData2D::add_datapoint(std::pair<double, double> _xy_pair) {
   add_datapoint(_xy_pair.first, _xy_pair.second);
 }
 
-void PlotData2D::remove_datapoint(unsigned long int _index) {
+void PlotData2D::remove_datapoint(size_t _index) {
   if (_index >= x.size()) {
     throw Exception("Gtk::PLplot::PlotData2D::remove_datapoint -> invalid index!");
   }
@@ -146,7 +146,7 @@ std::vector<double> PlotData2D::get_vector_y() {
   return y;
 }
 
-unsigned long int PlotData2D::size() {
+size_t PlotData2D::size() {
   return x.size();
 }
 

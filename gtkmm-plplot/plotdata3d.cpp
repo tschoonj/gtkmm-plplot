@@ -85,7 +85,7 @@ void PlotData3D::add_datapoint(std::tuple<double, double, double> _xyz) {
   add_datapoint(std::get<0>(_xyz), std::get<1>(_xyz), std::get<2>(_xyz));
 }
 
-void PlotData3D::remove_datapoint(unsigned long int _index) {
+void PlotData3D::remove_datapoint(size_t _index) {
   if (_index >= x.size()) {
     throw Exception("Gtk::PLplot::PlotData3D::remove_datapoint -> invalid index!");
   }

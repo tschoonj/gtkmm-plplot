@@ -135,7 +135,7 @@ namespace Gtk {
        *
        * \returns the number of elements in the dataset
        */
-      unsigned long int size();
+      size_t size();
 
       /** Get the data extremes: minima and maxima along both X- and Y-axes
        *
@@ -219,7 +219,7 @@ namespace Gtk {
        * \param index The current position of the datapoint in the dataset.
        * \exception Gtk::PLplot::Exception
        */
-      virtual void remove_datapoint(unsigned long int index);
+      virtual void remove_datapoint(size_t index);
 
       /** Replaces all datapoints in the dataset with the new vectors
        *

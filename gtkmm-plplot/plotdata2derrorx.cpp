@@ -130,7 +130,7 @@ void PlotData2DErrorX::add_datapoint(double xval, double yval, double xval_error
   _signal_data_modified.emit();
 }
 
-void PlotData2DErrorX::remove_datapoint(unsigned long int _index) {
+void PlotData2DErrorX::remove_datapoint(size_t _index) {
   if (_index >= x.size()) {
     throw Exception("Gtk::PLplot::PlotData2DErrorX::remove_datapoint -> invalid index!");
   }

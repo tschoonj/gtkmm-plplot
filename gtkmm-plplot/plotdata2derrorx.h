@@ -153,7 +153,7 @@ namespace Gtk {
        * \param index The current position of the datapoint in the dataset.
        * \exception Gtk::PLplot::Exception
        */
-      virtual void remove_datapoint(unsigned long int index) override;
+      virtual void remove_datapoint(size_t index) override;
 
       /** Replaces all datapoints in the dataset with the new vectors
        *
