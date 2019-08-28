@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2016 Tom Schoonjans
+Copyright (C) 2016-2019 Tom Schoonjans
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -102,6 +102,19 @@ void PlotData2DErrorXY::add_datapoint(double xval, double yval, double xval_erro
   errorx_high.push_back(xval_error_high);
   errory_low.push_back(yval_error_low);
   errory_high.push_back(yval_error_high);
+  _signal_data_modified.emit();
+}
+
+void PlotData2DErrorXY::remove_datapoint(unsigned long int _index) {
+  if (_index >= x.size()) {
+    throw Exception("Gtk::PLplot::PlotData2DErrorXY::remove_datapoint -> invalid index!");
+  }
+  x.erase(x.begin() + _index);
+  y.erase(y.begin() + _index);
+  errorx_low.erase(errorx_low.begin() + _index);
+  errorx_high.erase(errorx_high.begin() + _index);
+  errory_low.erase(errory_low.begin() + _index);
+  errory_high.erase(errory_high.begin() + _index);
   _signal_data_modified.emit();
 }
 

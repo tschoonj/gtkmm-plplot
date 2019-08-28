@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2015 Tom Schoonjans
+Copyright (C) 2015-2019 Tom Schoonjans
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -105,6 +105,15 @@ void PlotData2D::add_datapoint(double _x, double _y) {
 
 void PlotData2D::add_datapoint(std::pair<double, double> _xy_pair) {
   add_datapoint(_xy_pair.first, _xy_pair.second);
+}
+
+void PlotData2D::remove_datapoint(unsigned long int _index) {
+  if (_index >= x.size()) {
+    throw Exception("Gtk::PLplot::PlotData2D::remove_datapoint -> invalid index!");
+  }
+  x.erase(x.begin() + _index);
+  y.erase(y.begin() + _index);
+  _signal_data_modified.emit();
 }
 
 void PlotData2D::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, plstream *pls) {

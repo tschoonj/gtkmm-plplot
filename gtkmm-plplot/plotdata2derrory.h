@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2016 Tom Schoonjans
+Copyright (C) 2016-2019 Tom Schoonjans
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -142,6 +142,16 @@ namespace Gtk {
        * \param yval_error_high upper endpoint of the Y-data errorbar
        */
       virtual void add_datapoint(double xval, double yval, double yval_error_low, double yval_error_high);
+
+      /** Removes a single datapoint from the dataset.
+       *
+       * The datapoint at position \c index will be removed from the dataset if \c index is valid.
+       * An exception will be thrown otherwise.
+       * After this method is called, the plot will be automatically updated to reflect the changes.
+       * \param index The current position of the datapoint in the dataset.
+       * \exception Gtk::PLplot::Exception
+       */
+      virtual void remove_datapoint(unsigned long int index) override;
 
       /** Method to draw the dataset
        *

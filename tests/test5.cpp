@@ -27,6 +27,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/label.h>
 #include <gtkmm/comboboxtext.h>
 
+#include <random>
+
 namespace Test5 {
   class Window : public Gtk::Window {
   private:
@@ -43,6 +45,7 @@ namespace Test5 {
     Gtk::SpinButton linewidth_spin;
     Gtk::SpinButton symbol_scale_factor_spin;
     Gtk::Button add_data_button;
+    Gtk::Button remove_data_button;
   public:
     Window(std::valarray<double> &x, std::valarray<double> &y,
       Glib::ustring x_title = "X-axis", Glib::ustring y_title = "Y-axis",
@@ -53,7 +56,8 @@ namespace Test5 {
       symbol_scale_factor_adj(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       linewidth_spin(linewidth_adj, 0.1, 1.0),
       symbol_scale_factor_spin(symbol_scale_factor_adj, 0.1, 1.0),
-      add_data_button("Add datapoint") {
+      add_data_button("Append datapoint"),
+      remove_data_button("Remove random datapoint") {
 
       // general window and canvas settings
       set_default_size(720, 580);
@@ -162,17 +166,42 @@ namespace Test5 {
       grid.attach(linewidth_spin, 3, 0, 1, 1);
       grid.attach(symbol_scale_factor_spin, 3, 1, 1, 1);
 
+      Gtk::Grid *buttons_grid = Gtk::manage(new Gtk::Grid());
+      buttons_grid->set_column_homogeneous(true);
+      buttons_grid->set_column_spacing(5);
+      grid.attach(*buttons_grid, 0, 3, 4, 1);
+
       //the add datapoint button
       add_data_button.set_hexpand(false);
       add_data_button.set_vexpand(false);
       add_data_button.set_valign(Gtk::ALIGN_CENTER);
-      add_data_button.set_halign(Gtk::ALIGN_CENTER);
-      grid.attach(add_data_button, 0, 3, 4, 1);
+      add_data_button.set_halign(Gtk::ALIGN_END);
+      buttons_grid->attach(add_data_button, 0, 0, 1, 1);
       add_data_button.signal_clicked().connect([this, plot_data](){
         //this lambda has a static variable that will keep our ever incrementing X-value
         static double new_x = 0.0;
         plot_data->add_datapoint(new_x, sqrt(new_x));
         new_x += 1.0;
+	remove_data_button.set_sensitive(true);
+      });
+
+      remove_data_button.set_hexpand(false);
+      remove_data_button.set_vexpand(false);
+      remove_data_button.set_valign(Gtk::ALIGN_CENTER);
+      remove_data_button.set_halign(Gtk::ALIGN_START);
+      remove_data_button.set_sensitive(false);
+      buttons_grid->attach(remove_data_button, 1, 0, 1, 1);
+      remove_data_button.signal_clicked().connect([this, plot_data](){
+        static std::default_random_engine rng;
+        unsigned long int size = plot_data->get_vector_x().size();
+	if (size == 1) {
+	  plot_data->remove_datapoint(0);
+	  remove_data_button.set_sensitive(false);
+	}
+	else {
+	  std::uniform_int_distribution<unsigned long int> dist(0, size - 1);
+	  plot_data->remove_datapoint(dist(rng));
+	}
       });
 
       //finishing up
