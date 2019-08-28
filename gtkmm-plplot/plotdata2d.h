@@ -131,6 +131,12 @@ namespace Gtk {
        */
       std::vector<double> get_vector_y();
 
+      /**
+       *
+       * \returns the number of elements in the dataset
+       */
+      unsigned long int size();
+
       /** Get the data extremes: minima and maxima along both X- and Y-axes
        *
        * \param xmin X minimum value
