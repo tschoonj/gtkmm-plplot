@@ -193,7 +193,7 @@ namespace Test5 {
       buttons_grid->attach(remove_data_button, 1, 0, 1, 1);
       remove_data_button.signal_clicked().connect([this, plot_data](){
         static std::default_random_engine rng;
-        unsigned long int size = plot_data->get_vector_x().size();
+        unsigned long int size = plot_data->size();
 	if (size == 1) {
 	  plot_data->remove_datapoint(0);
 	  remove_data_button.set_sensitive(false);

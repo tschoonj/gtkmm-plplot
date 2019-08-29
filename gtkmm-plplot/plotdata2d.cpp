@@ -107,7 +107,7 @@ void PlotData2D::add_datapoint(std::pair<double, double> _xy_pair) {
   add_datapoint(_xy_pair.first, _xy_pair.second);
 }
 
-void PlotData2D::remove_datapoint(unsigned long int _index) {
+void PlotData2D::remove_datapoint(size_t _index) {
   if (_index >= x.size()) {
     throw Exception("Gtk::PLplot::PlotData2D::remove_datapoint -> invalid index!");
   }
@@ -146,6 +146,10 @@ std::vector<double> PlotData2D::get_vector_y() {
   return y;
 }
 
+size_t PlotData2D::size() {
+  return x.size();
+}
+
 void PlotData2D::get_extremes(double &xmin, double &xmax, double &ymin, double &ymax) {
   if (x.empty()) {
     xmin = 0;
@@ -158,4 +162,23 @@ void PlotData2D::get_extremes(double &xmin, double &xmax, double &ymin, double &
     ymin = *std::min_element(y.begin(), y.end());
     ymax = *std::max_element(y.begin(), y.end());
   }
+}
+
+void PlotData2D::replace_datapoints(const std::vector<double> &_x, const std::vector<double> &_y) {
+   //ensure both arrays have the same size
+  if (_x.size() != _y.size()) {
+    throw Exception("Gtk::PLplot::PlotData2D::replace_datapoints -> data arrays x and y must have the same size!");
+  }
+  
+  x.assign(_x.begin(), _x.end());
+  y.assign(_y.begin(), _y.end());
+
+  _signal_data_modified.emit();
+}
+
+void PlotData2D::replace_datapoints(const std::valarray<double> &_x, const std::valarray<double> &_y) {
+  replace_datapoints(
+    std::vector<double>(std::begin(_x), std::end(_x)),
+    std::vector<double>(std::begin(_y), std::end(_y))
+  );
 }

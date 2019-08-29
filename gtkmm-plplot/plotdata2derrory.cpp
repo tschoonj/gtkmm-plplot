@@ -75,6 +75,14 @@ void PlotData2DErrorY::add_datapoint(std::pair<double, double> _xy_pair) {
   throw Exception("Gtk::PLplot::PlotData2DErrorY::add_datapoint -> This method is not supported for PlotData2DErrorY");
 }
 
+void PlotData2DErrorY::replace_datapoints(const std::vector<double> &x, const std::vector<double> &y) {
+  throw Exception("Gtk::PLplot::PlotData2DErrorY::replace_datapoints -> This method is not supported for PlotData2DErrorY");
+}
+
+void PlotData2DErrorY::replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y) {
+  throw Exception("Gtk::PLplot::PlotData2DErrorY::replace_datapoints -> This method is not supported for PlotData2DErrorY");
+}
+
 std::vector<double> PlotData2DErrorY::get_vector_error_y_low() {
   return errory_low;
 }
@@ -122,7 +130,7 @@ void PlotData2DErrorY::add_datapoint(double xval, double yval, double yval_error
   _signal_data_modified.emit();
 }
 
-void PlotData2DErrorY::remove_datapoint(unsigned long int _index) {
+void PlotData2DErrorY::remove_datapoint(size_t _index) {
   if (_index >= x.size()) {
     throw Exception("Gtk::PLplot::PlotData2DErrorY::remove_datapoint -> invalid index!");
   }
@@ -160,4 +168,34 @@ void PlotData2DErrorY::draw_plot_data(const Cairo::RefPtr<Cairo::Context> &cr, p
     pls->schr(0, symbol_scale_factor);
     pls->string(x.size(), x_pl, y_pl, symbol.c_str());
   }
+}
+
+void PlotData2DErrorY::replace_datapoints(const std::vector<double> &_x, const std::vector<double> &_y, const std::vector<double> &_errory_low, const std::vector<double> &_errory_high) {
+  //ensure all arrays have the same size
+  if (_x.size() != _y.size() || _x.size() != _errory_low.size() || _x.size() != _errory_high.size()) {
+    throw Exception("Gtk::PLplot::PlotData2DErrorY::replace_datapoints -> data arrays x, y, errory_low and errory_high must have the same size!");
+  }
+
+  //ensure that the errory_low values are greater than y
+  for (size_t i = 0 ; i < _x.size() ; i++) {
+    if (_errory_low[i] > _y[i])
+      throw Exception("Gtk::PLplot::PlotData2DErrorY::replace_datapoints -> errory_low elements must be less than the corresponding elements in y");
+    else if (_errory_high[i] < _y[i])
+      throw Exception("Gtk::PLplot::PlotData2DErrorY::replace_datapoints -> errory_high elements must be greater than the corresponding elements in y");
+  }
+  x.assign(_x.begin(), _x.end());
+  y.assign(_y.begin(), _y.end());
+  errory_low.assign(_errory_low.begin(), _errory_low.end());
+  errory_high.assign(_errory_high.begin(), _errory_high.end());
+
+  _signal_data_modified.emit();
+}
+
+void PlotData2DErrorY::replace_datapoints(const std::valarray<double> &_x, const std::valarray<double> &_y, const std::valarray<double> &_errory_low, const std::valarray<double> &_errory_high) {
+  replace_datapoints(
+    std::vector<double>(std::begin(_x), std::end(_x)),
+    std::vector<double>(std::begin(_y), std::end(_y)),
+    std::vector<double>(std::begin(_errory_low), std::end(_errory_low)),
+    std::vector<double>(std::begin(_errory_high), std::end(_errory_high))
+  );
 }
