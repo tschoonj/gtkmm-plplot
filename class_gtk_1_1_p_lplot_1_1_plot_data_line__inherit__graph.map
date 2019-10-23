@@ -4,9 +4,9 @@
 <area shape="rect" id="node13" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram.html" title="abstract base class that will hold a single dataset that can be rendered as a histogram" alt="" coords="1062,209,1269,235"/>
 <area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties" alt="" coords="649,157,795,183"/>
 <area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="468,157,601,183"/>
-<area shape="rect" id="node4" href="/usr/local/Cellar/glibmm/2.60.0_1/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1Object.html" title=" " alt="" coords="329,157,420,183"/>
-<area shape="rect" id="node5" href="/usr/local/Cellar/glibmm/2.60.0_1/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1ObjectBase.html" title=" " alt="" coords="160,157,281,183"/>
-<area shape="rect" id="node6" href="/usr/local/Cellar/libsigc++/2.10.2/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title=" " alt="" coords="5,157,112,183"/>
+<area shape="rect" id="node4" href="/usr/local/Cellar/glibmm/2.62.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1Object.html" title=" " alt="" coords="329,157,420,183"/>
+<area shape="rect" id="node5" href="/usr/local/Cellar/glibmm/2.62.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1ObjectBase.html" title=" " alt="" coords="160,157,281,183"/>
+<area shape="rect" id="node6" href="/usr/local/Cellar/libsigc++@2/2.10.2/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title=" " alt="" coords="5,157,112,183"/>
 <area shape="rect" id="node8" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_x.html" title="a class that will hold a single XY dataset with X errorbars and its properties for a Plot2D plot" alt="" coords="1320,5,1521,31"/>
 <area shape="rect" id="node10" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_y.html" title="a class that will hold a single XY dataset with Y errorbars and its properties for a Plot2D plot" alt="" coords="1320,55,1521,80"/>
 <area shape="rect" id="node11" href="$class_gtk_1_1_p_lplot_1_1_plot_data3_d.html" title="a class that will hold a single dataset and its properties for a Plot3D plot" alt="" coords="1339,104,1502,129"/>

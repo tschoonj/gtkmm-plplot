@@ -2,8 +2,8 @@
 <area shape="rect" id="node1" title="a class for plotting histograms" alt="" coords="52,372,231,397"/>
 <area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot.html" title="an abstract base class for all plots" alt="" coords="35,299,152,324"/>
 <area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="15,225,148,251"/>
-<area shape="rect" id="node4" href="/usr/local/Cellar/glibmm/2.60.0_1/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1Object.html" title=" " alt="" coords="5,152,96,177"/>
-<area shape="rect" id="node5" href="/usr/local/Cellar/glibmm/2.60.0_1/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1ObjectBase.html" title=" " alt="" coords="23,79,145,104"/>
-<area shape="rect" id="node6" href="/usr/local/Cellar/libsigc++/2.10.2/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title=" " alt="" coords="80,5,187,31"/>
+<area shape="rect" id="node4" href="/usr/local/Cellar/glibmm/2.62.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1Object.html" title=" " alt="" coords="5,152,96,177"/>
+<area shape="rect" id="node5" href="/usr/local/Cellar/glibmm/2.62.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1ObjectBase.html" title=" " alt="" coords="23,79,145,104"/>
+<area shape="rect" id="node6" href="/usr/local/Cellar/libsigc++@2/2.10.2/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title=" " alt="" coords="80,5,187,31"/>
 <area shape="rect" id="node7" href="$class_gtk_1_1_p_lplot_1_1_region_selection.html" title="a class providing support for selecting a region in a plot" alt="" coords="120,152,312,177"/>
 </map>

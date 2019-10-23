@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['widgets',['Widgets',['http://library.gnome.org/devel/gtkmm/unstable/group__Widgets.html',1,'']]]
+  ['widgets_30313',['Widgets',['http://library.gnome.org/devel/gtkmm/unstable/group__Widgets.html',1,'']]]
 ];
