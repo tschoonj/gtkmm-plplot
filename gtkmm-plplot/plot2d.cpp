@@ -177,7 +177,7 @@ void Plot2D::set_axis_logarithmic_x(bool _log10) {
     for (auto &iter : plot_data) {
       auto iter2 = dynamic_cast<PlotData2D*>(iter);
       std::vector<double> x = iter2->get_vector_x();
-      if (std::count_if(x.begin(), x.end(), std::bind2nd(std::less_equal<double>(), double(0.0))) > 0) {
+      if (std::count_if(x.begin(), x.end(), [&](const double xval){return xval <= 0.0;}) > 0) {
         throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_x -> plot X-values must be strictly positive");
       }
     }
@@ -192,7 +192,7 @@ void Plot2D::set_axis_logarithmic_y(bool _log10) {
     for (auto &iter : plot_data) {
       auto iter2 = dynamic_cast<PlotData2D*>(iter);
       std::vector<double> y = iter2->get_vector_y();
-      if (std::count_if(y.begin(), y.end(), std::bind2nd(std::less_equal<double>(), double(0.0))) > 0) {
+      if (std::count_if(y.begin(), y.end(), [&](const double yval){return yval <= 0.0;}) > 0) {
         throw Exception("Gtkmm::Plplot::Plot2D::set_axis_logarithmic_y -> plot Y-values must be strictly positive");
       }
     }

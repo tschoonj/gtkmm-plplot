@@ -134,7 +134,7 @@ void PlotPolar::add_data(PlotDataPolar &data) {
 
   //throw error if any of the r values are negative
   std::vector<double> x = data.get_vector_x();
-  if (std::count_if(x.begin(), x.end(), std::bind2nd(std::less<double>(), double(0.0))) > 0) {
+  if (std::count_if(x.begin(), x.end(), [&](const double xval){return xval < 0.0;}) > 0) {
     throw Exception("Gtkmm::Plplot::PlotPolar::add_data -> plot R-values must be  positive");
   }
 
