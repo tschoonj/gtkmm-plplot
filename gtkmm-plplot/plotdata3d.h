@@ -72,7 +72,7 @@ namespace Gtk {
        * \param y The new Y-values, as std::vector<double>
        * \exception Gtk::PLplot::Exception
        */
-      virtual void replace_datapoints(const std::vector<double> &x, const std::vector<double> &y);
+      virtual void replace_datapoints(const std::vector<double> &x, const std::vector<double> &y) override;
 
       /** Replaces all datapoints in the dataset with the new valarrays
        *
@@ -84,7 +84,7 @@ namespace Gtk {
        * \param y The new Y-values, as std::valarray<double>
        * \exception Gtk::PLplot::Exception
        */
-      virtual void replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y);
+      virtual void replace_datapoints(const std::valarray<double> &x, const std::valarray<double> &y) override;
     protected:
       std::vector<double> z; ///< The Z-values of the dataset
     public:
