@@ -31,6 +31,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/comboboxtext.h>
 #include <vector>
 
+#define START_TEXT "Fe-Kα"
+
 namespace Test2 {
   class Window : public Gtk::Window {
   private:
@@ -77,7 +79,7 @@ namespace Test2 {
            legend_label("Show legend"),
            corner_label("Legend corner position"),
 	   text_label("Text"),
-	   text_entry(Gtk::EntryBuffer::create("Text")),
+	   text_entry(Gtk::EntryBuffer::create(START_TEXT)),
 	   text_color_label("Text color"),
 	   text_color_button(Gdk::RGBA("red")),
 	   text_justification_label("Text justification"),
@@ -86,7 +88,7 @@ namespace Test2 {
 	   text_scale_factor_spin_button(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 0.2), 0.0, 2),
 	   text_orientation_label("Text vertical?"),
            plot_data1(x, y1, Gdk::RGBA("red")),
-	   plot_text2d("Fe-Kα", 6.4039 + 0.3, 1E5, Gdk::RGBA("red")),
+	   plot_text2d(START_TEXT, 6.4039 + 0.3, 1E5, Gdk::RGBA("red")),
 	   plot_line2d(Gtk::ORIENTATION_VERTICAL, 6.4039, Gdk::RGBA("purple"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 3.0) 
 	  
 	  {
