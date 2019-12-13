@@ -73,7 +73,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(-, root, root)
 %{_libdir}/*so
-%{_libdir}/*a
 %{_libdir}/pkgconfig/*
 %{_libdir}/gtkmm-plplot*/*
 %{_includedir}/*
@@ -84,6 +83,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Dec 13 2019 Tom Schoonjans <Tom.Schoonjans@me.com>
+- Remove static libraries
 * Wed Aug 10 2016 Tom Schoonjans <Tom.Schoonjans@me.com>
 - Initial spec file
 
