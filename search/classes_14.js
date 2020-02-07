@@ -1,7 +1,7 @@
 var searchData=
 [
   ['tabarray_16473',['TabArray',['http://library.gnome.org/devel/pangomm/unstable/classPango_1_1TabArray.html',1,'Pango']]],
-  ['table_16474',['Table',['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Table.html',1,'Atk::Table'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Table.html',1,'Gtk::Table']]],
+  ['table_16474',['Table',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Table.html',1,'Gtk::Table'],['http://library.gnome.org/devel/atkmm/unstable/classAtk_1_1Table.html',1,'Atk::Table']]],
   ['targetentry_16475',['TargetEntry',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TargetEntry.html',1,'Gtk']]],
   ['targetlist_16476',['TargetList',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1TargetList.html',1,'Gtk']]],
   ['tcpconnection_16477',['TcpConnection',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1TcpConnection.html',1,'Gio']]],

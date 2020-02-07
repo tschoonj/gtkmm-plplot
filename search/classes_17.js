@@ -11,8 +11,8 @@ var searchData=
   ['win32printingsurface_16840',['Win32PrintingSurface',['http://www.cairographics.org/documentation/cairomm/reference/classCairo_1_1Win32PrintingSurface.html',1,'Cairo']]],
   ['win32scaledfont_16841',['Win32ScaledFont',['http://www.cairographics.org/documentation/cairomm/reference/classCairo_1_1Win32ScaledFont.html',1,'Cairo']]],
   ['win32surface_16842',['Win32Surface',['http://www.cairographics.org/documentation/cairomm/reference/classCairo_1_1Win32Surface.html',1,'Cairo']]],
-  ['window_16843',['Window',['http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1Window.html',1,'Gdk::Window'],['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Window.html',1,'Gtk::Window']]],
+  ['window_16843',['Window',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Window.html',1,'Gtk::Window'],['http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1Window.html',1,'Gdk::Window']]],
   ['windowgroup_16844',['WindowGroup',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1WindowGroup.html',1,'Gtk']]],
-  ['writerlock_16845',['WriterLock',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RWLock_1_1WriterLock.html',1,'Glib::RWLock::WriterLock'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1RWLock_1_1WriterLock.html',1,'Glib::Threads::RWLock::WriterLock']]],
+  ['writerlock_16845',['WriterLock',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1RWLock_1_1WriterLock.html',1,'Glib::Threads::RWLock::WriterLock'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1RWLock_1_1WriterLock.html',1,'Glib::RWLock::WriterLock']]],
   ['wstring_5fconvert_16846',['wstring_convert',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a04976.html',1,'std']]]
 ];

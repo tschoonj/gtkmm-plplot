@@ -27,7 +27,7 @@ var searchData=
   ['deque_15454',['deque',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a07764.html',1,'std::__debug::deque&lt; _Tp, _Allocator &gt;'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08032.html',1,'std::__profile::deque&lt; _Tp, _Allocator &gt;'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06388.html',1,'std::deque&lt; _Tp, _Alloc &gt;']]],
   ['deque_3c_20_5fstateseqt_20_3e_15455',['deque&lt; _StateSeqT &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06388.html',1,'']]],
   ['desktopappinfo_15456',['DesktopAppInfo',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DesktopAppInfo.html',1,'Gio']]],
-  ['device_15457',['Device',['http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1Device.html',1,'Gdk::Device'],['http://www.cairographics.org/documentation/cairomm/reference/classCairo_1_1Device.html',1,'Cairo::Device']]],
+  ['device_15457',['Device',['http://www.cairographics.org/documentation/cairomm/reference/classCairo_1_1Device.html',1,'Cairo::Device'],['http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1Device.html',1,'Gdk::Device']]],
   ['devicemanager_15458',['DeviceManager',['http://library.gnome.org/devel/gtkmm/unstable/classGdk_1_1DeviceManager.html',1,'Gdk']]],
   ['dialog_15459',['Dialog',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Dialog.html',1,'Gtk']]],
   ['dir_15460',['Dir',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Dir.html',1,'Glib']]],

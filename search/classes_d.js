@@ -68,5 +68,5 @@ var searchData=
   ['multiway_5fmergesort_5fexact_5ftag_15959',['multiway_mergesort_exact_tag',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08672.html',1,'__gnu_parallel']]],
   ['multiway_5fmergesort_5fsampling_5ftag_15960',['multiway_mergesort_sampling_tag',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08676.html',1,'__gnu_parallel']]],
   ['multiway_5fmergesort_5ftag_15961',['multiway_mergesort_tag',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a08668.html',1,'__gnu_parallel']]],
-  ['mutex_15962',['mutex',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06240.html',1,'std::mutex'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Mutex.html',1,'Glib::Mutex'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1Mutex.html',1,'Glib::Threads::Mutex']]]
+  ['mutex_15962',['mutex',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a06240.html',1,'std::mutex'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Threads_1_1Mutex.html',1,'Glib::Threads::Mutex'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Mutex.html',1,'Glib::Mutex']]]
 ];

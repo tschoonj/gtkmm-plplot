@@ -67,7 +67,7 @@ var searchData=
   ['integral_5fconstant_3c_20unsigned_2c_200_20_3e_15751',['integral_constant&lt; unsigned, 0 &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a03156.html',1,'']]],
   ['integral_5fconstant_3c_20unsigned_2c_201_20_3e_15752',['integral_constant&lt; unsigned, 1 &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a03156.html',1,'']]],
   ['integral_5fconstant_3c_20unsigned_2c_20_5fval_20_3e_15753',['integral_constant&lt; unsigned, _Val &gt;',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a03156.html',1,'']]],
-  ['interface_15754',['Interface',['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Interface.html',1,'Glib::Interface'],['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Interface.html',1,'Gio::DBus::Interface']]],
+  ['interface_15754',['Interface',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1Interface.html',1,'Gio::DBus::Interface'],['http://library.gnome.org/devel/glibmm/unstable/classGlib_1_1Interface.html',1,'Glib::Interface']]],
   ['interfaceinfo_15755',['InterfaceInfo',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1InterfaceInfo.html',1,'Gio::DBus']]],
   ['interfaceskeleton_15756',['InterfaceSkeleton',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1InterfaceSkeleton.html',1,'Gio::DBus']]],
   ['interfacevtable_15757',['InterfaceVTable',['http://library.gnome.org/devel/glibmm/unstable/classGio_1_1DBus_1_1InterfaceVTable.html',1,'Gio::DBus']]],
