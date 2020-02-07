@@ -148,43 +148,22 @@
  *
  * \subsubsection debian Debian and Ubuntu
  *
- * Packages were created for Debian and Ubuntu. Currently the following flavors are supported: Debian Jessie and Stretch and several Ubuntu versions .
+ * Packages were created for Debian and Ubuntu. Currently the following flavors are supported: Debian Buster and several Ubuntu versions .
  * In order to access these packages using your favorite package manager, execute the following command to import my public key:
  *
  * > `curl http://xmi-apt.tomschoonjans.eu/xmi.packages.key | sudo apt-key add -`
  *
  * Next, add the package download location corresponding to your distribution to the /etc/apt/sources.list file (as root):
  *
- *
- * Debian Jessie:
- *
- *       deb http://xmi-apt.tomschoonjans.eu/debian jessie stable
- *       deb-src http://xmi-apt.tomschoonjans.eu/debian jessie stable
- *
- * Debian Stretch:
- *
- *       deb http://xmi-apt.tomschoonjans.eu/debian stretch stable
- *       deb-src http://xmi-apt.tomschoonjans.eu/debian stretch stable
- *
  * Debian Buster:
  *
  *       deb http://xmi-apt.tomschoonjans.eu/debian buster stable
  *       deb-src http://xmi-apt.tomschoonjans.eu/debian buster stable
  *
- * Ubuntu Xenial 16.04:
- *
- *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu xenial stable
- *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu xenial stable
- *
  * Ubuntu Bionic 18.04:
  *
  *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu bionic stable
  *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu bionic stable
- *
- * Ubuntu Disco 19.04:
- *
- *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu disco stable
- *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu disco stable
  *
  * Ubuntu Eoan 19.10:
  *
