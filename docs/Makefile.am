@@ -27,10 +27,6 @@ install-data-local:
 	$(INSTALL_DATA) $(builddir)/html/search/*.html $(DESTDIR)$(gtkmm_plplot_docdir)/search
 	$(INSTALL_DATA) $(builddir)/html/search/*.js $(DESTDIR)$(gtkmm_plplot_docdir)/search
 	$(INSTALL_DATA) $(builddir)/html/search/*.png $(DESTDIR)$(gtkmm_plplot_docdir)/search
-dist_noinst_DATA = \
-	doc-install.pl \
-	doc-postprocess.pl
-
 
 CLEANFILES = doxyfile.stamp
 
