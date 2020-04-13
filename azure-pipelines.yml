@@ -74,11 +74,18 @@ jobs:
       vmImage: vs2017-win2016
     strategy:
       matrix:
-        x86_64:
+        MESON:
           ARCH: x64
           MSYS2_ARCH: x86_64
           MSYS2_DIR: msys64
           MSYSTEM: MINGW64
+          BUILD_SYSTEM: meson
+        AUTOTOOLS:
+          ARCH: x64
+          MSYS2_ARCH: x86_64
+          MSYS2_DIR: msys64
+          MSYSTEM: MINGW64
+          BUILD_SYSTEM: autotools
     steps:
     - script: |
         choco install msys2 --params="/InstallDir:C:\msys64 /NoUpdate /NoPath"
@@ -90,19 +97,34 @@ jobs:
       displayName: Update MSYS2
     - script: |
         set PATH=C:\msys64\usr\bin;%PATH%
-        pacman --noconfirm -Su mingw-w64-%MSYS2_ARCH%-{gcc,libtool,gtkmm3,boost,cmake,pkg-config} automake autoconf make wget tar pkg-config libtool
+        pacman --noconfirm -Su mingw-w64-%MSYS2_ARCH%-{gcc,gtkmm3,boost,cmake,pkg-config} make wget tar pkg-config
       displayName: Install MSYS2 packages
     - script: |
         set PATH=C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
-        bash -lc "wget https://download.gnome.org/sources/mm-common/0.9/mm-common-0.9.12.tar.xz && tar xvfJ mm-common-0.9.12.tar.xz && cd mm-common-0.9.12 && ./configure && make && make install"
-      displayName: Install mm-common
+        pacman --noconfirm -Su mingw-w64-%MSYS2_ARCH%-{libtool} autoconf automake libtool
+        bash -lc "wget https://download.gnome.org/sources/mm-common/1.0/mm-common-1.0.0.tar.xz && tar xvfJ mm-common-1.0.0.tar.xz && cd mm-common-1.0.0 && autoreconf -fi && ./configure && make && make install"
+      displayName: Install Autotools build dependencies
+      condition: and(succeeded(), eq(variables['BUILD_SYSTEM'], 'autotools'))
     - script: |
         set PATH=C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
-        bash -lc "wget http://lvserver.ugent.be/~schoon/plplot-5.14.0.tar.gz && tar xfz plplot-5.14.0.tar.gz && cd plplot-5.14.0 && cmake -G \"MSYS Makefiles\" -DENABLE_DYNDRIVERS=OFF -DPLD_wingcc=OFF -DCMAKE_INSTALL_PREFIX=/usr/local . && make && make install"
+        pacman --noconfirm -Su mingw-w64-%MSYS2_ARCH%-{meson,ninja}
+      displayName: Install Meson build dependencies
+      condition: and(succeeded(), eq(variables['BUILD_SYSTEM'], 'meson'))
+    - script: |
+        set PATH=C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
+        bash -lc "wget https://www.dropbox.com/s/w73ghu1lpxcesum/plplot-5.15.0.tar.gz && tar xfz plplot-5.15.0.tar.gz && cd plplot-5.15.0 && cmake -G \"MSYS Makefiles\" -DENABLE_DYNDRIVERS=OFF -DPLD_wingcc=OFF -DCMAKE_INSTALL_PREFIX=/usr/local . && make && make install"
       displayName: Install PLplot
     - script: |
         set PATH=C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
-        bash -lc "cd $SOURCE_HOME && unset BOOST_ROOT && ACLOCAL_PATH=/usr/local/share/aclocal autoreconf -fi && PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig ./configure && make && make check && make distcheck"
+        bash -lc "cd $SOURCE_HOME && unset BOOST_ROOT && PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ACLOCAL_PATH=/usr/local/share/aclocal autoreconf -fi && PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig ./configure && make && make check && make distcheck"
       displayName: Build Gtkmm-PLplot
       env:
         SOURCE_HOME: $(Build.SourcesDirectory)
+      condition: and(succeeded(), eq(variables['BUILD_SYSTEM'], 'autotools'))
+    - script: |
+        set PATH=C:\msys64\%MSYSTEM%\bin;C:\msys64\usr\bin;%PATH%
+        bash -lc "cd $SOURCE_HOME && unset BOOST_ROOT && mkdir build && cd build && PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig meson -Dbuild-documentation=false .. && ninja"
+      displayName: Build Gtkmm-PLplot
+      env:
+        SOURCE_HOME: $(Build.SourcesDirectory)
+      condition: and(succeeded(), eq(variables['BUILD_SYSTEM'], 'meson'))
