@@ -7,6 +7,12 @@ jobs:
   - job: osx_64
     pool:
       vmImage: macOS-10.14
+    strategy:
+      matrix:
+        MESON:
+          BUILD_SYSTEM: meson
+        AUTOTOOLS:
+          BUILD_SYSTEM: autotools
     steps:
     - script: |
         set -e -x
@@ -15,17 +21,54 @@ jobs:
       displayName: Update Homebrew
     - script: |
         set -e -x
-        brew install autoconf automake libtool gtkmm3 plplot mm-common wget pkg-config
+        brew install gtkmm3 plplot wget pkg-config doxygen graphviz boost
       displayName: Install dependencies
     - script: |
         set -e -x
+        brew install mm-common autoconf automake libtool 
         autoreconf -fi
         brew uninstall mm-common
-        export PKG_CONFIG_PATH=/usr/local/opt/libffi/lib/pkgconfig
         ./configure
         make
         make distcheck
       displayName: Test build
+      condition: and(succeeded(), eq(variables['BUILD_SYSTEM'], 'autotools'))
+    - script: |
+        set -e -x
+        brew install meson ninja
+        TARBALL=$(ls *.tar.gz)
+        tar xfz $TARBALL
+        cd ${TARBALL%.tar.gz}
+        mkdir build
+        cd build
+        meson ..
+        ninja
+      displayName: Test dist tarball with other buildsystem
+      condition: and(succeeded(), eq(variables['BUILD_SYSTEM'], 'autotools'))
+    - script: |
+        set -e -x
+        brew install meson ninja
+        mkdir build
+        cd build
+        meson ..
+        ninja
+        ninja dist
+      displayName: Test build  
+      condition: and(succeeded(), eq(variables['BUILD_SYSTEM'], 'meson'))
+    - script: |
+        set -e -x
+        brew install mm-common autoconf automake libtool
+        mv build/meson-dist/gtkmm-plplot*.tar.xz .
+        TARBALL=$(ls *.tar.xz)
+        tar xfz $TARBALL
+        cd ${TARBALL%.tar.xz}
+        autoreconf -fi
+        brew uninstall mm-common
+        ./configure
+        make
+      displayName: Test dist tarball with other buildsystem
+      condition: and(succeeded(), eq(variables['BUILD_SYSTEM'], 'meson'))
+
   - job: MSYS2
     pool:
       vmImage: vs2017-win2016
@@ -36,11 +79,6 @@ jobs:
           MSYS2_ARCH: x86_64
           MSYS2_DIR: msys64
           MSYSTEM: MINGW64
-        i686:
-          ARCH: x86
-          MSYS2_ARCH: i686
-          MSYS2_DIR: msys64
-          MSYSTEM: MINGW32
     steps:
     - script: |
         choco install msys2 --params="/InstallDir:C:\msys64 /NoUpdate /NoPath"

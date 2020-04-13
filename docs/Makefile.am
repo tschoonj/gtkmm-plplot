@@ -36,4 +36,4 @@ clean-local:
 uninstall-local:
 	rm -rf $(DESTDIR)$(gtkmm_plplot_docdir)
 endif
-EXTRA_DIST = extra_pages.dox doxygen_hack.css DoxygenLayout.xml
+EXTRA_DIST = extra_pages.dox doxygen_hack.css DoxygenLayout.xml meson.build

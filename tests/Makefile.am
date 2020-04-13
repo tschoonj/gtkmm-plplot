@@ -74,4 +74,4 @@ test13_SOURCES = test13.cpp
 test13_CPPFLAGS = $(AM_CPPFLAGS)
 test13_LDADD = $(AM_LDADD)
 
-EXTRA_DIST = srm1155.csv contour-test.csv
+EXTRA_DIST = srm1155.csv contour-test.csv meson.build
