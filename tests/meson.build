@@ -5,7 +5,7 @@ programs = {
     },
     'test2': {
         'src': ['test2.cpp'],
-        'cppflags': ['-DTEST_CSV="@0@"'.format(meson.current_source_dir() / 'srm1155.csv'), ],
+        'cppflags': ['-DTEST_CSV="@0@"'.format(join_paths(meson.current_source_dir(), 'srm1155.csv')), ],
     },
     'test3': {
         'src': ['test3.cpp'],
@@ -25,11 +25,11 @@ programs = {
     },
     'test7': {
         'src': ['test7.cpp'],
-        'cppflags': ['-DTEST_CSV="@0@"'.format(meson.current_source_dir() / 'contour-test.csv'), ],
+        'cppflags': ['-DTEST_CSV="@0@"'.format(join_paths(meson.current_source_dir(), 'contour-test.csv')), ],
     },
     'test8': {
         'src': ['test8.cpp'],
-        'cppflags': ['-DTEST_CSV="@0@"'.format(meson.current_source_dir() / 'contour-test.csv'), ],
+        'cppflags': ['-DTEST_CSV="@0@"'.format(join_paths(meson.current_source_dir(), 'contour-test.csv')), ],
     },
     'test9': {
         'src': ['test9.cpp'],

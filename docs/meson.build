@@ -42,8 +42,7 @@ doxygen_data.set('builddir', meson.current_build_dir())
 doxyfile = configure_file(
     input: 'Doxyfile.in',
     output: 'Doxyfile',
-    configuration: doxygen_data,
-    install: false)
+    configuration: doxygen_data)
 
 datadir = join_paths(get_option('datadir'), 'doc', 'gtkmm-plplot')
 
@@ -53,7 +52,7 @@ html_target = custom_target('docs',
     depends: gtkmm_plplot_library,
     output: 'html',
     command: [doxygen, '@INPUT@'],
-    install: true,
-    install_dir: datadir)
+    install_dir: datadir,
+    install: true)
 
 

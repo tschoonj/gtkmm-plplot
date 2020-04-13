@@ -4,7 +4,7 @@ project('gtkmm-plplot', 'cpp',
   default_options: [
     'cpp_std=c++11'
   ],
-  meson_version: '>= 0.50.0',
+  meson_version: '>= 0.48.0',
 )
 
 gtkmm_plplot_api_version = '2.0'
@@ -46,16 +46,16 @@ install_prefix = get_option('prefix')
 install_includedir = get_option('includedir')
 install_libdir = get_option('libdir')
 install_datadir = get_option('datadir')
-install_pkgconfigdir = install_libdir / 'pkgconfig'
+install_pkgconfigdir = join_paths(install_libdir, 'pkgconfig')
 
 # Configuration data
 pkg_conf_data = configuration_data()
 pkg_conf_data.set('prefix', install_prefix)
 pkg_conf_data.set('exec_prefix', '${prefix}')
-pkg_conf_data.set('libdir', '${prefix}' / install_libdir)
-pkg_conf_data.set('datarootdir', '${prefix}' / install_datadir)
+pkg_conf_data.set('libdir', join_paths('${prefix}', install_libdir))
+pkg_conf_data.set('datarootdir', join_paths('${prefix}', install_datadir))
 pkg_conf_data.set('datadir', '${datarootdir}')
-pkg_conf_data.set('includedir', '${prefix}' / install_includedir)
+pkg_conf_data.set('includedir', join_paths('${prefix}', install_includedir))
 pkg_conf_data.set('PACKAGE_TARNAME', meson.project_name())
 pkg_conf_data.set('PACKAGE_VERSION', meson.project_version())
 pkg_conf_data.set('VERSION', meson.project_version())
@@ -103,7 +103,7 @@ configure_file(
     input: 'gtkmm-plplot.spec.in',
     output: 'gtkmm-plplot.spec',
     configuration: pkg_conf_data,
-    install: false)
+)
 
 
 subdir('gtkmm-plplot')

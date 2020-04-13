@@ -1,4 +1,4 @@
-install_includeconfigdir = install_libdir / gtkmm_plplot_pcname / 'include'
+install_includeconfigdir = join_paths(install_libdir, gtkmm_plplot_pcname, 'include')
 
 gtkmm_plplotconfig_h = configure_file(
   input: 'gtkmm-plplotconfig.h.meson',
@@ -71,7 +71,7 @@ files = files(
 )
 
 install_headers('gtkmm-plplot.h', subdir: gtkmm_plplot_pcname)
-install_headers(headers, subdir: gtkmm_plplot_pcname / 'gtkmm-plplot')
+install_headers(headers, subdir: join_paths(gtkmm_plplot_pcname, 'gtkmm-plplot'))
 
 gtkmm_plplot_cpp_args = [ '-DG_LOG_DOMAIN="Gtkmm::PLplot"' ]
 
