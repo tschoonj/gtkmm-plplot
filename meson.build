@@ -115,4 +115,4 @@ if build_documentation_opt
     subdir('docs')
 endif
 
-# TODO: SPEC file with meson support, improved pkg-config file
+# TODO: improved pkg-config file
