@@ -72,10 +72,16 @@ plplot_dep = dependency('plplot', version: '>= 5.11.0')
 pkg_conf_data.set('PLPLOT_CXX', 'plplot-c++ >= 5.11.0')
 pkg_conf_data.set('GTKMM_PLPLOT_PLPLOT_5_11_0', 1)
 gtkmm_plplot_build_dep = [gtkmm_dep, plplot_dep, plplotcxx_dep]
+gtkmm_plplot_pkg_config_requires = [gtkmm_dep, ]
+gtkmm_plplot_pkg_config_requires_private = [plplotcxx_dep, ]
 boost_dep = dependency('boost', required : false)
 if boost_dep.found()
     pkg_conf_data.set('GTKMM_PLPLOT_BOOST_ENABLED', 1)
     gtkmm_plplot_build_dep += boost_dep
+    # the following does not work, since boost doesnt use pkg-config
+    # I also seem unable to extract the cflags from boost
+    # see https://github.com/mesonbuild/meson/issues/620
+    # gtkmm_plplot_pkg_config_requires_private += boost_dep
 endif
 
 # Ensure that the extcairo device is supported by this PLplot build
@@ -90,15 +96,6 @@ if not cpp_compiler.compiles(code, name: 'test for extcairo device', dependencie
     error('PLplot was compiled without extcairo device, which is required for gtkmm-plplot')
 endif
 
-# this is not working perfectly due to BOOST_CPPFLAGS not being available.
-# try using the pkg-config generate method to see if it makes a difference
-configure_file(
-  input: 'gtkmm-plplot.pc.in',
-  output: gtkmm_plplot_pcname + '.pc',
-  configuration: pkg_conf_data,
-  install_dir: install_pkgconfigdir,
-)
-
 configure_file(
     input: 'gtkmm-plplot.spec.in',
     output: 'gtkmm-plplot.spec',
@@ -108,6 +105,7 @@ configure_file(
 
 subdir('gtkmm-plplot')
 subdir('tests')
+
 if build_documentation_opt
     doxygen = find_program('doxygen')
     dot = find_program('dot')
@@ -115,4 +113,16 @@ if build_documentation_opt
     subdir('docs')
 endif
 
-# TODO: improved pkg-config file
+pkgconfig = import('pkgconfig')
+
+pkgconfig.generate(
+	filebase: gtkmm_plplot_pcname,
+	name: 'Gtkmm-PLplot',
+	description: 'a scientific plotting widget collection for Gtkmm',
+	version: meson.project_version(),
+	libraries: gtkmm_plplot_library,
+	subdirs: gtkmm_plplot_pcname,
+  requires: gtkmm_plplot_pkg_config_requires,
+  requires_private: gtkmm_plplot_pkg_config_requires_private,
+  extra_cflags: '-I${libdir}/@0@/include'.format(gtkmm_plplot_pcname),
+)
