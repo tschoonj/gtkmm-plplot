@@ -24,3 +24,4 @@ build2
 gh-pages
 .tags*
 .stdafx.c++.pch
+meson-build

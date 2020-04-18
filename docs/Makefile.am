@@ -27,10 +27,6 @@ install-data-local:
 	$(INSTALL_DATA) $(builddir)/html/search/*.html $(DESTDIR)$(gtkmm_plplot_docdir)/search
 	$(INSTALL_DATA) $(builddir)/html/search/*.js $(DESTDIR)$(gtkmm_plplot_docdir)/search
 	$(INSTALL_DATA) $(builddir)/html/search/*.png $(DESTDIR)$(gtkmm_plplot_docdir)/search
-dist_noinst_DATA = \
-	doc-install.pl \
-	doc-postprocess.pl
-
 
 CLEANFILES = doxyfile.stamp
 
@@ -40,4 +36,4 @@ clean-local:
 uninstall-local:
 	rm -rf $(DESTDIR)$(gtkmm_plplot_docdir)
 endif
-EXTRA_DIST = extra_pages.dox doxygen_hack.css DoxygenLayout.xml
+EXTRA_DIST = extra_pages.dox doxygen_hack.css DoxygenLayout.xml meson.build

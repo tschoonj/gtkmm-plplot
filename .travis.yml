@@ -1,27 +1,51 @@
 language: cpp
 
 sudo: required
-dist: trusty
+dist: bionic
 
 compiler:
   - gcc
+  - clang
 
 os:
   - linux
 
-env:
-  global:
-    - LD_LIBRARY_PATH=/usr/local/lib
-    - LD_RUN_PATH=/usr/local/lib
+addons:
+  apt:
+    update: true
+    packages:
+      - libplplot-dev
+      - libgtkmm-3.0-dev
+      - libgtkmm-3.0-doc
+      - mm-common
+      - autoconf
+      - automake
+      - libtool
+      - doxygen
+      - graphviz
+      - perl
+      - libboost-all-dev
 
 before_install:
-  - ./travis-before-install-linux.sh
+  - pyenv global 3.8
+  - pip3 install meson ninja
 
 script:
-  - autoreconf -fi || exit 1
-  - ./configure LDFLAGS="-Wl,-rpath -Wl,/usr/local/lib" || exit 1
-  - make || exit 1
-  - make distcheck || exit 1
+  - |
+    autoreconf -fi || exit 1
+    mkdir build-autotools || exit 1
+    cd build-autotools
+    ../configure || exit 1
+    make || exit 1
+    make check || exit 1
+    make distcheck || exit 1
+    cd ..
+  - |
+    mkdir build-meson || exit 1
+    cd build-meson
+    meson  || exit 1
+    ninja || exit 1
+    ninja test || exit 1
 
 branches:
   only:
