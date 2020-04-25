@@ -114,9 +114,12 @@
  *
  *       tar xfvz gtkmm-plplot-x.y.tar.gz
  *       cd gtkmm-plplot-x.y
- *       ./configure
- *       make
- *       make install
+ *       mkdir build ; cd build
+ *       meson
+ *       ninja
+ *       ninja install
+ *
+ *  Alternatively, use `./configure`, `make` and `make install`, but support for GNU Autotools is deprecated and will be removed in a future release.
  *
  *  \subsection homebrew Homebrew
  *
@@ -195,8 +198,16 @@
  *
  * \subsection head Github repository
  *
- * People interested in running the latest development version will have to clone the Github repository.
- * Make sure you have the above mentioned dependencies installed, as well as the GNU autotools (autoconf, automake and libtool) and mm-common.
+ * People interested in running the latest development version will have to clone the Github repository, and install meson and ninja:
+ *
+ *       git clone git@github.com:tschoonj/gtkmm-plplot.git
+ *       cd gtkmm-plplot
+ *       mkdir build ; cd build
+ *       meson .. 
+ *       ninja
+ *       ninja install
+ *
+ * If building with GNU autotools is preferred, install autoconf, automake, libtool and mm-common.
  *
  *       git clone git@github.com:tschoonj/gtkmm-plplot.git
  *       cd gtkmm-plplot
@@ -204,7 +215,7 @@
  *       ./configure
  *       make
  *       make install
- *
+ * 
  * \page usage Usage
  *
  * Include the Gtkmm-PLplot header:
