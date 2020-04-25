@@ -6,8 +6,8 @@
 <area shape="rect" id="node10" href="$class_gtk_1_1_p_lplot_1_1_plot_histogram.html" title="a class for plotting histograms" alt="" coords="815,153,994,179"/>
 <area shape="rect" id="node11" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots" alt="" coords="830,203,979,228"/>
 <area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="468,104,601,129"/>
-<area shape="rect" id="node3" href="/usr/local/Cellar/glibmm/2.62.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1Object.html" title=" " alt="" coords="329,104,420,129"/>
-<area shape="rect" id="node4" href="/usr/local/Cellar/glibmm/2.62.0/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1ObjectBase.html" title=" " alt="" coords="160,104,281,129"/>
-<area shape="rect" id="node5" href="/usr/local/Cellar/libsigc++@2/2.10.2/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title=" " alt="" coords="5,104,112,129"/>
+<area shape="rect" id="node3" href="/usr/local/Cellar/glibmm/2.64.2/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1Object.html" title=" " alt="" coords="329,104,420,129"/>
+<area shape="rect" id="node4" href="/usr/local/Cellar/glibmm/2.64.2/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1ObjectBase.html" title=" " alt="" coords="160,104,281,129"/>
+<area shape="rect" id="node5" href="/usr/local/Cellar/libsigc++@2/2.10.3/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title=" " alt="" coords="5,104,112,129"/>
 <area shape="rect" id="node9" href="$class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html" title="a class for contour plots with shaded regions." alt="" coords="1042,97,1207,136"/>
 </map>
