@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/tschoonj/gtkmm-plplot.svg?branch=master)](https://travis-ci.org/tschoonj/gtkmm-plplot)    [![Build Status](https://dev.azure.com/TomSchoonjans/gtkmm-plplot/_apis/build/status/tschoonj.gtkmm-plplot?branchName=master)](https://dev.azure.com/TomSchoonjans/gtkmm-plplot/_build/latest?definitionId=1&branchName=master)   [![PayPal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/tomschoonjans/10)   [![Amazon Wish list](https://img.shields.io/badge/Amazon-Wishlist-green.svg)](http://amzn.eu/8ml3d0c)   [![Gitter](https://badges.gitter.im/gtkmm-plplot/community.svg)](https://gitter.im/gtkmm-plplot/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+![CI](https://github.com/tschoonj/gtkmm-plplot/workflows/CI/badge.svg?branch=master&event=push)  ![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&link=https://github.com/sponsors/tschoonj)  [![PayPal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/tomschoonjans/10)   [![Amazon Wish list](https://img.shields.io/badge/Amazon-Wishlist-green.svg)](http://amzn.eu/8ml3d0c)   [![Gitter](https://badges.gitter.im/gtkmm-plplot/community.svg)](https://gitter.im/gtkmm-plplot/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Gtkmm-PLplot
 
@@ -19,7 +19,7 @@ Gtkmm-PLplot is licensed under the LGPLv3.
 
 ## Requirements
 
-* Gtkmm (minimum 3.0.0)
+* Gtkmm3
 * PLplot (at least 5.10.0 but earlier versions may also work, the C++ bindings are required)
 * a C++11 compiler (GCC, clang...)
 * Boost (optional)
