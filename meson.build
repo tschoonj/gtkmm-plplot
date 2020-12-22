@@ -39,8 +39,6 @@ project_build_root = meson.current_build_dir()
 
 cpp_compiler = meson.get_compiler('cpp')
 
-build_documentation_opt = get_option('build-documentation')
-
 # Installation directories are relative to {prefix}.
 install_prefix = get_option('prefix')
 install_includedir = get_option('includedir')
@@ -106,11 +104,13 @@ configure_file(
 subdir('gtkmm-plplot')
 subdir('tests')
 
-if build_documentation_opt
-    doxygen = find_program('doxygen')
-    dot = find_program('dot')
-    perl = find_program('perl')
+if not get_option('build-documentation').disabled()
+  doxygen = find_program('doxygen', required : get_option('build-documentation'))
+  dot = find_program('dot', required : get_option('build-documentation'))
+  perl = find_program('perl', required : get_option('build-documentation'))
+  if doxygen.found() and dot.found() and perl.found()
     subdir('docs')
+  endif
 endif
 
 pkgconfig = import('pkgconfig')

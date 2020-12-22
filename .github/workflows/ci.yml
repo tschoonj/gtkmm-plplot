@@ -68,7 +68,7 @@ jobs:
         set -ex
         mkdir build-tmp
         cd build-tmp
-        meson --buildtype=debugoptimized -Dbuild-documentation=true ..
+        meson --buildtype=debugoptimized -Dbuild-documentation=enabled ..
         ninja
         ninja dist
         set +ex
@@ -165,7 +165,7 @@ jobs:
         set -ex
         mkdir build-tmp
         cd build-tmp
-        meson --buildtype=debugoptimized -Dbuild-documentation=true ..
+        meson --buildtype=debugoptimized -Dbuild-documentation=enabled ..
         ninja
         ninja dist
         set +ex
@@ -269,7 +269,7 @@ jobs:
         cd ${TARBALL%.tar.gz}
         mkdir build-meson
         cd build-meson
-        meson --buildtype=debugoptimized -Dbuild-documentation=true .. || (cat meson-logs/meson-log.txt && exit 1)
+        meson --buildtype=debugoptimized -Dbuild-documentation=enabled .. || (cat meson-logs/meson-log.txt && exit 1)
         ninja
         set +ex
       env:
@@ -282,7 +282,7 @@ jobs:
         export PATH=${HOME}/.local/bin:${PATH}
         mkdir build-tmp
         cd build-tmp
-        meson --buildtype=debugoptimized -Dbuild-documentation=true ..
+        meson --buildtype=debugoptimized -Dbuild-documentation=enabled ..
         ninja
         ninja dist
         set +ex

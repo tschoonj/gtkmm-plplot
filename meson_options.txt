@@ -1,1 +1,1 @@
-option('build-documentation', type: 'boolean', value: true, description: 'Build and install the documentation')
+option('build-documentation', type: 'feature', value: 'auto', description: 'Build and install the documentation')
