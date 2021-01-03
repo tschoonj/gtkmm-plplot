@@ -119,8 +119,8 @@ jobs:
           automake
           autoconf
           make
-          patch
           wget
+          patch
     - uses: actions/checkout@v2
     - name: Install mm-common
       run: |
