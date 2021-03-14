@@ -141,7 +141,16 @@ jobs:
         wget -q https://downloads.sourceforge.net/project/plplot/plplot/5.15.0%20Source/plplot-5.15.0.tar.gz
         tar xfz plplot-${PLPLOT_VERSION}.tar.gz
         cd plplot-${PLPLOT_VERSION}
-        cmake -G "MSYS Makefiles" -DENABLE_DYNDRIVERS=OFF -DPLD_wingcc=OFF -DCMAKE_INSTALL_PREFIX=${MINGW_PREFIX} .
+        cmake -G "MSYS Makefiles" \
+          -DENABLE_DYNDRIVERS=OFF \
+          -DPLD_wingcc=OFF \
+          -DENABLE_cxx=ON \
+          -DENABLE_qt=OFF \
+          -DENABLE_fortran=OFF \
+          -DENABLE_tcl=OFF \
+          -DENABLE_tk=OFF \
+          -DCMAKE_INSTALL_PREFIX=${MINGW_PREFIX} \
+          .
         make
         make install
         set +ex
