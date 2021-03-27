@@ -80,6 +80,9 @@ void Plot2D::plot_data_modified() {
 
   for (auto &iter : plot_data) {
     auto iter2 = dynamic_cast<PlotData2D*>(iter);
+    if (!iter2->is_showing())
+      continue;
+
     double xmin, xmax, ymin, ymax;
     iter2->get_extremes(xmin, xmax, ymin, ymax);
     min_x.push_back(xmin);
@@ -88,11 +91,25 @@ void Plot2D::plot_data_modified() {
     max_y.push_back(ymax);
   }
 
+  // ensure we end up with a proper box, even if there is no data to be displayed
   if (min_x.empty()) {
-    min_x.push_back(0.0);
-    max_x.push_back(1.0);
-    min_y.push_back(0.0);
-    max_y.push_back(1.0);
+    if (log10_x) {
+      min_x.push_back(1.0);
+      max_x.push_back(10.0);
+    }
+    else {
+      min_x.push_back(0.0);
+      max_x.push_back(1.0);
+    }
+
+    if (log10_y) {
+      min_y.push_back(1.0);
+      max_y.push_back(10.0);
+    }
+    else {
+      min_y.push_back(0.0);
+      max_y.push_back(1.0);
+    }
   }
 
   plot_data_range_x[0] = *std::min_element(min_x.begin(), min_x.end());
