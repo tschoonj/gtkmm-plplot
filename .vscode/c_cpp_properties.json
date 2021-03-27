@@ -1,0 +1,46 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/local/opt/glib/include/glib-2.0",
+                "/usr/local/opt/glib/lib/glib-2.0/include/",
+                "/usr/local/opt/gtk+3/include/gtk-3.0",
+                "/usr/local/opt/pango/include/pango-1.0",
+                "/usr/local/opt/cairo/include/cairo/",
+                "/usr/local/opt/gdk-pixbuf/include/gdk-pixbuf-2.0",
+                "/usr/local/opt/atk/include/atk-1.0/",
+                "/usr/local/opt/gtkmm-plplot/include/gtkmm-plplot-2.0",
+                "/usr/local/opt/gtkmm-plplot/lib/gtkmm-plplot-2.0/include/",
+                "/usr/local/opt/gtkmm3/include/gtkmm-3.0",
+                "/usr/local/opt/gtkmm3/include/gdkmm-3.0",
+                "/usr/local/opt/gtkmm3/lib/gtkmm-3.0/include",
+                "/usr/local/opt/gtkmm3/lib/gdkmm-3.0/include",
+                "/usr/local/opt/pangomm@2.42/include/pangomm-1.4",
+                "/usr/local/opt/pangomm@2.42/lib/pangomm-1.4/include",
+                "/usr/local/opt/glibmm@2.66/include/glibmm-2.4",
+                "/usr/local/opt/glibmm@2.66/include/giomm-2.4",
+                "/usr/local/opt/libsigc++@2/include/sigc++-2.0",
+                "/usr/local/opt/libsigc++@2/lib/sigc++-2.0/include",
+                "/usr/local/opt/cairomm@1.14/include/cairomm-1.0",
+                "/usr/local/opt/cairomm@1.14/lib/cairomm-1.0/include",
+                "/usr/local/opt/atkmm@2.28/include/atkmm-1.6",
+                "/usr/local/opt/atkmm@2.28/lib/atkmm-1.6/include",
+                "/usr/local/opt/glibmm@2.66/lib/giomm-2.4/include",
+                "/usr/local/opt/glibmm@2.66/lib/glibmm-2.4/include",
+                "/usr/local/opt/boost/include",
+                "/usr/local/opt/freetype/include/freetype2",
+                "/usr/local/opt/harfbuzz/include/harfbuzz",
+                "/usr/local/opt/plplot/include/plplot"
+            ],
+            "defines": [],
+            "macFrameworkPath": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "gnu17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "macos-clang-x64"
+        }
+    ],
+    "version": 4
+}
