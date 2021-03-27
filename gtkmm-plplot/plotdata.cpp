@@ -52,12 +52,12 @@ Glib::ustring PlotData::get_name() {
 
 void PlotData::show() {
   shown = true;
-  _signal_changed.emit();
+  _signal_data_modified.emit();
 }
 
 void PlotData::hide() {
   shown = false;
-  _signal_changed.emit();
+  _signal_data_modified.emit();
 }
 
 bool PlotData::is_showing() const {
