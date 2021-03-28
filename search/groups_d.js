@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['platform_2dspecific_20content_20typing_30290',['Platform-specific content typing',['http://library.gnome.org/devel/glibmm/unstable/group__giommContentType.html',1,'']]],
-  ['portable_20network_20i_2fo_20functionality_30291',['Portable Network I/O Functionality',['http://library.gnome.org/devel/glibmm/unstable/group__NetworkIO.html',1,'']]],
-  ['pangomm_20enums_20and_20flags_30292',['pangomm Enums and Flags',['http://library.gnome.org/devel/pangomm/unstable/group__pangommEnums.html',1,'']]],
-  ['policy_2dbased_20data_20structures_30293',['Policy-Based Data Structures',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01532.html',1,'']]],
-  ['pointer_20abstractions_30294',['Pointer Abstractions',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01478.html',1,'']]],
-  ['printing_30295',['Printing',['http://library.gnome.org/devel/gtkmm/unstable/group__Printing.html',1,'']]],
-  ['ptr_5ffun_28_29_30296',['ptr_fun()',['http://library.gnome.org/devel/libsigc++/unstable/group__ptr__fun.html',1,'']]],
-  ['poisson_20distributions_30297',['Poisson Distributions',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01542.html',1,'']]]
+  ['random_20number_20distributions_8109',['Random Number Distributions',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01538.html',1,'']]],
+  ['random_20number_20generation_8110',['Random Number Generation',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01497.html',1,'']]],
+  ['random_20number_20generators_8111',['Random Number Generators',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01537.html',1,'']]],
+  ['random_20number_20utilities_8112',['Random Number Utilities',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01543.html',1,'']]],
+  ['rational_20arithmetic_8113',['Rational Arithmetic',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01480.html',1,'']]],
+  ['regular_20expressions_8114',['Regular Expressions',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01499.html',1,'']]]
 ];

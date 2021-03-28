@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['element_30191',['Element',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1MenuItem.html#a83342ae878f73f7ad57b01e615dec1e2',1,'Gtk::MenuItem']]],
-  ['main_30192',['Main',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Widget.html#a992c638551243aa0ee7b50d84f4fdf54',1,'Gtk::Widget']]]
+  ['use_5ffacet_8051',['use_facet',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a04952.html#ac42c07b39caa9133862dd851c3fa2c7d',1,'std::locale::use_facet()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a04960.html#ac42c07b39caa9133862dd851c3fa2c7d',1,'std::locale::id::use_facet()']]]
 ];

@@ -1,9 +1,9 @@
 <map id="Gtk::PLplot::RegionSelection" name="Gtk::PLplot::RegionSelection">
-<area shape="rect" id="node1" title="a class providing support for selecting a region in a plot" alt="" coords="160,80,352,105"/>
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots" alt="" coords="422,5,556,31"/>
-<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot_contour.html" title="a class for contour plots" alt="" coords="406,55,571,80"/>
-<area shape="rect" id="node6" href="$class_gtk_1_1_p_lplot_1_1_plot_histogram.html" title="a class for plotting histograms" alt="" coords="400,104,578,129"/>
-<area shape="rect" id="node7" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots" alt="" coords="415,153,563,179"/>
-<area shape="rect" id="node2" href="/usr/local/Cellar/libsigc++@2/2.10.3/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title=" " alt="" coords="5,80,112,105"/>
-<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html" title="a class for contour plots with shaded regions." alt="" coords="626,48,791,87"/>
+<area shape="rect" id="node1" title="a class providing support for selecting a region in a plot" alt="" coords="160,81,351,108"/>
+<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots" alt="" coords="420,5,556,32"/>
+<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot_contour.html" title="a class for contour plots" alt="" coords="405,56,571,83"/>
+<area shape="rect" id="node6" href="$class_gtk_1_1_p_lplot_1_1_plot_histogram.html" title="a class for plotting histograms" alt="" coords="399,107,577,133"/>
+<area shape="rect" id="node7" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots" alt="" coords="413,157,563,184"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,81,112,108"/>
+<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html" title="a class for contour plots with shaded regions." alt="" coords="625,49,791,90"/>
 </map>

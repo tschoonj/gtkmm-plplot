@@ -1,10 +1,8 @@
 <map id="Gtk::PLplot::PlotDataHistogramUnbinned" name="Gtk::PLplot::PlotDataHistogramUnbinned">
-<area shape="rect" id="node1" title="a class that will hold a single unbinned histogram dataset and its properties for a PlotHistogram plo..." alt="" coords="5,519,212,557"/>
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram.html" title="abstract base class that will hold a single dataset that can be rendered as a histogram" alt="" coords="5,445,212,471"/>
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot_data_line.html" title="abstract base class that will hold a single dataset that can be rendered as a line" alt="" coords="23,372,194,397"/>
-<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties" alt="" coords="36,299,182,324"/>
-<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="42,225,175,251"/>
-<area shape="rect" id="node6" href="/usr/local/Cellar/glibmm/2.64.2/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1Object.html" title=" " alt="" coords="63,152,154,177"/>
-<area shape="rect" id="node7" href="/usr/local/Cellar/glibmm/2.64.2/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1ObjectBase.html" title=" " alt="" coords="48,79,169,104"/>
-<area shape="rect" id="node8" href="/usr/local/Cellar/libsigc++@2/2.10.3/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title=" " alt="" coords="55,5,162,31"/>
+<area shape="rect" id="node1" title="a class that will hold a single unbinned histogram dataset and its properties for a PlotHistogram plo..." alt="" coords="5,379,212,420"/>
+<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram.html" title="abstract base class that will hold a single dataset that can be rendered as a histogram" alt="" coords="5,304,212,331"/>
+<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot_data_line.html" title="abstract base class that will hold a single dataset that can be rendered as a line" alt="" coords="23,229,194,256"/>
+<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties" alt="" coords="35,155,182,181"/>
+<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="41,80,176,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="63,5,154,32"/>
 </map>

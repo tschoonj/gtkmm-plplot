@@ -1,4 +1,4 @@
 <map id="Gtk::PLplot::PlotObjectAuxData" name="Gtk::PLplot::PlotObjectAuxData">
-<area shape="rect" id="node1" title="base class for auxiliary data to the drawing routine draw_plot_object()" alt="" coords="5,5,213,31"/>
-<area shape="rect" id="node2" href="$struct_gtk_1_1_p_lplot_1_1_plot_object2_d_aux_data.html" title="class for auxiliary data to the drawing routine draw_plot_object() used from 2D plots" alt="" coords="27,79,191,117"/>
+<area shape="rect" id="node1" title="base class for auxiliary data to the drawing routine draw_plot_object()" alt="" coords="5,5,213,32"/>
+<area shape="rect" id="node2" href="$struct_gtk_1_1_p_lplot_1_1_plot_object2_d_aux_data.html" title="class for auxiliary data to the drawing routine draw_plot_object() used from 2D plots" alt="" coords="27,80,191,121"/>
 </map>

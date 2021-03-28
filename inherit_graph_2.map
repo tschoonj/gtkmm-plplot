@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="/usr/local/Cellar/mm-common/1.0.0/share/mm-common/doctags/libstdc++.tag$a04556.html" title=" " alt="" coords="5,5,109,31"/>
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_exception.html" title="Gtkmm&#45;PLplot&#39;s exception handler class." alt="" coords="157,5,310,31"/>
+<area shape="rect" id="node1" href="$struct_gtk_1_1_p_lplot_1_1_plot_object_aux_data.html" title="base class for auxiliary data to the drawing routine draw_plot_object()" alt="" coords="5,13,213,39"/>
+<area shape="rect" id="node2" href="$struct_gtk_1_1_p_lplot_1_1_plot_object2_d_aux_data.html" title="class for auxiliary data to the drawing routine draw_plot_object() used from 2D plots" alt="" coords="261,5,425,47"/>
 </map>

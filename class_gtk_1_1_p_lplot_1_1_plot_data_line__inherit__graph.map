@@ -1,17 +1,15 @@
 <map id="Gtk::PLplot::PlotDataLine" name="Gtk::PLplot::PlotDataLine">
-<area shape="rect" id="node1" title="abstract base class that will hold a single dataset that can be rendered as a line" alt="" coords="843,157,1014,183"/>
-<area shape="rect" id="node7" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d.html" title="a class that will hold a single dataset and its properties for a Plot2D plot" alt="" coords="1084,104,1247,129"/>
-<area shape="rect" id="node13" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram.html" title="abstract base class that will hold a single dataset that can be rendered as a histogram" alt="" coords="1062,209,1269,235"/>
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties" alt="" coords="649,157,795,183"/>
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="468,157,601,183"/>
-<area shape="rect" id="node4" href="/usr/local/Cellar/glibmm/2.64.2/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1Object.html" title=" " alt="" coords="329,157,420,183"/>
-<area shape="rect" id="node5" href="/usr/local/Cellar/glibmm/2.64.2/share/doc/glibmm-2.4/reference/glibmm-2.4.tag$classGlib_1_1ObjectBase.html" title=" " alt="" coords="160,157,281,183"/>
-<area shape="rect" id="node6" href="/usr/local/Cellar/libsigc++@2/2.10.3/share/doc/libsigc++-2.0/reference/libsigc++-2.0.tag$structsigc_1_1trackable.html" title=" " alt="" coords="5,157,112,183"/>
-<area shape="rect" id="node8" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_x.html" title="a class that will hold a single XY dataset with X errorbars and its properties for a Plot2D plot" alt="" coords="1320,5,1521,31"/>
-<area shape="rect" id="node10" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_y.html" title="a class that will hold a single XY dataset with Y errorbars and its properties for a Plot2D plot" alt="" coords="1320,55,1521,80"/>
-<area shape="rect" id="node11" href="$class_gtk_1_1_p_lplot_1_1_plot_data3_d.html" title="a class that will hold a single dataset and its properties for a Plot3D plot" alt="" coords="1339,104,1502,129"/>
-<area shape="rect" id="node12" href="$class_gtk_1_1_p_lplot_1_1_plot_data_polar.html" title="a class that will hold a single dataset and its properties for a PlotPolar plot" alt="" coords="1332,153,1509,179"/>
-<area shape="rect" id="node9" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_x_y.html" title="a class that will hold a single XY dataset with X and Y errorbars and its properties for a Plot2D plo..." alt="" coords="1572,31,1782,56"/>
-<area shape="rect" id="node14" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram_binned.html" title="a class that will hold a single binned histogram dataset and its properties for a PlotHistogram plot" alt="" coords="1317,203,1524,241"/>
-<area shape="rect" id="node15" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram_unbinned.html" title="a class that will hold a single unbinned histogram dataset and its properties for a PlotHistogram plo..." alt="" coords="1317,265,1524,304"/>
+<area shape="rect" id="node1" title="abstract base class that will hold a single dataset that can be rendered as a line" alt="" coords="521,161,692,188"/>
+<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d.html" title="a class that will hold a single dataset and its properties for a Plot2D plot" alt="" coords="761,107,925,133"/>
+<area shape="rect" id="node11" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram.html" title="abstract base class that will hold a single dataset that can be rendered as a histogram" alt="" coords="740,216,947,243"/>
+<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties" alt="" coords="327,161,473,188"/>
+<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="144,161,279,188"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,161,96,188"/>
+<area shape="rect" id="node6" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_x.html" title="a class that will hold a single XY dataset with X errorbars and its properties for a Plot2D plot" alt="" coords="997,5,1199,32"/>
+<area shape="rect" id="node8" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_y.html" title="a class that will hold a single XY dataset with Y errorbars and its properties for a Plot2D plot" alt="" coords="997,56,1199,83"/>
+<area shape="rect" id="node9" href="$class_gtk_1_1_p_lplot_1_1_plot_data3_d.html" title="a class that will hold a single dataset and its properties for a Plot3D plot" alt="" coords="1016,107,1180,133"/>
+<area shape="rect" id="node10" href="$class_gtk_1_1_p_lplot_1_1_plot_data_polar.html" title="a class that will hold a single dataset and its properties for a PlotPolar plot" alt="" coords="1009,157,1187,184"/>
+<area shape="rect" id="node7" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_x_y.html" title="a class that will hold a single XY dataset with X and Y errorbars and its properties for a Plot2D plo..." alt="" coords="1249,31,1460,57"/>
+<area shape="rect" id="node12" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram_binned.html" title="a class that will hold a single binned histogram dataset and its properties for a PlotHistogram plot" alt="" coords="995,209,1201,250"/>
+<area shape="rect" id="node13" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram_unbinned.html" title="a class that will hold a single unbinned histogram dataset and its properties for a PlotHistogram plo..." alt="" coords="995,274,1201,315"/>
 </map>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hintmetrics_29909',['HintMetrics',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a36aea516c8dd84609f7e5f5968a3d7c0',1,'Cairo']]],
-  ['hintstyle_29910',['HintStyle',['http://www.cairographics.org/documentation/cairomm/reference/namespaceCairo.html#a42c908e3a6e1e7e402081b36659b42e4',1,'Cairo']]]
+  ['match_5fflag_5ftype_7960',['match_flag_type',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01568.html#aaa717c7c94d1075dfb06f79feb4ca11c',1,'std::regex_constants']]],
+  ['memory_5forder_7961',['memory_order',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01491.html#gab4f8c60de95c10793a8e3e27fcb800d9',1,'std::memory_order()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01491.html#gab4f8c60de95c10793a8e3e27fcb800d9',1,'memory_order()(Global Namespace)']]]
 ];

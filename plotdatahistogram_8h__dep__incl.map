@@ -1,7 +1,7 @@
 <map id="plotdatahistogram.h" name="plotdatahistogram.h">
-<area shape="rect" id="node1" title=" " alt="" coords="151,5,289,31"/>
-<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="165,152,274,177"/>
-<area shape="rect" id="node3" href="$plotdatahistogrambinned_8h.html" title=" " alt="" coords="27,79,205,104"/>
-<area shape="rect" id="node4" href="$plotdatahistogramunbinned_8h.html" title=" " alt="" coords="228,79,422,104"/>
-<area shape="rect" id="node5" href="$plothistogram_8h.html" title=" " alt="" coords="446,79,559,104"/>
+<area shape="rect" id="node1" title=" " alt="" coords="149,5,285,32"/>
+<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="163,155,271,181"/>
+<area shape="rect" id="node3" href="$plotdatahistogrambinned_8h.html" title=" " alt="" coords="27,80,202,107"/>
+<area shape="rect" id="node4" href="$plotdatahistogramunbinned_8h.html" title=" " alt="" coords="226,80,414,107"/>
+<area shape="rect" id="node5" href="$plothistogram_8h.html" title=" " alt="" coords="438,80,548,107"/>
 </map>

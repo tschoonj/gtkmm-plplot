@@ -1,11 +1,11 @@
 <map id="plot.h" name="plot.h">
-<area shape="rect" id="node1" title=" " alt="" coords="284,5,338,31"/>
-<area shape="rect" id="node2" href="$canvas_8h.html" title=" " alt="" coords="5,152,80,177"/>
-<area shape="rect" id="node3" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="264,225,373,251"/>
-<area shape="rect" id="node4" href="$plot2d_8h.html" title=" " alt="" coords="155,152,224,177"/>
-<area shape="rect" id="node5" href="$plot3d_8h.html" title=" " alt="" coords="248,152,317,177"/>
-<area shape="rect" id="node6" href="$plotcontour_8h.html" title=" " alt="" coords="306,79,404,104"/>
-<area shape="rect" id="node7" href="$plotcontourshades_8h.html" title=" " alt="" coords="392,152,533,177"/>
-<area shape="rect" id="node8" href="$plothistogram_8h.html" title=" " alt="" coords="478,79,591,104"/>
-<area shape="rect" id="node9" href="$plotpolar_8h.html" title=" " alt="" coords="615,79,697,104"/>
+<area shape="rect" id="node1" title=" " alt="" coords="283,5,338,32"/>
+<area shape="rect" id="node2" href="$canvas_8h.html" title=" " alt="" coords="5,155,80,181"/>
+<area shape="rect" id="node3" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="263,229,371,256"/>
+<area shape="rect" id="node4" href="$plot2d_8h.html" title=" " alt="" coords="155,155,223,181"/>
+<area shape="rect" id="node5" href="$plot3d_8h.html" title=" " alt="" coords="247,155,315,181"/>
+<area shape="rect" id="node6" href="$plotcontour_8h.html" title=" " alt="" coords="305,80,401,107"/>
+<area shape="rect" id="node7" href="$plotcontourshades_8h.html" title=" " alt="" coords="391,155,529,181"/>
+<area shape="rect" id="node8" href="$plothistogram_8h.html" title=" " alt="" coords="477,80,587,107"/>
+<area shape="rect" id="node9" href="$plotpolar_8h.html" title=" " alt="" coords="611,80,693,107"/>
 </map>

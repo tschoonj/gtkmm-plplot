@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keyfileflags_29929',['KeyFileFlags',['http://library.gnome.org/devel/glibmm/unstable/group__glibmmEnums.html#ga5866be36312563d91e5a7be27348459b',1,'Glib::KeyFileFlags()'],['http://library.gnome.org/devel/glibmm/unstable/group__glibmmEnums.html#ga5866be36312563d91e5a7be27348459b',1,'KeyFileFlags()(Global Namespace)'],['http://library.gnome.org/devel/pangomm/unstable/group__glibmmEnums.html#ga5866be36312563d91e5a7be27348459b',1,'Glib::KeyFileFlags()'],['http://library.gnome.org/devel/gtkmm/unstable/group__glibmmEnums.html#ga5866be36312563d91e5a7be27348459b',1,'Glib::KeyFileFlags()']]]
+  ['syntax_5foption_5ftype_7964',['syntax_option_type',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01568.html#a510caedb3e640b81620023a85c1280bb',1,'std::regex_constants']]]
 ];

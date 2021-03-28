@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['has_5ffacet_30189',['has_facet',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a04952.html#ad5bc3cddb6bb375329682cb211ba0441',1,'std::locale::has_facet()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a04960.html#ad5bc3cddb6bb375329682cb211ba0441',1,'std::locale::id::has_facet()']]],
-  ['hscrollbar_30190',['HScrollbar',['http://library.gnome.org/devel/gtkmm/unstable/classGtk_1_1Adjustment.html#ae69c6aaa3a137d794d097e2af6efa842',1,'Gtk::Adjustment']]]
+  ['regionselection_8050',['RegionSelection',['../class_gtk_1_1_p_lplot_1_1_plot.html#a09c2468149d737cd80a6412dde4f54ef',1,'Gtk::PLplot::Plot']]]
 ];

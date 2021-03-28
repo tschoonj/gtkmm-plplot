@@ -1,9 +1,9 @@
 <map id="regionselection.h" name="regionselection.h">
-<area shape="rect" id="node1" title=" " alt="" coords="147,5,269,31"/>
-<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="128,225,237,251"/>
-<area shape="rect" id="node3" href="$plot2d_8h.html" title=" " alt="" coords="23,152,91,177"/>
-<area shape="rect" id="node4" href="$plotcontour_8h.html" title=" " alt="" coords="159,79,257,104"/>
-<area shape="rect" id="node6" href="$plothistogram_8h.html" title=" " alt="" coords="332,152,444,177"/>
-<area shape="rect" id="node7" href="$plotpolar_8h.html" title=" " alt="" coords="421,79,504,104"/>
-<area shape="rect" id="node5" href="$plotcontourshades_8h.html" title=" " alt="" coords="166,152,308,177"/>
+<area shape="rect" id="node1" title=" " alt="" coords="146,5,266,32"/>
+<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="128,229,236,256"/>
+<area shape="rect" id="node3" href="$plot2d_8h.html" title=" " alt="" coords="23,155,91,181"/>
+<area shape="rect" id="node4" href="$plotcontour_8h.html" title=" " alt="" coords="158,80,254,107"/>
+<area shape="rect" id="node6" href="$plothistogram_8h.html" title=" " alt="" coords="329,155,440,181"/>
+<area shape="rect" id="node7" href="$plotpolar_8h.html" title=" " alt="" coords="419,80,500,107"/>
+<area shape="rect" id="node5" href="$plotcontourshades_8h.html" title=" " alt="" coords="166,155,305,181"/>
 </map>
