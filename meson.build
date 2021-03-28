@@ -22,7 +22,7 @@ gtkmm_plplot_minor_version = gtkmm_plplot_version_array[1].to_int()
 # z = revision
 # If libtool_soversion is updated as described in libtool's documentation,
 # x.y.z will usually *not* be equal to meson.project_version().
-libtool_soversion = [3, 0, 0]
+libtool_soversion = [3, 1, 0]
 gtkmm_plplot_libversion = '@0@.@1@.@2@'.format(
   libtool_soversion[0] - libtool_soversion[2],
   libtool_soversion[2],
@@ -76,10 +76,6 @@ boost_dep = dependency('boost', required : false)
 if boost_dep.found()
     pkg_conf_data.set('GTKMM_PLPLOT_BOOST_ENABLED', 1)
     gtkmm_plplot_build_dep += boost_dep
-    # the following does not work, since boost doesnt use pkg-config
-    # I also seem unable to extract the cflags from boost
-    # see https://github.com/mesonbuild/meson/issues/620
-    # gtkmm_plplot_pkg_config_requires_private += boost_dep
 endif
 
 # Ensure that the extcairo device is supported by this PLplot build
@@ -116,12 +112,13 @@ endif
 pkgconfig = import('pkgconfig')
 
 pkgconfig.generate(
-	filebase: gtkmm_plplot_pcname,
-	name: 'Gtkmm-PLplot',
-	description: 'a scientific plotting widget collection for Gtkmm',
-	version: meson.project_version(),
-	libraries: gtkmm_plplot_library,
-	subdirs: gtkmm_plplot_pcname,
+  gtkmm_plplot_library,
+  filebase: gtkmm_plplot_pcname,
+  name: 'Gtkmm-PLplot',
+  description: 'a scientific plotting widget collection for Gtkmm',
+  version: meson.project_version(),
+  libraries: boost_dep,
+  subdirs: gtkmm_plplot_pcname,
   requires: gtkmm_plplot_pkg_config_requires,
   requires_private: gtkmm_plplot_pkg_config_requires_private,
   extra_cflags: '-I${libdir}/@0@/include'.format(gtkmm_plplot_pcname),
