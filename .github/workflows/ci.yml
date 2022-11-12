@@ -223,7 +223,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
     - name: Split image names
-      uses: jungwinter/split@v1.1.0
+      uses: jungwinter/split@v2.1.0
       id: image_splitted
       with:
         msg: ${{ matrix.image }}
