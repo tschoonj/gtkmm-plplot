@@ -61,11 +61,13 @@ namespace Gtk {
       double plotted_range_y[2]; ///< the current range shown on the plot for the Y-axis in PLplot coordinates (NOT world!!!)
       double plot_data_range_x[2]; ///< the maximum range covered by the X-values of the datasets in PLplot coordinates (NOT world!!!)
       double plot_data_range_y[2];  ///< the maximum range covered by the Y-values of the datasets in PLplot coordinates (NOT world!!!)
-      sigc::signal<void, double, double, double, double > _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event()
-      sigc::signal<void, double, double, GdkScrollDirection > _signal_zoom_region; ///< signal that gets emitted whenever one zooms in on the plot using the mouse scroll wheel in Canvas::on_scroll_event()
-      sigc::signal<void, double, double > _signal_cursor_motion; ///< signal that will be emitted whenever the cursor (usually the mouse) is moved.
-      sigc::signal<std::vector<double>, double, double, double, double > _signal_pan; ///< signal that will be emitted whenever the cursor is moved within a pannable plot while the SHIFT key is pressed in and the left mouse button is pressed.
-      sigc::signal<void, double, double> _signal_double_press; ///< signal that will emitted whenever a double mouse-click event was recorded within the plot box. Default response will be to reset the region to a range determined by the minima and maxima of the X- and Y- datasets.
+      sigc::signal<void(double, double, double, double)> _signal_select_region; ///< signal that gets emitted whenever a new region was selected using the mouse pointer in Canvas::on_button_release_event()
+      sigc::signal<void(double, double, GdkScrollDirection)> _signal_zoom_region; ///< signal that gets emitted whenever one zooms in on the plot using the mouse scroll wheel in Canvas::on_scroll_event()
+      sigc::signal<void(double, double)> _signal_cursor_motion; ///< signal that will be emitted whenever the cursor (usually the mouse) is moved.
+      sigc::signal<void(double, double)> _signal_cursor_enter; ///< signal that will be emitted whenever the cursor (usually the mouse) enter.
+      sigc::signal<void(void)> _signal_cursor_leave; ///< signal that will be emitted whenever the cursor (usually the mouse) leave.
+      sigc::signal<std::vector<double>(double, double, double, double)> _signal_pan; ///< signal that will be emitted whenever the cursor is moved within a pannable plot while the SHIFT key is pressed in and the left mouse button is pressed.
+      sigc::signal<void(double, double)> _signal_double_press; ///< signal that will emitted whenever a double mouse-click event was recorded within the plot box. Default response will be to reset the region to a range determined by the minima and maxima of the X- and Y- datasets.
       static void ensure_valid_range(double &val0, double &val1); ///< internal function that ensures valid ranges are always plotted, mostly avoiding case where for either x or y, data min is equal to data max.
 
       /** Transform PLplot coordinate system coordinates to Cairo
@@ -177,6 +179,22 @@ namespace Gtk {
        * \param y The Y-value corresponding to the current cursor position
        */
       virtual void on_cursor_motion(double x, double y);
+
+      /** This is a default handler for signal_cursor_enter()
+       *
+       * This signal is emitted whenever the cursor (usually the mouse) is enter within the plot. x and y correspond to the new data coordinates.
+       * Currently this method does nothing, and users are encouraged to write their own signal handler or override the method in a new class.
+       * \param x The X-value corresponding to the current cursor position
+       * \param y The Y-value corresponding to the current cursor position
+       */
+      virtual void on_cursor_enter(double x, double y);
+
+      /** This is a default handler for signal_cursor_enter()
+       *
+       * This signal is emitted whenever the cursor (usually the mouse) leave the plot.
+       * Currently this method does nothing, and users are encouraged to write their own signal handler or override the method in a new class.
+       */
+      virtual void on_cursor_leave();
 
       /** This is a default handler for signal_pan()
        *
@@ -332,7 +350,7 @@ namespace Gtk {
        *
        * See default handler on_select_region()
        */
-      sigc::signal<void, double, double, double, double > signal_select_region() {
+      sigc::signal<void(double, double, double, double)> signal_select_region() {
         return _signal_select_region;
       }
 
@@ -340,15 +358,31 @@ namespace Gtk {
        *
        * See default handler on_cursor_motion()
        */
-      sigc::signal<void, double, double > signal_cursor_motion() {
+      sigc::signal<void(double, double)> signal_cursor_motion() {
         return _signal_cursor_motion;
+      }
+
+      /** signal_cursor_enter is emitted whenever the cursor enters within the plot
+       *
+       * See default handler on_cursor_enter()
+       */
+      sigc::signal<void(double, double)> signal_cursor_enter() {
+        return _signal_cursor_enter;
+      }
+
+      /** signal_cursor_leave is emitted whenever the cursor leaves the plot
+       *
+       * See default handler on_cursor_leave()
+       */
+      sigc::signal<void(void)> signal_cursor_leave() {
+        return _signal_cursor_leave;
       }
 
       /** signal_pan is emitted whenever the cursor is moved within the plot and Shift is pressed in.
        *
        * See default handler on_pan()
        */
-      sigc::signal<std::vector<double>, double, double, double, double > signal_pan() {
+      sigc::signal<std::vector<double>(double, double, double, double)> signal_pan() {
         return _signal_pan;
       }
 
@@ -356,7 +390,7 @@ namespace Gtk {
        *
        * See default handler on_double_press()
        */
-      sigc::signal<void, double, double > signal_double_press() {
+      sigc::signal<void(double, double)> signal_double_press() {
         return _signal_double_press;
       }
 
@@ -365,7 +399,7 @@ namespace Gtk {
        * See default handler on_zoom_region()
        * \since 2.2
        */
-      sigc::signal<void, double, double, GdkScrollDirection> signal_zoom_region() {
+      sigc::signal<void(double, double, GdkScrollDirection)> signal_zoom_region() {
         return _signal_zoom_region;
       }
 

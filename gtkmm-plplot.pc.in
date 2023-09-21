@@ -6,7 +6,7 @@ includedir=@includedir@
 Name: Gtkmm-PLplot
 Description: a scientific plotting widget collection for Gtkmm
 Version: @VERSION@
-Requires: gtkmm-3.0 > 3.0.0
+Requires: gtkmm-4.0 > 4.0.0
 Requires.private: @PLPLOT_CXX@
 Conflicts:
 Libs: -L${libdir} -lgtkmm-plplot-@GTKMM_PLPLOT_API_VERSION@

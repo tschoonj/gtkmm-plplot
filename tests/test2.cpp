@@ -89,7 +89,7 @@ namespace Test2 {
 	   text_orientation_label("Text vertical?"),
            plot_data1(x, y1, Gdk::RGBA("red")),
 	   plot_text2d(START_TEXT, 6.4039 + 0.3, 1E5, Gdk::RGBA("red")),
-	   plot_line2d(Gtk::ORIENTATION_VERTICAL, 6.4039, Gdk::RGBA("purple"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 3.0) 
+           plot_line2d(Gtk::Orientation::VERTICAL, 6.4039, Gdk::RGBA("purple"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 3.0)
 	  
 	  {
 
@@ -138,9 +138,6 @@ namespace Test2 {
         plot->set_axis_logarithmic_y();
 
         set_default_size(720, 580);
-        Gdk::Geometry geometry;
-        geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
-        set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
         set_title("Gtkmm-PLplot test2");
         canvas.set_hexpand(true);
         canvas.set_vexpand(true);
@@ -216,35 +213,35 @@ namespace Test2 {
 	});
         text_orientation_switch.property_active().signal_changed().connect([this](){
           if (text_orientation_switch.get_active()) {
-	    plot_text2d.set_orientation(Gtk::ORIENTATION_VERTICAL);
+	    plot_text2d.set_orientation(Gtk::Orientation::VERTICAL);
           }
           else {
-	    plot_text2d.set_orientation(Gtk::ORIENTATION_HORIZONTAL);
+	    plot_text2d.set_orientation(Gtk::Orientation::HORIZONTAL);
           }
         });
 	text_orientation_switch.set_active(false);
 
-        x_log_label.set_halign(Gtk::ALIGN_END);
-        y_log_label.set_halign(Gtk::ALIGN_END);
-        box_label.set_halign(Gtk::ALIGN_END);
-        corner_label.set_halign(Gtk::ALIGN_END);
-        legend_label.set_halign(Gtk::ALIGN_END);
-        x_log_switch.set_halign(Gtk::ALIGN_START);
-        y_log_switch.set_halign(Gtk::ALIGN_START);
-        box_combo.set_halign(Gtk::ALIGN_START);
-        corner_combo.set_halign(Gtk::ALIGN_START);
-        legend_switch.set_halign(Gtk::ALIGN_START);
+        x_log_label.set_halign(Gtk::Align::END);
+        y_log_label.set_halign(Gtk::Align::END);
+        box_label.set_halign(Gtk::Align::END);
+        corner_label.set_halign(Gtk::Align::END);
+        legend_label.set_halign(Gtk::Align::END);
+        x_log_switch.set_halign(Gtk::Align::START);
+        y_log_switch.set_halign(Gtk::Align::START);
+        box_combo.set_halign(Gtk::Align::START);
+        corner_combo.set_halign(Gtk::Align::START);
+        legend_switch.set_halign(Gtk::Align::START);
 
-	text_label.set_halign(Gtk::ALIGN_END);
-	text_entry.set_halign(Gtk::ALIGN_START);
-	text_color_label.set_halign(Gtk::ALIGN_END);
-	text_color_button.set_halign(Gtk::ALIGN_START);
-	text_justification_label.set_halign(Gtk::ALIGN_END);
-	text_justification_spin_button.set_halign(Gtk::ALIGN_START);
-	text_scale_factor_label.set_halign(Gtk::ALIGN_END);
-	text_scale_factor_spin_button.set_halign(Gtk::ALIGN_START);
-	text_orientation_label.set_halign(Gtk::ALIGN_END);
-	text_orientation_switch.set_halign(Gtk::ALIGN_START);
+	text_label.set_halign(Gtk::Align::END);
+	text_entry.set_halign(Gtk::Align::START);
+	text_color_label.set_halign(Gtk::Align::END);
+	text_color_button.set_halign(Gtk::Align::START);
+	text_justification_label.set_halign(Gtk::Align::END);
+	text_justification_spin_button.set_halign(Gtk::Align::START);
+	text_scale_factor_label.set_halign(Gtk::Align::END);
+	text_scale_factor_spin_button.set_halign(Gtk::Align::START);
+	text_orientation_label.set_halign(Gtk::Align::END);
+	text_orientation_switch.set_halign(Gtk::Align::START);
 
         grid.attach(x_log_label, 0, 0, 1, 1);
         grid.attach(y_log_label, 0, 1, 1, 1);
@@ -272,9 +269,9 @@ namespace Test2 {
         grid.set_column_spacing(5);
         grid.set_column_homogeneous(false);
 
-        add(grid);
-        set_border_width(10);
-        grid.show_all();
+        canvas.set_focusable(true);
+        set_child(grid);
+        grid.show();
     }
     virtual ~Window() {}
   };
@@ -283,7 +280,7 @@ namespace Test2 {
 
 int main(int argc, char *argv[]) {
   Glib::set_application_name("gtkmm-plplot-test2");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test2");
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test2");
 
   //open our test file
   std::ifstream fs;
@@ -334,7 +331,6 @@ int main(int argc, char *argv[]) {
   std::for_each(std::begin(y4), std::end(y4), [](double &a) { if (a < 1.0 ) a = 1.0;});
 
   Glib::ustring x_title("Energy (keV)"), y_title("Intensity (counts)"), plot_title("NIST SRM 1155 Stainless steel");
-  Test2::Window window(x, y1, y2, y3, y4, x_title, y_title, plot_title);
 
-	return app->run(window);
+  return app->make_window_and_run<Test2::Window>(argc, argv, x, y1, y2, y3, y4, x_title, y_title, plot_title);
 }

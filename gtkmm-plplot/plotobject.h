@@ -46,7 +46,7 @@ namespace Gtk {
       PlotObject &operator=(const PlotObject &) = delete; ///< no move assignment operator
       PlotObject(const PlotObject &source) = delete; ///< no default copy constructor;
     protected:
-      sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the plot object properties is changed.
+      sigc::signal<void(void)> _signal_changed; ///< signal that gets emitted whenever any of the plot object properties is changed.
 
       /** This is a default handler for signal_changed()
        *
@@ -85,7 +85,7 @@ namespace Gtk {
        *
        * See default handler on_changed()
        */
-      sigc::signal<void> signal_changed() {
+      sigc::signal<void(void)> signal_changed() {
         return _signal_changed;
       }
 

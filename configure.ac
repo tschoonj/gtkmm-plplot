@@ -1,4 +1,4 @@
-AC_INIT([gtkmm-plplot],[2.5],[tom.schoonjans@me.com],,[https://github.com/tschoonj/gtkmm-plplot])
+AC_INIT([gtkmm-plplot],[3.0],[tom.schoonjans@me.com],,[https://github.com/tschoonj/gtkmm-plplot])
 AC_PREREQ([2.60])
 AC_CONFIG_SRCDIR([gtkmm-plplot/canvas.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -7,7 +7,7 @@ AC_CANONICAL_HOST
 AC_CONFIG_MACRO_DIR([m4])
 
 LIB_CURRENT=3
-LIB_REVISION=1
+LIB_REVISION=2
 LIB_AGE=0
 AC_SUBST(LIB_CURRENT)
 AC_SUBST(LIB_REVISION)
@@ -21,7 +21,7 @@ m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 LT_INIT([disable-static])
 
 MM_PREREQ([0.9.0])
-MM_INIT_MODULE([gtkmm-plplot-2.0])
+MM_INIT_MODULE([gtkmm-plplot-2.1])
 MM_CONFIG_DOCTOOL_DIR([docs])
 
 AC_PROG_CC
@@ -88,7 +88,7 @@ PKG_PROG_PKG_CONFIG([0.26])
 
 
 #search for our dependencies
-PKG_CHECK_MODULES([gtkmm],gtkmm-3.0 >= 3.0.0)
+PKG_CHECK_MODULES([gtkmm],gtkmm-4.0 >= 4.0.0)
 PKG_CHECK_MODULES([plplotcxx], [plplot-c++ >= 5.11.0],
  AC_SUBST([PLPLOT_CXX], ["plplot-c++ >= 5.11.0"])
  AC_DEFINE([GTKMM_PLPLOT_PLPLOT_5_11_0], [], [PLplot is at least 5.11.0]),
@@ -125,12 +125,12 @@ CFLAGS="$ac_save_CFLAGS"
 
 MM_ARG_ENABLE_DOCUMENTATION
 MM_ARG_WITH_TAGFILE_DOC([libstdc++.tag], [mm-common-libstdc++])
-MM_ARG_WITH_TAGFILE_DOC([libsigc++-2.0.tag], [sigc++-2.0])
-MM_ARG_WITH_TAGFILE_DOC([glibmm-2.4.tag], [glibmm-2.4])
+MM_ARG_WITH_TAGFILE_DOC([libsigc++-3.0.tag], [sigc++-3.0])
+MM_ARG_WITH_TAGFILE_DOC([glibmm-2.68.tag], [glibmm-2.68])
 MM_ARG_WITH_TAGFILE_DOC([cairomm-1.0.tag], [cairomm-1.0])
 MM_ARG_WITH_TAGFILE_DOC([pangomm-1.4.tag], [pangomm-1.4])
 MM_ARG_WITH_TAGFILE_DOC([atkmm-1.6.tag], [atkmm-1.6])
-MM_ARG_WITH_TAGFILE_DOC([gtkmm-3.0.tag], [gtkmm-3.0])
+MM_ARG_WITH_TAGFILE_DOC([gtkmm-4.0.tag], [gtkmm-4.0])
 
 
 AC_CONFIG_FILES([

@@ -19,9 +19,9 @@ Gtkmm-PLplot is licensed under the LGPLv3.
 
 ## Requirements
 
-* Gtkmm3
-* PLplot (at least 5.10.0 but earlier versions may also work, the C++ bindings are required)
-* a C++11 compiler (GCC, clang...)
+* Gtkmm4
+* PLplot (at least 5.11.0 but earlier versions may also work, the C++ bindings are required)
+* a C++17 compiler (GCC, clang...)
 * Boost (optional)
 
 ## Supported platforms

@@ -1,11 +1,11 @@
 tag_file_modules = [
   'mm-common-libstdc++', # provided by mm-common
-  'sigc++-2.0',
-  'glibmm-2.4',
+  'sigc++-3.0',
+  'glibmm-2.68',
   'cairomm-1.0',
   'pangomm-1.4',
   'atkmm-1.6',
-  'gtkmm-3.0',
+  'gtkmm-4.0',
 ]
 
 doxygen_tagfiles = ''

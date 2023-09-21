@@ -36,6 +36,8 @@ RegionSelection::RegionSelection() :
   //connect our default signal handlers
   this->signal_select_region().connect(sigc::mem_fun(*this, &RegionSelection::on_select_region));
   this->signal_cursor_motion().connect(sigc::mem_fun(*this, &RegionSelection::on_cursor_motion));
+  this->signal_cursor_enter().connect(sigc::mem_fun(*this, &RegionSelection::on_cursor_enter));
+  this->signal_cursor_leave().connect(sigc::mem_fun(*this, &RegionSelection::on_cursor_leave));
   this->signal_double_press().connect(sigc::mem_fun(*this, &RegionSelection::on_double_press));
   this->signal_zoom_region().connect(sigc::mem_fun(*this, &RegionSelection::on_zoom_region));
   this->signal_pan().connect(sigc::mem_fun(*this, &RegionSelection::on_pan));
@@ -96,6 +98,16 @@ void RegionSelection::on_cursor_motion(double x, double y) {
   //does nothing: write your own handler or override the method
   //std::cout << "x: " << x << " y: " << y << std::endl;
 }
+
+void RegionSelection::on_cursor_enter(double x, double y) {
+  //does nothing: write your own handler or override the method
+  //std::cout << "x: " << x << " y: " << y << std::endl;
+}
+
+void RegionSelection::on_cursor_leave() {
+  //does nothing: write your own handler or override the method
+}
+
 
 void RegionSelection::on_double_press(double x, double y) {
   //default implementation -> override in a derived class to get a different behavior

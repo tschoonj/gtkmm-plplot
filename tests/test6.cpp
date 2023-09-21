@@ -45,9 +45,6 @@ namespace Test6 {
     Window() : theta3(Gtk::PLplot::indgen_va(2000)*2.0*M_PI/1999.0), r3(2.0 * sin(4.0 * theta3 )), button("Replace Fermat's Spiral with Polar Rose") {
       // general window and canvas settings
       set_default_size(720, 580);
-      Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
-      set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
       set_title("Gtkmm-PLplot test6");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
@@ -78,7 +75,7 @@ namespace Test6 {
       grid.attach(canvas, 0, 0, 1, 1);
       button.set_hexpand(false);
       button.set_vexpand(false);
-      button.set_halign(Gtk::ALIGN_CENTER);
+      button.set_halign(Gtk::Align::CENTER);
       button.set_vexpand(false);
       button.signal_clicked().connect([this, data2](){
         data2->set_name("Polar Rose");
@@ -86,9 +83,10 @@ namespace Test6 {
 	button.set_sensitive(false);
       });
       grid.attach(button, 0, 1, 1, 1);
-      add(grid);
-      set_border_width(10);
-      grid.show_all();
+      
+      canvas.set_focusable(true);
+      set_child(grid);
+      grid.show();
     }
     virtual ~Window() {}
   };
@@ -96,9 +94,7 @@ namespace Test6 {
 
 int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test6");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test6");
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test6");
 
-  Test6::Window window;
-
-	return app->run(window);
+  return app->make_window_and_run<Test6::Window>(argc, argv);
 }

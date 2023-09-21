@@ -80,15 +80,12 @@ namespace Test11 {
       canvas.add_plot(plot_2d_error_xy);
 
       set_default_size(720, 580);
-      Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
-      set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
       set_title("Gtkmm-PLplot test11");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
 
-      add(canvas);
-      set_border_width(10);
+      canvas.set_focusable(true);
+      set_child(canvas);
       canvas.show();
     }
     virtual ~Window() {}
@@ -97,9 +94,7 @@ namespace Test11 {
 
 int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test11");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test11");
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test11");
 
-  Test11::Window *window = new Test11::Window();
-
-  return app->run(*window);
+  return app->make_window_and_run<Test11::Window>(argc, argv);
 }

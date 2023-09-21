@@ -61,9 +61,6 @@ namespace Test5 {
 
       // general window and canvas settings
       set_default_size(720, 580);
-      Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
-      set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
       set_title("Gtkmm-PLplot test5");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
@@ -77,12 +74,12 @@ namespace Test5 {
       //the labels
       line_label.set_hexpand(true);
       line_label.set_vexpand(false);
-      line_label.set_valign(Gtk::ALIGN_CENTER);
-      line_label.set_halign(Gtk::ALIGN_END);
+      line_label.set_valign(Gtk::Align::CENTER);
+      line_label.set_halign(Gtk::Align::END);
       symbol_label.set_hexpand(true);
       symbol_label.set_vexpand(false);
-      symbol_label.set_valign(Gtk::ALIGN_CENTER);
-      symbol_label.set_halign(Gtk::ALIGN_END);
+      symbol_label.set_valign(Gtk::Align::CENTER);
+      symbol_label.set_halign(Gtk::Align::END);
 
       grid.attach(line_label, 0, 0, 1, 1);
       grid.attach(symbol_label, 0, 1, 1, 1);
@@ -97,10 +94,10 @@ namespace Test5 {
       line_color.set_vexpand(false);
       symbol_color.set_hexpand(false);
       symbol_color.set_vexpand(false);
-      line_color.set_halign(Gtk::ALIGN_CENTER);
-      line_color.set_valign(Gtk::ALIGN_CENTER);
-      symbol_color.set_halign(Gtk::ALIGN_CENTER);
-      symbol_color.set_valign(Gtk::ALIGN_CENTER);
+      line_color.set_halign(Gtk::Align::CENTER);
+      line_color.set_valign(Gtk::Align::CENTER);
+      symbol_color.set_halign(Gtk::Align::CENTER);
+      symbol_color.set_valign(Gtk::Align::CENTER);
 
       line_color.signal_color_set().connect([this, plot_data](){plot_data->set_color(line_color.get_rgba());});
       symbol_color.signal_color_set().connect([this, plot_data](){plot_data->set_symbol_color(symbol_color.get_rgba());});
@@ -122,8 +119,8 @@ namespace Test5 {
 
       linestyle_combo.set_hexpand(false);
       linestyle_combo.set_vexpand(false);
-      linestyle_combo.set_halign(Gtk::ALIGN_CENTER);
-      linestyle_combo.set_valign(Gtk::ALIGN_CENTER);
+      linestyle_combo.set_halign(Gtk::Align::CENTER);
+      linestyle_combo.set_valign(Gtk::Align::CENTER);
 
       grid.attach(linestyle_combo, 2, 0, 1, 1);
 
@@ -133,8 +130,8 @@ namespace Test5 {
 
       symbol_entry.set_hexpand(false);
       symbol_entry.set_vexpand(false);
-      symbol_entry.set_halign(Gtk::ALIGN_FILL);
-      symbol_entry.set_valign(Gtk::ALIGN_CENTER);
+      symbol_entry.set_halign(Gtk::Align::FILL);
+      symbol_entry.set_valign(Gtk::Align::CENTER);
 
       symbol_entry.signal_changed().connect([this, plot_data](){
         plot_data->set_symbol(
@@ -147,15 +144,15 @@ namespace Test5 {
       //our spinbuttons, first one for the line thickness, second for symbol size
       linewidth_spin.set_hexpand(true);
       linewidth_spin.set_vexpand(false);
-      linewidth_spin.set_halign(Gtk::ALIGN_START);
-      linewidth_spin.set_valign(Gtk::ALIGN_CENTER);
+      linewidth_spin.set_halign(Gtk::Align::START);
+      linewidth_spin.set_valign(Gtk::Align::CENTER);
       linewidth_spin.set_wrap(true);
       linewidth_spin.set_snap_to_ticks(true);
       linewidth_spin.set_numeric(true);
       symbol_scale_factor_spin.set_hexpand(true);
       symbol_scale_factor_spin.set_vexpand(false);
-      symbol_scale_factor_spin.set_halign(Gtk::ALIGN_START);
-      symbol_scale_factor_spin.set_valign(Gtk::ALIGN_CENTER);
+      symbol_scale_factor_spin.set_halign(Gtk::Align::START);
+      symbol_scale_factor_spin.set_valign(Gtk::Align::CENTER);
 
       linewidth_spin.set_value(plot_data->get_line_width());
       symbol_scale_factor_spin.set_value(plot_data->get_symbol_height_scale_factor());
@@ -174,8 +171,8 @@ namespace Test5 {
       //the add datapoint button
       add_data_button.set_hexpand(false);
       add_data_button.set_vexpand(false);
-      add_data_button.set_valign(Gtk::ALIGN_CENTER);
-      add_data_button.set_halign(Gtk::ALIGN_END);
+      add_data_button.set_valign(Gtk::Align::CENTER);
+      add_data_button.set_halign(Gtk::Align::END);
       buttons_grid->attach(add_data_button, 0, 0, 1, 1);
       add_data_button.signal_clicked().connect([this, plot_data](){
         //this lambda has a static variable that will keep our ever incrementing X-value
@@ -187,8 +184,8 @@ namespace Test5 {
 
       remove_data_button.set_hexpand(false);
       remove_data_button.set_vexpand(false);
-      remove_data_button.set_valign(Gtk::ALIGN_CENTER);
-      remove_data_button.set_halign(Gtk::ALIGN_START);
+      remove_data_button.set_valign(Gtk::Align::CENTER);
+      remove_data_button.set_halign(Gtk::Align::START);
       remove_data_button.set_sensitive(false);
       buttons_grid->attach(remove_data_button, 1, 0, 1, 1);
       remove_data_button.signal_clicked().connect([this, plot_data](){
@@ -205,10 +202,10 @@ namespace Test5 {
       });
 
       //finishing up
+      canvas.set_focusable(true);
       grid.attach(canvas, 0, 2, 4, 1);
-      add(grid);
-      set_border_width(10);
-      grid.show_all();
+      set_child(grid);
+      grid.show();
     }
     virtual ~Window() {}
   };
@@ -216,11 +213,8 @@ namespace Test5 {
 
 int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test5");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test5");
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test5");
 
   std::valarray<double> x_va, y_va;
-
-  Test5::Window window(x_va, y_va);
-
-	return app->run(window);
+  return app->make_window_and_run<Test5::Window>(argc, argv, x_va, y_va);
 }

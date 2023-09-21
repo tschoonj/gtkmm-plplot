@@ -60,22 +60,19 @@ namespace Test3 {
     Window() : canvas(), add_plot("Add"), remove_plot("Remove"),
       show_plot("Show"), hide_plot("Hide") {
       set_default_size(720, 580);
-      Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
-      set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
       set_title("Gtkmm-PLplot test3");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
       add_plot.set_hexpand(true);
       add_plot.set_vexpand(false);
-      add_plot.set_halign(Gtk::ALIGN_END);
+      add_plot.set_halign(Gtk::Align::END);
       remove_plot.set_hexpand(false);
       remove_plot.set_vexpand(false);
       show_plot.set_hexpand(false);
       show_plot.set_vexpand(false);
       hide_plot.set_hexpand(true);
       hide_plot.set_vexpand(false);
-      hide_plot.set_halign(Gtk::ALIGN_START);
+      hide_plot.set_halign(Gtk::Align::START);
 
       remove_plot.set_sensitive(false);
       show_plot.set_sensitive(false);
@@ -109,10 +106,9 @@ namespace Test3 {
       grid.set_column_spacing(5);
       grid.set_column_homogeneous(false);
 
-
-      add(grid);
-      set_border_width(10);
-      grid.show_all();
+      canvas.set_focusable(true);
+      set_child(grid);
+      grid.show();
     }
     virtual ~Window() {}
   };
@@ -120,8 +116,7 @@ namespace Test3 {
 
 int main(int argc, char *argv[]) {
   Glib::set_application_name("gtkmm-plplot-test3");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test3");
-  Test3::Window window;
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test3");
 
-  return app->run(window);
+  return app->make_window_and_run<Test3::Window>(argc, argv);
 }

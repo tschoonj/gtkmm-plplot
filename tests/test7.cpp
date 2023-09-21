@@ -63,9 +63,6 @@ namespace Test7 {
 
       // general window and canvas settings
       set_default_size(720, 580);
-      Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
-      set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
       set_title("Gtkmm-PLplot test7");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
@@ -130,8 +127,8 @@ namespace Test7 {
 
       edge_label.set_hexpand(true);
       edge_label.set_vexpand(false);
-      edge_label.set_valign(Gtk::ALIGN_CENTER);
-      edge_label.set_halign(Gtk::ALIGN_END);
+      edge_label.set_valign(Gtk::Align::CENTER);
+      edge_label.set_halign(Gtk::Align::END);
 
       grid.attach(edge_label, 0, 0, 1, 1);
 
@@ -140,8 +137,8 @@ namespace Test7 {
       edge_color.set_use_alpha(true);
       edge_color.set_hexpand(false);
       edge_color.set_vexpand(false);
-      edge_color.set_halign(Gtk::ALIGN_CENTER);
-      edge_color.set_valign(Gtk::ALIGN_CENTER);
+      edge_color.set_halign(Gtk::Align::CENTER);
+      edge_color.set_valign(Gtk::Align::CENTER);
       edge_color.signal_color_set().connect([this, plot](){plot->set_edge_color(edge_color.get_rgba());});
 
       grid.attach(edge_color, 1, 0, 1, 1);
@@ -149,8 +146,8 @@ namespace Test7 {
       //the spinbutton
       edge_width_spin.set_hexpand(true);
       edge_width_spin.set_vexpand(false);
-      edge_width_spin.set_halign(Gtk::ALIGN_START);
-      edge_width_spin.set_valign(Gtk::ALIGN_CENTER);
+      edge_width_spin.set_halign(Gtk::Align::START);
+      edge_width_spin.set_valign(Gtk::Align::CENTER);
       edge_width_spin.set_wrap(true);
       edge_width_spin.set_snap_to_ticks(true);
       edge_width_spin.set_numeric(true);
@@ -166,12 +163,12 @@ namespace Test7 {
       //nlevels
       nlevels_label.set_hexpand(true);
       nlevels_label.set_vexpand(false);
-      nlevels_label.set_valign(Gtk::ALIGN_CENTER);
-      nlevels_label.set_halign(Gtk::ALIGN_END);
+      nlevels_label.set_valign(Gtk::Align::CENTER);
+      nlevels_label.set_halign(Gtk::Align::END);
       nlevels_spin.set_hexpand(true);
       nlevels_spin.set_vexpand(false);
-      nlevels_spin.set_halign(Gtk::ALIGN_START);
-      nlevels_spin.set_valign(Gtk::ALIGN_CENTER);
+      nlevels_spin.set_halign(Gtk::Align::START);
+      nlevels_spin.set_valign(Gtk::Align::CENTER);
       nlevels_spin.set_wrap(true);
       nlevels_spin.set_snap_to_ticks(true);
       nlevels_spin.set_numeric(true);
@@ -184,10 +181,9 @@ namespace Test7 {
       grid.attach(nlevels_spin, 2, 2, 2, 1);
 
       //finishing up
-      add(grid);
-      set_border_width(10);
-      grid.show_all();
-
+      canvas.set_focusable(true);
+      set_child(grid);
+      grid.show();
     }
     virtual ~Window() {}
   };
@@ -195,9 +191,7 @@ namespace Test7 {
 
 int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test7");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test7");
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test7");
 
-  Test7::Window window;
-
-	return app->run(window);
+  return app->make_window_and_run<Test7::Window>(argc, argv);
 }

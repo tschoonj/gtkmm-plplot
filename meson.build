@@ -1,13 +1,13 @@
 project('gtkmm-plplot', 'cpp',
-  version: '2.5',
+  version: '3.0',
   license: 'LGPLv2.1+',
   default_options: [
-    'cpp_std=c++11'
+    'cpp_std=c++17'
   ],
   meson_version: '>= 0.48.0',
 )
 
-gtkmm_plplot_api_version = '2.0'
+gtkmm_plplot_api_version = '2.1'
 gtkmm_plplot_pcname = meson.project_name() + '-' + gtkmm_plplot_api_version
 
 gtkmm_plplot_version_array = meson.project_version().split('.')
@@ -64,7 +64,7 @@ pkg_conf_data.set('GTKMM_PLPLOT_MAJOR_VERSION', gtkmm_plplot_major_version)
 pkg_conf_data.set('GTKMM_PLPLOT_MINOR_VERSION', gtkmm_plplot_minor_version)
 
 # Dependencies
-gtkmm_dep = dependency('gtkmm-3.0', version: '>=3.0.0')
+gtkmm_dep = dependency('gtkmm-4.0', version: '>=4.0.0')
 plplotcxx_dep = dependency('plplot-c++', version: '>= 5.11.0')
 plplot_dep = dependency('plplot', version: '>= 5.11.0')
 pkg_conf_data.set('PLPLOT_CXX', 'plplot-c++ >= 5.11.0')
