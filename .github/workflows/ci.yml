@@ -29,16 +29,6 @@ jobs:
 
   macos:
     timeout-minutes: 60
-    strategy:
-      matrix:
-        cc:
-          - clang
-        buildsystem:
-          - autotools
-          - meson
-        include:
-          - cc: clang
-            cxx: clang++
     runs-on: macos-latest
     steps:
     - name: Install homebrew dependencies
@@ -47,34 +37,19 @@ jobs:
         rm -f /usr/local/bin/2to3
         brew update
         brew upgrade || true
-        brew install autoconf automake libtool wget pkg-config doxygen graphviz git meson ninja gtkmm3 plplot
+        brew install wget pkg-config doxygen graphviz git meson ninja gtkmm3 plplot
         set +ex
     - uses: actions/checkout@v3.0.1
-    - name: Build and test with Autotools
-      if: matrix.buildsystem == 'autotools'
+    - name: Build and test 
       run: |
         set -ex
-        autoreconf -fi
-        ./configure || (cat config.log && exit 1)
-        make
-        make distcheck
+        meson setup --buildtype=debugoptimized -Dbuild-documentation=enabled builddir && cd builddir
+        meson compile
+        meson dist
         set +ex
       env:
-        CC: ${{matrix.cc}}
-        CXX: ${{matrix.cxx}}
-    - name: Build and test with Meson
-      if: matrix.buildsystem == 'meson'
-      run: |
-        set -ex
-        mkdir build-tmp
-        cd build-tmp
-        meson --buildtype=debugoptimized -Dbuild-documentation=enabled ..
-        ninja
-        ninja dist
-        set +ex
-      env:
-        CC: ${{matrix.cc}}
-        CXX: ${{matrix.cxx}}
+        CC: clang
+        CXX: clang++
 
   msys2:
     timeout-minutes: 60
@@ -83,17 +58,12 @@ jobs:
         cc:
           - clang
           - gcc
-        buildsystem:
-          - autotools
           - meson
         include:
           - cc: clang
             cxx: clang++
           - cc: gcc
             cxx: g++
-        exclude:
-          - cc: clang
-            buildsystem: autotools
     runs-on: windows-latest
     defaults:
       run:
@@ -108,7 +78,6 @@ jobs:
           mingw-w64-x86_64-gcc
           mingw-w64-x86_64-gcc-fortran
           mingw-w64-x86_64-gtkmm3
-          mingw-w64-x86_64-libtool
           mingw-w64-x86_64-meson
           mingw-w64-x86_64-clang
           mingw-w64-x86_64-lld
@@ -116,25 +85,10 @@ jobs:
           mingw-w64-x86_64-cmake
           mingw-w64-x86_64-doxygen
           mingw-w64-x86_64-graphviz
-          automake
-          autoconf
           make
           patch
           wget
     - uses: actions/checkout@v3.0.1
-    - name: Install mm-common
-      run: |
-        set -ex
-        wget -q https://download.gnome.org/sources/mm-common/1.0/mm-common-${MM_COMMON_VERSION}.tar.xz
-        tar xvfJ mm-common-${MM_COMMON_VERSION}.tar.xz
-        cd mm-common-${MM_COMMON_VERSION}
-        autoreconf -fi
-        ./configure
-        make
-        make install
-        set +ex
-      env:
-        MM_COMMON_VERSION: 1.0.2
     - name: Install PLplot
       run: |
         set -ex
@@ -156,27 +110,12 @@ jobs:
         set +ex
       env:
         PLPLOT_VERSION: 5.15.0
-    - name: Build and test with Autotools
-      if: matrix.buildsystem == 'autotools'
+    - name: Build
       run: |
         set -ex
-        autoreconf -fi
-        ./configure || (cat config.log && exit 1)
-        make
-        make distcheck
-        set +ex
-      env:
-        CC: ${{matrix.cc}}
-        CXX: ${{matrix.cxx}}
-    - name: Build and test with Meson
-      if: matrix.buildsystem == 'meson'
-      run: |
-        set -ex
-        mkdir build-tmp
-        cd build-tmp
-        meson --buildtype=debugoptimized -Dbuild-documentation=enabled ..
-        ninja
-        ninja dist
+        meson setup --buildtype=debugoptimized -Dbuild-documentation=enabled builddir && cd builddir
+        meson compile
+        meson dist --allow-dirty
         set +ex
       env:
         CC: ${{matrix.cc}}
@@ -187,25 +126,12 @@ jobs:
     strategy:
       matrix:
         image: 
-          - ubuntu:bionic
-          - ubuntu:focal
-          - debian:buster
-          - centos:7
-          - centos:8
-          - fedora:latest
+          - ubuntu:jammy
+          - debian:bookworm
+          - rockylinux:9
         cc:
           - clang
           - gcc
-        buildsystem:
-          - autotools
-          - meson
-        exclude:
-          # these builds are excluded as the git they ship is too old to perform a clone,
-          # necessary for meson dist to work
-          - image: ubuntu:bionic
-            buildsystem: meson
-          - image: centos:7
-            buildsystem: meson
 
     runs-on: ubuntu-latest
     container:
@@ -217,8 +143,7 @@ jobs:
       run: |
         set -ex
         apt-get --yes --force-yes update
-        apt-get --yes --force-yes install autoconf automake libtool gcc clang python3-pip python3-wheel python3-setuptools pkg-config git curl libplplot-dev libgtkmm-3.0-dev libgtkmm-3.0-doc mm-common doxygen graphviz libboost-all-dev
-        pip3 install meson ninja
+        apt-get --yes --force-yes install gcc clang python3-pip python3-wheel python3-setuptools pkg-config git curl libplplot-dev libgtkmm-3.0-dev libgtkmm-3.0-doc doxygen graphviz libboost-all-dev meson ninja-build
         set +ex
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -228,87 +153,34 @@ jobs:
       with:
         msg: ${{ matrix.image }}
         seperator: ':'
-    - name: Activate CentOS 8 PowerTools and EPEL repo
-      if: matrix.image == 'centos:8'
+    - name: Activate PowerTools and EPEL repo
+      if: matrix.image == 'rockylinux:9'
       run: |
         set -ex
         yum update -y
         yum clean all -y
-        yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
         dnf install -y 'dnf-command(config-manager)'
-        dnf config-manager --set-enabled powertools
-        set +ex
-    - name: Activate CentOS 7 EPEL repo
-      if: matrix.image == 'centos:7'
-      run: |
-        set -ex
-        yum update -y
-        yum clean all -y
-        yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        dnf config-manager --enable crb
+        dnf install -y epel-release
         set +ex
     - name: Install RHEL dependencies
-      if: startsWith(matrix.image, 'centos') || startsWith(matrix.image, 'fedora')
+      if: startsWith(matrix.image, 'rockylinux') || startsWith(matrix.image, 'fedora')
       run: |
         set -ex
         yum clean all -y
-        yum install -y make autoconf automake libtool gcc-gfortran gcc clang libstdc++-devel gcc-c++ python3-pip pkgconfig git xz gtkmm30-devel plplot-devel doxygen graphviz boost-devel
+        yum install -y make gcc-gfortran gcc clang libstdc++-devel gcc-c++ python3-pip pkgconfig git xz gtkmm30-devel plplot-devel doxygen graphviz boost-devel
         pip3 install meson ninja
         set +ex
     # checkout needs to happen later, as git needs to be installed to ensure a clone happens
     - uses: actions/checkout@v3.0.1
-    - name: Primary build and test with Autotools
-      if: matrix.buildsystem == 'autotools'
-      run: |
-        set -ex
-        autoreconf -fi
-        ./configure
-        make
-        make distcheck
-        set +ex
-      env:
-        CC: ${{matrix.cc}}
-        CXX: ${{matrix.cxx}}
-    - name: Secondary build with Meson
-      if: matrix.buildsystem == 'autotools' && matrix.image != 'centos:7'
-      run: |
-        set -ex
-        export PATH=${HOME}/.local/bin:${PATH}
-        TARBALL=$(ls *.tar.gz)
-        tar xfz $TARBALL
-        cd ${TARBALL%.tar.gz}
-        mkdir build-meson
-        cd build-meson
-        meson --buildtype=debugoptimized -Dbuild-documentation=enabled .. || (cat meson-logs/meson-log.txt && exit 1)
-        ninja
-        set +ex
-      env:
-        CC: ${{matrix.cc}}
-        CXX: ${{matrix.cxx}}
-    - name: Primary build and test with meson
+    - name: Build and test with meson
       if: matrix.buildsystem == 'meson'
       run: |
         set -ex
         export PATH=${HOME}/.local/bin:${PATH}
-        mkdir build-tmp
-        cd build-tmp
-        meson --buildtype=debugoptimized -Dbuild-documentation=enabled ..
-        ninja
-        ninja dist
-        set +ex
-      env:
-        CC: ${{matrix.cc}}
-        CXX: ${{matrix.cxx}}
-    - name: Secondary build with Autotools 
-      if: matrix.buildsystem == 'meson'
-      run: |
-        set -ex
-        cd build-tmp/meson-dist/
-        TARBALL=$(ls *.tar.xz)
-        tar xfJ $TARBALL
-        cd ${TARBALL%.tar.xz}
-        autoreconf -fi
-        ./configure
-        make
+        meson setup --buildtype=debugoptimized -Dbuild-documentation=enabled builddir && cd builddir
+        meson compile
+        meson dist
         set +ex
       env:
         CC: ${{matrix.cc}}
