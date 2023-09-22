@@ -16,7 +16,7 @@ jobs:
 #    runs-on: windows-latest
 
 #    steps:
-#    - uses: actions/checkout@v3.0.1
+#    - uses: actions/checkout@v4
 #    - name: Setup python
 #      uses: actions/setup-python@v1
 #      with:
@@ -39,7 +39,7 @@ jobs:
         brew upgrade || true
         brew install wget pkg-config doxygen graphviz git meson ninja gtkmm3 plplot
         set +ex
-    - uses: actions/checkout@v3.0.1
+    - uses: actions/checkout@v4
     - name: Build and test 
       run: |
         set -ex
@@ -88,7 +88,7 @@ jobs:
           make
           patch
           wget
-    - uses: actions/checkout@v3.0.1
+    - uses: actions/checkout@v4
     - name: Install PLplot
       run: |
         set -ex
@@ -172,7 +172,7 @@ jobs:
         pip3 install meson ninja
         set +ex
     # checkout needs to happen later, as git needs to be installed to ensure a clone happens
-    - uses: actions/checkout@v3.0.1
+    - uses: actions/checkout@v4
     - name: Build and test with meson
       if: matrix.buildsystem == 'meson'
       run: |
