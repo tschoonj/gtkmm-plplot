@@ -90,13 +90,6 @@ if not cpp_compiler.compiles(code, name: 'test for extcairo device', dependencie
     error('PLplot was compiled without extcairo device, which is required for gtkmm-plplot')
 endif
 
-configure_file(
-    input: 'gtkmm-plplot.spec.in',
-    output: 'gtkmm-plplot.spec',
-    configuration: pkg_conf_data,
-)
-
-
 subdir('gtkmm-plplot')
 subdir('tests')
 
