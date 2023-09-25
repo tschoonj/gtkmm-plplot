@@ -29,7 +29,7 @@ jobs:
       - name: apt dependencies
         run: |
           sudo apt-get --assume-yes update
-          sudo apt-get --assume-yes install build-essential git g++ autotools-dev wget meson mm-common libgtk-4-bin libgtk-4-common libgtk-4-dev libgtk-4-doc pkg-config
+          sudo apt-get --assume-yes install build-essential git g++ autotools-dev libxml-parser-perl wget meson mm-common libgtk-4-bin libgtk-4-common libgtk-4-dev libgtk-4-doc pkg-config
 
       - name: Build and install libsigc++
         run: |
