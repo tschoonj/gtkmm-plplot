@@ -26,6 +26,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: apt dependencies
+        run: |
+          sudo apt-get --assume-yes update
+          sudo apt-get --assume-yes install ninja-build meson
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
