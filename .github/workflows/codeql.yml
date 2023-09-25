@@ -29,7 +29,70 @@ jobs:
       - name: apt dependencies
         run: |
           sudo apt-get --assume-yes update
-          sudo apt-get --assume-yes install ninja-build meson
+          sudo apt-get --assume-yes install build-essential git g++ autotools-dev wget meson mm-common libgtk-4-bin libgtk-4-common libgtk-4-dev libgtk-4-doc pkg-config
+
+      - name: Build and install libsigc++
+        run: |
+          wget ftp://ftp.acc.umu.se/pub/gnome/sources/libsigc++/3.0/libsigc++-3.0.7.tar.xz
+          tar xvf libsigc++-3.0.7.tar.xz
+          cd libsigc++-3.0.7/
+          ./autogen.sh --disable-documentation
+          make -j8
+          sudo make install
+          cd ..
+
+      - name: Build and install glibmm
+        run: |
+          wget https://download.gnome.org/sources/glibmm/2.68/glibmm-2.68.2.tar.xz
+          tar xvf glibmm-2.68.2.tar.xz
+          cd glibmm-2.68.2/
+          ./autogen.sh
+          make -j8
+          sudo make install
+          cd ..
+
+      - name: Build and install cairomm
+        run: |
+          wget https://gitlab.freedesktop.org/cairo/cairomm/-/archive/1.17.1/cairomm-1.17.1.tar.gz
+          tar -xvzf cairomm-1.17.1.tar.gz
+          cd cairomm-1.17.1
+          ./autogen.sh
+          make -j8
+          sudo make install
+          cd ..
+
+      - name: Build and install pangomm
+        run: |
+          wget https://download.gnome.org/sources/pangomm/2.50/pangomm-2.50.0.tar.xz
+          tar -xvf pangomm-2.50.0.tar.xz
+          cd pangomm-2.50.0
+          mkdir build && cd build
+          meson setup
+          ninja
+          sudo ninja install
+          cd ../..
+
+      - name: Build and install gtkmm4
+        run: |
+          wget https://download.gnome.org/sources/gtkmm/4.6/gtkmm-4.6.1.tar.xz
+          tar xvf gtkmm-4.6.1.tar.xz
+          cd gtkmm-4.6.1/
+          mkdir build && cd build
+          meson setup
+          ninja
+          sudo ninja install
+          cd ../..
+      
+      - name: Build and install plplot
+        run: |
+          wget https://freefr.dl.sourceforge.net/project/plplot/plplot/5.15.0%20Source/plplot-5.15.0.tar.gz
+          tar -xvzf plplot-5.15.0.tar.gz
+          cd plplot-5.15.0
+          mkdir build && cd build
+          cmake
+          make -j8
+          sudo make install
+          cd ../..
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
