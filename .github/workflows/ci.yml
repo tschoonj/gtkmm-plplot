@@ -2,7 +2,7 @@ name: CI
 
 on:
   schedule:
-    - cron: '0 2 * * 0'
+    - cron: "0 2 * * 0"
   push:
     branches:
       - master
@@ -11,45 +11,45 @@ on:
       - master
 
 jobs:
-#  visual-studio:
-#    timeout-minutes: 60
-#    runs-on: windows-latest
+  #  visual-studio:
+  #    timeout-minutes: 60
+  #    runs-on: windows-latest
 
-#    steps:
-#    - uses: actions/checkout@v4
-#    - name: Setup python
-#      uses: actions/setup-python@v1
-#      with:
-#        python-version: 3.8
-#    - uses: ilammy/msvc-dev-cmd@v1
-#    - uses: BSFishy/meson-build@v1.0.1
-#      with:
-#        action: test
-#        setup-options: -Dwith-fortran=false
+  #    steps:
+  #    - uses: actions/checkout@v4
+  #    - name: Setup python
+  #      uses: actions/setup-python@v1
+  #      with:
+  #        python-version: 3.8
+  #    - uses: ilammy/msvc-dev-cmd@v1
+  #    - uses: BSFishy/meson-build@v1.0.1
+  #      with:
+  #        action: test
+  #        setup-options: -Dwith-fortran=false
 
   macos:
     timeout-minutes: 60
     runs-on: macos-latest
     steps:
-    - name: Install homebrew dependencies
-      run: |
-        set -ex
-        rm -f /usr/local/bin/2to3
-        brew update
-        brew upgrade || true
-        brew install wget pkg-config doxygen graphviz git meson ninja gtkmm3 gtkmm4 plplot
-        set +ex
-    - uses: actions/checkout@v4
-    - name: Build and test 
-      run: |
-        set -ex
-        meson setup --buildtype=debugoptimized -Dbuild-documentation=enabled builddir && cd builddir
-        meson compile
-        meson dist
-        set +ex
-      env:
-        CC: clang
-        CXX: clang++
+      - name: Install homebrew dependencies
+        run: |
+          set -ex
+          rm -f /usr/local/bin/2to3
+          rm -r "$(brew --cache)/api"
+          brew update
+          brew install wget pkg-config doxygen graphviz git meson ninja gtkmm4 plplot
+          set +ex
+      - uses: actions/checkout@v4
+      - name: Build and test
+        run: |
+          set -ex
+          meson setup --buildtype=debugoptimized -Dbuild-documentation=enabled builddir && cd builddir
+          meson compile
+          meson dist
+          set +ex
+        env:
+          CC: clang
+          CXX: clang++
 
   msys2:
     timeout-minutes: 60
@@ -58,7 +58,6 @@ jobs:
         cc:
           - clang
           - gcc
-          - meson
         include:
           - cc: clang
             cxx: clang++
@@ -69,120 +68,110 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        update: true
-        install: >
-          base-devel
-          git
-          mingw-w64-x86_64-gcc
-          mingw-w64-x86_64-gcc-fortran
-          mingw-w64-x86_64-gtkmm3
-          mingw-w64-x86_64-gtkmm4
-          mingw-w64-x86_64-meson
-          mingw-w64-x86_64-clang
-          mingw-w64-x86_64-lld
-          mingw-w64-x86_64-pkg-config
-          mingw-w64-x86_64-cmake
-          mingw-w64-x86_64-doxygen
-          mingw-w64-x86_64-graphviz
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >
+            base-devel
+            git
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-gtkmm4
+            mingw-w64-x86_64-meson
+            mingw-w64-x86_64-clang
+            mingw-w64-x86_64-lld
+            mingw-w64-x86_64-pkg-config
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-doxygen
+            mingw-w64-x86_64-graphviz
+            make
+            wget
+      - uses: actions/checkout@v4
+      - name: Install PLplot
+        run: |
+          set -ex
+          wget -q https://downloads.sourceforge.net/project/plplot/plplot/5.15.0%20Source/plplot-5.15.0.tar.gz
+          tar xfz plplot-${PLPLOT_VERSION}.tar.gz
+          cd plplot-${PLPLOT_VERSION}
+          cmake -G "MSYS Makefiles" \
+            -DENABLE_DYNDRIVERS=OFF \
+            -DPLD_wingcc=OFF \
+            -DENABLE_cxx=ON \
+            -DENABLE_qt=OFF \
+            -DENABLE_fortran=OFF \
+            -DENABLE_tcl=OFF \
+            -DENABLE_tk=OFF \
+            -DCMAKE_INSTALL_PREFIX=${MINGW_PREFIX} \
+            .
           make
-          patch
-          wget
-    - uses: actions/checkout@v4
-    - name: Install PLplot
-      run: |
-        set -ex
-        wget -q https://downloads.sourceforge.net/project/plplot/plplot/5.15.0%20Source/plplot-5.15.0.tar.gz
-        tar xfz plplot-${PLPLOT_VERSION}.tar.gz
-        cd plplot-${PLPLOT_VERSION}
-        cmake -G "MSYS Makefiles" \
-          -DENABLE_DYNDRIVERS=OFF \
-          -DPLD_wingcc=OFF \
-          -DENABLE_cxx=ON \
-          -DENABLE_qt=OFF \
-          -DENABLE_fortran=OFF \
-          -DENABLE_tcl=OFF \
-          -DENABLE_tk=OFF \
-          -DCMAKE_INSTALL_PREFIX=${MINGW_PREFIX} \
-          .
-        make
-        make install
-        set +ex
-      env:
-        PLPLOT_VERSION: 5.15.0
-    - name: Build
-      run: |
-        set -ex
-        meson setup --buildtype=debugoptimized -Dbuild-documentation=enabled builddir && cd builddir
-        meson compile
-        meson dist --allow-dirty
-        set +ex
-      env:
-        CC: ${{matrix.cc}}
-        CXX: ${{matrix.cxx}}
+          make install
+          set +ex
+        env:
+          PLPLOT_VERSION: 5.15.0
+      - name: Build
+        run: |
+          set -ex
+          meson setup --buildtype=debugoptimized -Dbuild-documentation=enabled builddir && cd builddir
+          meson compile
+          meson dist --allow-dirty
+          set +ex
+        env:
+          CC: ${{matrix.cc}}
+          CXX: ${{matrix.cxx}}
 
   linux:
     timeout-minutes: 60
     strategy:
       matrix:
-        image: 
-          - ubuntu:jammy
+        image:
+          - ubuntu:rolling
           - debian:bookworm
-          - rockylinux:9
+          - fedora:latest
         cc:
           - clang
           - gcc
+        include:
+          - cc: clang
+            cxx: clang++
+          - cc: gcc
+            cxx: g++
 
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.image }}
 
     steps:
-    - name: Install ubuntu dependencies
-      if: startsWith(matrix.image, 'ubuntu') || startsWith(matrix.image, 'debian')
-      run: |
-        set -ex
-        apt-get --yes --force-yes update
-        apt-get --yes --force-yes install gcc clang python3-pip python3-wheel python3-setuptools pkg-config git curl libplplot-dev libgtkmm-3.0-dev libgtkmm-3.0-doc doxygen graphviz libboost-all-dev meson ninja-build
-        set +ex
-      env:
-        DEBIAN_FRONTEND: noninteractive
-    - name: Split image names
-      uses: jungwinter/split@v2.1.0
-      id: image_splitted
-      with:
-        msg: ${{ matrix.image }}
-        seperator: ':'
-    - name: Activate PowerTools and EPEL repo
-      if: matrix.image == 'rockylinux:9'
-      run: |
-        set -ex
-        yum update -y
-        yum clean all -y
-        dnf install -y 'dnf-command(config-manager)'
-        dnf config-manager --enable crb
-        dnf install -y epel-release
-        set +ex
-    - name: Install RHEL dependencies
-      if: startsWith(matrix.image, 'rockylinux') || startsWith(matrix.image, 'fedora')
-      run: |
-        set -ex
-        yum clean all -y
-        yum install -y make gcc-gfortran gcc clang libstdc++-devel gcc-c++ python3-pip pkgconfig git xz gtkmm30-devel plplot-devel doxygen graphviz boost-devel
-        pip3 install meson ninja
-        set +ex
-    # checkout needs to happen later, as git needs to be installed to ensure a clone happens
-    - uses: actions/checkout@v4
-    - name: Build and test with meson
-      if: matrix.buildsystem == 'meson'
-      run: |
-        set -ex
-        export PATH=${HOME}/.local/bin:${PATH}
-        meson setup --buildtype=debugoptimized -Dbuild-documentation=enabled builddir && cd builddir
-        meson compile
-        meson dist
-        set +ex
-      env:
-        CC: ${{matrix.cc}}
-        CXX: ${{matrix.cxx}}
+      - name: Install ubuntu dependencies
+        if: startsWith(matrix.image, 'ubuntu') || startsWith(matrix.image, 'debian')
+        run: |
+          set -ex
+          apt-get --yes --force-yes update
+          apt-get --yes --force-yes install gcc clang pkg-config git curl libplplot-dev libgtkmm-4.0-dev doxygen graphviz meson ninja-build
+          set +ex
+        env:
+          DEBIAN_FRONTEND: noninteractive
+      - name: Install RHEL dependencies
+        if: startsWith(matrix.image, 'rockylinux') || startsWith(matrix.image, 'fedora')
+        run: |
+          set -ex
+          yum clean all -y
+          yum install -y make gcc-gfortran gcc clang gcc-c++ pkgconfig git gtkmm4.0-devel plplot-devel doxygen graphviz meson ninja-build
+          set +ex
+      # checkout needs to happen later, as git needs to be installed to ensure a clone happens
+      - uses: actions/checkout@v4
+      # Add checkout directory as safe.directory and avoid git list issue
+      - name: Set permissions
+        run: |
+          set -ex
+          git config --global --add safe.directory /__w/gtkmm-plplot/gtkmm-plplot
+          set +ex
+      - name: Build and test with meson
+        run: |
+          set -ex
+          export PATH=${HOME}/.local/bin:${PATH}
+          meson setup --buildtype=debugoptimized -Dbuild-documentation=enabled builddir && cd builddir
+          meson compile
+          meson dist
+          set +ex
+        env:
+          CC: ${{matrix.cc}}
+          CXX: ${{matrix.cxx}}
