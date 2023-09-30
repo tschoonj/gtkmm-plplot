@@ -103,7 +103,8 @@ namespace Test8 {
       Glib::ustring plot_title = "Intensity vs detector position";
 
       // general window and canvas settings
-      set_default_size(720, 720);
+      const int default_height = 720;
+      set_default_size(720, default_height);
       set_title("Gtkmm-PLplot test8");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
@@ -395,6 +396,7 @@ namespace Test8 {
       //finishing up
       set_child(paned);
       paned.set_wide_handle(true);
+      paned.set_position(default_height / 2);
       paned.show();
     }
     virtual ~Window() {}
