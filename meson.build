@@ -7,7 +7,7 @@ project('gtkmm-plplot', 'cpp',
   meson_version: '>= 0.48.0',
 )
 
-gtkmm_plplot_api_version = '2.1'
+gtkmm_plplot_api_version = '3.0'
 gtkmm_plplot_pcname = meson.project_name() + '-' + gtkmm_plplot_api_version
 
 gtkmm_plplot_version_array = meson.project_version().split('.')
