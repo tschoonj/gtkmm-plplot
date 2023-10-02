@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* This examples demonstrates how to use Gtkmm-PLplot from Gtk */
 
 #include "gtkmm-plplot.h"
-#include <gtkmm/main.h>
+#include <gtkmm/init.h>
 
 #ifndef M_PI
 #define M_PI (3.14159265358979323846)
@@ -62,8 +62,8 @@ static void activate (GtkApplication* app, gpointer user_data) {
   // print the type name
   std::cout << "Type:" << g_type_name(G_OBJECT_TYPE(canvas->gobj())) << std::endl;
   // this next line is where the magic happens
-  gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(canvas->gobj()));
-  gtk_widget_show_all (window);
+  gtk_window_set_child (GTK_WINDOW (window), GTK_WIDGET(canvas->gobj()));
+  gtk_widget_show(window);
 }
 
 int main (int argc, char **argv) {
@@ -72,7 +72,7 @@ int main (int argc, char **argv) {
 
   app = gtk_application_new ("org.gtk.example", G_APPLICATION_FLAGS_NONE);
   // this next line is necessary to ensure that the gtkmm internals are initialized
-  Gtk::Main::init_gtkmm_internals ();
+  Gtk::init_gtkmm_internals();
   g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
   status = g_application_run (G_APPLICATION (app), argc, argv);
   g_object_unref (app);

@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtkmm-plplot.h"
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <gtkmm/window.h>
 #include <valarray>
@@ -79,17 +80,17 @@ namespace Test11 {
       canvas.add_plot(plot_2d_error_y);
       canvas.add_plot(plot_2d_error_xy);
 
-      set_default_size(720, 580);
-      Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
-      set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
+      const int width = 1024, height = 825;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test11");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
-
-      add(canvas);
-      set_border_width(10);
-      canvas.show();
+      canvas.set_focusable(true);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+      geometry.set_child(canvas);
+      
+      geometry.set_margin(10);
+      set_child(geometry);
     }
     virtual ~Window() {}
   };
@@ -97,9 +98,7 @@ namespace Test11 {
 
 int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test11");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test11");
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test11");
 
-  Test11::Window *window = new Test11::Window();
-
-  return app->run(*window);
+  return app->make_window_and_run<Test11::Window>(argc, argv);
 }

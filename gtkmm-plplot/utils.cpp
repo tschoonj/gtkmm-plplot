@@ -89,7 +89,7 @@ double **Gtk::PLplot::boost_multi_array_to_array2d(const boost::multi_array<doub
 
 
   double **copy = (double **) malloc(sizeof(double *) * nx);
-  for (int i = 0 ; i < nx ; i++) {
+  for (size_t i = 0 ; i < nx ; i++) {
     copy[i] = (double *) malloc(sizeof(double) * ny);
     memcpy(copy[i], data + i * ny, sizeof(double) * ny);
   }

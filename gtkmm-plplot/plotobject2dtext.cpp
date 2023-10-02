@@ -105,7 +105,7 @@ void PlotObject2DText::draw_plot_object(const Cairo::RefPtr<Cairo::Context> &cr,
   change_plstream_color(pls, color);
   pls->schr(0, scale_factor);
   double dx, dy;
-  if (get_orientation() == Gtk::ORIENTATION_HORIZONTAL) {
+  if (get_orientation() == Gtk::Orientation::HORIZONTAL) {
     dx = 1.0;
     dy = 0.0;
   }

@@ -50,10 +50,10 @@ PlotObject2DLine::PlotObject2DLine(
   LineStyle _line_style,
   double _line_width) :
   PlotObject2DLine(
-    _orientation == Gtk::ORIENTATION_HORIZONTAL ? -HUGE_VAL : _offset,
-    _orientation == Gtk::ORIENTATION_VERTICAL ? -HUGE_VAL : _offset,
-    _orientation == Gtk::ORIENTATION_HORIZONTAL ? HUGE_VAL : _offset,
-    _orientation == Gtk::ORIENTATION_VERTICAL ? HUGE_VAL : _offset,
+    _orientation == Gtk::Orientation::HORIZONTAL ? -HUGE_VAL : _offset,
+    _orientation == Gtk::Orientation::VERTICAL ? -HUGE_VAL : _offset,
+    _orientation == Gtk::Orientation::HORIZONTAL ? HUGE_VAL : _offset,
+    _orientation == Gtk::Orientation::VERTICAL ? HUGE_VAL : _offset,
     _color,
     _line_style,
     _line_width

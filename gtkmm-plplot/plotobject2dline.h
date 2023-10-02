@@ -64,7 +64,7 @@ namespace Gtk {
        *
        * This constructor initializes a new PlotObject2DLine instance, with either a horizontal or vertical orientation, by setting the properties
        * that will determine its appearance when rendered onto a plot
-       * \param orientation Must be either Gtk::ORIENTATION_HORIZONTAL or Gtk::ORIENTATION_VERTICAL
+       * \param orientation Must be either Gtk::Orientation::HORIZONTAL or Gtk::Orientation::VERTICAL
        * \param offset For horizontal lines, the vertical offset and vice-versa for vertical lines
        * \param color the line color
        * \param line_style the line style

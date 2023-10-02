@@ -23,14 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <plConfig.h>
 #include <plstream.h>
 
-#ifdef GTKMM_PLPLOT_PLPLOT_5_11_0
-	#define PLCALLBACK plcallback
-#else
-	#define PLCALLBACK plstream
-#endif
-
 using namespace Gtk::PLplot;
-
 
 PlotContourShades::PlotContourShades(
   const Glib::ustring &_axis_title_x,
@@ -209,7 +202,7 @@ void PlotContourShades::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const
 	pls->shades(z, x.size(), y.size(), NULL, x.front(), x.back(), y.front(), y.back(),
               &clevels[0], nlevels, fill_width,
               cont_color, cont_width,
-              PLCALLBACK::fill, true, PLCALLBACK::tr1, (void *) &cgrid);
+              plcallback::fill, true, plcallback::tr1, (void *) &cgrid);
 
 
   //draw colorbar if requested

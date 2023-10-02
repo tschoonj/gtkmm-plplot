@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtkmm-plplot.h"
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
 #include <gtkmm/window.h>
@@ -86,17 +87,17 @@ namespace Test1 {
       // add some lines
       //plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(-5, -1, 30, -2)));
       plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(30, -2, -5, -1)));
-      plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(Gtk::ORIENTATION_HORIZONTAL, -1)));
-      plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(Gtk::ORIENTATION_VERTICAL, 12)));
-
-
-      set_default_size(720, 580);
-      Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
-      set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
+      plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(Gtk::Orientation::HORIZONTAL, -1)));
+      plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(Gtk::Orientation::VERTICAL, 12)));
+    
+      const int width = 1024, height = 580;
       set_title("Gtkmm-PLplot test1");
-      canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_hexpand(true);
+      canvas.set_focusable(true);
+      canvas.set_size_request(-1, height);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height));
+      geometry.set_child(canvas);
 
       show_radio1.set_active(plot_data1.is_showing());
       show_radio2.set_active(plot.get_data(1)->is_showing());
@@ -152,8 +153,8 @@ namespace Test1 {
 
       color_combo1.set_hexpand(false);
       color_combo2.set_hexpand(false);
-      linewidth_spin1.set_halign(Gtk::ALIGN_START);
-      linewidth_spin2.set_halign(Gtk::ALIGN_START);
+      linewidth_spin1.set_halign(Gtk::Align::START);
+      linewidth_spin2.set_halign(Gtk::Align::START);
       show_radio1.set_hexpand(false);
       show_radio2.set_hexpand(false);
       label1.set_hexpand(true);
@@ -162,8 +163,8 @@ namespace Test1 {
       linewidth_spin2.set_hexpand(true);
       linestyle_combo1.set_hexpand(false);
       linestyle_combo2.set_hexpand(false);
-      label1.set_halign(Gtk::ALIGN_END);
-      label2.set_halign(Gtk::ALIGN_END);
+      label1.set_halign(Gtk::Align::END);
+      label2.set_halign(Gtk::Align::END);
 
       grid.set_column_homogeneous(false);
       grid.set_column_spacing(5);
@@ -203,7 +204,7 @@ namespace Test1 {
       grid.attach(color_combo2, 2, 1, 1, 1);
       grid.attach(linestyle_combo2, 3, 1, 1, 1);
       grid.attach(linewidth_spin2, 4, 1, 1, 1);
-      grid.attach(canvas, 0, 2, 5, 1);
+      grid.attach(geometry, 0, 2, 5, 1);
 
       Gtk::Grid *button_grid = Gtk::manage(new Gtk::Grid());
       button_grid->set_column_homogeneous(true);
@@ -216,15 +217,14 @@ namespace Test1 {
       saveas_button.set_hexpand(false);
       print_button.set_vexpand(false);
       saveas_button.set_vexpand(false);
-      print_button.set_halign(Gtk::ALIGN_END);
-      saveas_button.set_halign(Gtk::ALIGN_START);
+      print_button.set_halign(Gtk::Align::END);
+      saveas_button.set_halign(Gtk::Align::START);
 
       print_button.signal_clicked().connect(sigc::mem_fun(*this, &Window::on_print_button_clicked));
       saveas_button.signal_clicked().connect(sigc::mem_fun(*this, &Window::on_saveas_button_clicked));
 
-      add(grid);
-      set_border_width(10);
-      grid.show_all();
+      grid.set_margin(10);
+      set_child(grid);
     }
     virtual ~Window() {}
 
@@ -237,11 +237,11 @@ namespace Test1 {
     void on_print_button_clicked() {
       //print settings
       Glib::RefPtr<Gtk::PrintSettings> print_settings = Gtk::PrintSettings::create();
-      print_settings->set_orientation(Gtk::PAGE_ORIENTATION_LANDSCAPE);
+      print_settings->set_orientation(Gtk::PageOrientation::LANDSCAPE);
       print_settings->set_paper_size(Gtk::PaperSize(Gtk::PAPER_NAME_A4));
 
       Glib::RefPtr<Gtk::PageSetup> page_setup = Gtk::PageSetup::create();
-      page_setup->set_orientation(Gtk::PAGE_ORIENTATION_LANDSCAPE);
+      page_setup->set_orientation(Gtk::PageOrientation::LANDSCAPE);
       page_setup->set_paper_size_and_default_margins(Gtk::PaperSize(Gtk::PAPER_NAME_A4));
 
       Glib::RefPtr<Gtk::PrintOperation> operation = Gtk::PrintOperation::create();
@@ -253,7 +253,7 @@ namespace Test1 {
       operation->signal_draw_page().connect(sigc::mem_fun(*this, &Window::on_draw_page));
       operation->set_n_pages(1);
 
-      if (Gtk::PRINT_OPERATION_RESULT_APPLY != operation->run(Gtk::PRINT_OPERATION_ACTION_PRINT_DIALOG, *this)) {
+      if (Gtk::PrintOperation::Result::APPLY != operation->run(Gtk::PrintOperation::Action::PRINT_DIALOG, *this)) {
         //error handling
       }
 
@@ -261,28 +261,41 @@ namespace Test1 {
     }
 
     void on_saveas_button_clicked() {
-      Gtk::FileChooserDialog dialog(*this, "Save as", Gtk::FILE_CHOOSER_ACTION_SAVE);
-      dialog.add_button("_Cancel", Gtk::RESPONSE_CANCEL);
-    	dialog.add_button("Select", Gtk::RESPONSE_OK);
-      dialog.set_do_overwrite_confirmation(true);
+      auto dialog = new Gtk::FileChooserDialog("Save as", Gtk::FileChooser::Action::SAVE);
+      dialog->set_transient_for(*this);
+      dialog->set_modal(true);
+      dialog->signal_response().connect(sigc::bind(
+        sigc::mem_fun(*this, &Window::on_file_dialog_response), dialog));
+
+      dialog->add_button("_Cancel", Gtk::ResponseType::CANCEL);
+      dialog->add_button("_Select", Gtk::ResponseType::OK);
+
       Glib::RefPtr<Gtk::FileFilter> filter_eps = Gtk::FileFilter::create();
       filter_eps->add_pattern("*.eps");
       filter_eps->set_name("EPS");
-      dialog.add_filter(filter_eps);
+      dialog->add_filter(filter_eps);
       Glib::RefPtr<Gtk::FileFilter> filter_png = Gtk::FileFilter::create();
       filter_png->add_pattern("*.png");
       filter_png->set_name("PNG");
-      dialog.add_filter(filter_png);
+      dialog->add_filter(filter_png);
       Glib::RefPtr<Gtk::FileFilter> filter_pdf = Gtk::FileFilter::create();
       filter_pdf->add_pattern("*.pdf");
       filter_pdf->set_name("PDF");
-      dialog.add_filter(filter_pdf);
+      dialog->add_filter(filter_pdf);
+     
+      dialog->show();
+    }
 
-      if (dialog.run() == Gtk::RESPONSE_OK) {
-        std::string filename = dialog.get_filename();
-        Glib::RefPtr<Gtk::FileFilter> filter_selected = dialog.get_filter();
-        if (filter_selected->get_name() == "EPS") {
-          if (filename.compare(filename.length()-4, std::string::npos, ".eps") != 0)
+    void on_file_dialog_response(int response_id, Gtk::FileChooserDialog *dialog) {
+      if (response_id != Gtk::ResponseType::OK) {
+        delete dialog;
+        return;
+      }
+
+      std::string filename                          = dialog->get_file()->get_path();
+      Glib::RefPtr<Gtk::FileFilter> filter_selected = dialog->get_filter();
+      if (filter_selected->get_name() == "EPS") {
+        if (filename.compare(filename.length()-4, std::string::npos, ".eps") != 0)
     				filename += ".eps";
 
           Cairo::RefPtr<Cairo::PsSurface> surface = Cairo::PsSurface::create(filename, 842, 595);
@@ -297,7 +310,7 @@ namespace Test1 {
           if (filename.compare(filename.length()-4, std::string::npos, ".png") != 0)
     				filename += ".png";
 
-          Cairo::RefPtr<Cairo::ImageSurface> surface = Cairo::ImageSurface::create(Cairo::FORMAT_ARGB32, 842, 595);
+          Cairo::RefPtr<Cairo::ImageSurface> surface = Cairo::ImageSurface::create(Cairo::ImageSurface::Format::ARGB32, 842, 595);
           Cairo::RefPtr<Cairo::Context> cr = Cairo::Context::create(surface);
 
           canvas.draw_plot(cr, 842, 595);
@@ -315,18 +328,16 @@ namespace Test1 {
 
           cr->show_page();
         }
+
+        delete dialog;
       }
-      return;
-    }
-
-
   };
 }
 
 
 int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test1");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test1");
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test1");
 
   //valarrays are underestimated IMHO
   std::valarray<double> x_va(1000), y_va(1000);
@@ -335,9 +346,5 @@ int main(int argc, char **argv) {
   }
   y_va = sin(x_va);
 
-  Glib::ustring x_title("x"), y_title("y");
-
-  Test1::Window window(x_va, y_va, x_title, y_title);
-
-	return app->run(window);
+  return app->make_window_and_run<Test1::Window>(argc, argv, x_va, y_va, "x", "y");
 }

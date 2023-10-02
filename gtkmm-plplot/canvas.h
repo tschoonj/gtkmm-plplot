@@ -53,7 +53,7 @@ namespace Gtk {
     class Canvas : public Gtk::DrawingArea {
     private:
       std::vector<Plot *> plots; ///< A vector containing pointers to the plots
-      sigc::signal<void> _signal_changed; ///< signal that will be emitted whenever one of the parameters of the canvas or the plots in contains changes
+      sigc::signal<void(void)> _signal_changed; ///< signal that will be emitted whenever one of the parameters of the canvas or the plots in contains changes
       double start_event[2]; ///< widget coordinates of the position where a \c button_press_event was generated
       double start_cairo[2]; ///< cairo coordinates of the position where a \c button_press_event was generated
       double end_event[2]; ///< widget coordinates of the position where a \c button_release_event was generated
@@ -64,74 +64,92 @@ namespace Gtk {
       Plot *selected_plot; ///< \c pointer to the currently selected plot
       Plot *inside_plot; ///< \c pointer to the plot that currently contains the mouse cursor. It will be set to nullptr when it is not above a plot.
       double inside_plot_current_coords[2]; ///< coords of the current cursor position within inside_plot, updated in on_motion_notify_event();
+      double mouse_current_coords[2]; ///< coords of the current cursor position;
       Gdk::RGBA background_color; ///< the currently used background color of the canvas (default = opaque White)
       Canvas(const Canvas &) = delete; ///< no copy constructor
       Canvas &operator=(const Canvas &) = delete; ///< no move assignment operator
+            
+      /** This is a default handler for Gtk::EventControllerMotion::signal_motion().
+       *
+       * This method tracks the mouse movement event that leads to a selection box being drawn within the plot box.
+       * When deriving from Canvas and if overriding this method, you may still want to call it to ensure that the selection box will still be drawn.
+       * \param x Coordinates of pointer location.
+       * \param y Coordinates of pointer location.
+       * \return \c true if the key press was handled, \c false otherwise.
+       */
+      bool handle_motion_event(double x, double y);
     protected:
       /** This is a default handler for signal_draw().
        *
        * When deriving from Canvas and if overriding this method, you may still want to call it to ensure proper drawing of the plots provided by Gtkmm-PLplot
        * \param cr The cairo context to draw to.
-       * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
+       * \param width The cairo draw width
+       * \param height The cairo draw height
        */
-      virtual bool on_draw(const ::Cairo::RefPtr<::Cairo::Context>& cr) override;
+      virtual void on_draw(const ::Cairo::RefPtr<::Cairo::Context> &cr, int width, int height);
 
       /** This is a default handler for signal_button_press_event().
        *
        * This method tracks the button press event that may lead to a selection box being dragged, as well as the double press event that will bring a previously zoomed-in range back to its default view.
        * When deriving from Canvas and if overriding this method, you may still want to call it to ensure that the selection box will still be drawn.
-       * \param event The GdkEventButton which triggered this signal.
-       * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
+       * \param n_press How many touch/button presses happened with this one.
+       * \param x The X coordinate, in widget allocation coordinates.
+       * \param y The Y coordinate, in widget allocation coordinates.
        */
-      virtual bool on_button_press_event(GdkEventButton *event) override;
+      virtual void on_button_press_event(int n_press, double x, double y);
 
       /** This is a default handler for signal_button_release_event().
        *
        * This method tracks the button release event that leads to a selection box being completed and thus deleted, which is then followed by signal_select_region being emitted by the plot that had the selection box.
        * When deriving from Canvas and if overriding this method, you may still want to call it to ensure that the selection box will still be drawn.
-       * \param event The GdkEventButton which triggered this signal.
-       * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
+       * \param n_press How many touch/button presses happened with this one.
+       * \param x The X coordinate, in widget allocation coordinates.
+       * \param y The Y coordinate, in widget allocation coordinates.
        */
-      virtual bool on_button_release_event(GdkEventButton *event) override;
+      virtual void on_button_release_event(int n_press, double x, double y);
 
-      /** This is a default handler for signal_motion_notify_event().
+       /** This is a default handler for Gtk::EventControllerMotion::signal_motion().
        *
        * This method tracks the mouse movement event that leads to a selection box being drawn within the plot box.
        * When deriving from Canvas and if overriding this method, you may still want to call it to ensure that the selection box will still be drawn.
-       * \param event The GdkEventMotion which triggered this signal.
-       * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
+       * \param x Coordinates of pointer location.
+       * \param y Coordinates of pointer location.
        */
-      virtual bool on_motion_notify_event(GdkEventMotion *event) override;
+      virtual void on_motion_notify_event(double x, double y);
 
       /** This is a default handler for signal_scroll_event().
        *
        * This method tracks the scroll movement that may be used to trigger a zoom-in or zoom-out event on a particular plot.
        * When deriving from Canvas and if overriding this method, you may still want to call it to ensure that the selection box will still be drawn.
-       * \param event The GdkEventScroll which triggered this signal.
-       * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
+       * \param dx X delta.
+       * \param dy Y delta.
+       * \return \c true if the scroll event was handled, \c false otherwise.
        * \since 2.2
        */
-      virtual bool on_scroll_event(GdkEventScroll *event) override;
+      virtual bool on_scroll_event(double dx, double dy);
 
       /** This is a default handler for signal_key_press_event().
        *
        * This method gets called whenever a key is pressed.
        * In this class, the method will only be useful whenever the SHIFT key is pressed, as this will lead to the plot being moved around within its box.
-       * \param event The GdkEventKey which triggered this signal.
-       * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
+       * \param keyval The pressed key.
+       * \param keycode The raw code of the pressed key.
+       * \param state The bitmask, representing the state of modifier keys and pointer buttons. See `GdkModifierType`.
+       * \return \c true if the key press was handled, \c false otherwise.
        * \since 2.2
        */
-      virtual bool on_key_press_event(GdkEventKey *event) override;
+      virtual bool on_key_press_event(guint keyval, guint keycode, Gdk::ModifierType state);
 
       /** This is a default handler for signal_key_release_event().
        *
        * This method gets called whenever a key is released.
        * In this class, the method will only be useful whenever the SHIFT key is released, as this will lead to the plot being moved around within its box.
-       * \param event The GdkEventKey which triggered this signal.
-       * \return \c true to stop other handlers from being invoked for the event. \c false to propagate the event further
+       * \param keyval The released key.
+       * \param keycode The raw code of the pressed key.
+       * \param state The bitmask, representing the state of modifier keys and pointer buttons. See `GdkModifierType`.
        * \since 2.2
        */
-      virtual bool on_key_release_event(GdkEventKey *event) override;
+      virtual void on_key_release_event(guint keyval, guint keycode, Gdk::ModifierType state);
 
       /** This is a default handler for signal_changed().
        *
@@ -198,7 +216,7 @@ namespace Gtk {
        * \exception Gtk::PLplot::Exception
        * \return signal
        */
-      sigc::signal<void> signal_changed() {
+      sigc::signal<void(void)> signal_changed() {
         return _signal_changed;
       }
 

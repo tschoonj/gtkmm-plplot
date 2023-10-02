@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot.h>
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
 #include <gtkmm/window.h>
@@ -56,16 +57,16 @@ namespace Test12 {
       canvas(*Gtk::manage(new Gtk::PLplot::PlotHistogram(*_histogram_data, x_title, y_title, plot_title))),
       histogram_data(_histogram_data)
     {
-      set_border_width(5);
       set_column_homogeneous(false);
       set_column_spacing(5);
       set_row_homogeneous(false);
       set_row_spacing(5);
+      set_margin(10);
 
       line_label.set_hexpand(true);
       line_label.set_vexpand(false);
-      line_label.set_valign(Gtk::ALIGN_CENTER);
-      line_label.set_halign(Gtk::ALIGN_END);
+      line_label.set_valign(Gtk::Align::CENTER);
+      line_label.set_halign(Gtk::Align::END);
 
       attach(line_label, 0, 0, 1, 1);
 
@@ -75,8 +76,8 @@ namespace Test12 {
       line_color.set_use_alpha(true);
       line_color.set_hexpand(false);
       line_color.set_vexpand(false);
-      line_color.set_halign(Gtk::ALIGN_FILL);
-      line_color.set_valign(Gtk::ALIGN_CENTER);
+      line_color.set_halign(Gtk::Align::FILL);
+      line_color.set_valign(Gtk::Align::CENTER);
 
       line_color.signal_color_set().connect([this, plot_data](){plot_data->set_color(line_color.get_rgba());});
 
@@ -96,16 +97,16 @@ namespace Test12 {
 
       linestyle_combo.set_hexpand(false);
       linestyle_combo.set_vexpand(false);
-      linestyle_combo.set_halign(Gtk::ALIGN_CENTER);
-      linestyle_combo.set_valign(Gtk::ALIGN_CENTER);
+      linestyle_combo.set_halign(Gtk::Align::CENTER);
+      linestyle_combo.set_valign(Gtk::Align::CENTER);
 
       attach(linestyle_combo, 2, 0, 1, 1);
 
       //our spinbuttons, first one for the line thickness, second for symbol size
       linewidth_spin.set_hexpand(true);
       linewidth_spin.set_vexpand(false);
-      linewidth_spin.set_halign(Gtk::ALIGN_START);
-      linewidth_spin.set_valign(Gtk::ALIGN_CENTER);
+      linewidth_spin.set_halign(Gtk::Align::START);
+      linewidth_spin.set_valign(Gtk::Align::CENTER);
       linewidth_spin.set_wrap(true);
       linewidth_spin.set_snap_to_ticks(true);
       linewidth_spin.set_numeric(true);
@@ -118,24 +119,27 @@ namespace Test12 {
 
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
       canvas.set_background_color(Gdk::RGBA("LightGrey"));
-      attach(canvas, 0, 1, 4, 1);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, 2, false);
+      geometry.set_child(canvas);
+      attach(geometry, 0, 1, 4, 1);
 
       Gtk::Label *label;
 
       label = Gtk::manage(new Gtk::Label("Expand bins"));
-      label->set_halign(Gtk::ALIGN_END);
+      label->set_halign(Gtk::Align::END);
       label->set_hexpand(false);
       attach(*label, 0, 2, 1, 1);
       expand_bins.set_hexpand(false);
-      expand_bins.set_halign(Gtk::ALIGN_START);
+      expand_bins.set_halign(Gtk::Align::START);
       attach(expand_bins, 1, 2, 1, 1);
       label = Gtk::manage(new Gtk::Label("Show empty bins"));
-      label->set_halign(Gtk::ALIGN_END);
+      label->set_halign(Gtk::Align::END);
       label->set_hexpand(false);
       attach(*label, 2, 2, 1, 1);
       empty_bins.set_hexpand(false);
-      empty_bins.set_halign(Gtk::ALIGN_START);
+      empty_bins.set_halign(Gtk::Align::START);
       attach(empty_bins, 3, 2, 1, 1);
 
       expand_bins.set_active(histogram_data->get_expand_bins());
@@ -161,12 +165,12 @@ namespace Test12 {
       Gtk::Label *label;
 
       label = Gtk::manage(new Gtk::Label("X-data is centred"));
-      label->set_halign(Gtk::ALIGN_END);
+      label->set_halign(Gtk::Align::END);
       label->set_hexpand(false);
       label->set_vexpand(false);
       attach(*label, 0, 3, 1, 1);
 
-      centred.set_halign(Gtk::ALIGN_START);
+      centred.set_halign(Gtk::Align::START);
       centred.set_hexpand(false);
       centred.set_vexpand(false);
       centred.set_active(_histogram_data->get_centred());
@@ -201,12 +205,12 @@ namespace Test12 {
       Gtk::Label *label;
 
       label = Gtk::manage(new Gtk::Label("Ignore outliers"));
-      label->set_halign(Gtk::ALIGN_END);
+      label->set_halign(Gtk::Align::END);
       label->set_hexpand(false);
       label->set_vexpand(false);
       attach(*label, 0, 3, 1, 1);
 
-      ignore_outliers.set_halign(Gtk::ALIGN_START);
+      ignore_outliers.set_halign(Gtk::Align::START);
       ignore_outliers.set_hexpand(false);
       ignore_outliers.set_vexpand(false);
       ignore_outliers.set_active(_histogram_data->get_ignore_outliers());
@@ -216,12 +220,12 @@ namespace Test12 {
       attach(ignore_outliers, 1, 3, 1, 1);
 
       label = Gtk::manage(new Gtk::Label("Number of bins"));
-      label->set_halign(Gtk::ALIGN_END);
+      label->set_halign(Gtk::Align::END);
       label->set_hexpand(false);
       label->set_vexpand(false);
       attach(*label, 2, 3, 1, 1);
 
-      nbins_spin.set_halign(Gtk::ALIGN_START);
+      nbins_spin.set_halign(Gtk::Align::START);
       nbins_spin.set_hexpand(false);
       nbins_spin.set_vexpand(false);
       nbins_spin.set_wrap(true);
@@ -234,12 +238,12 @@ namespace Test12 {
       attach(nbins_spin, 3, 3, 1, 1);
 
       label = Gtk::manage(new Gtk::Label("Bin minimum"));
-      label->set_halign(Gtk::ALIGN_END);
+      label->set_halign(Gtk::Align::END);
       label->set_hexpand(false);
       label->set_vexpand(false);
       attach(*label, 0, 4, 1, 1);
 
-      datmin_spin.set_halign(Gtk::ALIGN_START);
+      datmin_spin.set_halign(Gtk::Align::START);
       datmin_spin.set_hexpand(false);
       datmin_spin.set_vexpand(false);
       datmin_spin.set_wrap(true);
@@ -256,12 +260,12 @@ namespace Test12 {
       attach(datmin_spin, 1, 4, 1, 1);
 
       label = Gtk::manage(new Gtk::Label("Bin maximum"));
-      label->set_halign(Gtk::ALIGN_END);
+      label->set_halign(Gtk::Align::END);
       label->set_hexpand(false);
       label->set_vexpand(false);
       attach(*label, 2, 4, 1, 1);
 
-      datmax_spin.set_halign(Gtk::ALIGN_START);
+      datmax_spin.set_halign(Gtk::Align::START);
       datmax_spin.set_hexpand(false);
       datmax_spin.set_vexpand(false);
       datmax_spin.set_wrap(true);
@@ -289,7 +293,7 @@ namespace Test12 {
     HistogramUnbinnedTab(_histogram_data, x_title, y_title, plot_title),
     add_data_button("Add 10 data points") {
       add_data_button.set_hexpand(false);
-      add_data_button.set_halign(Gtk::ALIGN_CENTER);
+      add_data_button.set_halign(Gtk::Align::CENTER);
       add_data_button.signal_clicked().connect(add_data_function);
 
       attach(add_data_button, 0, 5, 4, 1);
@@ -304,10 +308,7 @@ namespace Test12 {
   public:
     Window() : notebook(), gen(1234), d(0, 1){
       // general window and canvas settings
-      set_default_size(720, 580);
-      Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
-      set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
+      set_default_size(1024, 800);
       set_title("Gtkmm-PLplot test12");
 
       //add pages to notebook
@@ -371,18 +372,15 @@ namespace Test12 {
       notebook.append_page(*tab1, "Histogram 1");
       notebook.append_page(*tab2, "Histogram 2");
       notebook.append_page(*tab3, "Histogram 3");
-      add(notebook);
-      set_border_width(5);
-      notebook.show_all();
+      notebook.set_margin(10);
+      set_child(notebook);
     }
   };
 }
 
 int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test12");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test12");
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test12");
 
-  Test12::Window *window = new Test12::Window();
-
-  return app->run(*window);
+  return app->make_window_and_run<Test12::Window>(argc, argv);
 }

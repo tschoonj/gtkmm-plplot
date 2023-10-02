@@ -15,7 +15,10 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
+#include <gtkmm/eventcontrollerkey.h>
+#include <gtkmm/eventcontrollermotion.h>
+#include <gtkmm/eventcontrollerscroll.h>
+#include <gtkmm/gestureclick.h>
 #include <gtkmm-plplot/canvas.h>
 #include <gtkmm-plplot/plot.h>
 #include <gtkmm-plplot/exception.h>
@@ -32,7 +35,7 @@ using namespace Gtk::PLplot;
 Canvas::Canvas(Plot &plot, Gdk::RGBA _background_color) :
   Canvas(_background_color) {
 
-  add_plot(plot);
+    add_plot(plot);
 }
 
 Canvas::Canvas(Gdk::RGBA _background_color) :
@@ -47,29 +50,43 @@ Canvas::Canvas(Gdk::RGBA _background_color) :
   selected_plot(nullptr),
   inside_plot(nullptr),
   inside_plot_current_coords{0.0, 0.0},
+  mouse_current_coords{0.0, 0.0},
   background_color(_background_color) {
-
-  add_events(Gdk::POINTER_MOTION_MASK |
-             Gdk::BUTTON_PRESS_MASK |
-             Gdk::BUTTON_RELEASE_MASK |
-             Gdk::SCROLL_MASK |
-             Gdk::KEY_PRESS_MASK |
-             Gdk::KEY_RELEASE_MASK
-           );
-
   set_can_focus(true);
 
   signal_changed().connect(sigc::mem_fun(*this, &Canvas::on_changed));
+
+  set_draw_func(sigc::mem_fun(*this, &Canvas::on_draw));
+
+  auto scroll_controller = Gtk::EventControllerScroll::create();
+  scroll_controller->set_flags(Gtk::EventControllerScroll::Flags::VERTICAL);
+  scroll_controller->signal_scroll().connect(sigc::mem_fun(*this, &Canvas::on_scroll_event), true);
+  add_controller(scroll_controller);
+
+  auto motion_controller = Gtk::EventControllerMotion::create();
+  motion_controller->signal_enter().connect(sigc::mem_fun(*this, &Canvas::on_motion_notify_event), false);
+  motion_controller->signal_motion().connect(sigc::mem_fun(*this, &Canvas::on_motion_notify_event), false);
+  add_controller(motion_controller);
+
+  auto key_controller = Gtk::EventControllerKey::create();
+  key_controller->signal_key_pressed().connect(sigc::mem_fun(*this, &Canvas::on_key_press_event), false);
+  key_controller->signal_key_released().connect(sigc::mem_fun(*this, &Canvas::on_key_release_event), false);
+  add_controller(key_controller);
+
+  auto gesture_click = Gtk::GestureClick::create();
+  gesture_click->signal_pressed().connect(sigc::mem_fun(*this, &Canvas::on_button_press_event), false);
+  gesture_click->signal_released().connect(sigc::mem_fun(*this, &Canvas::on_button_release_event), false);
+  add_controller(gesture_click);
 }
 
-bool Canvas::on_scroll_event(GdkEventScroll *event) {
+bool Canvas::on_scroll_event(double dx, double dy) {
   Gtk::Allocation allocation = get_allocation();
   const int height = allocation.get_height();
 
   double start_cairo[2];
 
-  start_cairo[0] = event->x;
-  start_cairo[1] = height - event->y;
+  start_cairo[0] = mouse_current_coords[0] + dx;
+  start_cairo[1] = height - (mouse_current_coords[1] + dy);
 
   if (inside_plot != nullptr && !selecting && !left_mouse_button_clicked && !shift_pressed) {
     RegionSelection *region_selection = dynamic_cast<RegionSelection *>(inside_plot);
@@ -82,7 +99,7 @@ bool Canvas::on_scroll_event(GdkEventScroll *event) {
         cursor_x,
         cursor_y
       );
-      region_selection->signal_zoom_region().emit(cursor_x, cursor_y, event->direction);
+      region_selection->signal_zoom_region().emit(cursor_x, cursor_y, dy > 0 ? GdkScrollDirection::GDK_SCROLL_DOWN : GdkScrollDirection::GDK_SCROLL_UP);
       return true;
     }
   }
@@ -118,11 +135,7 @@ void Canvas::on_changed() {
   this->queue_draw();
 }
 
-bool Canvas::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
-  Gtk::Allocation allocation = get_allocation();
-  const int width = allocation.get_width();
-  const int height = allocation.get_height();
-
+void Canvas::on_draw(const Cairo::RefPtr<Cairo::Context> &cr, int width, int height) {
   draw_plot(cr, width, height);
 
   if (selecting &&
@@ -151,8 +164,6 @@ bool Canvas::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
 
     cr->restore();
   }
-
-  return true;
 }
 
 void Canvas::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, int width, int height) {
@@ -167,19 +178,15 @@ void Canvas::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, int width, int h
   }
 }
 
-
-bool Canvas::on_button_press_event(GdkEventButton *event) {
-  if (event->button != GDK_BUTTON_PRIMARY) {
-    return false;
-  }
+void Canvas::on_button_press_event(int n_press, double x, double y) {
   grab_focus();
   Gtk::Allocation allocation = get_allocation();
   const int height = allocation.get_height();
 
-  start_event[0] = event->x;
-  start_event[1] = event->y;
-  start_cairo[0] = event->x;
-  start_cairo[1] = height - event->y;
+  start_event[0] = x;
+  start_event[1] = y;
+  start_cairo[0] = x;
+  start_cairo[1] = height - y;
   end_event[0] = -1.0;
   end_event[1] = -1.0;
   end_cairo[0] = -1.0;
@@ -192,7 +199,7 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
       region_selection->get_region_selectable() &&
       !shift_pressed) {
       // double-click -> zoom out!
-      if (event->type == GDK_2BUTTON_PRESS) {
+      if (n_press == 2) {
         //convert event coordinates to plot coordinates
         double cursor_x, cursor_y;
 
@@ -205,60 +212,52 @@ bool Canvas::on_button_press_event(GdkEventButton *event) {
 
         region_selection->signal_double_press().emit(cursor_x, cursor_y);
 
-        return true;
+        return;
       }
       selecting = true;
       selected_plot = inside_plot;
 
-      return true;
+      return;
     }
     else if (region_selection != nullptr &&
-      event->type == GDK_BUTTON_PRESS &&
       region_selection->get_region_pannable() &&
       shift_pressed == true) {
       left_mouse_button_clicked = true;
 
-      //change cursor if appropriate
-      if (get_window()) {
-          Glib::RefPtr<Gdk::Cursor> grabbing = Gdk::Cursor::create(get_window()->get_display(), "grabbing");
-          get_window()->set_cursor(grabbing);
-      }
-      return true;
+      //change cursor
+      Glib::RefPtr<Gdk::Cursor> grabbing = Gdk::Cursor::create("grabbing");
+      set_cursor(grabbing);
+
+      return;
     }
   }
 
   selecting = false;
   left_mouse_button_clicked = false;
-
-  return false;
 }
 
-bool Canvas::on_button_release_event(GdkEventButton *event) {
-  if (event->button != GDK_BUTTON_PRIMARY) {
-    return false;
-  }
+void Canvas::on_button_release_event(int n_press, double x, double y) {
   left_mouse_button_clicked = false;
   if (shift_pressed) {
-    if (get_window()) {
-      Glib::RefPtr<Gdk::Cursor> grab= Gdk::Cursor::create(get_window()->get_display(), "grab");
-      get_window()->set_cursor(grab);
-    }
-    return false;
+    Glib::RefPtr<Gdk::Cursor> grab = Gdk::Cursor::create("grab");
+    set_cursor(grab);
+
+    return;
   }
   else if (!selecting)
-    return false;
+    return;
 
   Gtk::Allocation allocation = get_allocation();
   const int height = allocation.get_height();
 
-  end_event[0] = event->x;
-  end_event[1] = event->y;
-  end_cairo[0] = event->x;
-  end_cairo[1] = height - event->y;
+  end_event[0] = x;
+  end_event[1] = y;
+  end_cairo[0] = x;
+  end_cairo[1] = height - y;
 
   if (start_cairo[0] == end_cairo[0] && start_cairo[1] ==  end_cairo[1]) {
     selecting = false;
-    return false;
+    return;
   }
 
   RegionSelection *region_selection = dynamic_cast<RegionSelection *>(selected_plot);
@@ -336,23 +335,25 @@ bool Canvas::on_button_release_event(GdkEventButton *event) {
   catch (Exception &e) {
     g_warning("Exception caught when emitting signal_select_region()!");
   }
-
-  return true;
 }
 
-bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
+void Canvas::on_motion_notify_event (double x, double y) {
   Gtk::Allocation allocation = get_allocation();
   const int height = allocation.get_height();
 
-  end_event[0] = event->x;
-  end_event[1] = event->y;
-  end_cairo[0] = event->x;
-  end_cairo[1] = height - event->y;
+  end_event[0] = x;
+  end_event[1] = y;
+  end_cairo[0] = x;
+  end_cairo[1] = height - y;
 
   //inside_plot = nullptr;
 
+  mouse_current_coords[0] = x;
+  mouse_current_coords[1] = y;
+
   //emit signal for new cursor coordinates
   bool cursor_checked = false;
+  bool is_enter = false;
   for (auto plot = plots.rbegin() ; plot != plots.rend() ; ++plot) {
     RegionSelection *region_selection = dynamic_cast<RegionSelection *>(*plot);
 
@@ -375,32 +376,33 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
         // if there is a change of inside_plot, we cannot rely on inside_plot_current_coords!
         inside_plot_current_coords[0] = cursor_x;
         inside_plot_current_coords[1] = cursor_y;
+        is_enter = true;
       }
 
       inside_plot = *plot;
 
       // change cursor to crosshair or system default if necessary
-      const Glib::RefPtr<Gdk::Window> window = get_window();
-      if (window) {
-        if (region_selection->get_region_pannable() && left_mouse_button_clicked && shift_pressed) {
-          Glib::RefPtr<Gdk::Cursor> grabbing = Gdk::Cursor::create(window->get_display(), "grabbing");
-          window->set_cursor(grabbing);
-          std::vector<double> rv = region_selection->signal_pan().emit(inside_plot_current_coords[0], inside_plot_current_coords[1], cursor_x, cursor_y);
-          cursor_x = rv[2];
-          cursor_y = rv[3];
-        }
-        else if (region_selection->get_region_pannable() && shift_pressed) {
-          Glib::RefPtr<Gdk::Cursor> grab = Gdk::Cursor::create(window->get_display(), "grab");
-          window->set_cursor(grab);
-        }
-        else {
-          Glib::RefPtr<Gdk::Cursor> crosshair = Gdk::Cursor::create(window->get_display(), "crosshair");
-          window->set_cursor(crosshair);
-        }
+      if (region_selection->get_region_pannable() && left_mouse_button_clicked && shift_pressed) {
+        Glib::RefPtr<Gdk::Cursor> grabbing = Gdk::Cursor::create("grabbing");
+        set_cursor(grabbing);
+        std::vector<double> rv = region_selection->signal_pan().emit(inside_plot_current_coords[0], inside_plot_current_coords[1], cursor_x, cursor_y);
+        cursor_x = rv[2];
+        cursor_y = rv[3];
+      }
+      else if (region_selection->get_region_pannable() && shift_pressed) {
+        Glib::RefPtr<Gdk::Cursor> grab = Gdk::Cursor::create("grab");
+        set_cursor(grab);
+      }
+      else {
+        Glib::RefPtr<Gdk::Cursor> crosshair = Gdk::Cursor::create("crosshair");
+        set_cursor(crosshair);
       }
 
       // this should be emitted after signal_pan(), as cursor_x and cursor_y may have changed
-      region_selection->signal_cursor_motion().emit(cursor_x, cursor_y);
+      if (is_enter)
+        region_selection->signal_cursor_enter().emit(cursor_x, cursor_y);
+      else
+        region_selection->signal_cursor_motion().emit(cursor_x, cursor_y);
 
       cursor_checked = true;
 
@@ -412,15 +414,17 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
   }
 
   if (!cursor_checked) {
-    inside_plot = nullptr;
-    if (get_window()) {
-      get_window()->set_cursor(Glib::RefPtr<Gdk::Cursor>(0));
+    if (inside_plot) {
+      RegionSelection *region_selection = dynamic_cast<RegionSelection *>(inside_plot);
+      region_selection->signal_cursor_leave().emit();
     }
+    inside_plot = nullptr;
+    set_cursor();
   }
 
   // if not dragging a selection box, stop here
   if (!selecting)
-    return false;
+    return;
 
   RegionSelection *region_selection = dynamic_cast<RegionSelection *>(selected_plot);
 
@@ -444,11 +448,9 @@ bool Canvas::on_motion_notify_event (GdkEventMotion *event) {
   }
 
   _signal_changed.emit();
-
-  return true;
 }
 
-bool Canvas::on_key_press_event(GdkEventKey *event) {
+bool Canvas::on_key_press_event(guint keyval, guint keycode, Gdk::ModifierType state) {
 
   if (inside_plot == nullptr || selecting)
     return false;
@@ -457,19 +459,17 @@ bool Canvas::on_key_press_event(GdkEventKey *event) {
 
   if (region_selection != nullptr &&
     region_selection->get_region_pannable() &&
-    (event->keyval == GDK_KEY_Shift_L || event->keyval == GDK_KEY_Shift_R)
+    (keyval == GDK_KEY_Shift_L || keyval == GDK_KEY_Shift_R)
     ) {
     shift_pressed = true;
 
-    if (get_window()) {
-      if (left_mouse_button_clicked) {
-        Glib::RefPtr<Gdk::Cursor> grabbing = Gdk::Cursor::create(get_window()->get_display(), "grabbing");
-        get_window()->set_cursor(grabbing);
-      }
-      else {
-        Glib::RefPtr<Gdk::Cursor> grab= Gdk::Cursor::create(get_window()->get_display(), "grab");
-        get_window()->set_cursor(grab);
-      }
+    if (left_mouse_button_clicked) {
+        Glib::RefPtr<Gdk::Cursor> grabbing = Gdk::Cursor::create("grabbing");
+        set_cursor(grabbing);
+    }
+    else {
+        Glib::RefPtr<Gdk::Cursor> grab = Gdk::Cursor::create("grab");
+        set_cursor(grab);
     }
 
     return true;
@@ -478,28 +478,19 @@ bool Canvas::on_key_press_event(GdkEventKey *event) {
   return false;
 }
 
-bool Canvas::on_key_release_event(GdkEventKey *event) {
-  if (event->keyval == GDK_KEY_Shift_L || event->keyval == GDK_KEY_Shift_R) {
+void Canvas::on_key_release_event(guint keyval, guint keycode, Gdk::ModifierType state) {
+  if (keyval == GDK_KEY_Shift_L || keyval == GDK_KEY_Shift_R) {
     shift_pressed = false;
     if (inside_plot != nullptr) {
       RegionSelection *region_selection = dynamic_cast<RegionSelection *>(inside_plot);
       if (region_selection != nullptr) {
-        if (get_window()) {
-          Glib::RefPtr<Gdk::Cursor> crosshair = Gdk::Cursor::create(get_window()->get_display(), "crosshair");
-          get_window()->set_cursor(crosshair);
-        }
-        return true;
+        Glib::RefPtr<Gdk::Cursor> crosshair = Gdk::Cursor::create("crosshair");
+        set_cursor(crosshair);
+        return;
       }
     }
-    if (get_window()) {
-      get_window()->set_cursor(Glib::RefPtr<Gdk::Cursor>(0));
-    }
-
-    return true;
+    set_cursor();
   }
-
-
-  return false;
 }
 
 Plot* Canvas::get_plot(unsigned int index) {

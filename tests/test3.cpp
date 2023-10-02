@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtkmm-plplot.h"
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <gtkmm/window.h>
 #include <gtkmm/grid.h>
@@ -59,23 +60,24 @@ namespace Test3 {
   public:
     Window() : canvas(), add_plot("Add"), remove_plot("Remove"),
       show_plot("Show"), hide_plot("Hide") {
-      set_default_size(720, 580);
-      Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
-      set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
+      const int width = 1024, height = 580;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test3");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+      geometry.set_child(canvas);
       add_plot.set_hexpand(true);
       add_plot.set_vexpand(false);
-      add_plot.set_halign(Gtk::ALIGN_END);
+      add_plot.set_halign(Gtk::Align::END);
       remove_plot.set_hexpand(false);
       remove_plot.set_vexpand(false);
       show_plot.set_hexpand(false);
       show_plot.set_vexpand(false);
       hide_plot.set_hexpand(true);
       hide_plot.set_vexpand(false);
-      hide_plot.set_halign(Gtk::ALIGN_START);
+      hide_plot.set_halign(Gtk::Align::START);
 
       remove_plot.set_sensitive(false);
       show_plot.set_sensitive(false);
@@ -104,15 +106,13 @@ namespace Test3 {
       grid.attach(remove_plot, 1, 0, 1, 1);
       grid.attach(show_plot, 2, 0, 1, 1);
       grid.attach(hide_plot, 3, 0, 1, 1);
-      grid.attach(canvas, 0, 1, 4, 1);
+      grid.attach(geometry, 0, 1, 4, 1);
       grid.set_row_spacing(5);
       grid.set_column_spacing(5);
       grid.set_column_homogeneous(false);
 
-
-      add(grid);
-      set_border_width(10);
-      grid.show_all();
+      grid.set_margin(10);
+      set_child(grid);
     }
     virtual ~Window() {}
   };
@@ -120,8 +120,7 @@ namespace Test3 {
 
 int main(int argc, char *argv[]) {
   Glib::set_application_name("gtkmm-plplot-test3");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test3");
-  Test3::Window window;
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test3");
 
-  return app->run(window);
+  return app->make_window_and_run<Test3::Window>(argc, argv);
 }

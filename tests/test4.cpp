@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot.h>
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glibmm/stringutils.h>
 #include <gtkmm/window.h>
@@ -66,24 +67,25 @@ namespace Test4 {
       checkbutton2("Plot 2"), checkbutton3("Plot 3"),
       label_x("X:"),
       label_y("Y:") {
-      set_default_size(720, 580);
-      Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
-      set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
+      const int width = 1024, height = 580;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test4");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
       canvas.set_background_color(Gdk::RGBA("Light Gray"));
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+      geometry.set_child(canvas);
       grid.set_column_homogeneous(true);
       checkbutton1.set_vexpand(false);
       checkbutton1.set_hexpand(false);
-      checkbutton1.set_halign(Gtk::ALIGN_CENTER);
+      checkbutton1.set_halign(Gtk::Align::CENTER);
       checkbutton2.set_vexpand(false);
       checkbutton2.set_hexpand(false);
-      checkbutton2.set_halign(Gtk::ALIGN_CENTER);
+      checkbutton2.set_halign(Gtk::Align::CENTER);
       checkbutton3.set_vexpand(false);
       checkbutton3.set_hexpand(false);
-      checkbutton3.set_halign(Gtk::ALIGN_CENTER);
+      checkbutton3.set_halign(Gtk::Align::CENTER);
 
       std::valarray<double> x_va = Gtk::PLplot::indgen_va(1000)/50.0 - 10.0;
       std::valarray<double> y_va1 = sinh(x_va);
@@ -210,7 +212,7 @@ namespace Test4 {
       grid.attach(checkbutton1, 0, 0, 1, 1);
       grid.attach(checkbutton2, 1, 0, 1, 1);
       grid.attach(checkbutton3, 2, 0, 1, 1);
-      grid.attach(canvas, 0, 1, 3, 1);
+      grid.attach(geometry, 0, 1, 3, 1);
 
       coordinates_grid.set_column_homogeneous(false);
       coordinates_grid.attach(label_x, 0, 0, 1, 1);
@@ -219,23 +221,22 @@ namespace Test4 {
       coordinates_grid.attach(entry_y, 3, 0, 1, 1);
       label_x.set_vexpand(false);
       label_x.set_hexpand(true);
-      label_x.set_halign(Gtk::ALIGN_END);
+      label_x.set_halign(Gtk::Align::END);
       label_y.set_vexpand(false);
       label_y.set_hexpand(false);
-      label_y.set_halign(Gtk::ALIGN_CENTER);
+      label_y.set_halign(Gtk::Align::CENTER);
       entry_x.set_vexpand(false);
       entry_x.set_hexpand(false);
-      entry_x.set_halign(Gtk::ALIGN_END);
+      entry_x.set_halign(Gtk::Align::END);
       entry_y.set_vexpand(false);
       entry_y.set_hexpand(true);
-      entry_y.set_halign(Gtk::ALIGN_START);
+      entry_y.set_halign(Gtk::Align::START);
       coordinates_grid.set_column_spacing(5);
       grid.attach(coordinates_grid, 0, 2, 3, 1);
       grid.set_row_spacing(5);
 
-      add(grid);
-      set_border_width(10);
-      grid.show_all();
+      grid.set_margin(10);
+      set_child(grid);
     }
     virtual ~Window() {}
   };
@@ -243,8 +244,7 @@ namespace Test4 {
 
 int main(int argc, char *argv[]) {
   Glib::set_application_name("gtkmm-plplot-test4");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test4");
-  Test4::Window window;
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test4");
 
-  return app->run(window);
+  return app->make_window_and_run<Test4::Window>(argc, argv);
 }

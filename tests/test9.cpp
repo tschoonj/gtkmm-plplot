@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtkmm-plplot.h"
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
 #include <gtkmm/window.h>
@@ -93,13 +94,14 @@ namespace Test9 {
 
       canvas.add_plot(*plot);
 
-      set_default_size(720, 580);
-      Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(580);
-      set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
+      const int width = 1024, height = 720;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test9");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+      geometry.set_child(canvas);
 
       show_radio1.set_active(data1->is_showing());
       show_radio2.set_active(data2->is_showing());
@@ -145,8 +147,8 @@ namespace Test9 {
 
       color_combo1.set_hexpand(false);
       color_combo2.set_hexpand(false);
-      linewidth_spin1.set_halign(Gtk::ALIGN_START);
-      linewidth_spin2.set_halign(Gtk::ALIGN_START);
+      linewidth_spin1.set_halign(Gtk::Align::START);
+      linewidth_spin2.set_halign(Gtk::Align::START);
       show_radio1.set_hexpand(false);
       show_radio2.set_hexpand(false);
       label1.set_hexpand(true);
@@ -155,8 +157,8 @@ namespace Test9 {
       linewidth_spin2.set_hexpand(true);
       linestyle_combo1.set_hexpand(false);
       linestyle_combo2.set_hexpand(false);
-      label1.set_halign(Gtk::ALIGN_END);
-      label2.set_halign(Gtk::ALIGN_END);
+      label1.set_halign(Gtk::Align::END);
+      label2.set_halign(Gtk::Align::END);
 
       grid.set_column_homogeneous(false);
       grid.set_column_spacing(5);
@@ -189,10 +191,10 @@ namespace Test9 {
       azimuth_spin.set_snap_to_ticks(true);
       altitude_spin.set_numeric(true);
       azimuth_spin.set_numeric(true);
-      altitude_label.set_halign(Gtk::ALIGN_END);
-      azimuth_label.set_halign(Gtk::ALIGN_END);
-      altitude_spin.set_halign(Gtk::ALIGN_START);
-      azimuth_spin.set_halign(Gtk::ALIGN_START);
+      altitude_label.set_halign(Gtk::Align::END);
+      azimuth_label.set_halign(Gtk::Align::END);
+      altitude_spin.set_halign(Gtk::Align::START);
+      azimuth_spin.set_halign(Gtk::Align::START);
       altitude_label.set_hexpand(false);
       azimuth_label.set_hexpand(false);
       altitude_label.set_vexpand(false);
@@ -226,15 +228,14 @@ namespace Test9 {
       grid.attach(color_combo2, 2, 1, 1, 1);
       grid.attach(linestyle_combo2, 3, 1, 1, 1);
       grid.attach(linewidth_spin2, 4, 1, 1, 1);
-      grid.attach(canvas, 0, 2, 5, 1);
+      grid.attach(geometry, 0, 2, 5, 1);
       grid.attach(altitude_label, 0, 3, 3, 1);
       grid.attach(altitude_spin, 3, 3, 2, 1);
       grid.attach(azimuth_label, 0, 4, 3, 1);
       grid.attach(azimuth_spin, 3, 4, 2, 1);
 
-      add(grid);
-      set_border_width(10);
-      grid.show_all();
+      grid.set_margin(10);
+      set_child(grid);
     }
     virtual ~Window() {}
   };
@@ -242,9 +243,7 @@ namespace Test9 {
 
 int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test9");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test9");
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test9");
 
-  Test9::Window window;
-
-	return app->run(window);
+  return app->make_window_and_run<Test9::Window>(argc, argv);
 }

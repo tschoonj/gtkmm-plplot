@@ -66,11 +66,11 @@ namespace Gtk {
       Gdk::RGBA axes_color; ///< the currently used color to draw the axes, the box and gridlines. Default is opaque black
       Gdk::RGBA titles_color; ///< the currently used color to draw the axes and plot titles. Default is opaque black
 
-      sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the plot parameters, or any of the contained PlotData datasets is changed.
-      sigc::signal<void, PlotData *> _signal_data_added; ///< signal emitted whenever a PlotData dataset is added to the plot
-      sigc::signal<void, PlotData *> _signal_data_removed; ///< signal emitted whenever data is removed from the plot.
-      sigc::signal<void, PlotObject *> _signal_object_added; ///< signal emitted whenever a PlotObject is added to the plot
-      sigc::signal<void, PlotObject *> _signal_object_removed; ///< signal emitted whenever a PlotObject is removed from the plot.
+      sigc::signal<void(void)> _signal_changed; ///< signal that gets emitted whenever any of the plot parameters, or any of the contained PlotData datasets is changed.
+      sigc::signal<void(PlotData *)> _signal_data_added; ///< signal emitted whenever a PlotData dataset is added to the plot
+      sigc::signal<void(PlotData *)> _signal_data_removed; ///< signal emitted whenever data is removed from the plot.
+      sigc::signal<void(PlotObject *)> _signal_object_added; ///< signal emitted whenever a PlotObject is added to the plot
+      sigc::signal<void(PlotObject *)> _signal_object_removed; ///< signal emitted whenever a PlotObject is removed from the plot.
 
       virtual void plot_data_modified() = 0; ///< a method that will update the \c _range variables when datasets are added, modified or removed.
 
@@ -286,7 +286,7 @@ namespace Gtk {
        *
        * See default handler on_changed()
        */
-      sigc::signal<void> signal_changed() {
+      sigc::signal<void(void)> signal_changed() {
         return _signal_changed;
       }
 
@@ -294,7 +294,7 @@ namespace Gtk {
        *
        * See default handler on_data_added()
        */
-      sigc::signal<void, PlotData *> signal_data_added() {
+      sigc::signal<void(PlotData *)> signal_data_added() {
         return _signal_data_added;
       }
 
@@ -302,7 +302,7 @@ namespace Gtk {
       *
       * See default handler on_data_removed()
       */
-      sigc::signal<void, PlotData *> signal_data_removed() {
+      sigc::signal<void(PlotData *)> signal_data_removed() {
         return _signal_data_removed;
       }
 
@@ -310,7 +310,7 @@ namespace Gtk {
        *
        * See default handler on_object_added()
        */
-      sigc::signal<void, PlotObject *> signal_object_added() {
+      sigc::signal<void(PlotObject *)> signal_object_added() {
         return _signal_object_added;
       }
 
@@ -318,7 +318,7 @@ namespace Gtk {
       *
       * See default handler on_object_removed()
       */
-      sigc::signal<void, PlotObject *> signal_object_removed() {
+      sigc::signal<void(PlotObject *)> signal_object_removed() {
         return _signal_object_removed;
       }
 

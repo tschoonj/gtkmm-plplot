@@ -41,8 +41,8 @@ namespace Gtk {
       PlotData &operator=(const PlotData &) = delete; ///< no move assignment operator
       PlotData(const PlotData &source) = delete; ///< no default copy constructor;
     protected:
-      sigc::signal<void> _signal_changed; ///< signal that gets emitted whenever any of the dataset proprties is changed.
-      sigc::signal<void> _signal_data_modified; ///< signal that gets emitted whenever the X- and Y-datasets have been modified.
+      sigc::signal<void(void)> _signal_changed; ///< signal that gets emitted whenever any of the dataset proprties is changed.
+      sigc::signal<void(void)> _signal_data_modified; ///< signal that gets emitted whenever the X- and Y-datasets have been modified.
 
       /** This is a default handler for signal_changed()
        *
@@ -100,7 +100,7 @@ namespace Gtk {
        *
        * See default handler on_changed()
        */
-      sigc::signal<void> signal_changed() {
+      sigc::signal<void(void)> signal_changed() {
         return _signal_changed;
       }
 
@@ -108,7 +108,7 @@ namespace Gtk {
        *
        * See default handler on_data_modified()
        */
-      sigc::signal<void> signal_data_modified() {
+      sigc::signal<void(void)> signal_data_modified() {
         return _signal_data_modified;
       }
 

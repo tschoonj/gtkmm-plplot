@@ -2,9 +2,9 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
   schedule:
     - cron: "30 4 * * 1"
 
@@ -12,6 +12,8 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    container:
+      image: ubuntu:rolling
     permissions:
       actions: read
       contents: read
@@ -20,11 +22,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ cpp ]
+        language: [cpp]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: apt dependencies
+        run: |
+          apt-get --assume-yes update
+          apt-get --assume-yes install build-essential g++ meson libplplot-dev libgtkmm-4.0-dev
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2

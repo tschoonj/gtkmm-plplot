@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot.h>
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
 #include <gtkmm/window.h>
@@ -27,7 +28,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/switch.h>
 #include <gtkmm/paned.h>
-#include <gtkmm/aspectframe.h>
 #include <gtkmmconfig.h>
 #include <cmath>
 #include <fstream>
@@ -94,8 +94,8 @@ namespace Test8 {
       area_lines_width_adj(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 1.0, 0.0)),
       area_lines_width_spin(area_lines_width_adj, 0.1, 1),
       colorbar_label("Show colorbar"),
-      paned(Gtk::ORIENTATION_VERTICAL),
-      aspect_frame(Glib::ustring(), Gtk::ALIGN_CENTER, Gtk::ALIGN_CENTER, 1.5, false)
+      paned(Gtk::Orientation::VERTICAL),
+      aspect_frame(Gtk::Align::CENTER, Gtk::Align::CENTER, 1.5, false)
       {
 
       Glib::ustring x_title = "X-axis";
@@ -103,13 +103,12 @@ namespace Test8 {
       Glib::ustring plot_title = "Intensity vs detector position";
 
       // general window and canvas settings
-      set_default_size(720, 720);
-      Gdk::Geometry geometry;
-      geometry.min_aspect = geometry.max_aspect = double(720)/double(720);
-      set_geometry_hints(*this, geometry, Gdk::HINT_ASPECT);
+      const int width = 720, height = 720;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test8");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
 
       //read in our dataset
       std::ifstream fs;
@@ -180,12 +179,12 @@ namespace Test8 {
 
       show_edges_label.set_hexpand(true);
       show_edges_label.set_vexpand(false);
-      show_edges_label.set_valign(Gtk::ALIGN_CENTER);
-      show_edges_label.set_halign(Gtk::ALIGN_END);
+      show_edges_label.set_valign(Gtk::Align::CENTER);
+      show_edges_label.set_halign(Gtk::Align::END);
       show_edges_switch.set_hexpand(true);
       show_edges_switch.set_vexpand(false);
-      show_edges_switch.set_halign(Gtk::ALIGN_START);
-      show_edges_switch.set_valign(Gtk::ALIGN_CENTER);
+      show_edges_switch.set_halign(Gtk::Align::START);
+      show_edges_switch.set_valign(Gtk::Align::CENTER);
       show_edges_switch.set_active(plot->is_showing_edges());
       show_edges_switch.property_active().signal_changed().connect([this, plot](){
         if (show_edges_switch.get_active()) {
@@ -208,12 +207,12 @@ namespace Test8 {
       // show contour labels
       show_labels_label.set_hexpand(true);
       show_labels_label.set_vexpand(false);
-      show_labels_label.set_valign(Gtk::ALIGN_CENTER);
-      show_labels_label.set_halign(Gtk::ALIGN_END);
+      show_labels_label.set_valign(Gtk::Align::CENTER);
+      show_labels_label.set_halign(Gtk::Align::END);
       show_labels_switch.set_hexpand(true);
       show_labels_switch.set_vexpand(false);
-      show_labels_switch.set_halign(Gtk::ALIGN_START);
-      show_labels_switch.set_valign(Gtk::ALIGN_CENTER);
+      show_labels_switch.set_halign(Gtk::Align::START);
+      show_labels_switch.set_valign(Gtk::Align::CENTER);
       show_labels_switch.set_active(plot->is_showing_labels());
       show_labels_switch.property_active().signal_changed().connect([this, plot](){
         if (show_labels_switch.get_active()) {
@@ -230,15 +229,15 @@ namespace Test8 {
       //color button
       edge_color_label.set_hexpand(true);
       edge_color_label.set_vexpand(false);
-      edge_color_label.set_valign(Gtk::ALIGN_CENTER);
-      edge_color_label.set_halign(Gtk::ALIGN_END);
+      edge_color_label.set_valign(Gtk::Align::CENTER);
+      edge_color_label.set_halign(Gtk::Align::END);
 
       edge_color.set_rgba(plot->get_edge_color());
       edge_color.set_use_alpha(true);
       edge_color.set_hexpand(true);
       edge_color.set_vexpand(false);
-      edge_color.set_halign(Gtk::ALIGN_START);
-      edge_color.set_valign(Gtk::ALIGN_CENTER);
+      edge_color.set_halign(Gtk::Align::START);
+      edge_color.set_valign(Gtk::Align::CENTER);
       edge_color.signal_color_set().connect([this, plot](){plot->set_edge_color(edge_color.get_rgba());});
 
       grid.attach(edge_color_label, 0, row_counter, 1, 1);
@@ -247,13 +246,13 @@ namespace Test8 {
       //the edge width spinbutton
       edge_width_label.set_hexpand(true);
       edge_width_label.set_vexpand(false);
-      edge_width_label.set_valign(Gtk::ALIGN_CENTER);
-      edge_width_label.set_halign(Gtk::ALIGN_END);
+      edge_width_label.set_valign(Gtk::Align::CENTER);
+      edge_width_label.set_halign(Gtk::Align::END);
 
       edge_width_spin.set_hexpand(true);
       edge_width_spin.set_vexpand(false);
-      edge_width_spin.set_halign(Gtk::ALIGN_START);
-      edge_width_spin.set_valign(Gtk::ALIGN_CENTER);
+      edge_width_spin.set_halign(Gtk::Align::START);
+      edge_width_spin.set_valign(Gtk::Align::CENTER);
       edge_width_spin.set_wrap(true);
       edge_width_spin.set_snap_to_ticks(true);
       edge_width_spin.set_numeric(true);
@@ -268,12 +267,12 @@ namespace Test8 {
       //nlevels
       nlevels_label.set_hexpand(true);
       nlevels_label.set_vexpand(false);
-      nlevels_label.set_valign(Gtk::ALIGN_CENTER);
-      nlevels_label.set_halign(Gtk::ALIGN_END);
+      nlevels_label.set_valign(Gtk::Align::CENTER);
+      nlevels_label.set_halign(Gtk::Align::END);
       nlevels_spin.set_hexpand(true);
       nlevels_spin.set_vexpand(false);
-      nlevels_spin.set_halign(Gtk::ALIGN_START);
-      nlevels_spin.set_valign(Gtk::ALIGN_CENTER);
+      nlevels_spin.set_halign(Gtk::Align::START);
+      nlevels_spin.set_valign(Gtk::Align::CENTER);
       nlevels_spin.set_wrap(true);
       nlevels_spin.set_snap_to_ticks(true);
       nlevels_spin.set_numeric(true);
@@ -288,12 +287,12 @@ namespace Test8 {
       // colormap palette
       colormap_palette_label.set_hexpand(true);
       colormap_palette_label.set_vexpand(false);
-      colormap_palette_label.set_valign(Gtk::ALIGN_CENTER);
-      colormap_palette_label.set_halign(Gtk::ALIGN_END);
+      colormap_palette_label.set_valign(Gtk::Align::CENTER);
+      colormap_palette_label.set_halign(Gtk::Align::END);
       colormap_palette_combo.set_hexpand(true);
       colormap_palette_combo.set_vexpand(false);
-      colormap_palette_combo.set_halign(Gtk::ALIGN_START);
-      colormap_palette_combo.set_valign(Gtk::ALIGN_CENTER);
+      colormap_palette_combo.set_halign(Gtk::Align::START);
+      colormap_palette_combo.set_valign(Gtk::Align::CENTER);
 
       colormap_palette_combo.append("Default");
       colormap_palette_combo.append("Blue → Red");
@@ -314,12 +313,12 @@ namespace Test8 {
       //area fill pattern
       area_fill_pattern_label.set_hexpand(true);
       area_fill_pattern_label.set_vexpand(false);
-      area_fill_pattern_label.set_valign(Gtk::ALIGN_CENTER);
-      area_fill_pattern_label.set_halign(Gtk::ALIGN_END);
+      area_fill_pattern_label.set_valign(Gtk::Align::CENTER);
+      area_fill_pattern_label.set_halign(Gtk::Align::END);
       area_fill_pattern_combo.set_hexpand(true);
       area_fill_pattern_combo.set_vexpand(false);
-      area_fill_pattern_combo.set_halign(Gtk::ALIGN_START);
-      area_fill_pattern_combo.set_valign(Gtk::ALIGN_CENTER);
+      area_fill_pattern_combo.set_halign(Gtk::Align::START);
+      area_fill_pattern_combo.set_valign(Gtk::Align::CENTER);
 
       area_fill_pattern_combo.append("Solid");
       area_fill_pattern_combo.append("Horizontal lines");
@@ -347,13 +346,13 @@ namespace Test8 {
       //the area lines width spinbutton
       area_lines_width_label.set_hexpand(true);
       area_lines_width_label.set_vexpand(false);
-      area_lines_width_label.set_valign(Gtk::ALIGN_CENTER);
-      area_lines_width_label.set_halign(Gtk::ALIGN_END);
+      area_lines_width_label.set_valign(Gtk::Align::CENTER);
+      area_lines_width_label.set_halign(Gtk::Align::END);
 
       area_lines_width_spin.set_hexpand(true);
       area_lines_width_spin.set_vexpand(false);
-      area_lines_width_spin.set_halign(Gtk::ALIGN_START);
-      area_lines_width_spin.set_valign(Gtk::ALIGN_CENTER);
+      area_lines_width_spin.set_halign(Gtk::Align::START);
+      area_lines_width_spin.set_valign(Gtk::Align::CENTER);
       area_lines_width_spin.set_wrap(true);
       area_lines_width_spin.set_snap_to_ticks(true);
       area_lines_width_spin.set_numeric(true);
@@ -370,12 +369,12 @@ namespace Test8 {
       //colorbar
       colorbar_label.set_hexpand(true);
       colorbar_label.set_vexpand(false);
-      colorbar_label.set_valign(Gtk::ALIGN_CENTER);
-      colorbar_label.set_halign(Gtk::ALIGN_END);
+      colorbar_label.set_valign(Gtk::Align::CENTER);
+      colorbar_label.set_halign(Gtk::Align::END);
       colorbar_switch.set_hexpand(true);
       colorbar_switch.set_vexpand(false);
-      colorbar_switch.set_halign(Gtk::ALIGN_START);
-      colorbar_switch.set_valign(Gtk::ALIGN_CENTER);
+      colorbar_switch.set_halign(Gtk::Align::START);
+      colorbar_switch.set_valign(Gtk::Align::CENTER);
       colorbar_switch.set_active(plot->is_showing_colorbar());
       colorbar_switch.property_active().signal_changed().connect([this, plot](){
         if (colorbar_switch.get_active()) {
@@ -388,20 +387,16 @@ namespace Test8 {
 
       grid.attach(colorbar_label, 0, row_counter, 1, 1);
       grid.attach(colorbar_switch, 1, row_counter++, 1, 1);
-      paned.add1(grid);
+      paned.set_start_child(grid);
 
       //add canvas to grid
-      aspect_frame.add(canvas);
-      paned.add2(aspect_frame);
+      aspect_frame.set_child(canvas);
+      paned.set_end_child(aspect_frame);
 
       //finishing up
-      add(paned);
-      set_border_width(10);
-#if GTKMM_MAJOR_VERSION == 3 && GTKMM_MINOR_VERSION >= 18
+      set_child(paned);
       paned.set_wide_handle(true);
-#endif
-      paned.show_all();
-
+      paned.set_position(height / 2);
     }
     virtual ~Window() {}
   };
@@ -409,9 +404,7 @@ namespace Test8 {
 
 int main(int argc, char **argv) {
   Glib::set_application_name("gtkmm-plplot-test8");
-  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc, argv, "eu.tomschoonjans.gtkmm-plplot-test8");
+  Glib::RefPtr<Gtk::Application> app = Gtk::Application::create("eu.tomschoonjans.gtkmm-plplot-test8");
 
-  Test8::Window window;
-
-	return app->run(window);
+  return app->make_window_and_run<Test8::Window>(argc, argv);
 }
