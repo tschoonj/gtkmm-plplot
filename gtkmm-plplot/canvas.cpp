@@ -199,7 +199,7 @@ void Canvas::on_button_press_event(int n_press, double x, double y) {
       region_selection->get_region_selectable() &&
       !shift_pressed) {
       // double-click -> zoom out!
-      if (n_press > 1) {
+      if (n_press == 2) {
         //convert event coordinates to plot coordinates
         double cursor_x, cursor_y;
 
