@@ -22,12 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <plConfig.h>
 #include <plstream.h>
 
-#ifdef GTKMM_PLPLOT_PLPLOT_5_11_0
-	#define PLCALLBACK plcallback
-#else
-	#define PLCALLBACK plstream
-#endif
-
 using namespace Gtk::PLplot;
 
 PlotContour::PlotContour(
@@ -241,7 +235,7 @@ void PlotContour::draw_plot(const Cairo::RefPtr<Cairo::Context> &cr, const int w
 
 	pls->setcontlabelparam(0.01, 0.6, 0.1, is_showing_labels());
 
-  pls->cont(z, x.size(), y.size(), 1, x.size(), 1, y.size(), &clevels[0], nlevels, PLCALLBACK::tr1, (void *) &cgrid);
+  pls->cont(z, x.size(), y.size(), 1, x.size(), 1, y.size(), &clevels[0], nlevels, plcallback::tr1, (void *) &cgrid);
 
   free_array2d((void **) z, x.size());
 

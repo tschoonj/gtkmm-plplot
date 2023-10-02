@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot.h>
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
 #include <gtkmm/window.h>
@@ -27,7 +28,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/switch.h>
 #include <gtkmm/paned.h>
-#include <gtkmm/aspectframe.h>
 #include <gtkmmconfig.h>
 #include <cmath>
 #include <fstream>
@@ -103,11 +103,12 @@ namespace Test8 {
       Glib::ustring plot_title = "Intensity vs detector position";
 
       // general window and canvas settings
-      const int default_height = 720;
-      set_default_size(720, default_height);
+      const int width = 720, height = 720;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test8");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
 
       //read in our dataset
       std::ifstream fs;
@@ -389,15 +390,13 @@ namespace Test8 {
       paned.set_start_child(grid);
 
       //add canvas to grid
-      canvas.set_focusable(true);
       aspect_frame.set_child(canvas);
       paned.set_end_child(aspect_frame);
 
       //finishing up
       set_child(paned);
       paned.set_wide_handle(true);
-      paned.set_position(default_height / 2);
-      paned.show();
+      paned.set_position(height / 2);
     }
     virtual ~Window() {}
   };

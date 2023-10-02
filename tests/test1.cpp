@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtkmm-plplot.h"
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
 #include <gtkmm/window.h>
@@ -30,7 +31,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <gtkmm/pagesetup.h>
 #include <gtkmm/printoperation.h>
 #include <gtkmm/filechooserdialog.h>
-#include <gtkmm/eventcontrollerkey.h>
 
 #ifndef M_PI
 #define M_PI (3.14159265358979323846)
@@ -57,7 +57,6 @@ namespace Test1 {
     Gtk::SpinButton linewidth_spin2;
     Gtk::Button print_button;
     Gtk::Button saveas_button;
-    Glib::RefPtr<Gtk::EventControllerKey> key_controller;
 
   public:
     Window(std::valarray<double> &x, std::valarray<double> &y,
@@ -90,11 +89,15 @@ namespace Test1 {
       plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(30, -2, -5, -1)));
       plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(Gtk::Orientation::HORIZONTAL, -1)));
       plot.add_object(*Gtk::manage(new Gtk::PLplot::PlotObject2DLine(Gtk::Orientation::VERTICAL, 12)));
-
-      set_default_size(720, 580);
+    
+      const int width = 1024, height = 580;
       set_title("Gtkmm-PLplot test1");
-      canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_hexpand(true);
+      canvas.set_focusable(true);
+      canvas.set_size_request(-1, height);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height));
+      geometry.set_child(canvas);
 
       show_radio1.set_active(plot_data1.is_showing());
       show_radio2.set_active(plot.get_data(1)->is_showing());
@@ -201,7 +204,7 @@ namespace Test1 {
       grid.attach(color_combo2, 2, 1, 1, 1);
       grid.attach(linestyle_combo2, 3, 1, 1, 1);
       grid.attach(linewidth_spin2, 4, 1, 1, 1);
-      grid.attach(canvas, 0, 2, 5, 1);
+      grid.attach(geometry, 0, 2, 5, 1);
 
       Gtk::Grid *button_grid = Gtk::manage(new Gtk::Grid());
       button_grid->set_column_homogeneous(true);
@@ -220,13 +223,8 @@ namespace Test1 {
       print_button.signal_clicked().connect(sigc::mem_fun(*this, &Window::on_print_button_clicked));
       saveas_button.signal_clicked().connect(sigc::mem_fun(*this, &Window::on_saveas_button_clicked));
 
-      key_controller = Gtk::EventControllerKey::create();
-      key_controller->signal_key_pressed().connect(sigc::mem_fun(*this, &Window::on_key_press_event), false);
-      key_controller->signal_key_released().connect(sigc::mem_fun(*this, &Window::on_key_release_event), false);
-      add_controller(key_controller);
-
+      grid.set_margin(10);
       set_child(grid);
-      grid.show();
     }
     virtual ~Window() {}
 
@@ -332,14 +330,6 @@ namespace Test1 {
         }
 
         delete dialog;
-      }
-
-      bool on_key_press_event(guint keyval, guint keycode, Gdk::ModifierType state) {
-        return key_controller->forward(canvas);
-      }
-
-      void on_key_release_event(guint, guint, Gdk::ModifierType) {
-        key_controller->forward(canvas);
       }
   };
 }

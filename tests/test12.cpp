@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot.h>
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
 #include <gtkmm/window.h>
@@ -60,6 +61,7 @@ namespace Test12 {
       set_column_spacing(5);
       set_row_homogeneous(false);
       set_row_spacing(5);
+      set_margin(10);
 
       line_label.set_hexpand(true);
       line_label.set_vexpand(false);
@@ -119,7 +121,9 @@ namespace Test12 {
       canvas.set_vexpand(true);
       canvas.set_focusable(true);
       canvas.set_background_color(Gdk::RGBA("LightGrey"));
-      attach(canvas, 0, 1, 4, 1);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, 2, false);
+      geometry.set_child(canvas);
+      attach(geometry, 0, 1, 4, 1);
 
       Gtk::Label *label;
 
@@ -304,7 +308,7 @@ namespace Test12 {
   public:
     Window() : notebook(), gen(1234), d(0, 1){
       // general window and canvas settings
-      set_default_size(720, 580);
+      set_default_size(1024, 800);
       set_title("Gtkmm-PLplot test12");
 
       //add pages to notebook
@@ -368,8 +372,8 @@ namespace Test12 {
       notebook.append_page(*tab1, "Histogram 1");
       notebook.append_page(*tab2, "Histogram 2");
       notebook.append_page(*tab3, "Histogram 3");
+      notebook.set_margin(10);
       set_child(notebook);
-      notebook.show();
     }
   };
 }

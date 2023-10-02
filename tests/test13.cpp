@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtkmm-plplot.h"
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <gtkmm/window.h>
 #include <gtkmm/grid.h>
@@ -115,10 +116,14 @@ namespace Test13 {
     }
   public:
     Window() : canvas() {
-      set_default_size(720, 580);
+      const int width = 720, height = 580;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test13");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+      geometry.set_child(canvas);
 
       box.set_homogeneous ();
       box.set_halign(Gtk::Align::CENTER);
@@ -143,14 +148,13 @@ namespace Test13 {
 
       grid.attach(box, 0, 0, 1, 1);
 
-      grid.attach(canvas, 0, 1, 1, 1);
+      grid.attach(geometry, 0, 1, 1, 1);
       grid.set_row_spacing(5);
       grid.set_column_spacing(5);
       grid.set_column_homogeneous(false);
 
-      canvas.set_focusable(true);
+      grid.set_margin(10);
       set_child(grid);
-      grid.show();
     }
     virtual ~Window() {}
   };

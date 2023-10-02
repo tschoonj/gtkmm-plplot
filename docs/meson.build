@@ -13,9 +13,9 @@ docinstall_flags = []
 foreach module : tag_file_modules
   depmod = dependency(module, required: false)
   if depmod.found()
-    doxytagfile = depmod.get_pkgconfig_variable('doxytagfile')
-    htmlrefpub = depmod.get_pkgconfig_variable('htmlrefpub', default: '')
-    htmlrefdir = depmod.get_pkgconfig_variable('htmlrefdir', default: '')
+    doxytagfile = depmod.get_variable(pkgconfig : 'doxytagfile')
+    htmlrefpub = depmod.get_variable(pkgconfig: 'htmlrefpub', default_value: '')
+    htmlrefdir = depmod.get_variable(pkgconfig: 'htmlrefdir', default_value: '')
     if htmlrefpub == ''
       htmlrefpub = htmlrefdir
     elif htmlrefdir == ''
@@ -33,7 +33,7 @@ endforeach
 doxygen_data = configuration_data()
 doxygen_data.set('DOXYGEN_TAGFILES', doxygen_tagfiles)
 doxygen_data.set('PACKAGE_VERSION', meson.project_version())
-doxygen_data.set('PERL', perl.path())
+doxygen_data.set('PERL', perl.full_path())
 doxygen_data.set('abs_top_builddir', project_build_root)
 doxygen_data.set('abs_top_srcdir', project_source_root)
 doxygen_data.set('srcdir', meson.current_source_dir())
@@ -54,5 +54,3 @@ html_target = custom_target('docs',
     command: [doxygen, '@INPUT@'],
     install_dir: datadir,
     install: true)
-
-

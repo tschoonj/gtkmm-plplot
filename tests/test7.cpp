@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot.h>
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
 #include <gtkmm/window.h>
@@ -62,10 +63,14 @@ namespace Test7 {
       Glib::ustring plot_title = "Intensity vs detector position";
 
       // general window and canvas settings
-      set_default_size(720, 580);
+      const int width = 1024, height = 720;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test7");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+      geometry.set_child(canvas);
 
       //read in our dataset
       std::ifstream fs;
@@ -158,7 +163,7 @@ namespace Test7 {
       grid.attach(edge_width_spin, 2, 0, 1, 1);
 
       //add canvas to grid
-      grid.attach(canvas, 0, 1, 4, 1);
+      grid.attach(geometry, 0, 1, 4, 1);
 
       //nlevels
       nlevels_label.set_hexpand(true);
@@ -181,9 +186,8 @@ namespace Test7 {
       grid.attach(nlevels_spin, 2, 2, 2, 1);
 
       //finishing up
-      canvas.set_focusable(true);
+      grid.set_margin(10);
       set_child(grid);
-      grid.show();
     }
     virtual ~Window() {}
   };

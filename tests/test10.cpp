@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* This examples demonstrates how to use Gtkmm-PLplot from Gtk */
 
 #include "gtkmm-plplot.h"
-#include <gtkmm.h>
+#include <gtkmm/init.h>
 
 #ifndef M_PI
 #define M_PI (3.14159265358979323846)
@@ -72,6 +72,7 @@ int main (int argc, char **argv) {
 
   app = gtk_application_new ("org.gtk.example", G_APPLICATION_FLAGS_NONE);
   // this next line is necessary to ensure that the gtkmm internals are initialized
+  Gtk::init_gtkmm_internals();
   g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
   status = g_application_run (G_APPLICATION (app), argc, argv);
   g_object_unref (app);

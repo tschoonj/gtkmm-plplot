@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot.h>
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <gtkmm/colorbutton.h>
 #include <gtkmm/spinbutton.h>
 #include <glibmm/miscutils.h>
@@ -78,17 +79,17 @@ namespace Test2 {
            box_label("Box options"),
            legend_label("Show legend"),
            corner_label("Legend corner position"),
-	   text_label("Text"),
-	   text_entry(Gtk::EntryBuffer::create(START_TEXT)),
-	   text_color_label("Text color"),
-	   text_color_button(Gdk::RGBA("red")),
-	   text_justification_label("Text justification"),
-	   text_justification_spin_button(Gtk::Adjustment::create(0.5, 0.0, 1.0, 0.1, 0.2), 0.0, 2),
-	   text_scale_factor_label("Text scale factor"),
-	   text_scale_factor_spin_button(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 0.2), 0.0, 2),
-	   text_orientation_label("Text vertical?"),
+           text_label("Text"),
+           text_entry(Gtk::EntryBuffer::create(START_TEXT)),
+           text_color_label("Text color"),
+           text_color_button(Gdk::RGBA("red")),
+           text_justification_label("Text justification"),
+           text_justification_spin_button(Gtk::Adjustment::create(0.5, 0.0, 1.0, 0.1, 0.2), 0.0, 2),
+           text_scale_factor_label("Text scale factor"),
+           text_scale_factor_spin_button(Gtk::Adjustment::create(1.0, 0.1, 10.0, 0.1, 0.2), 0.0, 2),
+           text_orientation_label("Text vertical?"),
            plot_data1(x, y1, Gdk::RGBA("red")),
-	   plot_text2d(START_TEXT, 6.4039 + 0.3, 1E5, Gdk::RGBA("red")),
+           plot_text2d(START_TEXT, 6.4039 + 0.3, 1E5, Gdk::RGBA("red")),
            plot_line2d(Gtk::Orientation::VERTICAL, 6.4039, Gdk::RGBA("purple"), Gtk::PLplot::LineStyle::LONG_DASH_LONG_GAP, 3.0)
 	  
 	  {
@@ -121,12 +122,12 @@ namespace Test2 {
         plot->add_data(*new Gtk::PLplot::PlotData2D(x, y4, Gdk::RGBA("Green")));
         Gtk::PLplot::PlotData2D *plot_data4 = dynamic_cast<Gtk::PLplot::PlotData2D *>(plot->get_data(3));
 
-	// add our text object
-	//plot_text2d.set_justification(0.5);
-	plot->add_object(plot_text2d);
+        // add our text object
+        //plot_text2d.set_justification(0.5);
+        plot->add_object(plot_text2d);
 
-	// and the vertical line
-	plot->add_object(plot_line2d);
+        // and the vertical line
+        plot->add_object(plot_line2d);
 
         canvas.add_plot(*plot);
 
@@ -137,10 +138,14 @@ namespace Test2 {
 
         plot->set_axis_logarithmic_y();
 
-        set_default_size(720, 580);
+        const int width = 1600, height = 1024;
+        set_default_size(width, height);
         set_title("Gtkmm-PLplot test2");
         canvas.set_hexpand(true);
         canvas.set_vexpand(true);
+        canvas.set_focusable(true);
+        Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+        geometry.set_child(canvas);
 
         x_log_switch.set_active(plot->get_axis_logarithmic_x());
         y_log_switch.set_active(plot->get_axis_logarithmic_y());
@@ -199,18 +204,18 @@ namespace Test2 {
           }
         });
 
-	text_entry.signal_changed().connect([this](){
-		plot_text2d.set_text(text_entry.get_text());		
-	});
-	text_color_button.signal_color_set().connect([this](){
-		plot_text2d.set_color(text_color_button.get_rgba());		
-	});
-	text_justification_spin_button.signal_value_changed().connect([this](){
-		plot_text2d.set_justification(text_justification_spin_button.get_value());
-	});
-	text_scale_factor_spin_button.signal_value_changed().connect([this](){
-		plot_text2d.set_scale_factor(text_scale_factor_spin_button.get_value());
-	});
+        text_entry.signal_changed().connect([this](){
+            plot_text2d.set_text(text_entry.get_text());		
+        });
+        text_color_button.signal_color_set().connect([this](){
+            plot_text2d.set_color(text_color_button.get_rgba());		
+        });
+        text_justification_spin_button.signal_value_changed().connect([this](){
+            plot_text2d.set_justification(text_justification_spin_button.get_value());
+        });
+        text_scale_factor_spin_button.signal_value_changed().connect([this](){
+            plot_text2d.set_scale_factor(text_scale_factor_spin_button.get_value());
+        });
         text_orientation_switch.property_active().signal_changed().connect([this](){
           if (text_orientation_switch.get_active()) {
 	    plot_text2d.set_orientation(Gtk::Orientation::VERTICAL);
@@ -219,7 +224,7 @@ namespace Test2 {
 	    plot_text2d.set_orientation(Gtk::Orientation::HORIZONTAL);
           }
         });
-	text_orientation_switch.set_active(false);
+	    text_orientation_switch.set_active(false);
 
         x_log_label.set_halign(Gtk::Align::END);
         y_log_label.set_halign(Gtk::Align::END);
@@ -232,16 +237,16 @@ namespace Test2 {
         corner_combo.set_halign(Gtk::Align::START);
         legend_switch.set_halign(Gtk::Align::START);
 
-	text_label.set_halign(Gtk::Align::END);
-	text_entry.set_halign(Gtk::Align::START);
-	text_color_label.set_halign(Gtk::Align::END);
-	text_color_button.set_halign(Gtk::Align::START);
-	text_justification_label.set_halign(Gtk::Align::END);
-	text_justification_spin_button.set_halign(Gtk::Align::START);
-	text_scale_factor_label.set_halign(Gtk::Align::END);
-	text_scale_factor_spin_button.set_halign(Gtk::Align::START);
-	text_orientation_label.set_halign(Gtk::Align::END);
-	text_orientation_switch.set_halign(Gtk::Align::START);
+        text_label.set_halign(Gtk::Align::END);
+        text_entry.set_halign(Gtk::Align::START);
+        text_color_label.set_halign(Gtk::Align::END);
+        text_color_button.set_halign(Gtk::Align::START);
+        text_justification_label.set_halign(Gtk::Align::END);
+        text_justification_spin_button.set_halign(Gtk::Align::START);
+        text_scale_factor_label.set_halign(Gtk::Align::END);
+        text_scale_factor_spin_button.set_halign(Gtk::Align::START);
+        text_orientation_label.set_halign(Gtk::Align::END);
+        text_orientation_switch.set_halign(Gtk::Align::START);
 
         grid.attach(x_log_label, 0, 0, 1, 1);
         grid.attach(y_log_label, 0, 1, 1, 1);
@@ -254,24 +259,23 @@ namespace Test2 {
         grid.attach(box_label, 0, 4, 1, 1);
         grid.attach(box_combo, 1, 4, 1, 1);
 
-	grid.attach(text_label, 2, 0, 1, 1);
-	grid.attach(text_entry, 3, 0, 1, 1);
-	grid.attach(text_color_label, 2, 1, 1, 1);
-	grid.attach(text_color_button, 3, 1, 1, 1);
-	grid.attach(text_justification_label, 2, 2, 1, 1);
-	grid.attach(text_justification_spin_button, 3, 2, 1, 1);
-	grid.attach(text_scale_factor_label, 2, 3, 1, 1);
-	grid.attach(text_scale_factor_spin_button, 3, 3, 1, 1);
-	grid.attach(text_orientation_label, 2, 4, 1, 1);
-	grid.attach(text_orientation_switch, 3, 4, 1, 1);
+        grid.attach(text_label, 2, 0, 1, 1);
+	    grid.attach(text_entry, 3, 0, 1, 1);
+        grid.attach(text_color_label, 2, 1, 1, 1);
+        grid.attach(text_color_button, 3, 1, 1, 1);
+        grid.attach(text_justification_label, 2, 2, 1, 1);
+        grid.attach(text_justification_spin_button, 3, 2, 1, 1);
+        grid.attach(text_scale_factor_label, 2, 3, 1, 1);
+        grid.attach(text_scale_factor_spin_button, 3, 3, 1, 1);
+        grid.attach(text_orientation_label, 2, 4, 1, 1);
+        grid.attach(text_orientation_switch, 3, 4, 1, 1);
 
-        grid.attach(canvas, 0, 5, 4, 1);
+        grid.attach(geometry, 0, 5, 4, 1);
         grid.set_column_spacing(5);
         grid.set_column_homogeneous(false);
 
-        canvas.set_focusable(true);
+        grid.set_margin(10);
         set_child(grid);
-        grid.show();
     }
     virtual ~Window() {}
   };

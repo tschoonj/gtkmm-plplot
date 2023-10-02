@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot.h>
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
 #include <gtkmm/window.h>
@@ -60,10 +61,14 @@ namespace Test5 {
       remove_data_button("Remove random datapoint") {
 
       // general window and canvas settings
-      set_default_size(720, 580);
+      const int width = 1024, height = 580;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test5");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+      geometry.set_child(canvas);
 
       // grid options
       grid.set_column_homogeneous(false);
@@ -191,21 +196,20 @@ namespace Test5 {
       remove_data_button.signal_clicked().connect([this, plot_data](){
         static std::default_random_engine rng;
         unsigned long int size = plot_data->size();
-	if (size == 1) {
-	  plot_data->remove_datapoint(0);
-	  remove_data_button.set_sensitive(false);
-	}
-	else {
-	  std::uniform_int_distribution<unsigned long int> dist(0, size - 1);
-	  plot_data->remove_datapoint(dist(rng));
-	}
+	    if (size == 1) {
+          plot_data->remove_datapoint(0);
+          remove_data_button.set_sensitive(false);
+        }
+        else {
+          std::uniform_int_distribution<unsigned long int> dist(0, size - 1);
+          plot_data->remove_datapoint(dist(rng));
+        }
       });
 
       //finishing up
-      canvas.set_focusable(true);
-      grid.attach(canvas, 0, 2, 4, 1);
+      grid.attach(geometry, 0, 2, 4, 1);
+      grid.set_margin(10);
       set_child(grid);
-      grid.show();
     }
     virtual ~Window() {}
   };

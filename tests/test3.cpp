@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtkmm-plplot.h"
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <gtkmm/window.h>
 #include <gtkmm/grid.h>
@@ -59,10 +60,14 @@ namespace Test3 {
   public:
     Window() : canvas(), add_plot("Add"), remove_plot("Remove"),
       show_plot("Show"), hide_plot("Hide") {
-      set_default_size(720, 580);
+      const int width = 1024, height = 580;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test3");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+      geometry.set_child(canvas);
       add_plot.set_hexpand(true);
       add_plot.set_vexpand(false);
       add_plot.set_halign(Gtk::Align::END);
@@ -101,14 +106,13 @@ namespace Test3 {
       grid.attach(remove_plot, 1, 0, 1, 1);
       grid.attach(show_plot, 2, 0, 1, 1);
       grid.attach(hide_plot, 3, 0, 1, 1);
-      grid.attach(canvas, 0, 1, 4, 1);
+      grid.attach(geometry, 0, 1, 4, 1);
       grid.set_row_spacing(5);
       grid.set_column_spacing(5);
       grid.set_column_homogeneous(false);
 
-      canvas.set_focusable(true);
+      grid.set_margin(10);
       set_child(grid);
-      grid.show();
     }
     virtual ~Window() {}
   };

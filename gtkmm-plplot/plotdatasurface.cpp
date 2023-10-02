@@ -22,13 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <plConfig.h>
 
-#ifdef GTKMM_PLPLOT_PLPLOT_5_11_0
-	#define PLCALLBACK plcallback
-#else
-	#define PLCALLBACK plstream
-#endif
-
-
 using namespace Gtk::PLplot;
 
 PlotDataSurface::PlotDataSurface(

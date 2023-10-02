@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtkmm-plplot.h"
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <gtkmm/window.h>
 #include <valarray>
@@ -79,14 +80,17 @@ namespace Test11 {
       canvas.add_plot(plot_2d_error_y);
       canvas.add_plot(plot_2d_error_xy);
 
-      set_default_size(720, 580);
+      const int width = 1024, height = 825;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test11");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
-
       canvas.set_focusable(true);
-      set_child(canvas);
-      canvas.show();
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+      geometry.set_child(canvas);
+      
+      geometry.set_margin(10);
+      set_child(geometry);
     }
     virtual ~Window() {}
   };

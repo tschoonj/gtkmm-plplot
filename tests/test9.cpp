@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gtkmm-plplot.h"
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
 #include <gtkmm/window.h>
@@ -93,10 +94,14 @@ namespace Test9 {
 
       canvas.add_plot(*plot);
 
-      set_default_size(720, 580);
+      const int width = 1024, height = 720;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test9");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+      geometry.set_child(canvas);
 
       show_radio1.set_active(data1->is_showing());
       show_radio2.set_active(data2->is_showing());
@@ -223,15 +228,14 @@ namespace Test9 {
       grid.attach(color_combo2, 2, 1, 1, 1);
       grid.attach(linestyle_combo2, 3, 1, 1, 1);
       grid.attach(linewidth_spin2, 4, 1, 1, 1);
-      grid.attach(canvas, 0, 2, 5, 1);
+      grid.attach(geometry, 0, 2, 5, 1);
       grid.attach(altitude_label, 0, 3, 3, 1);
       grid.attach(altitude_spin, 3, 3, 2, 1);
       grid.attach(azimuth_label, 0, 4, 3, 1);
       grid.attach(azimuth_spin, 3, 4, 2, 1);
 
-      canvas.set_focusable(true);
+      grid.set_margin(10);
       set_child(grid);
-      grid.show();
     }
     virtual ~Window() {}
   };

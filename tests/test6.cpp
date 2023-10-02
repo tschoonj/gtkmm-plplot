@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot.h>
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glib.h>
 #include <gtkmm/window.h>
@@ -44,10 +45,14 @@ namespace Test6 {
   public:
     Window() : theta3(Gtk::PLplot::indgen_va(2000)*2.0*M_PI/1999.0), r3(2.0 * sin(4.0 * theta3 )), button("Replace Fermat's Spiral with Polar Rose") {
       // general window and canvas settings
-      set_default_size(720, 580);
+      const int width = 720, height = 720;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test6");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+      geometry.set_child(canvas);
 
       //add a plot to canvas
       //a cardioid
@@ -72,7 +77,7 @@ namespace Test6 {
       canvas.add_plot(*plot);
       plot->add_data(*data2);
 
-      grid.attach(canvas, 0, 0, 1, 1);
+      grid.attach(geometry, 0, 0, 1, 1);
       button.set_hexpand(false);
       button.set_vexpand(false);
       button.set_halign(Gtk::Align::CENTER);
@@ -84,9 +89,8 @@ namespace Test6 {
       });
       grid.attach(button, 0, 1, 1, 1);
       
-      canvas.set_focusable(true);
+      grid.set_margin(10);
       set_child(grid);
-      grid.show();
     }
     virtual ~Window() {}
   };

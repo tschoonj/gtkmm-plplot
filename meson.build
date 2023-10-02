@@ -4,7 +4,7 @@ project('gtkmm-plplot', 'cpp',
   default_options: [
     'cpp_std=c++17'
   ],
-  meson_version: '>= 0.48.0',
+  meson_version: '>= 0.55.0',
 )
 
 gtkmm_plplot_api_version = '3.0'
@@ -68,7 +68,6 @@ gtkmm_dep = dependency('gtkmm-4.0', version: '>=4.0.0')
 plplotcxx_dep = dependency('plplot-c++', version: '>= 5.11.0')
 plplot_dep = dependency('plplot', version: '>= 5.11.0')
 pkg_conf_data.set('PLPLOT_CXX', 'plplot-c++ >= 5.11.0')
-pkg_conf_data.set('GTKMM_PLPLOT_PLPLOT_5_11_0', 1)
 gtkmm_plplot_build_dep = [gtkmm_dep, plplot_dep, plplotcxx_dep]
 gtkmm_plplot_pkg_config_requires = [gtkmm_dep, ]
 gtkmm_plplot_pkg_config_requires_private = [plplotcxx_dep, ]

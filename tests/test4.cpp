@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm-plplot.h>
 #include <gtkmm/application.h>
+#include <gtkmm/aspectframe.h>
 #include <glibmm/miscutils.h>
 #include <glibmm/stringutils.h>
 #include <gtkmm/window.h>
@@ -66,11 +67,15 @@ namespace Test4 {
       checkbutton2("Plot 2"), checkbutton3("Plot 3"),
       label_x("X:"),
       label_y("Y:") {
-      set_default_size(720, 580);
+      const int width = 1024, height = 580;
+      set_default_size(width, height);
       set_title("Gtkmm-PLplot test4");
       canvas.set_hexpand(true);
       canvas.set_vexpand(true);
+      canvas.set_focusable(true);
       canvas.set_background_color(Gdk::RGBA("Light Gray"));
+      Gtk::AspectFrame geometry(Gtk::Align::CENTER, Gtk::Align::CENTER, float(width)/float(height), false);
+      geometry.set_child(canvas);
       grid.set_column_homogeneous(true);
       checkbutton1.set_vexpand(false);
       checkbutton1.set_hexpand(false);
@@ -207,7 +212,7 @@ namespace Test4 {
       grid.attach(checkbutton1, 0, 0, 1, 1);
       grid.attach(checkbutton2, 1, 0, 1, 1);
       grid.attach(checkbutton3, 2, 0, 1, 1);
-      grid.attach(canvas, 0, 1, 3, 1);
+      grid.attach(geometry, 0, 1, 3, 1);
 
       coordinates_grid.set_column_homogeneous(false);
       coordinates_grid.attach(label_x, 0, 0, 1, 1);
@@ -230,9 +235,8 @@ namespace Test4 {
       grid.attach(coordinates_grid, 0, 2, 3, 1);
       grid.set_row_spacing(5);
 
-      canvas.set_focusable(true);
+      grid.set_margin(10);
       set_child(grid);
-      grid.show();
     }
     virtual ~Window() {}
   };
