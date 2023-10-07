@@ -92,7 +92,9 @@
  *  a lot more fun to do, and that's very important to me :-)
  *
  *  Starting with version 2.0, Gtkmm-PLplot is released under the [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl-3.0.en.html).
-
+ *
+ *  As of release 3.0, Gtkmm-PLplot has now moved on to supporting Gtkmm4, thanks to the generous contribution by Thibaut Pascal. If you want to use the older version of Gtkmm-PLplot, then use version 2.5 instead.
+ *
  *  That's it! Enjoy using Gtkmm-PLplot and let me know if you run into bugs...
  *  \author Tom Schoonjans
  *
@@ -101,10 +103,9 @@
  *  \section requirements Requirements
  *  Gtkmm-PLplot can only be installed provided the following dependencies are
  *  present on your system:
- *  - Gtkmm (3.x) and its (long list) of dependencies
- *  - PLplot, including its C++ bindings. This package is currently being developed against PLplot 5.11.0,
- *    but we will make sure it also runs with older versions.
- *  - A C++ compiler with full support of the C++11 standard. Compilers known to do the job are recent versions of GCC and clang.
+ *  - Gtkmm (4.x) and its (long list) of dependencies
+ *  - PLplot, including its C++ bindings. The minimum required version is 5.11.0.
+ *  - A C++ compiler with full support of the C++17 standard. Compilers known to do the job are recent versions of GCC and clang.
  *  - Boost (optional)
  *
  *  \section downloading Downloading the software
@@ -127,75 +128,6 @@
  *
  *  > `brew install tschoonj/tap/gtkmm-plplot`
  *
- *  \subsection linux Linux
- *  \subsubsection rhel Fedora, Centos and Scientific Linux
- *  To facilitate the installation on RPM based Linux distributions, the package includes a spec file which can be used to produce RPM packages for linux distributions that support them (Fedora, Red Hat etc). The developers have built 64-bit RPM packages of Gtkmm-PLplot for the officially supported Fedora and Redhat EL/CentOS/Scientific Linux 7 and 8 distributions. Access to my RPM repository can be obtained as follows for Fedora distros:
- *
- * > `sudo rpm -Uvh http://xmi-yum.tomschoonjans.eu/xmi-repo-key-fedora.noarch.rpm`
- *
- * for Red Hat EL 7 based distributions:
- *
- * > `sudo rpm -Uvh http://xmi-yum.tomschoonjans.eu/xmi-repo-key-7.0-1.el7.noarch.rpm`
- *
- * for Red Hat EL 8 based distributions:
- *
- * > `sudo rpm -Uvh http://xmi-yum.tomschoonjans.eu/xmi-repo-key-8.0-1.el8.noarch.rpm`
- *
- * The Gtkmm-PLplot packages themselves can then be downloaded using yum (or \c dnf which is increasingly being used nowadays):
- *
- * > `sudo yum install gtkmm-plplot gtkmm-plplot-devel gtkmm-plplot-doc`
- *
- * Updates can be installed in a similar way:
- *
- * > `sudo yum update gtkmm-plplot gtkmm-plplot-devel gtkmm-plplot-doc`
- *
- * \subsubsection debian Debian and Ubuntu
- *
- * Packages were created for Debian and Ubuntu. Currently the following flavors are supported: Debian Buster and several Ubuntu versions .
- * In order to access these packages using your favorite package manager, execute the following command to import my public key:
- *
- * > `curl http://xmi-apt.tomschoonjans.eu/xmi.packages.key | sudo apt-key add -`
- *
- * Next, add the package download location corresponding to your distribution to the /etc/apt/sources.list file (as root):
- *
- * Debian Buster:
- *
- *       deb http://xmi-apt.tomschoonjans.eu/debian buster stable
- *       deb-src http://xmi-apt.tomschoonjans.eu/debian buster stable
- *
- * Ubuntu Bionic 18.04:
- *
- *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu bionic stable
- *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu bionic stable
- *
- * Ubuntu Eoan 19.10:
- *
- *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu eoan stable
- *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu eoan stable
- *
- * Ubuntu Focal 20.04:
- *
- *       deb [arch=amd64] http://xmi-apt.tomschoonjans.eu/ubuntu focal stable
- *       deb-src http://xmi-apt.tomschoonjans.eu/ubuntu focal stable
- *
- * When the sources.list file contains the correct download locations, update the apt cache by running:
- *
- * > `sudo apt-get update`
- *
- * After this, one can install Gtkmm-PLplot by executing the following command:
- *
- * > `sudo apt-get install libgtkmm-plplot2 libgtkmm-plplot2-dev libgtkmm-plplot2-doc`
- *
- * \subsubsection archlinux Arch Linux
- *
- * Thanks to the efforts of Grzegorz Uriasz, Gtkmm-PLplot can now be downloaded from the Arch User Repository. To get the most recent stable version:
- *
- * > `yaourt -S gtkmm3-plplot`
- *
- * For the latest development version:
- *
- * > `yaourt -S gtkmm3-plplot-git`
- *
  * \subsection head Github repository
  *
  * People interested in running the latest development version will have to clone the Github repository, and install meson and ninja:
@@ -207,15 +139,6 @@
  *       ninja
  *       ninja install
  *
- * If building with GNU autotools is preferred, install autoconf, automake, libtool and mm-common.
- *
- *       git clone git@github.com:tschoonj/gtkmm-plplot.git
- *       cd gtkmm-plplot
- *       autoreconf -i
- *       ./configure
- *       make
- *       make install
- * 
  * \page usage Usage
  *
  * Include the Gtkmm-PLplot header:
@@ -226,11 +149,11 @@
  * compilation, but suffices for this simple example. Assuming that your
  * program source file is @c program.cc, compile it with:
  * \code
- * g++ program.cc -o program  `pkg-config --cflags --libs gtkmm-plplot-2.0`
+ * g++ program.cc -o program  `pkg-config --cflags --libs gtkmm-plplot-3.0`
  * \endcode
  * Alternatively, if using autoconf, use the following in @c configure.ac:
  * \code
- * PKG_CHECK_MODULES([GTKMMPLPLOT], [gtkmm-plplot-2.0])
+ * PKG_CHECK_MODULES([GTKMMPLPLOT], [gtkmm-plplot-3.0])
  * \endcode
  * Then use the generated \c GTKMMPLPLOT_CFLAGS and \c GTKMMPLPLOT_LIBS variables in
  * the project \c Makefile.am files. For example:
