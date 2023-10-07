@@ -2,5 +2,6 @@
     "C_Cpp.errorSquiggles": "Enabled",
     "files.associations": {
         "sstream": "cpp"
-    }
+    },
+    "C_Cpp.default.compileCommands": "builddir/compile_commands.json"
 }

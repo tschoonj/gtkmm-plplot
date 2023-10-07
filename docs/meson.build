@@ -2,9 +2,8 @@ tag_file_modules = [
   'mm-common-libstdc++', # provided by mm-common
   'sigc++-3.0',
   'glibmm-2.68',
-  'cairomm-1.0',
-  'pangomm-1.4',
-  'atkmm-1.6',
+  'cairomm-1.16',
+  'pangomm-2.48',
   'gtkmm-4.0',
 ]
 
