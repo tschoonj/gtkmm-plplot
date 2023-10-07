@@ -1,7 +1,11 @@
 <map id="Gtk::PLplot::PlotObject2DLine" name="Gtk::PLplot::PlotObject2DLine">
-<area shape="rect" id="node1" title="Line object for 2D plots." alt="" coords="11,304,175,345"/>
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_object2_d.html" title="the abstract base class that will hold a single plot object and its properties that can be added to a..." alt="" coords="5,229,180,256"/>
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot_object.html" title="the abstract base class that will hold a single plot object and its properties" alt="" coords="14,155,171,181"/>
-<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="25,80,160,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="47,5,138,32"/>
+<area shape="rect" id="Node000001" title="Line object for 2D plots." alt="" coords="10,300,174,341"/>
+<area shape="rect" id="Node000002" href="$class_gtk_1_1_p_lplot_1_1_plot_object2_d.html" title="the abstract base class that will hold a single plot object and its properties that can be added to a..." alt="" coords="5,226,179,252"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,267,95,300,89,300,89,267"/>
+<area shape="rect" id="Node000003" href="$class_gtk_1_1_p_lplot_1_1_plot_object.html" title="the abstract base class that will hold a single plot object and its properties" alt="" coords="14,153,170,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,194,95,226,89,226,89,194"/>
+<area shape="rect" id="Node000004" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="25,79,159,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="95,120,95,152,89,152,89,120"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="47,5,137,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="95,46,95,79,89,79,89,46"/>
 </map>

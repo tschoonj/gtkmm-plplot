@@ -1,21 +1,4 @@
 var searchData=
 [
-  ['algo_2eh_5314',['algo.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00857.html',1,'']]],
-  ['algobase_2eh_5315',['algobase.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00860.html',1,'']]],
-  ['algorithm_5316',['algorithm',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00038.html',1,'']]],
-  ['aligned_5fbuffer_2eh_5317',['aligned_buffer.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01022.html',1,'']]],
-  ['allocated_5fptr_2eh_5318',['allocated_ptr.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00269.html',1,'']]],
-  ['allocator_2eh_5319',['allocator.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00272.html',1,'']]],
-  ['any_5320',['any',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01004.html',1,'']]],
-  ['array_5321',['array',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00041.html',1,'']]],
-  ['array_5fallocator_2eh_5322',['array_allocator.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01025.html',1,'']]],
-  ['assertions_2eh_5323',['assertions.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00734.html',1,'']]],
-  ['assoc_5fcontainer_2ehpp_5324',['assoc_container.hpp',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01112.html',1,'']]],
-  ['atomic_5325',['atomic',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00044.html',1,'']]],
-  ['atomic_5fbase_2eh_5326',['atomic_base.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00275.html',1,'']]],
-  ['atomic_5ffutex_2eh_5327',['atomic_futex.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00278.html',1,'']]],
-  ['atomic_5flockfree_5fdefines_2eh_5328',['atomic_lockfree_defines.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00281.html',1,'']]],
-  ['atomic_5fword_2eh_5329',['atomic_word.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00641.html',1,'']]],
-  ['atomicity_2eh_5330',['atomicity.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01028.html',1,'']]],
-  ['auto_5fptr_2eh_5331',['auto_ptr.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00713.html',1,'']]]
+  ['canvas_2eh_0',['canvas.h',['../canvas_8h.html',1,'']]]
 ];

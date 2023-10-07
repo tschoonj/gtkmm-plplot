@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['boxstyle_7946',['BoxStyle',['../namespace_gtk_1_1_p_lplot.html#ac57ff669ab5a910c38ec29c4d90bf699',1,'Gtk::PLplot']]]
+  ['colormappalette_0',['ColormapPalette',['../namespace_gtk_1_1_p_lplot.html#a91e52d444bdbbf378c1c16112efd66a2',1,'Gtk::PLplot']]]
 ];

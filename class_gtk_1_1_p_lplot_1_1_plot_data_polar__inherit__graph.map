@@ -1,8 +1,13 @@
 <map id="Gtk::PLplot::PlotDataPolar" name="Gtk::PLplot::PlotDataPolar">
-<area shape="rect" id="node1" title="a class that will hold a single dataset and its properties for a PlotPolar plot" alt="" coords="5,379,183,405"/>
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d.html" title="a class that will hold a single dataset and its properties for a Plot2D plot" alt="" coords="12,304,176,331"/>
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot_data_line.html" title="abstract base class that will hold a single dataset that can be rendered as a line" alt="" coords="9,229,179,256"/>
-<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties" alt="" coords="21,155,167,181"/>
-<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="27,80,161,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="49,5,139,32"/>
+<area shape="rect" id="Node000001" title="a class that will hold a single dataset and its properties for a PlotPolar plot" alt="" coords="5,374,182,399"/>
+<area shape="rect" id="Node000002" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d.html" title="a class that will hold a single dataset and its properties for a Plot2D plot" alt="" coords="12,300,175,326"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,341,96,373,91,373,91,341"/>
+<area shape="rect" id="Node000003" href="$class_gtk_1_1_p_lplot_1_1_plot_data_line.html" title="abstract base class that will hold a single dataset that can be rendered as a line" alt="" coords="8,226,179,252"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="96,267,96,300,91,300,91,267"/>
+<area shape="rect" id="Node000004" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties" alt="" coords="20,153,167,178"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="96,194,96,226,91,226,91,194"/>
+<area shape="rect" id="Node000005" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="27,79,160,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="96,120,96,152,91,152,91,120"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="48,5,139,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="96,46,96,79,91,79,91,46"/>
 </map>

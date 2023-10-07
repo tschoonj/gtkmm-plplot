@@ -1,7 +1,14 @@
 <map id="plotdatahistogram.h" name="plotdatahistogram.h">
-<area shape="rect" id="node1" title=" " alt="" coords="149,5,285,32"/>
-<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="163,155,271,181"/>
-<area shape="rect" id="node3" href="$plotdatahistogrambinned_8h.html" title=" " alt="" coords="27,80,202,107"/>
-<area shape="rect" id="node4" href="$plotdatahistogramunbinned_8h.html" title=" " alt="" coords="226,80,414,107"/>
-<area shape="rect" id="node5" href="$plothistogram_8h.html" title=" " alt="" coords="438,80,548,107"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="147,5,282,31"/>
+<area shape="rect" id="Node000002" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="161,153,268,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,25,99,31,68,42,39,58,16,81,9,98,12,112,25,125,46,135,102,150,161,158,160,163,101,155,44,140,22,129,8,115,3,98,12,77,36,54,66,37,98,26,130,19"/>
+<area shape="rect" id="Node000003" href="$plotdatahistogrambinned_8h.html" title=" " alt="" coords="26,79,200,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="186,43,132,81,129,76,183,38"/>
+<area shape="rect" id="Node000004" href="$plotdatahistogramunbinned_8h.html" title=" " alt="" coords="223,79,411,105"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="245,38,301,76,298,81,242,42"/>
+<area shape="rect" id="Node000005" href="$plothistogram_8h.html" title=" " alt="" coords="435,79,545,105"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="276,33,444,76,443,81,275,38"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="144,112,198,150,195,154,141,116"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="289,116,233,154,230,150,286,111"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="430,111,262,155,261,149,428,106"/>
 </map>

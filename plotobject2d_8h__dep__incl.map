@@ -1,7 +1,14 @@
 <map id="plotobject2d.h" name="plotobject2d.h">
-<area shape="rect" id="node1" title=" " alt="" coords="65,5,168,32"/>
-<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="63,155,171,181"/>
-<area shape="rect" id="node3" href="$plot2d_8h.html" title=" " alt="" coords="23,80,91,107"/>
-<area shape="rect" id="node4" href="$plotobject2dline_8h.html" title=" " alt="" coords="115,80,238,107"/>
-<area shape="rect" id="node5" href="$plotobject2dtext_8h.html" title=" " alt="" coords="262,80,387,107"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="63,5,165,31"/>
+<area shape="rect" id="Node000002" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="60,153,168,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,40,33,57,12,80,8,91,9,101,24,121,49,137,77,150,75,154,46,142,20,125,5,103,3,91,8,78,30,53,58,35"/>
+<area shape="rect" id="Node000003" href="$plot2d_8h.html" title=" " alt="" coords="22,79,89,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="97,45,67,80,63,77,92,41"/>
+<area shape="rect" id="Node000004" href="$plotobject2dline_8h.html" title=" " alt="" coords="113,79,235,105"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="136,41,166,77,162,80,132,44"/>
+<area shape="rect" id="Node000005" href="$plotobject2dtext_8h.html" title=" " alt="" coords="260,79,384,105"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="164,34,287,76,286,81,163,39"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="77,115,106,150,102,154,73,118"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="156,118,126,154,122,150,152,115"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="273,113,150,155,149,150,272,108"/>
 </map>

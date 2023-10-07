@@ -1,11 +1,19 @@
 <map id="Gtk::PLplot::Plot" name="Gtk::PLplot::Plot">
-<area shape="rect" id="node1" title="an abstract base class for all plots" alt="" coords="327,107,445,133"/>
-<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots" alt="" coords="515,5,651,32"/>
-<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_plot3_d.html" title="a class for three&#45;dimensional plots" alt="" coords="515,56,651,83"/>
-<area shape="rect" id="node6" href="$class_gtk_1_1_p_lplot_1_1_plot_contour.html" title="a class for contour plots" alt="" coords="500,107,665,133"/>
-<area shape="rect" id="node8" href="$class_gtk_1_1_p_lplot_1_1_plot_histogram.html" title="a class for plotting histograms" alt="" coords="493,157,672,184"/>
-<area shape="rect" id="node9" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots" alt="" coords="508,208,657,235"/>
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="144,107,279,133"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,107,96,133"/>
-<area shape="rect" id="node7" href="$class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html" title="a class for contour plots with shaded regions." alt="" coords="720,99,885,141"/>
+<area shape="rect" id="Node000001" title="an abstract base class for all plots" alt="" coords="325,104,443,130"/>
+<area shape="rect" id="Node000004" href="$class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots" alt="" coords="513,5,648,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="410,92,447,65,490,40,518,29,520,34,492,45,450,69,414,96"/>
+<area shape="rect" id="Node000005" href="$class_gtk_1_1_p_lplot_1_1_plot3_d.html" title="a class for three&#45;dimensional plots" alt="" coords="513,55,648,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="452,97,526,78,527,84,454,102"/>
+<area shape="rect" id="Node000006" href="$class_gtk_1_1_p_lplot_1_1_plot_contour.html" title="a class for contour plots" alt="" coords="498,104,663,130"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="459,114,498,114,498,120,459,120"/>
+<area shape="rect" id="Node000008" href="$class_gtk_1_1_p_lplot_1_1_plot_histogram.html" title="a class for plotting histograms" alt="" coords="491,153,670,179"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="454,131,527,150,526,155,452,137"/>
+<area shape="rect" id="Node000009" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots" alt="" coords="506,203,655,228"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="414,137,450,164,492,189,520,200,518,205,490,194,447,169,410,142"/>
+<area shape="rect" id="Node000002" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="144,104,277,130"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="293,114,325,114,325,120,293,120"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,104,96,130"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="111,114,143,114,143,120,111,120"/>
+<area shape="rect" id="Node000007" href="$class_gtk_1_1_p_lplot_1_1_plot_contour_shades.html" title="a class for contour plots with shaded regions." alt="" coords="718,97,882,137"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="678,114,717,114,717,120,678,120"/>
 </map>

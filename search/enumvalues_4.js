@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['future_5falready_5fretrieved_7987',['future_already_retrieved',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01475.html#ga61938f7ac25df97b5362109e61bb46a6a829037befd349f04ff71ddea385bdb9a',1,'future_already_retrieved()(Global Namespace)'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01475.html#ga61938f7ac25df97b5362109e61bb46a6a829037befd349f04ff71ddea385bdb9a',1,'std::future_already_retrieved()'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01475.html#ga61938f7ac25df97b5362109e61bb46a6a829037befd349f04ff71ddea385bdb9a',1,'future_already_retrieved()(Global Namespace)']]]
+  ['highfreq_0',['HIGHFREQ',['../namespace_gtk_1_1_p_lplot.html#a91e52d444bdbbf378c1c16112efd66a2a2b99cc423232bf7bc17e2ac1423a4e70',1,'Gtk::PLplot']]],
+  ['horizontal_5fand_5fvertical_5flines_1',['HORIZONTAL_AND_VERTICAL_LINES',['../namespace_gtk_1_1_p_lplot.html#abe6b8f6295854d5231442517702d1edea2403c52d82ec41b3e5d07b25313cf60f',1,'Gtk::PLplot']]],
+  ['horizontal_5flines_2',['HORIZONTAL_LINES',['../namespace_gtk_1_1_p_lplot.html#abe6b8f6295854d5231442517702d1edea01106546adfff3a3aee536cdb11a55c4',1,'Gtk::PLplot']]]
 ];

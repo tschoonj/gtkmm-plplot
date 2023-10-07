@@ -1,9 +1,15 @@
 <map id="Gtk::PLplot::PlotDataHistogram" name="Gtk::PLplot::PlotDataHistogram">
-<area shape="rect" id="node1" title="abstract base class that will hold a single dataset that can be rendered as a histogram" alt="" coords="120,304,327,331"/>
-<area shape="rect" id="node6" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram_binned.html" title="a class that will hold a single binned histogram dataset and its properties for a PlotHistogram plot" alt="" coords="5,379,212,420"/>
-<area shape="rect" id="node7" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram_unbinned.html" title="a class that will hold a single unbinned histogram dataset and its properties for a PlotHistogram plo..." alt="" coords="236,379,443,420"/>
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_data_line.html" title="abstract base class that will hold a single dataset that can be rendered as a line" alt="" coords="138,229,309,256"/>
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties" alt="" coords="150,155,297,181"/>
-<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="156,80,291,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="178,5,269,32"/>
+<area shape="rect" id="Node000001" title="abstract base class that will hold a single dataset that can be rendered as a histogram" alt="" coords="120,300,326,326"/>
+<area shape="rect" id="Node000006" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram_binned.html" title="a class that will hold a single binned histogram dataset and its properties for a PlotHistogram plot" alt="" coords="5,374,212,414"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="195,337,138,375,135,371,192,332"/>
+<area shape="rect" id="Node000007" href="$class_gtk_1_1_p_lplot_1_1_plot_data_histogram_unbinned.html" title="a class that will hold a single unbinned histogram dataset and its properties for a PlotHistogram plo..." alt="" coords="236,374,442,414"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="255,332,312,371,309,375,252,337"/>
+<area shape="rect" id="Node000002" href="$class_gtk_1_1_p_lplot_1_1_plot_data_line.html" title="abstract base class that will hold a single dataset that can be rendered as a line" alt="" coords="138,226,308,252"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="226,267,226,300,221,300,221,267"/>
+<area shape="rect" id="Node000003" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties" alt="" coords="150,153,296,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="226,194,226,226,221,226,221,194"/>
+<area shape="rect" id="Node000004" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="157,79,290,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="226,120,226,152,221,152,221,120"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="178,5,268,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="226,46,226,79,221,79,221,46"/>
 </map>

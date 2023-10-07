@@ -1,17 +1,45 @@
 <map id="plotdataline.h" name="plotdataline.h">
-<area shape="rect" id="node1" title=" " alt="" coords="211,5,310,32"/>
-<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="364,304,472,331"/>
-<area shape="rect" id="node3" href="$plotdata2d_8h.html" title=" " alt="" coords="214,80,307,107"/>
-<area shape="rect" id="node12" href="$plotdatahistogram_8h.html" title=" " alt="" coords="741,155,877,181"/>
-<area shape="rect" id="node4" href="$plot2d_8h.html" title=" " alt="" coords="31,155,99,181"/>
-<area shape="rect" id="node5" href="$plotdata2derrorx_8h.html" title=" " alt="" coords="123,155,249,181"/>
-<area shape="rect" id="node7" href="$plotdata2derrory_8h.html" title=" " alt="" coords="273,155,397,181"/>
-<area shape="rect" id="node8" href="$plotdata3d_8h.html" title=" " alt="" coords="422,155,515,181"/>
-<area shape="rect" id="node10" href="$plotdatapolar_8h.html" title=" " alt="" coords="539,155,646,181"/>
-<area shape="rect" id="node6" href="$plotdata2derrorxy_8h.html" title=" " alt="" coords="163,229,294,256"/>
-<area shape="rect" id="node9" href="$plot3d_8h.html" title=" " alt="" coords="420,229,488,256"/>
-<area shape="rect" id="node11" href="$plotpolar_8h.html" title=" " alt="" coords="564,229,645,256"/>
-<area shape="rect" id="node13" href="$plotdatahistogrambinned_8h.html" title=" " alt="" coords="721,229,896,256"/>
-<area shape="rect" id="node14" href="$plotdatahistogramunbinned_8h.html" title=" " alt="" coords="920,229,1108,256"/>
-<area shape="rect" id="node15" href="$plothistogram_8h.html" title=" " alt="" coords="1132,229,1243,256"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="208,5,306,31"/>
+<area shape="rect" id="Node000002" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="359,300,466,326"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,33,127,52,94,65,63,81,37,100,19,122,9,148,11,178,24,220,34,235,52,250,75,262,107,272,190,288,280,299,359,306,358,311,280,304,189,293,106,277,73,266,49,254,30,238,19,222,6,179,4,147,14,120,34,96,60,76,92,60,126,47,192,28"/>
+<area shape="rect" id="Node000003" href="$plotdata2d_8h.html" title=" " alt="" coords="211,79,303,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="259,46,259,79,254,79,254,46"/>
+<area shape="rect" id="Node000012" href="$plotdatahistogram_8h.html" title=" " alt="" coords="730,153,866,178"/>
+<area shape="poly" id="edge21_Node000001_Node000012" title=" " alt="" coords="317,33,753,149,752,155,316,38"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="196,95,129,99,65,112,40,122,23,136,16,154,21,177,36,204,53,222,103,250,169,275,238,292,304,302,359,307,359,312,303,307,237,297,168,280,101,254,49,226,31,207,16,179,10,154,19,133,37,118,63,106,129,94,195,90"/>
+<area shape="rect" id="Node000004" href="$plot2d_8h.html" title=" " alt="" coords="30,153,97,178"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="211,113,97,155,95,150,209,108"/>
+<area shape="rect" id="Node000005" href="$plotdata2derrorx_8h.html" title=" " alt="" coords="121,153,246,178"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="235,117,198,154,194,150,232,114"/>
+<area shape="rect" id="Node000007" href="$plotdata2derrory_8h.html" title=" " alt="" coords="270,153,393,178"/>
+<area shape="poly" id="edge10_Node000003_Node000007" title=" " alt="" coords="282,114,321,150,317,154,278,117"/>
+<area shape="rect" id="Node000008" href="$plotdata3d_8h.html" title=" " alt="" coords="417,153,510,178"/>
+<area shape="poly" id="edge13_Node000003_Node000008" title=" " alt="" coords="307,108,429,150,427,155,305,113"/>
+<area shape="rect" id="Node000010" href="$plotdatapolar_8h.html" title=" " alt="" coords="533,153,639,178"/>
+<area shape="poly" id="edge17_Node000003_Node000010" title=" " alt="" coords="319,104,534,150,533,155,318,109"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="80,190,105,222,138,250,193,275,252,292,309,302,359,307,358,313,309,308,251,298,191,280,135,254,101,225,76,193"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="163,192,146,222,144,237,150,250,162,261,182,271,237,287,300,298,359,305,358,310,300,303,236,292,181,276,160,266,145,254,139,238,141,220,159,189"/>
+<area shape="rect" id="Node000006" href="$plotdata2derrorxy_8h.html" title=" " alt="" coords="160,226,290,252"/>
+<area shape="poly" id="edge8_Node000005_Node000006" title=" " alt="" coords="200,190,220,225,215,227,195,193"/>
+<area shape="poly" id="edge9_Node000006_Node000002" title=" " alt="" coords="272,255,382,297,380,302,270,260"/>
+<area shape="poly" id="edge11_Node000007_Node000002" title=" " alt="" coords="348,190,408,298,404,301,343,193"/>
+<area shape="poly" id="edge12_Node000007_Node000006" title=" " alt="" coords="302,190,244,228,241,224,299,185"/>
+<area shape="poly" id="edge14_Node000008_Node000002" title=" " alt="" coords="435,190,418,207,406,227,402,246,402,265,410,299,405,300,397,266,396,245,401,225,414,204,431,186"/>
+<area shape="rect" id="Node000009" href="$plot3d_8h.html" title=" " alt="" coords="415,226,482,252"/>
+<area shape="poly" id="edge15_Node000008_Node000009" title=" " alt="" coords="460,194,454,226,449,225,455,193"/>
+<area shape="poly" id="edge16_Node000009_Node000002" title=" " alt="" coords="438,267,421,301,416,298,434,264"/>
+<area shape="poly" id="edge18_Node000010_Node000002" title=" " alt="" coords="565,191,496,254,432,302,428,298,492,250,561,187"/>
+<area shape="rect" id="Node000011" href="$plotpolar_8h.html" title=" " alt="" coords="557,226,637,252"/>
+<area shape="poly" id="edge19_Node000010_Node000011" title=" " alt="" coords="593,193,598,225,592,226,587,194"/>
+<area shape="poly" id="edge20_Node000011_Node000002" title=" " alt="" coords="552,260,445,302,443,297,551,255"/>
+<area shape="poly" id="edge22_Node000012_Node000002" title=" " alt="" coords="767,189,704,226,650,254,554,285,468,305,466,300,553,280,648,250,701,222,764,184"/>
+<area shape="rect" id="Node000013" href="$plotdatahistogrambinned_8h.html" title=" " alt="" coords="711,226,885,252"/>
+<area shape="poly" id="edge23_Node000012_Node000013" title=" " alt="" coords="801,194,801,226,795,226,795,194"/>
+<area shape="rect" id="Node000014" href="$plotdatahistogramunbinned_8h.html" title=" " alt="" coords="908,226,1096,252"/>
+<area shape="poly" id="edge25_Node000012_Node000014" title=" " alt="" coords="848,181,968,223,966,228,846,186"/>
+<area shape="rect" id="Node000015" href="$plothistogram_8h.html" title=" " alt="" coords="1120,226,1231,252"/>
+<area shape="poly" id="edge27_Node000012_Node000015" title=" " alt="" coords="878,179,1120,225,1119,230,877,184"/>
+<area shape="poly" id="edge24_Node000013_Node000002" title=" " alt="" coords="718,258,468,304,467,299,717,253"/>
+<area shape="poly" id="edge26_Node000014_Node000002" title=" " alt="" coords="893,256,467,308,466,302,893,251"/>
+<area shape="poly" id="edge28_Node000015_Node000002" title=" " alt="" coords="1105,255,917,276,737,292,467,311,467,306,736,287,917,270,1104,250"/>
 </map>

@@ -1,7 +1,11 @@
 <map id="Gtk::PLplot::Plot3D" name="Gtk::PLplot::Plot3D">
-<area shape="rect" id="node1" title="a class for three&#45;dimensional plots" alt="" coords="81,229,217,256"/>
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot.html" title="an abstract base class for all plots" alt="" coords="13,155,132,181"/>
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="5,80,140,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="27,5,118,32"/>
-<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_legend.html" title="a class providing legends for plot classes with multiple datasets" alt="" coords="157,155,295,181"/>
+<area shape="rect" id="Node000001" title="a class for three&#45;dimensional plots" alt="" coords="80,226,216,252"/>
+<area shape="rect" id="Node000002" href="$class_gtk_1_1_p_lplot_1_1_plot.html" title="an abstract base class for all plots" alt="" coords="13,153,131,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,187,137,224,133,228,94,191"/>
+<area shape="rect" id="Node000003" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="5,79,139,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="75,120,75,152,69,152,69,120"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="27,5,117,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="75,46,75,79,69,79,69,46"/>
+<area shape="rect" id="Node000005" href="$class_gtk_1_1_p_lplot_1_1_legend.html" title="a class providing legends for plot classes with multiple datasets" alt="" coords="155,153,293,178"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="202,191,163,228,159,224,198,187"/>
 </map>

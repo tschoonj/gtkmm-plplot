@@ -1,8 +1,13 @@
 <map id="Gtk::PLplot::PlotObject2DText" name="Gtk::PLplot::PlotObject2DText">
-<area shape="rect" id="node1" title="Text object for 2D plots." alt="" coords="61,304,225,345"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,229,116,256"/>
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot_object2_d.html" title="the abstract base class that will hold a single plot object and its properties that can be added to a..." alt="" coords="140,229,315,256"/>
-<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot_object.html" title="the abstract base class that will hold a single plot object and its properties" alt="" coords="149,155,306,181"/>
-<area shape="rect" id="node5" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="160,80,295,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="182,5,273,32"/>
+<area shape="rect" id="Node000001" title="Text object for 2D plots." alt="" coords="61,300,224,341"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,226,115,252"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,261,124,298,120,302,81,265"/>
+<area shape="rect" id="Node000003" href="$class_gtk_1_1_p_lplot_1_1_plot_object2_d.html" title="the abstract base class that will hold a single plot object and its properties that can be added to a..." alt="" coords="139,226,312,252"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="204,265,165,302,161,298,200,261"/>
+<area shape="rect" id="Node000004" href="$class_gtk_1_1_p_lplot_1_1_plot_object.html" title="the abstract base class that will hold a single plot object and its properties" alt="" coords="147,153,304,178"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="228,194,228,226,223,226,223,194"/>
+<area shape="rect" id="Node000005" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="159,79,292,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="228,120,228,152,223,152,223,120"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="180,5,271,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="228,46,228,79,223,79,223,46"/>
 </map>

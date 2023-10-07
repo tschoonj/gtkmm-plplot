@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['continuous_7978',['CONTINUOUS',['../namespace_gtk_1_1_p_lplot.html#af906a181e6250225210ce29c07f58636ada519a9ef4e88b0474a528b995122190',1,'Gtk::PLplot']]],
-  ['copy_5fsymlinks_7979',['copy_symlinks',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga67e62e740e17772bdd02c16c494f8298a47a66bb90cd48feed3eafa4b77690ffe',1,'copy_symlinks()(Global Namespace)'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga67e62e740e17772bdd02c16c494f8298a47a66bb90cd48feed3eafa4b77690ffe',1,'copy_symlinks()(Global Namespace)']]],
-  ['create_5fhard_5flinks_7980',['create_hard_links',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga67e62e740e17772bdd02c16c494f8298a33508470ccdd33a1e663771efff2934b',1,'create_hard_links()(Global Namespace)'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga67e62e740e17772bdd02c16c494f8298a33508470ccdd33a1e663771efff2934b',1,'create_hard_links()(Global Namespace)']]],
-  ['create_5fsymlinks_7981',['create_symlinks',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga67e62e740e17772bdd02c16c494f8298a0e556d0167c1732aede37f4b39b59bce',1,'create_symlinks()(Global Namespace)'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga67e62e740e17772bdd02c16c494f8298a0e556d0167c1732aede37f4b39b59bce',1,'create_symlinks()(Global Namespace)']]]
+  ['default_0',['DEFAULT',['../namespace_gtk_1_1_p_lplot.html#a91e52d444bdbbf378c1c16112efd66a2ac492856173603676763f38219dd2f677',1,'Gtk::PLplot']]],
+  ['downward_5flines_5f30_5fdegrees_1',['DOWNWARD_LINES_30_DEGREES',['../namespace_gtk_1_1_p_lplot.html#abe6b8f6295854d5231442517702d1edeac8b697624007ec2062fd88b3f5df8be6',1,'Gtk::PLplot']]],
+  ['downward_5flines_5f45_5fdegrees_2',['DOWNWARD_LINES_45_DEGREES',['../namespace_gtk_1_1_p_lplot.html#abe6b8f6295854d5231442517702d1edea3fec2a0aac82d7d8ddb8e2e93fe44d5e',1,'Gtk::PLplot']]]
 ];

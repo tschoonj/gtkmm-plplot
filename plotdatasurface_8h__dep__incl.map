@@ -1,6 +1,11 @@
 <map id="plotdatasurface.h" name="plotdatasurface.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,128,32"/>
-<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="21,229,129,256"/>
-<area shape="rect" id="node3" href="$plotcontour_8h.html" title=" " alt="" coords="61,80,157,107"/>
-<area shape="rect" id="node4" href="$plotcontourshades_8h.html" title=" " alt="" coords="112,155,251,181"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,127,31"/>
+<area shape="rect" id="Node000002" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="20,226,128,252"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,47,51,79,50,121,55,163,72,225,67,227,50,164,45,122,46,79,54,45"/>
+<area shape="rect" id="Node000003" href="$plotcontour_8h.html" title=" " alt="" coords="61,79,156,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="83,43,104,77,99,80,79,46"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="105,120,79,226,74,225,100,119"/>
+<area shape="rect" id="Node000004" href="$plotcontourshades_8h.html" title=" " alt="" coords="112,153,250,178"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="133,114,170,150,167,154,130,117"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="151,190,94,228,91,224,148,185"/>
 </map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['usage',['Usage',['../usage.html',1,'']]]
+  ['plplot_0',['Gtkmm-PLplot',['../index.html',1,'']]]
 ];

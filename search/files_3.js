@@ -1,29 +1,4 @@
 var searchData=
 [
-  ['debug_2eh_5475',['debug.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00737.html',1,'']]],
-  ['debug_2farray_5476',['debug/array',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15183.html',1,'']]],
-  ['debug_2fbitset_5477',['debug/bitset',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15195.html',1,'']]],
-  ['debug_2fdeque_5478',['debug/deque',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15387.html',1,'']]],
-  ['debug_2fforward_5flist_5479',['debug/forward_list',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15489.html',1,'']]],
-  ['debug_2flist_5480',['debug/list',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15618.html',1,'']]],
-  ['debug_2fmap_5481',['debug/map',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15627.html',1,'']]],
-  ['debug_2fmap_2eh_5482',['debug/map.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15636.html',1,'']]],
-  ['debug_2fmultimap_2eh_5483',['debug/multimap.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15648.html',1,'']]],
-  ['debug_2fmultiset_2eh_5484',['debug/multiset.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15654.html',1,'']]],
-  ['debug_2fset_5485',['debug/set',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15774.html',1,'']]],
-  ['debug_2fset_2eh_5486',['debug/set.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15783.html',1,'']]],
-  ['debug_2fstl_5fiterator_2eh_5487',['debug/stl_iterator.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15825.html',1,'']]],
-  ['debug_2fstring_5488',['debug/string',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15828.html',1,'']]],
-  ['debug_2funordered_5fmap_5489',['debug/unordered_map',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15894.html',1,'']]],
-  ['debug_2funordered_5fset_5490',['debug/unordered_set',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15903.html',1,'']]],
-  ['debug_2fvector_5491',['debug/vector',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a15915.html',1,'']]],
-  ['debug_5fallocator_2eh_5492',['debug_allocator.h',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01043.html',1,'']]],
-  ['debug_5fmap_5fbase_2ehpp_5493',['debug_map_base.hpp',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01142.html',1,'']]],
-  ['decimal_5494',['decimal',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00983.html',1,'']]],
-  ['deque_5495',['deque',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00062.html',1,'']]],
-  ['deque_2etcc_5496',['deque.tcc',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00326.html',1,'']]],
-  ['direct_5fmask_5frange_5fhashing_5fimp_2ehpp_5497',['direct_mask_range_hashing_imp.hpp',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01307.html',1,'']]],
-  ['direct_5fmod_5frange_5fhashing_5fimp_2ehpp_5498',['direct_mod_range_hashing_imp.hpp',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01310.html',1,'']]],
-  ['dynamic_5fbitset_5499',['dynamic_bitset',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00980.html',1,'']]],
-  ['dynamic_5fbitset_2etcc_5500',['dynamic_bitset.tcc',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a00974.html',1,'']]]
+  ['legend_2eh_0',['legend.h',['../legend_8h.html',1,'']]]
 ];

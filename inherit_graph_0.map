@@ -1,4 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,132,32"/>
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_canvas.html" title="Principal plotting widget." alt="" coords="180,5,321,32"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,131,31"/>
+<area shape="rect" id="Node000001" href="$class_gtk_1_1_p_lplot_1_1_canvas.html" title="Principal plotting widget." alt="" coords="179,5,319,31"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="146,16,178,16,178,21,146,21"/>
 </map>

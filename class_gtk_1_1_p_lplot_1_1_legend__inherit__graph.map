@@ -1,6 +1,9 @@
 <map id="Gtk::PLplot::Legend" name="Gtk::PLplot::Legend">
-<area shape="rect" id="node1" title="a class providing legends for plot classes with multiple datasets" alt="" coords="164,5,303,32"/>
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots" alt="" coords="5,80,141,107"/>
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot3_d.html" title="a class for three&#45;dimensional plots" alt="" coords="165,80,301,107"/>
-<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots" alt="" coords="325,80,475,107"/>
+<area shape="rect" id="Node000001" title="a class providing legends for plot classes with multiple datasets" alt="" coords="164,5,302,31"/>
+<area shape="rect" id="Node000002" href="$class_gtk_1_1_p_lplot_1_1_plot2_d.html" title="a class for two&#45;dimensional plots" alt="" coords="5,79,141,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,40,101,81,99,76,191,35"/>
+<area shape="rect" id="Node000003" href="$class_gtk_1_1_p_lplot_1_1_plot3_d.html" title="a class for three&#45;dimensional plots" alt="" coords="165,79,301,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="236,46,236,79,230,79,230,46"/>
+<area shape="rect" id="Node000004" href="$class_gtk_1_1_p_lplot_1_1_plot_polar.html" title="a class for polar plots" alt="" coords="324,79,473,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="276,35,371,76,369,81,274,40"/>
 </map>

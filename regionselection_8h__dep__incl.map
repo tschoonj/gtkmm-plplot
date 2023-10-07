@@ -1,9 +1,20 @@
 <map id="regionselection.h" name="regionselection.h">
-<area shape="rect" id="node1" title=" " alt="" coords="146,5,266,32"/>
-<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="128,229,236,256"/>
-<area shape="rect" id="node3" href="$plot2d_8h.html" title=" " alt="" coords="23,155,91,181"/>
-<area shape="rect" id="node4" href="$plotcontour_8h.html" title=" " alt="" coords="158,80,254,107"/>
-<area shape="rect" id="node6" href="$plothistogram_8h.html" title=" " alt="" coords="329,155,440,181"/>
-<area shape="rect" id="node7" href="$plotpolar_8h.html" title=" " alt="" coords="419,80,500,107"/>
-<area shape="rect" id="node5" href="$plotcontourshades_8h.html" title=" " alt="" coords="166,155,305,181"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="144,5,263,31"/>
+<area shape="rect" id="Node000002" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="126,226,233,252"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,40,118,58,78,83,41,115,13,154,8,170,12,183,22,195,37,205,80,220,126,229,125,235,78,225,35,210,18,199,7,186,3,170,8,152,37,111,75,79,116,53,154,35"/>
+<area shape="rect" id="Node000003" href="$plot2d_8h.html" title=" " alt="" coords="22,153,89,178"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,44,70,154,66,150,179,40"/>
+<area shape="rect" id="Node000004" href="$plotcontour_8h.html" title=" " alt="" coords="156,79,251,105"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="206,46,206,79,201,79,201,46"/>
+<area shape="rect" id="Node000006" href="$plothistogram_8h.html" title=" " alt="" coords="326,153,436,178"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="231,39,368,150,365,154,228,43"/>
+<area shape="rect" id="Node000007" href="$plotpolar_8h.html" title=" " alt="" coords="415,79,496,105"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="262,33,416,77,414,82,260,38"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="91,184,160,223,157,228,88,189"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="180,117,165,134,154,154,152,173,156,192,173,225,168,227,151,194,146,173,149,152,161,131,176,113"/>
+<area shape="rect" id="Node000005" href="$plotcontourshades_8h.html" title=" " alt="" coords="164,153,302,178"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="217,118,230,151,226,153,212,120"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="217,192,191,227,186,224,213,189"/>
+<area shape="poly" id="edge9_Node000006_Node000002" title=" " alt="" coords="333,186,215,228,213,223,332,181"/>
+<area shape="poly" id="edge11_Node000007_Node000002" title=" " alt="" coords="463,121,463,151,458,166,450,180,435,192,413,202,357,218,293,229,234,236,233,231,292,223,356,212,411,197,432,187,446,177,453,164,457,150,458,120"/>
 </map>

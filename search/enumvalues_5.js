@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['gray_7988',['GRAY',['../namespace_gtk_1_1_p_lplot.html#a91e52d444bdbbf378c1c16112efd66a2a7350478b9739a01f8970195f5a5a3c0b',1,'Gtk::PLplot']]],
-  ['group_5fall_7989',['group_all',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga0a1765c6b0d8d734be3d54d85be9f145ae177de190fd9bcd01e4f8934f58dfa5c',1,'group_all()(Global Namespace)'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga0a1765c6b0d8d734be3d54d85be9f145ae177de190fd9bcd01e4f8934f58dfa5c',1,'group_all()(Global Namespace)']]],
-  ['group_5fexec_7990',['group_exec',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga0a1765c6b0d8d734be3d54d85be9f145a314d3c6602524dddf70432b0ece937a8',1,'group_exec()(Global Namespace)'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga0a1765c6b0d8d734be3d54d85be9f145a314d3c6602524dddf70432b0ece937a8',1,'group_exec()(Global Namespace)']]],
-  ['group_5fread_7991',['group_read',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga0a1765c6b0d8d734be3d54d85be9f145a25103dc0b7bf4bb70a12fdc9ae83b5dc',1,'group_read()(Global Namespace)'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga0a1765c6b0d8d734be3d54d85be9f145a25103dc0b7bf4bb70a12fdc9ae83b5dc',1,'group_read()(Global Namespace)']]],
-  ['group_5fwrite_7992',['group_write',['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga0a1765c6b0d8d734be3d54d85be9f145acf5f2e0341d3d21a4bc073c8eb8a25fa',1,'group_write()(Global Namespace)'],['http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/a01517.html#ga0a1765c6b0d8d734be3d54d85be9f145acf5f2e0341d3d21a4bc073c8eb8a25fa',1,'group_write()(Global Namespace)']]]
+  ['long_5fdash_5flong_5fgap_0',['LONG_DASH_LONG_GAP',['../namespace_gtk_1_1_p_lplot.html#af906a181e6250225210ce29c07f58636ace9488c705a112a307d8aa058a07688a',1,'Gtk::PLplot']]],
+  ['long_5fdash_5fshort_5fgap_1',['LONG_DASH_SHORT_GAP',['../namespace_gtk_1_1_p_lplot.html#af906a181e6250225210ce29c07f58636a8a212ed950abd7a2a33e57371bfa1a0f',1,'Gtk::PLplot']]],
+  ['long_5fdash_5fshort_5fgap_5flong_5fdash_5fshort_5fgap_2',['LONG_DASH_SHORT_GAP_LONG_DASH_SHORT_GAP',['../namespace_gtk_1_1_p_lplot.html#af906a181e6250225210ce29c07f58636a27383fbb28f625e4800e28aaeb6eec7d',1,'Gtk::PLplot']]],
+  ['long_5fdash_5fshort_5fgap_5fshort_5fdash_5fshort_5fgap_3',['LONG_DASH_SHORT_GAP_SHORT_DASH_SHORT_GAP',['../namespace_gtk_1_1_p_lplot.html#af906a181e6250225210ce29c07f58636ac796c6be8191a9d07b0cf8c23ff142bb',1,'Gtk::PLplot']]],
+  ['lowfreq_4',['LOWFREQ',['../namespace_gtk_1_1_p_lplot.html#a91e52d444bdbbf378c1c16112efd66a2abb7df4a67dcceb77b8d98da189cb62ab',1,'Gtk::PLplot']]]
 ];

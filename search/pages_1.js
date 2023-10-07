@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['installation_20instructions_8129',['Installation instructions',['../installation_instructions.html',1,'']]]
+  ['gtkmm_20plplot_0',['Gtkmm-PLplot',['../index.html',1,'']]]
 ];

@@ -1,5 +1,8 @@
 <map id="plotdata3d.h" name="plotdata3d.h">
-<area shape="rect" id="node1" title=" " alt="" coords="13,5,106,32"/>
-<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="5,155,113,181"/>
-<area shape="rect" id="node3" href="$plot3d_8h.html" title=" " alt="" coords="61,80,129,107"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="13,5,105,31"/>
+<area shape="rect" id="Node000002" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="5,153,113,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="57,46,52,79,54,119,59,152,54,152,48,119,47,79,51,46"/>
+<area shape="rect" id="Node000003" href="$plot3d_8h.html" title=" " alt="" coords="61,79,129,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="74,43,91,77,87,80,69,46"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="85,119,67,153,63,151,80,117"/>
 </map>

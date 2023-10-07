@@ -1,12 +1,22 @@
 <map id="Gtk::PLplot::PlotData2D" name="Gtk::PLplot::PlotData2D">
-<area shape="rect" id="node1" title="a class that will hold a single dataset and its properties for a Plot2D plot" alt="" coords="740,81,904,108"/>
-<area shape="rect" id="node6" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_x.html" title="a class that will hold a single XY dataset with X errorbars and its properties for a Plot2D plot" alt="" coords="952,5,1153,32"/>
-<area shape="rect" id="node8" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_y.html" title="a class that will hold a single XY dataset with Y errorbars and its properties for a Plot2D plot" alt="" coords="952,56,1153,83"/>
-<area shape="rect" id="node9" href="$class_gtk_1_1_p_lplot_1_1_plot_data3_d.html" title="a class that will hold a single dataset and its properties for a Plot3D plot" alt="" coords="971,107,1135,133"/>
-<area shape="rect" id="node10" href="$class_gtk_1_1_p_lplot_1_1_plot_data_polar.html" title="a class that will hold a single dataset and its properties for a PlotPolar plot" alt="" coords="964,157,1141,184"/>
-<area shape="rect" id="node2" href="$class_gtk_1_1_p_lplot_1_1_plot_data_line.html" title="abstract base class that will hold a single dataset that can be rendered as a line" alt="" coords="521,81,692,108"/>
-<area shape="rect" id="node3" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties" alt="" coords="327,81,473,108"/>
-<area shape="rect" id="node4" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="144,81,279,108"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,81,96,108"/>
-<area shape="rect" id="node7" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_x_y.html" title="a class that will hold a single XY dataset with X and Y errorbars and its properties for a Plot2D plo..." alt="" coords="1201,31,1412,57"/>
+<area shape="rect" id="Node000001" title="a class that will hold a single dataset and its properties for a Plot2D plot" alt="" coords="738,80,901,106"/>
+<area shape="rect" id="Node000006" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_x.html" title="a class that will hold a single XY dataset with X errorbars and its properties for a Plot2D plot" alt="" coords="949,5,1149,31"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="864,71,948,40,986,29,988,34,950,45,866,76"/>
+<area shape="rect" id="Node000008" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_y.html" title="a class that will hold a single XY dataset with Y errorbars and its properties for a Plot2D plot" alt="" coords="949,55,1149,80"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="916,80,948,76,949,81,917,85"/>
+<area shape="rect" id="Node000009" href="$class_gtk_1_1_p_lplot_1_1_plot_data3_d.html" title="a class that will hold a single dataset and its properties for a Plot3D plot" alt="" coords="968,104,1131,130"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="917,100,967,106,967,111,916,106"/>
+<area shape="rect" id="Node000010" href="$class_gtk_1_1_p_lplot_1_1_plot_data_polar.html" title="a class that will hold a single dataset and its properties for a PlotPolar plot" alt="" coords="961,153,1137,179"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="867,109,950,140,988,150,987,155,948,145,865,114"/>
+<area shape="rect" id="Node000002" href="$class_gtk_1_1_p_lplot_1_1_plot_data_line.html" title="abstract base class that will hold a single dataset that can be rendered as a line" alt="" coords="519,80,690,106"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="705,90,737,90,737,96,705,96"/>
+<area shape="rect" id="Node000003" href="$class_gtk_1_1_p_lplot_1_1_plot_data.html" title="the abstract base class that will hold a single dataset and its properties" alt="" coords="325,80,471,106"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="487,90,519,90,519,96,487,96"/>
+<area shape="rect" id="Node000004" href="$class_gtk_1_1_p_lplot_1_1_object.html" title="an abstract base class for all plots and plotdata&#39;s" alt="" coords="144,80,277,106"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="293,90,325,90,325,96,293,96"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,80,96,106"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="111,90,143,90,143,96,111,96"/>
+<area shape="rect" id="Node000007" href="$class_gtk_1_1_p_lplot_1_1_plot_data2_d_error_x_y.html" title="a class that will hold a single XY dataset with X and Y errorbars and its properties for a Plot2D plo..." alt="" coords="1197,31,1407,56"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1165,27,1197,30,1197,36,1165,32"/>
+<area shape="poly" id="edge8_Node000008_Node000007" title=" " alt="" coords="1165,54,1197,51,1197,56,1165,59"/>
 </map>

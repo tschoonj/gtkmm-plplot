@@ -1,4 +1,5 @@
 <map id="plothistogram.h" name="plothistogram.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,116,32"/>
-<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="7,80,115,107"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,116,31"/>
+<area shape="rect" id="Node000002" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="7,79,114,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,46,63,79,58,79,58,46"/>
 </map>

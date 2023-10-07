@@ -1,5 +1,8 @@
 <map id="plotcontour.h" name="plotcontour.h">
-<area shape="rect" id="node1" title=" " alt="" coords="11,5,107,32"/>
-<area shape="rect" id="node2" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="5,155,113,181"/>
-<area shape="rect" id="node3" href="$plotcontourshades_8h.html" title=" " alt="" coords="43,80,182,107"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="11,5,107,31"/>
+<area shape="rect" id="Node000002" href="$gtkmm-plplot_8h.html" title=" " alt="" coords="5,153,113,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="47,46,34,80,33,99,37,119,53,151,48,153,32,120,27,100,28,78,42,44"/>
+<area shape="rect" id="Node000003" href="$plotcontourshades_8h.html" title=" " alt="" coords="43,79,182,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="79,42,105,77,101,80,75,45"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="97,119,70,154,66,151,92,115"/>
 </map>
