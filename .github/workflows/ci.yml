@@ -12,15 +12,21 @@ on:
 
 jobs:
   visual-studio:
-    timeout-minutes: 60
+    timeout-minutes: 180
     runs-on: windows-latest
     name: Visual Studio 
     steps:
+      # - uses: lukka/get-cmake@latest
       - uses: actions/checkout@v3
+      - name: Install vcpkg deps
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "8eb57355a4ffb410a2e94c07b4dca2dffbee8e50" # "2023.10.19"
+          runVcpkgInstall: true
       - uses: ilammy/msvc-dev-cmd@v1
-      - name: Install vcpkg dependencies
-        run: |
-          vcpkg install --triplet x64-windows gtkmm plplot pkgconf
+      # - name: Install vcpkg dependencies
+      #   run: |
+      #     vcpkg install --triplet x64-windows gtkmm plplot pkgconf
       - name: Build with meson
         run: |
           # set PKG_CONFIG_PATH to allow pkgconf to find the pkg-config files
