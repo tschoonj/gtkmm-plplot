@@ -120,8 +120,6 @@
  *       ninja
  *       ninja install
  *
- *  Alternatively, use `./configure`, `make` and `make install`, but support for GNU Autotools is deprecated and will be removed in a future release.
- *
  *  \subsection homebrew Homebrew
  *
  *  Homebrew users can install Gtkmm-PLplot via my tap:
