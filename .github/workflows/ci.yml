@@ -11,21 +11,31 @@ on:
       - master
 
 jobs:
-  #  visual-studio:
-  #    timeout-minutes: 60
-  #    runs-on: windows-latest
+  visual-studio:
+    timeout-minutes: 180
+    runs-on: windows-latest
+    name: Visual Studio 
+    steps:
+      # - uses: lukka/get-cmake@latest
+      - uses: actions/checkout@v3
+      - name: Install vcpkg deps
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: "c8696863d371ab7f46e213d8f5ca923c4aef2a00" # "2023.10.19"
+          runVcpkgInstall: true
+      - uses: ilammy/msvc-dev-cmd@v1
+      # - name: Install vcpkg dependencies
+      #   run: |
+      #     vcpkg install --triplet x64-windows gtkmm plplot pkgconf
+      - name: Build with meson
+        run: |
+          # set PKG_CONFIG_PATH to allow pkgconf to find the pkg-config files
+          $Env:PKG_CONFIG_PATH = "C:\vcpkg\installed\x64-windows\lib\pkgconfig"
 
-  #    steps:
-  #    - uses: actions/checkout@v4
-  #    - name: Setup python
-  #      uses: actions/setup-python@v1
-  #      with:
-  #        python-version: 3.8
-  #    - uses: ilammy/msvc-dev-cmd@v1
-  #    - uses: BSFishy/meson-build@v1.0.1
-  #      with:
-  #        action: test
-  #        setup-options: -Dwith-fortran=false
+          meson setup meson-build --buildtype=release
+          meson compile -C meson-build
+        env:
+          PKG_CONFIG: C:\vcpkg\installed\x64-windows\tools\pkgconf\pkgconf.exe
 
   macos:
     timeout-minutes: 60
